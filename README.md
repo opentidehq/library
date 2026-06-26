@@ -15,6 +15,23 @@ pip install -e ../opentide   # until PyPI publish
 opentide generate docs --output docs
 ```
 
+## Interactive explorer (GitHub Pages)
+
+The [OpenTide Explorer](https://github.com/OpenTideHQ/explorer) UI is built from this repository's objects in CI and deployed to GitHub Pages:
+
+**https://opentidehq.github.io/library/**
+
+The static site is served under the `/library` base path. CI checks out the explorer repository and runs `opentide explorer build` (git-based — no npm publish required).
+
+Local preview:
+
+```bash
+pip install -e ../opentide
+export OPENTIDE_REPO_ROOT=$PWD
+export OPENTIDE_EXPLORER_PATH=../explorer
+opentide explorer build --output ./out/explorer --base-path /library
+```
+
 ## Object families
 
 | Object | Path | Schema identifier | Role |
@@ -31,7 +48,8 @@ Each YAML file includes a top-level `name` and a `metadata` block (`schema`, `ve
 specifications  →  schemas and object specs (source of truth)
 opentide        →  validate, generate, deploy (engine)
 library         →  published objects (this repository)
-website         →  browse and render library content (coming soon)
+explorer        →  interactive UI (GitHub Pages at /library)
+website         →  static docs and marketing
 ```
 
 - **Client repositories** hold private detection content under `objects/` and index it locally via the OpenTide workspace registry.
