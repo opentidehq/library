@@ -100,20 +100,20 @@ configurations:
     grouping:
       event: AlertPerResult
     entities:
-      - entity: Process
-        mappings:
-          - identifier: CommandLine
-            column: command_line
-      - entity: Host
-        mappings:
-          - identifier: HostName
-            column: src_host
-          - identifier: DnsDomain
-            column: src_nt_domain
-      - entity: Account
-        mappings:
-          - identifier: Name
-            column: src_user
+    - entity: Process
+      mappings:
+      - identifier: CommandLine
+        column: command_line
+    - entity: Host
+      mappings:
+      - identifier: HostName
+        column: src_host
+      - identifier: DnsDomain
+        column: src_nt_domain
+    - entity: Account
+      mappings:
+      - identifier: Name
+        column: src_user
   splunk:
     enabled: true
     name: RBA_RR - WIN base64 encoded powershell payload
@@ -157,23 +157,20 @@ configurations:
     trigger:
       throttling:
         fields:
-          - host
-          - src_user
-          - CommandLine
+        - host
+        - src_user
+        - CommandLine
         duration: 2h
     actions:
       risk:
         message: Suspicious PowerShell Encoded Payload ($matching_pattern$) launched by $src_user$ on $orig_host$
         risk_objects:
-          - field: src_user
-            type: user
-            score: 10
-          - field: host
-            type: system
-            score: 10
+        - field: src_user
+          type: user
+          score: 10
+        - field: host
+          type: system
+          score: 10
         threat_objects:
-          - field: CommandLine
-            type: command
-status: STAGING
-severity: High
-techniques: []
+        - field: CommandLine
+          type: command

@@ -4,7 +4,17 @@
 
 - **UUID**: `630f420b-b844-42f1-8be1-d367b3734024`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2024-11-05`
+- **Modified**: `2024-11-05`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://news.sophos.com/en-us/2022/08/18/cookie-stealing-the-new-perimeter-bypass/](https://news.sophos.com/en-us/2022/08/18/cookie-stealing-the-new-perimeter-bypass/)
+- **2**: [https://medium.com/@CyberChiX/understanding-pass-the-cookie-attacks-strengthening-security-with-mfa-layered-protection-c6df92c32d3b](https://medium.com/@CyberChiX/understanding-pass-the-cookie-attacks-strengthening-security-with-mfa-layered-protection-c6df92c32d3b)
+- **3**: [https://www.coresecurity.com/core-labs/articles/reading-dpapi-encrypted-keys-mimikatz](https://www.coresecurity.com/core-labs/articles/reading-dpapi-encrypted-keys-mimikatz)
 
 ## Description
 We describe how an attacker could extract cookies using the example of the Chrome browser.
@@ -45,8 +55,39 @@ Using either of these options will provide the browser cookies.
 
 4. Refresh the page and now attackers are logged into Azure as the user — no MFA required.
 
-## Techniques
-- T1111
+## Criticality
+**High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
+
+## Terrain
+> **Attacker must compromise a user endpoint and exfiltrate the browser cookies.
+Cookies can be found on disk, in the process memory of the browser, and in
+network traffic to remote systems.
+
+Domains: Enterprise, Public Cloud, Private Cloud, SaaS
+Targets: Auth token, Cloud Portal, End-user, Identity Services
+Platforms: Office 365, Azure AD**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
+| Impact | Identity Theft; Impairement | - |
+| Leverage | Elevation of privilege; Spoofing | - |
+| Viability | Environment dependent | Depends |
+| Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
+
+## Actors
+| Actor | ID | Source | Description |
+| --- | --- | --- | --- |
+| [[Enterprise] APT29](https://attack.mitre.org/groups/G0016) | `att&ck::G0016` | ('att&ck',) | [APT29](https://attack.mitre.org/groups/G0016) is threat group that has been attributed to Russia's Foreign Intelligence Service (SVR).(Citation: White House Imposing Costs RU Gov April 2021)(Citation: UK Gov Malign RIS Activity April 2021) They have operated since at least 2008, often targeting government networks in Europe and NATO member countries, research institutes, and think tanks. [APT29](https://attack.mitre.org/groups/G0016) reportedly compromised the Democratic National Committee starting in the summer of 2015.(Citation: F-Secure The Dukes)(Citation: GRIZZLY STEPPE JAR)(Citation: Crowdstrike DNC June 2016)(Citation: UK Gov UK Exposes Russia SolarWinds April 2021)  In April 2021, the US and UK governments attributed the [SolarWinds Compromise](https://attack.mitre.org/campaigns/C0024) to the SVR; public statements included citations to [APT29](https://attack.mitre.org/groups/G0016), Cozy Bear, and The Dukes.(Citation: NSA Joint Advisory SVR SolarWinds April 2021)(Citation: UK NSCS Russia SolarWinds April 2021) Industry reporting also referred to the actors involved in this campaign as UNC2452, NOBELIUM, StellarParticle, Dark Halo, and SolarStorm.(Citation: FireEye SUNBURST Backdoor December 2020)(Citation: MSTIC NOBELIUM Mar 2021)(Citation: CrowdStrike SUNSPOT Implant January 2021)(Citation: Volexity SolarWinds)(Citation: Cybersecurity Advisory SVR TTP May 2021)(Citation: Unit 42 SolarStorm December 2020) |
+| UNC2452 | `misp::2ee5ed7a-c4d0-40be-a837-20817474a15b` | ('misp',) | Reporting regarding activity related to the SolarWinds supply chain injection has grown quickly since initial disclosure on 13 December 2020. A significant amount of press reporting has focused on the identification of the actor(s) involved, victim organizations, possible campaign timeline, and potential impact. The US Government and cyber community have also provided detailed information on how the campaign was likely conducted and some of the malware used.  MITRE’s ATT&CK team — with the assistance of contributors — has been mapping techniques used by the actor group, referred to as UNC2452/Dark Halo by FireEye and Volexity respectively, as well as SUNBURST and TEARDROP malware. |
+| [[Enterprise] Sandworm Team](https://attack.mitre.org/groups/G0034) | `att&ck::G0034` | ('att&ck',) | [Sandworm Team](https://attack.mitre.org/groups/G0034) is a destructive threat group that has been attributed to Russia's General Staff Main Intelligence Directorate (GRU) Main Center for Special Technologies (GTsST) military unit 74455.(Citation: US District Court Indictment GRU Unit 74455 October 2020)(Citation: UK NCSC Olympic Attacks October 2020) This group has been active since at least 2009.(Citation: iSIGHT Sandworm 2014)(Citation: CrowdStrike VOODOO BEAR)(Citation: USDOJ Sandworm Feb 2020)(Citation: NCSC Sandworm Feb 2020)  In October 2020, the US indicted six GRU Unit 74455 officers associated with [Sandworm Team](https://attack.mitre.org/groups/G0034) for the following cyber operations: the 2015 and 2016 attacks against Ukrainian electrical companies and government organizations, the 2017 worldwide [NotPetya](https://attack.mitre.org/software/S0368) attack, targeting of the 2017 French presidential campaign, the 2018 [Olympic Destroyer](https://attack.mitre.org/software/S0365) attack against the Winter Olympic Games, the 2018 operation against the Organisation for the Prohibition of Chemical Weapons, and attacks against the country of Georgia in 2018 and 2019.(Citation: US District Court Indictment GRU Unit 74455 October 2020)(Citation: UK NCSC Olympic Attacks October 2020) Some of these were conducted with the assistance of GRU Unit 26165, which is also referred to as [APT28](https://attack.mitre.org/groups/G0007).(Citation: US District Court Indictment GRU Oct 2018) |
+| GreyEnergy | `misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce` | ('misp',) | ESET research reveals a successor to the infamous BlackEnergy APT group targeting critical infrastructure, quite possibly in preparation for damaging attacks |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1111` | [Multi-Factor Authentication Interception](https://attack.mitre.org/techniques/T1111) | Adversaries may target multi-factor authentication (MFA) mechanisms, (i.e., smart cards, token generators, etc.) to gain access to credentials that can be used to access systems, services, and network resources. Use of MFA is recommended and provides a higher level of security than usernames and passwords alone, but organizations should be aware of techniques that could be used to intercept and bypass these security mechanisms.   If a smart card is used for multi-factor authentication, then a keylogger will need to be used to obtain the password associated with a smart card during normal use. With both an inserted card and access to the smart card password, an adversary can connect to a network resource using the infected system to proxy the authentication with the inserted hardware token. (Citation: Mandiant M Trends 2011)  Adversaries may also employ a keylogger to similarly target other hardware tokens, such as RSA SecurID. Capturing token input (including a user's personal identification code) may provide temporary access (i.e. replay the one-time passcode until the next value rollover) as well as possibly enabling adversaries to reliably predict future authentication values (given access to both the algorithm and any seed values used to generate appended temporary codes). (Citation: GCN RSA June 2011)  Other methods of MFA may be intercepted and used by an adversary to authenticate. It is common for one-time codes to be sent via out-of-band communications (email, SMS). If the device and/or service is not secured, then it may be vulnerable to interception. Service providers can also be targeted: for example, an adversary may compromise an SMS messaging service in order to steal MFA codes sent to users’ phones.(Citation: Okta Scatter Swine 2022) |
 
 ## Chaining
 ```mermaid
@@ -54,6 +95,15 @@ flowchart LR
 630f420b_b844_42f1_8be1_d367b3734024["Mimikatz browser cookie extraction"]
 7351e2ca_e198_427c_9cfa_202df36f6e2a["Mimikatz execution on compromised endpoint"]
 b0d6bf74_b204_4a48_9509_4499ed795771["Pass-the-cookie Attack"]
-630f420b_b844_42f1_8be1_d367b3734024 --> 7351e2ca_e198_427c_9cfa_202df36f6e2a
-7351e2ca_e198_427c_9cfa_202df36f6e2a --> b0d6bf74_b204_4a48_9509_4499ed795771
+630f420b_b844_42f1_8be1_d367b3734024 -->|sequence::succeeds| 7351e2ca_e198_427c_9cfa_202df36f6e2a
+7351e2ca_e198_427c_9cfa_202df36f6e2a -->|atomicity::implements| b0d6bf74_b204_4a48_9509_4499ed795771
 ```
+### Chaining details
+#### succeeds -> Mimikatz execution on compromised endpoint (`sequence::succeeds`)
+#Endpoint has been compromised using Mimikatz
+
+- **Target UUID**: `7351e2ca-e198-427c-9cfa-202df36f6e2a`
+#### implements -> Pass-the-cookie Attack (`atomicity::implements`)
+Technique used to steal browser cookies
+
+- **Target UUID**: `b0d6bf74-b204-4a48-9509-4499ed795771`

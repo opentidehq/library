@@ -49,19 +49,19 @@ response:
          entries for `@tanstack/*` compromised versions.
       4. Correlate with other Shai-Hulud DOM signals on the same host.
     searches:
-      - purpose: Hunt related file and network IOC activity on the device
-        system: defender_for_endpoint
-        query: |-
-          let IocFiles = dynamic(["router_init.js", "setup.mjs", "gh-token-monitor"]);
-          union (
-              DeviceFileEvents
-              | where DeviceId == "{{DeviceId}}"
-              | where FileName in~ (IocFiles)
-          ), (
-              DeviceNetworkEvents
-              | where DeviceId == "{{DeviceId}}"
-              | where RemoteUrl has "git-tanstack"
-          )
+    - purpose: Hunt related file and network IOC activity on the device
+      system: defender_for_endpoint
+      query: |-
+        let IocFiles = dynamic(["router_init.js", "setup.mjs", "gh-token-monitor"]);
+        union (
+            DeviceFileEvents
+            | where DeviceId == "{{DeviceId}}"
+            | where FileName in~ (IocFiles)
+        ), (
+            DeviceNetworkEvents
+            | where DeviceId == "{{DeviceId}}"
+            | where RemoteUrl has "git-tanstack"
+        )
     containment: |-
       Isolate the endpoint if install-time child spawning coincides with IOC
       file creation. Remove malicious packages and persistence before token
@@ -122,19 +122,12 @@ configurations:
         with Shai-Hulud lifecycle hooks. Treat the host as potentially
         compromised and inspect for stealer activity and worm propagation.
       techniques:
-        - T1195.002
-        - T1546.016
-        - T1059.007
-        - T1059.006
+      - T1195.002
+      - T1546.016
+      - T1059.007
+      - T1059.006
     impacted_entities:
       device: DeviceName
     scheduling: 1H
     scope:
       selection: All
-status: STAGING
-severity: High
-techniques:
-  - T1195.002
-  - T1546.016
-  - T1059.007
-  - T1059.006

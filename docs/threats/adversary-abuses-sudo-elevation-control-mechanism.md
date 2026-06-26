@@ -4,7 +4,18 @@
 
 - **UUID**: `422098a7-567e-47fe-9e92-9fd3ec6df768`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `3`
+- **Created**: `2022-10-27`
+- **Modified**: `2022-12-21`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://steflan-security.com/linux-privilege-escalation-sudo-commands-binaries/](https://steflan-security.com/linux-privilege-escalation-sudo-commands-binaries/)
+- **2**: [https://gtfobins.github.io/](https://gtfobins.github.io/)
+- **3**: [https://gtfobins.github.io/gtfobins/tar/](https://gtfobins.github.io/gtfobins/tar/)
+- **4**: [https://gtfobins.github.io/gtfobins/pkexec/](https://gtfobins.github.io/gtfobins/pkexec/)
 
 ## Description
 Sudo is a command-line utility for Unix and Linux-based systems that can
@@ -56,5 +67,26 @@ Reference: https://gtfobins.github.io/gtfobins/pkexec/
 
 sudo pkexec /bin/sh
 
-## Techniques
-- T1548
+## Criticality
+**High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
+
+## Terrain
+> **Threat actor needs root level access to edit the sudoers file.
+
+Domains: Enterprise
+Targets: Control Server, Remote access
+Platforms: Linux**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
+| Impact | Business disruption; Data Breach; Identity Theft; Impairement | - |
+| Leverage | Elevation of privilege; Dwelling; Infrastructure Compromise | - |
+| Viability | Likely | Probable (probably) - 55-80% |
+| Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1548` | [Abuse Elevation Control Mechanism](https://attack.mitre.org/techniques/T1548) | Adversaries may circumvent mechanisms designed to control elevate privileges to gain higher-level permissions. Most modern systems contain native elevation control mechanisms that are intended to limit privileges that a user can perform on a machine. Authorization has to be granted to specific users in order to perform tasks that can be considered of higher risk.(Citation: TechNet How UAC Works)(Citation: sudo man page 2018) An adversary can perform several methods to take advantage of built-in control mechanisms in order to escalate privileges on a system.(Citation: OSX Keydnap malware)(Citation: Fortinet Fareit) |

@@ -4,7 +4,18 @@
 
 - **UUID**: `2fe6575d-513c-4588-999f-19c13d0fa4f9`
 - **Schema**: `rule::1.0`
-- **TLP**: clear
+- **Version**: `2`
+- **Created**: `2026-06-16`
+- **Modified**: `2026-06-22`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised](https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised)
+- **2**: [https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised](https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised)
+- **3**: [https://tanstack.com/blog/npm-supply-chain-compromise-postmortem](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem)
+- **4**: [https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem](https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem)
 
 ## Description
 #### MDR Technical Details
@@ -29,14 +40,43 @@ campaign infrastructure and package indicators.
 - DNS-only matches on security-research sandboxes should be scoped to
   developer and CI network segments where possible.
 
-## Techniques
-- T1195.002
-- T1547
-- T1071.001
-- T1567.002
+## Status
+
+- **Status**: `STAGING`
+- **Severity**: `Informational`
+
+## Detection model
+- **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](Objectives/fb62e879-9e91-4c5b-aaa7-999b2b1b3897.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)
+
+## Response
+
+- **Alert severity**: High
+### Procedure
+- **Analysis**: 1. Treat any on-disk IOC match as confirmed execution, not mere dependency
+   declaration.
+2. Identify the source host or client IP for network IOC matches.
+3. Search for `gh-token-monitor` persistence before revoking GitHub tokens.
+4. Sweep lockfiles for compromised package versions and rotate credentials.
+- **Containment**: Isolate affected endpoints immediately. Block IOC domains and IP at DNS
+and proxy layers. Remove persistence and malicious packages before token
+revocation.
+#### Searches
+- **Hunt persistence artefacts on the alerted device** (defender_for_endpoint)
+```text
+DeviceFileEvents
+| where DeviceId == "{{DeviceId}}"
+| where FileName has_any ("gh-token-monitor", "com.user.gh-token-monitor")
+| project Timestamp, FolderPath, FileName, SHA256
+```
 
 ## Platform configurations
 <details><summary>sentinel</summary>
+
+- **Enabled**: `True`
+- **Status**: `DEVELOPMENT`
+- **Alert title**: Shai-Hulud network IOC match — {{IndicatorValue}}
+- **Entity mapping**: IP: Address -> ClientIP
+- **Entity mapping**: DNS: DomainName -> IndicatorValue
 
 ```sql
 // Detection: Shai-Hulud known network and IOC indicator match
@@ -77,10 +117,13 @@ union DnsMatch, ProxyMatch, TiMatch
 ```
 
 
-
 </details>
 
 <details><summary>defender_for_endpoint</summary>
+
+- **Enabled**: `True`
+- **Status**: `DEVELOPMENT`
+- **Alert title**: Shai-Hulud IOC match on {{DeviceName}} — {{DetectionType}}
 
 ```sql
 // Detection: Shai-Hulud known on-disk and network IOC match
@@ -130,5 +173,18 @@ union FileMatch, NetworkMatch
 ```
 
 
-
 </details>
+
+## Relations
+```mermaid
+flowchart TB
+subgraph "Objective"
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897["Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity"]
+end
+subgraph "Threat"
+59548b96_9b01_414c_badd_c0bf2ab40d9a["Shai-Hulud npm and PyPI supply chain compromise"]
+end
+2fe6575d_513c_4588_999f_19c13d0fa4f9["Shai-Hulud Known On-Disk and Network Indicator Match"]
+2fe6575d_513c_4588_999f_19c13d0fa4f9 -->|objective| fb62e879_9e91_4c5b_aaa7_999b2b1b3897
+2fe6575d_513c_4588_999f_19c13d0fa4f9 -->|threat| 59548b96_9b01_414c_badd_c0bf2ab40d9a
+```

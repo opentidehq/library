@@ -4,7 +4,16 @@
 
 - **UUID**: `8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-02-09`
+- **Modified**: `2026-02-09`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://securelist.com/notepad-supply-chain-attack/115382/](https://securelist.com/notepad-supply-chain-attack/115382/)
+- **2**: [https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/](https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/)
 
 ## Description
 ## Executive Summary
@@ -195,26 +204,53 @@ This supply chain attack demonstrates:
 Organizations using Notepad++ should treat this as a **CRITICAL** incident requiring 
 immediate investigation and response actions.
 
-## Techniques
-- T1195.002
-- T1071
-- T1059
-- T1574
+## Criticality
+**Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
+
+## Terrain
+> **Organizations and individuals using Notepad++ text editor on Windows systems, 
+particularly those with automatic update mechanisms enabled. The attack targeted 
+the legitimate update infrastructure, delivering malicious payloads disguised 
+as authentic software updates. Victims were distributed globally across multiple 
+sectors including government, financial services, and IT service providers.
+
+Surface: OS::Windows::Desktop**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
+| Impact | Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss | - |
+| Leverage | Elevation of privilege; Tampering; Information Disclosure; Repudiation | - |
+| Viability | Almost certain | Nearly certain - 95-99% |
+| Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1195.002` | [Supply Chain Compromise: Compromise Software Supply Chain](https://attack.mitre.org/techniques/T1195/002) | Adversaries may manipulate application software prior to receipt by a final consumer for the purpose of data or system compromise. Supply chain compromise of software can take place in a number of ways, including manipulation of the application source code, manipulation of the update/distribution mechanism for that software, or replacing compiled releases with a modified version.  Targeting may be specific to a desired victim set or may be distributed to a broad set of consumers but only move on to additional tactics on specific victims.(Citation: Avast CCleaner3 2018)(Citation: Command Five SK 2011) |
+| `T1071` | [Application Layer Protocol](https://attack.mitre.org/techniques/T1071) | Adversaries may communicate using OSI application layer protocols to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server.   Adversaries may utilize many different protocols, including those used for web browsing, transferring files, electronic mail, DNS, or publishing/subscribing. For connections that occur internally within an enclave (such as those between a proxy or pivot node and other nodes), commonly used protocols are SMB, SSH, or RDP.(Citation: Mandiant APT29 Eye Spy Email Nov 22) |
+| `T1059` | [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059) | Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities, for example, macOS and Linux distributions include some flavor of [Unix Shell](https://attack.mitre.org/techniques/T1059/004) while Windows installations include the [Windows Command Shell](https://attack.mitre.org/techniques/T1059/003) and [PowerShell](https://attack.mitre.org/techniques/T1059/001).  There are also cross-platform interpreters such as [Python](https://attack.mitre.org/techniques/T1059/006), as well as those commonly associated with client applications such as [JavaScript](https://attack.mitre.org/techniques/T1059/007) and [Visual Basic](https://attack.mitre.org/techniques/T1059/005).  Adversaries may abuse these technologies in various ways as a means of executing arbitrary commands. Commands and scripts can be embedded in [Initial Access](https://attack.mitre.org/tactics/TA0001) payloads delivered to victims as lure documents or as secondary payloads downloaded from an existing C2. Adversaries may also execute commands through interactive terminals/shells, as well as utilize various [Remote Services](https://attack.mitre.org/techniques/T1021) in order to achieve remote Execution.(Citation: Powershell Remote Commands)(Citation: Cisco IOS Software Integrity Assurance - Command History)(Citation: Remote Shell Execution in Python) |
+| `T1574` | [Hijack Execution Flow](https://attack.mitre.org/techniques/T1574) | Adversaries may execute their own malicious payloads by hijacking the way operating systems run programs. Hijacking execution flow can be for the purposes of persistence, since this hijacked execution may reoccur over time. Adversaries may also use these mechanisms to elevate privileges or evade defenses, such as application control or other restrictions on execution.  There are many ways an adversary may hijack the flow of execution, including by manipulating how the operating system locates programs to be executed. How the operating system locates libraries to be used by a program can also be intercepted. Locations where the operating system looks for programs/resources, such as file directories and in the case of Windows the Registry, could also be poisoned to include malicious payloads. |
 
 ## Relations
 ```mermaid
 flowchart TB
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
-2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
+subgraph "Objective"
 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+end
+subgraph "Signal"
+2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 --> 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+end
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|objective| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
 ```

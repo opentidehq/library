@@ -47,14 +47,14 @@ response:
       3. Check whether the actor's token was used from a compromised CI runner.
       4. Correlate with npm publish and endpoint IOC signals.
     searches:
-      - purpose: Expand GitHub audit activity for the alerted actor
-        system: sentinel
-        query: |-
-          GitHubAuditLog
-          | where TimeGenerated > ago(24h)
-          | where Actor == "{{Actor}}"
-          | project TimeGenerated, Action, Repository, Data
-          | order by TimeGenerated desc
+    - purpose: Expand GitHub audit activity for the alerted actor
+      system: sentinel
+      query: |-
+        GitHubAuditLog
+        | where TimeGenerated > ago(24h)
+        | where Actor == "{{Actor}}"
+        | project TimeGenerated, Action, Repository, Data
+        | order by TimeGenerated desc
     containment: |-
       Revoke the compromised GitHub token, delete dead-drop repositories,
       and audit workflow files for malicious publish steps.
@@ -110,13 +110,13 @@ configurations:
       suppression: false
       create_incident: true
       tactics:
-        - InitialAccess
-        - Persistence
-        - Exfiltration
+      - InitialAccess
+      - Persistence
+      - Exfiltration
       techniques:
-        - T1195.002
-        - T1078
-        - T1567.002
+      - T1195.002
+      - T1078
+      - T1567.002
     trigger:
       operator: GreaterThan
       threshold: 0
@@ -125,17 +125,11 @@ configurations:
       alert:
         enabled: false
     entities:
-      - entity: Account
-        mappings:
-          - identifier: Name
-            column: Actor
-      - entity: IP
-        mappings:
-          - identifier: Address
-            column: IPAddress
-status: STAGING
-severity: High
-techniques:
-  - T1195.002
-  - T1078
-  - T1567.002
+    - entity: Account
+      mappings:
+      - identifier: Name
+        column: Actor
+    - entity: IP
+      mappings:
+      - identifier: Address
+        column: IPAddress

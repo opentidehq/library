@@ -4,7 +4,16 @@
 
 - **UUID**: `bee6e973-b0d0-4735-a26a-003f39b8c08d`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-02-09`
+- **Modified**: `2026-02-09`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://securelist.com/notepad-supply-chain-attack/115382/](https://securelist.com/notepad-supply-chain-attack/115382/)
+- **2**: [https://community.notepad-plus-plus.org/user/soft-parsley](https://community.notepad-plus-plus.org/user/soft-parsley)
 
 ## Description
 ## Executive Summary
@@ -370,34 +379,70 @@ analysis provides robust detection capabilities against this threat vector. Orga
 should prioritize detection of these patterns as part of their broader supply chain 
 risk management strategy.
 
-## Techniques
-- T1082
-- T1016
-- T1033
-- T1057
+## Criticality
+**Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
+
+## Terrain
+> **Following successful exploitation via a compromised software supply chain, threat 
+actors execute a series of standard Windows reconnaissance commands to gather 
+information about the compromised system. This activity is typically observed 
+immediately after initial access is established, as attackers assess the value 
+of the compromised host and determine next steps for lateral movement or data 
+exfiltration. The reconnaissance commands are executed through cmd.exe with output 
+redirection to text files stored in seemingly legitimate application directories.
+
+Surface: OS::Windows::Desktop**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
+| Impact | Data Breach; Business disruption | - |
+| Leverage | Information Disclosure | Threat action intending to read a file that one was not granted access to, or to read data in transit. |
+| Viability | Likely | Probable (probably) - 55-80% |
+| Kill Chain | Reconnaissance | Researching, identifying and selecting targets using active or passive reconnaissance. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1082` | [System Information Discovery](https://attack.mitre.org/techniques/T1082) | An adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use the information from [System Information Discovery](https://attack.mitre.org/techniques/T1082) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.  Tools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. As an example, adversaries with user-level access can execute the <code>df -aH</code> command to obtain currently mounted disks and associated freely available space. Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get`, `system version get`, and `storage filesystem list` (to list storage volumes).(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)  Infrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)  [System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) |
+| `T1016` | [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) | Adversaries may look for details about the network configuration and settings, such as IP and/or MAC addresses, of systems they access or through information discovery of remote systems. Several operating system administration utilities exist that can be used to gather this information. Examples include [Arp](https://attack.mitre.org/software/S0099), [ipconfig](https://attack.mitre.org/software/S0100)/[ifconfig](https://attack.mitre.org/software/S0101), [nbtstat](https://attack.mitre.org/software/S0102), and [route](https://attack.mitre.org/software/S0103).  Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather information about configurations and settings, such as IP addresses of configured interfaces and static/dynamic routes (e.g. <code>show ip route</code>, <code>show ip interface</code>).(Citation: US-CERT-TA18-106A)(Citation: Mandiant APT41 Global Intrusion ) On ESXi, adversaries may leverage esxcli to gather network configuration information. For example, the command `esxcli network nic list` will retrieve the MAC address, while `esxcli network ip interface ipv4 get` will retrieve the local IPv4 address.(Citation: Trellix Rnasomhouse 2024)  Adversaries may use the information from [System Network Configuration Discovery](https://attack.mitre.org/techniques/T1016) during automated discovery to shape follow-on behaviors, including determining certain access within the target network and what actions to do next. |
+| `T1033` | [System Owner/User Discovery](https://attack.mitre.org/techniques/T1033) | Adversaries may attempt to identify the primary user, currently logged in user, set of users that commonly uses a system, or whether a user is actively using the system. They may do this, for example, by retrieving account usernames or by using [OS Credential Dumping](https://attack.mitre.org/techniques/T1003). The information may be collected in a number of different ways using other Discovery techniques, because user and username details are prevalent throughout a system and include running process ownership, file/directory ownership, session information, and system logs. Adversaries may use the information from [System Owner/User Discovery](https://attack.mitre.org/techniques/T1033) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.  Various utilities and commands may acquire this information, including <code>whoami</code>. In macOS and Linux, the currently logged in user can be identified with <code>w</code> and <code>who</code>. On macOS the <code>dscl . list /Users \| grep -v '_'</code> command can also be used to enumerate user accounts. Environment variables, such as <code>%USERNAME%</code> and <code>$USER</code>, may also be used to access this information.  On network devices, [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) commands such as `show users` and `show ssh` can be used to display users currently logged into the device.(Citation: show_ssh_users_cmd_cisco)(Citation: US-CERT TA18-106A Network Infrastructure Devices 2018) |
+| `T1057` | [Process Discovery](https://attack.mitre.org/techniques/T1057) | Adversaries may attempt to get information about running processes on a system. Information obtained could be used to gain an understanding of common software/applications running on systems within the network. Administrator or otherwise elevated access may provide better process details. Adversaries may use the information from [Process Discovery](https://attack.mitre.org/techniques/T1057) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.  In Windows environments, adversaries could obtain details on running processes using the [Tasklist](https://attack.mitre.org/software/S0057) utility via [cmd](https://attack.mitre.org/software/S0106) or <code>Get-Process</code> via [PowerShell](https://attack.mitre.org/techniques/T1059/001). Information about processes can also be extracted from the output of [Native API](https://attack.mitre.org/techniques/T1106) calls such as <code>CreateToolhelp32Snapshot</code>. In Mac and Linux, this is accomplished with the <code>ps</code> command. Adversaries may also opt to enumerate processes via `/proc`. ESXi also supports use of the `ps` command, as well as `esxcli system process list`.(Citation: Sygnia ESXi Ransomware 2025)(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)  On network devices, [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) commands such as `show processes` can be used to display current running processes.(Citation: US-CERT-TA18-106A)(Citation: show_processes_cisco_cmd) |
 
 ## Chaining
 ```mermaid
 flowchart LR
 bee6e973_b0d0_4735_a26a_003f39b8c08d["System reconnaissance via shell commands in supply chain attack"]
 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
-bee6e973_b0d0_4735_a26a_003f39b8c08d --> 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|atomicity::implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
 ```
+### Chaining details
+#### implements -> Notepad++ supply chain attack (`atomicity::implements`)
+This TVM implements specific post-compromise reconnaissance activities observed 
+in the Notepad++ supply chain attack. These commands were executed immediately 
+after successful initial access through the compromised update mechanism.
+
+- **Target UUID**: `8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`
 
 ## Relations
 ```mermaid
 flowchart TB
-bee6e973_b0d0_4735_a26a_003f39b8c08d["System reconnaissance via shell commands in supply chain attack"]
-2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
+subgraph "Objective"
 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+end
+subgraph "Signal"
+2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
-bee6e973_b0d0_4735_a26a_003f39b8c08d --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-bee6e973_b0d0_4735_a26a_003f39b8c08d --> 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
-bee6e973_b0d0_4735_a26a_003f39b8c08d --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-bee6e973_b0d0_4735_a26a_003f39b8c08d --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-bee6e973_b0d0_4735_a26a_003f39b8c08d --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-bee6e973_b0d0_4735_a26a_003f39b8c08d --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+end
+bee6e973_b0d0_4735_a26a_003f39b8c08d["System reconnaissance via shell commands in supply chain attack"]
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|objective| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
 ```

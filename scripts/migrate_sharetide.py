@@ -158,21 +158,6 @@ def _build_signal_to_objective_map(source: Path) -> dict[str, str]:
     return mapping
 
 
-def _extract_techniques(data: dict[str, Any]) -> list[str]:
-    techniques: list[str] = []
-    configs = data.get("configurations")
-    if isinstance(configs, dict):
-        for block in configs.values():
-            if not isinstance(block, dict):
-                continue
-            alert = block.get("alert")
-            if isinstance(alert, dict):
-                for tech in alert.get("techniques") or []:
-                    if tech not in techniques:
-                        techniques.append(str(tech))
-    return techniques
-
-
 def _migrate_rule_platform(name: str, platform: str, block: dict[str, Any]) -> dict[str, Any]:
     from opentide.loading.platform_loader import load_platform_config
 
@@ -194,10 +179,6 @@ def _migrate_rule(data: dict[str, Any], signal_objective_map: dict[str, str]) ->
     metadata["schema"] = SCHEMA_MAP.get(schema, "rule::1.0")
 
     name = str(data.get("name", "rule"))
-    response = data.get("response") if isinstance(data.get("response"), dict) else {}
-    data.setdefault("status", "STAGING")
-    data.setdefault("severity", response.get("alert_severity", "Informational"))
-    data.setdefault("techniques", _extract_techniques(data))
 
     if isinstance(data.get("configurations"), dict):
         configs: dict[str, Any] = {}
@@ -213,6 +194,9 @@ def _migrate_rule(data: dict[str, Any], signal_objective_map: dict[str, str]) ->
             data.pop("detection_model", None)
         elif dm in signal_objective_map:
             data["detection_model"] = signal_objective_map[dm]
+
+    for key in ("status", "severity", "techniques"):
+        data.pop(key, None)
 
     return data
 

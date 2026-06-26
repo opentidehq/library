@@ -4,7 +4,16 @@
 
 - **UUID**: `bc95c747-ede2-4c16-a6b4-506b305e744a`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-02-09`
+- **Modified**: `2026-02-09`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/](https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/)
+- **2**: [https://securelist.com/notepad-supply-chain-attack/115382/](https://securelist.com/notepad-supply-chain-attack/115382/)
 
 ## Description
 ## Executive Summary
@@ -287,34 +296,70 @@ This threat vector demonstrates:
 Organizations affected by the Notepad++ supply chain attack should treat this as a 
 **CRITICAL** threat requiring immediate investigation, containment, and remediation.
 
-## Techniques
-- T1574
-- T1071
-- T1055
-- T1027
+## Criticality
+**Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
+
+## Terrain
+> **Organizations and individuals who were compromised through the Notepad++ supply 
+chain attack (October 2025). The attack specifically targeted victims across 
+multiple countries including Vietnam, El Salvador, Australia, and Philippines, 
+affecting government agencies, financial services, IT service providers, and 
+individual developers. The malicious files were deployed to Windows systems via 
+compromised software updates.
+
+Surface: OS::Windows::Desktop**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
+| Impact | Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss | - |
+| Leverage | Elevation of privilege; Tampering; Information Disclosure; Repudiation | - |
+| Viability | Almost certain | Nearly certain - 95-99% |
+| Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1574` | [Hijack Execution Flow](https://attack.mitre.org/techniques/T1574) | Adversaries may execute their own malicious payloads by hijacking the way operating systems run programs. Hijacking execution flow can be for the purposes of persistence, since this hijacked execution may reoccur over time. Adversaries may also use these mechanisms to elevate privileges or evade defenses, such as application control or other restrictions on execution.  There are many ways an adversary may hijack the flow of execution, including by manipulating how the operating system locates programs to be executed. How the operating system locates libraries to be used by a program can also be intercepted. Locations where the operating system looks for programs/resources, such as file directories and in the case of Windows the Registry, could also be poisoned to include malicious payloads. |
+| `T1071` | [Application Layer Protocol](https://attack.mitre.org/techniques/T1071) | Adversaries may communicate using OSI application layer protocols to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server.   Adversaries may utilize many different protocols, including those used for web browsing, transferring files, electronic mail, DNS, or publishing/subscribing. For connections that occur internally within an enclave (such as those between a proxy or pivot node and other nodes), commonly used protocols are SMB, SSH, or RDP.(Citation: Mandiant APT29 Eye Spy Email Nov 22) |
+| `T1055` | [Process Injection](https://attack.mitre.org/techniques/T1055) | Adversaries may inject code into processes in order to evade process-based defenses as well as possibly elevate privileges. Process injection is a method of executing arbitrary code in the address space of a separate live process. Running code in the context of another process may allow access to the process's memory, system/network resources, and possibly elevated privileges. Execution via process injection may also evade detection from security products since the execution is masked under a legitimate process.   There are many different ways to inject code into a process, many of which abuse legitimate functionalities. These implementations exist for every major OS but are typically platform specific.   More sophisticated samples may perform multiple process injections to segment modules and further evade detection, utilizing named pipes or other inter-process communication (IPC) mechanisms as a communication channel. |
+| `T1027` | [Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027) | Adversaries may attempt to make an executable or file difficult to discover or analyze by encrypting, encoding, or otherwise obfuscating its contents on the system or in transit. This is common behavior that can be used across different platforms and the network to evade defenses.   Payloads may be compressed, archived, or encrypted in order to avoid detection. These payloads may be used during Initial Access or later to mitigate detection. Sometimes a user's action may be required to open and [Deobfuscate/Decode Files or Information](https://attack.mitre.org/techniques/T1140) for [User Execution](https://attack.mitre.org/techniques/T1204). The user may also be required to input a password to open a password protected compressed/encrypted file that was provided by the adversary. (Citation: Volexity PowerDuke November 2016) Adversaries may also use compressed or archived scripts, such as JavaScript.   Portions of files can also be encoded to hide the plain-text strings that would otherwise help defenders with discovery. (Citation: Linux/Cdorked.A We Live Security Analysis) Payloads may also be split into separate, seemingly benign files that only reveal malicious functionality when reassembled. (Citation: Carbon Black Obfuscation Sept 2016)  Adversaries may also abuse [Command Obfuscation](https://attack.mitre.org/techniques/T1027/010) to obscure commands executed from payloads or directly via [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059). Environment variables, aliases, characters, and other platform/language specific semantics can be used to evade signature based detections and application control mechanisms. (Citation: FireEye Obfuscation June 2017) (Citation: FireEye Revoke-Obfuscation July 2017)(Citation: PaloAlto EncodedCommand March 2017) |
 
 ## Chaining
 ```mermaid
 flowchart LR
 bc95c747_ede2_4c16_a6b4_506b305e744a["Chrysalis backdoor deployment via DLL sideloading"]
 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
-bc95c747_ede2_4c16_a6b4_506b305e744a --> 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|atomicity::implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
 ```
+### Chaining details
+#### implements -> Notepad++ supply chain attack (`atomicity::implements`)
+This threat vector represents Chain #3 of the Notepad++ supply chain attack. 
+The Chrysalis backdoor deployment was one of three distinct infection chains 
+used by attackers who compromised the Notepad++ update infrastructure between 
+June and December 2025.
+
+- **Target UUID**: `8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`
 
 ## Relations
 ```mermaid
 flowchart TB
-bc95c747_ede2_4c16_a6b4_506b305e744a["Chrysalis backdoor deployment via DLL sideloading"]
-2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
+subgraph "Objective"
 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+end
+subgraph "Signal"
+2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
-bc95c747_ede2_4c16_a6b4_506b305e744a --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-bc95c747_ede2_4c16_a6b4_506b305e744a --> 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
-bc95c747_ede2_4c16_a6b4_506b305e744a --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-bc95c747_ede2_4c16_a6b4_506b305e744a --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-bc95c747_ede2_4c16_a6b4_506b305e744a --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-bc95c747_ede2_4c16_a6b4_506b305e744a --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+end
+bc95c747_ede2_4c16_a6b4_506b305e744a["Chrysalis backdoor deployment via DLL sideloading"]
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|objective| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
 ```

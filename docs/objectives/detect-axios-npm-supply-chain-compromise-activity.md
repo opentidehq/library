@@ -4,7 +4,23 @@
 
 - **UUID**: `f45b9b82-a3c5-4643-932b-debfd8739bd8`
 - **Schema**: `objective::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-04-28`
+- **Modified**: `2026-04-28`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.cisa.gov/news-events/alerts/2026/04/20/supply-chain-compromise-impacts-axios-node-package-manager](https://www.cisa.gov/news-events/alerts/2026/04/20/supply-chain-compromise-impacts-axios-node-package-manager)
+- **2**: [https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package](https://cloud.google.com/blog/topics/threat-intelligence/north-korea-threat-actor-targets-axios-npm-package)
+- **3**: [https://www.elastic.co/security-labs/axios-one-rat-to-rule-them-all](https://www.elastic.co/security-labs/axios-one-rat-to-rule-them-all)
+- **4**: [https://www.aikido.dev/blog/axios-npm-compromised-maintainer-hijacked-rat](https://www.aikido.dev/blog/axios-npm-compromised-maintainer-hijacked-rat)
+- **5**: [https://socprime.com/active-threats/supply-chain-attack-on-axios-pulls-malicious-dependency-from-npm/](https://socprime.com/active-threats/supply-chain-attack-on-axios-pulls-malicious-dependency-from-npm/)
+- **6**: [https://www.huntress.com/blog/axios-npm-compromise](https://www.huntress.com/blog/axios-npm-compromise)
+- **7**: [https://www.picussecurity.com/resource/blog/axios-npm-supply-chain-attack-cross-platform-rat-delivery-via-compromised-maintainer-credentials](https://www.picussecurity.com/resource/blog/axios-npm-supply-chain-attack-cross-platform-rat-delivery-via-compromised-maintainer-credentials)
+- **8**: [https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan](https://www.stepsecurity.io/blog/axios-compromised-on-npm-malicious-versions-drop-remote-access-trojan)
+- **9**: [https://github.com/axios/axios/issues/10636](https://github.com/axios/axios/issues/10636)
 
 ## Description
 This Detection Objective addresses the 31 March 2026 supply chain
@@ -40,6 +56,54 @@ the fact that the attack does not rely on any vulnerability in
 axios source code - it lives entirely in the npm publish trust
 boundary, which is shared by every Node.js ecosystem consumer.
 
+## Objective metadata
+
+- **Priority**: Critical
+- **Type**: Threat
+- **Investment**: Significant
+- **Composition**: Combined
+- **Composition rationale**: Signals span the full intrusion lifecycle of this incident -
+from inventory-level evidence that a compromised package was
+ever resolved, through behavioural detection of the
+postinstall dropper, to platform-specific stage-2 RAT
+artefacts and finally network-level C2 traffic. They are
+intended to be combined per host / repository / CI runner
+entity so that, for any single asset, all signals firing
+around the same time horizon are grouped into a single
+incident.
+
+Operational guidance:
+
+1. **Inventory signal first** (Signal 1) gives a known set of
+   exposed entities: every host or repository that ever
+   resolved `axios@1.14.1`, `axios@0.30.4`, or any version of
+   `plain-crypto-js`. Treat that population as
+   "potentially compromised" until proven otherwise.
+2. **Behavioural signals** (Signals 2 and 4) confirm that the
+   dropper actually ran in a given environment, by catching
+   npm-tree processes spawning unexpected interpreters or the
+   distinctive Windows renamed-PowerShell + VBScript chain.
+3. **Artefact signals** (Signal 3) confirm stage-2 RAT
+   deployment via OS-specific on-disk indicators with high
+   specificity.
+4. **Network signal** (Signal 5) is the highest-fidelity
+   confirmation of an active RAT beacon and should be treated
+   as Critical regardless of host signals.
+5. **Preventive signal** (Signal 6) is intended for medium-
+   term hardening: it surfaces future supply-chain regressions
+   on critical packages by watching for publisher email
+   changes and missing SLSA provenance on packages that
+   previously had it. It is lower severity individually but
+   compounds value across the dependency tree.
+
+Where the same asset (host, repository, or CI runner) appears
+across two or more of these signals within the relevant time
+window, the combined alert should be escalated and the host
+treated as fully compromised: rotate every credential
+reachable from it, regenerate lockfiles from a clean state,
+and reimage.
+
+## Signals
 ### Compromised Axios / plain-crypto-js Versions Resolved in Dependency Manifests
 Inventory-level detection that any project, lockfile, SBOM,
 or build artefact ever resolved a compromised version of
@@ -78,8 +142,31 @@ Malicious Packages, Aikido Intel, Socket, StepSecurity),
 and into the runtime estate (file inventory across
 developer endpoints).
 
-**Methodology**: Artifacts
+- **Severity**: High
+- **Methodology**: Artifacts
+- **Effort**: 2
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - Lockfile and manifest content from source code
+  repositories (server-side scanning preferred over
+  client-side)
+- SBOM feeds from CI/CD and from production container
+  images (CycloneDX or SPDX)
+- File inventory or EDR telemetry on developer endpoints
+  and CI runners exposing `node_modules/plain-crypto-js/`
+  directory presence
+- Optional: integration with malicious-package threat
+  feeds (OpenSSF Malicious Packages
+  `MAL-2026-2307`, Aikido Intel, Socket, StepSecurity)
+
+Preferred log sources:
+- Source code management (GitHub / GitLab) repository
+  content APIs
+- SBOM generation tooling output (Syft, CycloneDX, SPDX)
+- EDR file inventory / file-event telemetry
+- Container registry image-scanning telemetry
+- **Entities**: Software, File, File Hash, Hostname
 ### Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters
 Behavioural detection of the npm `postinstall` hook
 executing the `setup.js` dropper. The dropper is launched
@@ -120,8 +207,30 @@ future npm supply-chain attack using the postinstall
 lifecycle to deliver native payloads will exhibit the
 same parent / child / file-write pattern.
 
-**Methodology**: Behavioural
+- **Severity**: High
+- **Methodology**: Behavioural
+- **Effort**: 4
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - Process execution telemetry with full parent-child
+  chains and command line arguments
+- Outbound network telemetry attributable to the
+  spawning process (process-aware firewall, EDR
+  network module, or Sysmon Event ID 3 with process
+  context)
+- File-write events with originating process
+
+Preferred log sources:
+- Sysmon Event ID 1 (Process Create), 3 (Network
+  Connection), 11 (File Create) - all with process
+  context
+- EDR process / network / file telemetry (Defender for
+  Endpoint, CrowdStrike, SentinelOne, Elastic Agent)
+- Linux / macOS auditd / OSQuery / Endpoint Security
+  framework
+- Windows Event ID 4688 with command line auditing
+- **Entities**: Process, Command Line, File, Hostname, URL
 ### WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts
 High-specificity file-event detection for the platform-
 specific stage-2 RAT artefacts dropped by the
@@ -165,8 +274,29 @@ Detection should fire on file creation, not only on
 file presence, so that hosts which received but later
 cleaned the artefact are still surfaced.
 
-**Methodology**: Artifacts
+- **Severity**: Critical
+- **Methodology**: Artifacts
+- **Effort**: 2
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - File creation events on Windows, macOS, and Linux
+  with full paths and file hashes
+- File integrity monitoring or EDR file telemetry
+- Optional: file-content hashing on creation, to catch
+  `wt.exe` whose hash matches `powershell.exe`
+
+Preferred log sources:
+- Sysmon Event ID 11 (File Create) and Event ID 15
+  (FileCreateStreamHash) on Windows
+- macOS Endpoint Security framework / OSQuery /
+  Jamf Protect file events
+- Linux auditd `path` watches on `/tmp/`,
+  `/Library/Caches/` (macOS), `%PROGRAMDATA%`
+  (Windows), and `node_modules/`
+- EDR file telemetry (Defender for Endpoint,
+  CrowdStrike, SentinelOne, Elastic Agent)
+- **Entities**: File, File Hash, Hostname, Process
 ### Renamed PowerShell + Transient VBScript Loader from Node.js Process Tree (Windows)
 Windows-specific behavioural detection for the
 distinctive stage-2 chain used by `WAVESHAPER.V2`. The
@@ -208,8 +338,28 @@ These patterns directly correspond to GTIG's
 `G_Hunting_Downloader_suspected_UNC1069_PS_1` YARA
 signal logic.
 
-**Methodology**: Behavioural
+- **Severity**: High
+- **Methodology**: Behavioural
+- **Effort**: 3
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - Windows process execution telemetry with full
+  parent-child relationships and command line
+- File create / file content hash telemetry for
+  `%PROGRAMDATA%\wt.exe`
+- Optional: PowerShell Script Block Logging
+  (Event ID 4104) for in-memory script body capture
+- Optional: AMSI buffer telemetry
+
+Preferred log sources:
+- Sysmon Event ID 1 (Process Create), 11 (File
+  Create), 15 (FileCreateStreamHash)
+- PowerShell Operational log: Event ID 4104
+  (Script Block Logging)
+- Windows Event ID 4688 with command line auditing
+- EDR process telemetry
+- **Entities**: Process, Command Line, File, File Hash, Hostname
 ### WAVESHAPER.V2 C2 Communication to sfrclak[.]com
 Network-level detection of the `WAVESHAPER.V2` command-
 and-control channel. All three OS-specific RAT
@@ -243,8 +393,32 @@ This is the highest-fidelity confirmation of an
 active RAT and should be treated as Critical
 regardless of host-side signals.
 
-**Methodology**: Pattern Matching
+- **Severity**: Critical
+- **Methodology**: Pattern Matching
+- **Effort**: 2
+#### Data
 
+- **Availability**: Complete
+- **Requirements**: - DNS query logs (server-side or endpoint)
+- Egress firewall / proxy logs with destination
+  domain, IP, port, and HTTP method
+- HTTP / HTTPS proxy logs with full URL, User-Agent,
+  and request body sampling where available
+- NetFlow / connection metadata for periodic-beacon
+  detection
+- Optional: TLS / SNI inspection if the campaign
+  evolves to HTTPS
+
+Preferred log sources:
+- DNS server logs (BIND, Unbound, AD-DNS) or
+  endpoint DNS query telemetry (Sysmon Event ID 22)
+- Firewall logs (Palo Alto, Fortinet, Cisco
+  ASA/FTD) with URL filtering
+- Web proxy logs (Zscaler, Squid, Bluecoat) with
+  request body sampling
+- Zeek / Suricata network security monitor
+- EDR network telemetry
+- **Entities**: Domain, IP Address, URL, DNS Query, Network Connection, Process, Hostname
 ### NPM Publisher Email or SLSA Provenance Regression on Critical Packages
 Preventive detection that surfaces the registry-side
 precondition exploited in the axios attack: the
@@ -289,22 +463,63 @@ from being pulled into builds during the 18-hour
 window in which it was the most recent published
 version.
 
-**Methodology**: Anomaly
+- **Severity**: Medium
+- **Methodology**: Anomaly
+- **Effort**: 5
+#### Data
+
+- **Availability**: Partial
+- **Requirements**: - Continuous monitoring of npm registry metadata
+  for an organisation-defined list of critical
+  packages (`registry.npmjs.org/<pkg>` JSON)
+- Historical record of publisher identity and
+  provenance attestations per version
+- Integration with malicious-package feeds (OpenSSF
+  Malicious Packages, Aikido Intel, Socket,
+  StepSecurity) for enrichment
+- In CI: `npm audit signatures` / equivalent
+  integrity verification before install
+
+Preferred log sources:
+- Custom registry-watcher pipeline querying
+  `registry.npmjs.org/<pkg>` and emitting a diff
+  event per package change
+- SBOM-feed-driven critical-package list
+- Cloudsmith / JFrog / Nexus / GitHub Packages
+  registry-side audit logs for self-hosted
+  mirrors
+- **Entities**: Software, User, Hostname
+
+## Signal MDR coverage
+| Signal | Downstream MDR rules |
+| --- | --- |
+| Compromised Axios / plain-crypto-js Versions Resolved in Dependency Manifests | _None_ |
+| Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters | _None_ |
+| WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts | _None_ |
+| Renamed PowerShell + Transient VBScript Loader from Node.js Process Tree (Windows) | _None_ |
+| WAVESHAPER.V2 C2 Communication to sfrclak[.]com | _None_ |
+| NPM Publisher Email or SLSA Provenance Regression on Critical Packages | _None_ |
 
 ## Relations
 ```mermaid
 flowchart TB
-f45b9b82_a3c5_4643_932b_debfd8739bd8["Detect Axios npm Supply Chain Compromise Activity"]
+subgraph "Signal"
 6524f5a6_d9e9_48ff_983f_23c4aed9c1fd["6524f5a6-d9e9-48ff-983f-23c4aed9c1fd"]
 68f4ac42_9bd8_4b1e_b547_56f890bfe457["68f4ac42-9bd8-4b1e-b547-56f890bfe457"]
 6c2c0f21_5821_4b5f_9279_9b91dfd5d148["6c2c0f21-5821-4b5f-9279-9b91dfd5d148"]
 9866b082_7f59_43d3_8ed8_2567eda7d4fc["9866b082-7f59-43d3-8ed8-2567eda7d4fc"]
 a5331e78_144f_4300_8672_4b69b6ae732c["a5331e78-144f-4300-8672-4b69b6ae732c"]
 cf53a85e_38af_4053_a2b5_549bce394b8a["cf53a85e-38af-4053-a2b5-549bce394b8a"]
-f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 6524f5a6_d9e9_48ff_983f_23c4aed9c1fd
-f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 68f4ac42_9bd8_4b1e_b547_56f890bfe457
-f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 6c2c0f21_5821_4b5f_9279_9b91dfd5d148
-f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 9866b082_7f59_43d3_8ed8_2567eda7d4fc
-f45b9b82_a3c5_4643_932b_debfd8739bd8 --> a5331e78_144f_4300_8672_4b69b6ae732c
-f45b9b82_a3c5_4643_932b_debfd8739bd8 --> cf53a85e_38af_4053_a2b5_549bce394b8a
+end
+subgraph "Threat"
+000790d9_06de_49af_893d_e4993abe6e38["Axios npm supply chain compromise"]
+end
+f45b9b82_a3c5_4643_932b_debfd8739bd8["Detect Axios npm Supply Chain Compromise Activity"]
+f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 6524f5a6_d9e9_48ff_983f_23c4aed9c1fd
+f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 68f4ac42_9bd8_4b1e_b547_56f890bfe457
+f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 6c2c0f21_5821_4b5f_9279_9b91dfd5d148
+f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 9866b082_7f59_43d3_8ed8_2567eda7d4fc
+f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| a5331e78_144f_4300_8672_4b69b6ae732c
+f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| cf53a85e_38af_4053_a2b5_549bce394b8a
+f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|threat| 000790d9_06de_49af_893d_e4993abe6e38
 ```

@@ -4,7 +4,18 @@
 
 - **UUID**: `fae8ef2d-99e9-42f4-81ed-d40c515e8d3d`
 - **Schema**: `rule::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-06-16`
+- **Modified**: `2026-06-22`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised](https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised)
+- **2**: [https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised](https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised)
+- **3**: [https://tanstack.com/blog/npm-supply-chain-compromise-postmortem](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem)
+- **4**: [https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem](https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem)
 
 ## Description
 #### MDR Technical Details
@@ -29,13 +40,41 @@ compromised versions via `ThreatIntelIndicators`.
 - Maintain per-organisation critical-package publish baseline via watchlist
   when registry-watcher pipelines are available.
 
-## Techniques
-- T1195.002
-- T1078
-- T1485
+## Status
+
+- **Status**: `STAGING`
+- **Severity**: `Informational`
+
+## Detection model
+- **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](Objectives/fb62e879-9e91-4c5b-aaa7-999b2b1b3897.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)
+
+## Response
+
+- **Alert severity**: Medium
+### Procedure
+- **Analysis**: 1. List packages published in the burst window.
+2. Compare publish authentication source (CLI vs OIDC) to baseline.
+3. Inspect manifest diffs for `preinstall` / `optionalDependencies` changes.
+4. Cross-check versions against Wiz / OpenSSF malicious-package advisories.
+- **Containment**: Deprecate worm-republished package versions, revoke the publishing token,
+and audit all packages under the compromised maintainer scope.
+#### Searches
+- **Review all package publish actions for the actor** (sentinel)
+```text
+GitHubAuditLog
+| where TimeGenerated > ago(24h)
+| where Actor == "{{Actor}}"
+| where Action has "packages."
+| project TimeGenerated, Action, Repository, Data
+```
 
 ## Platform configurations
 <details><summary>sentinel</summary>
+
+- **Enabled**: `True`
+- **Status**: `DEVELOPMENT`
+- **Alert title**: Shai-Hulud anomalous npm publish by {{Actor}}
+- **Entity mapping**: Account: Name -> Actor
 
 ```sql
 // Detection: Shai-Hulud anomalous npm package publish
@@ -87,5 +126,18 @@ union PublishBurst, ManifestPublish, TiPackageMatch
 ```
 
 
-
 </details>
+
+## Relations
+```mermaid
+flowchart TB
+subgraph "Objective"
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897["Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity"]
+end
+subgraph "Threat"
+59548b96_9b01_414c_badd_c0bf2ab40d9a["Shai-Hulud npm and PyPI supply chain compromise"]
+end
+fae8ef2d_99e9_42f4_81ed_d40c515e8d3d["Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity"]
+fae8ef2d_99e9_42f4_81ed_d40c515e8d3d -->|objective| fb62e879_9e91_4c5b_aaa7_999b2b1b3897
+fae8ef2d_99e9_42f4_81ed_d40c515e8d3d -->|threat| 59548b96_9b01_414c_badd_c0bf2ab40d9a
+```
