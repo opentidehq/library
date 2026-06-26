@@ -29,7 +29,6 @@ jobs:
     steps:
       - name: Checkout library
         uses: actions/checkout@v4
-
       - name: Generate GitHub App token
         id: generate_token
         if: ${{ env.HAS_GITHUB_APP == 'true' }}
@@ -71,6 +70,67 @@ jobs:
         run: python scripts/opentide_run.py generate docs --output docs --flavor github
         env:
           OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+
+  inflight-shards:
+    name: Update inflight preview shards
+    if: github.event_name == 'pull_request'
+    needs: validate-and-generate
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      HAS_GITHUB_APP: ${{ secrets.GH_APP_ID && secrets.GH_APP_KEY && 'true' || 'false' }}
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
+
+      - name: Generate GitHub App token
+        id: generate_token
+        if: ${{ env.HAS_GITHUB_APP == 'true' }}
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_KEY }}
+          owner: OpenTideHQ
+          repositories: opentide
+
+      - name: Checkout opentide
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/opentide
+          ref: feat/inflight-shards
+          path: opentide
+          token: ${{ steps.generate_token.outputs.token || secrets.OPENTIDE_REPO_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install opentide
+        run: pip install -e ./opentide
+
+      - name: Merge inflight shards from default branch
+        run: |
+          git fetch origin ${{ github.base_ref }}
+          git checkout "origin/${{ github.base_ref }}" -- .opentide/inflight 2>/dev/null || mkdir -p .opentide/inflight
+
+      - name: Write inflight shards for changed objects
+        run: python scripts/opentide_run.py generate inflight
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+          DEPLOYMENT_PLAN: STAGING
+
+      - name: Push inflight shards to default branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .opentide/inflight/
+          git diff --staged --quiet && echo "No inflight shard changes" && exit 0
+          git commit -m "ci: update inflight preview shards [skip ci]"
+          git push origin "HEAD:${{ github.base_ref }}"
 
   explorer:
     name: Build explorer
