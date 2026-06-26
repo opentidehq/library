@@ -71,7 +71,7 @@ jobs:
         env:
           OPENTIDE_REPO_ROOT: ${{ github.workspace }}
 
-  inflight-shards:
+  inflight_shards:
     name: Update inflight preview shards
     if: github.event_name == 'pull_request'
     needs: validate-and-generate
