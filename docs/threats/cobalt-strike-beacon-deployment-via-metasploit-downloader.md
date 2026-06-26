@@ -4,7 +4,16 @@
 
 - **UUID**: `7c4d9a2e-8f3b-4e6a-9d1c-5a7b8e2f4d3a`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-02-09`
+- **Modified**: `2026-02-09`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://securelist.com/notepad-supply-chain-attack/115382/](https://securelist.com/notepad-supply-chain-attack/115382/)
+- **2**: [https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/](https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/)
 
 ## Description
 ## Executive Summary
@@ -309,34 +318,70 @@ Immediate action is required to:
 This threat vector should be considered **CRITICAL** priority for incident response 
 and threat hunting operations.
 
-## Techniques
-- T1071.001
-- T1573.001
-- T1105
-- T1059
+## Criticality
+**Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
+
+## Terrain
+> **Windows workstations and laptops, particularly developer environments, that have 
+been compromised through the Notepad++ supply chain attack. The Metasploit 
+downloader acts as a second-stage payload fetching mechanism, downloading and 
+executing Cobalt Strike Beacon from attacker-controlled infrastructure. This 
+affects organizations across government, financial services, and IT sectors 
+in multiple countries including Vietnam, El Salvador, Australia, and the Philippines.
+
+Surface: OS::Windows::Desktop**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
+| Impact | Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss | - |
+| Leverage | Elevation of privilege; Information Disclosure; Software installation | - |
+| Viability | Almost certain | Nearly certain - 95-99% |
+| Kill Chain | Command & Control | Techniques that allow attackers to communicate with controlled systems within a target network. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1071.001` | [Application Layer Protocol: Web Protocols](https://attack.mitre.org/techniques/T1071/001) | Adversaries may communicate using application layer protocols associated with web traffic to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server.   Protocols such as HTTP/S(Citation: CrowdStrike Putter Panda) and WebSocket(Citation: Brazking-Websockets) that carry web traffic may be very common in environments. HTTP/S packets have many fields and headers in which data can be concealed. An adversary may abuse these protocols to communicate with systems under their control within a victim network while also mimicking normal, expected traffic. |
+| `T1573.001` | [Encrypted Channel: Symmetric Cryptography](https://attack.mitre.org/techniques/T1573/001) | Adversaries may employ a known symmetric encryption algorithm to conceal command and control traffic rather than relying on any inherent protections provided by a communication protocol. Symmetric encryption algorithms use the same key for plaintext encryption and ciphertext decryption. Common symmetric encryption algorithms include AES, DES, 3DES, Blowfish, and RC4. |
+| `T1105` | [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105) | Adversaries may transfer tools or other files from an external system into a compromised environment. Tools or files may be copied from an external adversary-controlled system to the victim network through the command and control channel or through alternate protocols such as [ftp](https://attack.mitre.org/software/S0095). Once present, adversaries may also transfer/spread tools between victim devices within a compromised environment (i.e. [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570)).   On Windows, adversaries may use various utilities to download tools, such as `copy`, `finger`, [certutil](https://attack.mitre.org/software/S0160), and [PowerShell](https://attack.mitre.org/techniques/T1059/001) commands such as <code>IEX(New-Object Net.WebClient).downloadString()</code> and <code>Invoke-WebRequest</code>. On Linux and macOS systems, a variety of utilities also exist, such as `curl`, `scp`, `sftp`, `tftp`, `rsync`, `finger`, and `wget`.(Citation: t1105_lolbas)  A number of these tools, such as `wget`, `curl`, and `scp`, also exist on ESXi. After downloading a file, a threat actor may attempt to verify its integrity by checking its hash value (e.g., via `certutil -hashfile`).(Citation: Google Cloud Threat Intelligence COSCMICENERGY 2023)  Adversaries may also abuse installers and package managers, such as `yum` or `winget`, to download tools to victim hosts. Adversaries have also abused file application features, such as the Windows `search-ms` protocol handler, to deliver malicious files to victims through remote file searches invoked by [User Execution](https://attack.mitre.org/techniques/T1204) (typically after interacting with [Phishing](https://attack.mitre.org/techniques/T1566) lures).(Citation: T1105: Trellix_search-ms)  Files can also be transferred using various [Web Service](https://attack.mitre.org/techniques/T1102)s as well as native or otherwise present tools on the victim system.(Citation: PTSecurity Cobalt Dec 2016) In some cases, adversaries may be able to leverage services that sync between a web-based and an on-premises client, such as Dropbox or OneDrive, to transfer files onto victim systems. For example, by compromising a cloud account and logging into the service's web portal, an adversary may be able to trigger an automatic syncing process that transfers the file onto the victim's machine.(Citation: Dropbox Malware Sync) |
+| `T1059` | [Command and Scripting Interpreter](https://attack.mitre.org/techniques/T1059) | Adversaries may abuse command and script interpreters to execute commands, scripts, or binaries. These interfaces and languages provide ways of interacting with computer systems and are a common feature across many different platforms. Most systems come with some built-in command-line interface and scripting capabilities, for example, macOS and Linux distributions include some flavor of [Unix Shell](https://attack.mitre.org/techniques/T1059/004) while Windows installations include the [Windows Command Shell](https://attack.mitre.org/techniques/T1059/003) and [PowerShell](https://attack.mitre.org/techniques/T1059/001).  There are also cross-platform interpreters such as [Python](https://attack.mitre.org/techniques/T1059/006), as well as those commonly associated with client applications such as [JavaScript](https://attack.mitre.org/techniques/T1059/007) and [Visual Basic](https://attack.mitre.org/techniques/T1059/005).  Adversaries may abuse these technologies in various ways as a means of executing arbitrary commands. Commands and scripts can be embedded in [Initial Access](https://attack.mitre.org/tactics/TA0001) payloads delivered to victims as lure documents or as secondary payloads downloaded from an existing C2. Adversaries may also execute commands through interactive terminals/shells, as well as utilize various [Remote Services](https://attack.mitre.org/techniques/T1021) in order to achieve remote Execution.(Citation: Powershell Remote Commands)(Citation: Cisco IOS Software Integrity Assurance - Command History)(Citation: Remote Shell Execution in Python) |
 
 ## Chaining
 ```mermaid
 flowchart LR
 7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a["Cobalt Strike Beacon deployment via Metasploit downloader"]
 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a --> 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|atomicity::implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
 ```
+### Chaining details
+#### implements -> Notepad++ supply chain attack (`atomicity::implements`)
+This threat vector represents the final stage payload deployment mechanism 
+used across all three infection chains of the Notepad++ supply chain attack. 
+Metasploit downloader shellcode retrieves and deploys Cobalt Strike Beacon 
+to establish persistent command and control infrastructure.
+
+- **Target UUID**: `8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`
 
 ## Relations
 ```mermaid
 flowchart TB
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a["Cobalt Strike Beacon deployment via Metasploit downloader"]
-2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
+subgraph "Objective"
 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+end
+subgraph "Signal"
+2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a --> 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+end
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a["Cobalt Strike Beacon deployment via Metasploit downloader"]
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|objective| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
 ```

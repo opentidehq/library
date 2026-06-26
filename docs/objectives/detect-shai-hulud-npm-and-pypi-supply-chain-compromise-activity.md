@@ -4,7 +4,18 @@
 
 - **UUID**: `fb62e879-9e91-4c5b-aaa7-999b2b1b3897`
 - **Schema**: `objective::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-06-16`
+- **Modified**: `2026-06-16`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised](https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised)
+- **2**: [https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised](https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised)
+- **3**: [https://tanstack.com/blog/npm-supply-chain-compromise-postmortem](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem)
+- **4**: [https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem](https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem)
 
 ## Description
 This Detection Objective addresses the May 2026 Shai-Hulud / mini
@@ -33,6 +44,38 @@ Critical priority reflects worm-like propagation, broad ecosystem
 reach (TanStack Router alone ~12M weekly downloads), and destructive
 token-revocation behaviour on compromised developer laptops.
 
+## Objective metadata
+
+- **Priority**: Critical
+- **Type**: Threat
+- **Investment**: Significant
+- **Composition**: Combined
+- **Composition rationale**: Signals span inventory, endpoint behavioural detection, cloud audit
+anomalies, and high-fidelity IOC matching. Combine per host,
+repository, or CI runner entity so that multiple signals firing in
+the same time window escalate to a single incident.
+
+Operational guidance:
+
+1. **Indicator signal** (Signal 7) and **inventory checks** against
+   advisories give the fastest confirmation of exposure.
+2. **Install-time child process anomaly** (Signal 1) confirms the
+   lifecycle hook actually executed in a given environment.
+3. **Secret-file access followed by egress** (Signal 2) and **bulk
+   credential scanning** (Signal 3) confirm post-install stealer
+   behaviour.
+4. **GitHub repo / workflow creation** (Signal 4) and **anomalous
+   publish context** (Signal 5) surface worm propagation in cloud
+   audit logs even when endpoint telemetry is incomplete.
+5. **Large encoded outbound HTTP** (Signal 6) provides network-
+   level corroboration for exfiltration channels.
+
+Treat any host that resolved a listed compromised version during
+the exposure window as potentially compromised: rotate all
+reachable credentials, remove persistence before token revocation,
+and regenerate lockfiles from a clean baseline.
+
+## Signals
 ### Package Manager Install Spawning Unexpected Download or Scripting Child Processes
 Behavioural detection of npm, pnpm, yarn, pip, or Bun install
 processes spawning unexpected child processes consistent with
@@ -63,8 +106,23 @@ compilation, `husky`, `esbuild` binary fetch). Tune with
 allowlists for known-good packages and CI image baselines;
 elevate when combined with secret-file access or IOC domains.
 
-**Methodology**: Behavioural
+- **Severity**: High
+- **Methodology**: Behavioural
+- **Effort**: 4
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - Process execution telemetry with parent-child relationships
+  and full command lines
+- File-create events attributable to initiating process
+- Optional: EDR network module tied to process tree
+
+Preferred log sources:
+- Microsoft Defender for Endpoint `DeviceProcessEvents`,
+  `DeviceFileEvents`
+- Sysmon Event ID 1 and 11 (Windows)
+- Linux auditd / macOS Endpoint Security framework
+- **Entities**: Process, Command Line, File, Hostname
 ### Developer Secret-File Access Followed by Outbound Network Egress
 Behavioural correlation detecting a process that reads common
 developer secret locations and initiates outbound network
@@ -94,8 +152,22 @@ tooling, and developer utilities (e.g. `gh auth login`). Scope to
 developer laptops and build agents; require multiple secret paths
 or IOC destination for higher fidelity.
 
-**Methodology**: Behavioural
+- **Severity**: High
+- **Methodology**: Behavioural
+- **Effort**: 5
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - File-access telemetry with process attribution
+- Outbound network connections with initiating process context
+- Time-synchronised correlation capability (SIEM or Advanced
+  Hunting joins)
+
+Preferred log sources:
+- Defender `DeviceFileEvents` + `DeviceNetworkEvents`
+- Sysmon Event ID 11 / 23 and Event ID 3
+- EDR combined process-network correlation
+- **Entities**: Process, File, IP Address, URL, Network Connection, Hostname
 ### Bulk Credential-Candidate File Access on Developer or CI Hosts
 Statistical / anomaly detection of a single process recursively
 or iteratively accessing many credential-candidate files within
@@ -121,8 +193,21 @@ deliberately by security teams, and some IDE indexing. Exclude
 known inventory / backup service accounts; lower threshold on
 CI runners where breadth may be lower but paths more sensitive.
 
-**Methodology**: Statistical
+- **Severity**: Medium
+- **Methodology**: Statistical
+- **Effort**: 6
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - High-volume file-access telemetry with paths and hashes
+- Process attribution and parent-chain context
+- Aggregation / thresholding in SIEM or scheduled hunting
+
+Preferred log sources:
+- Defender `DeviceFileEvents`
+- Sysmon Event ID 11 with path filters
+- OSQuery file_events snapshots
+- **Entities**: Process, File, Hostname
 ### Unexpected GitHub Repository or Workflow Creation from Anomalous Context
 Event-search detection in GitHub audit and cloud application
 logs for worm propagation artefacts: dead-drop repositories,
@@ -150,8 +235,23 @@ forks and workflows; hobby repositories with unusual names.
 Correlate with endpoint install anomalies or IOC network traffic
 on linked CI runners.
 
-**Methodology**: Event Search
+- **Severity**: High
+- **Methodology**: Event Search
+- **Effort**: 5
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - GitHub Enterprise audit log ingestion (GitHubAuditLog or
+  equivalent connector table)
+- Microsoft Sentinel `CloudAppEvents` / `OfficeActivity` for
+  GitHub application activity
+- Baseline of normal publish identities per critical repo
+
+Preferred log sources:
+- GitHub audit streaming to Sentinel
+- `CloudAppEvents` where `Application == "GitHub"`
+- npm registry audit / publish webhooks (if forwarded to SIEM)
+- **Entities**: Account, User, API Call, Software
 ### Anomalous npm Package Publish from Non-Baseline Host or Identity
 Anomaly detection surfacing package publishes that deviate from
 established maintainer workflow, provenance, or source identity
@@ -182,8 +282,23 @@ False positives: emergency hotfix publishes, migration between
 publish mechanisms, and monorepo bulk releases. Require manifest
 fingerprint or feed enrichment for auto-escalation.
 
-**Methodology**: Anomaly
+- **Severity**: Medium
+- **Methodology**: Anomaly
+- **Effort**: 6
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - Continuous npm registry metadata monitoring for critical
+  packages
+- GitHub Actions / OIDC claim logging where available
+- Integration with malicious-package intelligence feeds
+- Historical publish provenance per package version
+
+Preferred log sources:
+- Custom registry-watcher pipelines
+- GitHub Actions deployment logs
+- Third-party supply-chain monitoring SaaS APIs
+- **Entities**: Software, User, Token, API Call
 ### Large Encoded Payload in Outbound HTTP from Developer or Build Hosts
 Pattern-matching detection for sizeable Base64 or otherwise
 encoded HTTP request bodies leaving developer laptops or CI
@@ -208,8 +323,23 @@ False positives: legitimate telemetry uploads, crash dumps,
 artefact uploads to internal registries. Tune minimum body size
 and require IOC destination or co-occurring secret-file reads.
 
-**Methodology**: Pattern Matching
+- **Severity**: Medium
+- **Methodology**: Pattern Matching
+- **Effort**: 5
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - HTTP proxy or TLS-inspection logs with request body sampling
+- EDR HTTP inspection (`DeviceNetworkEvents` with
+  `HttpConnectionInspected`)
+- NetFlow with byte counts for coarse pre-filtering
+
+Preferred log sources:
+- Corporate web proxy (Zscaler, Bluecoat) with body logging
+- Defender `DeviceNetworkEvents` AdditionalFields user_agent /
+  request metadata
+- Zeek HTTP logs on build-network egress
+- **Entities**: URL, IP Address, Network Connection, Process, Hostname
 ### Known Shai-Hulud On-Disk and Network Indicator Match
 High-specificity artefact and IOC matching for publicly reported
 Shai-Hulud indicators — suitable for retrospective sweeps and
@@ -243,38 +373,73 @@ Detection criteria:
 Treat any match on a build or developer host as strong evidence
 of execution, not merely dependency declaration.
 
-**Methodology**: Artifacts
+- **Severity**: Critical
+- **Methodology**: Artifacts
+- **Effort**: 2
+#### Data
+
+- **Availability**: Partial
+- **Requirements**: - File inventory / hash telemetry on endpoints and CI runners
+- Lockfile and SBOM scanning in source control and CI
+- DNS and proxy logs for IOC domains
+- Malicious-package feed integration for version-level matches
+
+Preferred log sources:
+- EDR file inventory and `DeviceFileEvents`
+- Repository content scanning at PR time
+- DNS server logs and web proxy URL filtering
+- OpenSSF / vendor supply-chain feeds
+- **Entities**: File, File Hash, Software, DNS Query, URL, Hostname
+
+## Signal MDR coverage
+| Signal | Downstream MDR rules |
+| --- | --- |
+| Package Manager Install Spawning Unexpected Download or Scripting Child Processes | _None_ |
+| Developer Secret-File Access Followed by Outbound Network Egress | _None_ |
+| Bulk Credential-Candidate File Access on Developer or CI Hosts | _None_ |
+| Unexpected GitHub Repository or Workflow Creation from Anomalous Context | _None_ |
+| Anomalous npm Package Publish from Non-Baseline Host or Identity | _None_ |
+| Large Encoded Payload in Outbound HTTP from Developer or Build Hosts | _None_ |
+| Known Shai-Hulud On-Disk and Network Indicator Match | _None_ |
 
 ## Relations
 ```mermaid
 flowchart TB
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897["Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity"]
-0924c742_8fdb_4ee2_95fe_91d2e5725a90["Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts"]
+subgraph "Signal"
 21a527de_8635_4187_87d4_c9e5f5c1badc["21a527de-8635-4187-87d4-c9e5f5c1badc"]
 287114bd_7d58_422d_9711_f5516900b9ce["287114bd-7d58-422d-9711-f5516900b9ce"]
-2fe6575d_513c_4588_999f_19c13d0fa4f9["Shai-Hulud Known On-Disk and Network Indicator Match"]
 365e23e8_0367_4adf_b18a_f1440cc66005["365e23e8-0367-4adf-b18a-f1440cc66005"]
 678d0786_dfd7_40fb_ba90_3c368ed00342["678d0786-dfd7-40fb-ba90-3c368ed00342"]
-7eb85d22_2e60_449f_b92c_8cecc28d34c6["Shai-Hulud Unexpected GitHub Repository or Workflow Creation"]
 9f3abdc4_7c6e_480e_b722_6d31ddd9b2d2["9f3abdc4-7c6e-480e-b722-6d31ddd9b2d2"]
 a3f7d796_146c_44b0_8d22_7a08daa0d963["a3f7d796-146c-44b0-8d22-7a08daa0d963"]
 b49d0a94_ae13_49b3_8ad8_6c035fa3d681["b49d0a94-ae13-49b3-8ad8-6c035fa3d681"]
+end
+subgraph "Rule"
+0924c742_8fdb_4ee2_95fe_91d2e5725a90["Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts"]
+2fe6575d_513c_4588_999f_19c13d0fa4f9["Shai-Hulud Known On-Disk and Network Indicator Match"]
+7eb85d22_2e60_449f_b92c_8cecc28d34c6["Shai-Hulud Unexpected GitHub Repository or Workflow Creation"]
 bfae62bb_7ce1_46cd_a131_39803832fa9d["Shai-Hulud Package Manager Install Spawning Suspicious Child Processes"]
 c82cfa6b_066f_4ba3_ba07_d7eb642c8099["Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts"]
 ecd096d2_7fc5_45e3_803f_82d13f940210["Shai-Hulud Developer Secret-File Access Followed by Outbound Egress"]
 fae8ef2d_99e9_42f4_81ed_d40c515e8d3d["Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity"]
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 0924c742_8fdb_4ee2_95fe_91d2e5725a90
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 21a527de_8635_4187_87d4_c9e5f5c1badc
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 287114bd_7d58_422d_9711_f5516900b9ce
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 2fe6575d_513c_4588_999f_19c13d0fa4f9
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 365e23e8_0367_4adf_b18a_f1440cc66005
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 678d0786_dfd7_40fb_ba90_3c368ed00342
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 7eb85d22_2e60_449f_b92c_8cecc28d34c6
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 9f3abdc4_7c6e_480e_b722_6d31ddd9b2d2
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> a3f7d796_146c_44b0_8d22_7a08daa0d963
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> b49d0a94_ae13_49b3_8ad8_6c035fa3d681
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> bfae62bb_7ce1_46cd_a131_39803832fa9d
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> c82cfa6b_066f_4ba3_ba07_d7eb642c8099
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> ecd096d2_7fc5_45e3_803f_82d13f940210
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> fae8ef2d_99e9_42f4_81ed_d40c515e8d3d
+end
+subgraph "Threat"
+59548b96_9b01_414c_badd_c0bf2ab40d9a["Shai-Hulud npm and PyPI supply chain compromise"]
+end
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897["Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity"]
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 21a527de_8635_4187_87d4_c9e5f5c1badc
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 287114bd_7d58_422d_9711_f5516900b9ce
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 365e23e8_0367_4adf_b18a_f1440cc66005
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 678d0786_dfd7_40fb_ba90_3c368ed00342
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 9f3abdc4_7c6e_480e_b722_6d31ddd9b2d2
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| a3f7d796_146c_44b0_8d22_7a08daa0d963
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| b49d0a94_ae13_49b3_8ad8_6c035fa3d681
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| 0924c742_8fdb_4ee2_95fe_91d2e5725a90
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| 2fe6575d_513c_4588_999f_19c13d0fa4f9
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| 7eb85d22_2e60_449f_b92c_8cecc28d34c6
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| bfae62bb_7ce1_46cd_a131_39803832fa9d
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| c82cfa6b_066f_4ba3_ba07_d7eb642c8099
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| ecd096d2_7fc5_45e3_803f_82d13f940210
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| fae8ef2d_99e9_42f4_81ed_d40c515e8d3d
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|threat| 59548b96_9b01_414c_badd_c0bf2ab40d9a
 ```

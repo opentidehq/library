@@ -4,7 +4,18 @@
 
 - **UUID**: `4f0f3e9c-8d61-422c-9c13-809aa75cab59`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2025-08-06`
+- **Modified**: `2025-08-07`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.geeksforgeeks.org/linux-unix/kali-linux-information-gathering-tools](https://www.geeksforgeeks.org/linux-unix/kali-linux-information-gathering-tools)
+- **2**: [https://www.redhat.com/en/blog/linux-system-info-commands](https://www.redhat.com/en/blog/linux-system-info-commands)
+- **3**: [https://medium.com/@velmuruganofficial/top-15-advanced-and-best-information-gathering-tools-67f07550e502](https://medium.com/@velmuruganofficial/top-15-advanced-and-best-information-gathering-tools-67f07550e502)
+- **4**: [https://www.geeksforgeeks.org/linux-unix/sparta-tool-in-kali-linux](https://www.geeksforgeeks.org/linux-unix/sparta-tool-in-kali-linux)
 
 ## Description
 Host information gathering in Linux can be a part of a reconnaissance
@@ -70,5 +81,26 @@ vulnerabilities on the host.
   collection of information, for example scan of IP ranges, network and
   domain names ref [4].
 
-## Techniques
-- T1082
+## Criticality
+**Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
+
+## Terrain
+> **A threat actor needs an initial access to a Linux system.
+
+Domains: Enterprise
+Targets: Laptop, Workstations
+Platforms: Linux**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
+| Impact | Data Breach; Identity Theft | - |
+| Leverage | Information Disclosure | Threat action intending to read a file that one was not granted access to, or to read data in transit. |
+| Viability | Likely | Probable (probably) - 55-80% |
+| Kill Chain | Reconnaissance | Researching, identifying and selecting targets using active or passive reconnaissance. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1082` | [System Information Discovery](https://attack.mitre.org/techniques/T1082) | An adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use the information from [System Information Discovery](https://attack.mitre.org/techniques/T1082) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.  Tools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. As an example, adversaries with user-level access can execute the <code>df -aH</code> command to obtain currently mounted disks and associated freely available space. Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get`, `system version get`, and `storage filesystem list` (to list storage volumes).(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)  Infrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)  [System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) |

@@ -4,7 +4,17 @@
 
 - **UUID**: `bf30d882-9b96-403a-9a47-83a2981fc526`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-02-09`
+- **Modified**: `2026-02-09`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://securelist.com/notepad-supply-chain-attack/115382/](https://securelist.com/notepad-supply-chain-attack/115382/)
+- **2**: [https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/](https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/)
+- **3**: [https://temp.sh/](https://temp.sh/)
 
 ## Description
 ## Executive Summary
@@ -286,33 +296,70 @@ in network monitoring configurations.
 - Rapid7 Research: "Notepad++ Supply Chain Compromise Analysis" (February 2026)
 - temp.sh service: https://temp.sh/
 
-## Techniques
-- T1071.001
-- T1567.002
-- T1082
+## Criticality
+**Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
+
+## Terrain
+> **Organizations and environments where adversaries have established initial access
+and are attempting to maintain covert command and control communications while
+evading network detection. This technique targets environments where outbound
+HTTPS traffic to legitimate file-sharing services is allowed, enabling attackers
+to blend malicious traffic with normal business operations. Particularly relevant
+in environments with developer workstations, laptops, and systems with curl.exe
+or similar HTTP client tools available.
+
+Surface: OS::Windows::Desktop**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
+| Impact | Data Breach; Reputational Damages | - |
+| Leverage | Information Disclosure; Dwelling | - |
+| Viability | Likely | Probable (probably) - 55-80% |
+| Kill Chain | Command & Control | Techniques that allow attackers to communicate with controlled systems within a target network. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1071.001` | [Application Layer Protocol: Web Protocols](https://attack.mitre.org/techniques/T1071/001) | Adversaries may communicate using application layer protocols associated with web traffic to avoid detection/network filtering by blending in with existing traffic. Commands to the remote system, and often the results of those commands, will be embedded within the protocol traffic between the client and server.   Protocols such as HTTP/S(Citation: CrowdStrike Putter Panda) and WebSocket(Citation: Brazking-Websockets) that carry web traffic may be very common in environments. HTTP/S packets have many fields and headers in which data can be concealed. An adversary may abuse these protocols to communicate with systems under their control within a victim network while also mimicking normal, expected traffic. |
+| `T1567.002` | [Exfiltration Over Web Service: Exfiltration to Cloud Storage](https://attack.mitre.org/techniques/T1567/002) | Adversaries may exfiltrate data to a cloud storage service rather than over their primary command and control channel. Cloud storage services allow for the storage, edit, and retrieval of data from a remote cloud storage server over the Internet.  Examples of cloud storage services include Dropbox and Google Docs. Exfiltration to these cloud storage services can provide a significant amount of cover to the adversary if hosts within the network are already communicating with the service. |
+| `T1082` | [System Information Discovery](https://attack.mitre.org/techniques/T1082) | An adversary may attempt to get detailed information about the operating system and hardware, including version, patches, hotfixes, service packs, and architecture. Adversaries may use the information from [System Information Discovery](https://attack.mitre.org/techniques/T1082) during automated discovery to shape follow-on behaviors, including whether or not the adversary fully infects the target and/or attempts specific actions.  Tools such as [Systeminfo](https://attack.mitre.org/software/S0096) can be used to gather detailed system information. If running with privileged access, a breakdown of system data can be gathered through the <code>systemsetup</code> configuration tool on macOS. As an example, adversaries with user-level access can execute the <code>df -aH</code> command to obtain currently mounted disks and associated freely available space. Adversaries may also leverage a [Network Device CLI](https://attack.mitre.org/techniques/T1059/008) on network devices to gather detailed system information (e.g. <code>show version</code>).(Citation: US-CERT-TA18-106A) On ESXi servers, threat actors may gather system information from various esxcli utilities, such as `system hostname get`, `system version get`, and `storage filesystem list` (to list storage volumes).(Citation: Crowdstrike Hypervisor Jackpotting Pt 2 2021)(Citation: Varonis)  Infrastructure as a Service (IaaS) cloud providers such as AWS, GCP, and Azure allow access to instance and virtual machine information via APIs. Successful authenticated API calls can return data such as the operating system platform and status of a particular instance or the model view of a virtual machine.(Citation: Amazon Describe Instance)(Citation: Google Instances Resource)(Citation: Microsoft Virutal Machine API)  [System Information Discovery](https://attack.mitre.org/techniques/T1082) combined with information gathered from other forms of discovery and reconnaissance can drive payload development and concealment.(Citation: OSX.FairyTale)(Citation: 20 macOS Common Tools and Techniques) |
 
 ## Chaining
 ```mermaid
 flowchart LR
 bf30d882_9b96_403a_9a47_83a2981fc526["LOLC2 service abuse via temp.sh"]
 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
-bf30d882_9b96_403a_9a47_83a2981fc526 --> 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|atomicity::implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
 ```
+### Chaining details
+#### implements -> Notepad++ supply chain attack (`atomicity::implements`)
+This technique was implemented in the Notepad++ supply chain attack
+(chains #1 and #2) where attackers used temp.sh as a Living-Off-the-Land
+C2 service to exfiltrate system information and communicate with their
+command and control infrastructure through legitimate file sharing services.
+
+- **Target UUID**: `8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`
 
 ## Relations
 ```mermaid
 flowchart TB
-bf30d882_9b96_403a_9a47_83a2981fc526["LOLC2 service abuse via temp.sh"]
-2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
+subgraph "Objective"
 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+end
+subgraph "Signal"
+2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
-bf30d882_9b96_403a_9a47_83a2981fc526 --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-bf30d882_9b96_403a_9a47_83a2981fc526 --> 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
-bf30d882_9b96_403a_9a47_83a2981fc526 --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-bf30d882_9b96_403a_9a47_83a2981fc526 --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-bf30d882_9b96_403a_9a47_83a2981fc526 --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-bf30d882_9b96_403a_9a47_83a2981fc526 --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+end
+bf30d882_9b96_403a_9a47_83a2981fc526["LOLC2 service abuse via temp.sh"]
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|objective| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
 ```

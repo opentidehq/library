@@ -4,7 +4,17 @@
 
 - **UUID**: `0be66eea-4ae4-4544-811b-52651e20d744`
 - **Schema**: `rule::1.0`
-- **TLP**: clear
+- **Version**: `6`
+- **Created**: `2024-05-16`
+- **Modified**: `2026-06-22`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Author**: ec-digit-catch@ec.europa.eu
+
+## References
+### Public
+- **1**: [https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules/blob/main/Defender%20For%20Endpoint/PowerShellEncodedReconActivities.md](https://github.com/Bert-JanP/Hunting-Queries-Detection-Rules/blob/main/Defender%20For%20Endpoint/PowerShellEncodedReconActivities.md)
+- **2**: [https://kqlquery.com/posts/hunting-encoded-powershell/](https://kqlquery.com/posts/hunting-encoded-powershell/)
+- **3**: [https://github.com/Javelinblog/PowerShell-Encoded-Commands-Tool/tree/main?tab=readme-ov-file](https://github.com/Javelinblog/PowerShell-Encoded-Commands-Tool/tree/main?tab=readme-ov-file)
 
 ## Description
 Detect base64 encoded PowerShell payload that could be used to launch 
@@ -37,8 +47,23 @@ CATCH uses SOC_LT_289_WIN_reviewed_base64_encoded_payload-exclude.csv
 to filter legitimate or benign base64 encoded payloads used by PowerShell 
 on EC Windows devices.
 
+## Status
+
+- **Status**: `STAGING`
+- **Severity**: `Informational`
+
+## Response
+
+- **Alert severity**: High
+
 ## Platform configurations
 <details><summary>sentinel</summary>
+
+- **Enabled**: `True`
+- **Status**: `PRODUCTION`
+- **Entity mapping**: Process: CommandLine -> command_line
+- **Entity mapping**: Host: HostName -> src_host, DnsDomain -> src_nt_domain
+- **Entity mapping**: Account: Name -> src_user
 
 ```sql
 let Base64EncodedPS = (
@@ -80,10 +105,12 @@ SecurityEvent
 ```
 
 
-
 </details>
 
 <details><summary>splunk</summary>
+
+- **Enabled**: `True`
+- **Status**: `PRODUCTION`
 
 ```sql
 `win_security_logs` 
@@ -117,7 +144,6 @@ SecurityEvent
 | `soc_macro_ctime_utc(et)` 
 | `soc_macro_ctime_utc(lt)`
 ```
-
 
 
 </details>

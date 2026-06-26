@@ -4,7 +4,18 @@
 
 - **UUID**: `c82cfa6b-066f-4ba3-ba07-d7eb642c8099`
 - **Schema**: `rule::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-06-16`
+- **Modified**: `2026-06-22`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised](https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised)
+- **2**: [https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised](https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised)
+- **3**: [https://tanstack.com/blog/npm-supply-chain-compromise-postmortem](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem)
+- **4**: [https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem](https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem)
 
 ## Description
 #### MDR Technical Details
@@ -26,12 +37,39 @@ a ten-minute window, filtered to non-interactive package-runtime parents.
 - IDE indexing may touch multiple config files — tune threshold upward on
   developer workstations if noise persists.
 
-## Techniques
-- T1552.001
-- T1005
+## Status
+
+- **Status**: `STAGING`
+- **Severity**: `Informational`
+
+## Detection model
+- **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](Objectives/fb62e879-9e91-4c5b-aaa7-999b2b1b3897.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)
+
+## Response
+
+- **Alert severity**: Medium
+### Procedure
+- **Analysis**: 1. Review the sample paths list for breadth of secret stores accessed.
+2. Confirm the initiating process is rooted in package-manager activity.
+3. Hunt for outbound IOC connections on the same device.
+4. Compare against known backup or security-scanning schedules.
+- **Containment**: If bulk access coincides with IOC egress or install anomalies, isolate
+the host and rotate all developer credentials.
+#### Searches
+- **Check for Shai-Hulud network IOC egress from the device** (defender_for_endpoint)
+```text
+DeviceNetworkEvents
+| where DeviceId == "{{DeviceId}}"
+| where RemoteUrl has_any ("git-tanstack", "getsession")
+| project Timestamp, RemoteUrl, RemoteIP, InitiatingProcessFileName
+```
 
 ## Platform configurations
 <details><summary>defender_for_endpoint</summary>
+
+- **Enabled**: `True`
+- **Status**: `DEVELOPMENT`
+- **Alert title**: Shai-Hulud bulk secret-file access on {{DeviceName}}
 
 ```sql
 // Detection: Shai-Hulud bulk credential-candidate file access
@@ -80,5 +118,18 @@ DeviceFileEvents
 ```
 
 
-
 </details>
+
+## Relations
+```mermaid
+flowchart TB
+subgraph "Objective"
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897["Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity"]
+end
+subgraph "Threat"
+59548b96_9b01_414c_badd_c0bf2ab40d9a["Shai-Hulud npm and PyPI supply chain compromise"]
+end
+c82cfa6b_066f_4ba3_ba07_d7eb642c8099["Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts"]
+c82cfa6b_066f_4ba3_ba07_d7eb642c8099 -->|objective| fb62e879_9e91_4c5b_aaa7_999b2b1b3897
+c82cfa6b_066f_4ba3_ba07_d7eb642c8099 -->|threat| 59548b96_9b01_414c_badd_c0bf2ab40d9a
+```

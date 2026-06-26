@@ -4,7 +4,18 @@
 
 - **UUID**: `bfae62bb-7ce1-46cd-a131-39803832fa9d`
 - **Schema**: `rule::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-06-16`
+- **Modified**: `2026-06-22`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised](https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised)
+- **2**: [https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised](https://www.aikido.dev/blog/mini-shai-hulud-is-back-tanstack-compromised)
+- **3**: [https://tanstack.com/blog/npm-supply-chain-compromise-postmortem](https://tanstack.com/blog/npm-supply-chain-compromise-postmortem)
+- **4**: [https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem](https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem)
 
 ## Description
 #### MDR Technical Details
@@ -29,14 +40,48 @@ for campaign artefact drops (`router_init.js`, `setup.mjs`, etc.).
 - Legitimate postinstall (husky, esbuild fetch) may fire — correlate with
   secret-file access or IOC signals before escalation.
 
-## Techniques
-- T1195.002
-- T1546.016
-- T1059.007
-- T1059.006
+## Status
+
+- **Status**: `STAGING`
+- **Severity**: `Informational`
+
+## Detection model
+- **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](Objectives/fb62e879-9e91-4c5b-aaa7-999b2b1b3897.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)
+
+## Response
+
+- **Alert severity**: High
+### Procedure
+- **Analysis**: 1. Confirm package manager parent command line references install, ci,
+   add, or update.
+2. Inspect child process command line for remote fetch or pipe-to-shell.
+3. Search the device for `router_init.js`, `setup.mjs`, and lockfile
+   entries for `@tanstack/*` compromised versions.
+4. Correlate with other Shai-Hulud DOM signals on the same host.
+- **Containment**: Isolate the endpoint if install-time child spawning coincides with IOC
+file creation. Remove malicious packages and persistence before token
+revocation.
+#### Searches
+- **Hunt related file and network IOC activity on the device** (defender_for_endpoint)
+```text
+let IocFiles = dynamic(["router_init.js", "setup.mjs", "gh-token-monitor"]);
+union (
+    DeviceFileEvents
+    | where DeviceId == "{{DeviceId}}"
+    | where FileName in~ (IocFiles)
+), (
+    DeviceNetworkEvents
+    | where DeviceId == "{{DeviceId}}"
+    | where RemoteUrl has "git-tanstack"
+)
+```
 
 ## Platform configurations
 <details><summary>defender_for_endpoint</summary>
+
+- **Enabled**: `True`
+- **Status**: `DEVELOPMENT`
+- **Alert title**: Shai-Hulud install hook spawned {{FileName}} on {{DeviceName}}
 
 ```sql
 // Detection: Shai-Hulud package manager install child process anomaly
@@ -84,5 +129,18 @@ union ChildFromInstall, ArtifactDrop
 ```
 
 
-
 </details>
+
+## Relations
+```mermaid
+flowchart TB
+subgraph "Objective"
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897["Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity"]
+end
+subgraph "Threat"
+59548b96_9b01_414c_badd_c0bf2ab40d9a["Shai-Hulud npm and PyPI supply chain compromise"]
+end
+bfae62bb_7ce1_46cd_a131_39803832fa9d["Shai-Hulud Package Manager Install Spawning Suspicious Child Processes"]
+bfae62bb_7ce1_46cd_a131_39803832fa9d -->|objective| fb62e879_9e91_4c5b_aaa7_999b2b1b3897
+bfae62bb_7ce1_46cd_a131_39803832fa9d -->|threat| 59548b96_9b01_414c_badd_c0bf2ab40d9a
+```

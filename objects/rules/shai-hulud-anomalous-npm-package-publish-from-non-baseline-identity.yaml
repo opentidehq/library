@@ -47,14 +47,14 @@ response:
       3. Inspect manifest diffs for `preinstall` / `optionalDependencies` changes.
       4. Cross-check versions against Wiz / OpenSSF malicious-package advisories.
     searches:
-      - purpose: Review all package publish actions for the actor
-        system: sentinel
-        query: |-
-          GitHubAuditLog
-          | where TimeGenerated > ago(24h)
-          | where Actor == "{{Actor}}"
-          | where Action has "packages."
-          | project TimeGenerated, Action, Repository, Data
+    - purpose: Review all package publish actions for the actor
+      system: sentinel
+      query: |-
+        GitHubAuditLog
+        | where TimeGenerated > ago(24h)
+        | where Actor == "{{Actor}}"
+        | where Action has "packages."
+        | project TimeGenerated, Action, Repository, Data
     containment: |-
       Deprecate worm-republished package versions, revoke the publishing token,
       and audit all packages under the compromised maintainer scope.
@@ -121,12 +121,12 @@ configurations:
       suppression: false
       create_incident: true
       tactics:
-        - InitialAccess
-        - Impact
+      - InitialAccess
+      - Impact
       techniques:
-        - T1195.002
-        - T1078
-        - T1485
+      - T1195.002
+      - T1078
+      - T1485
     trigger:
       operator: GreaterThan
       threshold: 0
@@ -135,13 +135,7 @@ configurations:
       alert:
         enabled: false
     entities:
-      - entity: Account
-        mappings:
-          - identifier: Name
-            column: Actor
-status: STAGING
-severity: Medium
-techniques:
-  - T1195.002
-  - T1078
-  - T1485
+    - entity: Account
+      mappings:
+      - identifier: Name
+        column: Actor

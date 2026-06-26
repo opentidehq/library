@@ -4,7 +4,16 @@
 
 - **UUID**: `3e8b5d7f-9c2a-4f6e-8b1d-7a4c9e3f6b2d`
 - **Schema**: `objective::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-02-09`
+- **Modified**: `2026-02-09`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://securelist.com/notepad-supply-chain-attack/115382/](https://securelist.com/notepad-supply-chain-attack/115382/)
+- **2**: [https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/](https://www.rapid7.com/blog/post/2026/02/03/notepad-plus-plus-supply-chain-compromise/)
 
 ## Description
 This detection objective addresses the sophisticated supply chain compromise
@@ -26,6 +35,48 @@ Due to the critical nature of supply chain attacks and their potential for
 widespread impact, this objective is assigned Critical priority with High
 investment requirements for comprehensive detection coverage.
 
+## Objective metadata
+
+- **Priority**: Critical
+- **Type**: Threat
+- **Investment**: Significant
+- **Composition**: Combined
+- **Composition rationale**: The detection strategy employs correlation across multiple behavioral signals
+to identify Notepad++ supply chain compromise activity while minimizing false
+positives from legitimate software operations.
+
+Primary detection approach focuses on:
+
+1. **Initial Delivery Indicators**: Monitoring NSIS installer behavior launched
+   from Notepad++ update components (GUP.exe), including temporary directory
+   creation patterns and installer execution from unusual locations.
+
+2. **Discovery Phase Correlation**: Detecting sequences of system reconnaissance
+   commands (whoami, tasklist, systeminfo, netstat) executed in close temporal
+   proximity, particularly when originating from unusual parent processes or
+   AppData subdirectories.
+
+3. **Exfiltration Detection**: Identifying data uploads to temp.sh service and
+   monitoring for suspicious User-Agent header patterns that may encode URLs
+   to exfiltrated data.
+
+4. **Execution Technique Indicators**: Detecting abuse of legitimate software
+   (ProShow.exe, Lua interpreters, BluetoothService.exe) loaded from unusual
+   AppData locations with suspicious accompanying files (load, alien.ini, log.dll).
+
+5. **C2 Communication**: Network-based detection of communication with known
+   malicious infrastructure domains and IP addresses associated with Cobalt
+   Strike beacons.
+
+Correlation rules should combine multiple signals across different attack phases
+to achieve high-fidelity detection. For example, NSIS installer execution from
+GUP.exe followed within 30 minutes by reconnaissance commands and data exfiltration
+to temp.sh provides strong indicator of compromise.
+
+The strategy balances host-based behavioral detection with network-based IOC
+matching to provide defense-in-depth coverage across the attack lifecycle.
+
+## Signals
 ### NSIS Installer Deployment from Notepad++ Updater
 Detects the execution of NSIS (Nullsoft Scriptable Install System) installers
 launched by GUP.exe, the legitimate Notepad++ update component. The malicious
@@ -44,8 +95,22 @@ Detection focuses on:
 This signal provides early detection at the initial deployment phase before
 reconnaissance or C2 establishment occurs.
 
-**Methodology**: Pattern Matching
+- **Severity**: High
+- **Methodology**: Pattern Matching
+- **Effort**: 2
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - Process execution logs with parent-child relationships
+- Process command line arguments
+- File creation events in user AppData directories
+- NSIS installer detection (process name patterns, file signatures)
+
+Preferred log sources:
+- Sysmon Event IDs 1 (Process Create), 11 (File Create)
+- EDR process telemetry
+- Windows Event ID 4688 (Process Creation) with command line logging enabled
+- **Entities**: Process, Command Line, File, Hostname
 ### System Reconnaissance Commands Following Software Update
 Detects sequences of system reconnaissance commands characteristic of the
 Notepad++ supply chain attack discovery phase. Attackers executed combinations
@@ -69,8 +134,24 @@ Behavioral correlation should consider:
 - Working directory location
 - Output file naming patterns (1.txt, a.txt)
 
-**Methodology**: Behavioural
+- **Severity**: Medium
+- **Methodology**: Behavioural
+- **Effort**: 3
+#### Data
 
+- **Availability**: Complete
+- **Requirements**: - Process execution logs with command line arguments
+- Process parent-child relationships
+- Process working directory information
+- File creation events for output files
+- Temporal correlation capability (sliding time windows)
+
+Preferred log sources:
+- Sysmon Event ID 1 (Process Create) with command line
+- EDR process telemetry
+- Windows Event ID 4688 with command line auditing
+- PowerShell Script Block Logging (if PowerShell variants used)
+- **Entities**: Process, Command Line, File, Hostname, User
 ### Data Exfiltration to temp.sh Web Service
 Detects data exfiltration to the temp.sh temporary file sharing service,
 used by attackers to stage reconnaissance data and avoid direct C2 communication.
@@ -99,8 +180,25 @@ Context enrichment:
 This signal is high severity due to confirmed data exfiltration activity
 and direct linkage to the attack campaign.
 
-**Methodology**: Pattern Matching
+- **Severity**: High
+- **Methodology**: Pattern Matching
+- **Effort**: 2
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - DNS query logs
+- HTTP/HTTPS proxy logs with URL and User-Agent headers
+- Network connection logs
+- Process execution logs with command line arguments
+- EDR network telemetry
+
+Preferred log sources:
+- DNS server logs or endpoint DNS query logs
+- Web proxy logs (Zscaler, Palo Alto, etc.)
+- Firewall logs with HTTPS inspection
+- Sysmon Event ID 1 (Process Create) and Event ID 3 (Network Connection)
+- EDR network telemetry
+- **Entities**: Domain, URL, IP Address, Process, Hostname
 ### Suspicious DLL Side-Loading and Exploit-Based Execution
 Detects malicious execution via legitimate software abuse, including DLL
 side-loading and exploitation of vulnerable legitimate executables. The
@@ -134,8 +232,26 @@ Common indicators across all techniques:
 
 High severity due to active exploitation and malicious code execution.
 
-**Methodology**: Pattern Matching
+- **Severity**: High
+- **Methodology**: Pattern Matching
+- **Effort**: 3
+#### Data
 
+- **Availability**: Partial
+- **Requirements**: - Process execution logs with full file paths
+- DLL/module load events
+- File creation events in AppData directories
+- Image signature verification logs
+- API call monitoring (for advanced detection)
+- Memory allocation events (EDR-specific)
+
+Preferred log sources:
+- Sysmon Event ID 1 (Process Create), Event ID 7 (Image/DLL Load),
+  Event ID 11 (File Create)
+- EDR process and module loading telemetry
+- Windows Event ID 4688 (Process Creation)
+- Windows Defender ATP / Microsoft Defender for Endpoint
+- **Entities**: Process, File, Software, Hostname
 ### Cobalt Strike Beacon C2 Communication
 Detects network communication to known Cobalt Strike C2 infrastructure
 associated with the Notepad++ supply chain campaign. All observed infection
@@ -177,20 +293,72 @@ Detection criteria:
 Critical severity due to confirmed C2 channel establishment indicating
 active compromise and ongoing threat actor access to the environment.
 
-**Methodology**: Pattern Matching
+- **Severity**: Critical
+- **Methodology**: Pattern Matching
+- **Effort**: 2
+#### Data
+
+- **Availability**: Complete
+- **Requirements**: - DNS query logs with timestamps
+- Network connection logs (firewall, proxy, NGFW)
+- HTTP/HTTPS logs with URLs and TLS SNI information
+- NetFlow or connection metadata for beacon detection
+- EDR network telemetry
+- IDS/IPS logs
+- TLS certificate inspection logs
+
+Preferred log sources:
+- DNS server logs or endpoint DNS query logs
+- Firewall logs (Palo Alto, Fortinet, Cisco ASA/FTD)
+- Web proxy logs with HTTPS inspection
+- Zeek/Bro network security monitor
+- Sysmon Event ID 3 (Network Connection)
+- IDS/IPS alerts (Snort, Suricata)
+- **Entities**: Domain, IP Address, URL, Network Connection, Process, Hostname
+
+## Signal MDR coverage
+| Signal | Downstream MDR rules |
+| --- | --- |
+| NSIS Installer Deployment from Notepad++ Updater | _None_ |
+| System Reconnaissance Commands Following Software Update | _None_ |
+| Data Exfiltration to temp.sh Web Service | _None_ |
+| Suspicious DLL Side-Loading and Exploit-Based Execution | _None_ |
+| Cobalt Strike Beacon C2 Communication | _None_ |
 
 ## Relations
 ```mermaid
 flowchart TB
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+subgraph "Signal"
 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+end
+subgraph "Threat"
+23d06aa7_f6d5_44ee_be8f_e6de2f495bd9["ProShow vulnerability exploitation for payload delivery"]
+52462685_bebb_4e86_94b0_fd46aeacb085["Malicious NSIS installer deployment"]
+55eaa437_5a25_4c29_b1fc_9c0fba4a18ad["Registry autorun persistence from temporary folders"]
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a["Cobalt Strike Beacon deployment via Metasploit downloader"]
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
+bc365789_bdbb_4e78_b2ae_b097a7ccd35f["Lua interpreter shellcode execution"]
+bc95c747_ede2_4c16_a6b4_506b305e744a["Chrysalis backdoor deployment via DLL sideloading"]
+bee6e973_b0d0_4735_a26a_003f39b8c08d["System reconnaissance via shell commands in supply chain attack"]
+bf30d882_9b96_403a_9a47_83a2981fc526["LOLC2 service abuse via temp.sh"]
+end
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| 23d06aa7_f6d5_44ee_be8f_e6de2f495bd9
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| 52462685_bebb_4e86_94b0_fd46aeacb085
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| 55eaa437_5a25_4c29_b1fc_9c0fba4a18ad
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| 7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| bc365789_bdbb_4e78_b2ae_b097a7ccd35f
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| bc95c747_ede2_4c16_a6b4_506b305e744a
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| bee6e973_b0d0_4735_a26a_003f39b8c08d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d -->|threat| bf30d882_9b96_403a_9a47_83a2981fc526
 ```

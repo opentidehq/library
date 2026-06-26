@@ -4,13 +4,32 @@
 
 - **UUID**: `bfeb24bf-8a17-4ccc-8aec-91721743153d`
 - **Schema**: `objective::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2026-03-24`
+- **Modified**: `2026-03-24`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://www.leeholmes.com/searching-for-content-in-base-64-strings/](https://www.leeholmes.com/searching-for-content-in-base-64-strings/)
+- **2**: [https://research.splunk.com/endpoint/c4db14d9-7909-48b4-a054-aa14d89dbb19/](https://research.splunk.com/endpoint/c4db14d9-7909-48b4-a054-aa14d89dbb19/)
+- **3**: [https://www.gigasheet.com/post/powershell-threat-hunting-made-easy](https://www.gigasheet.com/post/powershell-threat-hunting-made-easy)
+- **4**: [https://github.com/secprentice/PowerShellWatchlist/blob/master/badshell.txt](https://github.com/secprentice/PowerShellWatchlist/blob/master/badshell.txt)
 
 ## Description
 Detect and alert on powershell encoded payload to start new process activity.
 
 This detection objective was migrated from a Cyber Detection Model (CDM).
 
+## Objective metadata
+
+- **Priority**: High
+- **Type**: Threat
+- **Composition**: Independent
+- **Composition rationale**: Each signal triggers independently, covering different detection approaches for the same objective.
+
+## Signals
 ### Powershell encoded payload to start new process
 Adversaries use PowerShell to execute local scripts and execute remote resources
 after retrieving them using multiple network protocols. They can also encode payloads
@@ -88,12 +107,30 @@ which makes using PowerShell an easy way to circumvent security measures.
 - Encoded PowerShell can be abused to avoid any complexity with special characters that can be difficult
 to handle.
 
-**Methodology**: Event Search
+- **Severity**: High
+- **Methodology**: Event Search
+#### Data
+
+- **Availability**: Unknown
+- **Requirements**: Data collection: Carbon Black EDR Connectors, Sysmon Logs, Windows Security Logs.
+Data sources: Command, File, Script, Module, Process.
+- **Entities**: Process
+
+## Signal MDR coverage
+| Signal | Downstream MDR rules |
+| --- | --- |
+| Powershell encoded payload to start new process | _None_ |
 
 ## Relations
 ```mermaid
 flowchart TB
-bfeb24bf_8a17_4ccc_8aec_91721743153d["Powershell encoded payload to start new process"]
+subgraph "Signal"
 cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0["cf9c69a2-9317-4f0f-9506-fbeeb1c73ff0"]
-bfeb24bf_8a17_4ccc_8aec_91721743153d --> cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0
+end
+subgraph "Threat"
+bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7["Powershell with encoded payload passed to cmdline"]
+end
+bfeb24bf_8a17_4ccc_8aec_91721743153d["Powershell encoded payload to start new process"]
+bfeb24bf_8a17_4ccc_8aec_91721743153d -->|signal| cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0
+bfeb24bf_8a17_4ccc_8aec_91721743153d -->|threat| bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7
 ```

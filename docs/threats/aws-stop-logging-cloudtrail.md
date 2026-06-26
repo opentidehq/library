@@ -4,7 +4,16 @@
 
 - **UUID**: `d370aaea-c3e5-4d58-a6c9-3d1a7ffe50e3`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2024-10-31`
+- **Modified**: `2024-10-31`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://securitylabs.datadoghq.com/cloud-security-atlas/attacks/stopping-cloudtrail-trail/](https://securitylabs.datadoghq.com/cloud-security-atlas/attacks/stopping-cloudtrail-trail/)
+- **2**: [https://research.splunk.com/cloud/0b78a8f9-1d31-4d23-85c8-56ad13d5b4c1/](https://research.splunk.com/cloud/0b78a8f9-1d31-4d23-85c8-56ad13d5b4c1/)
 
 ## Description
 ### AWS Stop Logging CloudTrail Threat
@@ -64,5 +73,27 @@ allowing malicious activities to proceed without observation. The impact of this
 evasion tactic is significant, as it can severely hamper incident response and forensic 
 investigations by obscuring the attacker's actions.
 
-## Techniques
-- T1562.008
+## Criticality
+**Low** - A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
+
+## Terrain
+> **A threat actor requires authenticated access with permissions 
+cloudtrail:StopLogging to execute the StopLogging API call.
+
+Domains: Public Cloud, Private Cloud
+Targets: IaaS
+Platforms: AWS**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
+| Impact | Impairement; Lose Capabilities | - |
+| Leverage | Log tampering; Modify configuration; Repudiation | - |
+| Viability | Unlikely | Improbable (improbably) - 20-45% |
+| Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1562.008` | [Impair Defenses: Disable or Modify Cloud Logs](https://attack.mitre.org/techniques/T1562/008) | An adversary may disable or modify cloud logging capabilities and integrations to limit what data is collected on their activities and avoid detection. Cloud environments allow for collection and analysis of audit and application logs that provide insight into what activities a user does within the environment. If an adversary has sufficient permissions, they can disable or modify logging to avoid detection of their activities.  For example, in AWS an adversary may disable CloudWatch/CloudTrail integrations prior to conducting further malicious activity.(Citation: Following the CloudTrail: Generating strong AWS security signals with Sumo Logic) They may alternatively tamper with logging functionality – for example, by removing any associated SNS topics, disabling multi-region logging, or disabling settings that validate and/or encrypt log files.(Citation: AWS Update Trail)(Citation: Pacu Detection Disruption Module) In Office 365, an adversary may disable logging on mail collection activities for specific users by using the `Set-MailboxAuditBypassAssociation` cmdlet, by disabling M365 Advanced Auditing for the user, or by downgrading the user’s license from an Enterprise E5 to an Enterprise E3 license.(Citation: Dark Reading Microsoft 365 Attacks 2021) |

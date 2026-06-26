@@ -4,7 +4,16 @@
 
 - **UUID**: `024a10fb-fc65-485b-9d7c-98a2372d75c0`
 - **Schema**: `threat::1.0`
-- **TLP**: clear
+- **Version**: `1`
+- **Created**: `2025-04-09`
+- **Modified**: `2025-04-16`
+- **TLP**: clear (`TLP:CLEAR`)
+- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+
+## References
+### Public
+- **1**: [https://idevicecentral.com/jailbreak-tools/ios-jailbreak-tools/](https://idevicecentral.com/jailbreak-tools/ios-jailbreak-tools/)
+- **2**: [https://github.com/iOS17/Jailbreak](https://github.com/iOS17/Jailbreak)
 
 ## Description
 Jailbreaking an iPhone involves bypassing Apple's security restrictions to gain 
@@ -65,6 +74,29 @@ yet. However, semi-jailbreak solutions like MisakaX and Nugget exist for limited
 - Older versions (iOS 15 to 16) have stable jailbreaks like Dopamine and PaleRa1n with 
 tweak support.
 
-## Techniques
-- T1630.003
-- T1398
+## Criticality
+**High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
+
+## Terrain
+> **If adversaries have physical access to the device, they can install a jailbreaking tool
+that include the neccesary exploit. If no physical access is available, it is possible
+to exploit a zero-day vuln to bypass the device' security mechanisms.
+
+Domains: Mobile
+Targets: Mobile phone, Personal Information, Tablet
+Platforms: iOS**
+
+## Threat Assessment
+| Dimension | Assessment | Description |
+| --- | --- | --- |
+| Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
+| Impact | Data Breach; Identity Theft; Impairement; IP Loss; Lose Capabilities | - |
+| Leverage | Spoofing; Tampering; Information Disclosure; Software installation | - |
+| Viability | Likely | Probable (probably) - 55-80% |
+| Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
+
+## ATT&CK Techniques
+| Technique | Name | Description |
+| --- | --- | --- |
+| `T1630.003` | [Mobile : Disguise Root/Jailbreak Indicators](https://attack.mitre.org/techniques/T1630/003) | An adversary could use knowledge of the techniques used by security software to evade detection.(Citation: Brodie)(Citation: Tan) For example, some mobile security products perform compromised device detection by searching for particular artifacts such as an installed "su" binary, but that check could be evaded by naming the binary something else. Similarly, polymorphic code techniques could be used to evade signature-based detection.(Citation: Rastogi) |
+| `T1398` | [Mobile : Boot or Logon Initialization Scripts](https://attack.mitre.org/techniques/T1398) | Adversaries may use scripts automatically executed at boot or logon initialization to establish persistence. Initialization scripts are part of the underlying operating system and are not accessible to the user unless the device has been rooted or jailbroken. |

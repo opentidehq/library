@@ -48,13 +48,13 @@ response:
       3. Search for `gh-token-monitor` persistence before revoking GitHub tokens.
       4. Sweep lockfiles for compromised package versions and rotate credentials.
     searches:
-      - purpose: Hunt persistence artefacts on the alerted device
-        system: defender_for_endpoint
-        query: |-
-          DeviceFileEvents
-          | where DeviceId == "{{DeviceId}}"
-          | where FileName has_any ("gh-token-monitor", "com.user.gh-token-monitor")
-          | project Timestamp, FolderPath, FileName, SHA256
+    - purpose: Hunt persistence artefacts on the alerted device
+      system: defender_for_endpoint
+      query: |-
+        DeviceFileEvents
+        | where DeviceId == "{{DeviceId}}"
+        | where FileName has_any ("gh-token-monitor", "com.user.gh-token-monitor")
+        | project Timestamp, FolderPath, FileName, SHA256
     containment: |-
       Isolate affected endpoints immediately. Block IOC domains and IP at DNS
       and proxy layers. Remove persistence and malicious packages before token
@@ -116,9 +116,9 @@ configurations:
         Known Shai-Hulud file or network indicator detected. Assume the host
         is compromised and begin incident response immediately.
       techniques:
-        - T1195.002
-        - T1547
-        - T1071.001
+      - T1195.002
+      - T1547
+      - T1071.001
     impacted_entities:
       device: DeviceName
     scheduling: 1H
@@ -175,12 +175,12 @@ configurations:
       suppression: false
       create_incident: true
       tactics:
-        - CommandAndControl
-        - Exfiltration
+      - CommandAndControl
+      - Exfiltration
       techniques:
-        - T1071.001
-        - T1567.002
-        - T1195.002
+      - T1071.001
+      - T1567.002
+      - T1195.002
     trigger:
       operator: GreaterThan
       threshold: 0
@@ -189,18 +189,11 @@ configurations:
       alert:
         enabled: false
     entities:
-      - entity: IP
-        mappings:
-          - identifier: Address
-            column: ClientIP
-      - entity: DNS
-        mappings:
-          - identifier: DomainName
-            column: IndicatorValue
-status: STAGING
-severity: High
-techniques:
-  - T1195.002
-  - T1547
-  - T1071.001
-  - T1567.002
+    - entity: IP
+      mappings:
+      - identifier: Address
+        column: ClientIP
+    - entity: DNS
+      mappings:
+      - identifier: DomainName
+        column: IndicatorValue

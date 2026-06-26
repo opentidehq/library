@@ -83,9 +83,9 @@ configurations:
         A package-runtime process sent a large payload to a Shai-Hulud
         exfiltration destination. Correlate with secret harvesting signals.
       techniques:
-        - T1567.002
-        - T1071.001
-        - T1027
+      - T1567.002
+      - T1071.001
+      - T1027
     impacted_entities:
       device: DeviceName
     scheduling: 1H
@@ -124,11 +124,11 @@ configurations:
       suppression: false
       create_incident: true
       tactics:
-        - Exfiltration
+      - Exfiltration
       techniques:
-        - T1567.002
-        - T1071.001
-        - T1027
+      - T1567.002
+      - T1071.001
+      - T1027
     trigger:
       operator: GreaterThan
       threshold: 0
@@ -137,17 +137,11 @@ configurations:
       alert:
         enabled: false
     entities:
-      - entity: IP
-        mappings:
-          - identifier: Address
-            column: SourceIP
-      - entity: URL
-        mappings:
-          - identifier: Url
-            column: RequestURL
-status: STAGING
-severity: Medium
-techniques:
-  - T1567.002
-  - T1071.001
-  - T1027
+    - entity: IP
+      mappings:
+      - identifier: Address
+        column: SourceIP
+    - entity: URL
+      mappings:
+      - identifier: Url
+        column: RequestURL
