@@ -86,6 +86,17 @@ opentide validate --strict
 opentide generate docs --output docs
 ```
 
+## Troubleshooting CI
+
+GitHub Actions workflows that checkout **opentide** or build the **explorer** need read access to private or cross-repo dependencies. Configure **one** of the following as repository secrets (Settings → Secrets and variables → Actions):
+
+| Secret | Purpose |
+|--------|---------|
+| `GH_APP_ID` + `GH_APP_KEY` | GitHub App installation token (recommended) with `contents:read` on `OpenTideHQ/opentide` and `OpenTideHQ/explorer` |
+| `OPENTIDE_REPO_TOKEN` | PAT or fine-grained token with `contents:read` on those repositories |
+
+Without these secrets, jobs that run `opentide generate`, validate against the engine, or `opentide explorer build` will fail at checkout or with missing exports. Local development does not need them when sibling clones (`../opentide`, `../explorer`) are present.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). Objects must pass `opentide validate --strict`.
