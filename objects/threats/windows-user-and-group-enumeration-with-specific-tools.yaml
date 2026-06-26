@@ -1,0 +1,90 @@
+name: Windows User and Group Enumeration with specific tools
+criticality: High
+references:
+  public:
+    1: https://book.hacktricks.xyz/windows-hardening/active-directory-methodology
+    2: https://github.com/Samsar4/Ethical-Hacking-Labs/blob/master/3-Enumeration/3-Enum4linux-Win-and-Samba-Enumeration.md
+    3: https://stridergearhead.medium.com/domain-enumeration-using-bloodhound-f2894d5f0da8
+    4: https://book.hacktricks.xyz/windows-hardening/active-directory-methodology/bloodhound
+    5: https://github.com/ropnop/windapsearch
+    6: https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-302a
+    7: https://nmap.org/nsedoc/scripts/smb-enum-users.html
+metadata:
+  uuid: fe243f7f-ffc5-49c0-94e6-293ae2411ad6
+  schema: threat::1.0
+  version: 1
+  created: 2024-01-29
+  modified: 2024-02-06
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0035
+    - misp::64d6559c-6d5c-4585-bbf9-c17868f763ee
+    - att&ck::G0045
+    - misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
+    - att&ck::G0114
+    - misp::8bcd855f-a4c1-453a-bede-ff36582f4f40
+    - att&ck::G0037
+    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - att&ck::G0004
+    - misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
+    - att&ck::G0069
+    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - att&ck::G0010
+    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - att&ck::G0049
+    - misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
+    - att&ck::G0060
+    - misp::add6554a-815a-4ac3-9b22-9337b9661ab8
+    - att&ck::G0117
+    - misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
+  killchain: Discovery
+  att&ck:
+    - T1087.002
+  chaining:
+    - relation: support::synergize
+      vector: 3b1026c6-7d04-4b91-ba6f-abc68e993616
+      description: |-
+        Several LOLBins tools are used by adversaries to enumerate 
+        groups and users.
+  terrain: |-
+    Adversaries can take advantage of already compromised system (Windows or 
+    Linux OS or OSX) to run commands.
+
+    Domains: Enterprise, Private Cloud, Public Cloud
+    Targets: Directory
+    Platforms: Windows
+  severity: Moderate incident
+  leverage: Information Disclosure
+  impact: Identity Theft
+  viability: Likely
+  description: |-
+    Adversaries may attempt to enumerate the environment and list all local system 
+    and domain accounts or groups.To achieve this purpose, they can use variety of 
+    tools and techniques. Their goal is reconnaissance, gathering of user's account 
+    information on the system or in the domain and further usage of accounts with higher 
+    privilege access.
+
+    There are several tools that can be used by adversaries, such as the following:
+      
+    - Kali Tool like enum4linux 
+    - Bloodhound can also 
+    - smbmap, smbclient, etc..
+    - nmap
+    - Use of any developped tools or scripts like this one: - windapsearch
+
+    Some cases in which adversaries have used such tools include the following:
+
+    ## Wizard Spider using Bloodhound after Ryuk ransomware compromise:
+
+    Ryuk actors quickly map the network to understand the infection scope. They use native 
+    tools like net view, net computers, and ping to locate network shares and domain controllers. 
+    For lateral movement, they rely on PowerShell, WMI, Remote Management, RDP, and third-party 
+    tool Bloodhound.

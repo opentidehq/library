@@ -1,0 +1,107 @@
+# Process discovery
+
+## Metadata
+
+- **UUID**: `cc7dd57f-8d9e-451f-8ec7-4bb2ad10e96c`
+- **Schema**: `threat::1.0`
+- **TLP**: clear
+
+## Description
+A process discovery refers to the process of identifying and analyzing
+the running processes on a system or network. This involves gathering
+information about the processes, such as their names, IDs, command
+lines, and other relevant details ref [1].  
+
+For example, in Windows environment, an adversary could obtain details
+on running processes using the Tasklist utility via cmd or `Get-Process`
+via PowerShell. Information about processes can also be extracted from
+the output of Native API calls such as `CreateToolhelp32Snapshot`
+ref [2].  
+
+In Mac and Linux, this is accomplished with the ps command.
+The threat actors may also opt to enumerate processes via /proc.
+
+By analyzing the running processes on a system or network, the threat
+actors can abuse process discovery functionality in some of the
+following ways:  
+
+### Living-off-the-Land (LOTL) techniques to identify potential targets 
+
+The threat actors may abuse native tools (PowerShell, WMIC) to blend
+in with normal activity, avoiding suspicion.    
+
+### Used tools by threat actors for process discovery on a target system
+
+#### 1. Tasklist (Windows built-in) 
+
+This command-line tool is used to display a list of currently running
+processes on a Windows system. Threat actors might use it to identify
+potential targets for exploitation or to understand the system's
+configuration.  
+
+#### 2. Process Monitor (SysInternals)
+
+Process Monitor can be used to verify if the browser or other service
+is launched on a target system and with what level of privileges. This
+tool can monitor what processes are running on the system.      
+
+#### 3. PsExec (SysInternals) 
+
+This tool allows users to execute processes remotely, but it can also
+be used to list running processes on a target system. Threat actors
+might use PsExec to gather information about the system's processes
+without being detected.
+
+#### 4. PowerShell (Windows built-in)
+
+PowerShell is a powerful scripting language that can be used to
+automate tasks, including process discovery. Threat actors might use
+PowerShell cmdlets like Get-Process to list running processes on a
+target system.  
+
+#### 5. Windows Management Instrumentation functionality (Windows built-in)
+
+Threat actors can abuse WMI (Windows Management Instrumentation) filters
+in Windows for process discovery. Examples include running WMI queries
+(e.g., WMIC) to retrieve information about running processes, Creating
+WMI specific event filters to monitor process creation, modification
+and other process related information. Threat actors also can utilize
+WMI filters to execute queries that retrieve process information,
+for example: such as `SELECT * FROM Win32_Process`.  
+
+#### 6. ProcDump (SysInternals)
+
+This tool is designed to capture and analyze process dumps, but it can
+also be used to list running processes on a target system. Threat actors
+might use ProcDump to gather information about the system's processes and
+identify potential vulnerabilities.  
+
+#### 7. Process Explorer (SysInternals)
+
+This tool provides a detailed view of running processes, including their
+memory usage, network connections, and system resources. Threat actors
+might use Process Explorer to gather information about the system's
+processes and identify potential targets for exploitation.  
+
+#### 8. Cygwin or Linux tools (e.g., ps, top, htop)
+
+If the target system has a Unix-like environment installed, threat actors
+might use tools like ps, top, or htop to list running processes and gather
+information about the system's configuration.  
+
+#### 9. Meterpreter (Metasploit)
+
+Meterpreter is a payload that can be used to exploit vulnerabilities and
+gain access to a target system. It includes a range of tools, including
+process discovery capabilities, that threat actors can use to gather
+information about the system's processes.
+
+#### 10. Cobalt Strike's Process List
+
+Cobalt Strike is a commercial penetration testing tool that includes
+a range of features, including process discovery. Threat actors might
+use Cobalt Strike to list running processes on a target system and
+identify potential targets for exploitation.
+
+## Techniques
+- T1057

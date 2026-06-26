@@ -1,0 +1,84 @@
+name: Hide Artifacts using NTFS File Attributes
+criticality: High
+references:
+  public:
+    1: https://www.atomicredteam.io/atomic-red-team/atomics/T1564.004
+    2: https://axelarator.github.io/posts/ntfs
+    3: https://cyber-kill-chain.ch/techniques/T1564/001
+    4: https://www.cisa.gov/eviction-strategies-tool/info-attack/T1564
+    5: https://www.welivesecurity.com/en/eset-research/update-winrar-tools-now-romcom-and-others-exploiting-zero-day-vulnerability
+metadata:
+  uuid: d15bff6c-b902-4975-ad3a-7a18f3026aca
+  schema: threat::1.0
+  version: 1
+  created: 2025-06-27
+  modified: 2025-08-26
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - misp::ba9e1ed2-e142-48d0-a593-f73ac6d59ccd
+  killchain: Defense Evasion
+  att&ck:
+    - T1564.004
+  chaining:
+    - relation: atomicity::implements
+      vector: b330d3a8-1783-4210-9fec-11e6ecfe135e
+      description: |-
+        A threat actor can provide multiple ADSes with increasing depths of
+        parent directory relative path elements (`..\\`). They can use ADSes for
+        path traversal attack. An example is WinRAR traversal exploitation
+        disclosed on June and August 2025 ref [5].  
+  terrain: |-
+    Threat actors need to deliver on the host a file that uses NTFS extended
+    attributes.
+
+    Domains: Enterprise
+    Cve: CVE-2025-8088
+    Targets: Desktop, Workstations
+    Platforms: Windows
+  severity: Localised incident
+  leverage: Dwelling; Elevation of privilege
+  impact: Business disruption; Impairement
+  viability: Likely
+  description: |-
+    Threat actors are using a hiding technique to conceal malicious files,
+    folders, or other artifacts on a Windows system by leveraging the attributes
+    of the NTFS file system. NTFS provides a range of attributes that can be
+    used to hide or obscure files and folders, making them difficult to detect
+    ref [1].  
+
+    Threat actors may use NTFS alternate data stream attribute to evade
+    detection and deliver binary or other files that would have been otherwise
+    blocked by the security controls.
+
+    They may store malicious data or binaries in file attribute metadata instead
+    of directly in files. This may be done to evade some defenses, such as
+    static indicator scanning tools and anti-virus ref [1], [2].      
+
+    An example is to attach a binary or a DLL as an ADS to a PDF file or text
+    file that does not contain anything suspicious (decoy content) and acts just
+    a carrier for the malicious payload store into the ADS.
+
+    In one of the malicious campaign a Russian affiliated threat actor is
+    observed to use Alternate Data Streams (ADSes) vulnerability `CVE-2025-8088`
+    for path traversal. The attackers specially crafted the archive to
+    apparently contain only one benign file, while it contains many malicious
+    addresses. Once a victim opens this seemingly benign file, WinRAR unpacks it
+    along with all its ADSes ref [5].  
+
+    ### Known Techniques used by Threat Actors
+
+    - Setting attributes using the command line - a malicious operator can use
+      the attrib command to set attributes on files and folders.
+    - Using API calls -  threat actor can use Windows API calls, such as
+      `SetFileAttributes` or `SetFileAttribute`, to set attributes on files and
+      folders.
+    - Exploiting vulnerabilities - exploit vulnerabilities in software or the
+      operating system is another common used technique. Using these type of
+      vulnerabilities a threat actor can set attributes on files and folders
+      without being detected.        

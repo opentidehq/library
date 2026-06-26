@@ -1,0 +1,108 @@
+name: Direct modification of registry keys to tamper scheduled task
+criticality: Medium
+references:
+  public:
+    1: https://cybersecuritynews.com/hackers-modifying-registry-keys
+    2: https://ipurple.team/2024/01/03/scheduled-task-tampering
+    3: https://cyberbuff.github.io/TheAtomicPlaybook/tactics/execution/T1053.005.html
+    4: https://github.com/netero1010/GhostTask
+metadata:
+  uuid: efe13bd7-c621-423b-b226-9b536766a252
+  schema: threat::1.0
+  version: 1
+  created: 2025-05-22
+  modified: 2025-06-02
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0125
+    - misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - att&ck::G0032
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+  killchain: Persistence
+  att&ck:
+    - T1112
+    - T1543
+    - T1543.003
+    - T1053.005
+  chaining:
+    - relation: atomicity::implements
+      vector: 5e66f826-4c4b-4357-b9c5-2f40da207f34
+      description: |-
+        Direct access and modification of the Windows registry
+        can tamper or create a new scheduled task. Threat actors
+        use this technique usually to hide their activities and
+        to establish persistent to the system.
+  terrain: |-
+    A threat actor needs an Admin Windows System level to a target
+    endpoint in order to perform direct modification of the registries.
+
+    Domains: Enterprise, Private Cloud, Public Cloud
+    Targets: End-user, Workstations, Other
+    Platforms: Windows
+  severity: Moderate incident
+  leverage: Infrastructure Compromise; Tampering; Modify configuration
+  impact: Business disruption; Impairement; Lose Capabilities; Operating costs
+  viability: Likely
+  description: |-
+    Direct modification of registry keys to tamper with scheduled tasks
+    involves altering the Windows Registry to manipulate or disable scheduled
+    tasks. 
+
+    Scheduled tasks are stored in the Windows Registry, and modifying these
+    registry keys can allow an attacker to:
+
+    - Disable or modify existing tasks: by changing the registry keys
+    associated with a scheduled task, an attacker can prevent the task from
+    running or alter its behavior.
+    - Create new malicious tasks: An attacker can add new registry keys
+    to create a malicious scheduled task that runs without the user's
+    knowledge.
+    - Elevate privileges: modifying registry keys can allow an attacker
+    to escalate privileges, enabling them to execute tasks with higher
+    privileges.
+
+    The registry keys which involved in scheduled tasks could be:
+
+    ```
+    HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache
+
+    ```
+    This key contains subkeys for each scheduled task, including:
+
+    - Tasks: Stores information about each task, such as the task name,
+    description, and execution settings.
+    - Boot: Stores information about tasks that run at boot time.
+    - Logon: Stores information about tasks that run at logon time.
+
+    ### Modifying registry keys to tamper with scheduled tasks
+
+    To modify registry keys and tamper with scheduled tasks, an attacker
+    would typically follow these steps:
+
+      - Access the Registry Editor: The attacker would need to access the
+      Windows Registry Editor (Regedit.exe) with administrative privileges.
+      - Navigate to the scheduled task registry key. 
+      The attacker would navigate to the registry key:
+      `HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache key`.
+      - Identify the target task: The attacker would identify the subkey
+      associated with the scheduled task they want to modify or disable.
+      - Modify the registry key: The attacker would modify the registry
+      key to change the task's behavior, such as changing the execution
+      settings or disabling the task.  
+
+    ### Examples of registry key modifications
+
+    Some examples of registry key modifications that can tamper
+    with scheduled tasks include:
+
+    - Disabling a task: Setting the Enabled value to 0 in the task's subkey.
+    - Changing the task's execution settings: Modifying the Actions or Triggers
+    values in the task's subkey.
+    - Creating a new malicious task: Adding a new subkey with malicious
+    settings, such as executing a malicious executable.  

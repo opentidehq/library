@@ -1,0 +1,67 @@
+name: Unauthorized changes on shell configuration files
+criticality: High
+references:
+  public:
+    1: https://research.splunk.com/endpoint/66f737c6-3f7f-46ed-8e9b-cc0e5bf01f04/
+metadata:
+  uuid: 97589310-35d6-4e7d-a8b5-2d6cfc6375f4
+  schema: threat::1.0
+  version: 1
+  created: 2025-01-17
+  modified: 2025-01-17
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0139
+    - misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
+    - att&ck::G0034
+    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+  killchain: Persistence
+  att&ck:
+    - T1546.004
+  terrain: |-
+    Adversary must have the ability to modify or replace shell configuration files 
+    (e.g., .bashrc, .profile) through existing privileges or successful elevation 
+    of privileges on the target host.
+
+    Domains: Enterprise
+    Targets: Workstations, Laptop, Desktop, Public-Facing Servers
+    Platforms: Linux, macOS
+  severity: Significant incident
+  leverage: Elevation of privilege; Modify configuration; Log tampering; New Accounts; Modify privileges; Modify data
+  impact: Data Breach; Reputational Damages; Business disruption
+  viability: Likely
+  description: |-
+    Attacker may change critical files on Unix-like systems,
+
+    * shell initialisation and configuration, such as:
+      - `/etc/profile`, `/etc/shells`, `/etc/profile.d/*`, `/etc/bash.bashrc`, 
+      `/etc/bashrc`, `/etc/zsh/zprofile`, `/etc/zsh/zshrc`, `/etc/zsh/zlogin`, 
+      `/etc/zsh/zlogout`, `/etc/csh.cshrc`, `/etc/csh.login`,
+    * as well as root-owned configuration files, such as:
+      * `/root/.bashrc`, `/root/.bash_profile`, `/root/.profile`, `/root/.zshrc`, 
+      `/root/.zprofile`
+    * and user-specific files, such as:
+      * `/home/*/.bashrc`, `/home/*/.zshrc`, `/home/*/.bash_profile`, 
+      `/home/*/.zprofile`, `/home/*/.profile`, `/home/*/.bash_login`, 
+      `/home/*/.bash_logout`, `/home/*/.zlogin`, `/home/*/.zlogout`
+
+    These files are typically executed whenever a user logs in or spawns a new 
+    shell session. By manipulating these files, attackers may:
+
+    1. **Introduce malicious code** by modifying the configuration files with 
+    the objective of dropping malware to the compromised system, such as 
+    Backdoors or Trojans.
+    2. **Alter system settings**: Changes to the configuration files can modify 
+    system settings, such as environment variables, PATH variables, or other 
+    critical settings, which can compromise the system's security and integrity.
+    3. **Disable security features** such as audit logging or access controls, 
+    to evade detection or gain unauthorized access to the system.
+    4. **Create unauthorized access**: Modifications to the configuration files 
+    can create unauthorized access points, such as adding new users or modifying 
+    existing user accounts.

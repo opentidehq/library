@@ -1,0 +1,80 @@
+name: Pass-the-hash on SMB network shares
+criticality: High
+references:
+  public:
+    1: https://essay.utwente.nl/71415/1/Ullah_MA_EWI.pdf
+    2: https://www.stationx.net/pass-the-hash-attack/
+    3: https://viperone.gitbook.io/pentest-everything/everything/everything-active-directory/lateral-movement/alternate-authentication-material/wip-pass-the-hash
+metadata:
+  uuid: 5ea50181-1124-49aa-9d2c-c74103e86fd5
+  schema: threat::1.0
+  tlp: clear
+  version: 2
+  created: 2023-08-30
+  modified: 2025-10-01
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - att&ck::G0006
+    - misp::1cb7e1cc-d695-42b1-92f4-fd0112a3c9be
+    - att&ck::G0087
+    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - att&ck::G0050
+    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - att&ck::G0064
+    - misp::4f69ec6d-cb6b-42af-b8e2-920a2aa4be10
+    - att&ck::G0143
+    - misp::0ab7c8de-fc23-4793-99aa-7ee336199e26
+    - att&ck::G0108
+    - att&ck::G0060
+    - misp::add6554a-815a-4ac3-9b22-9337b9661ab8
+    - att&ck::G0080
+    - misp::01967480-c49b-4d4a-a7fa-aef0eaf535fe
+    - att&ck::G0037
+    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - att&ck::G0117
+    - misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
+    - att&ck::G0125
+    - misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
+  chaining:
+    - relation: sequence::succeeds
+      vector: 02311e3e-b7b8-4369-9e1e-74c0a844ae0f
+      description: Attackers needs to have successfully captured a valid NTLM hash
+  killchain: Lateral Movement
+  att&ck:
+    - T1003.001
+    - T1550.002
+    - T1021.002
+  terrain: |-
+    Attacker needs to have captured a valid NTLM hash,
+    Kerberos is disabled or NTML authentication is accepted as alternate method,
+    SMB ports needs to be open  from attacker perspective
+
+    Domains: Enterprise
+    Targets: Control Server, Desktop, End-user, Laptop, Remote access, Virtual Machines, Workstations
+    Platforms: Windows
+  severity: Highly significant incident
+  leverage: Alter behavior; Elevation of privilege; Spoofing
+  impact: Data Breach; Impairement
+  viability: Likely
+  description: |-
+    In a **Pass-the-Hash attack (PtH)**, Attackers may use offensive tools to load 
+    the NTLM hash and try to connect to SMB network shares that are reachable 
+    from the attacker device (SMB port is open to the internet - initial access) 
+    or from a compromised station under attacker's control - lateral movement. 
+
+    Crackmapexec is an excellent tool to try to connect to SMB network 
+    shares using NTLM hash (PtH).  
+
+    It scales really well as you can simply point and shoot at a whole 
+    subnet or list of IP addresses.  
+
+    Attacker may obtain read-only access to SMB network shares and could retrieve 
+    additional information.  
+
+    They may get write access to the share and then be able to drop files 
+    that victims might be enticed to open or to execute.

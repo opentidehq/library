@@ -1,0 +1,55 @@
+name: MFA Bypass Techniques
+criticality: High
+references:
+  public:
+    1: https://www.obsidiansecurity.com/blog/behind-the-breach-self-service-password-reset-azure-ad/
+    2: https://www.infosecinstitute.com/resources/phishing/consent-phishing-how-attackers-abuse-oauth-2-0-permissions-to-dupe-users/
+    3: https://www.csoonline.com/article/656249/the-mgm-resorts-attack-initial-analysis.html
+    4: https://krebsonsecurity.com/2018/05/t-mobile-employee-made-unauthorized-sim-swap-to-steal-instagram-account/
+    5: https://blog.netwrix.com/2022/11/29/bypassing-mfa-with-pass-the-cookie-attack/
+metadata:
+  uuid: 4a807ac4-f764-41b1-ae6f-94239041d349
+  schema: threat::1.0
+  version: 1
+  created: 2024-11-04
+  modified: 2024-11-05
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0034
+    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - att&ck::G0114
+    - att&ck::G0094
+    - misp::89f005f9-22e9-4c50-9b48-e94c521266e5
+    - att&ck::G1004
+    - misp::d9e5be22-1a04-4956-af6c-37af02330980
+  killchain: Credential Access
+  att&ck:
+    - T1111
+    - T1621
+    - T1566.001
+    - T1566.002
+    - T1566.004
+  terrain: |-
+    Sufficient reconnaissance to identify a target account and MFA technologies being used.
+
+    Domains: Enterprise, Public Cloud, Mobile, SaaS
+    Targets: Auth token, API Endpoints, Cloud Portal, End-user, Helpdesk, Identity Services, Mobile phone
+    Platforms: Android, iOS, Azure AD, Office 365
+  severity: Moderate incident
+  leverage: Elevation of privilege; Modify configuration; Modify privileges; Spoofing
+  impact: Identity Theft; Impairement
+  viability: Environment dependent
+  description: |-
+    MFA is a technique that requires more than one piece of evidence to authorize the user to 
+    access a resource. If two pieces of evidence are needed to verify, this approach is called 2FA.
+    The difference between 2FA and MFA is that 2FA requires only two factors; on the other hand,
+    MFA can add more layers until the login attempts do not seem suspicious anymore.
+
+    A MFA bypass is a broad term referring to an attack method where a cybercriminal 
+    navigates around MFA requirements to gain unauthorized access to an account.

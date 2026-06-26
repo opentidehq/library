@@ -1,0 +1,42 @@
+name: Azure - Modify federation trust to accept externally signed tokens
+criticality: Emergency
+references:
+  public:
+    1: https://www.microsoft.com/security/blog/2020/12/28/using-microsoft-365-defender-to-coordinate-protection-against-solorigate/
+metadata:
+  uuid: 9bb31c65-8abd-48fc-afe3-8aca76109737
+  schema: threat::1.0
+  tlp: clear
+  version: 4
+  created: 2022-03-06
+  modified: 2025-01-01
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+  killchain: Lateral Movement
+  att&ck:
+    - T1484.002
+  terrain: |-
+    Attackers need to have gained administrative Azure Active Directory
+    (Azure AD) privileges using compromised credentials
+
+    Domains: Public Cloud, Enterprise
+    Targets: Identity Services, SAML-Joined Applications
+    Platforms: Azure AD, AD FS, AWS IAM
+  severity: National cyber emergency
+  leverage: Elevation of privilege; Spoofing
+  impact: Data Breach
+  viability: Almost certain
+  description: |-
+    Once they acquired sufficient priviledges,attackers add their own certificate as 
+    a trusted entity in the domain either by adding a new federation trust to 
+    an existing tenant or modifying the properties of an existing federation 
+    trust. As a result, any SAML token they create and sign will be valid for 
+    the identity of their choosing. This attack may be performed as an alternative
+    to the Golden SAML attack to gain persistent access without having to sign 
+    the SAML response at each access request, while needing the same amount of control 
+    over the ADFS server.

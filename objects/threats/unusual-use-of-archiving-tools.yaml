@@ -1,0 +1,62 @@
+name: Unusual use of archiving tools
+criticality: Low
+references:
+  public:
+    1: https://www.crowdstrike.com/blog/techniques-behind-masquerading-attacks/
+    2: https://social.cyware.com/news/new-file-archiver-in-the-browser-phishing-kit-masquerades-as-winrar-3b78111d
+    3: https://cloudmersive.com/article/Understanding-File-Masquerading-in-Phishing-Attacks:-Detection-and-Protection
+metadata:
+  uuid: a1e8f8b3-48ef-4559-a3a0-ecaed496d5f3
+  schema: threat::1.0
+  version: 1
+  created: 2024-10-23
+  modified: 2024-10-24
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - att&ck::G0092
+    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - att&ck::G0114
+  killchain: Defense Evasion
+  att&ck:
+    - T1036
+    - T1027
+    - T1070
+  terrain: |-
+    Adversary must have access to systems with archiving tools installed and permissions 
+    to execute renamed or custom archiving utilities.
+
+    Domains: Enterprise
+    Targets: Workstations, Laptop
+    Platforms: Windows, macOS, Linux
+  severity: Moderate incident
+  leverage: Information Disclosure; Modify data
+  impact: Data Breach; IP Loss; Reputational Damages
+  viability: Likely
+  description: |-
+    Threat actors often use legitimate archiving tools, like 7-Zip, WinRAR or tar, 
+    to compress and exfiltrate data from compromised systems. Attackers rename 
+    these executables or use the executables in ways that are atypical to evade 
+    security measures that would normally rely on standard file names 
+    or typical usage patterns.
+
+    Example : an attacker renaming 7z.exe to system32.exe and saving it in a
+    directory that is abnormal. They can then run the following command:
+    C:\Users\Public\system32.exe a -tzip C:\Users\Public\archive.zip C:\SensitiveData\*
+
+    This technique enables the attacker to archive sensitive data in a manner 
+    that would make the activity seem benign. The unusual locations of archive file 
+    creation and the usage of archiving tools with non-standard naming are 
+    the indicators of potentially malicious activity.
+
+    Also, a significant number of data compression and unusual outbound network traffic 
+    may indicate attempts to exfiltrate data.

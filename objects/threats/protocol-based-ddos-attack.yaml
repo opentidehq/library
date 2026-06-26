@@ -1,0 +1,35 @@
+name: Protocol based DDoS attack
+criticality: Emergency
+references:
+  public:
+    1: https://www.imperva.com/learn/ddos/ddos-attacks/
+    2: https://www.akamai.com/learn/what-are-syn-flood-ddos-attacks
+    3: https://www.f5.com/labs/learning-center/what-is-a-distributed-denial-of-service-attack
+metadata:
+  uuid: bc5aed0c-a2d1-4406-9a47-0721f3753a3b
+  schema: threat::1.0
+  tlp: clear
+  version: 1
+  created: 2023-01-26
+  modified: 2023-02-03
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+  killchain: Impact
+  att&ck:
+    - T1498.001
+  terrain: |-
+    Anything with Internet connectivity
+
+    Domains: Enterprise, Networking, Private Cloud, Public Cloud, SaaS
+    Targets: API Endpoints, Serverless, Control Server, Web Application Servers, Public-Facing Servers
+    Platforms: AWS, Azure, Apache HTTP Server, Confluence, JIRA, Microsoft SharePoint, MySQL, Network Router, NGINX, OVHcloud, Outlook Web Access, Postgress
+  severity: Significant incident
+  leverage: Denial of Service
+  impact: Business disruption; Operating costs; Reputational Damages
+  viability: Almost certain
+  description: Threat actors may wish to cause business disruption, media/public attention, or to use the pretense of business disruption to disguise other activities. Any DDoS attack should always be followed up with other DFIR activities to determine if the attack was meant to distract from something else. DDoS can distract by pulling attention away, or even by spooling out log files so that relevant entries are overwritten.

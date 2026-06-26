@@ -1,0 +1,84 @@
+name: Move laterally with SMB by abusing WMI
+criticality: High
+references:
+  public:
+    1: https://attack.mitre.org/techniques/T1047/
+    2: https://essay.utwente.nl/71415/1/Ullah_MA_EWI.pdf
+metadata:
+  uuid: f33a693b-04cd-476e-9067-9deab561e55a
+  schema: threat::1.0
+  tlp: clear
+  version: 2
+  created: 2023-08-17
+  modified: 2025-01-01
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0050
+    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0108
+    - att&ck::G0114
+    - att&ck::G0080
+    - misp::01967480-c49b-4d4a-a7fa-aef0eaf535fe
+    - att&ck::G0037
+    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - att&ck::G0093
+    - misp::e400b6c5-77cf-453d-ba0f-44575583ac6c
+    - att&ck::G0047
+    - misp::1a77e156-76bc-43f5-bdd7-bd67f30fbbbb
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0065
+    - misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
+    - att&ck::G0059
+    - misp::c1d44f44-425e-48fd-b78b-84b988da8bc3
+    - att&ck::G0045
+    - misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
+    - att&ck::G0069
+    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - att&ck::G0129
+    - misp::fceed509-938e-4f9e-acd4-76e6c28dc6f1
+    - att&ck::G0013
+    - misp::d3881afe-f781-4c53-9f68-33487a119a59
+    - att&ck::G0049
+    - misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
+    - att&ck::G0034
+    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+  killchain: Lateral Movement
+  att&ck:
+    - T1570
+    - T1047
+  terrain: |-
+    It is a built-in tool developped by Microsoft and belonging to Sysinternal command-line tools. It should be installed
+    However SMB is a native protocol that do not require any installation.
+
+    Domains: Enterprise
+    Targets: Control Server, Desktop, End-user, Laptop, Remote access, Virtual Machines, Workstations
+    Platforms: Windows
+  severity: Highly significant incident
+  leverage: Alter behavior; Elevation of privilege; Spoofing
+  impact: Identity Theft; Asset and fraud
+  viability: Likely
+  description: |-
+    Windows management instrumentation (WMI) is a tool that is implemented as service to locally
+    and remotely manages data, operations and configuring settings on windows operating systems.
+    WMI allows the administrator to see how the Operating system operates, what are its configurations
+    and properties and to automatically collect a systems hardware and software data. It is supporting other
+    scripting languages like Windows Script Host, VBScript, and PowerShell. WMI can be interacted
+    locally and remotely. WMI is a powerful tool which allows the threat actor to install backdoor, 
+    code execution as well as do lateral movement.
+    As the threat actor has the valid credentials (password or hashes) they can specify malicious events to
+    happen for example every time the victim restarts the computer run the executable that is present
+    in the specified directory.
+
+    Payload loaded may allow the threat actor to make a separate call to the Remote Procedure Call (RPC) 
+    on the victim machine, which is running over the SMB protocol.
+    The named pipe is then used to move laterally with the protocol.

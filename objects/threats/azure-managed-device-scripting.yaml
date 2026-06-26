@@ -1,0 +1,102 @@
+name: Azure - Managed Device Scripting
+criticality: High
+references:
+  public:
+    1: https://techcommunity.microsoft.com/t5/security-compliance-and-identity/introducing-the-azure-threat-research-matrix/ba-p/3584976
+    2: https://microsoft.github.io/Azure-Threat-Research-Matrix/Execution/AZT303/AZT303/
+metadata:
+  uuid: 4d9cc646-debc-477b-93cb-4ea74c47c02c
+  schema: threat::1.0
+  version: 2
+  created: 2025-09-01
+  modified: 2025-09-04
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G1024
+    - misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - att&ck::G0022
+    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - misp::50cd027f-df14-40b2-aa22-bf5de5061163
+    - att&ck::G0035
+    - att&ck::G1039
+    - misp::53583c40-935e-11e9-b4fc-d7e217a306d2
+    - misp::0ab7c8de-fc23-4793-99aa-7ee336199e26
+    - misp::6bf7e6b6-5917-45a6-9567-f0baba79768c
+  killchain: Execution
+  att&ck:
+    - T1059
+    - T1021
+    - T1078
+  chaining:
+    - relation: sequence::succeeds
+      vector: 140907eb-c9fb-4330-9d71-656422388b2b
+      description: |-
+        Adversaries need to identify privileged accounts and misconfigured role 
+        assignments that can be exploited for privilege escalation.
+    - relation: sequence::succeeds
+      vector: b1593e0b-1b3b-462d-9ab6-21d1c136469d
+      description: |-
+        The attacker obtains credentials (via phishing, password spray, leaked keys)
+        granting at least Reader access to the target Azure tenant.
+    - relation: sequence::succeeds
+      vector: 2743bf18-3b86-4721-bf3e-153dcda0b149
+      description: |-
+        Adversaries obtain the username and password of an AzureAD user either through
+        phishing, password spraying, brute-force attacks, or credentials leaked online.
+    - relation: sequence::preceeds
+      vector: 61ddc240-e5a6-4ca8-ae77-6b471b498913
+      description: |-
+        Adversaries must have an Azure role that grants the ability to write or deploy 
+        custom script extensions on virtual machines.
+    - relation: sequence::preceeds
+      vector: 23f6a192-a25d-48b8-a235-7bb55e483682
+      description: |-
+        The adversary needs the owner access role on the targeted Azure subscription to apply
+        the Azure Policy and grant permissions for the system-managed identities.
+  terrain: |-
+    Adversaries obtain elevated access within AzureAD or Intune; often
+    via credential theft, privilege escalation, or social engineering.
+
+    Domains: Public Cloud
+    Targets: Workstations, Mobile phone, Cloud Portal
+    Platforms: Azure AD, Windows, PowerShell
+  severity: Significant incident
+  leverage: Elevation of privilege; Information Disclosure
+  impact: Data Breach; Reputational Damages; Identity Theft
+  viability: Likely
+  description: |-
+    The following threat vector involves adversaries abusing device management capabilities 
+    to execute code on devices through services like Intune and Entra ID (AzureAD).
+
+    ## Example Attack Scenario
+
+    An attacker who gains administrative access to AzureAD or Intune can deploy PowerShell 
+    or Python scripts to managed devices. For example, a compromised AzureAD account 
+    with device management rights could push a malicious PowerShell script to employee 
+    laptops using Intune, which then installs ransomware or exfiltrates sensitive data 
+    without user interaction.
+
+    ## Attack Goals and Impact
+
+    The primary goal is to achieve **remote code execution** across a fleet of managed 
+    devices. Attackers may aim to:
+    - Steal credentials or sensitive files
+    - Install persistence mechanisms for future access
+    - Deploy ransomware, spyware, or other malware
+    This can lead to widespread compromise, significant data breaches, and business 
+    disruption, particularly because device scripting can touch many endpoints simultaneously.
+
+    ## Attack Flow and Methodology
+
+    1. Use administrative capabilities (such as `microsoft.directory/devices/basic/update`) 
+    to push scripts to selected managed devices.
+    2. The scripts execute with system-level privileges if the targeting configuration 
+    is misused, allowing the attacker to harvest data, pivot to other internal resources, 
+    or further entrench their presence.
+    3. Attackers may cover tracks by modifying or deleting audit logs accessible through IntuneAuditLogs.

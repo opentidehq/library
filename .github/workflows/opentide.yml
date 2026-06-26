@@ -1,0 +1,67 @@
+# Catalogue CI — validate, generate schemas/templates, refresh in-repo docs.
+#
+# Requires repo or org secrets to clone private OpenTideHQ/opentide:
+#   - GH_APP_ID + GH_APP_KEY (GitHub App with read access to opentide), or
+#   - OPENTIDE_REPO_TOKEN (PAT or fine-grained token with contents:read on opentide)
+name: OpenTide
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate-and-generate:
+    name: Validate and generate
+    runs-on: ubuntu-latest
+    env:
+      HAS_GITHUB_APP: ${{ secrets.GH_APP_ID && secrets.GH_APP_KEY && 'true' || 'false' }}
+    steps:
+      - name: Checkout library
+        uses: actions/checkout@v4
+
+      - name: Generate GitHub App token
+        id: generate_token
+        if: ${{ env.HAS_GITHUB_APP == 'true' }}
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.GH_APP_ID }}
+          private-key: ${{ secrets.GH_APP_KEY }}
+          owner: OpenTideHQ
+          repositories: opentide
+
+      - name: Checkout opentide
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/opentide
+          ref: development
+          path: opentide
+          token: ${{ steps.generate_token.outputs.token || secrets.OPENTIDE_REPO_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install opentide
+        run: pip install -e ./opentide
+
+      - name: Generate schemas and templates
+        run: |
+          python scripts/opentide_run.py generate schemas
+          python scripts/opentide_run.py generate templates
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+
+      - name: Validate objects
+        run: python scripts/opentide_run.py validate --strict
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+
+      - name: Generate documentation
+        run: python scripts/opentide_run.py generate docs --output docs --flavor github
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
