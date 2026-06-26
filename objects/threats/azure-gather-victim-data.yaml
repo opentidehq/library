@@ -1,0 +1,96 @@
+name: Azure - Gather Victim Data
+criticality: High
+references:
+  public:
+    1: https://microsoft.github.io/Azure-Threat-Research-Matrix/Reconnaissance/Reconnaissance/
+    2: https://www.alteredsecurity.com/post/initial-access-attack-in-azure-understanding-and-executing-the-illicit-consent-grant-attack-in-202
+metadata:
+  uuid: 4e7eae8e-6615-41f2-bfe1-21a04f7a6088
+  schema: threat::1.0
+  version: 2
+  created: 2025-08-04
+  modified: 2025-09-04
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
+    - att&ck::G1001
+    - misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - att&ck::G0059
+    - misp::c432d032-ce2b-4eb8-ba87-312b2a43fb7a
+    - att&ck::G1033
+    - misp::f02679fa-5e85-4050-8eb5-c2677d93306f
+  killchain: Reconnaissance
+  att&ck:
+    - T1589
+    - T1590
+    - T1078.004
+  chaining:
+    - relation: sequence::preceeds
+      vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
+      description: |-
+        An adversary may access a user's personal data if their account is compromised.
+        This includes data such as email, OneDrive, Teams, etc.
+    - relation: sequence::preceeds
+      vector: 1a68b5eb-0112-424d-a21f-88dda0b6b8df
+      description: |-
+        An adversary may access a user's personal data if their account is compromised.
+        This includes data such as email, OneDrive, Teams, etc.
+  terrain: |-
+    An adversary successfully compromises a user's Azure Active Directory account credentials 
+    or session token through phishing, credential theft, or token theft.
+
+    Domains: Public Cloud, SaaS, Private Cloud
+    Targets: Cloud Storage Accounts, Email Platform, Web Application Servers, API Endpoints, Identity Services, Personal Information
+    Platforms: Azure, Azure AD, Office 365
+  severity: Significant incident
+  leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege
+  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
+  viability: Likely
+  description: |-
+    The "Gather Victim Data" is a reconnaissance threat vector within the 
+    Azure Threat Research Matrix (ATRM). It involves an adversary accessing a user's 
+    personal data after compromising their account. This data may include sensitive 
+    information stored in Microsoft cloud services such as email, OneDrive, Teams, and 
+    other personal content linked to the user's Azure Active Directory account.
+
+    #### Example Attack Scenario  
+
+    - An attacker creates a malicious Azure application that requests access permissions 
+    to victim data like emails, OneDrive files, or Teams messages. 
+    - The attacker then sends a phishing email to a target user within an organization, 
+    tricking them to grant consent to this malicious app.
+    - Once the user grants access, the app obtains delegated permissions to access the 
+    victim's data across Microsoft 365 services.
+    - The attacker uses the obtained tokens or permissions to programmatically extract 
+    emails, files, conversations, and other personal or organizational data.
+    - The attacker may use this data for further phishing, reconnaissance, or lateral 
+    movement attacks within the Azure tenant.
+
+    #### Attack Goals and Impact  
+
+    - **Goals**: Steal sensitive business or personal information, emails, files, and 
+    communications to gain insights into victims, plan secondary attacks, or conduct espionage.
+    - Gain privileged information for later stages of attacks (e.g., lateral movement, 
+    credential theft, privilege escalation).
+    - Use stolen data for spear phishing campaigns or to impersonate trusted users internally 
+    or externally.
+    - Maintain persistence by harvesting tokens and credentials for prolonged access.
+    - Impact includes data breaches, intellectual property theft, regulatory compliance 
+    violations, reputational damage, and financial loss.
+
+    #### Attack Flow and Methodology
+
+    1. **Token Theft**: Using OAuth tokens or API calls, attacker programmatically accesses 
+    victim data such as emails, OneDrive files, Teams conversations.
+    2. **Data Collection and Exfiltration**: Captured data is collected, filtered, and 
+    exfiltrated for further use. This can be automated via scripts or tools like 365-Stealer.
+    3. **Lateral Movement / Escalation**: Using gathered intelligence, the attacker 
+    identifies high-value targets, escalates privileges, or moves laterally across the enterprise.
+    4. **Persistence and Cover-Up**: The adversary maintains presence, possibly by registering 
+    additional apps or accounts and attempts to remain undetected by throttling activity 
+    or delaying requests.

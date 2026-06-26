@@ -1,0 +1,1614 @@
+{
+    "versions": {
+        "layer": "4.5"
+    },
+    "techniques": [
+        {
+            "techniqueID": "T1562.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] AAA bypass for unauthorized access on network devices, [THREAT] Disable swapping paging devices, [THREAT] LINE VIPER shellcode loader on Cisco ASA, [THREAT] Supply chain compromise via software update mechanism, [THREAT] Use Windows utilities to manipulate a local account or group, [THREAT] WhisperGate wiper",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1562",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] AAA bypass for unauthorized access on network devices, [THREAT] LINE VIPER shellcode loader on Cisco ASA, [THREAT] Supply chain compromise via software update mechanism, [THREAT] Switching off forced signed commits for GitHub repository, [THREAT] Windows system links used for file redirection attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1556",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] AAA bypass for unauthorized access on network devices, [THREAT] ADFS abuse, [THREAT] Adversary in the Middle phishing sites to bypass MFA, [THREAT] Ghost logins attempts",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1550",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] AAA bypass for unauthorized access on network devices, [THREAT] Lateral movement via a compromised Teams account",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1133",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] ADFS abuse, [THREAT] Abuse of 'Always-on VPN' feature on mobile device, [THREAT] Azure - External Entity Access, [THREAT] Azure - Public Accessible Resource",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1606.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] ADFS abuse",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1496",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] AWS Compute instance deployed in unusual region, [THREAT] Azure - Local Resource Hijack, [THREAT] Non-Approved container image deployed to run cryptominer",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1562.008",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] AWS Stop Logging CloudTrail, [THREAT] Modify Microsoft Sentinel Data Connector to impair Detections",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1543.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abnormal Windows service creation or modification attempt, [THREAT] Direct modification of registry keys to tamper scheduled task",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1112",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abnormal Windows service creation or modification attempt, [THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Direct modification of registry keys to tamper scheduled task, [THREAT] Possible Smart App Control Evasion Attempt, [THREAT] Scheduled tasks to maintain persistence in registry, [THREAT] VBS script creates a scheduled task, [THREAT] Windows Explorer Manipulation via Registry Modification",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1055",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abnormal Windows service creation or modification attempt, [THREAT] Chrysalis backdoor deployment via DLL sideloading, [THREAT] GodFather Banking Trojan, [THREAT] ProShow vulnerability exploitation for payload delivery",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1547.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse Windows Utilities to Enable Persistence, [THREAT] Registry autorun persistence from temporary folders, [THREAT] Windows Explorer Manipulation via Registry Modification, [THREAT] Windows startup folder abused by malware",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1218",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse Windows Utilities to Enable Persistence, [THREAT] Abuse of Windows Utilities, [THREAT] AppLocker bypass using DLLs, [THREAT] AppLocker bypass using writable folders, [THREAT] AppLocker bypass, [THREAT] AppLocker enumerating policy bypass, [THREAT] Download and Execute Payloads with Windows Utilities, [THREAT] Legitimate software dependency injected with malicious code, [THREAT] Leverage Windows Utilities for Proxy Execution of Malicious Code",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1574.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse Windows Utilities to Side-Load Malicious DLLs, [THREAT] MoonTag backdoor",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1078",
+            "color": "#74c476",
+            "comment": "[THREAT] Abuse of 'Always-on VPN' feature on mobile device, [THREAT] Admin SMB shares privilege escalation exploit, [THREAT] Axios npm supply chain compromise, [THREAT] Azure - Managed Device Scripting, [THREAT] Azure - Port Mapping, [THREAT] Azure - Privileged Identity Management Role, [THREAT] Azure - Storage blobs data collection, [THREAT] Azure - Unmanaged Scripting, [THREAT] Azure - Virtual Machine Scripting, [THREAT] Azure DevOps pipelines, [THREAT] IP Discovery in Azure, [THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] MS 365 admin compromised account, [THREAT] Scheduled task manipulation using Azure CLI, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] SharePoint ToolShell vulnerabilities, [THREAT] Supply chain compromise via software update mechanism, [THREAT] Windows credential creation attempt, [THREAT] access to management plane of security, network, or endpoint management appliances, [THREAT] iOS Trojan harvesting facial recognition data, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1195",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of 'Always-on VPN' feature on mobile device, [THREAT] Adversary publishing malicious NPM packages to compromise software, [THREAT] Compromised software packages, [THREAT] Malicious Software Dependencies Faking Known Packages, [THREAT] Possible Smart App Control Evasion Attempt, [THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1199",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of 'Always-on VPN' feature on mobile device, [THREAT] Social engineering attack using Microsoft Teams, [THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1134.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Getsystem command for privilege escalation, [THREAT] Create a process with a token, [THREAT] Duplicate an access token in a new process to elevate privileges, [THREAT] WhisperGate wiper",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Microsoft Office Applications, [THREAT] Axios npm supply chain compromise",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1204.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Microsoft Office Applications, [THREAT] GoGra backdoor, [THREAT] Google Calendar service as C2, [THREAT] Malicious NSIS installer deployment, [THREAT] Spearphishing with an attachment extension .rdp, [THREAT] Suspicious Disk Image Files extracted via File Archiver from Email or Download directory",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1137",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Microsoft Office Applications",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1203",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Microsoft Office Applications, [THREAT] ProShow vulnerability exploitation for payload delivery",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1197",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Windows Utilities",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1218.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Windows Utilities",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1563",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Windows Utilities, [THREAT] Lateral movement via a compromised Teams account",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1140",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Windows Utilities, [THREAT] Powershell with encoded payload passed to cmdline, [THREAT] Supply chain compromise via software update mechanism, [THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1218.010",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Windows Utilities, [THREAT] Malicious Code Execution with Windows Utilities",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1218.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of Windows Utilities, [THREAT] Abuse of mshta, [THREAT] Malicious Code Execution with Windows Utilities",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1574.006",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of environment variable to hijack library functions",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1548.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abuse of special permission via chmod on files",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1087.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abusing Lolbins to Enumerate Local and Domain Accounts and Groups, [THREAT] Use Windows utilities to manipulate a local account or group",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1087.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abusing Lolbins to Enumerate Local and Domain Accounts and Groups, [THREAT] Azure - Gather Role Information, [THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Windows User and Group Enumeration with specific tools",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1069.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abusing Lolbins to Enumerate Local and Domain Accounts and Groups",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1069.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abusing Lolbins to Enumerate Local and Domain Accounts and Groups, [THREAT] CrackMapExec (CME) on endpoints or being downloaded",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1016",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Abusing Lolbins to Enumerate Network Configuration, [THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] System reconnaissance via shell commands in supply chain attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1098",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Access token manipulation, [THREAT] Azure - App registration persistence, [THREAT] Azure - Policy with DeployIfNotExists definition, [THREAT] Azure - Privileged Identity Management Role, [THREAT] Azure app registration - privilege escalation, [THREAT] Credential manipulation on local Windows endpoint, [THREAT] Manipulation of credentials stored in LSASS, [THREAT] Mimikatz execution on compromised endpoint, [THREAT] Persistence through automation runbooks in Azure",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1098.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Addition of credentials to OAuth applications and service principals, [THREAT] Azure - Hijack Entra ID Applications, [THREAT] Azure - Key Vault persistence, [THREAT] Azure - KeyVault Dumping, [THREAT] Azure - Local Resource Hijack, [THREAT] Azure - Principal Impersonation, [THREAT] Azure - SAS URI Generation, [THREAT] Azure - Service Principal Secret Reveal, [THREAT] Azure - Steal Service Principal Certificate, [THREAT] Azure AD Connect abuse, [THREAT] Credential manipulation on local Windows endpoint, [THREAT] Credential manipulation on remote Windows endpoint, [THREAT] PowerShell usage for credential manipulation, [THREAT] Script execution on Windows for credential manipulation, [THREAT] Using a Windows command prompt for credential manipulation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1210",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Admin SMB shares privilege escalation exploit, [THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] Lateral movement via a compromised Teams account",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1021.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Admin SMB shares privilege escalation exploit, [THREAT] Files retrieved via SMB connection, [THREAT] Pass-the-hash on SMB network shares",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1570",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Admin SMB shares privilege escalation exploit, [THREAT] Files retrieved via SMB connection, [THREAT] Lateral movement via a compromised Teams account, [THREAT] Move laterally with SMB by abusing WMI",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1548",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Adversary abuses sudo elevation control mechanism, [THREAT] Azure - Key Vault persistence, [THREAT] Azure - Principal Impersonation, [THREAT] Azure - Privileged Identity Management Role",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1566.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Adversary in the Middle phishing sites to bypass MFA, [THREAT] Consent phishing attack, [THREAT] Google Calendar service as C2, [THREAT] LNK files downloaded on a workstation, [THREAT] MFA Bypass Techniques, [THREAT] Spearphishing Link, [THREAT] Use of customervoice.microsoft.com to host Phishing domains, [THREAT] iOS Trojan harvesting facial recognition data",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1557",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Adversary in the Middle phishing sites to bypass MFA, [THREAT] Perform Microsoft Entra ID connectors MITM attack, [THREAT] Windows credential access attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1539",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Adversary in the Middle phishing sites to bypass MFA, [THREAT] Pass the Primary Refresh Token (PRT)",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1078.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Adversary in the Middle phishing sites to bypass MFA, [THREAT] Azure - Elevated Access Toggle, [THREAT] Azure - External Entity Access, [THREAT] Azure - Gather Application Information, [THREAT] Azure - Gather User Information, [THREAT] Azure - Gather Victim Data, [THREAT] Azure - KeyVault Dumping, [THREAT] Azure - Local Resource Hijack, [THREAT] Azure - Policy with DeployIfNotExists definition, [THREAT] Azure - Principal Impersonation, [THREAT] Azure - SAS URI Generation, [THREAT] Azure - Service Principal Secret Reveal, [THREAT] Azure - Steal Service Principal Certificate, [THREAT] Azure - Storage Account Replication, [THREAT] Azure - Storage account reconnaissance, [THREAT] Azure - Valid Credentials, [THREAT] Azure AD Connect abuse, [THREAT] Illicit VPC peering requests",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1082",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Adversary publishing malicious NPM packages to compromise software, [THREAT] Axios npm supply chain compromise, [THREAT] Azure - Key Vault reconnaissance, [THREAT] BRICKSTORM file manager exposes end-user's HTTP APIs and UI, [THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Host information gathering in Linux systems, [THREAT] LOLC2 service abuse via temp.sh, [THREAT] System reconnaissance via shell commands in supply chain attack, [THREAT] VBS script creates a scheduled task",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1546.016",
+            "color": "#74c476",
+            "comment": "[THREAT] Adversary publishing malicious NPM packages to compromise software, [THREAT] Axios npm supply chain compromise, [THREAT] Compromised software packages, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1036",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Adversary publishing malicious NPM packages to compromise software, [THREAT] DNS over HTTPS tunneling exfiltrates data or communicates to C&C server, [THREAT] Legitimate software dependency injected with malicious code, [THREAT] MoonTag backdoor, [THREAT] Spearphishing Link, [THREAT] Spearphishing with an attachment extension .rdp, [THREAT] Supply chain compromise via software update mechanism, [THREAT] Unusual use of archiving tools, [THREAT] WhisperGate wiper",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1098.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Alteration of sshd_config file",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1626",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Android attack using app running on emulator",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1633",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Android attack using app running on emulator, [THREAT] Paragon Spyware",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1417",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Android attack using app running on emulator, [THREAT] Malicious profile installed on mobile device, [THREAT] Mobile malware attacks targeting iOS",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1635",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Android attack using app running on emulator",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1426",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Android attack using app running on emulator",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T0869",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Android attack using app running on emulator",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1641",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Android attack using app running on emulator",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1588.006",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Apple WebKit exploited for arbitrary code execution",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1588.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Apple WebKit exploited for arbitrary code execution",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1190",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Authentication bypass vulnerability in Ivanti EPMM, [THREAT] Automation accounts JWT extraction, [THREAT] Azure - Port Mapping, [THREAT] Azure - Storage Blobs Reconnaissance, [THREAT] Azure DevOps pipelines, [THREAT] BRICKSTORM file manager exposes end-user's HTTP APIs and UI, [THREAT] Client-controlled session state authentication bypass, [THREAT] Code execution via custom script extensions in Azure, [THREAT] Command injection on web components of Ivanti Connect Secure appliances, [THREAT] DNS over HTTPS tunneling exfiltrates data or communicates to C&C server, [THREAT] GSM interception, [THREAT] Google Calendar service as C2, [THREAT] HTML smuggling technique, [THREAT] Late access control enforcement via redirect body leakage, [THREAT] NTLM credentials dumping via SMB connection, [THREAT] Obfuscate binaries through PowerShell commands, [THREAT] OneDrive API abuse to exfiltrate sensitive data, [THREAT] SharePoint ToolShell vulnerabilities, [THREAT] Unauthorized account provisioning via exposed registration flow, [THREAT] authentication bypass on Ivanti Connect Secure appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1068",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Authentication bypass vulnerability in Ivanti EPMM, [THREAT] Azure app registration - privilege escalation, [THREAT] Container privilege escalation via kernel or container runtime exploit, [THREAT] NTLM credentials dumping via SMB connection, [THREAT] Paragon Spyware, [THREAT] Powershell with encoded payload passed to cmdline, [THREAT] Use of legitimate still vulnerable drivers to elevate privileges, [THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1134",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Automation accounts JWT extraction, [THREAT] GoGra backdoor, [THREAT] Pass the Primary Refresh Token (PRT)",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1528",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Automation accounts JWT extraction, [THREAT] Azure DevOps pipelines, [THREAT] IP Discovery in Azure",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1550.001",
+            "color": "#74c476",
+            "comment": "[THREAT] Automation accounts JWT extraction, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1195.001",
+            "color": "#74c476",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] Azure DevOps pipelines, [THREAT] Legitimate software dependency injected with malicious code, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] Use of a malicious lambda layer in AWS account lambda function, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1195.002",
+            "color": "#74c476",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] Legitimate software dependency injected with malicious code, [THREAT] Notepad++ supply chain attack, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] Supply chain compromise via software update mechanism, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1566.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] MFA Bypass Techniques",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027.014",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Lateral movement using Impacket framework, [THREAT] Obfuscate binaries through PowerShell commands, [THREAT] PowerShell usage for credential manipulation, [THREAT] Powershell with encoded payload passed to cmdline",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.006",
+            "color": "#74c476",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1036.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1036.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1070.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] Supply chain compromise via software update mechanism, [THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1071.001",
+            "color": "#74c476",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] BRICKSTORM file manager exposes end-user's HTTP APIs and UI, [THREAT] Cobalt Strike Beacon deployment via Metasploit downloader, [THREAT] LOLC2 service abuse via temp.sh, [THREAT] Reverse shell or remote session from compromised host, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] Supply chain compromise via software update mechanism, [THREAT] WebVPN authentication abuse for C2 on Cisco ASA, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1102.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1219",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Axios npm supply chain compromise, [THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] MoonTag backdoor",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1566.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - App registration persistence, [THREAT] Use of customervoice.microsoft.com to host Phishing domains",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1485",
+            "color": "#74c476",
+            "comment": "[THREAT] Azure - Backup Delete, [THREAT] Azure - Soft-Delete Recovery, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] WhisperGate wiper, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1485.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Backup Delete",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1561",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Backup Delete",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1098.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Elevated Access Toggle, [THREAT] Cloud IAM role assumption, [THREAT] Externally controlled Azure credentials added to an Enterprise app or its SPN",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1548.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Elevated Access Toggle",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1484.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - External Entity Access, [THREAT] Azure - Modify federation trust to accept externally signed tokens",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1039",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - File Share Mounting",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1530",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - File Share Mounting, [THREAT] Azure - Gather Resource Data, [THREAT] Azure - Soft-Delete Recovery, [THREAT] Azure - Storage Account Replication, [THREAT] Azure - Storage Blobs Reconnaissance, [THREAT] Azure - Storage account reconnaissance, [THREAT] Azure - Storage blobs data collection, [THREAT] Azure - Storage container reconnaissance",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1021.007",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - File Share Mounting, [THREAT] Azure - Lateral movement abusing Cross-Tenant Synchronization, [THREAT] Files retrieved via SMB connection",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1110",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Application Information, [THREAT] Azure - Port Mapping, [THREAT] Azure - Valid Credentials, [THREAT] SMB login brute force, [THREAT] Windows credential access attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1555",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Application Information, [THREAT] Azure - Key Vault reconnaissance, [THREAT] Azure - Valid Credentials, [THREAT] Code execution via custom script extensions in Azure, [THREAT] Resource Secret Reveal in Azure, [THREAT] Script execution on Windows for credential manipulation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1526",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Resource Data, [THREAT] Azure - Service Principal Secret Reveal, [THREAT] IP Discovery in Azure",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1087",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Resource Data, [THREAT] Azure - Gather User Information, [THREAT] Data collection using SharpHound, SoapHound, Bloodhound and Azurehound",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1552.001",
+            "color": "#74c476",
+            "comment": "[THREAT] Azure - Gather Resource Data, [THREAT] Credential file download to compromised Windows endpoint, [THREAT] Credential manipulation on local Windows endpoint, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] Windows credential creation attempt, [THREAT] Windows explorer used to search for files with credentials, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1591.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Role Information",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1589.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Role Information, [THREAT] Social engineering without attachment or URL",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1482",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Role Information, [THREAT] Data collection using SharpHound, SoapHound, Bloodhound and Azurehound",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1589",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather User Information, [THREAT] Azure - Gather Victim Data, [THREAT] GSM interception, [THREAT] User information gathering in Linux systems",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1590",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Gather Victim Data",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1114",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Hijack Entra ID Applications",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1114.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Hijack Entra ID Applications",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1555.006",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Key Vault persistence, [THREAT] Azure - Key Vault reconnaissance",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1555.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - KeyVault Dumping",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Managed Device Scripting, [THREAT] Azure - Unmanaged Scripting, [THREAT] Azure - Virtual Machine Scripting, [THREAT] Changes to Azure infrastructure deployed through Azure CLI, [THREAT] Cobalt Strike Beacon deployment via Metasploit downloader, [THREAT] Collecting sensitive information via custom script extensions, [THREAT] Grager backdoor, [THREAT] Malicious NSIS installer deployment, [THREAT] Notepad++ supply chain attack, [THREAT] Powershell with encoded payload passed to cmdline, [THREAT] Reverse shell or remote session from compromised host, [THREAT] Scheduled task manipulation using Azure CLI, [THREAT] Suspicious Disk Image Files extracted via File Archiver from Email or Download directory",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1021",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Managed Device Scripting, [THREAT] Lateral movement using Impacket framework",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1578",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Policy with DeployIfNotExists definition",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1543",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Privileged Identity Management Role, [THREAT] Direct modification of registry keys to tamper scheduled task",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1580",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Public Accessible Resource",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1046",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Public Accessible Resource, [THREAT] Azure - Storage container reconnaissance, [THREAT] Network service discovery",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1537",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - SAS URI Generation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1490",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Soft-Delete Recovery",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1649",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Steal Service Principal Certificate",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1567.002",
+            "color": "#74c476",
+            "comment": "[THREAT] Azure - Storage Account Replication, [THREAT] LOLC2 service abuse via temp.sh, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1552",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Storage Blobs Reconnaissance, [THREAT] BRICKSTORM file manager exposes end-user's HTTP APIs and UI, [THREAT] Manipulation of credentials stored in plain text files, [THREAT] Resource Secret Reveal in Azure, [THREAT] Windows explorer used to search for files with credentials",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1619",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Storage Blobs Reconnaissance",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1567",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Storage Blobs Reconnaissance",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1119",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Storage blobs data collection, [THREAT] Collecting sensitive information via custom script extensions, [THREAT] Enumerate EC2 instance data using AWS metadata service",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1087.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Storage container reconnaissance",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1204",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure - Unmanaged Scripting, [THREAT] Azure - Virtual Machine Scripting, [THREAT] BRICKSTORM file manager exposes end-user's HTTP APIs and UI, [THREAT] Code execution via custom script extensions in Azure, [THREAT] HTML smuggling technique, [THREAT] LNK files downloaded on a workstation, [THREAT] Legitimate software dependency injected with malicious code, [THREAT] Persistence through automation runbooks in Azure, [THREAT] Possible Smart App Control Evasion Attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1556.007",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Azure AD Connect abuse",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1588",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] BRICKSTORM file manager exposes end-user's HTTP APIs and UI",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1205",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] C2 beaconing on specific time intervals",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1029",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] C2 beaconing on specific time intervals",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1568",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] C2 domains point to non-routable IP addresses",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1222",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Change file owner to a privileged account, [THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1562.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Change the audit policy to disable Windows event logging, [THREAT] Disable Windows event logging through PowerShell, [THREAT] Disabling of Windows event logging through registry entries",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1574",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Chrysalis backdoor deployment via DLL sideloading, [THREAT] Notepad++ supply chain attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1071",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Chrysalis backdoor deployment via DLL sideloading, [THREAT] Grager backdoor, [THREAT] Notepad++ supply chain attack, [THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027",
+            "color": "#74c476",
+            "comment": "[THREAT] Chrysalis backdoor deployment via DLL sideloading, [THREAT] GoGra backdoor, [THREAT] LNK files downloaded on a workstation, [THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] Supply chain compromise via software update mechanism, [THREAT] Unusual use of archiving tools, [THREAT] access to management plane of security, network, or endpoint management appliances, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1567.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Cloning private repositories",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1573.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Cobalt Strike Beacon deployment via Metasploit downloader, [THREAT] ICMP tasking with TCP response on network devices, [THREAT] WebVPN authentication abuse for C2 on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1105",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Cobalt Strike Beacon deployment via Metasploit downloader, [THREAT] Download and Execute Payloads with Windows Utilities, [THREAT] Grager backdoor, [THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] ProShow vulnerability exploitation for payload delivery",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1651",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Collecting sensitive information via custom script extensions, [THREAT] Scheduled task manipulation using Azure Portal",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1611",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Container privilege escalation via kernel or container runtime exploit",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1003.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Mimikatz execution on compromised endpoint, [THREAT] Windows credential access attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1003.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1003.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Mimikatz execution on compromised endpoint, [THREAT] Windows credential dumping through Local Security Authority (LSA) Secrets",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1018",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Data collection using SharpHound, SoapHound, Bloodhound and Azurehound",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1049",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1047",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Move laterally with SMB by abusing WMI",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1053.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1083",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Web Path Traversal Attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1110.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] SMB login brute force",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1110.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Password spraying attack, [THREAT] Windows credential access attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1135",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1201",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Data collection using SharpHound, SoapHound, Bloodhound and Azurehound",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1550.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] CrackMapExec (CME) on endpoints or being downloaded, [THREAT] Mimikatz execution on compromised endpoint, [THREAT] Pass the hash attack to elevate privileges, [THREAT] Pass the hash using impersonation within an existing process, [THREAT] Pass-the-hash on SMB network shares, [THREAT] Windows credential access attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1555.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Credential file download to compromised Windows endpoint, [THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1003.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Credential manipulation on local Windows endpoint, [THREAT] Manipulation of credentials stored in LSASS, [THREAT] Mimikatz execution on compromised endpoint, [THREAT] Pass-the-hash on SMB network shares",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Credential manipulation on local Windows endpoint, [THREAT] Credential manipulation on remote Windows endpoint, [THREAT] Manipulation of credentials stored in LSASS, [THREAT] Manipulation of credentials stored in plain text files, [THREAT] Resource Secret Reveal in Azure, [THREAT] Script execution on Windows for credential manipulation, [THREAT] Usage of CrackMapExec module Masky on compromised endpoint, [THREAT] Windows credential creation attempt, [THREAT] Windows credential dumping through Local Security Authority (LSA) Secrets, [THREAT] Windows explorer used to search for files with credentials",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1053.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Cron manipulation, [THREAT] Scheduled task manipulation using Azure CLI",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1218.011",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] DLL Execution over Rundll32, [THREAT] Manipulation of credentials stored in LSASS, [THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1572",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] DNS over HTTPS tunneling exfiltrates data or communicates to C&C server, [THREAT] Reverse shell or remote session from compromised host",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1041",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] DNS over HTTPS tunneling exfiltrates data or communicates to C&C server, [THREAT] authentication bypass on Ivanti Connect Secure appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1566",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] DNS over HTTPS tunneling exfiltrates data or communicates to C&C server, [THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] MS 365 admin compromised account, [THREAT] Phishing with Azure AD B2B Collaboration",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1069",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Data collection using SharpHound, SoapHound, Bloodhound and Azurehound",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1053.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Deletion of Security Descriptor (SD) value in registry for scheduled task, [THREAT] Deletion of Tasks or Tree registry keys in scheduled task hives, [THREAT] Deletion of Windows Scheduled Task XML file, [THREAT] Direct modification of registry keys to tamper scheduled task, [THREAT] Scheduled task created on remote endpoint, [THREAT] Scheduled task creation using Azure CloudShell, [THREAT] Scheduled task manipulation using Azure CLI, [THREAT] Scheduled task manipulation using Azure Portal, [THREAT] Scheduled tasks created with PowerShell, [THREAT] Scheduled tasks created with command line, [THREAT] Scheduled tasks created with taskschlr.exe, [THREAT] Scheduled tasks to connect to adversarial infrastructure, [THREAT] Scheduled tasks to execute binaries, [THREAT] Scheduled tasks to maintain persistence in registry, [THREAT] VBS script creates a scheduled task",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1564",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Deletion of Tasks or Tree registry keys in scheduled task hives, [THREAT] Deletion of Windows Scheduled Task XML file",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1552.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Enumerate EC2 instance data using AWS metadata service",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1555.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] FileFix technique abuses Windows Explorer to execute commands, [THREAT] Manipulation of credentials stored in plain text files, [THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1204.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] FileFix technique abuses Windows Explorer to execute commands",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1638",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] GSM interception, [THREAT] Mobile malware attacks targeting iOS, [THREAT] Rogue access point",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1040",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] GSM interception, [THREAT] LINE VIPER shellcode loader on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1078.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Ghost logins attempts, [THREAT] Use Windows utilities to manipulate a local account or group, [THREAT] Windows credential creation attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] GoGra backdoor, [THREAT] Script execution on Windows for credential manipulation, [THREAT] Using a Windows command prompt for credential manipulation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1497",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] GodFather Banking Trojan, [THREAT] Virtual machine deployment detection evasion technique, [THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1056.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] GodFather Banking Trojan, [THREAT] Named pipe creation using a predictable naming convention",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1189",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] HTML smuggling technique, [THREAT] Paragon Spyware",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027.006",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] HTML smuggling technique",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1111",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] HackBrowserData browser data export, [THREAT] MFA Bypass Techniques, [THREAT] MFA fatigue, [THREAT] Mimikatz browser cookie extraction, [THREAT] Pass-the-cookie Attack, [THREAT] ProcDump cookie exfiltration, [THREAT] Retrieve browser cookie with Python",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1564.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Hide Artifacts using NTFS File Attributes",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1095",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] ICMP tasking with TCP response on network devices, [THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1571",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] ICMP tasking with TCP response on network devices, [THREAT] Reverse shell or remote session from compromised host, [THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1573.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] ICMP tasking with TCP response on network devices, [THREAT] WebVPN authentication abuse for C2 on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1480.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] ICMP tasking with TCP response on network devices, [THREAT] LINE VIPER shellcode loader on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1599",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Illicit VPC peering requests",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1624",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] Malicious profile installed on mobile device",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1033",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access, [THREAT] System reconnaissance via shell commands in supply chain attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1630.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Jailbreak Tools for iOS",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1398",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Jailbreak Tools for iOS",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.008",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] LINE VIPER shellcode loader on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1014",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] LINE VIPER shellcode loader on Cisco ASA, [THREAT] Malicious kernel module",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1202",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] LINE VIPER shellcode loader on Cisco ASA, [THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1552.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Lateral movement using Impacket framework, [THREAT] Listing passwords stored in registry",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1534",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Lateral movement via a compromised Teams account, [THREAT] OneDrive API abuse to exfiltrate sensitive data",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1499",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Legitimate software dependency injected with malicious code",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1559.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Legitimate software dependency injected with malicious code",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1547.006",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Linux kernel module injection from container, [THREAT] Malicious kernel module, [THREAT] Use of legitimate still vulnerable drivers to elevate privileges",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1136.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Local user account added, [THREAT] Use Windows utilities to manipulate a local account or group",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.010",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Lua interpreter shellcode execution",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1055.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Lua interpreter shellcode execution",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1106",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Lua interpreter shellcode execution",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1621",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] MFA Bypass Techniques, [THREAT] MFA fatigue, [THREAT] Self-Service Password Reset (SSPR) abuse in Azure AD",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1566.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] MFA Bypass Techniques, [THREAT] Spearphishing Attachment, [THREAT] Spearphishing with an attachment extension .rdp, [THREAT] iOS Trojan harvesting facial recognition data",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1525",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Malicious container image deployed, [THREAT] Non-Approved container image deployed to run cryptominer",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1204.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Malicious container image deployed",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1456",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Malicious profile installed on mobile device, [THREAT] Mobile malware attacks targeting iOS",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1631.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Malicious profile installed on mobile device",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1407",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Malicious profile installed on mobile device",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1565",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Manipulation of credentials stored in plain text files",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1110.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Manipulation of credentials stored in plain text files, [THREAT] Password hash cracking on Windows",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1003.007",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Manipulation of credentials stored in plain text files",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1134.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1547.005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1003.006",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1207",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1558.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1558.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1552.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1550.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mimikatz execution on compromised endpoint, [THREAT] Pass the ticket using Kerberos ticket",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1512",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile device compromised by spyware app",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1582",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile device compromised by spyware app",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1513",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile device compromised by spyware app, [THREAT] Paragon Spyware",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1517",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile device compromised by spyware app",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1429",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile device compromised by spyware app",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1643",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile device compromised by spyware app",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1404",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile malware attacks targeting iOS, [THREAT] iOS Trojan harvesting facial recognition data",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1212",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile malware attacks targeting iOS, [THREAT] NTLM credentials dumping via SMB connection, [THREAT] SharePoint ToolShell vulnerabilities",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1663",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile malware attacks targeting iOS",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1655",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Mobile malware attacks targeting iOS",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1187",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] NTLM credentials dumping via SMB connection",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1134.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] New Windows access token creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1610",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Non-Approved container image deployed to run cryptominer",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027.013",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Obfuscate binaries through PowerShell commands",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Obfuscate binaries through PowerShell commands",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1430",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Paragon Spyware",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1636.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Paragon Spyware",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1550.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Pass the Primary Refresh Token (PRT), [THREAT] Windows credential creation attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1134.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Passing SeDebugPrivilege to AdjustTokenPrivilege API elevating privileges of a running process",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1484.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Persistence with Azure Automanage Machine Configuration",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027.010",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Powershell with encoded payload passed to cmdline",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1057",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Process discovery, [THREAT] System reconnaissance via shell commands in supply chain attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1498.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Protocol based DDoS attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1542.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] RayInitiator GRUB bootkit persistence on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1601.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] RayInitiator GRUB bootkit persistence on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1542.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] RayInitiator GRUB bootkit persistence on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T0860",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Rogue access point",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1422.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Rogue access point",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1557.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Rogue access point",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1541",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] SIM-card swapping",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1053",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Scheduled task created on remote endpoint, [THREAT] Scheduled task manipulation using Azure CLI, [THREAT] VBS script creates a scheduled task",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1136",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Scheduled task manipulation using Azure CLI, [THREAT] Unauthorized account provisioning via exposed registration flow, [THREAT] Windows credential creation attempt",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1213.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Secrets stored in repository",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1059.007",
+            "color": "#74c476",
+            "comment": "[THREAT] Shai-Hulud npm and PyPI supply chain compromise, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1547",
+            "color": "#74c476",
+            "comment": "[THREAT] Shai-Hulud npm and PyPI supply chain compromise, [THREAT] Use of legitimate still vulnerable drivers to elevate privileges, [RULE] Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity, [RULE] Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts, [RULE] Shai-Hulud Developer Secret-File Access Followed by Outbound Egress, [RULE] Shai-Hulud Known On-Disk and Network Indicator Match, [RULE] Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts, [RULE] Shai-Hulud Package Manager Install Spawning Suspicious Child Processes, [RULE] Shai-Hulud Unexpected GitHub Repository or Workflow Creation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1656",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Spearphishing Link",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1573",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1070",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Supply chain compromise via software update mechanism, [THREAT] Unusual use of archiving tools, [THREAT] access to management plane of security, network, or endpoint management appliances, [THREAT] authentication bypass on Ivanti Connect Secure appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1070.006",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Supply chain compromise via software update mechanism",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T0865",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Suspicious Disk Image Files extracted via File Archiver from Email or Download directory",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1562.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Tampering system firewall on endpoint",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1583.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Typosquatting domain attack for disinformation",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1546.004",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Unauthorized changes on shell configuration files",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1546",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Use Windows utilities to manipulate a local account or group",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1098.007",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Use Windows utilities to manipulate a local account or group",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1648",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Use of a malicious lambda layer in AWS account lambda function",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1569.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] VBS script creates a scheduled task",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1005",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] VBS script creates a scheduled task, [THREAT] Windows explorer used to search for files with credentials",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1498",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Volumetric Distributed denial of service (DDoS) attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1505.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Web Shell Attacks",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1090",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] WebVPN authentication abuse for C2 on Cisco ASA",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1561.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] WhisperGate wiper",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1561.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] WhisperGate wiper",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1548.002",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Windows User Account Control (UAC) bypass",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1027.012",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] Windows system links used for file redirection attack",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1070.003",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1497.001",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] access to management plane of security, network, or endpoint management appliances",
+            "enabled": true
+        },
+        {
+            "techniqueID": "T1011",
+            "color": "#fc6b6b",
+            "comment": "[THREAT] authentication bypass on Ivanti Connect Secure appliances",
+            "enabled": true
+        }
+    ],
+    "name": "layer",
+    "domain": "enterprise-attack",
+    "hideDisabled": false,
+    "legendItems": [
+        {
+            "label": "TVM Only",
+            "color": "#fc6b6b"
+        },
+        {
+            "label": "Full Coverage",
+            "color": "#74c476"
+        },
+        {
+            "label": "MDR Only - Needs to be checked",
+            "color": "#6baed6"
+        }
+    ]
+}

@@ -1,0 +1,93 @@
+name: Typosquatting domain attack for disinformation
+criticality: Medium
+references:
+  public:
+    1: https://www.csoonline.com/article/570173/what-is-typosquatting-a-simple-but-effective-attack-technique.html
+    2: https://www.comparitech.com/blog/information-security/typosquatting-cybersquatting-combosquatting/
+    3: https://www.proofpoint.com/us/threat-reference/typosquatting
+    4: https://www.authentic8.com/blog/what-is-typosquatting
+metadata:
+  uuid: db3cae2f-3e6b-4aed-b346-43686bbb382e
+  schema: threat::1.0
+  version: 1
+  created: 2025-01-09
+  modified: 2025-01-09
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+  att&ck:
+    - T1583.001
+  chaining:
+    - relation: sequence::preceeds
+      vector: 1a68b5eb-0112-424d-a21f-88dda0b6b8df
+      description: |-
+        Malicious spearphishing campaign can use a typosquatting domain
+        technique - a threat actor may embed fraudulent web pages / domains
+        in the links in a customized and initially prepared emails.   
+  terrain: |-
+    A threat actor use vulnerabilities in domain providers to buy similar
+    to a legit domain and to use them for malicious purposes.
+
+    Usually the threat actors are buying as much as possible domains
+    on a bulk with impersonation goal, social engineering or just spreading
+    disinformation.
+
+    Domains: Enterprise, Mobile, IoT, Private Cloud, Public Cloud
+    Targets: Customer, End-user, Email Platform, Other, Public-Facing Servers
+    Platforms: Windows, Linux
+  severity: Moderate incident
+  leverage: Spoofing; Infrastructure Compromise
+  impact: Impairement; Asset and fraud; Identity Theft
+  viability: Likely
+  description: |-
+    Typosquatting, also known as URL hijacking, is a form of cyber attack
+    where an attacker registers a domain name that is very similar to a
+    legitimate and popular website, often by exploiting common typing
+    errors or misspellings. This is done to deceive users into visiting
+    the fake domain, usually with the intention of spreading disinformation,
+    stealing personal information, or installing malware ref [1].  
+
+    In the context of disinformation, typosquatting can be used to create
+    a fake version of a trusted news source or government website in order
+    to spread false or misleading information. By exploiting users' trust
+    in familiar domain names, attackers can manipulate public opinion,
+    confusion, and undermine the credibility of legitimate sources.  
+
+    Threat actors can impersonate domains in different ways.
+
+    Some of them are:
+
+    - A common misspelling of the target domain (example: CSOnline.com rather than CSOOnline.com)
+    - A different top-level domain (example: using .uk rather than .co.uk)
+    - Combining related words into the domain (CSOOnline-Cybersecurity.com)
+    - Adding periods to the URL (CSO.Online.com)
+    - Using similar looking letters to hide the false domain (ÇSÓOnliné.com)
+
+    Typosquatting is a lookalike domain with one or two wrong or different
+    characters with the aim of trying to trick people onto the wrong webpage.
+
+    The threat actors can buy and use a domain only with a little change
+    compared to the legitimate and official site of some service.
+    It can be difficult for the end user to recognise the difference, for
+    example between goggle.com and google.com or google.com written with
+    similar character for the character "o" but actually from different
+    UTF encoding system. It can looks like a well known and legit
+    domain but to be actually a malicious one with a very close name.
+
+    In some of the cases regarding the security reports typosquatting
+    domain attack is used in malicious campaigns for disinformation.
+    For example, Doppelganger is a pro-Russian misleading information
+    operation targeting the European Union (EU) and other geopolitical
+    actors. This campaign exploits political, economic, and social
+    divisions within the EU and its member states. 

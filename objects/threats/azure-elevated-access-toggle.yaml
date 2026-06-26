@@ -1,0 +1,98 @@
+name: Azure - Elevated Access Toggle
+criticality: High
+references:
+  public:
+    1: https://permiso.io/blog/azures-apex-permissions-elevate-access-the-logs-security-teams-overlook
+    2: https://microsoft.github.io/Azure-Threat-Research-Matrix/PrivilegeEscalation/AZT402/AZT402/
+metadata:
+  uuid: 10a89280-d42e-446d-9f8d-840b1218f532
+  schema: threat::1.0
+  version: 2
+  created: 2025-08-28
+  modified: 2025-09-04
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - misp::3b238f3a-c67a-4a9e-b474-dc3897e00129
+    - misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+  killchain: Privilege Escalation
+  att&ck:
+    - T1078.004
+    - T1098.003
+    - T1548.005
+  chaining:
+    - relation: sequence::succeeds
+      vector: 2900d389-3098-49d3-8166-5b2612d03576
+      description: |-
+        Adversaries use publicly accessible endpoints, misconfigured applications, or phishing 
+        emails to harvest user names, email addresses, job titles, and group memberships.
+    - relation: sequence::succeeds
+      vector: 2743bf18-3b86-4721-bf3e-153dcda0b149
+      description: |-
+        Adversaries obtain the username and password of an AzureAD user either through phishing, 
+        password spraying, brute-force attacks, or credentials leaked online.
+    - relation: sequence::preceeds
+      vector: 5d43ef75-4637-4a75-b1ed-6716052cff0e
+      description: |-
+        Adversaries need to compromise user or administrator credentials that have permissions 
+        to register or modify applications within Microsoft Entra ID.
+    - relation: sequence::preceeds
+      vector: bcf3bb96-ed97-4853-98ab-937c2d214f4e
+      description: |-
+        Adversaries must first gain access to an Azure environment, typically through 
+        compromised user accounts, service principals, or managed identities.
+  terrain: |-
+    Adversaries successfully compromise a Global Administrator account in
+    Entra ID (Azure AD), either via phishing, credential theft, or session hijacking.
+
+    Domains: Public Cloud
+    Targets: Cloud Storage Accounts, Virtual Machines, Cloud Portal
+    Platforms: Azure, Azure AD
+  severity: Significant incident
+  leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Modify configuration
+  impact: Data Breach; IP Loss
+  viability: Likely
+  description: |-
+    ## Example Attack Scenario
+
+    Once inside, the attacker enables the **"Access management for Azure resources"** 
+    toggle in Entra ID properties. This action assigns the attacker the *User Access 
+    Administrator* role at the **root scope**, granting them permission to manage RBAC 
+    (Role-Based Access Control) assignments for every subscription and management group 
+    in the tenant. The attacker uses these elevated rights to create a new user and 
+    assigns it the *Owner* role at root, establishing durable persistence and full-control 
+    access throughout Azure resources.
+
+    ## Attack Goals and Impact
+
+    The primary goal for adversaries is to escalate their privileges from Azure AD into 
+    all Azure subscriptions within the tenant. Impact includes:
+    - **Total control:** Complete administration of every Azure resource, service, management 
+    group, and subscription—akin to “God-mode” access.
+    - **Persistence:** Ability to create backdoor accounts or roles that will survive 
+    remediation attempts if defenders only remove the initially compromised account.
+    - **Disruption or exfiltration:** Attackers can shut down services, delete resources, 
+    steal sensitive data, or create new destructive attack paths.
+
+    ## Attack Flow and Methodology
+
+    1. **Elevated Access Activation**
+      - In the Entra ID portal, the adversary enables “Access management for Azure resources.” 
+      This assigns the User Access Administrator role to their account at the Azure 
+      *root scope* (`/`), above all subscriptions and management groups.
+    2. **Privilege Escalation and Persistence**
+      - With root scope RBAC control, the attacker can grant themselves (or secondary 
+      shadow accounts) *Owner* or similarly privileged roles across any and all Azure resources.
+    3. **Attack Expansion**
+      - The attacker now has unrestricted access to create, modify, or delete resources 
+      (VMs, networks, storage, etc.), read sensitive data, and assign permissions to 
+      malicious applications for further exploitation.
+      - May use automation (PowerShell, Azure CLI) for rapid propagation.
+    4. **Detection Evasion**
+      - The activity of toggling Elevated Access is logged in the Directory Activity 
+      log (AuditLogs), but is not always integrated with standard subscription or management 
+      group logs, making it harder to detect through routine monitoring.

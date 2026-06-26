@@ -1,0 +1,67 @@
+name: Named pipe creation using a predictable naming convention
+criticality: Medium
+references:
+  public:
+    1: https://labs.withsecure.com/publications/detecting-cobalt-strike-default-modules-via-named-pipe-analysis
+    2: https://svch0st.medium.com/guide-to-named-pipes-and-hunting-for-cobalt-strike-pipes-dc46b2c5f575
+metadata:
+  uuid: db749144-8044-4479-ab34-bff22251a1d7
+  schema: threat::1.0
+  tlp: clear
+  version: 2
+  created: 2023-01-06
+  modified: 2023-01-17
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0129
+    - misp::fceed509-938e-4f9e-acd4-76e6c28dc6f1
+    - att&ck::G0088
+    - misp::90abfc42-91c6-11e9-89b1-af58de8f7ec2
+    - att&ck::G0067
+    - misp::50cd027f-df14-40b2-aa22-bf5de5061163
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - att&ck::G0114
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - att&ck::G0045
+    - misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
+    - att&ck::G0096
+    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - att&ck::G0037
+    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - att&ck::G0092
+    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - att&ck::G0050
+    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - att&ck::G0143
+    - misp::0ab7c8de-fc23-4793-99aa-7ee336199e26
+    - att&ck::G0065
+    - misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
+    - att&ck::G0009
+    - misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
+  killchain: Credential Access
+  att&ck:
+    - T1056.001
+  terrain: |-
+    A threat actor needs to control a Windows endpoint and sufficient credentials to execute software.
+
+    Domains: Enterprise, Public Cloud
+    Targets: Control Server, Input/Output Server, Public-Facing Servers, Web Application Servers, Laptop, Workstations, Desktop
+    Platforms: Windows
+  severity: Localised incident
+  leverage: Modify configuration
+  impact: Nuisance
+  viability: Likely
+  description: |-
+    A threat actor may deploy named pipes are part of an automation process to achieve a goal.
+    As example, this could be the Cobalt Strike keylogger deployment, where the cobalt Strike
+    operator merely clicks a button in the UI to deploy the keylogger, and behind the scenes 
+    this runs an automation on the compromised endpoint, which includes the creation of a named 
+    pipe, which in this case will have a predictable name, unless the CS operator changes this 
+    during the deployment (manual config in CS possible to deploy with custom named pipe name)

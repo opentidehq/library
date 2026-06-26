@@ -1,0 +1,133 @@
+name: Mimikatz execution on compromised endpoint
+criticality: Emergency
+references:
+  public:
+    1: https://posts.specterops.io/on-detection-tactical-to-functional-37ddcd75234b
+    2: https://www.sentinelone.com/cybersecurity-101/mimikatz/
+    3: https://github.com/gentilkiwi/mimikatz
+    4: https://github.com/PowerShellMafia/PowerSploit/blob/master/Exfiltration/Invoke-Mimikatz.ps1
+    5: https://adsecurity.org/?tag=detect-invoke-mimikatz
+    6: https://www.digitalforensics.com/blog/articles/detecting-mimikatz/
+    7: https://www.sans.org/white-papers/36780/
+    8: https://medium.com/@levurge/detecting-mimikatz-with-sysmon-f6a96669747e
+    9: https://adsecurity.org/?p=1729
+    10: https://sra.io/blog/detecting-in-memory-mimikatz/
+    11: https://github.com/Th1ru-M/Threat-Hunting/blob/master/Mimikatz%20Detection
+    12: https://blog.didierstevens.com/2017/10/08/quickpost-mimikatz-dcsync-detection/
+metadata:
+  uuid: 7351e2ca-e198-427c-9cfa-202df36f6e2a
+  schema: threat::1.0
+  tlp: clear
+  version: 2
+  created: 2022-08-05
+  modified: 2022-11-11
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - att&ck::G0096
+    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - att&ck::G0094
+    - misp::89f005f9-22e9-4c50-9b48-e94c521266e5
+    - att&ck::G0027
+    - misp::834e0acd-d92a-4e38-bb14-dc4159d7cb32
+    - att&ck::G0080
+    - misp::01967480-c49b-4d4a-a7fa-aef0eaf535fe
+    - att&ck::G0045
+    - misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
+    - att&ck::G0035
+    - misp::64d6559c-6d5c-4585-bbf9-c17868f763ee
+    - att&ck::G0107
+    - misp::943f490e-ac7f-40fe-b6f3-33e2623649d2
+    - att&ck::G0131
+    - misp::0ab7c8de-fc23-4793-99aa-7ee336199e26
+    - att&ck::G0114
+    - att&ck::G0052
+    - misp::8cca9a1d-66e4-4bc4-ad49-95f759f4c1ae
+    - att&ck::G0059
+    - misp::c1d44f44-425e-48fd-b78b-84b988da8bc3
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0093
+    - misp::e400b6c5-77cf-453d-ba0f-44575583ac6c
+    - att&ck::G0087
+    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - att&ck::G0013
+    - misp::d3881afe-f781-4c53-9f68-33487a119a59
+    - att&ck::G0108
+    - att&ck::G0135
+    - misp::6472be4d-c186-4c86-b3b7-7dc1b4d3a3d8
+    - att&ck::G0006
+    - misp::1cb7e1cc-d695-42b1-92f4-fd0112a3c9be
+    - misp::8bcd855f-a4c1-453a-bede-ff36582f4f40
+    - att&ck::G0050
+    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - att&ck::G0037
+    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - att&ck::G0004
+    - misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
+    - att&ck::G0069
+    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - att&ck::G0092
+    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - att&ck::G0010
+    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - att&ck::G0088
+    - misp::90abfc42-91c6-11e9-89b1-af58de8f7ec2
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - att&ck::G0049
+    - misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
+    - att&ck::G0034
+    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0060
+    - misp::add6554a-815a-4ac3-9b22-9337b9661ab8
+    - att&ck::G0011
+    - misp::4d37813c-b8e9-4e58-a758-03168d8aa189
+    - misp::11e17436-6ede-4733-8547-4ce0254ea19e
+    - att&ck::G0077
+    - misp::2c8994ba-367c-46f6-bfb0-390c8760dd9e
+    - att&ck::G0064
+    - misp::4f69ec6d-cb6b-42af-b8e2-920a2aa4be10
+  killchain: Credential Access
+  att&ck:
+    - T1134.005
+    - T1098
+    - T1547.005
+    - T1555.003
+    - T1555.004
+    - T1003.001
+    - T1003.002
+    - T1003.004
+    - T1003.006
+    - T1207
+    - T1558.001
+    - T1558.002
+    - T1552.004
+    - T1550.002
+    - T1550.003
+  terrain: |-
+    Mimikatz is used on a Windows endpoint where a threat actor has 
+    gained a foothold to elevate privileges and move laterally
+
+    Domains: Enterprise, Public Cloud
+    Targets: API Endpoints, Control Server, Desktop, Workstations, Engineering Workstation, Laptop, Identity Services, Key Store
+    Platforms: Active Directory, Azure, Windows
+  severity: Highly significant incident
+  leverage: Elevation of privilege; Dwelling; Information Disclosure; Infrastructure Compromise; Software installation
+  impact: Data Breach; Identity Theft; Operating costs; Reputational Damages; IP Loss
+  viability: Unlikely
+  description: |-
+    Mimikatz is a very versatile tool that comes with a lot of 
+    options and capabilities. Detection of known Atomic IOCs of 
+    the mimikatz tool itself or the atomic IOCs of invoke-mimikatz 
+    powershell scripts, is very important, as it both signals a 
+    compromised endpoint, plus shows a noisy threat actor trying 
+    to EoP and move laterally. 

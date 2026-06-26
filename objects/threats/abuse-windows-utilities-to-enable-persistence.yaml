@@ -1,0 +1,75 @@
+name: Abuse Windows Utilities to Enable Persistence
+criticality: High
+metadata:
+  uuid: 66277f27-d57b-47f8-bc9c-b024c7cd1313
+  schema: threat::1.0
+  version: 1
+  created: 2024-11-06
+  modified: 2024-11-06
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+  killchain: Persistence
+  att&ck:
+    - T1547.001
+    - T1218
+  chaining:
+    - relation: atomicity::implements
+      vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
+      description: |-
+        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
+  terrain: |-
+    Adversary must have administrative privileges on Windows systems within 
+    the enterprise network.
+
+    Domains: Enterprise
+    Targets: Workstations, Public-Facing Servers, Laptop
+    Platforms: Windows, Active Directory, PowerShell
+  severity: Significant incident
+  leverage: Modify configuration; Modify data; Tampering; New Accounts
+  impact: Data Breach; Business disruption; Reputational Damages; Operating costs
+  viability: Likely
+  description: |-
+    1. Msdeploy.exe\
+    **Description**: The Microsoft Web Deployment Tool used for syncing content
+    and configurations. Threat actors can deploy web shells or 
+    malicious applications to servers.
+
+    Examples:
+
+    ```python
+    msdeploy.exe -verb:sync -source:contentPath=C:\malicious_site -dest:contentPath="Default Web Site"
+    ```
+    This command synchronizes the contents from the local directory C:\malicious_site 
+    to the IIS web application named "Default Web Site". It deploys or updates the web 
+    content of the default website with the files from C:\malicious_site.
+
+    ```python
+    Msdeploy.exe -verb:sync -source:runCommand="cmd /c start malicious.exe" -dest:auto,computerName=target-server
+    ```
+    This command uses Msdeploy.exe to run a command on a remote server (target-server)
+    that starts a malicious executable (malicious.exe), allowing the attacker to maintain
+    persistence and execute code under the guise of a legitimate process.
+
+    2. Shadow.exe\
+    **Description**: A Terminal Services command that monitors or controls 
+    Remote Desktop sessions. Threat actors can hijack sessions 
+    to maintain persistence or spy on users.
+
+    Example:
+
+    ```python
+    shadow.exe 1 /server:target-server
+    ```
+    Using shadow.exe, an attacker can connect to an active RDP session on target-server, 
+    potentially allowing them to observe or control the session without the user's knowledge. 
+    This can be used to capture sensitive information or further compromise the system.

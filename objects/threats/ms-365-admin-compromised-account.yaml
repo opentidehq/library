@@ -1,0 +1,69 @@
+name: MS 365 admin compromised account
+criticality: High
+references:
+  public:
+    1: https://blog.talosintelligence.com/how-are-user-credentials-stolen-and-used-by-threat-actors
+metadata:
+  uuid: 20bd3620-b13b-4895-b291-b1a26bd9aef3
+  schema: threat::1.0
+  version: 2
+  created: 2025-01-28
+  modified: 2025-10-01
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0026
+    - misp::9a683d9c-8f7d-43df-bba2-ad0ca71e277c
+    - att&ck::G1024
+    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - att&ck::G0016
+    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - att&ck::G0087
+    - misp::e400b6c5-77cf-453d-ba0f-44575583ac6c
+    - att&ck::G0001
+    - att&ck::G0008
+    - att&ck::G0114
+    - att&ck::G1021
+    - att&ck::G0051
+    - att&ck::G0085
+    - att&ck::G0061
+    - att&ck::G0117
+    - att&ck::G0093
+    - att&ck::G0119
+    - misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
+    - att&ck::G0004
+    - misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - att&ck::G1004
+    - misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
+    - att&ck::G0065
+  att&ck:
+    - T1078
+    - T1566
+  terrain: |-
+    Attackers got valid credentials from MS 365 admin, and they manage to bypass 2FA mechanism.
+
+    Domains: Enterprise, Private Cloud
+    Targets: System admin
+    Platforms: Office 365
+  severity: Significant incident
+  leverage: Elevation of privilege; Modify privileges; New Accounts; Software installation
+  impact: Identity Theft; Lose Capabilities
+  viability: Roughly even chance
+  description: |-
+    Compromised credentials may be used to bypass access controls placed on various resources on systems
+    within the network and may even be used for persistent access to remote systems and externally
+    available services, such as VPNs, Outlook Web Access, network devices, and remote desktop.
+
+    Compromised credentials may also grant an adversary increased privilege to specific systems or access
+    to restricted areas of the network. Adversaries may choose not to use malware or tools in conjunction
+    with the legitimate access those credentials provide to make it harder to detect their presence.
+
+    There are several methods used by adversaries to compromise valid accounts, such as:  
+
+    - Phishing attacks (Spear Phishing, Whaling, BEC).  
+    - Password guessing and cracking (Credential stuffing, Bruteforce, Password spraying, exploiting weak passwords).
+    - OAuth and API Abuse.
+    - Exploiting vulnerabilities in third-party software.   

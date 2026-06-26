@@ -1,0 +1,42 @@
+name: Volumetric Distributed denial of service (DDoS) attack
+criticality: Emergency
+references:
+  public:
+    1: https://en.wikipedia.org/wiki/Denial-of-service_attack
+    2: https://www.netscout.com/what-is-ddos/volumetric-attacks
+    3: https://www.scmagazine.com/brief/threat-intelligence/iranian-websites-impacted-by-pro-ukraine-ddos-attacks
+    4: https://securityaffairs.com/53777/hacking/european-commission-eu.html
+metadata:
+  uuid: 78e05130-58a9-49cd-9039-3d7f9ac0bcb5
+  schema: threat::1.0
+  tlp: clear
+  version: 4
+  created: 2022-11-23
+  modified: 2023-01-23
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0007
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+  killchain: Impact
+  att&ck:
+    - T1498
+  terrain: |-
+    Anything with Internet connectivity.
+
+    Domains: Enterprise, Networking, Private Cloud, Public Cloud, SaaS
+    Targets: API Endpoints, Serverless, Control Server, Web Application Servers, Public-Facing Servers
+    Platforms: AWS, Windows, Linux, Azure, Sysdig Backend, OVHcloud, Office 365, Kubernetes
+  severity: Significant incident
+  leverage: Denial of Service
+  impact: Business disruption; Operating costs; Reputational Damages
+  viability: Almost certain
+  description: |-
+    Threat actors may wish to cause business disruption, media/public attention,
+    or to use the pretense of business disruption to disguise other activities. 
+    Any DDoS attack should always be followed up with other DFIR activities to 
+    determine if the attack was meant to distract from something else. DDoS can 
+    distract by pulling attention away, or even by spooling out log files so 
+    that relevant entries are overwritten.

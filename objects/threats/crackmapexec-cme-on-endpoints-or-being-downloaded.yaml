@@ -1,0 +1,74 @@
+name: CrackMapExec (CME) on endpoints or being downloaded
+criticality: High
+references:
+  public:
+    1: https://twitter.com/mpgn_x64/status/1584863925744521216
+    2: https://github.com/Porchetta-Industries/CrackMapExec
+    3: https://ptestmethod.readthedocs.io/en/latest/cme.html
+    4: https://bond-o.medium.com/crackmapexec-basics-839ef6180940
+    5: https://www.trustedsec.com/tools/crackmapexec/
+    6: https://github.com/maaaaz/CrackMapExecWin
+    7: https://wiki.porchetta.industries/
+    8: https://attack.mitre.org/software/S0488/
+    9: https://byt3bl33d3r.github.io/getting-the-goods-with-crackmapexec-part-1.html
+    10: https://wiki.porchetta.industries/news-2022/major-release-for-crackmapexec
+    11: https://www.n00py.io/2017/10/detecting-crackmapexec-cme-with-bro-sysmon-and-powershell-logs/
+metadata:
+  uuid: 79357f02-6868-4bf5-9f21-1cfd6ab03056
+  schema: threat::1.0
+  tlp: clear
+  version: 2
+  created: 2022-10-27
+  modified: 2022-10-28
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0035
+    - misp::64d6559c-6d5c-4585-bbf9-c17868f763ee
+    - att&ck::G0087
+    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - att&ck::G0069
+    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+  killchain: Credential Access
+  att&ck:
+    - T1003.002
+    - T1003.003
+    - T1003.004
+    - T1016
+    - T1018
+    - T1049
+    - T1047
+    - T1053.002
+    - T1059.001
+    - T1069.002
+    - T1082
+    - T1083
+    - T1087.002
+    - T1110.001
+    - T1110.003
+    - T1112
+    - T1135
+    - T1201
+    - T1550.002
+  terrain: |-
+    CrackMapExec is used by threat actors on compromised endpoints to for
+    credential access or a number of other techniques. CrackMapExec (CME)
+    is a swiss army knife type of tool.
+
+    Domains: Enterprise, Public Cloud
+    Targets: Virtual Machines, Workstations
+    Platforms: Windows, Linux
+  severity: Moderate incident
+  leverage: Modify privileges; Elevation of privilege; Dwelling; Infrastructure Compromise; Information Disclosure; Modify configuration; Spoofing; Tampering
+  impact: Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance
+  viability: Likely
+  description: |-
+    CrackMapExec is a post-compromise tool that contains a number of
+    modules and functionalities that allow red teams, pentesters and
+    threat actors to perform post-compromise actions. Detecting
+    both the presence of the tool itself, plus the usage of the tool
+    is an important baseline security detection.

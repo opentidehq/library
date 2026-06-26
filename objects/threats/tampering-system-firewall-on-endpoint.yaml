@@ -1,0 +1,68 @@
+name: Tampering system firewall on endpoint
+criticality: High
+references:
+  public:
+    1: https://github.com/redcanaryco/atomic-red-team/blob/f339e7da7d05f6057fdfcdd3742bfcf365fee2a9/atomics/T1562.004/T1562.004.md
+metadata:
+  uuid: be73532a-1994-4db2-945e-ccdf586e2551
+  schema: threat::1.0
+  version: 1
+  created: 2024-12-16
+  modified: 2024-12-16
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+  killchain: Defense Evasion
+  att&ck:
+    - T1562.004
+  terrain: |-
+    Adversary must have administrative privileges on the targeted operating system 
+    with the necessary permissions to modify system firewall configurations.
+
+    Domains: Enterprise
+    Targets: Firewall, Workstations, Public-Facing Servers
+    Platforms: Windows, macOS, Linux
+  severity: Substantial incident
+  leverage: Modify configuration; Denial of Service; Tampering
+  impact: Data Breach; Business disruption; Operating costs; Legal and regulatory
+  viability: Likely
+  description: |-
+    The firewall is a foundational defensive mechanism designed to control inbound and 
+    outbound network traffic based on predefined security rules. By disabling 
+    or tampering with these rules, adversaries effectively remove a key layer of network 
+    segmentation and monitoring. This action can allow them to pivot laterally, exfiltrate 
+    data without triggering alerts, or execute follow-on attacks with minimal interference 
+    from host-based defenses.  
+
+    ## Windows 
+
+    An attacker with administrative privileges may execute commands such as 
+    `netsh advfirewall set allprofiles state off` or directly manipulate registry keys :
+    (`HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy`) 
+    to turn off or weaken firewall profiles. 
+    They may also employ PowerShell scripts or WMI-based methods to silently adjust rules.  
+
+    ## Linux 
+
+    Threat actors might run commands like :
+    `iptables -F` (flush all rules), `iptables -P INPUT ACCEPT`, 
+    or tamper with `/etc/iptables.rules` files to ensure that all traffic is allowed. 
+
+    On some distributions, adjusting systemd firewall services or security daemons 
+    can achieve the same effect.  
+
+    ## macOS
+
+    Attackers could use the `pfctl` command (e.g., `sudo pfctl -d`) to disable the 
+    Packet Filter firewall, or modify system configuration files that govern firewall rules. 
+    They may also exploit launch daemons or kernel extensions to bypass 
+    or remove firewall protections.  

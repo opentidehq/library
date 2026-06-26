@@ -1,0 +1,51 @@
+name: Abuse of Windows Utilities
+criticality: Medium
+references:
+  public:
+    1: https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/time-travel-debugging-overview
+    2: https://redcanary.com/threat-detection-report/techniques/dll-search-order-hijacking/
+    3: https://lolbas-project.github.io/
+metadata:
+  uuid: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
+  schema: threat::1.0
+  version: 1
+  created: 2024-10-30
+  modified: 2024-10-30
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0016
+    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+  killchain: Execution
+  att&ck:
+    - T1218
+    - T1197
+    - T1218.004
+    - T1563
+    - T1140
+    - T1218.010
+    - T1218.005
+  terrain: |-
+    Adversaries must have access to a Windows environment where they can execute 
+    built-in utilities. Limited user privileges may suffice, 
+    but administrative privileges enhance the potential impact.
+
+    Domains: Enterprise
+    Targets: Workstations, Laptop
+    Platforms: Windows
+  severity: Moderate incident
+  leverage: Elevation of privilege; Information Disclosure; Modify configuration; Software installation
+  impact: Data Breach; Reputational Damages; Business disruption; Identity Theft
+  viability: Likely
+  description: |-
+    Advanced threat actors frequently abuse legitimate Windows utilities to execute 
+    malicious code, evade detection, and maintain persistence. This technique, known 
+    as Living off the Land Binaries (LoLBins), leverages trusted applications to 
+    carry out unauthorized actions.

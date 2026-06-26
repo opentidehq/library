@@ -1,0 +1,104 @@
+name: Azure - Backup Delete
+criticality: High
+references:
+  public:
+    1: https://microsoft.github.io/Azure-Threat-Research-Matrix/Impact/AZT705/AZT705/
+    2: https://docs.azure.cn/en-us/backup/protect-backups-from-ransomware-faq
+    3: https://n2ws.com/blog/azure-soft-delete-ransomware-defense
+metadata:
+  uuid: 2c6058fb-21db-47fe-99bc-a07cb70c53e4
+  schema: threat::1.0
+  version: 1
+  created: 2025-09-04
+  modified: 2025-09-04
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
+    - misp::f512de42-f76b-40d2-9923-59e7dbdfec35
+    - att&ck::G1043
+  killchain: Impact
+  att&ck:
+    - T1485
+    - T1485.001
+    - T1561
+  chaining:
+    - relation: support::enabled
+      vector: b1593e0b-1b3b-462d-9ab6-21d1c136469d
+      description: |-
+        The attacker obtains credentials (via phishing, password spray, leaked keys) granting 
+        at least Reader access to the target Azure tenant.
+    - relation: support::enabled
+      vector: 140907eb-c9fb-4330-9d71-656422388b2b
+      description: |-
+        Adversaries need to identify privileged accounts and misconfigured role assignments 
+        that can be exploited for privilege escalation.
+    - relation: support::enabled
+      vector: 2900d389-3098-49d3-8166-5b2612d03576
+      description: |-
+        Adversaries use publicly accessible endpoints, misconfigured applications, or phishing 
+        emails to harvest user names, email addresses, job titles, and group memberships.
+    - relation: support::enabled
+      vector: 10a89280-d42e-446d-9f8d-840b1218f532
+      description: |-
+        Adversaries successfully compromise a Global Administrator account in
+        Entra ID (Azure AD), either via phishing, credential theft, or session hijacking.
+  terrain: |-
+    Adversaries gain privileged access to an Azure environment, often through phishing, 
+    credential theft, or exploitation of misconfigurations, to compromise a global administrator 
+    or backup operator account.
+
+    Domains: Public Cloud
+    Targets: Cloud Storage Accounts, Virtual Machines, Server Backup
+    Platforms: Azure, Azure AD
+  severity: Significant incident
+  leverage: Tampering; Information Disclosure; Denial of Service; Elevation of privilege; Modify configuration; Modify data
+  impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Lose Capabilities; Business disruption
+  viability: Likely
+  description: |-
+    The following threat vector involves adversaries deleting backup data from Recovery 
+    Services Vaults, potentially crippling recovery efforts after a compromise. 
+
+    ## Example Attack Scenario
+    Adversaries enumerates available Recovery Services Vaults, discover active backup 
+    items (e.g., VMs, databases), and execute a "Stop Protection and Delete Backup Data" 
+    operation. If soft delete is not enabled, or the feature is disabled (potentially 
+    by compromising Resource Guard or Multi-User Authorization controls), all backup 
+    data is permanently deleted, leaving no recourse for recovery. In more advanced 
+    attacks, the attacker may seek to disable soft delete or reduce retention windows 
+    before initiating full backup deletion to maximize the impact.
+
+    ## Attack Goals and Impact
+    - **Goals:** The primary goal is to **destroy backup copies** so that critical systems 
+    and data cannot be restored after ransomware encryption, destructive attacks, or 
+    other forms of compromise.
+    - The attacker may use this method to put added pressure in ransomware attempts, 
+    making recovery impossible unless a ransom is paid.
+    - Organizations are left without operational recovery points, leading to prolonged 
+    outages, potential data loss, financial impact, and reputational harm.
+    - Disabling "soft delete" or tampering with backup retention extends the risk, as 
+    it eliminates the safety buffer against accidental or malicious deletion.
+
+    ## Attack Flow and Methodology
+
+    1. List all Recovery Services Vaults and enumerate protected items (VMs, SQL databases, 
+    file shares, etc.) in the Azure environment.
+    2. Elevate privileges if needed to gain backup operator or owner roles, sometimes 
+    by disabling RBAC/MFA controls.
+    3. - Attempt to disable or reduce protection features such as "Soft Delete" or retention 
+      policies—sometimes by also compromising Resource Guard if Multi-User Authorization 
+      is used.
+      - Review or manipulate policies to enable immediate deletion.
+    4. - Execute "Stop Protection and Delete Backup Data" commands via the Azure portal, 
+    CLI, PowerShell, REST API, or through automation scripts.
+      - If soft delete is active, data only moves into a soft-delete state (usually 
+      14 days retention) and can be restored within that time.
+    5. Attempt to remove items from even the soft-delete state if possible. Some attacks 
+    target disabling soft delete (if accessible); after the retention period, deleted 
+    data is permanently lost.
+    6. All recovery points are lost, blocking simple system and data restores and maximizing 
+    the attack impact. The victim organization must resort to slower, less effective, 
+    or non-existent recovery measures.

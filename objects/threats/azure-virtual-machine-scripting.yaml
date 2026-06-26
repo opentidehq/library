@@ -1,0 +1,127 @@
+name: Azure - Virtual Machine Scripting
+criticality: High
+references:
+  public:
+    1: https://microsoft.github.io/Azure-Threat-Research-Matrix/Execution/AZT301/AZT301/
+    2: https://stratus-red-team.cloud/attack-techniques/azure/azure.execution.vm-custom-script-extension/
+    3: https://soroganoth.com/post/research/azure_vm_security/
+metadata:
+  uuid: 3435c5fd-1069-40ee-ae79-54c672ce454d
+  schema: threat::1.0
+  version: 1
+  created: 2025-09-03
+  modified: 2025-09-04
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - att&ck::G1024
+    - misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
+    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - att&ck::G0022
+    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - misp::4f69ec6d-cb6b-42af-b8e2-920a2aa4be10
+    - att&ck::G0082
+    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f
+    - misp::a47b79ae-7a0c-4308-9efc-294af19cc795
+    - att&ck::G0143
+    - att&ck::G1043
+    - att&ck::G0108
+    - att&ck::G0114
+    - misp::b7497d28-02de-4722-8b97-1fc53e1d1b68
+    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - misp::98be4300-a9ef-11e8-9a95-bb9221083cfc
+  killchain: Execution
+  att&ck:
+    - T1059
+    - T1078
+    - T1204
+  chaining:
+    - relation: sequence::succeeds
+      vector: 140907eb-c9fb-4330-9d71-656422388b2b
+      description: |-
+        Adversaries need to identify privileged accounts and misconfigured role 
+        assignments that can be exploited for privilege escalation.
+    - relation: sequence::succeeds
+      vector: b1593e0b-1b3b-462d-9ab6-21d1c136469d
+      description: |-
+        The attacker obtains credentials (via phishing, password spray, leaked keys)
+        granting at least Reader access to the target Azure tenant.
+    - relation: sequence::succeeds
+      vector: 2743bf18-3b86-4721-bf3e-153dcda0b149
+      description: |-
+        Adversaries obtain the username and password of an AzureAD user either through
+        phishing, password spraying, brute-force attacks, or credentials leaked online.
+    - relation: sequence::preceeds
+      vector: 61ddc240-e5a6-4ca8-ae77-6b471b498913
+      description: |-
+        Adversaries must have an Azure role that grants the ability to write or deploy 
+        custom script extensions on virtual machines.
+    - relation: sequence::preceeds
+      vector: 23f6a192-a25d-48b8-a235-7bb55e483682
+      description: |-
+        The adversary needs the owner access role on the targeted Azure subscription to apply
+        the Azure Policy and grant permissions for the system-managed identities.
+    - relation: sequence::preceeds
+      vector: b954303c-0ad0-4dc0-b5ca-492c3de9cd53
+      description: |-
+        Attackers need to gain access to an Azure account with the Virtual Machine Contributor 
+        role (or equivalent) can use custom script extensions to execute arbitrary code 
+        as SYSTEM or root on VMs.
+    - relation: sequence::preceeds
+      vector: 8934c19a-954b-4dce-8081-0a6acca599f6
+      description: |-
+        The adversary need to be able to inject malicious code into container image which will be deployed in
+        target environment. This can be achieved by putting malicious image into public registry and tricking 
+        developer into using it, getting access into internal CI/CD pipeline, uploading modified image into 
+        internal registry or running the image directly on compromised host. 
+  terrain: |-
+    Through compromised account credentials or misused RBAC permissions, adversaries 
+    obtains sufficient access to invoke scripting features (RunCommand, extensions).
+
+    Domains: Public Cloud
+    Targets: Virtual Machines
+    Platforms: Azure, Windows, Linux
+  severity: Significant incident
+  leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise
+  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
+  viability: Likely
+  description: |-
+    This threat vector refers to adversaries running scripts or commands directly 
+    on Azure virtual machines via built-in features, enabling malicious code execution 
+    and system compromise.
+
+    ## Example Attack Scenario
+    An attacker gains access to Azure portal credentials (via phishing or leaked secrets), 
+    allowing privilege escalation to interact with the management plane of Azure resources. 
+    The attacker then uses features like **RunCommand**, **CustomScriptExtension**, 
+    or **Serial Console** to execute PowerShell or shell scripts directly on a targeted VM. 
+    For instance, leveraging **CustomScriptExtension**, the intruder injects a script 
+    to dump credentials, establish persistence, or exfiltrate sensitive files—all as SYSTEM user.
+
+    ## Attack Goals and Impact
+    - The primary **goal** is to execute arbitrary commands with SYSTEM privileges, 
+    enabling full compromise of the VM and escalation to additional assets connected to the VM.
+    - **Impact** includes:
+      - Data exfiltration (sensitive file theft, database dumps)
+      - Persistence (deploying webshells, creating new users)
+      - Lateral movement (pivoting from VM to network or cloud resources)
+      - Disruption (cryptomining, ransomware deployment)
+      - Evasion (disabling defenses on the VM level).
+
+    ## Attack Flow and Methodology
+    1. The attacker identifies exposed or misconfigured Azure virtual machines, focusing 
+      on accounts with management access.
+    2. - The attacker uses management plane operations: for example, `Microsoft.Compute/virtualMachines/runCommand/action`, 
+      `Microsoft.Compute/virtualMachines/extensions/write`, or serial console access.
+      - Executes malicious scripts (PowerShell, Bash) as SYSTEM.
+    3. - Harvests credentials, establishes persistence, or launches further attacks.
+      - May leverage logging gaps to avoid detection, or clean up traces after execution.
+    4. - Activity can be detected via auditing specific events such as `Microsoft.Compute/virtualMachines/extensions/write` 
+      or anomalous use of VM scripting features.

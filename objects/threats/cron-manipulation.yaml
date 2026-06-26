@@ -1,0 +1,55 @@
+name: Cron manipulation
+criticality: High
+references:
+  public:
+    1: https://research.splunk.com/endpoint/f4bb7321-7e64-4d1e-b1aa-21f8b019a91f/
+metadata:
+  uuid: 22c2fc38-93f5-41ee-be2d-a7737fa2b936
+  schema: threat::1.0
+  version: 1
+  created: 2025-01-03
+  modified: 2025-01-03
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0139
+    - misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
+    - att&ck::G0082
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0102
+    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+  killchain: Persistence
+  att&ck:
+    - T1053.003
+  terrain: |-
+    Threat actor must already have privileged or administrative-level access 
+    on a Linux or Unix-like system to insert or modify cron entries.
+
+    Domains: Enterprise
+    Targets: Public-Facing Servers, Workstations, Laptop
+    Platforms: Linux, macOS
+  severity: Substantial incident
+  leverage: Dwelling; Modify configuration; Elevation of privilege
+  impact: Data Breach; Business disruption; Operating costs; Reputational Damages
+  viability: Likely
+  description: |-
+    Suspicious cron activity refers to the insertion or modification of scheduled tasks
+    (cron jobs) on Unix-like systems (including Linux and macOS) in order to achieve 
+    or maintain unauthorized persistence. This technique takes advantage of the legitimate 
+    cron scheduling service to run malicious commands at regular intervals.  
+
+    In practice, a threat actor will add a hidden or obfuscated entry to `/etc/crontab`, 
+    user-specific cron files (e.g., `/var/spool/cron/`), or 
+    system-wide cron directories (e.g., `/etc/cron.d/`). 
+    These hidden entries often execute scripts that download additional malware, 
+    exfiltrate data, or establish a persistent backdoor.
+
+    Some known threat actors has leveraged cron-based jobs to deploy cryptocurrency miners 
+    and move laterally within compromised environments, often targeting cloud-based 
+    or containerized setups. 
+    Attackers have also been identified using stealthy cron modifications to maintain 
+    a foothold on victim systems, execute remote commands, and ensure that malicious binaries 
+    are relaunched even after a reboot.

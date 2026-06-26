@@ -1,0 +1,153 @@
+name: VBS script creates a scheduled task
+criticality: High
+references:
+  public:
+    1: https://stackoverflow.com/questions/31549393/vbscript-for-creating-a-scheduled-task
+    2: https://www.picussecurity.com/resource/blog/picus-10-critical-mitre-attck-techniques-t1060-registry-run-keys-startup-folder
+    3: https://www.tek-tips.com/threads/create-scheduled-task-using-vbscript.1802745
+    4: https://www.itninja.com/question/vbscript-to-create-a-scheduled-task
+    5: https://cloud.google.com/blog/topics/threat-intelligence/fin7-phishing-lnk
+    6: https://www.virusbulletin.com/virusbulletin/2018/11/vb2018-paper-hacking-sony-pictures
+    7: https://www.kaspersky.com/blog/operation-blockbuster/11407
+metadata:
+  uuid: 53ca52ed-a7e7-4094-95ec-b4ef522dc689
+  schema: threat::1.0
+  version: 1
+  created: 2025-06-25
+  modified: 2025-07-08
+  tlp: clear
+  organisation:
+    uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
+    name: EC DIGIT CSOC
+threat:
+  actors:
+    - att&ck::G0046
+    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - att&ck::G0032
+    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - att&ck::G0016
+    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+  killchain: Persistence
+  att&ck:
+    - T1569.002
+    - T1053
+    - T1082
+    - T1005
+    - T1112
+    - T1053.005
+  chaining:
+    - relation: sequence::succeeds
+      vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
+      description: |-
+        A threat actor may use a delivery technique - for example spreading
+        password protected documents which looks legitimate. This is a
+        spear-phishing technique and the goal is a user interaction which
+        leads to a payload execution and infection with a malware.
+    - relation: sequence::succeeds
+      vector: c7ed4fad-a58f-47da-9938-4a673526b3f4
+      description: |-
+        In one of the malicious campaigns a threat actor used HTML smuggling to
+        deliver a password-protected ZIP archive containing a VBScript loader
+        for remote access capabilities. 
+  terrain: |-
+    A threat actor needs to entice an end user to execute VBScript loader to
+    gain an initial access to the system. Some of these techniques include
+    social engineering and targeted (spear-phishing) or mass-spread phishing
+    campaigns.
+
+    Domains: Enterprise
+    Targets: Customer, End-user, Workstations, Other, Laptop, Remote access
+    Platforms: Windows
+  severity: Significant incident
+  leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Tampering
+  impact: Impairement; Data Breach; Lose Capabilities
+  viability: Likely
+  description: |-
+    Threat actors often use Visual Basic Scripting (VBS) to create scheduled
+    tasks on compromised Windows systems. VBS is a built-in scripting language
+    on Windows systems, making it an attractive choice for threat actors. It
+    allows the threat actors to execute code without relying on external tools
+    or binaries, reducing the risk of detection.    
+
+    Once executed by the victim, the VBScript establishes persistence on
+    infected machines by creating scheduled tasks and modifying the Windows
+    Registry.
+
+    ### Creating a scheduled task using a VBS script
+
+    To create a scheduled task using VBS, threat actors typically follow the
+    steps provided below:
+    1. An initial VBS script creation - the attacker creates a VBS script that
+    contains the malicious code. This script can be embedded in an email
+    attachment, downloaded from a compromised website, or created locally on
+    the compromised system.  
+    2. The created VBS script uses `schtasks` - the VBS script uses the
+    `schtasks` to create a new scheduled task. The `SchTasks` command is a
+    built-in Windows utility that allows users to create, delete, and manage
+    scheduled tasks.
+    3. Task details: The VBS script specifies the task details, including the
+    task name, description, and the command or script to be executed.
+    4. Set a task trigger - the VBS script may set a task trigger, which defines
+    when the task should be executed. This can be a specific time, daily,
+    weekly, or on system startup.
+    5. A task preservation - the VBS scrip
+
+    ### Some of the techniques used to achieve VBS persistence and
+    obfuscation
+
+    - Obfuscation: Threat actors often obfuscate their VBS scripts to evade
+    detection by security software. They use techniques like random variable
+    names, fake function calls or garbage code to hide the function of the
+    malicious code.  
+
+    - Scheduled task chaining: Threat actors create as tasks under the current
+    user or if allowed under SYSTEM to elevate privileges and maintain foothold
+    onto the system.  
+
+    ### An example for a VBS script which creates a scheduled task
+
+    Below is given an example of a VBS (Visual Basic Scripting) script that
+    creates a scheduled task to run a command or application at a specified
+    time. This script uses the Windows Task Scheduler to schedule the task.  
+
+    ```visualbasic
+
+    ' Create a new task
+    Dim sch, task
+    Set sch = CreateObject("Schedule.Service")
+    sch.Connect()
+
+    ' Define the task
+    Dim taskDefinition
+    Set taskDefinition = sch.CreateNewTask(0)
+
+    ' Set task registration info
+    taskDefinition.RegistrationInfo.Description = "This is a test task created by VBS script"
+    taskDefinition.RegistrationInfo.Author = "Your Name"
+
+    ' Set task principal (who runs the task)
+    Dim principal
+    Set principal = taskDefinition.Principal
+    principal.LogonType = 3 ' Interactive or 3 for S4U
+    principal.UserId = "NT AUTHORITY\SYSTEM" ' You can change this to a different user
+
+    ' Set task trigger (when to run the task)
+    Dim trigger
+    Set trigger = taskDefinition.Triggers.Create(_
+    TaskTriggerType2.Daily)
+    trigger.StartTime = "08:00:00" ' 8 AM daily
+    trigger.Id = "DailyTrigger"
+
+    ' Set task action (what to run)
+    Dim action
+    Set action = taskDefinition.Actions.Create(_
+    TaskActionType.Exec)
+    action.Path = "C:\Windows\System32\notepad.exe" ' Path to the application to run
+    action.Arguments = "" ' Arguments if any
+
+    ' Register the task
+    Dim taskFolder
+    Set taskFolder = sch.GetFolder("\")
+    taskFolder.RegisterTaskDefinition "TestVBS Task", taskDefinition, 6, , , 3, , , task
+
+    ```

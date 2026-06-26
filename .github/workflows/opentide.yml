@@ -1,0 +1,44 @@
+# Catalogue CI — validate, generate schemas/templates, refresh in-repo docs.
+name: OpenTide
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  validate-and-generate:
+    name: Validate and generate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/opentide
+          path: opentide
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install opentide
+        run: pip install -e ./opentide
+
+      - name: Generate schemas and templates
+        run: |
+          python scripts/opentide_run.py generate schemas
+          python scripts/opentide_run.py generate templates
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+
+      - name: Validate objects
+        run: python scripts/opentide_run.py validate --strict
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+
+      - name: Generate documentation
+        run: python scripts/opentide_run.py generate docs --output docs --flavor github
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
