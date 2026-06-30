@@ -24,6 +24,10 @@ threat:
     directory role that was granted the ability to modify Enterprise Applications 
     or Application Registrations. A frequently targeted role was the Application 
     Administrator, because it allowed complete control over applications in Azure AD.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
   severity: Substantial incident
   leverage: Information Disclosure
   impact: Data Breach; IP Loss; National Security
@@ -38,7 +42,3 @@ threat:
     Modification of an application via PowerShell - The attacker connected to the Microsoft 
     365 tenant using Azure AD PowerShell. Once connected they added certificates to App 
     Registrations and Enterprise Applications that had the mail.read and files.read permission.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Entra ID

@@ -28,6 +28,12 @@ threat:
   terrain: |-
     An adversary has gained control over a Windows endpoint and has  
     privileges to create scheduled tasks using the command line.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Elevation of privilege; Infrastructure Compromise; Dwelling
   impact: Impairement
@@ -71,9 +77,3 @@ threat:
      /ST — defines the time to run the task (in 24 hours format)
      /RU — specifies the task to run under a specific user account.
      /QUERY — displays all the system tasks.
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers

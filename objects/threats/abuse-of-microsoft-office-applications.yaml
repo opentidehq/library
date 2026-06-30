@@ -36,6 +36,14 @@ threat:
     Target systems must have Microsoft Office applications installed with macros 
     enabled or be susceptible to social engineering tactics that prompt users 
     to enable macros or execute malicious content.
+  surface:
+    - Windows
+    - Microsoft::Microsoft 365
+    - Microsoft::SharePoint
+    - Microsoft::Outlook
+    - Email
+    - Windows::Desktop
+    - File Sharing
   severity: Moderate incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Software installation
   impact: Data Breach; IP Loss; Identity Theft; Business disruption
@@ -80,11 +88,3 @@ threat:
     - Embedding Malicious Code in Outlook's VBA Project:
     - The attacker adds VBA code to Outlook's VbaProject.otm file.
     This code executes every time Outlook starts, performing actions without the user's knowledge.
-  surface:
-    - Windows
-    - Microsoft::Microsoft 365
-    - Microsoft::SharePoint
-    - Microsoft::Outlook
-    - Email
-    - Windows::Desktop
-    - File Sharing

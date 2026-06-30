@@ -39,6 +39,13 @@ threat:
 
     Additionally, other applications on the user endpoint machine might store sensitive
     authentication cookies in memory (e.g. apps which authenticate to cloud services).
+  surface:
+    - Microsoft::Microsoft 365
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Entra ID
+    - Mobile
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft
@@ -67,10 +74,3 @@ threat:
 
     Because such cookie is also created and stored on a web browser when MFA is in play,
     the same technique can handily be used to bypass it.
-  surface:
-    - Microsoft::Microsoft 365
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Entra ID
-    - Mobile

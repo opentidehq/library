@@ -28,6 +28,15 @@ threat:
     A threat actor has gained control over a Windows endpoint and has
     privileges to disable event logging by using PowerShell commands or
     scripts.
+  surface:
+    - Windows
+    - AWS
+    - Azure
+    - Windows::Desktop
+    - Log Management
+    - Remote Access
+    - Web Servers
+    - Azure::Compute::Virtual Machines
   severity: Moderate incident
   leverage: Log tampering
   impact: Impairement
@@ -82,12 +91,3 @@ threat:
     This script will disable the "Application", "System", and "Security" event logs on the local computer.
     There is an option to modify the list of event logs to include any other specific event log that the
     threat actor wants to disable.
-  surface:
-    - Windows
-    - AWS
-    - Azure
-    - Windows::Desktop
-    - Log Management
-    - Remote Access
-    - Web Servers
-    - Azure::Compute::Virtual Machines

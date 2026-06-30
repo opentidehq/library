@@ -27,6 +27,13 @@ threat:
   terrain: |-
     An adversary has gained control over a Windows endpoint and has privileges
     to delete scheduled task XML file.
+  surface:
+    - Windows
+    - Azure
+    - AWS
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers
   severity: Moderate incident
   leverage: Tampering
   impact: Impairement
@@ -66,10 +73,3 @@ threat:
     Deleting the XML file will only remove the task from the Task Scheduler.
     It will not uninstall any programs or delete any files that were associated
     with the task.
-  surface:
-    - Windows
-    - Azure
-    - AWS
-    - Windows::Desktop
-    - Remote Access
-    - Web Servers

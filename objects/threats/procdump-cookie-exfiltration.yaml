@@ -35,6 +35,13 @@ threat:
     Attacker must compromise a user endpoint and exfiltrate the browser cookies.
     Cookies can be found on disk, in the process memory of the browser, and in
     network traffic to remote systems.
+  surface:
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Entra ID
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement
@@ -54,10 +61,3 @@ threat:
       - Open Firefox on the attackers machine.
       - Navigate to the resource to access (the domain the cookie is valid for).
       - Use the Developer Console and set the cookie via document.cookie=“key=value”.
-  surface:
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Entra ID

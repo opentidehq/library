@@ -38,6 +38,9 @@ threat:
     session to a LAN interface. The VPN connection allows actor-
     controlled systems within the local network to send ICMP Echo
     Requests that bypass traditional WAN-focused network monitoring.
+  surface:
+    - Routers
+    - Switches
   severity: Substantial incident
   leverage: Infrastructure Compromise; Information Disclosure; Spoofing
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
@@ -151,6 +154,3 @@ threat:
     technique represents an evolution in network device implant
     communication methods, moving beyond simple HTTP/HTTPS-based C2 to
     leverage lower-layer protocols for increased stealth and resilience.
-  surface:
-    - Routers
-    - Switches

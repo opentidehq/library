@@ -33,6 +33,11 @@ threat:
   terrain: |-
     Iniating a SMB connection requires a valid user account which imply
     that the endpoint is already infected.
+  surface:
+    - Windows
+    - Microsoft::Microsoft 365
+    - Windows::Desktop
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling; Software installation; Elevation of privilege
   impact: Impairement
@@ -63,8 +68,3 @@ threat:
     This strategic move enables them to retrieve various types of files, potentially leading to widespread infection across entire machines within the network. 
     The ability to specify a malicious server amplifies the threat, 
     as it allows threat actors to exercise greater control over the execution and distribution of harmful payloads, posing a severe risk to the overall security of the network.
-  surface:
-    - Windows
-    - Microsoft::Microsoft 365
-    - Windows::Desktop
-    - Web Servers

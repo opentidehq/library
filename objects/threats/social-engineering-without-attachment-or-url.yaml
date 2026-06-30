@@ -35,6 +35,17 @@ threat:
   terrain: |-
     Adversary must have access to legitimate email accounts or impersonate authority 
     figures to trick victims into disclosing sensitive information or transferring funds.
+  surface:
+    - Mobile
+    - AWS
+    - Azure
+    - Microsoft::Microsoft 365
+    - Windows
+    - macOS
+    - Mobile::Android
+    - Mobile::iOS
+    - Email
+    - AWS::Storage
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Fraudulent transaction; Infrastructure Compromise
   impact: Data Breach; Monetary Loss; Reputational Damages; Identity Theft
@@ -69,14 +80,3 @@ threat:
     - Create a sense of urgency
     - Rarely include malicious payloads
     - Frequently target Accounts Payable teams
-  surface:
-    - Mobile
-    - AWS
-    - Azure
-    - Microsoft::Microsoft 365
-    - Windows
-    - macOS
-    - Mobile::Android
-    - Mobile::iOS
-    - Email
-    - AWS::Storage

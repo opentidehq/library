@@ -60,6 +60,10 @@ threat:
     processing. The WebVPN traffic handling codebase in lina processes
     XML data that can be weaponised to load shellcode when specific form
     elements are encountered.
+  surface:
+    - Routers
+    - Switches
+    - VPN
   severity: Substantial incident
   leverage: Infrastructure Compromise; Information Disclosure; Dwelling; Tampering; Repudiation
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
@@ -157,7 +161,3 @@ threat:
     The combination of advanced persistence, multiple C2 channels,
     encryption, and extensive defence evasion makes LINE VIPER a highly
     sophisticated threat to network infrastructure.
-  surface:
-    - Routers
-    - Switches
-    - VPN

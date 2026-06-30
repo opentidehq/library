@@ -38,6 +38,11 @@ threat:
     invitation event) and get infected. 
 
     The goal is an access and maintain of a persistence.
+  surface:
+    - Google Workspace
+    - Windows::Desktop
+    - Customer Support
+    - Remote Access
   severity: Moderate incident
   leverage: Infrastructure Compromise; Information Disclosure; Modify configuration
   impact: Data Breach; Impairement; Lose Capabilities
@@ -113,8 +118,3 @@ threat:
     establish CnC communication in a way that is difficult to detect and block.
     This tactic highlights the importance of monitoring cloud services and
     implementing robust security controls to prevent such attacks ref [1], [2].  
-  surface:
-    - Google Workspace
-    - Windows::Desktop
-    - Customer Support
-    - Remote Access

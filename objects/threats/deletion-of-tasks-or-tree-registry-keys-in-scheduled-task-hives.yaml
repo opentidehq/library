@@ -29,6 +29,12 @@ threat:
   terrain: |-
     Threat actor is using already compromised Windows endpoint and has the required 
     privileges to delete registry keys.
+  surface:
+    - Windows
+    - Azure
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers
   severity: Moderate incident
   leverage: Tampering
   impact: Impairement
@@ -72,9 +78,3 @@ threat:
     Remove-ItemProperty -Path "HKLM:\Software\MyKey" -Name "MyValue"
 
     rm "HKLM:\Software\MyKey"
-  surface:
-    - Windows
-    - Azure
-    - Remote Access
-    - Windows::Desktop
-    - Web Servers

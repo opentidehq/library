@@ -36,6 +36,10 @@ threat:
     last day of support or reach end of support September 30, 2025 [1].
     The absence of secure boot allows arbitrary modification of the GRUB
     bootloader without cryptographic validation.
+  surface:
+    - Routers
+    - Switches
+    - Embedded
   severity: Substantial incident
   leverage: Infrastructure Compromise; Tampering; Dwelling
   impact: Lose Capabilities; Reputational Damages; National Security
@@ -95,7 +99,3 @@ threat:
     persistence techniques targeting network infrastructure. The
     multi-stage approach and ability to survive firmware upgrades makes
     detection and remediation particularly challenging.
-  surface:
-    - Routers
-    - Switches
-    - Embedded

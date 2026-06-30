@@ -33,6 +33,9 @@ threat:
     evaluated. The vulnerability is systemic rather than endpoint-specific,
     affecting multiple authenticated or role-restricted routes that share the
     same flawed request processing pipeline.
+  surface:
+    - Web Servers
+    - Application Layer::HTTP
   severity: Substantial incident
   leverage: Information Disclosure
   impact: Data Breach; IP Loss
@@ -68,6 +71,3 @@ threat:
     This aligns with OWASP Top 10 A01:2021 Broken Access Control and CWE-284
     Improper Access Control. The vulnerability represents a fundamental flaw in
     the application's security architecture rather than a simple misconfiguration.
-  surface:
-    - Web Servers
-    - Application Layer::HTTP

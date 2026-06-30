@@ -58,6 +58,11 @@ threat:
     CrackMapExec is used by threat actors on compromised endpoints to for
     credential access or a number of other techniques. CrackMapExec (CME)
     is a swiss army knife type of tool.
+  surface:
+    - Windows
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Modify privileges; Elevation of privilege; Dwelling; Infrastructure Compromise; Information Disclosure; Modify configuration; Spoofing; Tampering
   impact: Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance
@@ -68,8 +73,3 @@ threat:
     threat actors to perform post-compromise actions. Detecting
     both the presence of the tool itself, plus the usage of the tool
     is an important baseline security detection.
-  surface:
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop

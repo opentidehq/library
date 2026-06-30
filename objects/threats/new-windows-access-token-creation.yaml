@@ -41,6 +41,12 @@ threat:
   terrain: |-
     A threat actor exploits native Windows features as Windows API calls or
     Windows native commands to generate in the system a new user access token.
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Windows::Desktop
+    - Application Layer::HTTP
+    - Customer Support
   severity: Moderate incident
   leverage: Elevation of privilege; Infrastructure Compromise; Modify privileges; Dwelling
   impact: Identity Theft; Impairement; Nuisance; Lose Capabilities; Operating costs
@@ -104,9 +110,3 @@ threat:
     - Metasploit
     - Windows Internal Database (WID)
     - Token Universe tool, ref [4] 
-  surface:
-    - Windows
-    - OAuth / OIDC
-    - Windows::Desktop
-    - Application Layer::HTTP
-    - Customer Support

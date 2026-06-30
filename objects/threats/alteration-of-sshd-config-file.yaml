@@ -29,6 +29,10 @@ threat:
     Threat actor must have root or sudo privileges on the target Linux system, 
     as well as the ability to interact with sshd_config 
     (e.g., via nano, vim, vi, or cat commands), before this threat is realized.
+  surface:
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop
   severity: Significant incident
   leverage: Tampering; Modify configuration; Elevation of privilege
   impact: Data Breach; Business disruption; Reputational Damages
@@ -93,7 +97,3 @@ threat:
     ```
     This configuration could stealthily enable features like port forwarding, 
     further helping attackers evade detection and maintain persistence.  
-  surface:
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop

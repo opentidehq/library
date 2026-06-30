@@ -34,6 +34,10 @@ threat:
     The browser must allow JavaScript to run (standard), and the victim must
     be able to interactively paste content from the clipboard into the Explorer
     address bar or other UI (e.g., Run dialog).
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
   severity: Moderate incident
   leverage: Elevation of privilege; Infrastructure Compromise; Tampering
   impact: Business disruption; Impairement; Lose Capabilities
@@ -73,7 +77,3 @@ threat:
     file or folder, making it feel routine and safe. This subtle manipulation
     makes `FileFix` a more stealthy and potentially more dangerous evolution of
     the `ClickFix` social engineering attack. 
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support

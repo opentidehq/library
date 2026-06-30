@@ -49,6 +49,18 @@ threat:
     - Administrative privileges for software installation/update
     - Insufficient supply chain security controls
     - Limited visibility into software build and update processes
+  surface:
+    - Windows
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - AWS
+    - Microsoft
+    - Development::CI/CD
+    - Development
+    - Web Servers
+    - Entra ID
+    - Application Layer::HTTP
   severity: National cyber emergency
   leverage: Infrastructure Compromise; Information Disclosure; Dwelling; Elevation of privilege; Spoofing; Tampering
   impact: National Security; Catastrophic Loss; Data Breach; IP Loss; Reputational Damages; Business disruption
@@ -135,15 +147,3 @@ threat:
     This threat vector demonstrates the catastrophic potential of supply chain compromises and the
     need for comprehensive security measures that extend beyond traditional perimeter defenses to
     encompass the entire software development and distribution lifecycle.
-  surface:
-    - Windows
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - AWS
-    - Microsoft
-    - Development::CI/CD
-    - Development
-    - Web Servers
-    - Entra ID
-    - Application Layer::HTTP

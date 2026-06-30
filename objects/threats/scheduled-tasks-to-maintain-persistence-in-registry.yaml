@@ -38,6 +38,11 @@ threat:
   terrain: |-
     An adversary has gained control over a Windows endpoint and has privileges 
     to create scheduled tasks in order to maintain persistence in the registry.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering; Modify configuration; Modify data
   impact: Impairement; Business disruption
@@ -104,8 +109,3 @@ threat:
 
     - **Using Startup Folders**: Malware can place executable files in startup
     folders so that they run automatically when a user logs into their account.   
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Web Servers

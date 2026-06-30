@@ -36,6 +36,16 @@ threat:
   terrain: |-
     Adversary must have administrative privileges over Azure Portal or have access to 
     Azure credentials.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - Windows
+    - Linux
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Azure::Compute::Virtual Machines
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
@@ -85,13 +95,3 @@ threat:
     Attackers might delete logs related to task creation or modification, and modify 
     task descriptions to seem innocuous, in an attempt to hide their tracks and make 
     it harder to investigate and remediate the attack.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - Windows
-    - Linux
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Azure::Compute::Virtual Machines
-    - Application Layer::HTTP

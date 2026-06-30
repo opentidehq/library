@@ -62,6 +62,12 @@ threat:
   terrain: |-
     Adversaries obtain elevated access within AzureAD or Intune; often
     via credential theft, privilege escalation, or social engineering.
+  surface:
+    - Azure::Security::Entra ID
+    - Windows
+    - Windows::Desktop
+    - Mobile
+    - Azure
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure
   impact: Data Breach; Reputational Damages; Identity Theft
@@ -96,9 +102,3 @@ threat:
     is misused, allowing the attacker to harvest data, pivot to other internal resources, 
     or further entrench their presence.
     3. Attackers may cover tracks by modifying or deleting audit logs accessible through IntuneAuditLogs.
-  surface:
-    - Azure::Security::Entra ID
-    - Windows
-    - Windows::Desktop
-    - Mobile
-    - Azure

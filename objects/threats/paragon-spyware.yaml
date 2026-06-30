@@ -28,6 +28,12 @@ threat:
   terrain: |-
     Attackers add targets to a WhatsApp group and send a PDF file. When the device automatically 
     processes the PDF, it exploits a vulnerability to load the Graphite spyware
+  surface:
+    - Mobile
+    - Mobile::iOS
+    - Mobile::Android
+    - Mobile::iPadOS
+    - Entra ID
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Software installation
   impact: Competitive disadvantage; Data Breach; IP Loss; Identity Theft
@@ -56,9 +62,3 @@ threat:
     In January 2025, WhatsApp patched a zero-day vulnerability that was being exploited 
     by Paragon Spyware. The company notified approximately 90 Android users from over 
     20 countries who were targeted, including journalists and activists.
-  surface:
-    - Mobile
-    - Mobile::iOS
-    - Mobile::Android
-    - Mobile::iPadOS
-    - Entra ID

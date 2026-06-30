@@ -59,6 +59,12 @@ threat:
   terrain: |-
     Adversaries must compromise an Azure AD account, through phishing,
     token theft or different means.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Entra ID
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
@@ -105,9 +111,3 @@ threat:
     chaining this access for lateral movement.
     - If Key Vault logging is not enabled, this activity may go undetected unless anomalous 
     pattern detection (such as sudden bulk secret access or policy changes) triggers alerts.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Entra ID

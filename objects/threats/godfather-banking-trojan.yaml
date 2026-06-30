@@ -45,6 +45,9 @@ threat:
     Adversaries achieve granting AccessibilityService permissions to GodFather
     malware primarily through social engineering techniques that trick users into
     enabling these permissions.
+  surface:
+    - Mobile
+    - Mobile::Android
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege
   impact: Data Breach; Monetary Loss; Identity Theft
@@ -93,6 +96,3 @@ threat:
     - **Stealth**: The virtualization attack results in “perfect deception,” as users 
     interact with their real apps, making visual or user-driven detection virtually 
     impossible.
-  surface:
-    - Mobile
-    - Mobile::Android

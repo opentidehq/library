@@ -44,6 +44,14 @@ threat:
   terrain: |-
     A threat actor can use vulnerabilities in the function and appearance
     of software malicious dev packages to entice a developer to install them.
+  surface:
+    - Industrial IoT::IoT Gateways
+    - Windows
+    - macOS
+    - Linux
+    - Development::CI/CD
+    - Development
+    - Windows::Desktop
   severity: Highly significant incident
   leverage: Information Disclosure; Infrastructure Compromise; Elevation of privilege; Tampering
   impact: Business disruption; Impairement; Lose Capabilities
@@ -91,11 +99,3 @@ threat:
     It's recommended a security officer to establish robust policies for
     evaluating, approving, and managing open-source libraries. This includes
     selecting packages from trusted sources and monitoring their activity.
-  surface:
-    - Industrial IoT::IoT Gateways
-    - Windows
-    - macOS
-    - Linux
-    - Development::CI/CD
-    - Development
-    - Windows::Desktop

@@ -31,6 +31,10 @@ threat:
   terrain: |-
     A threat actors need an initial access to the system to use PowerShell
     console to execute commands to obfuscate their traffic and activities.
+  surface:
+    - Windows
+    - Remote Access
+    - Windows::Desktop
   severity: Localised incident
   leverage: Dwelling; Tampering
   impact: Impairement
@@ -82,7 +86,3 @@ threat:
 
     Write-Host "Username: $Username"
     Write-Host "Password: $Password"
-  surface:
-    - Windows
-    - Remote Access
-    - Windows::Desktop

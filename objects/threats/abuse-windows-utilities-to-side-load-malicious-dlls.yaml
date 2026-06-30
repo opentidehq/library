@@ -30,6 +30,10 @@ threat:
     allowing unsigned or malicious DLLs to be loaded without proper validation. 
     This often involves software that looks for DLLs in directories writable 
     by non-administrative users
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Tampering; Spoofing
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory
@@ -109,7 +113,3 @@ threat:
     ```
     odbcconf.exe /S /A {REGSVR C:\path\to\malicious.dll}
     ```
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Azure::Compute::Virtual Machines

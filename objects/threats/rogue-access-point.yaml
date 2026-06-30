@@ -28,6 +28,17 @@ threat:
     rogue AP. This could mean physical access to the premises (to connect a device to 
     the wired network) or being close enough to broadcast a Wi-Fi signal that clients 
     can detect and join.
+  surface:
+    - Mobile
+    - macOS
+    - Windows
+    - Linux
+    - Mobile::Android
+    - Mobile::iOS
+    - Windows::Desktop
+    - Mobile::iPadOS
+    - Routers
+    - File Sharing
   severity: Significant incident
   leverage: Dwelling; Information Disclosure; Spoofing; Tampering
   impact: Competitive disadvantage; Data Breach; Identity Theft; IP Loss; Reputational Damages
@@ -63,14 +74,3 @@ threat:
     causing downtime and instability.
     - **Regulatory Compliance Violations:** Industries with strict data regulations 
     (e.g., healthcare, finance) risk non-compliance and potential fines if rogue APs are present.
-  surface:
-    - Mobile
-    - macOS
-    - Windows
-    - Linux
-    - Mobile::Android
-    - Mobile::iOS
-    - Windows::Desktop
-    - Mobile::iPadOS
-    - Routers
-    - File Sharing

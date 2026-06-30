@@ -31,6 +31,10 @@ threat:
       vector: 4d6104e3-10d4-4a12-b081-d937df848891
       description: attacker can drop web shell to add file or replace legit ones
   terrain: Attacker need remote access to an Ivanti Connect Secure appliance vulnerable to command injection
+  surface:
+    - Embedded
+    - Remote Access
+    - VPN
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Elevation of privilege; Log tampering; Modify configuration; Tampering; New Accounts
   impact: Business disruption; Operating costs; Reputational Damages; Data Breach
@@ -65,7 +69,3 @@ threat:
     - tcpdump
     - wireshark
     - tshark
-  surface:
-    - Embedded
-    - Remote Access
-    - VPN

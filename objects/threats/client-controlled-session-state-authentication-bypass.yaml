@@ -43,6 +43,10 @@ threat:
     endpoint. The server accepts the presence of values, simple strings, usernames, role flags, or
     fabricated bearer values instead of verifying cryptographic integrity, server-issued session
     binding, token signature, expiry, and privilege state.
+  surface:
+    - Web Servers
+    - Application Layer::HTTP
+    - OAuth / OIDC
   severity: Substantial incident
   leverage: Spoofing; Elevation of privilege; Information Disclosure
   impact: Data Breach; Identity Theft; Business disruption; Legal and regulatory
@@ -69,7 +73,3 @@ threat:
     authorisation bypass, or privilege escalation through crafted cookies or headers. Severity depends
     on whether the trusted fields represent identity, role, login state, or access flags, and on the
     breadth of affected endpoints.
-  surface:
-    - Web Servers
-    - Application Layer::HTTP
-    - OAuth / OIDC

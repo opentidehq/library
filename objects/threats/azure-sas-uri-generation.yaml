@@ -50,6 +50,13 @@ threat:
     Adversaries must gain access to an Azure account or service principal with the required 
     permissions (for example, via stolen credentials or overly-permissive roles) to 
     generate or obtain SAS tokens for targeted storage resources.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Compute::Virtual Machines
+    - Orchestration::Kubernetes
+    - Serverless
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss
@@ -95,10 +102,3 @@ threat:
     5. **Cleanup or Covering Tracks**: In advanced scenarios, the attacker removes evidence 
     of token generation and exfiltration or uses the access to establish further persistence 
     within the environment.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Azure::Compute::Virtual Machines
-    - Orchestration::Kubernetes
-    - Serverless

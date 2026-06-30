@@ -29,6 +29,9 @@ threat:
     or an EC controlled/deployed lambda layer in use by EC account(s), or 
     that a threat actor can add a malicious lambda layer to a new or existing
     lambda function.
+  surface:
+    - AWS::Compute::Lambda
+    - Serverless
   severity: Localised incident
   leverage: Alter behavior; Dwelling; Information Disclosure; Infrastructure Compromise; Modify configuration; Modify data; Tampering
   impact: Data Breach; IP Loss; Legal and regulatory; Nuisance; Operating costs
@@ -47,6 +50,3 @@ threat:
     via some trigger+action needed on the side of the lambda administrator, 
     unless the threat actor controls credentials to deploy or update lambda 
     functions.
-  surface:
-    - AWS::Compute::Lambda
-    - Serverless

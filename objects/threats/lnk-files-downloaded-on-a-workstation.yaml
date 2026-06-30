@@ -38,6 +38,11 @@ threat:
     For example, well customised and legitimate looking company e-mail with
     administrative document protected with passwords or titled with ongoing
     meeting or agenda.
+  surface:
+    - Microsoft::Microsoft 365
+    - Code Repositories::GitHub
+    - Customer Support
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering
   impact: Business disruption; Lose Capabilities; Data Breach; Identity Theft; Impairement
@@ -68,8 +73,3 @@ threat:
     a password-protected zip file with included .lnk file in it. Once an end-
     usr click this file, it will download a payload usually from a GitHub 
     repository. Further the payload executes and infect the host.   
-  surface:
-    - Microsoft::Microsoft 365
-    - Code Repositories::GitHub
-    - Customer Support
-    - Windows::Desktop

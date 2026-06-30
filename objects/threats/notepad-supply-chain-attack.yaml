@@ -27,6 +27,8 @@ threat:
     the legitimate update infrastructure, delivering malicious payloads disguised 
     as authentic software updates. Victims were distributed globally across multiple 
     sectors including government, financial services, and IT service providers.
+  surface:
+    - Windows::Desktop
   severity: Highly significant incident
   leverage: Elevation of privilege; Tampering; Information Disclosure; Repudiation
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss
@@ -219,5 +221,3 @@ threat:
 
     Organizations using Notepad++ should treat this as a **CRITICAL** incident requiring 
     immediate investigation and response actions.
-  surface:
-    - Windows::Desktop

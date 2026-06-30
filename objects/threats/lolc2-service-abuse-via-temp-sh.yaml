@@ -37,6 +37,8 @@ threat:
     to blend malicious traffic with normal business operations. Particularly relevant
     in environments with developer workstations, laptops, and systems with curl.exe
     or similar HTTP client tools available.
+  surface:
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure; Dwelling
   impact: Data Breach; Reputational Damages
@@ -320,5 +322,3 @@ threat:
     - Kaspersky Securelist: "Notepad++ Supply Chain Attack" (February 2026)
     - Rapid7 Research: "Notepad++ Supply Chain Compromise Analysis" (February 2026)
     - temp.sh service: https://temp.sh/
-  surface:
-    - Windows::Desktop

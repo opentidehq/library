@@ -44,6 +44,24 @@ threat:
   terrain: |-
     Adversaries use publicly accessible endpoints, misconfigured applications, or phishing 
     emails to harvest user names, email addresses, job titles, and group memberships.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - Entra ID
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Windows::Desktop
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Email
+    - Application Layer::HTTP
+    - Security::SAML
+    - Development
+    - Code Repositories
+    - Development::CI/CD
+    - Kerberos
   severity: Significant incident
   leverage: Information Disclosure; Spoofing; Tampering; Elevation of privilege; Modify configuration; Modify privileges
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -100,21 +118,3 @@ threat:
       consent phishing, or authentication token theft attacks.
       - Attempt further reconnaissance focused on those high-value targets, such as 
       checking group assignment, roles, and recent activity.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - Entra ID
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Windows::Desktop
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Email
-    - Application Layer::HTTP
-    - Security::SAML
-    - Development
-    - Code Repositories
-    - Development::CI/CD
-    - Kerberos

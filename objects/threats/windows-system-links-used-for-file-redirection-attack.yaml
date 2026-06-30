@@ -23,6 +23,13 @@ threat:
   terrain: |-
     A threat actor needs an initial access to the system with 
     standard user rights.
+  surface:
+    - Windows
+    - Azure::Security::Entra ID
+    - Active Directory
+    - Windows::Desktop
+    - Remote Access
+    - Microsoft::System Center
   severity: Localised incident
   leverage: Infrastructure Compromise; Dwelling; Elevation of privilege; Tampering
   impact: Impairement; Nuisance; Data Breach; Reputational Damages
@@ -89,10 +96,3 @@ threat:
     metadata within a file. Attackers can abuse ADS to hide malicious code or sensitive 
     information within an innocent-looking file. When the file is accessed, the malicious 
     content in the ADS is executed without the user's knowledge.  
-  surface:
-    - Windows
-    - Azure::Security::Entra ID
-    - Active Directory
-    - Windows::Desktop
-    - Remote Access
-    - Microsoft::System Center

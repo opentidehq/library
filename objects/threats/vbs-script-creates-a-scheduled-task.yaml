@@ -54,6 +54,11 @@ threat:
     gain an initial access to the system. Some of these techniques include
     social engineering and targeted (spear-phishing) or mass-spread phishing
     campaigns.
+  surface:
+    - Windows
+    - Customer Support
+    - Windows::Desktop
+    - Remote Access
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Tampering
   impact: Impairement; Data Breach; Lose Capabilities
@@ -147,8 +152,3 @@ threat:
     taskFolder.RegisterTaskDefinition "TestVBS Task", taskDefinition, 6, , , 3, , , task
 
     ```
-  surface:
-    - Windows
-    - Customer Support
-    - Windows::Desktop
-    - Remote Access

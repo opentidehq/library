@@ -24,6 +24,17 @@ threat:
   terrain: |-
     Adversaries must first gain access to an Azure environment, typically through compromised 
     user accounts, service principals, or managed identities.
+  surface:
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Entra ID
+    - Web Servers
+    - Application Layer::HTTP
+    - Azure
+    - Serverless
+    - Azure::Compute::Virtual Machines
+    - AWS::Compute::EC2
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption
@@ -79,14 +90,3 @@ threat:
     - **Service disruption and abuse:**  
       - Attackers may alter configurations, disrupt services, or deploy unauthorized 
       resources using stolen credentials.
-  surface:
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Entra ID
-    - Web Servers
-    - Application Layer::HTTP
-    - Azure
-    - Serverless
-    - Azure::Compute::Virtual Machines
-    - AWS::Compute::EC2

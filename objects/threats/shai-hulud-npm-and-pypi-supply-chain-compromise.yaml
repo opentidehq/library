@@ -56,6 +56,13 @@ threat:
     potentially compromised. Self-propagation logic enumerates packages the
     victim maintains and republishes trojanised versions, amplifying blast
     radius beyond the initial namespace.
+  surface:
+    - Windows::Desktop
+    - macOS
+    - Linux
+    - Development::Package Management::npm
+    - Development::Package Management::PyPI
+    - Development::CI/CD::GitHub Actions
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Tampering; Software installation; Information Gathering; Information Disclosure
   impact: Data Breach; Business disruption; Lose Capabilities; Reputational Damages; Operating costs
@@ -264,10 +271,3 @@ threat:
       matching** — no single log source is sufficient.
     - Token revocation can trigger **destructive follow-on behaviour**;
       sequence containment carefully on developer laptops.
-  surface:
-    - Windows::Desktop
-    - macOS
-    - Linux
-    - Development::Package Management::npm
-    - Development::Package Management::PyPI
-    - Development::CI/CD::GitHub Actions

@@ -31,6 +31,12 @@ threat:
 
     They can use also a build-in or some type of an inherited vulnerability
     in the vendor's process which allows malicious code injection.
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Development::CI/CD
+    - Development
   severity: Significant incident
   leverage: Infrastructure Compromise; Tampering
   impact: Impairement; Business disruption; Lose Capabilities; Competitive disadvantage
@@ -86,9 +92,3 @@ threat:
     a legitimate package and pushes malicious code into it. This is done by
     taking over maintainers' or developers' accounts or injecting obfuscated
     malicious code into a legitimate open-source project.  
-  surface:
-    - Windows
-    - macOS
-    - Linux
-    - Development::CI/CD
-    - Development

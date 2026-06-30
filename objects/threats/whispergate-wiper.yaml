@@ -31,6 +31,14 @@ threat:
   terrain: |-
     A threat actor needs an initial entry point to the system,
     for example can use stolen credentials to gain access.
+  surface:
+    - Industrial
+    - Windows
+    - AWS::Storage::EBS
+    - Windows::Desktop
+    - File Sharing
+    - Customer Support
+    - Remote Access
   severity: Significant incident
   leverage: Denial of Service; Infrastructure Compromise
   impact: Business disruption; Catastrophic Loss; National Security; Operating costs; Reputational Damages
@@ -97,11 +105,3 @@ threat:
 
     In Ukraine, a pro-Russian group was detected to conduct destructive attacks
     such as the WhisperGate wiper attacks against ICS targets.  
-  surface:
-    - Industrial
-    - Windows
-    - AWS::Storage::EBS
-    - Windows::Desktop
-    - File Sharing
-    - Customer Support
-    - Remote Access

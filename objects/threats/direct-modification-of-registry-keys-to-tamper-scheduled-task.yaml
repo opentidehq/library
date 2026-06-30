@@ -41,6 +41,9 @@ threat:
   terrain: |-
     A threat actor needs an Admin Windows System level to a target
     endpoint in order to perform direct modification of the registries.
+  surface:
+    - Windows
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering; Modify configuration
   impact: Business disruption; Impairement; Lose Capabilities; Operating costs
@@ -102,6 +105,3 @@ threat:
     values in the task's subkey.
     - Creating a new malicious task: Adding a new subkey with malicious
     settings, such as executing a malicious executable.  
-  surface:
-    - Windows
-    - Windows::Desktop

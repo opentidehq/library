@@ -49,6 +49,13 @@ threat:
 
     Pth works on windows computers of every kind, however later versions 
     natively have some level of defenses/mitigations built in.
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers
+    - Kerberos
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Spoofing; Tampering; Repudiation
   impact: Identity Theft; Impairement; Data Breach
@@ -70,10 +77,3 @@ threat:
     pass-the-hash technique, which works by authenticating to a resource, by in the 
     background spawning a new process in the context of the hash and attacker-
     desired elements. For examples, see the reference to thehacker.recipes.
-  surface:
-    - Windows
-    - OAuth / OIDC
-    - Remote Access
-    - Windows::Desktop
-    - Web Servers
-    - Kerberos

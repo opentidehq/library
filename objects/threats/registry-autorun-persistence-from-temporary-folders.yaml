@@ -33,6 +33,8 @@ threat:
     effective against systems with limited security monitoring of registry autorun
     mechanisms, especially when combined with execution from non-standard application
     data locations that evade traditional security controls.
+  surface:
+    - Windows::Desktop
   severity: Significant incident
   leverage: Tampering; Elevation of privilege; Infrastructure Compromise
   impact: Business disruption; Data Breach; Impairement
@@ -283,5 +285,3 @@ threat:
     This technique's confirmation in the Notepad++ supply chain attack demonstrates
     its active use by sophisticated threat actors and underscores the importance of
     robust detection and response capabilities for registry-based persistence mechanisms.
-  surface:
-    - Windows::Desktop

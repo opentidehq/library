@@ -24,6 +24,12 @@ threat:
     Adversaries must have a well-crafted phishing or smishing campaign that impersonates 
     government authorities and popular messaging applications to trick victims into 
     downloading and installing the malicious MDM profile.
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Entra ID
+    - Mobile::iPadOS
   severity: Significant incident
   leverage: Alter behavior; Dwelling; Elevation of privilege; Software installation; Spoofing
   impact: Identity Theft; IP Loss; Reputational Damages
@@ -53,9 +59,3 @@ threat:
     the adversaries control over the device. Once installed, the malware can perform
     various malicious activities, including tracking, remote wiping, and installing
     additional apps without the user's consent.  
-  surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Entra ID
-    - Mobile::iPadOS

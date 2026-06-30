@@ -45,6 +45,15 @@ threat:
     web page scripting languages as HTML, CSS, JavaScript
     and others. This vulnerability in the page can lead
     to an initial access to a targeted system.
+  surface:
+    - Mobile
+    - Windows
+    - Mobile::iOS
+    - Mobile::Android
+    - Customer Support
+    - Windows::Desktop
+    - Web Servers
+    - Remote Access
   severity: Localised incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering
   impact: Identity Theft; Impairement; Data Breach; Lose Capabilities; Business disruption
@@ -99,12 +108,3 @@ threat:
     code within an HTML file.
     - HTML5 smuggling - this involves using HTML5 features, such as the
     <canvas> element, to embed malicious code within an HTML file.  
-  surface:
-    - Mobile
-    - Windows
-    - Mobile::iOS
-    - Mobile::Android
-    - Customer Support
-    - Windows::Desktop
-    - Web Servers
-    - Remote Access

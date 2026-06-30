@@ -28,6 +28,12 @@ threat:
   terrain: |-
     An adversary has gained control over a Windows endpoint and has  
     privileges to create scheduled tasks using taskschlr.exe
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Elevation of privilege
   impact: Business disruption; Impairement; Lose Capabilities
@@ -70,9 +76,3 @@ threat:
        </Exec>
      <Actions>
     </Task>
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers

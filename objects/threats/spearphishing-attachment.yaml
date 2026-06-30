@@ -50,6 +50,16 @@ threat:
     attachment where the filename references a topic the recipient is interested in.
     The highly personalized nature of spear-phishing attacks makes it more 
     difficult to identity than widescale phishing attacks.
+  surface:
+    - Mobile
+    - Windows
+    - Microsoft::Microsoft 365
+    - Mobile::Android
+    - Mobile::iOS
+    - Email
+    - Windows::Desktop
+    - Customer Support
+    - File Sharing
   severity: Significant incident
   leverage: Spoofing; Software installation; Elevation of privilege; Information Disclosure; Infrastructure Compromise
   impact: Reputational Damages; Data Breach; Identity Theft; Business disruption
@@ -114,13 +124,3 @@ threat:
     to left using a Unicode character that causes the text that follows it 
     to be displayed in reverse, this method is used to blend the real file 
     extension with the file name.
-  surface:
-    - Mobile
-    - Windows
-    - Microsoft::Microsoft 365
-    - Mobile::Android
-    - Mobile::iOS
-    - Email
-    - Windows::Desktop
-    - Customer Support
-    - File Sharing

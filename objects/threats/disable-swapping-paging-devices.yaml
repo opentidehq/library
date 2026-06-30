@@ -24,6 +24,13 @@ threat:
     to modify or disable the system paging or swap settings. 
     They may also need to leverage local management tools or scripts 
     to carry out these modifications.
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Web Servers
+    - Kerberos
   severity: Significant incident
   leverage: Modify configuration; Denial of Service; Elevation of privilege
   impact: Business disruption; Impairement; Reputational Damages
@@ -62,10 +69,3 @@ threat:
     ```
     This one disable all swap spaces and remove swap references from `/etc/fstab`, 
     ensuring the change persists on reboot.
-  surface:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
-    - Web Servers
-    - Kerberos

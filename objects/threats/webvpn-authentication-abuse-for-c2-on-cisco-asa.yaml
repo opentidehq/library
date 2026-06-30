@@ -38,6 +38,10 @@ threat:
     not adequately validate or sanitise crafted authentication requests,
     allowing arbitrary data to be embedded in standard authentication
     fields like device-type within the XML structure.
+  surface:
+    - Routers
+    - Switches
+    - VPN
   severity: Substantial incident
   leverage: Spoofing; Information Disclosure; Infrastructure Compromise
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
@@ -133,7 +137,3 @@ threat:
     legitimate functionality for malicious purposes makes detection
     challenging and requires deep packet inspection or behavioural
     analysis beyond standard network monitoring.
-  surface:
-    - Routers
-    - Switches
-    - VPN

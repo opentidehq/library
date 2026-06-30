@@ -37,6 +37,10 @@ threat:
     AAA validation routines. This requires prior compromise through
     bootkit deployment that provides the necessary execution context and
     privileges.
+  surface:
+    - Routers
+    - Switches
+    - Kerberos
   severity: Substantial incident
   leverage: Elevation of privilege; Repudiation; Infrastructure Compromise; Tampering
   impact: Lose Capabilities; National Security; Reputational Damages; Data Breach
@@ -135,7 +139,3 @@ threat:
     effectively turning it into an attacker-controlled platform while
     maintaining the appearance of normal operation to administrators and
     security monitoring systems.
-  surface:
-    - Routers
-    - Switches
-    - Kerberos

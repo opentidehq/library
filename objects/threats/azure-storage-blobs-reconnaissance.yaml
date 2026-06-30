@@ -51,6 +51,14 @@ threat:
     enumeration tools or scripts to carry out 
     reconnaissance-especially when misconfigurations or
     public access are present.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Web Servers
+    - Application Layer::HTTP
+    - Container Runtime::Docker
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Information Disclosure; Infrastructure Compromise; Tampering; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
@@ -130,11 +138,3 @@ threat:
     - **Pivoting and Lateral Movement:**  
     Exposed blobs may contain information that allows attackers to pivot to other services 
     or escalate their access within the target environment.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Web Servers
-    - Application Layer::HTTP
-    - Container Runtime::Docker
-    - Azure::Compute::Virtual Machines

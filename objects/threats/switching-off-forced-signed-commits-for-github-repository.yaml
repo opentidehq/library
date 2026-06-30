@@ -23,6 +23,12 @@ threat:
     Requires a GitHub organization, either as SaaS or as an on-prem GitHub 
     instance. Attacker requires admin credentials to change the setting or 
     an exploit to bypass authentication or similar.
+  surface:
+    - Code Repositories::GitHub
+    - Azure
+    - Code Repositories
+    - Development::CI/CD
+    - Remote Access
   severity: Localised incident
   leverage: Dwelling; Infrastructure Compromise; Modify configuration
   impact: Impairement
@@ -35,9 +41,3 @@ threat:
     repository, essentially limiting the attacker from attaining lateral 
     movement or similar objectives, unless the attacker turns off the forced 
     commit policy. 
-  surface:
-    - Code Repositories::GitHub
-    - Azure
-    - Code Repositories
-    - Development::CI/CD
-    - Remote Access

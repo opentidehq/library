@@ -27,6 +27,9 @@ threat:
     Targeted organizations must use an app like Microsoft Authenticator as second
     factor (app taking the code received after successful authentication granted by 
     the victim, the user, in previous step).
+  surface:
+    - Microsoft::Teams
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Identity Theft; Data Breach
@@ -75,6 +78,3 @@ threat:
     legitimate IT staff.
     - Profile pictures and backgrounds are crafted to appear authentic.
     - Attackers exploit the victim's state of confusion and urgency caused by the email bombing.    
-  surface:
-    - Microsoft::Teams
-    - Windows::Desktop

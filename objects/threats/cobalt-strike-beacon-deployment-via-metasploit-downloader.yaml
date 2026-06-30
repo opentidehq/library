@@ -36,6 +36,8 @@ threat:
     executing Cobalt Strike Beacon from attacker-controlled infrastructure. This 
     affects organizations across government, financial services, and IT sectors 
     in multiple countries including Vietnam, El Salvador, Australia, and the Philippines.
+  surface:
+    - Windows::Desktop
   severity: Highly significant incident
   leverage: Elevation of privilege; Information Disclosure; Software installation
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss
@@ -342,5 +344,3 @@ threat:
 
     This threat vector should be considered **CRITICAL** priority for incident response 
     and threat hunting operations.
-  surface:
-    - Windows::Desktop

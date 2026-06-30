@@ -36,18 +36,6 @@ threat:
     - T1566.002
     - T1566.004
   terrain: Sufficient reconnaissance to identify a target account and MFA technologies being used.
-  severity: Moderate incident
-  leverage: Elevation of privilege; Modify configuration; Modify privileges; Spoofing
-  impact: Identity Theft; Impairement
-  viability: Environment dependent
-  description: |-
-    MFA is a technique that requires more than one piece of evidence to authorize the user to 
-    access a resource. If two pieces of evidence are needed to verify, this approach is called 2FA.
-    The difference between 2FA and MFA is that 2FA requires only two factors; on the other hand,
-    MFA can add more layers until the login attempts do not seem suspicious anymore.
-
-    A MFA bypass is a broad term referring to an attack method where a cybercriminal 
-    navigates around MFA requirements to gain unauthorized access to an account.
   surface:
     - Mobile
     - Mobile::Android
@@ -60,3 +48,15 @@ threat:
     - Windows::Desktop
     - Customer Support
     - Entra ID
+  severity: Moderate incident
+  leverage: Elevation of privilege; Modify configuration; Modify privileges; Spoofing
+  impact: Identity Theft; Impairement
+  viability: Environment dependent
+  description: |-
+    MFA is a technique that requires more than one piece of evidence to authorize the user to 
+    access a resource. If two pieces of evidence are needed to verify, this approach is called 2FA.
+    The difference between 2FA and MFA is that 2FA requires only two factors; on the other hand,
+    MFA can add more layers until the login attempts do not seem suspicious anymore.
+
+    A MFA bypass is a broad term referring to an attack method where a cybercriminal 
+    navigates around MFA requirements to gain unauthorized access to an account.

@@ -25,6 +25,12 @@ threat:
   terrain: |-
     Threat actor deletes an entry in the registry value, called SD value
     (Security Descriptor) to hide presence of running task in Task Scheduler.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers
+    - Microsoft::System Center
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Elevation of privilege
   impact: Impairement
@@ -56,9 +62,3 @@ threat:
     Process Explorer to identify and remove these hidden scheduled tasks, as
     well as other forms of malware that use security descriptors for defense
     evasion.
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Web Servers
-    - Microsoft::System Center

@@ -38,6 +38,26 @@ threat:
     An adversary is looking to exploit native system applications
     or to use enumeration external tools in an attempt to find
     an entry network point.
+  surface:
+    - Industrial IoT::IoT Gateways
+    - Mobile
+    - Active Directory
+    - AWS::Networking::VPC
+    - Azure
+    - Windows
+    - Linux
+    - macOS
+    - Web Servers::Apache HTTP
+    - Mobile::Android
+    - Mobile::iOS
+    - Routers
+    - Windows::Desktop
+    - Firewalls
+    - Data Link Layer::VLAN
+    - Switches
+    - Customer Support
+    - Printers::Multi-Function Peripherals
+    - Web Servers
   severity: Localised incident
   leverage: Dwelling; Infrastructure Compromise; Tampering
   impact: Impairement; Lose Capabilities; Nuisance
@@ -91,23 +111,3 @@ threat:
 
     Example for such activity could be scan port in a specific ip and
     port ranges.
-  surface:
-    - Industrial IoT::IoT Gateways
-    - Mobile
-    - Active Directory
-    - AWS::Networking::VPC
-    - Azure
-    - Windows
-    - Linux
-    - macOS
-    - Web Servers::Apache HTTP
-    - Mobile::Android
-    - Mobile::iOS
-    - Routers
-    - Windows::Desktop
-    - Firewalls
-    - Data Link Layer::VLAN
-    - Switches
-    - Customer Support
-    - Printers::Multi-Function Peripherals
-    - Web Servers

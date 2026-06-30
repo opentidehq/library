@@ -25,6 +25,12 @@ threat:
     credentials with permissions for remote task creation. Requires that
     Windows firewall on the remote endpoint allows “Remote Scheduled Tasks 
     Management”).
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Modify configuration; Software installation
   impact: Impairement
@@ -54,9 +60,3 @@ threat:
     Using the task Scheduler, as example: > "Connect to Another Computer", 
     provide the IP address of the remote system and select "Connect as another 
     user" > "Set User".
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers

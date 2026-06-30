@@ -27,6 +27,12 @@ threat:
     An adversary has gained control over a Windows endpoint and has privileges 
     to create scheduled tasks in order to connect to adversarial 
     infrastructure.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Elevation of privilege
   impact: Impairement
@@ -44,9 +50,3 @@ threat:
     connection. The exact details of how the task is set up would depend on the 
     specific adversarial infrastructure being used and the tools and protocols 
     available for connecting to it.
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers

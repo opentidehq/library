@@ -31,6 +31,14 @@ threat:
       vector: b0d6bf74-b204-4a48-9509-4499ed795771
       description: 'technique used to steal browser cookies '
   terrain: User must click on a malicious link sent via email by attackers
+  surface:
+    - Azure
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - Microsoft::Exchange
+    - Application Layer::HTTP
+    - Windows::Desktop
+    - OAuth / OIDC
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing; Modify privileges; Infrastructure Compromise
   impact: Identity Theft; Impairement; Reputational Damages
@@ -102,11 +110,3 @@ threat:
 
     Once the user accepts the message, their data becomes accessible to the attacker.
     This can include email, contacts, forwarding rules, files, notes, profile, etc.
-  surface:
-    - Azure
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - Microsoft::Exchange
-    - Application Layer::HTTP
-    - Windows::Desktop
-    - OAuth / OIDC

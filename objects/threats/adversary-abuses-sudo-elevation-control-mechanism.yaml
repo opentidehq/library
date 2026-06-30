@@ -21,6 +21,9 @@ threat:
   att&ck:
     - T1548
   terrain: Threat actor needs root level access to edit the sudoers file.
+  surface:
+    - Linux
+    - Remote Access
   severity: Significant incident
   leverage: Elevation of privilege; Dwelling; Infrastructure Compromise
   impact: Business disruption; Data Breach; Identity Theft; Impairement
@@ -74,6 +77,3 @@ threat:
     Reference: https://gtfobins.github.io/gtfobins/pkexec/
 
     sudo pkexec /bin/sh
-  surface:
-    - Linux
-    - Remote Access

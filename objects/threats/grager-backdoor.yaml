@@ -25,6 +25,11 @@ threat:
   terrain: |-
     A threat actor uses vulnerable Microsoft Graph APIs to deploy
     the malware and contact the C&C server.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
+    - Remote Access
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Elevation of privilege; Information Disclosure; Software installation
   impact: Business disruption; Impairement; Data Breach; Reputational Damages
@@ -52,8 +57,3 @@ threat:
     traditional network security tools and evade detection. Grager employs
     various stealth techniques, such as obfuscation and anti-analysis methods,
     to evade antivirus software and remain undetected.  
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
-    - Remote Access

@@ -36,6 +36,9 @@ threat:
   terrain: |-
     Threat actors need to deliver on the host a file that uses NTFS extended
     attributes.
+  surface:
+    - Windows
+    - Windows::Desktop
   severity: Localised incident
   leverage: Dwelling; Elevation of privilege
   impact: Business disruption; Impairement
@@ -77,6 +80,3 @@ threat:
       operating system is another common used technique. Using these type of
       vulnerabilities a threat actor can set attributes on files and folders
       without being detected.        
-  surface:
-    - Windows
-    - Windows::Desktop

@@ -34,6 +34,8 @@ threat:
     Lua scripts that perform memory allocation and shellcode injection. Commonly seen 
     in supply chain attacks where malicious files are dropped to application data 
     directories (%APPDATA%) to appear as legitimate software components.
+  surface:
+    - Windows::Desktop
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Tampering; Repudiation
   impact: Data Breach; Business disruption; Reputational Damages; Monetary Loss
@@ -266,5 +268,3 @@ threat:
     - MITRE ATT&CK: T1059.010 (Command and Scripting Interpreter: Lua)
     - MITRE ATT&CK: T1055.001 (Process Injection: Dynamic-link Library Injection)
     - MITRE ATT&CK: T1106 (Native API)
-  surface:
-    - Windows::Desktop

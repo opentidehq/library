@@ -26,6 +26,16 @@ threat:
     the automation account’s managed identity. This access is typically achieved by 
     modifying automation runbooks or exploiting misconfigured permissions to execute 
     code that retrieves the JWT from the managed identity endpoint.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Entra ID
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -63,13 +73,3 @@ threat:
     confusion vulnerabilities.
     - **Azure APIs**: Native tools like Az PowerShell modules can abuse valid JWTs for 
     resource enumeration.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Entra ID
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Application Layer::HTTP

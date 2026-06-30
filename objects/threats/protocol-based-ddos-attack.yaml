@@ -23,11 +23,6 @@ threat:
   att&ck:
     - T1498.001
   terrain: Anything with Internet connectivity
-  severity: Significant incident
-  leverage: Denial of Service
-  impact: Business disruption; Operating costs; Reputational Damages
-  viability: Almost certain
-  description: Threat actors may wish to cause business disruption, media/public attention, or to use the pretense of business disruption to disguise other activities. Any DDoS attack should always be followed up with other DFIR activities to determine if the attack was meant to distract from something else. DDoS can distract by pulling attention away, or even by spooling out log files so that relevant entries are overwritten.
   surface:
     - AWS
     - Azure
@@ -44,3 +39,8 @@ threat:
     - Serverless
     - Remote Access
     - Web Servers
+  severity: Significant incident
+  leverage: Denial of Service
+  impact: Business disruption; Operating costs; Reputational Damages
+  viability: Almost certain
+  description: Threat actors may wish to cause business disruption, media/public attention, or to use the pretense of business disruption to disguise other activities. Any DDoS attack should always be followed up with other DFIR activities to determine if the attack was meant to distract from something else. DDoS can distract by pulling attention away, or even by spooling out log files so that relevant entries are overwritten.

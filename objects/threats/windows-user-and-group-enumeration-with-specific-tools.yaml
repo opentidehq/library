@@ -57,6 +57,9 @@ threat:
   terrain: |-
     Adversaries can take advantage of already compromised system (Windows or 
     Linux OS or OSX) to run commands.
+  surface:
+    - Windows
+    - Active Directory
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Identity Theft
@@ -84,6 +87,3 @@ threat:
     tools like net view, net computers, and ping to locate network shares and domain controllers. 
     For lateral movement, they rely on PowerShell, WMI, Remote Management, RDP, and third-party 
     tool Bloodhound.
-  surface:
-    - Windows
-    - Active Directory

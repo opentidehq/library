@@ -33,6 +33,13 @@ threat:
     - T1112
     - T1055
   terrain: An attacker has already compromised a Windows endpoint.
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Modify configuration; Tampering
   impact: Nuisance; Impairement; Lose Capabilities
@@ -66,10 +73,3 @@ threat:
     has so called threads or sub-processes related to the main one.
     A change in one service or its thread can impact or compromise
     some of the related ones.    
-  surface:
-    - Windows
-    - Active Directory
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers

@@ -28,6 +28,13 @@ threat:
     Threat actor must have sufficient privileges to modify environment variables or 
     system configurations and deploy malicious libraries in the filesystem in order 
     to hijack library calls via LD_PRELOAD.
+  surface:
+    - Linux
+    - Container Runtime::Docker
+    - Orchestration::Kubernetes
+    - Windows::Desktop
+    - Web Servers
+    - Log Management
   severity: Significant incident
   leverage: Elevation of privilege; Modify configuration; Software installation; Infrastructure Compromise; Alter behavior
   impact: Data Breach; Business disruption; Monetary Loss; Reputational Damages
@@ -59,10 +66,3 @@ threat:
 
     This indicates that a potentially unauthorized library (`/tmp/malicious.so`) is being 
     force-loaded into `anyApp`.  
-  surface:
-    - Linux
-    - Container Runtime::Docker
-    - Orchestration::Kubernetes
-    - Windows::Desktop
-    - Web Servers
-    - Log Management

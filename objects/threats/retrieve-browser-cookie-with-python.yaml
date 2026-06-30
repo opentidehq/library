@@ -31,6 +31,13 @@ threat:
     Attacker must compromise a user endpoint and exfiltrate the browser cookies.
     Cookies can be found on disk, in the process memory of the browser, and in
     network traffic to remote systems.
+  surface:
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Entra ID
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement
@@ -106,10 +113,3 @@ threat:
       public\_html = urllib.request.urlopen(url).read()
       opener = urllib.request.build\_opener(urllib.request.HTTPCookieProcessor(cj))
       
-  surface:
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Entra ID

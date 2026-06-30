@@ -25,6 +25,22 @@ threat:
     to create or modify Automation Accounts and runbooks. This typically means access 
     to roles like Owner, Contributor, or Automation Operator within the Azure subscription 
     or resource group.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Linux
+    - AWS::Storage
+    - Entra ID
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Application Layer::HTTP
+    - AWS::Compute::EC2
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Kerberos
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; New Accounts; Modify configuration; Modify privileges; Modify data; Software installation
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Competitive disadvantage; Lose Capabilities
@@ -71,19 +87,3 @@ threat:
     - Beyond runbooks, attackers can backdoor the packages and runtime environments 
     (modules and Python packages) that support Automation Accounts. Malicious code can 
     be embedded in these components, providing even deeper persistence.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - Linux
-    - AWS::Storage
-    - Entra ID
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Application Layer::HTTP
-    - AWS::Compute::EC2
-    - Database Management::PostgreSQL
-    - Database Management::MongoDB
-    - Kerberos

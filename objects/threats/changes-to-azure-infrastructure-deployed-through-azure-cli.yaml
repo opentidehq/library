@@ -21,20 +21,6 @@ threat:
   terrain: |-
     A threat actor controls either privileged credentials or a service 
     principal (SPN) and an endpoint from which Azure CLI can be run.
-  severity: Localised incident
-  leverage: Modify configuration
-  impact: Data Breach; Identity Theft; Impairement; Lose Capabilities; Nuisance; Operating costs
-  viability: Almost certain
-  description: |-
-    A threat actor in control of the prerequisites may attempt to use the Azure
-    CLI to perform changes either to the endpoint from which the CLI is 
-    accessed or on remote infrastructure, user accounts, service principals, 
-    or configurations. 
-
-    A threat actor can only perform changes that are allowed in the scopes of
-    credentials, temporary credentials, or service principals that the threat 
-    actor has control of, barring usage of a vulnerability in Azure to allow
-    more than that.
   surface:
     - Azure
     - Remote Access
@@ -53,3 +39,17 @@ threat:
     - Routers
     - Azure::Compute::Virtual Machines
     - Windows::Desktop
+  severity: Localised incident
+  leverage: Modify configuration
+  impact: Data Breach; Identity Theft; Impairement; Lose Capabilities; Nuisance; Operating costs
+  viability: Almost certain
+  description: |-
+    A threat actor in control of the prerequisites may attempt to use the Azure
+    CLI to perform changes either to the endpoint from which the CLI is 
+    accessed or on remote infrastructure, user accounts, service principals, 
+    or configurations. 
+
+    A threat actor can only perform changes that are allowed in the scopes of
+    credentials, temporary credentials, or service principals that the threat 
+    actor has control of, barring usage of a vulnerability in Azure to allow
+    more than that.

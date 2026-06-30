@@ -26,6 +26,11 @@ threat:
     running in a highly privileged container, which means a host running 
     highly privileged containers with CAP_NET_ADMIN or CAP_SYS_MODULE 
     capabilities or Kubernetes pods running in privileged mode.
+  surface:
+    - Embedded
+    - Linux
+    - Orchestration::Kubernetes
+    - Virtualisation::VMware ESXi
   severity: Significant incident
   leverage: Dwelling; Infrastructure Compromise; Repudiation; Software installation
   impact: Data Breach; Impairement; Lose Capabilities
@@ -39,8 +44,3 @@ threat:
     An injected kernel module is just code execution, and can in theory do 
     more or less anything, but threat actors mostly use this for dwelling and 
     for hiding their presence on a system.
-  surface:
-    - Embedded
-    - Linux
-    - Orchestration::Kubernetes
-    - Virtualisation::VMware ESXi

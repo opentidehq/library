@@ -40,6 +40,10 @@ threat:
   terrain: |-
     Requires an initial access to a Linux system with sufficient
     rights to execute commands.
+  surface:
+    - Linux
+    - Windows::Desktop
+    - Customer Support
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach
@@ -102,7 +106,3 @@ threat:
     - `Mayhem`: This is a malware that can collect user data on Linux, including
       login credentials and sensitive information, and uses it for malicious
       activities.
-  surface:
-    - Linux
-    - Windows::Desktop
-    - Customer Support

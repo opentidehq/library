@@ -258,6 +258,30 @@ def _surface_values_from_labels(labels: dict[str, list[str]]) -> list[str]:
     return deduped
 
 
+def _reorder_threat_block(threat: dict[str, Any]) -> dict[str, Any]:
+    """Place surface immediately after terrain; preserve all other key order."""
+    keys = list(threat.keys())
+    if "terrain" not in keys:
+        return threat
+
+    terrain_idx = keys.index("terrain")
+    before = keys[:terrain_idx]
+    after = [key for key in keys[terrain_idx + 1 :] if key != "surface"]
+
+    ordered_keys = [*before, "terrain"]
+    if "surface" in threat:
+        ordered_keys.append("surface")
+    ordered_keys.extend(after)
+    return {key: threat[key] for key in ordered_keys}
+
+
+def reorder_threat(data: dict[str, Any]) -> dict[str, Any]:
+    threat = data.get("threat")
+    if isinstance(threat, dict):
+        data["threat"] = _reorder_threat_block(threat)
+    return data
+
+
 def migrate_threat(data: dict[str, Any], *, allowed: set[str], source_name: str = "") -> tuple[dict[str, Any], list[str]]:
     issues: list[str] = []
     threat = data.get("threat")
@@ -313,7 +337,21 @@ def migrate_threat(data: dict[str, Any], *, allowed: set[str], source_name: str 
     threat["surface"] = surfaces
     for deprecated in ("domains", "platforms", "targets"):
         threat.pop(deprecated, None)
+    data["threat"] = _reorder_threat_block(threat)
     return data, issues
+
+
+def reorder_tree(threats_dir: Path, *, dry_run: bool = False) -> int:
+    count = 0
+    for path in sorted(threats_dir.glob("*.yaml")):
+        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        if not isinstance(data, dict):
+            continue
+        reordered = reorder_threat(data)
+        if not dry_run:
+            _dump_yaml(path, reordered)
+        count += 1
+    return count
 
 
 def migrate_tree(
@@ -360,12 +398,21 @@ def main() -> None:
         help="surface.vocab.toml for validation",
     )
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--reorder-only",
+        action="store_true",
+        help="Only reorder threat block keys (surface after terrain); do not migrate",
+    )
     args = parser.parse_args()
 
     threats_dir = args.threats_dir.resolve()
     surface_vocab = args.surface_vocab.resolve()
     if not threats_dir.is_dir():
         raise SystemExit(f"Threats directory not found: {threats_dir}")
+    if args.reorder_only:
+        count = reorder_tree(threats_dir, dry_run=args.dry_run)
+        print(f"Reordered {count} threats")
+        return
     if not surface_vocab.is_file():
         raise SystemExit(f"Surface vocabulary not found: {surface_vocab}")
 

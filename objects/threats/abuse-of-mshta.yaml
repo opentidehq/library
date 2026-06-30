@@ -33,6 +33,11 @@ threat:
   terrain: |-
     Adversary must have at least user-level code execution privileges on a Windows host 
     where Mshta is available to run.
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Web Servers
   severity: Significant incident
   leverage: Spoofing; Elevation of privilege; Software installation
   impact: Data Breach; Reputational Damages; Business disruption
@@ -65,8 +70,3 @@ threat:
 
     Once executed, mshta.exe runs with the same privileges as the invoking user 
     (or higher, if misconfigurations or stolen credentials allow for elevated privileges).
-  surface:
-    - Windows
-    - Active Directory
-    - Windows::Desktop
-    - Web Servers

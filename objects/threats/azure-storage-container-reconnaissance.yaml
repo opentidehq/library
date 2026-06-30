@@ -47,6 +47,12 @@ threat:
     Azure storage containers by scanning for storage account names and container names, 
     often using automated tools or scripts, to identify open containers that may expose 
     sensitive data.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Web Servers
+    - Application Layer::HTTP
   severity: Moderate incident
   leverage: Information Disclosure; Infrastructure Compromise; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Business disruption
@@ -89,9 +95,3 @@ threat:
     or enumerate access permissions.
     - **Search Engine Indexing**: Attackers use indexed URLs from search engines to 
     find publicly accessible containers.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Web Servers
-    - Application Layer::HTTP

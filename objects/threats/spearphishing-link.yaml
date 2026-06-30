@@ -35,6 +35,16 @@ threat:
     to compromise an email or messaging system trough other means, to use OSINT,
     scouring Social Media or glean personal information from the user's online
     presence.
+  surface:
+    - Mobile
+    - Windows
+    - Microsoft::Microsoft 365
+    - Mobile::Android
+    - Mobile::iOS
+    - Code Repositories::GitHub
+    - Code Repositories::GitLab
+    - Email
+    - Windows::Desktop
   severity: Significant incident
   leverage: Spoofing; Software installation; Elevation of privilege; Information Disclosure; Tampering; Infrastructure Compromise
   impact: Reputational Damages; Data Breach; Identity Theft; Business disruption; Impairement; Operating costs
@@ -133,13 +143,3 @@ threat:
     link redirected a victim first to malicious HubSpot Free Forms and then
     to credential harvesting pages mimicking Microsoft Azure and Outlook Web
     App (OWA) login portals ref [d].      
-  surface:
-    - Mobile
-    - Windows
-    - Microsoft::Microsoft 365
-    - Mobile::Android
-    - Mobile::iOS
-    - Code Repositories::GitHub
-    - Code Repositories::GitLab
-    - Email
-    - Windows::Desktop

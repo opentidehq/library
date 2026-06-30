@@ -42,6 +42,15 @@ threat:
     Usually the threat actors are buying as much as possible domains
     on a bulk with impersonation goal, social engineering or just spreading
     disinformation.
+  surface:
+    - Mobile
+    - Industrial IoT::IoT Gateways
+    - Windows
+    - Linux
+    - Customer Support
+    - Windows::Desktop
+    - Email
+    - Web Servers
   severity: Moderate incident
   leverage: Spoofing; Infrastructure Compromise
   impact: Impairement; Asset and fraud; Identity Theft
@@ -87,12 +96,3 @@ threat:
     operation targeting the European Union (EU) and other geopolitical
     actors. This campaign exploits political, economic, and social
     divisions within the EU and its member states. 
-  surface:
-    - Mobile
-    - Industrial IoT::IoT Gateways
-    - Windows
-    - Linux
-    - Customer Support
-    - Windows::Desktop
-    - Email
-    - Web Servers

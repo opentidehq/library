@@ -35,6 +35,11 @@ threat:
   terrain: |-
     An adversary has gained control over a Windows endpoint and has privileges
     to create scheduled tasks.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers
   severity: Moderate incident
   leverage: Elevation of privilege; Dwelling
   impact: Impairement
@@ -53,8 +58,3 @@ threat:
     scheduled task is created, it will run the specified binary at the
     designated time. It is important to regularly check and disable any
     suspicious scheduled tasks to protect against this type of attack.
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Web Servers

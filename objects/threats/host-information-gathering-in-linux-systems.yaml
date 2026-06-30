@@ -21,6 +21,9 @@ threat:
   att&ck:
     - T1082
   terrain: A threat actor needs an initial access to a Linux system.
+  surface:
+    - Linux
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach; Identity Theft
@@ -88,6 +91,3 @@ threat:
       gathering on Linux systems. This tool can be used for network scanning and
       collection of information, for example scan of IP ranges, network and
       domain names ref [4]. 
-  surface:
-    - Linux
-    - Windows::Desktop

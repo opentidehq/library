@@ -29,6 +29,11 @@ threat:
   terrain: |-
     Adversary must have administrative privileges on Windows systems within 
     the enterprise network.
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Web Servers
   severity: Significant incident
   leverage: Modify configuration; Modify data; Tampering; New Accounts
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs
@@ -68,8 +73,3 @@ threat:
     Using shadow.exe, an attacker can connect to an active RDP session on target-server, 
     potentially allowing them to observe or control the session without the user's knowledge. 
     This can be used to capture sensitive information or further compromise the system.
-  surface:
-    - Windows
-    - Active Directory
-    - Windows::Desktop
-    - Web Servers

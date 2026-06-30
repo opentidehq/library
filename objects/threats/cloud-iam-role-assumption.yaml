@@ -26,6 +26,11 @@ threat:
     and now aim at escalating privileges while moving laterally.
     The credentials they gained access to also must have sufficient
     privileges to allow role assumption.
+  surface:
+    - AWS::Security::IAM
+    - Azure::Security::Entra ID
+    - Container Runtime::Docker
+    - Azure::Compute::Virtual Machines
   severity: Substantial incident
   leverage: Modify privileges
   impact: Data Breach
@@ -40,8 +45,3 @@ threat:
     more powerful role, escalate privileges and eventually move further
     in the cloud to achieve objectives. This can be particularly
     impactful if cross account roles are leveraged.
-  surface:
-    - AWS::Security::IAM
-    - Azure::Security::Entra ID
-    - Container Runtime::Docker
-    - Azure::Compute::Virtual Machines

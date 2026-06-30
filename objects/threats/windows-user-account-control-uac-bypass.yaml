@@ -38,6 +38,13 @@ threat:
   terrain: |-
     A threat actor uses vulnerabilities in software or applications running on
     the system to circumvent UAC (User Account Control) protection mechanism.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
+    - Kerberos
+    - Microsoft::System Center
+    - Application Layer::WMI
   severity: Substantial incident
   leverage: Elevation of privilege; Infrastructure Compromise; Dwelling; Tampering; Software installation
   impact: Lose Capabilities; Business disruption; Impairement; Nuisance; Reputational Damages
@@ -105,10 +112,3 @@ threat:
     Another technique to bypass the UAC could be achieved by malicious software
     injected into a trusted process to gain elevated privileges without prompting
     a user.
-  surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
-    - Kerberos
-    - Microsoft::System Center
-    - Application Layer::WMI

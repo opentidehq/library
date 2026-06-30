@@ -56,6 +56,16 @@ threat:
     Adversaries must steal Azure Storage Account keys, Shared Access Signatures (SAS), 
     or Azure AD credentials that have permissions to access file shares. This could 
     be through phishing, credential dumping, or leveraging misconfigurations
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Linux
+    - macOS
+    - AWS::Storage
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Modify configuration
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Lose Capabilities
@@ -125,13 +135,3 @@ threat:
 
     Once mounted, the adversary can read, write, delete, or exfiltrate files directly from the 
     file share as though it were a local drive.
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - Linux
-    - macOS
-    - AWS::Storage
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Application Layer::HTTP

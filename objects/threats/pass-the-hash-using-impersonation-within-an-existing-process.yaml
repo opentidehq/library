@@ -49,6 +49,13 @@ threat:
 
     Pth works on windows computers of every kind, however later versions 
     natively have some level of defenses/mitigations built in.
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers
+    - Kerberos
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Spoofing; Tampering; Repudiation
   impact: Identity Theft; Impairement; Data Breach
@@ -78,10 +85,3 @@ threat:
     Mimikatz sekurlsa module with the /impersonate option implements this
     particular approach as an option alongside other more known NTLM based
     procedures.
-  surface:
-    - Windows
-    - OAuth / OIDC
-    - Remote Access
-    - Windows::Desktop
-    - Web Servers
-    - Kerberos

@@ -27,6 +27,13 @@ threat:
   terrain: |-
     Adversary must have the capability to run network configuration commands on 
     endpoints or servers, potentially with elevated privileges
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Web Servers
+    - Switches
   severity: Substantial incident
   leverage: Information Disclosure; Infrastructure Compromise; Dwelling
   impact: Data Breach; Business disruption; Reputational Damages
@@ -72,10 +79,3 @@ threat:
       - `route` to view or modify the IP routing table.  
       - `iptables`, `firewall-cmd`, `ufw` to query or adjust firewall settings.  
       - `dig` to query DNS servers and display DNS records.
-  surface:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
-    - Web Servers
-    - Switches

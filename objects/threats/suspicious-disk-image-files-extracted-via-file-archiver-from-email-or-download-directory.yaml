@@ -37,6 +37,12 @@ threat:
   terrain: |-
     Adversary requires the user to open the disk image file and execute the malicious content within, 
     potentially bypassing security warnings.
+  surface:
+    - macOS
+    - Linux
+    - Windows
+    - Windows::Desktop
+    - Email
   severity: Significant incident
   leverage: Information Disclosure; Software installation; Spoofing; Tampering
   impact: Data Breach; Identity Theft
@@ -56,9 +62,3 @@ threat:
     Users are prone to feel secure when they select files with familiar types 
     and might not see the danger in mounting and opening disk images coming 
     from unverified sources.
-  surface:
-    - macOS
-    - Linux
-    - Windows
-    - Windows::Desktop
-    - Email

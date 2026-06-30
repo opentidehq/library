@@ -31,6 +31,12 @@ threat:
   terrain: |-
     Adversaries can abuse iOS or Android devices which are vulnerable
     to a zero-click or zero-day exploitation, without user intervention.
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Windows::Desktop
+    - Mobile::iPadOS
   severity: Significant incident
   leverage: Alter behavior; Information Disclosure; Modify configuration; Modify data; Software installation; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages
@@ -56,9 +62,3 @@ threat:
     web searches, passwords, call logs and social media posts.
     It also has the capability to activate cameras and microphones for real-time surveillance
     without the permission or knowledge of the user.  
-  surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Windows::Desktop
-    - Mobile::iPadOS

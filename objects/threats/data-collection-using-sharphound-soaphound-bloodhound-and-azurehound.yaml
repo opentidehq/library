@@ -44,6 +44,24 @@ threat:
   terrain: |-
     Attackers need to establish an initial presence within the target environment, in 
     order to gather sufficient permissions to execute the data collection tools.
+  surface:
+    - Embedded
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Active Directory
+    - Azure::Compute::Kubernetes Service
+    - Linux
+    - Entra ID
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Email
+    - Application Layer::HTTP
+    - Container Runtime::Docker
+    - AWS::Compute::EC2
+    - Security::SAML
+    - Kerberos
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Catastrophic Loss
@@ -136,21 +154,3 @@ threat:
     - **Computer Accounts**: Details about machines in the domain.
     - **ACLs/Permissions**: Who has rights over what objects.
     - **Certificate Authority Info**: For potential abuse in AD CS attacks.
-  surface:
-    - Embedded
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - Active Directory
-    - Azure::Compute::Kubernetes Service
-    - Linux
-    - Entra ID
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Email
-    - Application Layer::HTTP
-    - Container Runtime::Docker
-    - AWS::Compute::EC2
-    - Security::SAML
-    - Kerberos

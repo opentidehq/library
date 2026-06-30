@@ -44,6 +44,10 @@ threat:
   terrain: |-
     Adversary must have administrative privileges on Windows systems within 
     the enterprise network.
+  surface:
+    - Active Directory
+    - Windows
+    - Windows::Desktop
   severity: Localised incident
   leverage: Modify configuration; Modify privileges; Software installation
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs
@@ -90,7 +94,3 @@ threat:
 
     Third party tools or software can be used to bypass the AppLocker policy. However, this is conditional, as it
     requires the system to have installed these tools on it. An example would be using Python or Perl.
-  surface:
-    - Active Directory
-    - Windows
-    - Windows::Desktop

@@ -36,6 +36,13 @@ threat:
     in an attempt to deceive a victim about their identity and
     true nature of the file. The spear-phishing attachment provides
     a threat actor an initial access to the system.
+  surface:
+    - Windows
+    - AWS
+    - Windows::Desktop
+    - Email
+    - Customer Support
+    - Remote Access
   severity: Localised incident
   leverage: Dwelling; Tampering; Elevation of privilege; Infrastructure Compromise
   impact: Identity Theft; Impairement; Business disruption
@@ -64,10 +71,3 @@ threat:
     This allows the adversary to potentially deploy additional payloads,
     execute local reconnaissance activities, and to redirect targeted users
     to credential harvesting sites.  
-  surface:
-    - Windows
-    - AWS
-    - Windows::Desktop
-    - Email
-    - Customer Support
-    - Remote Access

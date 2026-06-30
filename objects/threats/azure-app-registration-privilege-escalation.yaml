@@ -43,6 +43,14 @@ threat:
     Adversaries need access to an identity (user account or service principal) with 
     sufficient permissions to create, modify, or assign roles to app registrations or 
     service principals.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Entra ID
+    - Web Servers
+    - Application Layer::HTTP
+    - Serverless
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing; Tampering; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities
@@ -83,11 +91,3 @@ threat:
     - **Step 3**: Use the app’s client ID/secret to authenticate and execute privileged 
     operations (e.g., adding users to admin groups).  
     - **Step 4**: Escalate to **Global Admin** via *RoleManagement.ReadWrite.Directory*.  
-  surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Entra ID
-    - Web Servers
-    - Application Layer::HTTP
-    - Serverless

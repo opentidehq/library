@@ -30,6 +30,12 @@ threat:
   terrain: |-
     Adversary must have access to internet-facing IP space to scan for live Azure VMs 
     and network interfaces.
+  surface:
+    - Azure
+    - Azure::Compute::Virtual Machines
+    - Switches
+    - Web Servers
+    - AWS::Storage
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Denial of Service; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Business disruption
@@ -76,9 +82,3 @@ threat:
     are subject to constant automated attacks and vulnerability scans.
     - **Potential Lateral Movement:** Compromising one public resource can serve as 
     a foothold to move deeper into the Azure environment.
-  surface:
-    - Azure
-    - Azure::Compute::Virtual Machines
-    - Switches
-    - Web Servers
-    - AWS::Storage

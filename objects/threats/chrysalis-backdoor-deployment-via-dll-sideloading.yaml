@@ -36,6 +36,8 @@ threat:
     affecting government agencies, financial services, IT service providers, and 
     individual developers. The malicious files were deployed to Windows systems via 
     compromised software updates.
+  surface:
+    - Windows::Desktop
   severity: Highly significant incident
   leverage: Elevation of privilege; Tampering; Information Disclosure; Repudiation
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss
@@ -320,5 +322,3 @@ threat:
 
     Organizations affected by the Notepad++ supply chain attack should treat this as a 
     **CRITICAL** threat requiring immediate investigation, containment, and remediation.
-  surface:
-    - Windows::Desktop

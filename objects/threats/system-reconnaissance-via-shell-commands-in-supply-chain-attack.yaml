@@ -36,6 +36,8 @@ threat:
     of the compromised host and determine next steps for lateral movement or data 
     exfiltration. The reconnaissance commands are executed through cmd.exe with output 
     redirection to text files stored in seemingly legitimate application directories.
+  surface:
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach; Business disruption
@@ -403,5 +405,3 @@ threat:
     analysis provides robust detection capabilities against this threat vector. Organizations 
     should prioritize detection of these patterns as part of their broader supply chain 
     risk management strategy.
-  surface:
-    - Windows::Desktop

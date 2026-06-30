@@ -20,6 +20,14 @@ threat:
   terrain: |-
     Software development performed internally need to rely on
     external dependencies, and sources are not rigorously checked.
+  surface:
+    - Azure
+    - AWS
+    - Container Runtime::Docker
+    - Microsoft
+    - Development::CI/CD
+    - Code Repositories
+    - Development
   severity: Substantial incident
   leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure
   impact: Data Breach; Impairement
@@ -31,11 +39,3 @@ threat:
     victim's applications. They may use sophisticated automation
     to appear convincing and fool the target. Once delivered, the package may
     contain any payload, from crypto mining, to credential theft, command and control etc.
-  surface:
-    - Azure
-    - AWS
-    - Container Runtime::Docker
-    - Microsoft
-    - Development::CI/CD
-    - Code Repositories
-    - Development

@@ -38,6 +38,14 @@ threat:
   terrain: |-
     Vulnerable SharePoint server allowing unauthenticated requests leading to
     remote code execution.
+  surface:
+    - Microsoft::SharePoint
+    - Windows
+    - Web Servers
+    - Customer Support
+    - Windows::Desktop
+    - Remote Access
+    - Microsoft::System Center
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Information Disclosure; Spoofing; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages
@@ -77,11 +85,3 @@ threat:
     customers using all supported versions of SharePoint affected by these two
     vulnerabilities. For more information about patching review the customer
     guidance for SharePoint vulnerability ref [3],[4].   
-  surface:
-    - Microsoft::SharePoint
-    - Windows
-    - Web Servers
-    - Customer Support
-    - Windows::Desktop
-    - Remote Access
-    - Microsoft::System Center
