@@ -32,13 +32,13 @@ threat:
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
       description: MFA bypass technique
-  terrain:
-    - Microsoft::Microsoft 365
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Entra ID
-    - Mobile
+  terrain: |-
+    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
+    Cookies can be found on disk, in the process memory of the browser, and in network
+    traffic to remote systems.
+
+    Additionally, other applications on the user endpoint machine might store sensitive
+    authentication cookies in memory (e.g. apps which authenticate to cloud services).
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft
@@ -67,10 +67,10 @@ threat:
 
     Because such cookie is also created and stored on a web browser when MFA is in play,
     the same technique can handily be used to bypass it.
-
-    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
-    Cookies can be found on disk, in the process memory of the browser, and in network
-    traffic to remote systems.
-
-    Additionally, other applications on the user endpoint machine might store sensitive
-    authentication cookies in memory (e.g. apps which authenticate to cloud services).
+  surface:
+    - Microsoft::Microsoft 365
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Entra ID
+    - Mobile

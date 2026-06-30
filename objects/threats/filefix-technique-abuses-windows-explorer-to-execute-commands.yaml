@@ -28,10 +28,12 @@ threat:
       description: |-
         A threat actor uses native Windows utilities as Windows Explorer to
         execute binaries on the victim's system.
-  terrain:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
+  terrain: |-
+    The attack requires Windows hosts with interactive users who have the
+    ability to open File Explorer or paste into the Explorer address bar.
+    The browser must allow JavaScript to run (standard), and the victim must
+    be able to interactively paste content from the clipboard into the Explorer
+    address bar or other UI (e.g., Run dialog).
   severity: Moderate incident
   leverage: Elevation of privilege; Infrastructure Compromise; Tampering
   impact: Business disruption; Impairement; Lose Capabilities
@@ -70,10 +72,8 @@ threat:
     To the victims, this process appears to be a simple task of opening a shared
     file or folder, making it feel routine and safe. This subtle manipulation
     makes `FileFix` a more stealthy and potentially more dangerous evolution of
-    the `ClickFix` social engineering attack.
-
-    The attack requires Windows hosts with interactive users who have the
-    ability to open File Explorer or paste into the Explorer address bar.
-    The browser must allow JavaScript to run (standard), and the victim must
-    be able to interactively paste content from the clipboard into the Explorer
-    address bar or other UI (e.g., Run dialog).
+    the `ClickFix` social engineering attack. 
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Customer Support

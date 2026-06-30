@@ -29,15 +29,9 @@ threat:
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
       description: MFA bypass technique
-  terrain:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Customer Support
-    - Entra ID
+  terrain: |-
+    Attacker must convince the mobile network operator (e.g. through social networking, forged
+    identification, or insider attacks performed by trusted employees) to issue a new SIM card
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement
@@ -61,6 +55,12 @@ threat:
     Using SMS-based two-factor authentication, mobile application providers send a link or one-time passcode 
     via text to the user's number, now owned by the attackers, to access accounts. The attacker uses the codes
     to login and reset passwords, gaining control of online accounts associated with the user's phone profile.
-
-    Attacker must convince the mobile network operator (e.g. through social networking, forged
-    identification, or insider attacks performed by trusted employees) to issue a new SIM card
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Customer Support
+    - Entra ID

@@ -32,14 +32,10 @@ threat:
     - relation: sequence::succeeds
       vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
       description: Most of malware comes from email attachment and can be executed afterwards
-  terrain:
-    - Windows
-    - Microsoft::Microsoft 365
-    - Microsoft::SharePoint
-    - Microsoft::Outlook
-    - Email
-    - Windows::Desktop
-    - File Sharing
+  terrain: |-
+    Target systems must have Microsoft Office applications installed with macros 
+    enabled or be susceptible to social engineering tactics that prompt users 
+    to enable macros or execute malicious content.
   severity: Moderate incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Software installation
   impact: Data Breach; IP Loss; Identity Theft; Business disruption
@@ -84,7 +80,11 @@ threat:
     - Embedding Malicious Code in Outlook's VBA Project:
     - The attacker adds VBA code to Outlook's VbaProject.otm file.
     This code executes every time Outlook starts, performing actions without the user's knowledge.
-
-    Target systems must have Microsoft Office applications installed with macros 
-    enabled or be susceptible to social engineering tactics that prompt users 
-    to enable macros or execute malicious content.
+  surface:
+    - Windows
+    - Microsoft::Microsoft 365
+    - Microsoft::SharePoint
+    - Microsoft::Outlook
+    - Email
+    - Windows::Desktop
+    - File Sharing

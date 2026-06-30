@@ -21,9 +21,18 @@ threat:
   killchain: Collection
   att&ck:
     - T1190
-  terrain:
-    - Web Servers
-    - Application Layer::HTTP
+  terrain: |-
+    A web application that performs access control checks late in the request
+    processing pipeline, after the response body has already been constructed.
+    The application must use HTTP redirects (typically 302 Found) for access
+    control enforcement rather than blocking the request outright or returning
+    a minimal error response. The response body includes the full rendered
+    protected page content alongside the redirect Location header. This pattern
+    typically arises in framework-level middleware or filter configurations where
+    page rendering occurs before authentication and authorisation gates are
+    evaluated. The vulnerability is systemic rather than endpoint-specific,
+    affecting multiple authenticated or role-restricted routes that share the
+    same flawed request processing pipeline.
   severity: Substantial incident
   leverage: Information Disclosure
   impact: Data Breach; IP Loss
@@ -59,15 +68,6 @@ threat:
     This aligns with OWASP Top 10 A01:2021 Broken Access Control and CWE-284
     Improper Access Control. The vulnerability represents a fundamental flaw in
     the application's security architecture rather than a simple misconfiguration.
-
-    A web application that performs access control checks late in the request
-    processing pipeline, after the response body has already been constructed.
-    The application must use HTTP redirects (typically 302 Found) for access
-    control enforcement rather than blocking the request outright or returning
-    a minimal error response. The response body includes the full rendered
-    protected page content alongside the redirect Location header. This pattern
-    typically arises in framework-level middleware or filter configurations where
-    page rendering occurs before authentication and authorisation gates are
-    evaluated. The vulnerability is systemic rather than endpoint-specific,
-    affecting multiple authenticated or role-restricted routes that share the
-    same flawed request processing pipeline.
+  surface:
+    - Web Servers
+    - Application Layer::HTTP

@@ -44,13 +44,9 @@ threat:
         A threat actor has gained control over privileges to create scheduled tasks 
         on a deployed resource using Azure CloudShell either via a browser or the
         Azure portal.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - Entra ID
-    - Application Layer::HTTP
-    - Azure::Compute::Virtual Machines
-    - AWS::Compute::EC2
+  terrain: |-
+    Adversaries exploit Azure Privileged Identity Management (PIM) roles by compromising 
+    accounts eligible for privileged activation or by abusing misconfigured PIM policies.
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges
   impact: Data Breach; IP Loss
@@ -106,6 +102,10 @@ threat:
     members or scheduling future eligibility.
     6. **Detection Evasion:** Exploit gaps in logging or monitoring or tamper with audit 
     logs if possible.
-
-    Adversaries exploit Azure Privileged Identity Management (PIM) roles by compromising 
-    accounts eligible for privileged activation or by abusing misconfigured PIM policies.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
+    - Application Layer::HTTP
+    - Azure::Compute::Virtual Machines
+    - AWS::Compute::EC2

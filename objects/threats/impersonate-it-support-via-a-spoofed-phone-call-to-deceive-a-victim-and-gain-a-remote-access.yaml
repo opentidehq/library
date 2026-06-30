@@ -49,16 +49,10 @@ threat:
         the victim to establish a remote destop session with a server under 
         attacker control. The RDP session might have broad device mapping
         configured granting the attacker some access back to local drives.
-  terrain:
-    - Mobile
-    - Windows
-    - Microsoft::Teams
-    - Mobile::iOS
-    - Mobile::Android
-    - Customer Support
-    - Windows::Desktop
-    - Email
-    - Remote Access
+  terrain: |-
+    A threat actor needs initial user's interaction to gain access
+    to the platform. For example assistance, accept invitation to
+    a fake technical support or other "assistance".
   severity: Moderate incident
   leverage: Information Disclosure; Infrastructure Compromise; Spoofing; Elevation of privilege
   impact: Identity Theft; Data Breach; Impairement; Reputational Damages; Business disruption
@@ -107,8 +101,14 @@ threat:
     the payload encrypts mapped drives and drops *README_3AM.txt*.  
 
     By performing such attack, the threat actor maintains persistence and
-    can exfiltrates available data towards any server he controls.
-
-    A threat actor needs initial user's interaction to gain access
-    to the platform. For example assistance, accept invitation to
-    a fake technical support or other "assistance".
+    can exfiltrates available data towards any server he controls.  
+  surface:
+    - Mobile
+    - Windows
+    - Microsoft::Teams
+    - Mobile::iOS
+    - Mobile::Android
+    - Customer Support
+    - Windows::Desktop
+    - Email
+    - Remote Access

@@ -48,11 +48,10 @@ threat:
         Azure storage containers by scanning for storage account names and container names, 
         often using automated tools or scripts, to identify open containers that may expose 
         sensitive data.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Application Layer::HTTP
+  terrain: |-
+    Adversaries obtains credentials or elevated permissions (via access keys, Service 
+    Principal abuse, RBAC misconfigurations, or privilege escalation) to the victim’s 
+    storage account.
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Repudiation; Tampering
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Business disruption
@@ -105,7 +104,8 @@ threat:
     and controls, thus bypassing many detection points.
     4. Depending on their goal, the attacker may leave replication running for long-term 
     persistence or attempt to erase traces from the victim environment.
-
-    Adversaries obtains credentials or elevated permissions (via access keys, Service 
-    Principal abuse, RBAC misconfigurations, or privilege escalation) to the victim’s 
-    storage account.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Application Layer::HTTP

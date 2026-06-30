@@ -17,10 +17,7 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1562.008
-  terrain:
-    - Azure
-    - Development::CI/CD
-    - Microsoft::System Center
+  terrain: Requires access to privileged Azure credentials
   severity: Highly significant incident
   leverage: Modify configuration
   impact: Lose Capabilities
@@ -34,5 +31,7 @@ threat:
     An attacker can do this either by deploying via API an ARM template, biceps
     template, or other script/code element that can be used via Azure APIs,
     using the Azure CLI or directly on the portal itself via a browser.
-
-    Requires access to privileged Azure credentials
+  surface:
+    - Azure
+    - Development::CI/CD
+    - Microsoft::System Center

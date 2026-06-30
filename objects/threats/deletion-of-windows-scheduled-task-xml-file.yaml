@@ -24,13 +24,9 @@ threat:
   att&ck:
     - T1053.005
     - T1564
-  terrain:
-    - Windows
-    - Azure
-    - AWS
-    - Windows::Desktop
-    - Remote Access
-    - Web Servers
+  terrain: |-
+    An adversary has gained control over a Windows endpoint and has privileges
+    to delete scheduled task XML file.
   severity: Moderate incident
   leverage: Tampering
   impact: Impairement
@@ -70,6 +66,10 @@ threat:
     Deleting the XML file will only remove the task from the Task Scheduler.
     It will not uninstall any programs or delete any files that were associated
     with the task.
-
-    An adversary has gained control over a Windows endpoint and has privileges
-    to delete scheduled task XML file.
+  surface:
+    - Windows
+    - Azure
+    - AWS
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers

@@ -19,14 +19,14 @@ threat:
   att&ck:
     - T1525
     - T1204.003
-  terrain:
-    - AWS
-    - Azure
-    - Container Runtime::Docker
-    - Orchestration::Kubernetes
-    - Linux
-    - Development::CI/CD
-    - Code Repositories
+  terrain: |-
+    The adversary need to be able to inject malicious code into
+    container image which will be deployed in target environment. 
+    This can be achieved by putting malicious image into public 
+    registry and tricking developer into using it, getting access
+    into internal CI/CD pipeline, uploading modified image into 
+    internal registry or running the image directly 
+    on compromised host.
   severity: Significant incident
   leverage: Dwelling; Elevation of privilege; Infrastructure Compromise; Software installation
   impact: Data Breach; Business disruption; Operating costs
@@ -35,11 +35,11 @@ threat:
     Threat actors plant malicious code into container images which 
     execute in target environment. This vector is used to perform 
     cryptominning activities and as a persistence technique.
-
-    The adversary need to be able to inject malicious code into
-    container image which will be deployed in target environment. 
-    This can be achieved by putting malicious image into public 
-    registry and tricking developer into using it, getting access
-    into internal CI/CD pipeline, uploading modified image into 
-    internal registry or running the image directly 
-    on compromised host.
+  surface:
+    - AWS
+    - Azure
+    - Container Runtime::Docker
+    - Orchestration::Kubernetes
+    - Linux
+    - Development::CI/CD
+    - Code Repositories

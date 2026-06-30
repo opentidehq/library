@@ -29,12 +29,7 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1550.003
-  terrain:
-    - Windows
-    - Active Directory
-    - OAuth / OIDC
-    - Windows::Desktop
-    - Remote Access
+  terrain: Adversaries need to compromise an asset and be able to execute commands.
   severity: Significant incident
   leverage: Alter behavior; Elevation of privilege; Infrastructure Compromise
   impact: Identity Theft; Business disruption; Data Breach
@@ -121,5 +116,9 @@ threat:
         * query_bind: Displays a list of cached preferred domain controllers for each domain that Kerberos has contacted.
         * purge_bind: Removes the cached preferred domain controllers for the domains specified.
         * kdcoptions: Displays the Key Distribution Center (KDC) options specified in RFC 4120.
-
-    Adversaries need to compromise an asset and be able to execute commands.
+  surface:
+    - Windows
+    - Active Directory
+    - OAuth / OIDC
+    - Windows::Desktop
+    - Remote Access

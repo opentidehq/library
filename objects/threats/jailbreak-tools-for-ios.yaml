@@ -19,10 +19,10 @@ threat:
   att&ck:
     - T1630.003
     - T1398
-  terrain:
-    - Mobile
-    - Mobile::iOS
-    - Mobile::iPadOS
+  terrain: |-
+    If adversaries have physical access to the device, they can install a jailbreaking tool
+    that include the neccesary exploit. If no physical access is available, it is possible
+    to exploit a zero-day vuln to bypass the device' security mechanisms.
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Software installation
   impact: Data Breach; Identity Theft; Impairement; IP Loss; Lose Capabilities
@@ -85,7 +85,7 @@ threat:
     yet. However, semi-jailbreak solutions like MisakaX and Nugget exist for limited customization.
     - Older versions (iOS 15 to 16) have stable jailbreaks like Dopamine and PaleRa1n with 
     tweak support.
-
-    If adversaries have physical access to the device, they can install a jailbreaking tool
-    that include the neccesary exploit. If no physical access is available, it is possible
-    to exploit a zero-day vuln to bypass the device' security mechanisms.
+  surface:
+    - Mobile
+    - Mobile::iOS
+    - Mobile::iPadOS

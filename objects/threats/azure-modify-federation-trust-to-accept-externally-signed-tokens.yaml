@@ -20,12 +20,9 @@ threat:
   killchain: Lateral Movement
   att&ck:
     - T1484.002
-  terrain:
-    - Azure::Security::Entra ID
-    - Active Directory::Federation Services
-    - AWS::Security::IAM
-    - Entra ID
-    - Security::SAML
+  terrain: |-
+    Attackers need to have gained administrative Azure Active Directory
+    (Azure AD) privileges using compromised credentials
   severity: National cyber emergency
   leverage: Elevation of privilege; Spoofing
   impact: Data Breach
@@ -39,6 +36,9 @@ threat:
     to the Golden SAML attack to gain persistent access without having to sign 
     the SAML response at each access request, while needing the same amount of control 
     over the ADFS server.
-
-    Attackers need to have gained administrative Azure Active Directory
-    (Azure AD) privileges using compromised credentials
+  surface:
+    - Azure::Security::Entra ID
+    - Active Directory::Federation Services
+    - AWS::Security::IAM
+    - Entra ID
+    - Security::SAML

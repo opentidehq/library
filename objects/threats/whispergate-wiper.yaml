@@ -28,14 +28,9 @@ threat:
     - T1562.001
     - T1036
     - T1134.002
-  terrain:
-    - Industrial
-    - Windows
-    - AWS::Storage::EBS
-    - Windows::Desktop
-    - File Sharing
-    - Customer Support
-    - Remote Access
+  terrain: |-
+    A threat actor needs an initial entry point to the system,
+    for example can use stolen credentials to gain access.
   severity: Significant incident
   leverage: Denial of Service; Infrastructure Compromise
   impact: Business disruption; Catastrophic Loss; National Security; Operating costs; Reputational Damages
@@ -101,7 +96,12 @@ threat:
     which may or may not have been intentional. ref [5]  
 
     In Ukraine, a pro-Russian group was detected to conduct destructive attacks
-    such as the WhisperGate wiper attacks against ICS targets.
-
-    A threat actor needs an initial entry point to the system,
-    for example can use stolen credentials to gain access.
+    such as the WhisperGate wiper attacks against ICS targets.  
+  surface:
+    - Industrial
+    - Windows
+    - AWS::Storage::EBS
+    - Windows::Desktop
+    - File Sharing
+    - Customer Support
+    - Remote Access

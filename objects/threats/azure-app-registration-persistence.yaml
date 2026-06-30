@@ -27,20 +27,9 @@ threat:
         Adversaries need access to an identity (user account or service principal) with 
         sufficient permissions to create, modify, or assign roles to app registrations or 
         service principals.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Entra ID
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Email
-    - Application Layer::HTTP
-    - Database Management::PostgreSQL
-    - Database Management::MongoDB
-    - Security::SAML
+  terrain: |-
+    Adversaries need to compromise user or administrator credentials that have permissions 
+    to register or modify applications within Microsoft Entra ID (Azure AD).
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; Modify configuration; Modify privileges; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
@@ -98,6 +87,17 @@ threat:
     - **Internal Phishing**: Attackers have registered apps to upload and share malicious 
     files internally, leveraging default consent settings to spread laterally within 
     organisations.
-
-    Adversaries need to compromise user or administrator credentials that have permissions 
-    to register or modify applications within Microsoft Entra ID (Azure AD).
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Entra ID
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Email
+    - Application Layer::HTTP
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Security::SAML

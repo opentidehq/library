@@ -65,11 +65,10 @@ threat:
       description: |-
         Adversaries need to have gained a sufficient foothold in the  on-premises
         environment before starting to modify Azure  Active Directory.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - Entra ID
-    - Kerberos
+  terrain: |-
+    Adversaries must gain initial access (often via compromised credentials
+    or over-permissive access control) to an Azure Automation Account 
+    utilizing a `RunAs` (service principal) account.
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure
   impact: Data Breach; Identity Theft; Reputational Damages
@@ -113,7 +112,8 @@ threat:
     5. With the certificate, the attacker can authenticate to Azure as the service principal, 
     perform malicious operations, and potentially move laterally or escalate privileges, 
     depending on the permissions assigned to the compromised principal.
-
-    Adversaries must gain initial access (often via compromised credentials
-    or over-permissive access control) to an Azure Automation Account 
-    utilizing a `RunAs` (service principal) account.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
+    - Kerberos

@@ -45,11 +45,9 @@ threat:
       description: |-
         Adversaries must first gain access to an Azure environment, typically through 
         compromised user accounts, service principals, or managed identities.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Azure::Compute::Virtual Machines
+  terrain: |-
+    Adversaries successfully compromise a Global Administrator account in
+    Entra ID (Azure AD), either via phishing, credential theft, or session hijacking.
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Modify configuration
   impact: Data Breach; IP Loss
@@ -94,6 +92,8 @@ threat:
       - The activity of toggling Elevated Access is logged in the Directory Activity 
       log (AuditLogs), but is not always integrated with standard subscription or management 
       group logs, making it harder to detect through routine monitoring.
-
-    Adversaries successfully compromise a Global Administrator account in
-    Entra ID (Azure AD), either via phishing, credential theft, or session hijacking.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Compute::Virtual Machines

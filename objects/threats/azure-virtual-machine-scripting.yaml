@@ -81,11 +81,9 @@ threat:
         target environment. This can be achieved by putting malicious image into public registry and tricking 
         developer into using it, getting access into internal CI/CD pipeline, uploading modified image into 
         internal registry or running the image directly on compromised host. 
-  terrain:
-    - Azure
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
+  terrain: |-
+    Through compromised account credentials or misused RBAC permissions, adversaries 
+    obtains sufficient access to invoke scripting features (RunCommand, extensions).
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
@@ -123,6 +121,8 @@ threat:
       - May leverage logging gaps to avoid detection, or clean up traces after execution.
     4. - Activity can be detected via auditing specific events such as `Microsoft.Compute/virtualMachines/extensions/write` 
       or anomalous use of VM scripting features.
-
-    Through compromised account credentials or misused RBAC permissions, adversaries 
-    obtains sufficient access to invoke scripting features (RunCommand, extensions).
+  surface:
+    - Azure
+    - Windows
+    - Linux
+    - Azure::Compute::Virtual Machines

@@ -37,12 +37,9 @@ threat:
       description: |-
         Attackers need to establish an initial presence within the target environment, in 
         order to gather sufficient permissions to execute the data collection tools.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - Azure::Compute::Virtual Machines
-    - Web Servers
-    - Switches
+  terrain: |-
+    Adversaries need an exposed service or port that is accessible from outside the Azure 
+    environment—typically via a public IP and a mapped port (such as SSH, RDP, or web services).
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -81,6 +78,9 @@ threat:
     ports, especially if services are outdated or unpatched.
     - **Information Gathering:** Attackers use port mapping information to build a profile 
     of the environment, identifying potential entry points for further attacks.
-
-    Adversaries need an exposed service or port that is accessible from outside the Azure 
-    environment—typically via a public IP and a mapped port (such as SSH, RDP, or web services).
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Azure::Compute::Virtual Machines
+    - Web Servers
+    - Switches

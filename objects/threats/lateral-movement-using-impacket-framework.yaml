@@ -30,10 +30,7 @@ threat:
       description: |-
         A threat actor commonly utilizes living-off-the-land techniques
         after gaining initial access to move laterally through the network.  
-  terrain:
-    - Windows
-    - Customer Support
-    - Windows::Desktop
+  terrain: A threat actor needs initial access to move laterally through the network.
   severity: Localised incident
   leverage: Dwelling; Elevation of privilege
   impact: Identity Theft; Business disruption; Impairement; Nuisance
@@ -61,6 +58,8 @@ threat:
     In some cases the threat actors may try to manipulate the Group Policies
     to hide their traces. For example, the registries which are related to
     the access of the System Registries. They may also try to turn off `Audit
-    object access` for successful and failed access events. ref [2, 3]
-
-    A threat actor needs initial access to move laterally through the network.
+    object access` for successful and failed access events. ref [2, 3]  
+  surface:
+    - Windows
+    - Customer Support
+    - Windows::Desktop

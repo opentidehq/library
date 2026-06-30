@@ -32,17 +32,9 @@ threat:
     - relation: sequence::preceeds
       vector: 6a7a493a-511a-4c9d-aa9c-4427c832a322
       description: '#After an initial conversation over email, attacker tricks the user pretending to be from IT Helpdesk to swap the SIM card'
-  terrain:
-    - Mobile
-    - AWS
-    - Azure
-    - Microsoft::Microsoft 365
-    - Windows
-    - macOS
-    - Mobile::Android
-    - Mobile::iOS
-    - Email
-    - AWS::Storage
+  terrain: |-
+    Adversary must have access to legitimate email accounts or impersonate authority 
+    figures to trick victims into disclosing sensitive information or transferring funds.
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Fraudulent transaction; Infrastructure Compromise
   impact: Data Breach; Monetary Loss; Reputational Damages; Identity Theft
@@ -77,6 +69,14 @@ threat:
     - Create a sense of urgency
     - Rarely include malicious payloads
     - Frequently target Accounts Payable teams
-
-    Adversary must have access to legitimate email accounts or impersonate authority 
-    figures to trick victims into disclosing sensitive information or transferring funds.
+  surface:
+    - Mobile
+    - AWS
+    - Azure
+    - Microsoft::Microsoft 365
+    - Windows
+    - macOS
+    - Mobile::Android
+    - Mobile::iOS
+    - Email
+    - AWS::Storage

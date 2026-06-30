@@ -17,9 +17,10 @@ threat:
   killchain: Persistence
   att&ck:
     - T1484.001
-  terrain:
-    - Azure
-    - Azure::Compute::Virtual Machines
+  terrain: |-
+    The adversary needs the owner access role on the targeted Azure 
+    Subscription to apply the Azure Policy and grant permissions for
+    the system-managed identities.
   severity: Significant incident
   leverage: Infrastructure Compromise; Dwelling; Modify privileges
   impact: Business disruption; Data Breach; Impairement
@@ -36,7 +37,6 @@ threat:
     subscription. And since Azure VMs are in many cases directly integrated 
     in the on-Premises Active Directory it is possible to gain additional 
     access there.
-
-    The adversary needs the owner access role on the targeted Azure 
-    Subscription to apply the Azure Policy and grant permissions for
-    the system-managed identities.
+  surface:
+    - Azure
+    - Azure::Compute::Virtual Machines

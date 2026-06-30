@@ -32,19 +32,9 @@ threat:
       description: |-
         Adversaries obtain the username and password of an AzureAD user either through phishing, 
         password spraying, brute-force attacks, or credentials leaked online. 
-  terrain:
-    - Azure
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - AWS::Storage
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Serverless
-    - Application Layer::HTTP
-    - AWS::Compute::EC2
-    - Kerberos
-    - Log Management
+  terrain: |-
+    Adversaries must have an Azure role that grants the ability to write or deploy custom 
+    script extensions on virtual machines.
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption
@@ -89,6 +79,16 @@ threat:
     used on VM scale sets and Azure ARC-managed resources, amplifying the potential impact.
     - **No Network Barriers**: The attack is effective regardless of the VM’s network 
     security group settings or firewall rules, as it leverages the Azure management plane.
-
-    Adversaries must have an Azure role that grants the ability to write or deploy custom 
-    script extensions on virtual machines.
+  surface:
+    - Azure
+    - Windows
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - AWS::Storage
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Serverless
+    - Application Layer::HTTP
+    - AWS::Compute::EC2
+    - Kerberos
+    - Log Management

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""QA check: threat title/description consistency with surface terrain values."""
+"""QA check: threat title/description consistency with surface vocabulary values."""
 
 from __future__ import annotations
 
@@ -32,30 +32,29 @@ def qa_threats(threats_dir: Path, *, allowed: set[str]) -> list[str]:
         threat = data.get("threat") or {}
         name = str(data.get("name", path.stem))
         terrain = threat.get("terrain")
+        surface = threat.get("surface")
         description = str(threat.get("description") or "")
 
-        if isinstance(terrain, str):
-            if LABEL_PATTERN.search(terrain):
-                issues.append(f"{path.name}: legacy Domains/Platforms/Targets labels remain")
-            terrain_values = [terrain] if terrain.strip() else []
-        elif isinstance(terrain, list):
-            terrain_values = [str(item) for item in terrain]
-        else:
-            issues.append(f"{path.name}: terrain missing or invalid type")
+        if isinstance(terrain, list):
+            issues.append(f"{path.name}: terrain must be explanatory prose, not a surface list")
+            continue
+        if not isinstance(terrain, str) or not terrain.strip():
+            issues.append(f"{path.name}: terrain missing or empty")
+        elif LABEL_PATTERN.search(terrain):
+            issues.append(f"{path.name}: legacy Domains/Platforms/Targets labels remain in terrain")
+
+        if not isinstance(surface, list) or not surface:
+            issues.append(f"{path.name}: surface missing or empty")
             continue
 
-        if not terrain_values:
-            issues.append(f"{path.name}: empty terrain surface list")
-            continue
-
-        for value in terrain_values:
-            if value not in allowed:
-                issues.append(f"{path.name}: terrain value not in surface vocab: {value!r}")
+        for value in surface:
+            if str(value) not in allowed:
+                issues.append(f"{path.name}: surface value not in surface vocab: {value!r}")
 
         haystack = _tokens(f"{name} {description}")
         surface_tokens: set[str] = set()
-        for value in terrain_values:
-            surface_tokens |= _tokens(value.replace("::", " "))
+        for value in surface:
+            surface_tokens |= _tokens(str(value).replace("::", " "))
         _ = haystack & surface_tokens  # overlap reserved for future reporting
     return issues
 

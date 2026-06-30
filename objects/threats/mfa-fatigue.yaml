@@ -38,13 +38,7 @@ threat:
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
       description: MFA bypass technique
-  terrain:
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Customer Support
-    - Entra ID
-    - Mobile
+  terrain: Adversaries must be in possession of the credentials of a valid account.
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft
@@ -89,5 +83,10 @@ threat:
     identity, allowing the attacker to go further into their account or device.
     Often, the user may think it is a simple application malfunction or a test,
     or just want the notifications to end out of annoyance.
-
-    Adversaries must be in possession of the credentials of a valid account.
+  surface:
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Customer Support
+    - Entra ID
+    - Mobile

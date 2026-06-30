@@ -113,15 +113,9 @@ threat:
     - T1552.004
     - T1550.002
     - T1550.003
-  terrain:
-    - Active Directory
-    - Azure
-    - Windows
-    - Application Layer::HTTP
-    - Remote Access
-    - Windows::Desktop
-    - Entra ID
-    - Azure::Security::Key Vault
+  terrain: |-
+    Mimikatz is used on a Windows endpoint where a threat actor has 
+    gained a foothold to elevate privileges and move laterally
   severity: Highly significant incident
   leverage: Elevation of privilege; Dwelling; Information Disclosure; Infrastructure Compromise; Software installation
   impact: Data Breach; Identity Theft; Operating costs; Reputational Damages; IP Loss
@@ -132,7 +126,13 @@ threat:
     the mimikatz tool itself or the atomic IOCs of invoke-mimikatz 
     powershell scripts, is very important, as it both signals a 
     compromised endpoint, plus shows a noisy threat actor trying 
-    to EoP and move laterally.
-
-    Mimikatz is used on a Windows endpoint where a threat actor has 
-    gained a foothold to elevate privileges and move laterally
+    to EoP and move laterally. 
+  surface:
+    - Active Directory
+    - Azure
+    - Windows
+    - Application Layer::HTTP
+    - Remote Access
+    - Windows::Desktop
+    - Entra ID
+    - Azure::Security::Key Vault

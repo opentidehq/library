@@ -41,9 +41,10 @@ threat:
       description: |-
         Adversaries can abuse iOS or Android devices which are vulnerable to a zero-click
         or zero-day exploitation, without user intervention.
-  terrain:
-    - Mobile
-    - Mobile::Android
+  terrain: |-
+    Adversaries achieve granting AccessibilityService permissions to GodFather
+    malware primarily through social engineering techniques that trick users into
+    enabling these permissions.
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege
   impact: Data Breach; Monetary Loss; Identity Theft
@@ -92,7 +93,6 @@ threat:
     - **Stealth**: The virtualization attack results in “perfect deception,” as users 
     interact with their real apps, making visual or user-driven detection virtually 
     impossible.
-
-    Adversaries achieve granting AccessibilityService permissions to GodFather
-    malware primarily through social engineering techniques that trick users into
-    enabling these permissions.
+  surface:
+    - Mobile
+    - Mobile::Android

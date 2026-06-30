@@ -28,10 +28,9 @@ threat:
     - T1059.001
     - T1140
     - T1068
-  terrain:
-    - Windows
-    - Remote Access
-    - Windows::Desktop
+  terrain: |-
+    A threat actors need an initial access to the system to use PowerShell
+    console to execute commands to obfuscate their traffic and activities.
   severity: Localised incident
   leverage: Dwelling; Tampering
   impact: Impairement
@@ -83,6 +82,7 @@ threat:
 
     Write-Host "Username: $Username"
     Write-Host "Password: $Password"
-
-    A threat actors need an initial access to the system to use PowerShell
-    console to execute commands to obfuscate their traffic and activities.
+  surface:
+    - Windows
+    - Remote Access
+    - Windows::Desktop

@@ -25,10 +25,7 @@ threat:
     - T1041
     - T1070
     - T1190
-  terrain:
-    - Embedded
-    - Remote Access
-    - VPN
+  terrain: Ivanti Connect Secure appliance vulnerable to authentication bypass (CVE-2023-46805)
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Elevation of privilege; Log tampering; Modify configuration; Tampering; New Accounts
   impact: Business disruption; Operating costs; Reputational Damages; Data Breach
@@ -79,5 +76,7 @@ threat:
     - Internal Check tool tampering
     - System log clearing: In some instances, logs have been cleared using the legitimate system 
     utility therefore generating event ID ADM20599.
-
-    Ivanti Connect Secure appliance vulnerable to authentication bypass (CVE-2023-46805)
+  surface:
+    - Embedded
+    - Remote Access
+    - VPN

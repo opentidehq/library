@@ -25,13 +25,11 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1134.001
-  terrain:
-    - Windows
-    - OAuth / OIDC
-    - Windows::Desktop
-    - Application Layer::WMI
-    - Remote Access
-    - Web Servers
+  terrain: |-
+    On an already compromised Windows endpoint in a user or administrator 
+    context that has SeDebugPrivilege assigned (rarely on user context). 
+    Windows servers and windows workstations/laptops - anything 
+    Windows.
   severity: Moderate incident
   leverage: Elevation of privilege; Modify privileges; Spoofing
   impact: Impairement; Data Breach
@@ -52,9 +50,11 @@ threat:
     For access token impersonation an adversary can use standard command-line 
     shell to initiate 'runas' commands or to use payloads that call Windows 
     token APIs directly. The changes in Windows API calls can manipulate 
-    access tokens for further account access and malicious purposes.
-
-    On an already compromised Windows endpoint in a user or administrator 
-    context that has SeDebugPrivilege assigned (rarely on user context). 
-    Windows servers and windows workstations/laptops - anything 
-    Windows.
+    access tokens for further account access and malicious purposes. 
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Windows::Desktop
+    - Application Layer::WMI
+    - Remote Access
+    - Web Servers

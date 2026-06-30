@@ -20,11 +20,12 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1547.006
-  terrain:
-    - Embedded
-    - Linux
-    - Orchestration::Kubernetes
-    - Virtualisation::VMware ESXi
+  terrain: |-
+    Threat actor has already escalated privileges to root via an exploit on a 
+    unprivileged container host, or the threat actor exploited an application 
+    running in a highly privileged container, which means a host running 
+    highly privileged containers with CAP_NET_ADMIN or CAP_SYS_MODULE 
+    capabilities or Kubernetes pods running in privileged mode.
   severity: Significant incident
   leverage: Dwelling; Infrastructure Compromise; Repudiation; Software installation
   impact: Data Breach; Impairement; Lose Capabilities
@@ -38,9 +39,8 @@ threat:
     An injected kernel module is just code execution, and can in theory do 
     more or less anything, but threat actors mostly use this for dwelling and 
     for hiding their presence on a system.
-
-    Threat actor has already escalated privileges to root via an exploit on a 
-    unprivileged container host, or the threat actor exploited an application 
-    running in a highly privileged container, which means a host running 
-    highly privileged containers with CAP_NET_ADMIN or CAP_SYS_MODULE 
-    capabilities or Kubernetes pods running in privileged mode.
+  surface:
+    - Embedded
+    - Linux
+    - Orchestration::Kubernetes
+    - Virtualisation::VMware ESXi

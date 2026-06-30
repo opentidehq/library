@@ -18,15 +18,11 @@ threat:
   att&ck:
     - T1190
     - T1534
-  terrain:
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Database Management
-    - Entra ID
-    - Web Servers
-    - Application Layer::HTTP
-    - Azure
+  terrain: |-
+    Adversaries need an authenticated user or application identity (such as a compromised 
+    user account or a maliciously registered OAuth application) with the necessary permissions 
+    to access OneDrive files. And also, API permissions (like “Files.Read.All” or “Files.ReadWrite.All”) 
+    that allow reading or downloading files from OneDrive via the Microsoft Graph API.
   severity: Significant incident
   leverage: Information Disclosure; Tampering; Spoofing; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
@@ -69,8 +65,12 @@ threat:
     and uses it to access OneDrive files.
     - **Automated Scripts:** Attackers use PowerShell or other scripting tools to interact 
     with the OneDrive API, extracting sensitive files at scale.
-
-    Adversaries need an authenticated user or application identity (such as a compromised 
-    user account or a maliciously registered OAuth application) with the necessary permissions 
-    to access OneDrive files. And also, API permissions (like “Files.Read.All” or “Files.ReadWrite.All”) 
-    that allow reading or downloading files from OneDrive via the Microsoft Graph API.
+  surface:
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Database Management
+    - Entra ID
+    - Web Servers
+    - Application Layer::HTTP
+    - Azure

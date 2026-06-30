@@ -60,13 +60,10 @@ threat:
       description: |-
         Attackers need to establish an initial presence within the target environment, in 
         order to gather sufficient permissions to execute the data collection tools.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Orchestration::Kubernetes
-    - Azure::Compute::Virtual Machines
-    - Serverless
+  terrain: |-
+    Adversaries identifies existing policy and permissions landscape,
+    acquiring sufficient privileges over Azure Policy management and
+    remediation.
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Information Disclosure; Elevation of privilege; Modify configuration
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
@@ -124,7 +121,10 @@ threat:
     persistence and stealth.
     - **Evading Detection**: The attacker may also configure policies to weaken monitoring, 
     disable security logging, or only target specific assets to avoid suspicion and discovery.
-
-    Adversaries identifies existing policy and permissions landscape,
-    acquiring sufficient privileges over Azure Policy management and
-    remediation.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Orchestration::Kubernetes
+    - Azure::Compute::Virtual Machines
+    - Serverless

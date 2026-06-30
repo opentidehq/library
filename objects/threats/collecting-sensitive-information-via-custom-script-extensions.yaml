@@ -21,20 +21,10 @@ threat:
     - T1059
     - T1651
     - T1119
-  terrain:
-    - Azure
-    - Windows
-    - Linux
-    - Azure::Security::Entra ID
-    - Azure::Storage::Blob Storage
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Application Layer::HTTP
-    - Database Management::PostgreSQL
-    - Database Management::MongoDB
-    - Container Runtime::Docker
+  terrain: |-
+    Attackers need to gain access to an Azure account with the Virtual Machine Contributor 
+    role (or equivalent) can use custom script extensions to execute arbitrary code 
+    as SYSTEM or root on VMs.
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Repudiation; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -96,7 +86,17 @@ threat:
     execute scripts to collect and exfiltrate sensitive information over time.
     - **Backdoor Scripts:** Scripts can be designed to act as backdoors, allowing attackers 
     to execute commands and collect data as needed.
-
-    Attackers need to gain access to an Azure account with the Virtual Machine Contributor 
-    role (or equivalent) can use custom script extensions to execute arbitrary code 
-    as SYSTEM or root on VMs.
+  surface:
+    - Azure
+    - Windows
+    - Linux
+    - Azure::Security::Entra ID
+    - Azure::Storage::Blob Storage
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Application Layer::HTTP
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Container Runtime::Docker

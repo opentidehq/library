@@ -23,11 +23,7 @@ threat:
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
       description: MFA bypass technique
-  terrain:
-    - Azure
-    - Microsoft::Microsoft 365
-    - Security::SAML
-    - Kerberos
+  terrain: Application with SSO login requiring MFA, with legacy authentication (local login) not disabled.
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement
@@ -62,5 +58,8 @@ threat:
     If the account has sufficient privileges, it may also be possible to set up or
     change the SAML login settings to inject a malicious URL, for example to an
     attacker controlled tenant.
-
-    Application with SSO login requiring MFA, with legacy authentication (local login) not disabled.
+  surface:
+    - Azure
+    - Microsoft::Microsoft 365
+    - Security::SAML
+    - Kerberos

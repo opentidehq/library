@@ -35,18 +35,9 @@ threat:
     - relation: sequence::preceeds
       vector: f1dc4341-eb45-4d07-8075-b1a6b227cc76
       description: An adversary may obtain information about a role within Azure AD or within Azure Resource Manager.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - Entra ID
-    - AWS::Storage
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Application Layer::HTTP
-    - Kerberos
-    - Active Directory
+  terrain: |-
+    Adversaries need to identify privileged accounts and misconfigured role assignments 
+    that can be exploited for privilege escalation.
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -127,6 +118,15 @@ threat:
       - Prepares to exploit the gathered intelligence, such as launching spear-phishing 
       campaigns specifically targeting privileged users, leveraging known vulnerabilities 
       in third-party applications, or planning lateral movement towards sensitive workloads.
-
-    Adversaries need to identify privileged accounts and misconfigured role assignments 
-    that can be exploited for privilege escalation.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
+    - AWS::Storage
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Application Layer::HTTP
+    - Kerberos
+    - Active Directory

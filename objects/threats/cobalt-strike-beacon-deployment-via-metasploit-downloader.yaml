@@ -29,8 +29,13 @@ threat:
         used across all three infection chains of the Notepad++ supply chain attack. 
         Metasploit downloader shellcode retrieves and deploys Cobalt Strike Beacon 
         to establish persistent command and control infrastructure.
-  terrain:
-    - Windows::Desktop
+  terrain: |-
+    Windows workstations and laptops, particularly developer environments, that have 
+    been compromised through the Notepad++ supply chain attack. The Metasploit 
+    downloader acts as a second-stage payload fetching mechanism, downloading and 
+    executing Cobalt Strike Beacon from attacker-controlled infrastructure. This 
+    affects organizations across government, financial services, and IT sectors 
+    in multiple countries including Vietnam, El Salvador, Australia, and the Philippines.
   severity: Highly significant incident
   leverage: Elevation of privilege; Information Disclosure; Software installation
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss
@@ -337,10 +342,5 @@ threat:
 
     This threat vector should be considered **CRITICAL** priority for incident response 
     and threat hunting operations.
-
-    Windows workstations and laptops, particularly developer environments, that have 
-    been compromised through the Notepad++ supply chain attack. The Metasploit 
-    downloader acts as a second-stage payload fetching mechanism, downloading and 
-    executing Cobalt Strike Beacon from attacker-controlled infrastructure. This 
-    affects organizations across government, financial services, and IT sectors 
-    in multiple countries including Vietnam, El Salvador, Australia, and the Philippines.
+  surface:
+    - Windows::Desktop

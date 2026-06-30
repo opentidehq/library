@@ -22,12 +22,11 @@ threat:
   att&ck:
     - T1112
     - T1547.001
-  terrain:
-    - Windows
-    - Active Directory
-    - Windows::Desktop
-    - Azure::Compute::Virtual Machines
-    - Application Layer::WMI
+  terrain: |-
+    Adversary must obtain write access to the user-hive (HKCU) or,
+    for broader impact, administrative rights to HKLM and the
+    ability to execute **reg.exe**, PowerShell, or equivalent APIs on
+    Windows 7 - 11 workstations joined to Active Directory.
   severity: Significant incident
   leverage: Tampering; Modify configuration; Modify data; Elevation of privilege
   impact: Impairement; Data Breach; Business disruption; Reputational Damages
@@ -95,8 +94,9 @@ threat:
     - HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\AutoplayHandlers  
     Changing the `DeviceType` or `Handler` settings can enable AutoPlay for specific 
     devices, such as network shares, potentially executing malicious code.
-
-    Adversary must obtain write access to the user-hive (HKCU) or,
-    for broader impact, administrative rights to HKLM and the
-    ability to execute **reg.exe**, PowerShell, or equivalent APIs on
-    Windows 7 - 11 workstations joined to Active Directory.
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
+    - Application Layer::WMI

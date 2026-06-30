@@ -20,9 +20,7 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1548
-  terrain:
-    - Linux
-    - Remote Access
+  terrain: Threat actor needs root level access to edit the sudoers file.
   severity: Significant incident
   leverage: Elevation of privilege; Dwelling; Infrastructure Compromise
   impact: Business disruption; Data Breach; Identity Theft; Impairement
@@ -76,5 +74,6 @@ threat:
     Reference: https://gtfobins.github.io/gtfobins/pkexec/
 
     sudo pkexec /bin/sh
-
-    Threat actor needs root level access to edit the sudoers file.
+  surface:
+    - Linux
+    - Remote Access

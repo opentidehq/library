@@ -36,10 +36,13 @@ threat:
         Both vectors expose systemic web access-control failures. Differential HTTP testing across
         unauthenticated, injected, and modified state can reveal either leaked protected content or
         client-controlled authentication decisions.
-  terrain:
-    - Web Servers
-    - Application Layer::HTTP
-    - OAuth / OIDC
+  terrain: |-
+    External web applications that derive authentication or authorisation state from client-supplied
+    cookies, Authorization headers, or other request variables without strong server-side validation.
+    The vulnerable terrain may be shared middleware or framework logic rather than a single
+    endpoint. The server accepts the presence of values, simple strings, usernames, role flags, or
+    fabricated bearer values instead of verifying cryptographic integrity, server-issued session
+    binding, token signature, expiry, and privilege state.
   severity: Substantial incident
   leverage: Spoofing; Elevation of privilege; Information Disclosure
   impact: Data Breach; Identity Theft; Business disruption; Legal and regulatory
@@ -66,10 +69,7 @@ threat:
     authorisation bypass, or privilege escalation through crafted cookies or headers. Severity depends
     on whether the trusted fields represent identity, role, login state, or access flags, and on the
     breadth of affected endpoints.
-
-    External web applications that derive authentication or authorisation state from client-supplied
-    cookies, Authorization headers, or other request variables without strong server-side validation.
-    The vulnerable terrain may be shared middleware or framework logic rather than a single
-    endpoint. The server accepts the presence of values, simple strings, usernames, role flags, or
-    fabricated bearer values instead of verifying cryptographic integrity, server-issued session
-    binding, token signature, expiry, and privilege state.
+  surface:
+    - Web Servers
+    - Application Layer::HTTP
+    - OAuth / OIDC

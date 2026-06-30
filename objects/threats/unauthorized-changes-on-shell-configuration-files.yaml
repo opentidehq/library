@@ -24,11 +24,10 @@ threat:
   killchain: Persistence
   att&ck:
     - T1546.004
-  terrain:
-    - Linux
-    - macOS
-    - Windows::Desktop
-    - Web Servers
+  terrain: |-
+    Adversary must have the ability to modify or replace shell configuration files 
+    (e.g., .bashrc, .profile) through existing privileges or successful elevation 
+    of privileges on the target host.
   severity: Significant incident
   leverage: Elevation of privilege; Modify configuration; Log tampering; New Accounts; Modify privileges; Modify data
   impact: Data Breach; Reputational Damages; Business disruption
@@ -62,7 +61,8 @@ threat:
     4. **Create unauthorized access**: Modifications to the configuration files 
     can create unauthorized access points, such as adding new users or modifying 
     existing user accounts.
-
-    Adversary must have the ability to modify or replace shell configuration files 
-    (e.g., .bashrc, .profile) through existing privileges or successful elevation 
-    of privileges on the target host.
+  surface:
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Web Servers

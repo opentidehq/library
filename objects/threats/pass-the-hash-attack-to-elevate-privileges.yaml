@@ -39,13 +39,16 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1550.002
-  terrain:
-    - Windows
-    - OAuth / OIDC
-    - Remote Access
-    - Windows::Desktop
-    - Web Servers
-    - Kerberos
+  terrain: |-
+    Requires an already compromised endpoint.
+
+    Doing pass-the-hash on a Windows system requires specific privilege. 
+    It either requires elevated privileges (by previously running 
+    privilege:debug or by executing Mimikatz as the NT-AUTHORITY\SYSTEM 
+    account). This doesn't apply to pass-the-ticket which uses an official API.
+
+    Pth works on windows computers of every kind, however later versions 
+    natively have some level of defenses/mitigations built in.
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Spoofing; Tampering; Repudiation
   impact: Identity Theft; Impairement; Data Breach
@@ -67,13 +70,10 @@ threat:
     pass-the-hash technique, which works by authenticating to a resource, by in the 
     background spawning a new process in the context of the hash and attacker-
     desired elements. For examples, see the reference to thehacker.recipes.
-
-    Requires an already compromised endpoint.
-
-    Doing pass-the-hash on a Windows system requires specific privilege. 
-    It either requires elevated privileges (by previously running 
-    privilege:debug or by executing Mimikatz as the NT-AUTHORITY\SYSTEM 
-    account). This doesn't apply to pass-the-ticket which uses an official API.
-
-    Pth works on windows computers of every kind, however later versions 
-    natively have some level of defenses/mitigations built in.
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers
+    - Kerberos

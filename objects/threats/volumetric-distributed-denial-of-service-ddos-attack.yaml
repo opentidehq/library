@@ -23,17 +23,7 @@ threat:
   killchain: Impact
   att&ck:
     - T1498
-  terrain:
-    - AWS
-    - Windows
-    - Linux
-    - Azure
-    - Microsoft::Microsoft 365
-    - Orchestration::Kubernetes
-    - Application Layer::HTTP
-    - Serverless
-    - Remote Access
-    - Web Servers
+  terrain: Anything with Internet connectivity.
   severity: Significant incident
   leverage: Denial of Service
   impact: Business disruption; Operating costs; Reputational Damages
@@ -45,5 +35,14 @@ threat:
     determine if the attack was meant to distract from something else. DDoS can 
     distract by pulling attention away, or even by spooling out log files so 
     that relevant entries are overwritten.
-
-    Anything with Internet connectivity.
+  surface:
+    - AWS
+    - Windows
+    - Linux
+    - Azure
+    - Microsoft::Microsoft 365
+    - Orchestration::Kubernetes
+    - Application Layer::HTTP
+    - Serverless
+    - Remote Access
+    - Web Servers

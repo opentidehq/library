@@ -41,10 +41,9 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1134.002
-  terrain:
-    - Active Directory
-    - Windows
-    - Windows::Desktop
+  terrain: |-
+    Adversary must have administrative privileges on Windows systems within 
+    the enterprise network.
   severity: Significant incident
   leverage: Modify configuration; Modify data; Tampering; New Accounts
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs
@@ -87,6 +86,7 @@ threat:
 
     This technique’s implementation limits itself to x86 environments only. On the bright side, 
     it does not require spawning a new process and it takes place entirely in memory.
-
-    Adversary must have administrative privileges on Windows systems within 
-    the enterprise network.
+  surface:
+    - Active Directory
+    - Windows
+    - Windows::Desktop

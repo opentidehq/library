@@ -22,17 +22,10 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1222
-  terrain:
-    - Windows
-    - Linux
-    - macOS
-    - Windows::Desktop
-    - Active Directory
-    - Application Layer::WMI
-    - File Sharing
-    - Web Servers
-    - Database Management
-    - Azure::Compute::Virtual Machines
+  terrain: |-
+    The adversary must have sufficient privileges (e.g., local administrator 
+    or root permissions) on the target host or domain controller to modify 
+    file ownership attributes.
   severity: Significant incident
   leverage: Elevation of privilege; Modify privileges; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages; Business disruption
@@ -75,8 +68,15 @@ threat:
     ```
 
     Once a file is owned by `root`, it can be paired with setuid bits 
-    or extended attributes, enabling the file to run with elevated privileges.
-
-    The adversary must have sufficient privileges (e.g., local administrator 
-    or root permissions) on the target host or domain controller to modify 
-    file ownership attributes.
+    or extended attributes, enabling the file to run with elevated privileges. 
+  surface:
+    - Windows
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Active Directory
+    - Application Layer::WMI
+    - File Sharing
+    - Web Servers
+    - Database Management
+    - Azure::Compute::Virtual Machines

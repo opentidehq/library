@@ -36,13 +36,9 @@ threat:
         Can be a factor that allows attackers to use credential theft and lateral mobility 
         techniques, as Microsoft Office applications can be used to share malicious files 
         and gain access to Teams accounts.
-  terrain:
-    - Windows
-    - Microsoft::Teams
-    - Windows::Desktop
-    - File Sharing
-    - Remote Access
-    - Azure::Compute::Virtual Machines
+  terrain: |-
+    Adversaries through different means, they need to compromise an account in order 
+    to be able to carry out lateral movement.
   severity: Significant incident
   leverage: Dwelling; Elevation of privilege; Spoofing; Information Disclosure
   impact: Data Breach; Impairement; IP Loss; Nuisance
@@ -86,7 +82,11 @@ threat:
     - **Sensitive Data Access**: Lateral movement enables access to high-value assets 
     such as financial records, intellectual property, or administrative accounts.
     - **Stealthy Operations**: Native tools and legitimate credentials make detection 
-    harder, as malicious actions appear normal in audit logs.
-
-    Adversaries through different means, they need to compromise an account in order 
-    to be able to carry out lateral movement.
+    harder, as malicious actions appear normal in audit logs.    
+  surface:
+    - Windows
+    - Microsoft::Teams
+    - Windows::Desktop
+    - File Sharing
+    - Remote Access
+    - Azure::Compute::Virtual Machines

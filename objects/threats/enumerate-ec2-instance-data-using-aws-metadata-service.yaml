@@ -23,12 +23,11 @@ threat:
   att&ck:
     - T1119
     - T1552.005
-  terrain:
-    - AWS
-    - AWS::Compute::EC2
-    - Web Servers
-    - Remote Access
-    - Windows::Server
+  terrain: |-
+    In AWS, the metadata service can by design be queried from a running
+    instance. A threat actor needs to control an EC2 instance or a
+    vulnerability in a running application that enables querying the instance
+    meta data service remotely, such as a SSRF vulnerability.
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Nuisance
@@ -101,8 +100,9 @@ threat:
 
     INSTANCEID=$(curl -sL http://169.254.169.254/latest/meta-data/instance-id)
     $ echo INSTANCEID
-
-    In AWS, the metadata service can by design be queried from a running
-    instance. A threat actor needs to control an EC2 instance or a
-    vulnerability in a running application that enables querying the instance
-    meta data service remotely, such as a SSRF vulnerability.
+  surface:
+    - AWS
+    - AWS::Compute::EC2
+    - Web Servers
+    - Remote Access
+    - Windows::Server

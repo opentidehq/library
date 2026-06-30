@@ -35,16 +35,7 @@ threat:
         Threat actors use a technique to mimic legitimate software
         packages in order to mislead the developers in downloading
         and infecting their systems.   
-  terrain:
-    - Industrial
-    - Mobile
-    - Windows
-    - Linux
-    - macOS
-    - Windows::Desktop
-    - Development
-    - Customer Support
-    - Application Layer::HTTP
+  terrain: Adversary publishing malicious NPM packages to compromise software.
   severity: Moderate incident
   leverage: Infrastructure Compromise; Information Disclosure; Tampering
   impact: Identity Theft; Impairement; Lose Capabilities
@@ -66,5 +57,13 @@ threat:
     them to a remote host. The threat actor's groups are targeting environment
     variables as they can contain API keys, database credentials, cloud
     credentials, and encryption keys, which can be used for further attacks.
-
-    Adversary publishing malicious NPM packages to compromise software.
+  surface:
+    - Industrial
+    - Mobile
+    - Windows
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Development
+    - Customer Support
+    - Application Layer::HTTP

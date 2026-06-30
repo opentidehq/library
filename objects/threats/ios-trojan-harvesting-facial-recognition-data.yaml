@@ -20,12 +20,10 @@ threat:
     - T1566.002
     - T1078
     - T1404
-  terrain:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Entra ID
-    - Mobile::iPadOS
+  terrain: |-
+    Adversaries must have a well-crafted phishing or smishing campaign that impersonates 
+    government authorities and popular messaging applications to trick victims into 
+    downloading and installing the malicious MDM profile.
   severity: Significant incident
   leverage: Alter behavior; Dwelling; Elevation of privilege; Software installation; Spoofing
   impact: Identity Theft; IP Loss; Reputational Damages
@@ -54,8 +52,10 @@ threat:
     to a fraudulent website, being prompted to install an MDM profile, and granting 
     the adversaries control over the device. Once installed, the malware can perform
     various malicious activities, including tracking, remote wiping, and installing
-    additional apps without the user's consent.
-
-    Adversaries must have a well-crafted phishing or smishing campaign that impersonates 
-    government authorities and popular messaging applications to trick victims into 
-    downloading and installing the malicious MDM profile.
+    additional apps without the user's consent.  
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Entra ID
+    - Mobile::iPadOS

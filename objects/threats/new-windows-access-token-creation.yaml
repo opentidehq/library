@@ -38,12 +38,9 @@ threat:
         A threat actor may create a new token and use further token
         manipulation technique to create process and activities on
         behalf of an existing legitimate user in the environment.       
-  terrain:
-    - Windows
-    - OAuth / OIDC
-    - Windows::Desktop
-    - Application Layer::HTTP
-    - Customer Support
+  terrain: |-
+    A threat actor exploits native Windows features as Windows API calls or
+    Windows native commands to generate in the system a new user access token.
   severity: Moderate incident
   leverage: Elevation of privilege; Infrastructure Compromise; Modify privileges; Dwelling
   impact: Identity Theft; Impairement; Nuisance; Lose Capabilities; Operating costs
@@ -106,7 +103,10 @@ threat:
     - Cobalt Strike
     - Metasploit
     - Windows Internal Database (WID)
-    - Token Universe tool, ref [4]
-
-    A threat actor exploits native Windows features as Windows API calls or
-    Windows native commands to generate in the system a new user access token.
+    - Token Universe tool, ref [4] 
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Windows::Desktop
+    - Application Layer::HTTP
+    - Customer Support

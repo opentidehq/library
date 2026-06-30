@@ -27,13 +27,10 @@ threat:
     - relation: atomicity::implements
       vector: b0d6bf74-b204-4a48-9509-4499ed795771
       description: 'Technique used to steal browser cookies '
-  terrain:
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Entra ID
+  terrain: |-
+    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
+    Cookies can be found on disk, in the process memory of the browser, and in
+    network traffic to remote systems.
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement
@@ -108,7 +105,11 @@ threat:
       import urllib.request
       public\_html = urllib.request.urlopen(url).read()
       opener = urllib.request.build\_opener(urllib.request.HTTPCookieProcessor(cj))
-
-    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
-    Cookies can be found on disk, in the process memory of the browser, and in
-    network traffic to remote systems.
+      
+  surface:
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Entra ID

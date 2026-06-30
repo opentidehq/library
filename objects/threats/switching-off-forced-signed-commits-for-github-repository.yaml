@@ -19,12 +19,10 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1562
-  terrain:
-    - Code Repositories::GitHub
-    - Azure
-    - Code Repositories
-    - Development::CI/CD
-    - Remote Access
+  terrain: |-
+    Requires a GitHub organization, either as SaaS or as an on-prem GitHub 
+    instance. Attacker requires admin credentials to change the setting or 
+    an exploit to bypass authentication or similar.
   severity: Localised incident
   leverage: Dwelling; Infrastructure Compromise; Modify configuration
   impact: Impairement
@@ -36,8 +34,10 @@ threat:
     commits, the attacker will be blocked from committing code changes to a
     repository, essentially limiting the attacker from attaining lateral 
     movement or similar objectives, unless the attacker turns off the forced 
-    commit policy.
-
-    Requires a GitHub organization, either as SaaS or as an on-prem GitHub 
-    instance. Attacker requires admin credentials to change the setting or 
-    an exploit to bypass authentication or similar.
+    commit policy. 
+  surface:
+    - Code Repositories::GitHub
+    - Azure
+    - Code Repositories
+    - Development::CI/CD
+    - Remote Access

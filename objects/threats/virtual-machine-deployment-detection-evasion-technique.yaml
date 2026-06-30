@@ -32,14 +32,9 @@ threat:
         deployment of a virtual machine to maintain their
         persistence and to evade the security detections
         mechanisms.   
-  terrain:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
-    - Customer Support
-    - Azure::Compute::Virtual Machines
-    - Virtualisation::VMware ESXi
+  terrain: |-
+    A threat actor needs an initial privileged access
+    to already compromised host system.
   severity: Moderate incident
   leverage: Infrastructure Compromise; Elevation of privilege; Information Disclosure; Software installation; Tampering
   impact: Impairement; Data Breach; Business disruption; Reputational Damages; Nuisance
@@ -74,7 +69,12 @@ threat:
     period of time. During this period, they can escalate privileges, move
     laterally across the environment, and exfiltrate valuable or sensitive
     organisational data using data-exfiltration tools. For example, such
-    data-exfiltration tool can be `GoodSync` tool ref [1], [2].
-
-    A threat actor needs an initial privileged access
-    to already compromised host system.
+    data-exfiltration tool can be `GoodSync` tool ref [1], [2].      
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Customer Support
+    - Azure::Compute::Virtual Machines
+    - Virtualisation::VMware ESXi

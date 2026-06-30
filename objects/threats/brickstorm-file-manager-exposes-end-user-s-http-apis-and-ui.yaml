@@ -36,12 +36,9 @@ threat:
         ability to execute file management and network tunneling
         functions and in this way to manipulate files and exfiltrate
         data.    
-  terrain:
-    - Windows
-    - Linux
-    - Application Layer::HTTP
-    - Windows::Desktop
-    - Web Servers
+  terrain: |-
+    A threat actor abuses publicly exposed HTTP APIs
+    and end-user publicly exposed UIs (User Interfaces).
   severity: Localised incident
   leverage: Infrastructure Compromise; Tampering; Modify data
   impact: Impairement; Lose Capabilities; Operating costs
@@ -76,7 +73,10 @@ threat:
     server. Further this functionality and specific behavior allows the
     adversary to select a drive they wish to browse. Once the drive is
     selected, BRICKSTORM allows the adversaries to browse through the
-    file system and download files by their choice ref [1].
-
-    A threat actor abuses publicly exposed HTTP APIs
-    and end-user publicly exposed UIs (User Interfaces).
+    file system and download files by their choice ref [1].  
+  surface:
+    - Windows
+    - Linux
+    - Application Layer::HTTP
+    - Windows::Desktop
+    - Web Servers

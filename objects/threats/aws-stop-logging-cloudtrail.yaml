@@ -18,9 +18,9 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1562.008
-  terrain:
-    - AWS
-    - AWS::Compute::EC2
+  terrain: |-
+    A threat actor requires authenticated access with permissions 
+    cloudtrail:StopLogging to execute the StopLogging API call.
   severity: Moderate incident
   leverage: Log tampering; Modify configuration; Repudiation
   impact: Impairement; Lose Capabilities
@@ -82,6 +82,6 @@ threat:
     allowing malicious activities to proceed without observation. The impact of this 
     evasion tactic is significant, as it can severely hamper incident response and forensic 
     investigations by obscuring the attacker's actions.
-
-    A threat actor requires authenticated access with permissions 
-    cloudtrail:StopLogging to execute the StopLogging API call.
+  surface:
+    - AWS
+    - AWS::Compute::EC2

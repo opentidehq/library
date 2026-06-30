@@ -32,9 +32,10 @@ threat:
     - T1140
     - T1218.010
     - T1218.005
-  terrain:
-    - Windows
-    - Windows::Desktop
+  terrain: |-
+    Adversaries must have access to a Windows environment where they can execute 
+    built-in utilities. Limited user privileges may suffice, 
+    but administrative privileges enhance the potential impact.
   severity: Moderate incident
   leverage: Elevation of privilege; Information Disclosure; Modify configuration; Software installation
   impact: Data Breach; Reputational Damages; Business disruption; Identity Theft
@@ -44,7 +45,6 @@ threat:
     malicious code, evade detection, and maintain persistence. This technique, known 
     as Living off the Land Binaries (LoLBins), leverages trusted applications to 
     carry out unauthorized actions.
-
-    Adversaries must have access to a Windows environment where they can execute 
-    built-in utilities. Limited user privileges may suffice, 
-    but administrative privileges enhance the potential impact.
+  surface:
+    - Windows
+    - Windows::Desktop

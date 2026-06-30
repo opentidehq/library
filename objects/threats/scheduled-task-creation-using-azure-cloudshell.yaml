@@ -23,12 +23,10 @@ threat:
   killchain: Execution
   att&ck:
     - T1053.005
-  terrain:
-    - Azure
-    - Remote Access
-    - Windows::Desktop
-    - Web Servers
-    - Azure::Compute::Virtual Machines
+  terrain: |-
+    A threat actor has gained control over privileges to create scheduled tasks 
+    on a deployed resource using Azure CloudShell either via a browser or the
+    Azure portal.
   severity: Moderate incident
   leverage: Dwelling; Elevation of privilege; Tampering
   impact: Impairement
@@ -49,7 +47,9 @@ threat:
     $Trigger = New-ScheduledTaskTrigger -Daily -At <time: hh:mm>
     $Action = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-File C:\Scripts\My_task_script.ps1"
     Register-ScheduledTask -TaskName "My Task" -Trigger $Trigger -Action $Action -RunLevel Highest
-
-    A threat actor has gained control over privileges to create scheduled tasks 
-    on a deployed resource using Azure CloudShell either via a browser or the
-    Azure portal.
+  surface:
+    - Azure
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers
+    - Azure::Compute::Virtual Machines

@@ -24,7 +24,13 @@ threat:
     - T1610
     - T1525
     - T1496
-  terrain:
+  terrain: Running container clusters running in cloud, private cloud or in Enterprise Data Centre environments, potentially connected via a Continuous deployment tool
+  severity: Substantial incident
+  leverage: Infrastructure Compromise; Dwelling; Software installation
+  impact: Asset and fraud; Operating costs; Impairement
+  viability: Environment dependent
+  description: A threat actor can gain access to deployment workflows and pipelines and can then abuse acquired access to deploy images of their own choosing to deploy a cryptominer either directly via a malicious image, or by deploying a clean image first and then a cryptominer and C2 Infrastructure
+  surface:
     - AWS::Compute::EC2
     - AWS::Compute::EKS
     - AWS::Compute::ECS
@@ -35,11 +41,3 @@ threat:
     - OCI::Container Engine
     - Development::CI/CD
     - Remote Access
-  severity: Substantial incident
-  leverage: Infrastructure Compromise; Dwelling; Software installation
-  impact: Asset and fraud; Operating costs; Impairement
-  viability: Environment dependent
-  description: |-
-    A threat actor can gain access to deployment workflows and pipelines and can then abuse acquired access to deploy images of their own choosing to deploy a cryptominer either directly via a malicious image, or by deploying a clean image first and then a cryptominer and C2 Infrastructure
-
-    Running container clusters running in cloud, private cloud or in Enterprise Data Centre environments, potentially connected via a Continuous deployment tool

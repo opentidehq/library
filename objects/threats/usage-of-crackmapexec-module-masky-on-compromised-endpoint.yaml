@@ -22,11 +22,7 @@ threat:
   killchain: Credential Access
   att&ck:
     - T1003
-  terrain:
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+  terrain: On a compromised Windows or Linux variant endpoint, Masky can be used to collect the NT hash for all connected users
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance
@@ -53,5 +49,8 @@ threat:
     Masky is a new module, which in certain ways is less noisy than
     dumping LSASS, but if AD CS CAs have auditing enabled, will be
     very noisy and detectable.
-
-    On a compromised Windows or Linux variant endpoint, Masky can be used to collect the NT hash for all connected users
+  surface:
+    - Windows
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop

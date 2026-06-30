@@ -25,10 +25,10 @@ threat:
   killchain: Persistence
   att&ck:
     - T1098.004
-  terrain:
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+  terrain: |-
+    Threat actor must have root or sudo privileges on the target Linux system, 
+    as well as the ability to interact with sshd_config 
+    (e.g., via nano, vim, vi, or cat commands), before this threat is realized.
   severity: Significant incident
   leverage: Tampering; Modify configuration; Elevation of privilege
   impact: Data Breach; Business disruption; Reputational Damages
@@ -92,8 +92,8 @@ threat:
         AllowTcpForwarding yes" >> /etc/ssh/sshd_config
     ```
     This configuration could stealthily enable features like port forwarding, 
-    further helping attackers evade detection and maintain persistence.
-
-    Threat actor must have root or sudo privileges on the target Linux system, 
-    as well as the ability to interact with sshd_config 
-    (e.g., via nano, vim, vi, or cat commands), before this threat is realized.
+    further helping attackers evade detection and maintain persistence.  
+  surface:
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop

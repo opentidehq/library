@@ -23,12 +23,10 @@ threat:
   killchain: Execution
   att&ck:
     - T1053.005
-  terrain:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers
+  terrain: |-
+    An adversary has gained control over a Windows endpoint and has privileges 
+    to create scheduled tasks in order to connect to adversarial 
+    infrastructure.
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Elevation of privilege
   impact: Impairement
@@ -46,7 +44,9 @@ threat:
     connection. The exact details of how the task is set up would depend on the 
     specific adversarial infrastructure being used and the tools and protocols 
     available for connecting to it.
-
-    An adversary has gained control over a Windows endpoint and has privileges 
-    to create scheduled tasks in order to connect to adversarial 
-    infrastructure.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers

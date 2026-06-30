@@ -62,14 +62,9 @@ threat:
       description: |-
         Attackers need to have gained administrative Azure Active Directory
         (Azure AD) privileges using compromised credentials.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - AWS::Storage
-    - Entra ID
-    - Azure::Compute::Virtual Machines
-    - Application Layer::HTTP
+  terrain: |-
+    Adversaries gains administrative access (e.g., via phishing, credential theft,
+    or exploiting vulnerabilities).
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Modify configuration
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
@@ -132,6 +127,11 @@ threat:
     4. Maintenance: The attacker periodically refreshes delegated permissions, adds 
     new external users/entities, or modifies trust relationships as needed to maintain 
     access and evade detection.
-
-    Adversaries gains administrative access (e.g., via phishing, credential theft,
-    or exploiting vulnerabilities).
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - AWS::Storage
+    - Entra ID
+    - Azure::Compute::Virtual Machines
+    - Application Layer::HTTP

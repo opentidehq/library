@@ -29,11 +29,9 @@ threat:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
       description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
-  terrain:
-    - Windows
-    - Windows::Desktop
-    - Azure::Compute::Virtual Machines
-    - Web Servers
+  terrain: |-
+    Threat actors must have access to a Windows system with user-level privileges 
+    where Windows utilities are available.
   severity: Significant incident
   leverage: Elevation of privilege; Tampering; Information Disclosure
   impact: Data Breach; Business disruption; Reputational Damages
@@ -122,6 +120,8 @@ threat:
     IconIndex=13
     ShowCommand=7
     ```
-
-    Threat actors must have access to a Windows system with user-level privileges 
-    where Windows utilities are available.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
+    - Web Servers

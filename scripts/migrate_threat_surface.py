@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Migrate threat terrain from deprecated domains/platforms/targets to surface vocab."""
+"""Migrate threat surface vocab from deprecated domains/platforms/targets into threat.surface."""
 
 from __future__ import annotations
 
@@ -236,18 +236,6 @@ def _map_values(values: list[str], mapping: dict[str, str | None]) -> list[str]:
     return mapped
 
 
-def _merge_narrative(description: str, narrative: str) -> str:
-    narrative = narrative.strip()
-    if not narrative:
-        return description
-    description = (description or "").strip()
-    if not description:
-        return narrative
-    if narrative in description:
-        return description
-    return f"{description.rstrip()}\n\n{narrative}"
-
-
 def _surface_values_from_labels(labels: dict[str, list[str]]) -> list[str]:
     surfaces: list[str] = []
     for label, mapping in (
@@ -276,14 +264,26 @@ def migrate_threat(data: dict[str, Any], *, allowed: set[str], source_name: str 
     if not isinstance(threat, dict):
         return data, issues
 
-    for deprecated in ("domains", "platforms", "targets", "surface"):
+    for deprecated in ("domains", "platforms", "targets"):
         if deprecated in threat:
             issues.append(f"removed deprecated threat.{deprecated}")
 
     terrain_raw = threat.get("terrain")
+    existing_surface = threat.get("surface")
+
     if isinstance(terrain_raw, list):
+        # Recover from a prior bad migration that stored surface vocab in terrain.
         surfaces = [str(item).strip() for item in terrain_raw if str(item).strip()]
         narrative = ""
+        issues.append("recovered surface values from terrain list — restore terrain narrative from source")
+    elif isinstance(existing_surface, list) and existing_surface:
+        surfaces = [str(item).strip() for item in existing_surface if str(item).strip()]
+        terrain_text = str(terrain_raw or "")
+        narrative, labels = _parse_label_lines(terrain_text)
+        if any(key in labels for key in ("Domains", "Platforms", "Targets", "Surface")):
+            label_surfaces = _surface_values_from_labels(labels)
+            if label_surfaces:
+                surfaces = label_surfaces
     else:
         terrain_text = str(terrain_raw or "")
         narrative, labels = _parse_label_lines(terrain_text)
@@ -301,17 +301,17 @@ def migrate_threat(data: dict[str, Any], *, allowed: set[str], source_name: str 
         else:
             surfaces = _surface_values_from_labels(labels)
 
-    if narrative:
-        threat["description"] = _merge_narrative(str(threat.get("description") or ""), narrative)
-
     invalid = [value for value in surfaces if value not in allowed]
     if invalid:
         issues.append(f"invalid surface values: {', '.join(invalid)}")
     if not surfaces:
         issues.append("no surface values resolved")
+    if not narrative.strip():
+        issues.append("empty terrain narrative")
 
-    threat["terrain"] = surfaces
-    for deprecated in ("domains", "platforms", "targets", "surface"):
+    threat["terrain"] = narrative
+    threat["surface"] = surfaces
+    for deprecated in ("domains", "platforms", "targets"):
         threat.pop(deprecated, None)
     return data, issues
 

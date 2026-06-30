@@ -22,10 +22,9 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1098
-  terrain:
-    - Active Directory
-    - Windows
-    - Windows::Desktop
+  terrain: |-
+    Adversary must have administrative privileges on Windows systems within 
+     the enterprise network.
   severity: Significant incident
   leverage: Modify configuration; Modify data; Tampering; New Accounts
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs
@@ -80,6 +79,7 @@ threat:
       If an attacker has the credentials for any user account, they can use the LogonUser() function to create logon 
       sessions for them remotely. They can then gain a token from the security context of the logged in user, 
       which they can give to a thread to launch a process.
-
-    Adversary must have administrative privileges on Windows systems within 
-     the enterprise network.
+  surface:
+    - Active Directory
+    - Windows
+    - Windows::Desktop

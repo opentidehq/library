@@ -26,12 +26,9 @@ threat:
   att&ck:
     - T1053.005
     - T1564
-  terrain:
-    - Windows
-    - Azure
-    - Remote Access
-    - Windows::Desktop
-    - Web Servers
+  terrain: |-
+    Threat actor is using already compromised Windows endpoint and has the required 
+    privileges to delete registry keys.
   severity: Moderate incident
   leverage: Tampering
   impact: Impairement
@@ -75,6 +72,9 @@ threat:
     Remove-ItemProperty -Path "HKLM:\Software\MyKey" -Name "MyValue"
 
     rm "HKLM:\Software\MyKey"
-
-    Threat actor is using already compromised Windows endpoint and has the required 
-    privileges to delete registry keys.
+  surface:
+    - Windows
+    - Azure
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers

@@ -30,11 +30,9 @@ threat:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
       description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
-  terrain:
-    - Windows
-    - Active Directory
-    - Windows::Desktop
-    - Web Servers
+  terrain: |-
+    Adversary must have at least user-level code execution privileges on a Windows host 
+    where Mshta is available to run.
   severity: Significant incident
   leverage: Spoofing; Elevation of privilege; Software installation
   impact: Data Breach; Reputational Damages; Business disruption
@@ -67,6 +65,8 @@ threat:
 
     Once executed, mshta.exe runs with the same privileges as the invoking user 
     (or higher, if misconfigurations or stolen credentials allow for elevated privileges).
-
-    Adversary must have at least user-level code execution privileges on a Windows host 
-    where Mshta is available to run.
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Web Servers

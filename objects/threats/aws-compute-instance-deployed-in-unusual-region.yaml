@@ -24,10 +24,9 @@ threat:
   killchain: Impact
   att&ck:
     - T1496
-  terrain:
-    - AWS::Compute::EC2
-    - AWS::Compute::ECS
-    - AWS::Compute::EKS
+  terrain: |-
+    Attacker needs to control credentials required to deploy an EC2 instance,
+    or to deploy a compute resource of a type that runs on EC2.
   severity: Localised incident
   leverage: Software installation; Infrastructure Compromise
   impact: Operating costs; Asset and fraud; Legal and regulatory
@@ -47,6 +46,7 @@ threat:
 
     It is expected that threat actors will potentially use compute instances 
     for other purposes than the 2 listed above.
-
-    Attacker needs to control credentials required to deploy an EC2 instance,
-    or to deploy a compute resource of a type that runs on EC2.
+  surface:
+    - AWS::Compute::EC2
+    - AWS::Compute::ECS
+    - AWS::Compute::EKS

@@ -46,11 +46,10 @@ threat:
       description: |-
         Adversaries successfully compromise a Global Administrator account in
         Entra ID (Azure AD), either via phishing, credential theft, or session hijacking.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Azure::Compute::Virtual Machines
+  terrain: |-
+    Adversaries gain privileged access to an Azure environment, often through phishing, 
+    credential theft, or exploitation of misconfigurations, to compromise a global administrator 
+    or backup operator account.
   severity: Significant incident
   leverage: Tampering; Information Disclosure; Denial of Service; Elevation of privilege; Modify configuration; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Lose Capabilities; Business disruption
@@ -99,7 +98,8 @@ threat:
     6. All recovery points are lost, blocking simple system and data restores and maximizing 
     the attack impact. The victim organization must resort to slower, less effective, 
     or non-existent recovery measures.
-
-    Adversaries gain privileged access to an Azure environment, often through phishing, 
-    credential theft, or exploitation of misconfigurations, to compromise a global administrator 
-    or backup operator account.
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Compute::Virtual Machines

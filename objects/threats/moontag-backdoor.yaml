@@ -30,10 +30,9 @@ threat:
 
         //Install this dll as a Service host by svchost.exe, used by RUNDLL32.EXE to call
         void CALLBACK RundllInstallA(HWND hwnd, HINSTANCE hinst, char *param, int nCmdShow)
-  terrain:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
+  terrain: |-
+    Threat actor uses vulnerable Microsoft Graph APIs
+    to deploy a backdoor.
   severity: Localised incident
   leverage: Dwelling; Infrastructure Compromise; Information Disclosure; Tampering
   impact: Data Breach; Impairement; Lose Capabilities; Reputational Damages
@@ -85,7 +84,8 @@ threat:
     system's normal operations.
     - Remote Control: The service starts a command-line process (cmd.exe),
     allowing an attacker to execute arbitrary commands on the target machine,
-    which could lead to further exploitation or system takeover.
-
-    Threat actor uses vulnerable Microsoft Graph APIs
-    to deploy a backdoor.
+    which could lead to further exploitation or system takeover.  
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access

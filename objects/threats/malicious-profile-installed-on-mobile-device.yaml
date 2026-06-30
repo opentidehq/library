@@ -22,12 +22,10 @@ threat:
     - T1631.001
     - T1407
     - T1417
-  terrain:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Mobile::iPadOS
-    - File Sharing
+  terrain: |-
+    Adversaries rely on social engineering (e.g., phishing emails/SMS with fake security alerts), 
+    and infrastructure such as spoofed domains, third-party app stores, or MitM tools 
+    to distribute payloads or force installations.
   severity: Significant incident
   leverage: Information Disclosure; Modify configuration; Modify privileges; Spoofing
   impact: Asset and fraud; Data Breach; Identity Theft; IP Loss; Nuisance
@@ -96,7 +94,9 @@ threat:
       Malware such as "Godless" exploits older Android versions by embedding malicious 
       configuration files within apps downloaded from third-party stores. These files 
       gain root access and install spyware for complete device takeover.
-
-    Adversaries rely on social engineering (e.g., phishing emails/SMS with fake security alerts), 
-    and infrastructure such as spoofed domains, third-party app stores, or MitM tools 
-    to distribute payloads or force installations.
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Mobile::iPadOS
+    - File Sharing

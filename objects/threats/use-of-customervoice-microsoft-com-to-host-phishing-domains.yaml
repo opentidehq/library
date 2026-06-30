@@ -18,9 +18,9 @@ threat:
   att&ck:
     - T1566.002
     - T1566.003
-  terrain:
-    - Windows
-    - Windows::Desktop
+  terrain: |-
+    Phishing email or message sent another way with a link that includes 
+    the real microsoft.com domain as customervoice.microsoft.com
   severity: Localised incident
   leverage: Software installation; Information Disclosure; Dwelling; Infrastructure Compromise
   impact: Identity Theft; Reputational Damages; Operating costs; Data Breach; Legal and regulatory
@@ -31,6 +31,6 @@ threat:
     customervoice.microsoft.com should be blocked on forward proxies by most 
     organizations, unless they have legit reasons to have traffic to this, and
     legit traffic going there.
-
-    Phishing email or message sent another way with a link that includes 
-    the real microsoft.com domain as customervoice.microsoft.com
+  surface:
+    - Windows
+    - Windows::Desktop

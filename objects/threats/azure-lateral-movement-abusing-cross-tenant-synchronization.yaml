@@ -18,12 +18,7 @@ threat:
   killchain: Command & Control
   att&ck:
     - T1021.007
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - Azure::Compute::Kubernetes Service
-    - AWS::Storage
-    - AWS::Compute::EC2
+  terrain: Attackers must have compromised a tenant and gained elevated privileges
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Modify configuration
   impact: Business disruption; Lose Capabilities; Data Breach; Reputational Damages
@@ -43,5 +38,9 @@ threat:
     gaining access to the other tenant's network.
 
     This allows the threat actor to achieve lateral movement without requiring new user credentials.
-
-    Attackers must have compromised a tenant and gained elevated privileges
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Azure::Compute::Kubernetes Service
+    - AWS::Storage
+    - AWS::Compute::EC2

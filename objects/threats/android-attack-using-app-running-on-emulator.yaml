@@ -26,10 +26,10 @@ threat:
     - T1426
     - T0869
     - T1641
-  terrain:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iPadOS
+  terrain: |-
+    Adversaries require users to download emulators that have been
+    compromised or misconfigured and through these, they can carry
+    out malicious activities.
   severity: Significant incident
   leverage: Information Disclosure; Modify configuration; Modify data; Software installation; Tampering; Dwelling
   impact: Data Breach; Identity Theft; IP Loss; Nuisance; Reputational Damages
@@ -76,7 +76,7 @@ threat:
     - Access to compromised credentials (usernames/passwords) and device identifiers.
     - Custom scripts for network interception and API manipulation.
     - Cycling of spoofed devices to evade detection and maintain operational stealth.
-
-    Adversaries require users to download emulators that have been
-    compromised or misconfigured and through these, they can carry
-    out malicious activities.
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iPadOS

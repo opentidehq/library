@@ -35,15 +35,13 @@ threat:
         Malicious spearphishing campaign can use a typosquatting domain
         technique - a threat actor may embed fraudulent web pages / domains
         in the links in a customized and initially prepared emails.   
-  terrain:
-    - Mobile
-    - Industrial IoT::IoT Gateways
-    - Windows
-    - Linux
-    - Customer Support
-    - Windows::Desktop
-    - Email
-    - Web Servers
+  terrain: |-
+    A threat actor use vulnerabilities in domain providers to buy similar
+    to a legit domain and to use them for malicious purposes.
+
+    Usually the threat actors are buying as much as possible domains
+    on a bulk with impersonation goal, social engineering or just spreading
+    disinformation.
   severity: Moderate incident
   leverage: Spoofing; Infrastructure Compromise
   impact: Impairement; Asset and fraud; Identity Theft
@@ -88,11 +86,13 @@ threat:
     For example, Doppelganger is a pro-Russian misleading information
     operation targeting the European Union (EU) and other geopolitical
     actors. This campaign exploits political, economic, and social
-    divisions within the EU and its member states.
-
-    A threat actor use vulnerabilities in domain providers to buy similar
-    to a legit domain and to use them for malicious purposes.
-
-    Usually the threat actors are buying as much as possible domains
-    on a bulk with impersonation goal, social engineering or just spreading
-    disinformation.
+    divisions within the EU and its member states. 
+  surface:
+    - Mobile
+    - Industrial IoT::IoT Gateways
+    - Windows
+    - Linux
+    - Customer Support
+    - Windows::Desktop
+    - Email
+    - Web Servers

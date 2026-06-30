@@ -22,10 +22,9 @@ threat:
   att&ck:
     - T1205
     - T1029
-  terrain:
-    - Windows
-    - Customer Support
-    - Windows::Desktop
+  terrain: |-
+    A threat actor uses a compromised endpoint to set and monitor specific time
+    intervals known as beacons.
   severity: Moderate incident
   leverage: Dwelling; Information Disclosure
   impact: Data Breach
@@ -71,7 +70,8 @@ threat:
       make it harder for security teams to detect the beaconing activity.
     - Conserve resources: By only communicating at specific intervals, the
       attacker can conserve resources, such as bandwidth and system resources,
-      on the compromised system.
-
-    A threat actor uses a compromised endpoint to set and monitor specific time
-    intervals known as beacons.
+      on the compromised system.  
+  surface:
+    - Windows
+    - Customer Support
+    - Windows::Desktop

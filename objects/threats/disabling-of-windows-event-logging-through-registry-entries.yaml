@@ -25,13 +25,10 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1562.002
-  terrain:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Log Management
-    - Web Servers
+  terrain: |-
+    A threat actor has gained control over a Windows endpoint and has
+    privileges to disable event logging (in bulk or specific entries)
+    through registry entries.
   severity: Moderate incident
   leverage: Log tampering
   impact: Impairement
@@ -85,7 +82,10 @@ threat:
     - 01 00 means success auditing
     - 02 00 means failure auditing
     - 03 00 means all auditing
-
-    A threat actor has gained control over a Windows endpoint and has
-    privileges to disable event logging (in bulk or specific entries)
-    through registry entries.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Log Management
+    - Web Servers

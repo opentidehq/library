@@ -19,13 +19,11 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1562.001
-  terrain:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
-    - Web Servers
-    - Kerberos
+  terrain: |-
+    The attacker requires administrative privileges on the target operating system 
+    to modify or disable the system paging or swap settings. 
+    They may also need to leverage local management tools or scripts 
+    to carry out these modifications.
   severity: Significant incident
   leverage: Modify configuration; Denial of Service; Elevation of privilege
   impact: Business disruption; Impairement; Reputational Damages
@@ -64,8 +62,10 @@ threat:
     ```
     This one disable all swap spaces and remove swap references from `/etc/fstab`, 
     ensuring the change persists on reboot.
-
-    The attacker requires administrative privileges on the target operating system 
-    to modify or disable the system paging or swap settings. 
-    They may also need to leverage local management tools or scripts 
-    to carry out these modifications.
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Web Servers
+    - Kerberos

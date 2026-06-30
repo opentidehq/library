@@ -27,9 +27,10 @@ threat:
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
       description: MFA bypass technique
-  terrain:
-    - Microsoft::Microsoft 365
-    - Windows::Desktop
+  terrain: |-
+    An adversary needs to target companies and contacts 
+    to distribute the malware, it's used a massive distrigution 
+    technique on a random principle.
   severity: Significant incident
   leverage: Dwelling; Information Disclosure; Elevation of privilege; Spoofing
   impact: Identity Theft; Business disruption; Impairement; Monetary Loss
@@ -39,7 +40,6 @@ threat:
     to redirection site, which hosts a fake MFA login page.
     The MitM page completes the authentication flow by interfacing
     with the legitimate IdP, and captures valid accounts
-
-    An adversary needs to target companies and contacts 
-    to distribute the malware, it's used a massive distrigution 
-    technique on a random principle.
+  surface:
+    - Microsoft::Microsoft 365
+    - Windows::Desktop

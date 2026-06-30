@@ -18,11 +18,9 @@ threat:
   killchain: Credential Access
   att&ck:
     - T1134.002
-  terrain:
-    - Windows
-    - OAuth / OIDC
-    - Remote Access
-    - Entra ID
+  terrain: |-
+    The victim Window endpoints need to have vulnerable accounts with 
+    misconfigured settings that may leak access tokens.
   severity: Moderate incident
   leverage: Elevation of privilege; Infrastructure Compromise
   impact: Identity Theft; Impairement
@@ -39,6 +37,8 @@ threat:
     running under the security context of the impersonated user. 
     This is useful for creating a new process under the security 
     context of a different user.
-
-    The victim Window endpoints need to have vulnerable accounts with 
-    misconfigured settings that may leak access tokens.
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Remote Access
+    - Entra ID

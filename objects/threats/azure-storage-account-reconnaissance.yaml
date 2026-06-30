@@ -41,14 +41,9 @@ threat:
       description: |-
         Attackers need to establish an initial presence within the target environment, in 
         order to gather sufficient permissions to execute the data collection tools.
-  terrain:
-    - Azure
-    - Azure::Security::Entra ID
-    - Azure::Storage::Blob Storage
-    - AWS::Storage
-    - Application Layer::HTTP
-    - Serverless
-    - Web Servers
+  terrain: |-
+    Adversaries need to scan and discover publicly accessible storage containers by 
+    guessing or enumerating storage account and container names.
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Denial of Service
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -78,7 +73,12 @@ threat:
     2. **Lateral movement**: Discovery of storage accounts linked to higher-privileged 
     resources (e.g., Azure Functions) for token theft and privilege escalation.  
     3. **Malware distribution**: Mapping storage accounts used for hosting malicious 
-    content via features like static websites.
-
-    Adversaries need to scan and discover publicly accessible storage containers by 
-    guessing or enumerating storage account and container names.
+    content via features like static websites.  
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Azure::Storage::Blob Storage
+    - AWS::Storage
+    - Application Layer::HTTP
+    - Serverless
+    - Web Servers

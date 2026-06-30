@@ -34,11 +34,9 @@ threat:
         A password spraying technique can be used to bruteforce and compromise
         an SMB share. Threat actors brute-force the credentials using a list of
         common or expected passwords against a set of usernames.  
-  terrain:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Customer Support
+  terrain: |-
+    A threat actor needs an access to a compromised host and availability to
+    try to connect to a SMB share.
   severity: Moderate incident
   leverage: Information Disclosure; Elevation of privilege; Infrastructure Compromise; Tampering; Denial of Service
   impact: Data Breach; Impairement; Lose Capabilities; Reputational Damages
@@ -115,6 +113,8 @@ threat:
     msf5 auxilary(scanner/smb/smb_login) > run
 
     ```
-
-    A threat actor needs an access to a compromised host and availability to
-    try to connect to a SMB share.
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Customer Support

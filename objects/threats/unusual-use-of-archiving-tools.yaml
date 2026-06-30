@@ -31,11 +31,9 @@ threat:
     - T1036
     - T1027
     - T1070
-  terrain:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
+  terrain: |-
+    Adversary must have access to systems with archiving tools installed and permissions 
+    to execute renamed or custom archiving utilities.
   severity: Moderate incident
   leverage: Information Disclosure; Modify data
   impact: Data Breach; IP Loss; Reputational Damages
@@ -58,6 +56,8 @@ threat:
 
     Also, a significant number of data compression and unusual outbound network traffic 
     may indicate attempts to exfiltrate data.
-
-    Adversary must have access to systems with archiving tools installed and permissions 
-    to execute renamed or custom archiving utilities.
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop

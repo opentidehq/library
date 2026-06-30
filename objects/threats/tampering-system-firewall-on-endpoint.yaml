@@ -24,13 +24,9 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1562.004
-  terrain:
-    - Windows
-    - macOS
-    - Linux
-    - Firewalls
-    - Windows::Desktop
-    - Web Servers
+  terrain: |-
+    Adversary must have administrative privileges on the targeted operating system 
+    with the necessary permissions to modify system firewall configurations.
   severity: Substantial incident
   leverage: Modify configuration; Denial of Service; Tampering
   impact: Data Breach; Business disruption; Operating costs; Legal and regulatory
@@ -65,7 +61,11 @@ threat:
     Attackers could use the `pfctl` command (e.g., `sudo pfctl -d`) to disable the 
     Packet Filter firewall, or modify system configuration files that govern firewall rules. 
     They may also exploit launch daemons or kernel extensions to bypass 
-    or remove firewall protections.
-
-    Adversary must have administrative privileges on the targeted operating system 
-    with the necessary permissions to modify system firewall configurations.
+    or remove firewall protections.  
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Firewalls
+    - Windows::Desktop
+    - Web Servers

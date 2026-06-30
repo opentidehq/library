@@ -35,11 +35,9 @@ threat:
     - relation: sequence::succeeds
       vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
       description: Phishing emails with malicious macros are used to deliver the malware.
-  terrain:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Web Servers
+  terrain: |-
+    An adversary has gained control over a Windows endpoint and has privileges 
+    to create scheduled tasks in order to maintain persistence in the registry.
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering; Modify configuration; Modify data
   impact: Impairement; Business disruption
@@ -105,7 +103,9 @@ threat:
     users on the system: (HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\CurrentVersion\Run)
 
     - **Using Startup Folders**: Malware can place executable files in startup
-    folders so that they run automatically when a user logs into their account.
-
-    An adversary has gained control over a Windows endpoint and has privileges 
-    to create scheduled tasks in order to maintain persistence in the registry.
+    folders so that they run automatically when a user logs into their account.   
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers
