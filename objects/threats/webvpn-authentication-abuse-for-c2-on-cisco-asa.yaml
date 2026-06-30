@@ -30,18 +30,10 @@ threat:
         shellcode delivery itself also uses this WebVPN channel,
         embedding a partial PKCS7 certificate followed by shellcode in
         a crafted authentication request [1].
-  terrain: |-
-    Cisco ASA devices with WebVPN functionality enabled and accessible
-    to attacker infrastructure [1]. The WebVPN client authentication
-    mechanism processes XML data containing device-id, version, and form
-    elements through a large codebase in lina. This XML processing does
-    not adequately validate or sanitise crafted authentication requests,
-    allowing arbitrary data to be embedded in standard authentication
-    fields like device-type within the XML structure.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment, VPN Client
-    Platforms: Network Router
+  terrain:
+    - Routers
+    - Switches
+    - VPN
   severity: Substantial incident
   leverage: Spoofing; Information Disclosure; Infrastructure Compromise
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
@@ -137,3 +129,11 @@ threat:
     legitimate functionality for malicious purposes makes detection
     challenging and requires deep packet inspection or behavioural
     analysis beyond standard network monitoring.
+
+    Cisco ASA devices with WebVPN functionality enabled and accessible
+    to attacker infrastructure [1]. The WebVPN client authentication
+    mechanism processes XML data containing device-id, version, and form
+    elements through a large codebase in lina. This XML processing does
+    not adequately validate or sanitise crafted authentication requests,
+    allowing arbitrary data to be embedded in standard authentication
+    fields like device-type within the XML structure.

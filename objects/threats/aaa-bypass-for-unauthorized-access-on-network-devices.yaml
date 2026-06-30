@@ -29,18 +29,10 @@ threat:
         processing logic at runtime before authentication requests reach
         legitimate AAA validation routines, granting actor-controlled
         devices access without generating authentication logs [1].
-  terrain: |-
-    Cisco ASA devices with LINE VIPER malware deployed that has memory-
-    resident hooks in the lina binary [1]. The malware operates with
-    sufficient privileges to modify AAA processing logic at runtime,
-    intercepting authentication requests before they reach legitimate
-    AAA validation routines. This requires prior compromise through
-    bootkit deployment that provides the necessary execution context and
-    privileges.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment, Server Authentication
-    Platforms: Network Router
+  terrain:
+    - Routers
+    - Switches
+    - Kerberos
   severity: Substantial incident
   leverage: Elevation of privilege; Repudiation; Infrastructure Compromise; Tampering
   impact: Lose Capabilities; National Security; Reputational Damages; Data Breach
@@ -139,3 +131,11 @@ threat:
     effectively turning it into an attacker-controlled platform while
     maintaining the appearance of normal operation to administrators and
     security monitoring systems.
+
+    Cisco ASA devices with LINE VIPER malware deployed that has memory-
+    resident hooks in the lina binary [1]. The malware operates with
+    sufficient privileges to modify AAA processing logic at runtime,
+    intercepting authentication requests before they reach legitimate
+    AAA validation routines. This requires prior compromise through
+    bootkit deployment that provides the necessary execution context and
+    privileges.

@@ -21,15 +21,16 @@ threat:
     - T1528
     - T1550.001
     - T1190
-  terrain: |-
-    Adversaries need to gain access to a valid JWT (JSON Web Token) associated with 
-    the automation account’s managed identity. This access is typically achieved by 
-    modifying automation runbooks or exploiting misconfigured permissions to execute 
-    code that retrieves the JWT from the managed identity endpoint.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Cloud Storage Accounts, Key Store, Identity Services, Compute Cluster, Public-Facing Servers, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, PowerShell
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Entra ID
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -67,3 +68,8 @@ threat:
     confusion vulnerabilities.
     - **Azure APIs**: Native tools like Az PowerShell modules can abuse valid JWTs for 
     resource enumeration.
+
+    Adversaries need to gain access to a valid JWT (JSON Web Token) associated with 
+    the automation account’s managed identity. This access is typically achieved by 
+    modifying automation runbooks or exploiting misconfigured permissions to execute 
+    code that retrieves the JWT from the managed identity endpoint.

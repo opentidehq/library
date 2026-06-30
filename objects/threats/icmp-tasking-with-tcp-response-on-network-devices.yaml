@@ -30,18 +30,9 @@ threat:
         Echo Requests containing encrypted tasking and responds over raw
         TCP connections on high-ephemeral ports, providing a secondary
         C2 channel independent of WebVPN access [1].
-  terrain: |-
-    Network configurations where ICMP traffic is permitted to reach
-    Cisco ASA LAN interfaces, particularly through established VPN
-    tunnels [1]. In observed operations, ICMP tasking is not sent to the
-    WAN interface but instead tunnelled through an established VPN
-    session to a LAN interface. The VPN connection allows actor-
-    controlled systems within the local network to send ICMP Echo
-    Requests that bypass traditional WAN-focused network monitoring.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment
-    Platforms: Network Router
+  terrain:
+    - Routers
+    - Switches
   severity: Substantial incident
   leverage: Infrastructure Compromise; Information Disclosure; Spoofing
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
@@ -155,3 +146,11 @@ threat:
     technique represents an evolution in network device implant
     communication methods, moving beyond simple HTTP/HTTPS-based C2 to
     leverage lower-layer protocols for increased stealth and resilience.
+
+    Network configurations where ICMP traffic is permitted to reach
+    Cisco ASA LAN interfaces, particularly through established VPN
+    tunnels [1]. In observed operations, ICMP tasking is not sent to the
+    WAN interface but instead tunnelled through an established VPN
+    session to a LAN interface. The VPN connection allows actor-
+    controlled systems within the local network to send ICMP Echo
+    Requests that bypass traditional WAN-focused network monitoring.

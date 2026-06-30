@@ -39,14 +39,14 @@ threat:
         in the target Azure AD tenant, then utilizes API endpoints and tools, such as Azure CLI, 
         PowerShell modules (e.g., MSOnline, Microsoft.Graph), or custom scripts, to list 
         all registered applications.
-  terrain: |-
-    Adversaries need access to an identity (user account or service principal) with 
-    sufficient permissions to create, modify, or assign roles to app registrations or 
-    service principals.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Identity Services, Public-Facing Servers, API Endpoints, Cloud Portal, Serverless
-    Platforms: Azure, Azure AD
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Entra ID
+    - Web Servers
+    - Application Layer::HTTP
+    - Serverless
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing; Tampering; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities
@@ -86,4 +86,8 @@ threat:
     - **Step 2**: Create or modify an app registration to include dangerous permissions.  
     - **Step 3**: Use the app’s client ID/secret to authenticate and execute privileged 
     operations (e.g., adding users to admin groups).  
-    - **Step 4**: Escalate to **Global Admin** via *RoleManagement.ReadWrite.Directory*.  
+    - **Step 4**: Escalate to **Global Admin** via *RoleManagement.ReadWrite.Directory*.
+
+    Adversaries need access to an identity (user account or service principal) with 
+    sufficient permissions to create, modify, or assign roles to app registrations or 
+    service principals.

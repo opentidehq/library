@@ -22,14 +22,12 @@ threat:
     - T1078
     - T1195
     - T1199
-  terrain: |-
-    Adversaries must obtain valid user or device credentials, or compromise authentication 
-    certificates used for VPN access. This could be achieved through phishing, credential 
-    theft, or exploiting weak authentication practices.
-
-    Domains: Mobile
-    Targets: Mobile phone, Tablet, VPN Client, Personal Information
-    Platforms: iOS, Android
+  terrain:
+    - Mobile
+    - Mobile::iOS
+    - Mobile::Android
+    - Mobile::iPadOS
+    - VPN
   severity: Significant incident
   leverage: Dwelling; Information Disclosure; Spoofing
   impact: Competitive disadvantage; Data Breach; Identity Theft; IP Loss
@@ -74,4 +72,7 @@ threat:
       attackers could potentially exploit the persistent VPN connection to maintain 
       access to internal networks or exfiltrate data. While certificate revocation and 
       account disabling can mitigate this, there is a window of risk before such actions are taken.
-      
+
+    Adversaries must obtain valid user or device credentials, or compromise authentication 
+    certificates used for VPN access. This could be achieved through phishing, credential 
+    theft, or exploiting weak authentication practices.

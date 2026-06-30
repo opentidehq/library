@@ -52,18 +52,10 @@ threat:
         processing logic at runtime, enabling actor-controlled devices
         to bypass authentication and accounting without generating
         audit logs [1].
-  terrain: |-
-    Compromised Cisco ASA devices running firmware versions 9.12(4)67
-    and 9.14(4)24, which were fully patched at time of discovery [1].
-    Requires prior deployment of RayInitiator bootkit which installs
-    hooks into lina binary to intercept WebVPN XML form element
-    processing. The WebVPN traffic handling codebase in lina processes
-    XML data that can be weaponised to load shellcode when specific form
-    elements are encountered.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment, VPN Client
-    Platforms: Network Router
+  terrain:
+    - Routers
+    - Switches
+    - VPN
   severity: Substantial incident
   leverage: Infrastructure Compromise; Information Disclosure; Dwelling; Tampering; Repudiation
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
@@ -161,3 +153,11 @@ threat:
     The combination of advanced persistence, multiple C2 channels,
     encryption, and extensive defence evasion makes LINE VIPER a highly
     sophisticated threat to network infrastructure.
+
+    Compromised Cisco ASA devices running firmware versions 9.12(4)67
+    and 9.14(4)24, which were fully patched at time of discovery [1].
+    Requires prior deployment of RayInitiator bootkit which installs
+    hooks into lina binary to intercept WebVPN XML form element
+    processing. The WebVPN traffic handling codebase in lina processes
+    XML data that can be weaponised to load shellcode when specific form
+    elements are encountered.

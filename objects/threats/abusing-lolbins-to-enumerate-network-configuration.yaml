@@ -24,13 +24,13 @@ threat:
   killchain: Discovery
   att&ck:
     - T1016
-  terrain: |-
-    Adversary must have the capability to run network configuration commands on 
-    endpoints or servers, potentially with elevated privileges
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Network Equipment
-    Platforms: Windows, macOS, Linux
+  terrain:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Web Servers
+    - Switches
   severity: Substantial incident
   leverage: Information Disclosure; Infrastructure Compromise; Dwelling
   impact: Data Breach; Business disruption; Reputational Damages
@@ -76,3 +76,6 @@ threat:
       - `route` to view or modify the IP routing table.  
       - `iptables`, `firewall-cmd`, `ufw` to query or adjust firewall settings.  
       - `dig` to query DNS servers and display DNS records.
+
+    Adversary must have the capability to run network configuration commands on 
+    endpoints or servers, potentially with elevated privileges

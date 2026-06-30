@@ -21,13 +21,12 @@ threat:
   killchain: Execution
   att&ck:
     - T1053.005
-  terrain: |-
-    An adversary has gained control over a Windows endpoint and has  
-    privileges to create scheduled tasks using PowerShell.exe
-
-    Domains: Enterprise, Public Cloud
-    Targets: Workstations, Control Server, Input/Output Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling
   impact: Impairement
@@ -40,3 +39,6 @@ threat:
 
     Scheduled tasks are typically used to either connect to adversary 
     infrastructure, establish persistence or to execute binaries.
+
+    An adversary has gained control over a Windows endpoint and has  
+    privileges to create scheduled tasks using PowerShell.exe

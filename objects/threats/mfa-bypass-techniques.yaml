@@ -35,12 +35,18 @@ threat:
     - T1566.001
     - T1566.002
     - T1566.004
-  terrain: |-
-    Sufficient reconnaissance to identify a target account and MFA technologies being used.
-
-    Domains: Enterprise, Public Cloud, Mobile, SaaS
-    Targets: Auth token, API Endpoints, Cloud Portal, End-user, Helpdesk, Identity Services, Mobile phone
-    Platforms: Android, iOS, Azure AD, Office 365
+  terrain:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - OAuth / OIDC
+    - Application Layer::HTTP
+    - Azure
+    - Windows::Desktop
+    - Customer Support
+    - Entra ID
   severity: Moderate incident
   leverage: Elevation of privilege; Modify configuration; Modify privileges; Spoofing
   impact: Identity Theft; Impairement
@@ -53,3 +59,5 @@ threat:
 
     A MFA bypass is a broad term referring to an attack method where a cybercriminal 
     navigates around MFA requirements to gain unauthorized access to an account.
+
+    Sufficient reconnaissance to identify a target account and MFA technologies being used.

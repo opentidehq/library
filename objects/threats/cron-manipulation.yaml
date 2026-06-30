@@ -24,13 +24,11 @@ threat:
   killchain: Persistence
   att&ck:
     - T1053.003
-  terrain: |-
-    Threat actor must already have privileged or administrative-level access 
-    on a Linux or Unix-like system to insert or modify cron entries.
-
-    Domains: Enterprise
-    Targets: Public-Facing Servers, Workstations, Laptop
-    Platforms: Linux, macOS
+  terrain:
+    - Linux
+    - macOS
+    - Web Servers
+    - Windows::Desktop
   severity: Substantial incident
   leverage: Dwelling; Modify configuration; Elevation of privilege
   impact: Data Breach; Business disruption; Operating costs; Reputational Damages
@@ -53,3 +51,6 @@ threat:
     Attackers have also been identified using stealthy cron modifications to maintain 
     a foothold on victim systems, execute remote commands, and ensure that malicious binaries 
     are relaunched even after a reboot.
+
+    Threat actor must already have privileged or administrative-level access 
+    on a Linux or Unix-like system to insert or modify cron entries.

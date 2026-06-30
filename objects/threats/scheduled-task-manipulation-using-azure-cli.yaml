@@ -40,12 +40,14 @@ threat:
       description: |-
         A threat actor in control of the prerequisites may attempt to use the Azure
         CLI to perform changes either to the endpoint from which the CLI is acces...
-  terrain: |-
-    Adversary must have administrative privileges over the Azure CLI environment.
-
-    Domains: Public Cloud, Enterprise, Networking
-    Targets: Cloud Storage Accounts, Identity Services, Virtual Machines, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, Office 365
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - AWS::Storage
+    - Entra ID
+    - Azure::Compute::Virtual Machines
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
@@ -87,3 +89,5 @@ threat:
 
     5. **Masquerading**: Malicious tasks can be disguised as legitimate system processes 
     or software updates to avoid suspicion.
+
+    Adversary must have administrative privileges over the Azure CLI environment.

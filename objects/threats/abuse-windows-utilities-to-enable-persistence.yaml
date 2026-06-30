@@ -25,15 +25,12 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
-      description: |-
-        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
-  terrain: |-
-    Adversary must have administrative privileges on Windows systems within 
-    the enterprise network.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Laptop
-    Platforms: Windows, Active Directory, PowerShell
+      description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
+  terrain:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Web Servers
   severity: Significant incident
   leverage: Modify configuration; Modify data; Tampering; New Accounts
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs
@@ -73,3 +70,6 @@ threat:
     Using shadow.exe, an attacker can connect to an active RDP session on target-server, 
     potentially allowing them to observe or control the session without the user's knowledge. 
     This can be used to capture sensitive information or further compromise the system.
+
+    Adversary must have administrative privileges on Windows systems within 
+    the enterprise network.

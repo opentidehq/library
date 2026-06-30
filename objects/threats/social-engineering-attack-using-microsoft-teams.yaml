@@ -21,16 +21,9 @@ threat:
   killchain: Delivery
   att&ck:
     - T1199
-  terrain: |-
-    Attacker has compromised a valid Microsoft 365 tenant to host the lures, and valid
-    valid credentials in targeted M365 tenant too.
-    Targeted organizations must use an app like Microsoft Authenticator as second
-    factor (app taking the code received after successful authentication granted by 
-    the victim, the user, in previous step).
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: End-user
-    Platforms: Microsoft Teams
+  terrain:
+    - Microsoft::Teams
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Identity Theft; Data Breach
@@ -78,4 +71,10 @@ threat:
     - Adversary-controlled Office 365 accounts are used, often with display names mimicking 
     legitimate IT staff.
     - Profile pictures and backgrounds are crafted to appear authentic.
-    - Attackers exploit the victim's state of confusion and urgency caused by the email bombing.    
+    - Attackers exploit the victim's state of confusion and urgency caused by the email bombing.
+
+    Attacker has compromised a valid Microsoft 365 tenant to host the lures, and valid
+    valid credentials in targeted M365 tenant too.
+    Targeted organizations must use an app like Microsoft Authenticator as second
+    factor (app taking the code received after successful authentication granted by 
+    the victim, the user, in previous step).

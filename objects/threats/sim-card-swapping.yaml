@@ -28,15 +28,16 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
-      description: |-
-        MFA bypass technique
-  terrain: |-
-    Attacker must convince the mobile network operator (e.g. through social networking, forged
-    identification, or insider attacks performed by trusted employees) to issue a new SIM card
-
-    Domains: Enterprise, Mobile, Public Cloud
-    Targets: Auth token, Cloud Portal, End-user, Helpdesk, Identity Services, Mobile phone
-    Platforms: Android, iOS
+      description: MFA bypass technique
+  terrain:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Customer Support
+    - Entra ID
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement
@@ -60,3 +61,6 @@ threat:
     Using SMS-based two-factor authentication, mobile application providers send a link or one-time passcode 
     via text to the user's number, now owned by the attackers, to access accounts. The attacker uses the codes
     to login and reset passwords, gaining control of online accounts associated with the user's phone profile.
+
+    Attacker must convince the mobile network operator (e.g. through social networking, forged
+    identification, or insider attacks performed by trusted employees) to issue a new SIM card

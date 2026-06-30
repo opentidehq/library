@@ -28,14 +28,14 @@ threat:
     - T1571
     - T1572
     - T1059
-  terrain: |-
-    Adversaries need way to initiate the reverse-shell 
-    connection on the victim host either through vulnerability 
-    exploitation, social engineering, or by other means.
-
-    Domains: Public Cloud, Private Cloud, Enterprise, Networking
-    Targets: Personal Information, Workstations, Virtual Machines Host, Web Application Servers, Laptop
-    Platforms: Windows, Linux, Azure, AWS
+  terrain:
+    - Windows
+    - Linux
+    - Azure
+    - AWS
+    - Windows::Desktop
+    - Virtualisation::VMware ESXi
+    - Web Servers
   severity: Significant incident
   leverage: Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; Dwelling; Modify configuration
   impact: Impairement; Data Breach; Reputational Damages
@@ -127,3 +127,7 @@ threat:
       Close the connection
       $new_socket->close();
     ```
+
+    Adversaries need way to initiate the reverse-shell 
+    connection on the victim host either through vulnerability 
+    exploitation, social engineering, or by other means.

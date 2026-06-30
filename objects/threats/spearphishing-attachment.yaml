@@ -35,25 +35,16 @@ threat:
   killchain: Delivery
   att&ck:
     - T1566.001
-  terrain: |-
-    Spear phishing requires more preparation and time to achieve success 
-    than a phishing attack. That is because spear-phishing attackers
-    attempt to obtain vast amounts of personal information about their
-    victims.  
-    Attackers can get the personal information they need using different
-    ways:  
-    - to compromise an email or messaging system trough other means,
-    - to use OSINT, sourcing Social Media or glean personal information
-    from the user's online presence.
-    They want to craft emails that look as legitimate and attractive as possible 
-    to increase the chances of fooling their targets, for instance sending a malicious 
-    attachment where the filename references a topic the recipient is interested in.
-    The highly personalized nature of spear-phishing attacks makes it more 
-    difficult to identity than widescale phishing attacks.
-
-    Domains: Enterprise, Mobile, Public Cloud, Private Cloud
-    Targets: Email Platform, End-user, Customer, Documents
-    Platforms: Windows, Office 365, Android, iOS
+  terrain:
+    - Mobile
+    - Windows
+    - Microsoft::Microsoft 365
+    - Mobile::Android
+    - Mobile::iOS
+    - Email
+    - Windows::Desktop
+    - Customer Support
+    - File Sharing
   severity: Significant incident
   leverage: Spoofing; Software installation; Elevation of privilege; Information Disclosure; Infrastructure Compromise
   impact: Reputational Damages; Data Breach; Identity Theft; Business disruption
@@ -118,3 +109,18 @@ threat:
     to left using a Unicode character that causes the text that follows it 
     to be displayed in reverse, this method is used to blend the real file 
     extension with the file name.
+
+    Spear phishing requires more preparation and time to achieve success 
+    than a phishing attack. That is because spear-phishing attackers
+    attempt to obtain vast amounts of personal information about their
+    victims.  
+    Attackers can get the personal information they need using different
+    ways:  
+    - to compromise an email or messaging system trough other means,
+    - to use OSINT, sourcing Social Media or glean personal information
+    from the user's online presence.
+    They want to craft emails that look as legitimate and attractive as possible 
+    to increase the chances of fooling their targets, for instance sending a malicious 
+    attachment where the filename references a topic the recipient is interested in.
+    The highly personalized nature of spear-phishing attacks makes it more 
+    difficult to identity than widescale phishing attacks.

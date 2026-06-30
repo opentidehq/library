@@ -21,14 +21,8 @@ threat:
     - T1071
     - T1059
     - T1574
-  terrain: |-
-    Organizations and individuals using Notepad++ text editor on Windows systems, 
-    particularly those with automatic update mechanisms enabled. The attack targeted 
-    the legitimate update infrastructure, delivering malicious payloads disguised 
-    as authentic software updates. Victims were distributed globally across multiple 
-    sectors including government, financial services, and IT service providers.
-
-    Surface: OS::Windows::Desktop
+  terrain:
+    - Windows::Desktop
   severity: Highly significant incident
   leverage: Elevation of privilege; Tampering; Information Disclosure; Repudiation
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss
@@ -221,3 +215,9 @@ threat:
 
     Organizations using Notepad++ should treat this as a **CRITICAL** incident requiring 
     immediate investigation and response actions.
+
+    Organizations and individuals using Notepad++ text editor on Windows systems, 
+    particularly those with automatic update mechanisms enabled. The attack targeted 
+    the legitimate update infrastructure, delivering malicious payloads disguised 
+    as authentic software updates. Victims were distributed globally across multiple 
+    sectors including government, financial services, and IT service providers.

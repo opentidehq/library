@@ -70,14 +70,14 @@ threat:
       description: |-
         Adversaries obtains sufficient privileges (via phishing, misconfigurations, lateral movement,
         or exploitation of weak access controls).
-  terrain: |-
-    The adversaries must obtain sufficient privileges
-    on the Azure tenant to interact with resources 
-    in a soft-deleted state.
-
-    Domains: Public Cloud
-    Targets: Key Store, Cloud Storage Accounts, Virtual Machines, Serverless, Identity Services
-    Platforms: Azure, Azure AD
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Azure::Security::Key Vault
+    - AWS::Storage
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Entra ID
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Modify configuration; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
@@ -129,3 +129,7 @@ threat:
     - **Post-Exploitation**: Data is accessed, secrets are used for persistence or lateral 
     movement, or assets are further manipulated or exposed depending on the attacker’s 
     objectives.
+
+    The adversaries must obtain sufficient privileges
+    on the Azure tenant to interact with resources 
+    in a soft-deleted state.

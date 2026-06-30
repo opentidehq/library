@@ -28,18 +28,10 @@ threat:
         lina binary (Stage 3). LINE VIPER is subsequently loaded from a
         specially crafted WebVPN client authentication request containing
         a partial PKCS7 certificate followed by shellcode [1].
-  terrain: |-
-    Cisco ASA 5500-X series devices without secure boot technology,
-    lacking cryptographic verification of early boot software [1]. These
-    models were released in 2012 with an End of Life notice issued by
-    Cisco in 2020. All observed targeted models have either passed their
-    last day of support or reach end of support September 30, 2025 [1].
-    The absence of secure boot allows arbitrary modification of the GRUB
-    bootloader without cryptographic validation.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment, Firmware
-    Platforms: Network Router
+  terrain:
+    - Routers
+    - Switches
+    - Embedded
   severity: Substantial incident
   leverage: Infrastructure Compromise; Tampering; Dwelling
   impact: Lose Capabilities; Reputational Damages; National Security
@@ -99,3 +91,11 @@ threat:
     persistence techniques targeting network infrastructure. The
     multi-stage approach and ability to survive firmware upgrades makes
     detection and remediation particularly challenging.
+
+    Cisco ASA 5500-X series devices without secure boot technology,
+    lacking cryptographic verification of early boot software [1]. These
+    models were released in 2012 with an End of Life notice issued by
+    Cisco in 2020. All observed targeted models have either passed their
+    last day of support or reach end of support September 30, 2025 [1].
+    The absence of secure boot allows arbitrary modification of the GRUB
+    bootloader without cryptographic validation.

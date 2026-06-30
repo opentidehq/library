@@ -18,13 +18,14 @@ threat:
   killchain: Persistence
   att&ck:
     - T1136.001
-  terrain: |-
-    Adversary must have existing administrative privileges on a compromised host 
-    within the targeted infrastructure to create or modify local user accounts.
-
-    Domains: Enterprise, Networking
-    Targets: Workstations, Desktop, Laptop, Public-Facing Servers, Production Database, Virtual Machines, Engineering Workstation
-    Platforms: Windows, Linux, macOS
+  terrain:
+    - Windows
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Web Servers
+    - Database Management
+    - Azure::Compute::Virtual Machines
   severity: Substantial incident
   leverage: Elevation of privilege; New Accounts; Modify configuration
   impact: Data Breach; Reputational Damages; Identity Theft; Business disruption
@@ -67,4 +68,7 @@ threat:
     maintain a foothold within the environment, pivot to other hosts, 
     exfiltrate data, or stage further attacks. The long-term impact of such 
     account additions may lead to data breaches, reputation damage, financial 
-    loss and regulatory consequences.  
+    loss and regulatory consequences.
+
+    Adversary must have existing administrative privileges on a compromised host 
+    within the targeted infrastructure to create or modify local user accounts.

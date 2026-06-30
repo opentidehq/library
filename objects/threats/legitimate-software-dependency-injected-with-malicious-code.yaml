@@ -25,16 +25,12 @@ threat:
     - T1499
     - T1559.002
     - T1036
-  terrain: |-
-    A threat actor uses an already existing vulnerable open-source library
-    component to inject malicious code.
-
-    They can use also a build-in or some type of an inherited vulnerability
-    in the vendor's process which allows malicious code injection.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: CI/CD Pipelines, Developer, Other
-    Platforms: Windows, macOS, Linux
+  terrain:
+    - Windows
+    - macOS
+    - Linux
+    - Development::CI/CD
+    - Development
   severity: Significant incident
   leverage: Infrastructure Compromise; Tampering
   impact: Impairement; Business disruption; Lose Capabilities; Competitive disadvantage
@@ -89,4 +85,10 @@ threat:
     - Dependency hijacking - In this method, the threat actor compromises
     a legitimate package and pushes malicious code into it. This is done by
     taking over maintainers' or developers' accounts or injecting obfuscated
-    malicious code into a legitimate open-source project.  
+    malicious code into a legitimate open-source project.
+
+    A threat actor uses an already existing vulnerable open-source library
+    component to inject malicious code.
+
+    They can use also a build-in or some type of an inherited vulnerability
+    in the vendor's process which allows malicious code injection.

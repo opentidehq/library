@@ -28,12 +28,18 @@ threat:
       description: |-
         Adversaries obtain the username and password of an AzureAD user either through phishing, 
         password spraying, brute-force attacks, or credentials leaked online.
-  terrain: |-
-    Adversaries need local administrative access to the Azure AD Connect server.
-
-    Domains: Public Cloud
-    Targets: Identity Services, Cloud Storage Accounts, Workstations, Virtual Machines, API Endpoints, Cloud Portal, Server Authentication, Directory, Server Logs
-    Platforms: Azure, Azure AD, Office 365
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - Entra ID
+    - AWS::Storage
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
+    - Application Layer::HTTP
+    - Kerberos
+    - Active Directory
+    - Log Management
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Information Disclosure; Elevation of privilege; Modify configuration
   impact: Data Breach; IP Loss; Reputational Damages; Lose Capabilities; Business disruption; Operating costs
@@ -79,4 +85,6 @@ threat:
     **6. MSOL Account Abuse**  
     The 'MSOL_[hash]' service account (used by Azure AD Connect) is a high-value target because it:  
     - Has extensive on-premises and cloud permissions (e.g., password reset, DCSync capabilities).  
-    - Can reset passwords of synced admin accounts, leading to cloud and on-premises compromise. 
+    - Can reset passwords of synced admin accounts, leading to cloud and on-premises compromise.
+
+    Adversaries need local administrative access to the Azure AD Connect server.

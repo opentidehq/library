@@ -32,13 +32,11 @@ threat:
         C2 beaconing on specific intervals can be a related threat vector to
         additional threat actor's technique like point the C2 domain to private
         IP address for obfuscation purposes. 
-  terrain: |-
-    The threat actor needs to have control over the DNS infrastructure that
-    resolves the C2 domain.
-
-    Domains: Enterprise
-    Targets: Server Logs
-    Platforms: Windows, Linux, macOS
+  terrain:
+    - Windows
+    - Linux
+    - macOS
+    - Log Management
   severity: Significant incident
   leverage: Spoofing
   impact: Business disruption; Impairement; Lose Capabilities
@@ -66,3 +64,6 @@ threat:
     has a suspicion of being detected or the C2 IP has been exposed, they may 
     change the C2 domain DNS record to a non-routable one while setting up new 
     infrastructure.
+
+    The threat actor needs to have control over the DNS infrastructure that
+    resolves the C2 domain.

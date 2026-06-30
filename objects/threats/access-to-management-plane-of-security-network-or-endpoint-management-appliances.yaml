@@ -46,26 +46,16 @@ threat:
     - T1222
     - T1497
     - T1497.001
-  terrain: |-
-    The attackers need a way to reach to the appliance from Internet. 
-    Either 
-    - Direct network connectivity for example appliances manageable 
-    behind a reverse proxy e.g. Ivanti Endpoint Manager Mobile.
-    - Indirect network connectivity to the devices. 
-    This is the case for network appliances like firewall, VPN, etc. 
-    Those appliances are inline to process network traffic 
-    therefore packets or requests might be crafted to access the 
-    apliance itself.
-    And then attackers need a way to get access on the managment plane 
-    of the appliance. Quite often, this is enabled by
-    - a Zero-day or unpatched vulnerability.
-    - or compromised valid credentials and poor controls on the 
-    management plane of the devices (no restriction on administrative 
-    actions from Internet-facing interface)
-
-    Domains: Embedded, Enterprise, Networking
-    Targets: Firewall, IDS, Network Equipment, Public-Facing Servers, Router or switch, Virtual Machines Host, Other
-    Platforms: Linux, Windows, Network Router, VMWare
+  terrain:
+    - Embedded
+    - Linux
+    - Windows
+    - Routers
+    - Virtualisation::VMware ESXi
+    - Firewalls
+    - Network Security::IDS
+    - Switches
+    - Web Servers
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Log tampering; Modify configuration; Modify privileges; New Accounts; Software installation; Tampering
   impact: Business disruption; Data Breach; Lose Capabilities; Operating costs
@@ -134,4 +124,20 @@ threat:
     without proper authentication,"  
 
     A "trusted source" informed Ivanti that CVE-2023-35078 was exploited in 
-    attacks against a limited number of customers.  
+    attacks against a limited number of customers.
+
+    The attackers need a way to reach to the appliance from Internet. 
+    Either 
+    - Direct network connectivity for example appliances manageable 
+    behind a reverse proxy e.g. Ivanti Endpoint Manager Mobile.
+    - Indirect network connectivity to the devices. 
+    This is the case for network appliances like firewall, VPN, etc. 
+    Those appliances are inline to process network traffic 
+    therefore packets or requests might be crafted to access the 
+    apliance itself.
+    And then attackers need a way to get access on the managment plane 
+    of the appliance. Quite often, this is enabled by
+    - a Zero-day or unpatched vulnerability.
+    - or compromised valid credentials and poor controls on the 
+    management plane of the devices (no restriction on administrative 
+    actions from Internet-facing interface)

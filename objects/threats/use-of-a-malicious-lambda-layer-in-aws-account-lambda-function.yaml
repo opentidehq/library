@@ -24,15 +24,9 @@ threat:
   att&ck:
     - T1648
     - T1195.001
-  terrain: |-
-    Requires that a threat actor can deploy code changes to a third party
-    or an EC controlled/deployed lambda layer in use by EC account(s), or 
-    that a threat actor can add a malicious lambda layer to a new or existing
-    lambda function.
-
-    Domains: Public Cloud
-    Targets: Serverless
-    Platforms: AWS Lambda
+  terrain:
+    - AWS::Compute::Lambda
+    - Serverless
   severity: Localised incident
   leverage: Alter behavior; Dwelling; Information Disclosure; Infrastructure Compromise; Modify configuration; Modify data; Tampering
   impact: Data Breach; IP Loss; Legal and regulatory; Nuisance; Operating costs
@@ -51,3 +45,8 @@ threat:
     via some trigger+action needed on the side of the lambda administrator, 
     unless the threat actor controls credentials to deploy or update lambda 
     functions.
+
+    Requires that a threat actor can deploy code changes to a third party
+    or an EC controlled/deployed lambda layer in use by EC account(s), or 
+    that a threat actor can add a malicious lambda layer to a new or existing
+    lambda function.

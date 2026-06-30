@@ -20,12 +20,9 @@ threat:
   killchain: Reconnaissance
   att&ck:
     - T1082
-  terrain: |-
-    A threat actor needs an initial access to a Linux system.
-
-    Domains: Enterprise
-    Targets: Laptop, Workstations
-    Platforms: Linux
+  terrain:
+    - Linux
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach; Identity Theft
@@ -92,4 +89,6 @@ threat:
     - SPARTA - tool used in the scanning and enumeration phase of information
       gathering on Linux systems. This tool can be used for network scanning and
       collection of information, for example scan of IP ranges, network and
-      domain names ref [4]. 
+      domain names ref [4].
+
+    A threat actor needs an initial access to a Linux system.

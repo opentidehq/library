@@ -51,16 +51,17 @@ threat:
         password spraying, brute-force attacks, or credentials leaked online.
     - relation: sequence::preceeds
       vector: 518ff777-f10d-4201-9e54-2779c31c512e
-      description: |-
-        User must click on a malicious link sent via email by attackers
-  terrain: |-
-    Adversaries must steal Azure Storage Account keys, Shared Access Signatures (SAS), 
-    or Azure AD credentials that have permissions to access file shares. This could 
-    be through phishing, credential dumping, or leveraging misconfigurations
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Virtual Machines, Serverless, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, Windows, Linux, macOS
+      description: User must click on a malicious link sent via email by attackers
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Linux
+    - macOS
+    - AWS::Storage
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Modify configuration
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Lose Capabilities
@@ -130,3 +131,7 @@ threat:
 
     Once mounted, the adversary can read, write, delete, or exfiltrate files directly from the 
     file share as though it were a local drive.
+
+    Adversaries must steal Azure Storage Account keys, Shared Access Signatures (SAS), 
+    or Azure AD credentials that have permissions to access file shares. This could 
+    be through phishing, credential dumping, or leveraging misconfigurations

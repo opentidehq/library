@@ -28,23 +28,25 @@ threat:
   chaining:
     - relation: sequence::preceeds
       vector: a8c7b250-a2d4-4a0d-82f8-23dc99c77d7b
-      description: |-
-        An adversary may obtain information about a role within Azure AD or within Azure Resource Manager.
+      description: An adversary may obtain information about a role within Azure AD or within Azure Resource Manager.
     - relation: sequence::preceeds
       vector: 61ddc240-e5a6-4ca8-ae77-6b471b498913
-      description: |-
-        An adversary may obtain information about a role within Azure AD or within Azure Resource Manager.
+      description: An adversary may obtain information about a role within Azure AD or within Azure Resource Manager.
     - relation: sequence::preceeds
       vector: f1dc4341-eb45-4d07-8075-b1a6b227cc76
-      description: |-
-        An adversary may obtain information about a role within Azure AD or within Azure Resource Manager.
-  terrain: |-
-    Adversaries need to identify privileged accounts and misconfigured role assignments 
-    that can be exploited for privilege escalation.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Identity Services, Cloud Storage Accounts, Compute Cluster, Public-Facing Servers, Virtual Machines, Serverless, API Endpoints, Cloud Portal, Server Authentication, Directory
-    Platforms: Azure, Azure AD
+      description: An adversary may obtain information about a role within Azure AD or within Azure Resource Manager.
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
+    - AWS::Storage
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Application Layer::HTTP
+    - Kerberos
+    - Active Directory
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -125,3 +127,6 @@ threat:
       - Prepares to exploit the gathered intelligence, such as launching spear-phishing 
       campaigns specifically targeting privileged users, leveraging known vulnerabilities 
       in third-party applications, or planning lateral movement towards sensitive workloads.
+
+    Adversaries need to identify privileged accounts and misconfigured role assignments 
+    that can be exploited for privilege escalation.

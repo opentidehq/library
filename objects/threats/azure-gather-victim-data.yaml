@@ -40,13 +40,15 @@ threat:
       description: |-
         An adversary may access a user's personal data if their account is compromised.
         This includes data such as email, OneDrive, Teams, etc.
-  terrain: |-
-    An adversary successfully compromises a user's Azure Active Directory account credentials 
-    or session token through phishing, credential theft, or token theft.
-
-    Domains: Public Cloud, SaaS, Private Cloud
-    Targets: Cloud Storage Accounts, Email Platform, Web Application Servers, API Endpoints, Identity Services, Personal Information
-    Platforms: Azure, Azure AD, Office 365
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - AWS::Storage
+    - Email
+    - Web Servers
+    - Application Layer::HTTP
+    - Entra ID
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
@@ -94,3 +96,6 @@ threat:
     4. **Persistence and Cover-Up**: The adversary maintains presence, possibly by registering 
     additional apps or accounts and attempts to remain undetected by throttling activity 
     or delaying requests.
+
+    An adversary successfully compromises a user's Azure Active Directory account credentials 
+    or session token through phishing, credential theft, or token theft.

@@ -22,13 +22,15 @@ threat:
     - T1112
     - T1195
     - T1204
-  terrain: |-
-    Adverdaries need to sign malware with a legitimate or fraudulently obtained code-signing 
-    certificate—especially Extended Validation (EV) certificates.
-
-    Domains: Enterprise, OSINT
-    Targets: Workstations, Public-Facing Servers, Virtual Machines, Software Containers, Windows API, Critical Documents
-    Platforms: Windows, PowerShell
+  terrain:
+    - Attack Surface Management
+    - Windows
+    - Windows::Desktop
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Container Runtime::Docker
+    - Application Layer::WMI
+    - File Sharing
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
@@ -77,3 +79,6 @@ threat:
     `rundll32.exe`, `regsvr32.exe`) to proxy execution of malicious scripts 
     and payloads, which Smart App Control might not block if the binary is 
     considered trusted.
+
+    Adverdaries need to sign malware with a legitimate or fraudulently obtained code-signing 
+    certificate—especially Extended Validation (EV) certificates.

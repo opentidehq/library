@@ -29,15 +29,11 @@ threat:
     - T1547.006
     - T1068
     - T1547
-  terrain: |-
-    A threat actor uses software vulnerabilities in legitimate Windows or other 
-    driver. The adversary already has local code execution (e.g., user context),
-    can trigger the vulnerable IOCTL/syscall surface, and the system is not yet
-    patched.
-
-    Domains: Enterprise
-    Targets: Laptop, Workstations, Customer, End-user, Virtual Machines
-    Platforms: Windows, PowerShell
+  terrain:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Tampering; Modify configuration; Software installation
   impact: Data Breach; Impairement
@@ -87,3 +83,8 @@ threat:
        be exploited by the threat actors for privilege escalation and other
        purposes.
     - `storport.sys` - the Storage Port driver can be vulnerable to exploits.
+
+    A threat actor uses software vulnerabilities in legitimate Windows or other 
+    driver. The adversary already has local code execution (e.g., user context),
+    can trigger the vulnerable IOCTL/syscall surface, and the system is not yet
+    patched.

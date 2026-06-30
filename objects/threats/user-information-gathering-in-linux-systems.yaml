@@ -37,13 +37,10 @@ threat:
         set of usernames is collected initally, after that the threat actor can
         use these names and data for further steps like add a local account to
         the system for persistence.   
-  terrain: |-
-    Requires an initial access to a Linux system with sufficient
-    rights to execute commands.
-
-    Domains: Enterprise
-    Targets: End-user, Customer
-    Platforms: Linux
+  terrain:
+    - Linux
+    - Windows::Desktop
+    - Customer Support
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach
@@ -106,3 +103,6 @@ threat:
     - `Mayhem`: This is a malware that can collect user data on Linux, including
       login credentials and sensitive information, and uses it for malicious
       activities.
+
+    Requires an initial access to a Linux system with sufficient
+    rights to execute commands.

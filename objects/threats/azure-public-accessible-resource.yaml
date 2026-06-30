@@ -27,13 +27,12 @@ threat:
       description: |-
         The attacker obtains credentials (via phishing, password spray, leaked keys) granting 
         at least Reader access to the target Azure tenant.
-  terrain: |-
-    Adversary must have access to internet-facing IP space to scan for live Azure VMs 
-    and network interfaces.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Virtual Machines, Network Equipment, Public-Facing Servers, Cloud Storage Accounts
-    Platforms: Azure
+  terrain:
+    - Azure
+    - Azure::Compute::Virtual Machines
+    - Switches
+    - Web Servers
+    - AWS::Storage
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Denial of Service; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Business disruption
@@ -80,3 +79,6 @@ threat:
     are subject to constant automated attacks and vulnerability scans.
     - **Potential Lateral Movement:** Compromising one public resource can serve as 
     a foothold to move deeper into the Azure environment.
+
+    Adversary must have access to internet-facing IP space to scan for live Azure VMs 
+    and network interfaces.

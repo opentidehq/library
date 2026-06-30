@@ -42,22 +42,13 @@ threat:
         vector via trojanised maintainer releases, lifecycle-hook execution
         on install, and worm-like republication using stolen registry and
         CI publishing credentials rather than typosquatting alone.
-  terrain: |-
-    Any organisation, developer workstation, CI/CD runner, or build pipeline
-    that resolved affected npm or PyPI package versions during the May 2026
-    exposure windows. The TanStack incident alone affected 42 `@tanstack/*`
-    packages (84 malicious versions published on 2026-05-11) via poisoned
-    GitHub Actions cache and OIDC token extraction on release runners;
-    parallel waves hit `@uipath/*`, `@mistralai/*`, and numerous additional
-    npm namespaces, plus PyPI packages `guardrails-ai@0.10.1` and
-    `mistralai@2.4.6`. Because payloads execute during `npm install`,
-    `pnpm install`, `yarn install`, or `pip install`, any host that
-    resolved a compromised version during the window must be treated as
-    potentially compromised. Self-propagation logic enumerates packages the
-    victim maintains and republishes trojanised versions, amplifying blast
-    radius beyond the initial namespace.
-
-    Surface: OS::Windows::Desktop, OS::macOS, OS::Linux, Application::Development::Package Management::npm, Application::Development::Package Management::PyPI, Application::Development::CI/CD::GitHub Actions
+  terrain:
+    - Windows::Desktop
+    - macOS
+    - Linux
+    - Development::Package Management::npm
+    - Development::Package Management::PyPI
+    - Development::CI/CD::GitHub Actions
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Tampering; Software installation; Information Gathering; Information Disclosure
   impact: Data Breach; Business disruption; Lose Capabilities; Reputational Damages; Operating costs
@@ -266,3 +257,17 @@ threat:
       matching** — no single log source is sufficient.
     - Token revocation can trigger **destructive follow-on behaviour**;
       sequence containment carefully on developer laptops.
+
+    Any organisation, developer workstation, CI/CD runner, or build pipeline
+    that resolved affected npm or PyPI package versions during the May 2026
+    exposure windows. The TanStack incident alone affected 42 `@tanstack/*`
+    packages (84 malicious versions published on 2026-05-11) via poisoned
+    GitHub Actions cache and OIDC token extraction on release runners;
+    parallel waves hit `@uipath/*`, `@mistralai/*`, and numerous additional
+    npm namespaces, plus PyPI packages `guardrails-ai@0.10.1` and
+    `mistralai@2.4.6`. Because payloads execute during `npm install`,
+    `pnpm install`, `yarn install`, or `pip install`, any host that
+    resolved a compromised version during the window must be treated as
+    potentially compromised. Self-propagation logic enumerates packages the
+    victim maintains and republishes trojanised versions, amplifying blast
+    radius beyond the initial namespace.

@@ -19,15 +19,10 @@ threat:
     - T1114
     - T1114.002
     - T1098.001
-  terrain: |-
-    The threat actor first needs to compromise an account with a privileged 
-    directory role that was granted the ability to modify Enterprise Applications 
-    or Application Registrations. A frequently targeted role was the Application 
-    Administrator, because it allowed complete control over applications in Azure AD.
-
-    Domains: Enterprise, Private Cloud
-    Targets: Identity Services
-    Platforms: Azure, Azure AD
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
   severity: Substantial incident
   leverage: Information Disclosure
   impact: Data Breach; IP Loss; National Security
@@ -42,3 +37,8 @@ threat:
     Modification of an application via PowerShell - The attacker connected to the Microsoft 
     365 tenant using Azure AD PowerShell. Once connected they added certificates to App 
     Registrations and Enterprise Applications that had the mail.read and files.read permission.
+
+    The threat actor first needs to compromise an account with a privileged 
+    directory role that was granted the ability to modify Enterprise Applications 
+    or Application Registrations. A frequently targeted role was the Application 
+    Administrator, because it allowed complete control over applications in Azure AD.

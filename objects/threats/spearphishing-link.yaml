@@ -25,20 +25,16 @@ threat:
     - T1566.002
     - T1036
     - T1656
-  terrain: |-
-    Spear phishing requires more preparation and time to achieve success than
-    a phishing attack. That is because spear-phishing attackers attempt to
-    obtain vast amounts of personal information about their victims,  
-    the entities their work for, or their areas of interest.  
-
-    Attackers can get the personal information they need using different ways:
-    to compromise an email or messaging system trough other means, to use OSINT,
-    scouring Social Media or glean personal information from the user's online
-    presence.
-
-    Domains: Enterprise, Mobile, Public Cloud, Private Cloud
-    Targets: Email Platform, End-user, Mobile phone
-    Platforms: Windows, Office 365, Android, iOS, Github, Gitlab
+  terrain:
+    - Mobile
+    - Windows
+    - Microsoft::Microsoft 365
+    - Mobile::Android
+    - Mobile::iOS
+    - Code Repositories::GitHub
+    - Code Repositories::GitLab
+    - Email
+    - Windows::Desktop
   severity: Significant incident
   leverage: Spoofing; Software installation; Elevation of privilege; Information Disclosure; Tampering; Infrastructure Compromise
   impact: Reputational Damages; Data Breach; Identity Theft; Business disruption; Impairement; Operating costs
@@ -136,4 +132,14 @@ threat:
     In one of the reports was observed that clicking a malicious HTML
     link redirected a victim first to malicious HubSpot Free Forms and then
     to credential harvesting pages mimicking Microsoft Azure and Outlook Web
-    App (OWA) login portals ref [d].      
+    App (OWA) login portals ref [d].
+
+    Spear phishing requires more preparation and time to achieve success than
+    a phishing attack. That is because spear-phishing attackers attempt to
+    obtain vast amounts of personal information about their victims,  
+    the entities their work for, or their areas of interest.  
+
+    Attackers can get the personal information they need using different ways:
+    to compromise an email or messaging system trough other means, to use OSINT,
+    scouring Social Media or glean personal information from the user's online
+    presence.

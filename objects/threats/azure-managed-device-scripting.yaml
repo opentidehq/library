@@ -59,13 +59,12 @@ threat:
       description: |-
         The adversary needs the owner access role on the targeted Azure subscription to apply
         the Azure Policy and grant permissions for the system-managed identities.
-  terrain: |-
-    Adversaries obtain elevated access within AzureAD or Intune; often
-    via credential theft, privilege escalation, or social engineering.
-
-    Domains: Public Cloud
-    Targets: Workstations, Mobile phone, Cloud Portal
-    Platforms: Azure AD, Windows, PowerShell
+  terrain:
+    - Azure::Security::Entra ID
+    - Windows
+    - Windows::Desktop
+    - Mobile
+    - Azure
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure
   impact: Data Breach; Reputational Damages; Identity Theft
@@ -100,3 +99,6 @@ threat:
     is misused, allowing the attacker to harvest data, pivot to other internal resources, 
     or further entrench their presence.
     3. Attackers may cover tracks by modifying or deleting audit logs accessible through IntuneAuditLogs.
+
+    Adversaries obtain elevated access within AzureAD or Intune; often
+    via credential theft, privilege escalation, or social engineering.

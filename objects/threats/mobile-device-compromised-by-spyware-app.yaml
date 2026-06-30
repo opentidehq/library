@@ -28,13 +28,12 @@ threat:
     - T1517
     - T1429
     - T1643
-  terrain: |-
-    Adversaries can abuse iOS or Android devices which are vulnerable
-    to a zero-click or zero-day exploitation, without user intervention.
-
-    Domains: Mobile
-    Targets: End-user, Executive, Manager, Mobile phone, Personal Information, Tablet
-    Platforms: Android, iOS
+  terrain:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Windows::Desktop
+    - Mobile::iPadOS
   severity: Significant incident
   leverage: Alter behavior; Information Disclosure; Modify configuration; Modify data; Software installation; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages
@@ -59,4 +58,7 @@ threat:
     it back to the attacker. It can steal photos and videos, recordings, location records, communications,
     web searches, passwords, call logs and social media posts.
     It also has the capability to activate cameras and microphones for real-time surveillance
-    without the permission or knowledge of the user.  
+    without the permission or knowledge of the user.
+
+    Adversaries can abuse iOS or Android devices which are vulnerable
+    to a zero-click or zero-day exploitation, without user intervention.

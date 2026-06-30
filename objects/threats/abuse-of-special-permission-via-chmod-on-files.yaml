@@ -25,14 +25,11 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1548.001
-  terrain: |-
-    An adversary must have local or SSH access to the target system, with credentials 
-    allowing the use of chmod or sudo. Typically, this involves default or weak 
-    configurations enabling chmod modifications on critical executables or scripts.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Laptop
-    Platforms: Linux, macOS
+  terrain:
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Web Servers
   severity: Significant incident
   leverage: Elevation of privilege; Modify privileges; Dwelling; Log tampering; Information Disclosure
   impact: Reputational Damages; Data Breach; Operating costs
@@ -81,4 +78,8 @@ threat:
     Once the SUID or SGID bit is set on a critical binary, any user running that 
     binary subsequently executes it with elevated privileges. Threat actors have 
     been observed employing this technique to gain root-level access, tamper with 
-    system logs, exfiltrate proprietary data, or introduce backdoors for persistence.  
+    system logs, exfiltrate proprietary data, or introduce backdoors for persistence.
+
+    An adversary must have local or SSH access to the target system, with credentials 
+    allowing the use of chmod or sudo. Typically, this involves default or weak 
+    configurations enabling chmod modifications on critical executables or scripts.

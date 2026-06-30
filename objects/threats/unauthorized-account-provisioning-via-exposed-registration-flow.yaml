@@ -37,12 +37,10 @@ threat:
         Both vectors involve unauthorised account creation, but at different layers. This vector is a
         web-application business-logic failure, while the linked vector covers host-local account
         creation after administrative compromise.
-  terrain: |-
-    External web applications with registration, signup, password-reset, or token issuance endpoints
-    that remain reachable even when the user interface is hidden or onboarding is intended to be
-    invite-only, partner-only, domain-restricted, or approval-based. The weak terrain is account
-    lifecycle logic where account records are created before approval is enforced and downstream
-    authentication, password reset, or session issuance does not consistently check approval state.
+  terrain:
+    - Web Servers
+    - Application Layer::HTTP
+    - Entra ID
   severity: Substantial incident
   leverage: New Accounts; Elevation of privilege; Information Disclosure
   impact: Data Breach; Identity Theft; Business disruption; Legal and regulatory
@@ -68,3 +66,9 @@ threat:
     The vector enables bypass of onboarding controls, internal enumeration from a trusted application
     context, and a foothold for additional abuse. Severity should be finalised from evidence of the
     endpoint, request and response pairs, reset behaviour, token issuance, and access level achieved.
+
+    External web applications with registration, signup, password-reset, or token issuance endpoints
+    that remain reachable even when the user interface is hidden or onboarding is intended to be
+    invite-only, partner-only, domain-restricted, or approval-based. The weak terrain is account
+    lifecycle logic where account records are created before approval is enforced and downstream
+    authentication, password reset, or session issuance does not consistently check approval state.

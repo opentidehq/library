@@ -29,16 +29,8 @@ threat:
         (chains #1 and #2) where attackers used temp.sh as a Living-Off-the-Land
         C2 service to exfiltrate system information and communicate with their
         command and control infrastructure through legitimate file sharing services.
-  terrain: |-
-    Organizations and environments where adversaries have established initial access
-    and are attempting to maintain covert command and control communications while
-    evading network detection. This technique targets environments where outbound
-    HTTPS traffic to legitimate file-sharing services is allowed, enabling attackers
-    to blend malicious traffic with normal business operations. Particularly relevant
-    in environments with developer workstations, laptops, and systems with curl.exe
-    or similar HTTP client tools available.
-
-    Surface: OS::Windows::Desktop
+  terrain:
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure; Dwelling
   impact: Data Breach; Reputational Damages
@@ -322,3 +314,11 @@ threat:
     - Kaspersky Securelist: "Notepad++ Supply Chain Attack" (February 2026)
     - Rapid7 Research: "Notepad++ Supply Chain Compromise Analysis" (February 2026)
     - temp.sh service: https://temp.sh/
+
+    Organizations and environments where adversaries have established initial access
+    and are attempting to maintain covert command and control communications while
+    evading network detection. This technique targets environments where outbound
+    HTTPS traffic to legitimate file-sharing services is allowed, enabling attackers
+    to blend malicious traffic with normal business operations. Particularly relevant
+    in environments with developer workstations, laptops, and systems with curl.exe
+    or similar HTTP client tools available.

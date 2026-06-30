@@ -22,14 +22,17 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1222
-  terrain: |-
-    The adversary must have sufficient privileges (e.g., local administrator 
-    or root permissions) on the target host or domain controller to modify 
-    file ownership attributes.
-
-    Domains: Enterprise, Networking
-    Targets: Workstations, Directory, Windows API, Critical Documents, Laptop, Public-Facing Servers, Production Database, Virtual Machines, Engineering Workstation
-    Platforms: Windows, Linux, macOS
+  terrain:
+    - Windows
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Active Directory
+    - Application Layer::WMI
+    - File Sharing
+    - Web Servers
+    - Database Management
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Modify privileges; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages; Business disruption
@@ -72,4 +75,8 @@ threat:
     ```
 
     Once a file is owned by `root`, it can be paired with setuid bits 
-    or extended attributes, enabling the file to run with elevated privileges. 
+    or extended attributes, enabling the file to run with elevated privileges.
+
+    The adversary must have sufficient privileges (e.g., local administrator 
+    or root permissions) on the target host or domain controller to modify 
+    file ownership attributes.

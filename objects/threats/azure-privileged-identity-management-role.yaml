@@ -34,25 +34,23 @@ threat:
         assignments that can be exploited for privilege escalation.
     - relation: sequence::succeeds
       vector: b1593e0b-1b3b-462d-9ab6-21d1c136469d
-      description: |-
-        An adversary may obtain information and data within a resource.
+      description: An adversary may obtain information and data within a resource.
     - relation: sequence::preceeds
       vector: f1dc4341-eb45-4d07-8075-b1a6b227cc76
-      description: |-
-        Adversaries will have already compromised some cloud credentials.
+      description: Adversaries will have already compromised some cloud credentials.
     - relation: sequence::preceeds
       vector: 670504aa-cfb8-4d1f-a5ad-16193822085f
       description: |-
         A threat actor has gained control over privileges to create scheduled tasks 
         on a deployed resource using Azure CloudShell either via a browser or the
         Azure portal.
-  terrain: |-
-    Adversaries exploit Azure Privileged Identity Management (PIM) roles by compromising 
-    accounts eligible for privileged activation or by abusing misconfigured PIM policies.
-
-    Domains: Public Cloud
-    Targets: Identity Services, API Endpoints, Cloud Portal, Virtual Machines, IaaS
-    Platforms: Azure, Azure AD
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
+    - Application Layer::HTTP
+    - Azure::Compute::Virtual Machines
+    - AWS::Compute::EC2
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges
   impact: Data Breach; IP Loss
@@ -108,3 +106,6 @@ threat:
     members or scheduling future eligibility.
     6. **Detection Evasion:** Exploit gaps in logging or monitoring or tamper with audit 
     logs if possible.
+
+    Adversaries exploit Azure Privileged Identity Management (PIM) roles by compromising 
+    accounts eligible for privileged activation or by abusing misconfigured PIM policies.

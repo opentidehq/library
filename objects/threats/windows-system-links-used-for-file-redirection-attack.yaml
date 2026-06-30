@@ -20,14 +20,13 @@ threat:
   att&ck:
     - T1562
     - T1027.012
-  terrain: |-
-    A threat actor needs an initial access to the system with 
-    standard user rights.
-
-    Domains: Enterprise
-    Cve: CVE-2020-0787
-    Targets: Workstations, Control Server, End-user, Desktop, Directory, Remote access, System admin
-    Platforms: Windows, Azure AD, Active Directory
+  terrain:
+    - Windows
+    - Azure::Security::Entra ID
+    - Active Directory
+    - Windows::Desktop
+    - Remote Access
+    - Microsoft::System Center
   severity: Localised incident
   leverage: Infrastructure Compromise; Dwelling; Elevation of privilege; Tampering
   impact: Impairement; Nuisance; Data Breach; Reputational Damages
@@ -93,4 +92,7 @@ threat:
     Alternate Data Streams are a feature of the NTFS file system that allows storing 
     metadata within a file. Attackers can abuse ADS to hide malicious code or sensitive 
     information within an innocent-looking file. When the file is accessed, the malicious 
-    content in the ADS is executed without the user's knowledge.  
+    content in the ADS is executed without the user's knowledge.
+
+    A threat actor needs an initial access to the system with 
+    standard user rights.

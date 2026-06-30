@@ -29,14 +29,13 @@ threat:
       description: |-
         The attacker obtains credentials (via phishing, password spray, leaked keys)
         granting at least Reader access to the target Azure tenant.
-  terrain: |-
-    Adversaries obtain write permissions on a target storage account (e.g., AML storage, 
-    CloudShell profile storage) through misconfiguration, compromised credentials, or 
-    access inheritance.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Cloud Portal, Identity Services, Virtual Machines, IaaS
-    Platforms: Azure, Azure AD
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Entra ID
+    - Azure::Compute::Virtual Machines
+    - AWS::Compute::EC2
   severity: Significant incident
   leverage: Tampering; Elevation of privilege; Information Disclosure
   impact: Data Breach; IP Loss
@@ -91,3 +90,7 @@ threat:
       or startup files, or by creating new high-privilege accounts/role assignments.
       - Broader impact includes data exfiltration, resource hijacking, or stealthy 
       malware deployment.
+
+    Adversaries obtain write permissions on a target storage account (e.g., AML storage, 
+    CloudShell profile storage) through misconfiguration, compromised credentials, or 
+    access inheritance.

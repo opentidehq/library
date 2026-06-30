@@ -40,15 +40,15 @@ threat:
         A threat actor used HTML smuggling to deliver a password-protected
         ZIP archive containing a VBScript loader for AsyncRAT in an AI generated
         malware campaign in France.
-  terrain: |-
-    A threat actor uses a legitimate and native features of
-    web page scripting languages as HTML, CSS, JavaScript
-    and others. This vulnerability in the page can lead
-    to an initial access to a targeted system.
-
-    Domains: Enterprise, Mobile
-    Targets: Customer, End-user, Workstations, Laptop, Web Application Servers, Public-Facing Servers, Personal Information, Remote access
-    Platforms: Windows, iOS, Android
+  terrain:
+    - Mobile
+    - Windows
+    - Mobile::iOS
+    - Mobile::Android
+    - Customer Support
+    - Windows::Desktop
+    - Web Servers
+    - Remote Access
   severity: Localised incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering
   impact: Identity Theft; Impairement; Data Breach; Lose Capabilities; Business disruption
@@ -102,4 +102,9 @@ threat:
     - JavaScript smuggling - this involves using JavaScript to embed malicious
     code within an HTML file.
     - HTML5 smuggling - this involves using HTML5 features, such as the
-    <canvas> element, to embed malicious code within an HTML file.  
+    <canvas> element, to embed malicious code within an HTML file.
+
+    A threat actor uses a legitimate and native features of
+    web page scripting languages as HTML, CSS, JavaScript
+    and others. This vulnerability in the page can lead
+    to an initial access to a targeted system.

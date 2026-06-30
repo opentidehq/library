@@ -56,13 +56,11 @@ threat:
   att&ck:
     - T1570
     - T1047
-  terrain: |-
-    It is a built-in tool developped by Microsoft and belonging to Sysinternal command-line tools. It should be installed
-    However SMB is a native protocol that do not require any installation.
-
-    Domains: Enterprise
-    Targets: Control Server, Desktop, End-user, Laptop, Remote access, Virtual Machines, Workstations
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Remote Access
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
   severity: Highly significant incident
   leverage: Alter behavior; Elevation of privilege; Spoofing
   impact: Identity Theft; Asset and fraud
@@ -82,3 +80,6 @@ threat:
     Payload loaded may allow the threat actor to make a separate call to the Remote Procedure Call (RPC) 
     on the victim machine, which is running over the SMB protocol.
     The named pipe is then used to move laterally with the protocol.
+
+    It is a built-in tool developped by Microsoft and belonging to Sysinternal command-line tools. It should be installed
+    However SMB is a native protocol that do not require any installation.

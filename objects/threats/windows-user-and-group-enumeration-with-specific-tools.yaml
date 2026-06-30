@@ -54,13 +54,9 @@ threat:
       description: |-
         Several LOLBins tools are used by adversaries to enumerate 
         groups and users.
-  terrain: |-
-    Adversaries can take advantage of already compromised system (Windows or 
-    Linux OS or OSX) to run commands.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: Directory
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Active Directory
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Identity Theft
@@ -88,3 +84,6 @@ threat:
     tools like net view, net computers, and ping to locate network shares and domain controllers. 
     For lateral movement, they rely on PowerShell, WMI, Remote Management, RDP, and third-party 
     tool Bloodhound.
+
+    Adversaries can take advantage of already compromised system (Windows or 
+    Linux OS or OSX) to run commands.

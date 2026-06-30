@@ -38,13 +38,9 @@ threat:
         can tamper or create a new scheduled task. Threat actors
         use this technique usually to hide their activities and
         to establish persistent to the system.
-  terrain: |-
-    A threat actor needs an Admin Windows System level to a target
-    endpoint in order to perform direct modification of the registries.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: End-user, Workstations, Other
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering; Modify configuration
   impact: Business disruption; Impairement; Lose Capabilities; Operating costs
@@ -105,4 +101,7 @@ threat:
     - Changing the task's execution settings: Modifying the Actions or Triggers
     values in the task's subkey.
     - Creating a new malicious task: Adding a new subkey with malicious
-    settings, such as executing a malicious executable.  
+    settings, such as executing a malicious executable.
+
+    A threat actor needs an Admin Windows System level to a target
+    endpoint in order to perform direct modification of the registries.

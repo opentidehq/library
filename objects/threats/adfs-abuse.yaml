@@ -20,16 +20,16 @@ threat:
     - T1556
     - T1133
     - T1606.002
-  terrain: |-
-    Threat actors can obtain the token signing certificate and private key by abusing 
-    the Policy Store Transfer Service to extract the encrypted certificate, then decrypting 
-    it using the DKM key from Active Directory. This can be done remotely if the attacker 
-    has the right privileges, and once they have the private key, they can forge SAML 
-    tokens for any user, bypassing authentication controls.
-
-    Domains: Enterprise, SaaS
-    Targets: Identity Services, SAML-Joined Applications, Cloud Storage Accounts, Server Authentication
-    Platforms: AD FS, Active Directory, Azure AD, Office 365, Windows
+  terrain:
+    - Active Directory::Federation Services
+    - Active Directory
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - Windows
+    - Entra ID
+    - Security::SAML
+    - AWS::Storage
+    - Kerberos
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Elevation of privilege; Information Disclosure
   impact: Data Breach; Identity Theft; Reputational Damages; Monetary Loss; Business disruption
@@ -71,3 +71,9 @@ threat:
     Attackers who obtain AD FS credentials often find that these credentials are reused 
     across other systems or SSO platforms. This allows them to move laterally within 
     the victim’s environment, accessing multiple services.
+
+    Threat actors can obtain the token signing certificate and private key by abusing 
+    the Policy Store Transfer Service to extract the encrypted certificate, then decrypting 
+    it using the DKM key from Active Directory. This can be done remotely if the attacker 
+    has the right privileges, and once they have the private key, they can forge SAML 
+    tokens for any user, bypassing authentication controls.

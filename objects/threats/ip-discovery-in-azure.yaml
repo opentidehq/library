@@ -19,14 +19,13 @@ threat:
     - T1078
     - T1526
     - T1528
-  terrain: |-
-    Adversary must have access to an Azure environment, either through compromised
-    credentials, exposed keys, or abused privileges, and be able to use Azure Portal,
-    Azure CLI, PowerShell, or Azure REST APIs.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Virtual Machines, Public-Facing Servers, Cloud Storage Accounts, Cloud Portal
-    Platforms: Azure, Azure AD, PowerShell
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Azure::Compute::Virtual Machines
+    - Web Servers
+    - AWS::Storage
   severity: Significant incident
   leverage: Information Disclosure; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Business disruption
@@ -80,3 +79,7 @@ threat:
     3. **Follow-Up:**  
       The attacker now has a list of direct IPs to probe for vulnerabilities 
       (e.g., open RDP or SSH ports, misconfigured firewalls).
+
+    Adversary must have access to an Azure environment, either through compromised
+    credentials, exposed keys, or abused privileges, and be able to use Azure Portal,
+    Azure CLI, PowerShell, or Azure REST APIs.

@@ -56,20 +56,20 @@ threat:
         This includes data such as email, OneDrive, Teams, etc.
     - relation: support::synergize
       vector: 2fd1cddb-c66d-4a99-9779-31e32b67495e
-      description: |-
-        Attackers must have compromised a tenant and gained elevated privileges.
+      description: Attackers must have compromised a tenant and gained elevated privileges.
     - relation: support::synergize
       vector: 9bb31c65-8abd-48fc-afe3-8aca76109737
       description: |-
         Attackers need to have gained administrative Azure Active Directory
         (Azure AD) privileges using compromised credentials.
-  terrain: |-
-    Adversaries gains administrative access (e.g., via phishing, credential theft,
-    or exploiting vulnerabilities).
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Identity Services, Virtual Machines, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, PowerShell
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - AWS::Storage
+    - Entra ID
+    - Azure::Compute::Virtual Machines
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Modify configuration
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
@@ -132,3 +132,6 @@ threat:
     4. Maintenance: The attacker periodically refreshes delegated permissions, adds 
     new external users/entities, or modifies trust relationships as needed to maintain 
     access and evade detection.
+
+    Adversaries gains administrative access (e.g., via phishing, credential theft,
+    or exploiting vulnerabilities).

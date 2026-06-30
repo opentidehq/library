@@ -33,13 +33,16 @@ threat:
       description: |-
         Phishing with Azure AD B2B Collaboration involves exploiting the service to send 
         malicious invitations that appear to come from Microsoft or other th...
-  terrain: |-
-    Adversary must have administrative privileges over Azure Portal or have access to 
-    Azure credentials.
-
-    Domains: Private Cloud, SaaS, Public Cloud
-    Targets: Cloud Storage Accounts, Key Store, Virtual Machines, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, Office 365, Windows, Linux
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - Windows
+    - Linux
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Azure::Compute::Virtual Machines
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
@@ -89,3 +92,6 @@ threat:
     Attackers might delete logs related to task creation or modification, and modify 
     task descriptions to seem innocuous, in an attempt to hide their tracks and make 
     it harder to investigate and remediate the attack.
+
+    Adversary must have administrative privileges over Azure Portal or have access to 
+    Azure credentials.

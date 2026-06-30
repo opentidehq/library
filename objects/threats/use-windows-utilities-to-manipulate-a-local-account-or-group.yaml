@@ -30,8 +30,7 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
-      description: |-
-        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
+      description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
     - relation: sequence::preceeds
       vector: e3d7cb59-7aca-4c3d-b488-48c785930b6d
       description: |-
@@ -50,13 +49,12 @@ threat:
         malicious purposes (example: Microsoft Web Deployment
         tool, Windows Terminal Service, WMIC command-line tool
         and others).
-  terrain: |-
-    Threat actors must have access to a Windows system with sufficient privileges 
-    to execute administrative utilities.
-
-    Domains: Enterprise
-    Targets: Workstations, Laptop, Directory, Customer, End-user, Code Repositories, Other
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Windows::Desktop
+    - Active Directory
+    - Customer Support
+    - Code Repositories
   severity: Significant incident
   leverage: Elevation of privilege; Modify configuration; New Accounts; Information Disclosure; Infrastructure Compromise; Dwelling; Tampering
   impact: Data Breach; Reputational Damages; Business disruption; Operating costs
@@ -119,3 +117,6 @@ threat:
     ```
     $user = [ADSI]("WinNT://./username,user")
     $user.SetPassword("NewP@ssw0rd!")
+
+    Threat actors must have access to a Windows system with sufficient privileges 
+    to execute administrative utilities.

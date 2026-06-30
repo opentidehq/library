@@ -19,13 +19,14 @@ threat:
   killchain: Discovery
   att&ck:
     - T1057
-  terrain: |-
-    Threat actors rely on exposed / public visible processes,
-    they can scan and gather information for a target.
-
-    Domains: Embedded, Private Cloud, Public Cloud
-    Targets: Customer, End-user, Workstations, Laptop, Public-Facing Servers, Web Application Servers
-    Platforms: Windows, Linux, macOS, PowerShell
+  terrain:
+    - Embedded
+    - Windows
+    - Linux
+    - macOS
+    - Customer Support
+    - Windows::Desktop
+    - Web Servers
   severity: Significant incident
   leverage: Dwelling; Elevation of privilege; Information Disclosure; Infrastructure Compromise; Software installation; Tampering
   impact: Business disruption; Lose Capabilities; Nuisance; Operating costs; Reputational Damages
@@ -126,3 +127,6 @@ threat:
     a range of features, including process discovery. Threat actors might
     use Cobalt Strike to list running processes on a target system and
     identify potential targets for exploitation.
+
+    Threat actors rely on exposed / public visible processes,
+    they can scan and gather information for a target.

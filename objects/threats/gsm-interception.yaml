@@ -23,14 +23,12 @@ threat:
     - T1040
     - T1589
     - T1190
-  terrain: |-
-    Adversaries need specialized hardware such as passive or active GSM interceptors 
-    (e.g., IMSI catchers, fake base stations). These devices can mimic legitimate cell 
-    towers and force nearby mobile phones to connect, enabling interception of communications.
-
-    Domains: Mobile
-    Targets: Tablet, Mobile phone, Personal Information, Critical Documents
-    Platforms: Android, iOS
+  terrain:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Mobile::iPadOS
+    - File Sharing
   severity: Significant incident
   leverage: Dwelling; Hardware tampering; Information Disclosure; Infrastructure Compromise; Spoofing
   impact: Data Breach; Identity Theft; IP Loss; Nuisance; Reputational Damages
@@ -86,3 +84,7 @@ threat:
 
     - **Notorious Attacks:** There have been documented cases where attackers used GSM 
     interception to gain access to bank accounts by intercepting SMS-based authentication codes.
+
+    Adversaries need specialized hardware such as passive or active GSM interceptors 
+    (e.g., IMSI catchers, fake base stations). These devices can mimic legitimate cell 
+    towers and force nearby mobile phones to connect, enabling interception of communications.

@@ -30,13 +30,11 @@ threat:
   att&ck:
     - T1547.006
     - T1014
-  terrain: |-
-    Adversary must have root-level access to the Linux system to modify kernel 
-    parameters or load malicious kernel modules.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Virtual Machines
-    Platforms: Linux
+  terrain:
+    - Linux
+    - Windows::Desktop
+    - Web Servers
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Alter behavior; Modify configuration; Tampering; Software installation
   impact: Impairement; Data Breach; Business disruption; Reputational Damages
@@ -53,3 +51,6 @@ threat:
     Kernel rootkits like Adore-ng or Suterusu are examples of tools used for such purposes. 
     These rootkits can hide network connections, processes, and files, effectively 
     masking the adversary's footprint on the system.
+
+    Adversary must have root-level access to the Linux system to modify kernel 
+    parameters or load malicious kernel modules.

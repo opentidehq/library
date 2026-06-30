@@ -26,20 +26,10 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1218
-  terrain: |-
-    A threat actor needs to have sufficient privileges to enumerate AppLocker
-    policies and initial access to the targeted system. 
-
-    Required level of privileges to enumerate SharpAppLocker could be one of
-    the listed below:
-
-    - Local Administrator or elevated privileges
-    - Access to the Windows Management Instrumentation (WMI) or Windows Registry
-    - Ability to execute PowerShell scripts or commands
-
-    Domains: Enterprise
-    Targets: Workstations, Customer, End-user, Laptop, Other
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Tampering
   impact: Impairement; Data Breach; Lose Capabilities
@@ -107,4 +97,14 @@ threat:
     policies.
     - WinPEAS - WinPEAS is a powerful tool that can be used to audit and bypass
     Windows security features, including AppLocker policies. For more details
-    related to WinPEAS Applocker enumeration usage check ref [2].  
+    related to WinPEAS Applocker enumeration usage check ref [2].
+
+    A threat actor needs to have sufficient privileges to enumerate AppLocker
+    policies and initial access to the targeted system. 
+
+    Required level of privileges to enumerate SharpAppLocker could be one of
+    the listed below:
+
+    - Local Administrator or elevated privileges
+    - Access to the Windows Management Instrumentation (WMI) or Windows Registry
+    - Ability to execute PowerShell scripts or commands

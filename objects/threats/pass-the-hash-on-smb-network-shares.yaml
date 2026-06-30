@@ -49,14 +49,11 @@ threat:
     - T1003.001
     - T1550.002
     - T1021.002
-  terrain: |-
-    Attacker needs to have captured a valid NTLM hash,
-    Kerberos is disabled or NTML authentication is accepted as alternate method,
-    SMB ports needs to be open  from attacker perspective
-
-    Domains: Enterprise
-    Targets: Control Server, Desktop, End-user, Laptop, Remote access, Virtual Machines, Workstations
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Remote Access
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
   severity: Highly significant incident
   leverage: Alter behavior; Elevation of privilege; Spoofing
   impact: Data Breach; Impairement
@@ -78,3 +75,7 @@ threat:
 
     They may get write access to the share and then be able to drop files 
     that victims might be enticed to open or to execute.
+
+    Attacker needs to have captured a valid NTLM hash,
+    Kerberos is disabled or NTML authentication is accepted as alternate method,
+    SMB ports needs to be open  from attacker perspective

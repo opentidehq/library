@@ -29,15 +29,10 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1218
-  terrain: |-
-    The target must be a Windows environment with AppLocker enabled in
-    whitelisting mode. The attacker requires initial code execution on the
-    system (e.g., via phishing or exploit) and the ability to drop or register
-    a DLL alongside a permitted LOLbin.
-
-    Domains: Enterprise
-    Targets: Laptop, Workstations, Customer, End-user
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Tampering
   impact: Business disruption; Impairement; Legal and regulatory; Data Breach; Lose Capabilities
@@ -100,3 +95,8 @@ threat:
     malicious DLL named `search.dll` and place it in the `C:\Windows` directory.
     When the Windows Search service loads the `search.dll` DLL, it will load the
     malicious one instead of the legitimate one.
+
+    The target must be a Windows environment with AppLocker enabled in
+    whitelisting mode. The attacker requires initial code execution on the
+    system (e.g., via phishing or exploit) and the ability to drop or register
+    a DLL alongside a permitted LOLbin.

@@ -28,15 +28,13 @@ threat:
       description: |-
         GoGra malware can execute cmd commands and change directories
         for hiding and persistence purposes. 
-  terrain: |-
-    Cloud environments, with a primary focus on Microsoft cloud services
-    such as Microsoft 365 and Outlook. This threat leverages legitimate
-    Microsoft Graph APIs and authentication mechanisms (OAuth) to interact
-    with Microsoft services via a Command and Control server ref [a, 3].
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: End-user, Windows API, Workstations, Desktop, Media, Public-Facing Servers, Email Platform
-    Platforms: Office 365, Windows
+  terrain:
+    - Microsoft::Microsoft 365
+    - Windows
+    - Windows::Desktop
+    - Application Layer::WMI
+    - Web Servers
+    - Email
   severity: Localised incident
   leverage: Dwelling; Infrastructure Compromise; Information Disclosure; Spoofing
   impact: Nuisance; Impairement; Data Breach; Operating costs
@@ -64,4 +62,9 @@ threat:
     languages used, Graphon is using a different AES key and didn't contain an
     extra “cd” command as well as haven't a hardcoded Outlook username to
     communicate with. The username instead is received directly from the
-    C&C server ref [3].  
+    C&C server ref [3].
+
+    Cloud environments, with a primary focus on Microsoft cloud services
+    such as Microsoft 365 and Outlook. This threat leverages legitimate
+    Microsoft Graph APIs and authentication mechanisms (OAuth) to interact
+    with Microsoft services via a Command and Control server ref [a, 3].

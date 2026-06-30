@@ -21,15 +21,11 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1098.003
-  terrain: |-
-    Adversaries will have already compromised some cloud credentials,
-    and now aim at escalating privileges while moving laterally.
-    The credentials they gained access to also must have sufficient
-    privileges to allow role assumption.
-
-    Domains: Public Cloud
-    Targets: Software Containers, Virtual Machines
-    Platforms: AWS IAM, Azure AD
+  terrain:
+    - AWS::Security::IAM
+    - Azure::Security::Entra ID
+    - Container Runtime::Docker
+    - Azure::Compute::Virtual Machines
   severity: Substantial incident
   leverage: Modify privileges
   impact: Data Breach
@@ -44,3 +40,8 @@ threat:
     more powerful role, escalate privileges and eventually move further
     in the cloud to achieve objectives. This can be particularly
     impactful if cross account roles are leveraged.
+
+    Adversaries will have already compromised some cloud credentials,
+    and now aim at escalating privileges while moving laterally.
+    The credentials they gained access to also must have sufficient
+    privileges to allow role assumption.

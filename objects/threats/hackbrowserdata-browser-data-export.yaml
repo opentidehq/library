@@ -20,16 +20,14 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: b0d6bf74-b204-4a48-9509-4499ed795771
-      description: |-
-        Technique used to steal browser cookies 
-  terrain: |-
-    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
-    Cookies can be found on disk, in the process memory of the browser, and in
-    network traffic to remote systems.
-
-    Domains: Enterprise, Public Cloud, Private Cloud, SaaS
-    Targets: Auth token, Cloud Portal, End-user, Identity Services
-    Platforms: Office 365, Azure AD
+      description: 'Technique used to steal browser cookies '
+  terrain:
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Entra ID
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement
@@ -61,4 +59,8 @@ threat:
     [NOTICE] [browsingdata.go:59,Output] output to file results/chrome_cookie.csv success  
     [NOTICE] [browsingdata.go:59,Output] output to file results/chrome_history.csv success  
     [NOTICE] [browsingdata.go:59,Output] output to file results/chrome_download.csv success  
-    [NOTICE] [browsingdata.go:59,Output] output to file results/chrome_password.csv success  
+    [NOTICE] [browsingdata.go:59,Output] output to file results/chrome_password.csv success
+
+    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
+    Cookies can be found on disk, in the process memory of the browser, and in
+    network traffic to remote systems.

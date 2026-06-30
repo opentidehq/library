@@ -28,23 +28,17 @@ threat:
   chaining:
     - relation: sequence::succeeds
       vector: 66aafb61-9a46-4287-8b40-4785b42b77a3
-      description: |-
-        The fake MFA login page captures credentials of valid accounts, later the session cookies can be stolen
+      description: The fake MFA login page captures credentials of valid accounts, later the session cookies can be stolen
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
-      description: |-
-        MFA bypass technique
-  terrain: |-
-    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
-    Cookies can be found on disk, in the process memory of the browser, and in network
-    traffic to remote systems.
-
-    Additionally, other applications on the user endpoint machine might store sensitive
-    authentication cookies in memory (e.g. apps which authenticate to cloud services).
-
-    Domains: Enterprise, Public Cloud
-    Targets: Auth token, Cloud Portal, End-user, Identity Services, Mobile phone
-    Platforms: Office 365
+      description: MFA bypass technique
+  terrain:
+    - Microsoft::Microsoft 365
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Entra ID
+    - Mobile
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft
@@ -73,3 +67,10 @@ threat:
 
     Because such cookie is also created and stored on a web browser when MFA is in play,
     the same technique can handily be used to bypass it.
+
+    Attacker must compromise a user endpoint and exfiltrate the browser cookies.
+    Cookies can be found on disk, in the process memory of the browser, and in network
+    traffic to remote systems.
+
+    Additionally, other applications on the user endpoint machine might store sensitive
+    authentication cookies in memory (e.g. apps which authenticate to cloud services).

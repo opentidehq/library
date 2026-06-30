@@ -37,13 +37,10 @@ threat:
       description: |-
         Attackers need to establish an initial presence within the target environment, in 
         order to gather sufficient permissions to execute the data collection tools.
-  terrain: |-
-    Adversaries need access to enumeration tools and a misconfigured Azure Blob Storage 
-    environment with public access enabled.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Cloud Storage Accounts
-    Platforms: Blob Storage, Azure
+  terrain:
+    - Azure::Storage::Blob Storage
+    - Azure
+    - AWS::Storage
   severity: Significant incident
   leverage: Information Disclosure; Tampering; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss
@@ -88,3 +85,6 @@ threat:
     container names.
     - **Legitimate Tools Misused**: Tools like Azure Storage Explorer and AzCopy can 
     be used by attackers for bulk data exfiltration if credentials or access are compromised.
+
+    Adversaries need access to enumeration tools and a misconfigured Azure Blob Storage 
+    environment with public access enabled.

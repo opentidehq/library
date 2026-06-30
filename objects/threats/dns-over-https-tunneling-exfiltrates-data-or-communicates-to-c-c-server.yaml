@@ -29,13 +29,12 @@ threat:
     - T1041
     - T1190
     - T1566
-  terrain: |-
-    A threat actor can use DNS over HTTPS tunneling technique
-    to hide traffic and activities.
-
-    Domains: Enterprise
-    Targets: Control Server, Customer, Public-Facing Servers
-    Platforms: Windows, Network Router
+  terrain:
+    - Windows
+    - Routers
+    - Remote Access
+    - Customer Support
+    - Web Servers
   severity: Significant incident
   leverage: Dwelling; Infrastructure Compromise; Tampering
   impact: Impairement; Identity Theft; Data Breach; Operating costs; Reputational Damages
@@ -83,3 +82,6 @@ threat:
     controlled by the threat actor.
     - Exfiltrates data: The C&C server receives the DNS requests, extracts
     the encapsulated data, and stores or forwards it to the threat actor.
+
+    A threat actor can use DNS over HTTPS tunneling technique
+    to hide traffic and activities.

@@ -32,16 +32,11 @@ threat:
         A threat actor initially sent spear phishing emails containing a link to
         the ZIP archive hosted on the exploited government website. The archive
         contains an LNK file, masquerading as a PDF, and a directory ref [1].     
-  terrain: |-
-    A threat actor is using social engineering initial technique to entice an
-    end-user to open a malicious Google invitation (a mail or calendar
-    invitation event) and get infected. 
-
-    The goal is an access and maintain of a persistence.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: Laptop, Customer, Control Server, Remote access, Other, Workstations
-    Platforms: Google Workspace
+  terrain:
+    - Google Workspace
+    - Windows::Desktop
+    - Customer Support
+    - Remote Access
   severity: Moderate incident
   leverage: Infrastructure Compromise; Information Disclosure; Modify configuration
   impact: Data Breach; Impairement; Lose Capabilities
@@ -116,4 +111,10 @@ threat:
     By abusing Google calendar, the threat actor is able to deliver malware and
     establish CnC communication in a way that is difficult to detect and block.
     This tactic highlights the importance of monitoring cloud services and
-    implementing robust security controls to prevent such attacks ref [1], [2].  
+    implementing robust security controls to prevent such attacks ref [1], [2].
+
+    A threat actor is using social engineering initial technique to entice an
+    end-user to open a malicious Google invitation (a mail or calendar
+    invitation event) and get infected. 
+
+    The goal is an access and maintain of a persistence.

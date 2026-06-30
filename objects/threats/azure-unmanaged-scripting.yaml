@@ -55,14 +55,11 @@ threat:
         Attackers need to gain access to an Azure account with the Virtual Machine Contributor 
         role (or equivalent) can use custom script extensions to execute arbitrary code 
         as SYSTEM or root on VMs.
-  terrain: |-
-    Adversaries obtains valid credentials, permissions, or exploits a 
-    vulnerability to gain access to the Azure portal or a relevant
-    scripting service.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Function-as-a-Service, Serverless
-    Platforms: Azure, Azure AD
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Serverless
   severity: Significant incident
   leverage: Elevation of privilege; Modify configuration; Modify privileges
   impact: Data Breach; Reputational Damages
@@ -108,3 +105,7 @@ threat:
     4. **Persistence, Lateral Movement, or Exfiltration**: The attacker continues their 
     campaign, using the script to create new credentials, pivot to additional resources 
     or exfiltrate sensitive data.
+
+    Adversaries obtains valid credentials, permissions, or exploits a 
+    vulnerability to gain access to the Azure portal or a relevant
+    scripting service.

@@ -20,15 +20,12 @@ threat:
   att&ck:
     - T1053
     - T1053.005
-  terrain: |-
-    Threat actor uses an already compromised Windows endpoint. Requires administrative 
-    credentials with permissions for remote task creation. Requires that
-    Windows firewall on the remote endpoint allows “Remote Scheduled Tasks 
-    Management”).
-
-    Domains: Enterprise, Public Cloud
-    Targets: Workstations, Control Server, Input/Output Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Modify configuration; Software installation
   impact: Impairement
@@ -58,3 +55,8 @@ threat:
     Using the task Scheduler, as example: > "Connect to Another Computer", 
     provide the IP address of the remote system and select "Connect as another 
     user" > "Set User".
+
+    Threat actor uses an already compromised Windows endpoint. Requires administrative 
+    credentials with permissions for remote task creation. Requires that
+    Windows firewall on the remote endpoint allows “Remote Scheduled Tasks 
+    Management”).

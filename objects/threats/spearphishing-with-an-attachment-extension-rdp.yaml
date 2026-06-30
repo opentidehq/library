@@ -30,16 +30,13 @@ threat:
       description: |-
         Spearphishing with an attachment extension .rdp is a sub-category
         of spearphishing method with attachment.    
-  terrain: |-
-    A threat actor relies on an email attachment lure.
-    In this case a malicious file is masquerading as a RDP file
-    in an attempt to deceive a victim about their identity and
-    true nature of the file. The spear-phishing attachment provides
-    a threat actor an initial access to the system.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: End-user, Email Platform, Customer, Workstations, Laptop, Remote access
-    Platforms: Windows, AWS
+  terrain:
+    - Windows
+    - AWS
+    - Windows::Desktop
+    - Email
+    - Customer Support
+    - Remote Access
   severity: Localised incident
   leverage: Dwelling; Tampering; Elevation of privilege; Infrastructure Compromise
   impact: Identity Theft; Impairement; Business disruption
@@ -67,4 +64,10 @@ threat:
 
     This allows the adversary to potentially deploy additional payloads,
     execute local reconnaissance activities, and to redirect targeted users
-    to credential harvesting sites.  
+    to credential harvesting sites.
+
+    A threat actor relies on an email attachment lure.
+    In this case a malicious file is masquerading as a RDP file
+    in an attempt to deceive a victim about their identity and
+    true nature of the file. The spear-phishing attachment provides
+    a threat actor an initial access to the system.

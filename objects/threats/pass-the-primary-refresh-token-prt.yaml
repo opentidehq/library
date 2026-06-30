@@ -23,21 +23,21 @@ threat:
   chaining:
     - relation: sequence::preceeds
       vector: 66aafb61-9a46-4287-8b40-4785b42b77a3
-      description: |-
-        Gain access to user's device via phishing link.
+      description: Gain access to user's device via phishing link.
     - relation: sequence::preceeds
       vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
-      description: |-
-        Gain access to user's device via malware distributed on email attachment.
-  terrain: |-
-    Adversaries need initial access to a device that has a Primary Refresh Token (PRT) 
-    issued to a legitimate user. Specifically, this means compromising a Windows 10 
-    or newer device that is Azure AD-joined or hybrid Azure AD-joined and on which the 
-    user has logged in, thus generating a PRT.
-
-    Domains: Public Cloud, Enterprise, SaaS
-    Targets: Cloud Storage Accounts, Identity Services, API Endpoints, Cloud Portal, Serverless, Virtual Machines, Server Authentication
-    Platforms: Azure, Windows, Azure AD, Office 365
+      description: Gain access to user's device via malware distributed on email attachment.
+  terrain:
+    - Azure
+    - Windows
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - AWS::Storage
+    - Entra ID
+    - Application Layer::HTTP
+    - Serverless
+    - Azure::Compute::Virtual Machines
+    - Kerberos
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption
@@ -84,3 +84,8 @@ threat:
     tools.
     - **Persistence**: PRTs remain valid for weeks, enabling prolonged access even if 
     passwords change.
+
+    Adversaries need initial access to a device that has a Primary Refresh Token (PRT) 
+    issued to a legitimate user. Specifically, this means compromising a Windows 10 
+    or newer device that is Azure AD-joined or hybrid Azure AD-joined and on which the 
+    user has logged in, thus generating a PRT.

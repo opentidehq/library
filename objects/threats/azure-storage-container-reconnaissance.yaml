@@ -42,15 +42,12 @@ threat:
       description: |-
         Attackers need to establish an initial presence within the target environment, in 
         order to gather sufficient permissions to execute the data collection tools.
-  terrain: |-
-    Adversaries need to enumerate and discover publicly accessible or misconfigured 
-    Azure storage containers by scanning for storage account names and container names, 
-    often using automated tools or scripts, to identify open containers that may expose 
-    sensitive data.
-
-    Domains: Private Cloud, Public Cloud
-    Targets: Cloud Storage Accounts, Public-Facing Servers, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Web Servers
+    - Application Layer::HTTP
   severity: Moderate incident
   leverage: Information Disclosure; Infrastructure Compromise; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Business disruption
@@ -93,3 +90,8 @@ threat:
     or enumerate access permissions.
     - **Search Engine Indexing**: Attackers use indexed URLs from search engines to 
     find publicly accessible containers.
+
+    Adversaries need to enumerate and discover publicly accessible or misconfigured 
+    Azure storage containers by scanning for storage account names and container names, 
+    often using automated tools or scripts, to identify open containers that may expose 
+    sensitive data.

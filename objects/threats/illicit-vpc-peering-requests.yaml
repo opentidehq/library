@@ -19,13 +19,10 @@ threat:
   att&ck:
     - T1078.004
     - T1599
-  terrain: |-
-    The attacker needs to control an AWS account in order to send a VPC peering request. The AWS account controlled by the attacker may or may not
-    be inside the EC AWS PROD organization.
-
-    Domains: Public Cloud, Networking
-    Targets: Network Equipment, System admin
-    Platforms: AWS VPC
+  terrain:
+    - AWS::Networking::VPC
+    - Switches
+    - Microsoft::System Center
   severity: Moderate incident
   leverage: Infrastructure Compromise; Information Disclosure
   impact: Data Breach; Business disruption; IP Loss; Monetary Loss; Operating costs
@@ -44,3 +41,6 @@ threat:
     networking that AWS assigns to clients. VPC peering is a feature that allows VPCs
     living in different accounts to be joined in a common IP space, for example to 
     allow different services to communicate to each others.
+
+    The attacker needs to control an AWS account in order to send a VPC peering request. The AWS account controlled by the attacker may or may not
+    be inside the EC AWS PROD organization.

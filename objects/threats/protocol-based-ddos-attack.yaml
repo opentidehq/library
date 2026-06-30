@@ -22,14 +22,27 @@ threat:
   killchain: Impact
   att&ck:
     - T1498.001
-  terrain: |-
-    Anything with Internet connectivity
-
-    Domains: Enterprise, Networking, Private Cloud, Public Cloud, SaaS
-    Targets: API Endpoints, Serverless, Control Server, Web Application Servers, Public-Facing Servers
-    Platforms: AWS, Azure, Apache HTTP Server, Confluence, JIRA, Microsoft SharePoint, MySQL, Network Router, NGINX, OVHcloud, Outlook Web Access, Postgress
+  terrain:
+    - AWS
+    - Azure
+    - Web Servers::Apache HTTP
+    - Atlassian::Confluence
+    - Atlassian::Jira
+    - Microsoft::SharePoint
+    - Database Management::MySQL
+    - Routers
+    - Web Servers::NGINX
+    - Microsoft::Outlook
+    - Database Management::PostgreSQL
+    - Application Layer::HTTP
+    - Serverless
+    - Remote Access
+    - Web Servers
   severity: Significant incident
   leverage: Denial of Service
   impact: Business disruption; Operating costs; Reputational Damages
   viability: Almost certain
-  description: Threat actors may wish to cause business disruption, media/public attention, or to use the pretense of business disruption to disguise other activities. Any DDoS attack should always be followed up with other DFIR activities to determine if the attack was meant to distract from something else. DDoS can distract by pulling attention away, or even by spooling out log files so that relevant entries are overwritten.
+  description: |-
+    Threat actors may wish to cause business disruption, media/public attention, or to use the pretense of business disruption to disguise other activities. Any DDoS attack should always be followed up with other DFIR activities to determine if the attack was meant to distract from something else. DDoS can distract by pulling attention away, or even by spooling out log files so that relevant entries are overwritten.
+
+    Anything with Internet connectivity

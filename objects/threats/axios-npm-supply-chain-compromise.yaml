@@ -58,25 +58,12 @@ threat:
         takeover (rather than typosquatting or new-package attacks)
         and abuses the npm postinstall lifecycle hook on a transitive
         dependency to deliver a cross-platform RAT.
-  terrain: |-
-    Any organisation, developer workstation, or CI/CD pipeline that
-    resolved axios from the public npm registry between 2026-03-31
-    ~00:21 UTC and ~03:20 UTC, where the resolved version was either
-    axios@1.14.1 (tagged latest) or axios@0.30.4 (tagged legacy).
-    During that ~3-hour window, a default `npm install axios` (or any
-    transitive resolution that floated to the latest minor) pulled in
-    the malicious plain-crypto-js@^4.2.1 dependency, whose postinstall
-    hook executed automatically on Windows, macOS, and Linux build
-    hosts and developer laptops. Affected populations explicitly
-    observed in the wild include developer endpoints, build agents,
-    and CI runners across multiple operating systems and sectors;
-    Huntress alone reported at least 135 endpoints communicating with
-    the attacker C2 during the exposure window. The attack does not
-    rely on any vulnerability in axios source code - the trust
-    boundary between maintainer credentials and the npm publish
-    pipeline is the actual vulnerable surface.
-
-    Surface: OS::Windows, OS::macOS, OS::Linux, Application::Development::Package Management::npm, Application::Development::CI/CD
+  terrain:
+    - Windows
+    - macOS
+    - Linux
+    - Development::Package Management::npm
+    - Development::CI/CD
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Tampering; Software installation; Information Gathering; Information Disclosure
   impact: Data Breach; Business disruption; Lose Capabilities; Reputational Damages; Operating costs
@@ -335,3 +322,20 @@ threat:
       three languages targeting three operating systems, all
       sharing the same C2 protocol. Detection should not focus on
       a single platform.
+
+    Any organisation, developer workstation, or CI/CD pipeline that
+    resolved axios from the public npm registry between 2026-03-31
+    ~00:21 UTC and ~03:20 UTC, where the resolved version was either
+    axios@1.14.1 (tagged latest) or axios@0.30.4 (tagged legacy).
+    During that ~3-hour window, a default `npm install axios` (or any
+    transitive resolution that floated to the latest minor) pulled in
+    the malicious plain-crypto-js@^4.2.1 dependency, whose postinstall
+    hook executed automatically on Windows, macOS, and Linux build
+    hosts and developer laptops. Affected populations explicitly
+    observed in the wild include developer endpoints, build agents,
+    and CI runners across multiple operating systems and sectors;
+    Huntress alone reported at least 135 endpoints communicating with
+    the attacker C2 during the exposure window. The attack does not
+    rely on any vulnerability in axios source code - the trust
+    boundary between maintainer credentials and the npm publish
+    pipeline is the actual vulnerable surface.

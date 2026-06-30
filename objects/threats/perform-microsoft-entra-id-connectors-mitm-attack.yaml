@@ -18,14 +18,14 @@ threat:
   killchain: Collection
   att&ck:
     - T1557
-  terrain: |-
-    The threat actors would need to access the credentials of the users or administrators 
-    interacting with the connectors. This could be achieved through phishing techniques, 
-    social engineering, or other forms of credential theft.
-
-    Domains: Private Cloud, Public Cloud
-    Targets: Critical Documents, Cloud Portal, End-user, System admin, Manager, Partner, Documents, IaaS, Web Application Servers
-    Platforms: Office 365
+  terrain:
+    - Microsoft::Microsoft 365
+    - File Sharing
+    - Azure
+    - Windows::Desktop
+    - Microsoft::System Center
+    - AWS::Compute::EC2
+    - Web Servers
   severity: Significant incident
   leverage: Information Disclosure; Infrastructure Compromise
   impact: Data Breach; Identity Theft; IP Loss; Reputational Damages
@@ -52,3 +52,7 @@ threat:
     - DNS-over-HTTPS
     - Cookie Theft
     - Business Email Compromise (BEC) Attacks
+
+    The threat actors would need to access the credentials of the users or administrators 
+    interacting with the connectors. This could be achieved through phishing techniques, 
+    social engineering, or other forms of credential theft.

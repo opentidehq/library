@@ -42,12 +42,9 @@ threat:
   att&ck:
     - T1078
     - T1566
-  terrain: |-
-    Attackers got valid credentials from MS 365 admin, and they manage to bypass 2FA mechanism.
-
-    Domains: Enterprise, Private Cloud
-    Targets: System admin
-    Platforms: Office 365
+  terrain:
+    - Microsoft::Microsoft 365
+    - Microsoft::System Center
   severity: Significant incident
   leverage: Elevation of privilege; Modify privileges; New Accounts; Software installation
   impact: Identity Theft; Lose Capabilities
@@ -66,4 +63,6 @@ threat:
     - Phishing attacks (Spear Phishing, Whaling, BEC).  
     - Password guessing and cracking (Credential stuffing, Bruteforce, Password spraying, exploiting weak passwords).
     - OAuth and API Abuse.
-    - Exploiting vulnerabilities in third-party software.   
+    - Exploiting vulnerabilities in third-party software.
+
+    Attackers got valid credentials from MS 365 admin, and they manage to bypass 2FA mechanism.

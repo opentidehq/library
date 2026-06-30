@@ -29,15 +29,8 @@ threat:
         The Chrysalis backdoor deployment was one of three distinct infection chains 
         used by attackers who compromised the Notepad++ update infrastructure between 
         June and December 2025.
-  terrain: |-
-    Organizations and individuals who were compromised through the Notepad++ supply 
-    chain attack (October 2025). The attack specifically targeted victims across 
-    multiple countries including Vietnam, El Salvador, Australia, and Philippines, 
-    affecting government agencies, financial services, IT service providers, and 
-    individual developers. The malicious files were deployed to Windows systems via 
-    compromised software updates.
-
-    Surface: OS::Windows::Desktop
+  terrain:
+    - Windows::Desktop
   severity: Highly significant incident
   leverage: Elevation of privilege; Tampering; Information Disclosure; Repudiation
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss
@@ -322,3 +315,10 @@ threat:
 
     Organizations affected by the Notepad++ supply chain attack should treat this as a 
     **CRITICAL** threat requiring immediate investigation, containment, and remediation.
+
+    Organizations and individuals who were compromised through the Notepad++ supply 
+    chain attack (October 2025). The attack specifically targeted victims across 
+    multiple countries including Vietnam, El Salvador, Australia, and Philippines, 
+    affecting government agencies, financial services, IT service providers, and 
+    individual developers. The malicious files were deployed to Windows systems via 
+    compromised software updates.
