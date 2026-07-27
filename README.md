@@ -94,6 +94,7 @@ GitHub Actions workflows that checkout **opentide** or build the **explorer** ne
 |--------|---------|
 | `GH_APP_ID` + `GH_APP_KEY` | GitHub App installation token (recommended) with `contents:read` on `OpenTideHQ/opentide` and `OpenTideHQ/explorer` |
 | `OPENTIDE_REPO_TOKEN` | PAT or fine-grained token with `contents:read` on those repositories |
+| `OPENTIDE_DEPLOY_KEY` / `EXPLORER_DEPLOY_KEY` | Read-only deploy keys for SSH checkout of each private dependency |
 
 Without these secrets, jobs that run `opentide generate`, validate against the engine, or `opentide explorer build` will fail at checkout or with missing exports. Local development does not need them when sibling clones (`../opentide`, `../explorer`) are present.
 
