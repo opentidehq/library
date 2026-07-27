@@ -1,8 +1,9 @@
 # Catalogue CI — validate, generate schemas/templates, refresh in-repo docs, build explorer.
 #
-# Requires repo or org secrets to clone private OpenTideHQ/opentide:
-#   - GH_APP_ID + GH_APP_KEY (GitHub App with read access to opentide), or
-#   - OPENTIDE_REPO_TOKEN (PAT or fine-grained token with contents:read on opentide)
+# Requires repo or org secrets to clone private OpenTideHQ/opentide (and explorer):
+#   - GH_APP_ID + GH_APP_KEY (GitHub App with contents:read on opentide + explorer), or
+#   - OPENTIDE_REPO_TOKEN (PAT/fine-grained token with contents:read on those repos), or
+#   - OPENTIDE_DEPLOY_KEY / EXPLORER_DEPLOY_KEY (read-only deploy keys)
 name: OpenTide
 
 on:
@@ -26,21 +27,40 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HAS_GITHUB_APP: ${{ secrets.GH_APP_ID && secrets.GH_APP_KEY && 'true' || 'false' }}
+      HAS_DEPLOY_KEY: ${{ secrets.OPENTIDE_DEPLOY_KEY && 'true' || 'false' }}
+      HAS_REPO_TOKEN: ${{ secrets.OPENTIDE_REPO_TOKEN && 'true' || 'false' }}
     steps:
       - name: Checkout library
         uses: actions/checkout@v4
 
+      - name: Require private-repo credentials
+        if: ${{ env.HAS_DEPLOY_KEY != 'true' && env.HAS_GITHUB_APP != 'true' && env.HAS_REPO_TOKEN != 'true' }}
+        run: |
+          echo "::error::Missing credentials to clone private OpenTideHQ/opentide."
+          echo "Configure one of: GH_APP_ID+GH_APP_KEY, OPENTIDE_REPO_TOKEN, or OPENTIDE_DEPLOY_KEY."
+          exit 1
+
       - name: Generate GitHub App token
         id: generate_token
-        if: ${{ env.HAS_GITHUB_APP == 'true' }}
+        if: ${{ env.HAS_DEPLOY_KEY != 'true' && env.HAS_GITHUB_APP == 'true' }}
         uses: actions/create-github-app-token@v1
         with:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
           owner: OpenTideHQ
-          repositories: opentide
+          repositories: opentide,explorer
 
-      - name: Checkout opentide
+      - name: Checkout opentide (deploy key)
+        if: ${{ env.HAS_DEPLOY_KEY == 'true' }}
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/opentide
+          ref: development
+          path: opentide
+          ssh-key: ${{ secrets.OPENTIDE_DEPLOY_KEY }}
+
+      - name: Checkout opentide (token)
+        if: ${{ env.HAS_DEPLOY_KEY != 'true' }}
         uses: actions/checkout@v4
         with:
           repository: OpenTideHQ/opentide
@@ -53,7 +73,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install opentide
-        run: pip install -e ./opentide
+        run: pip install -e "./opentide[cli]"
 
       - name: Generate schemas and templates
         run: |
@@ -78,6 +98,8 @@ jobs:
     needs: validate-and-generate
     env:
       HAS_GITHUB_APP: ${{ secrets.GH_APP_ID && secrets.GH_APP_KEY && 'true' || 'false' }}
+      HAS_OPENTIDE_DEPLOY_KEY: ${{ secrets.OPENTIDE_DEPLOY_KEY && 'true' || 'false' }}
+      HAS_EXPLORER_DEPLOY_KEY: ${{ secrets.EXPLORER_DEPLOY_KEY && 'true' || 'false' }}
     steps:
       - name: Checkout library
         uses: actions/checkout@v4
@@ -90,9 +112,19 @@ jobs:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_KEY }}
           owner: OpenTideHQ
-          repositories: opentide
+          repositories: opentide,explorer
 
-      - name: Checkout opentide
+      - name: Checkout opentide (deploy key)
+        if: ${{ env.HAS_OPENTIDE_DEPLOY_KEY == 'true' }}
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/opentide
+          ref: development
+          path: opentide
+          ssh-key: ${{ secrets.OPENTIDE_DEPLOY_KEY }}
+
+      - name: Checkout opentide (token)
+        if: ${{ env.HAS_OPENTIDE_DEPLOY_KEY != 'true' }}
         uses: actions/checkout@v4
         with:
           repository: OpenTideHQ/opentide
@@ -100,12 +132,23 @@ jobs:
           path: opentide
           token: ${{ steps.generate_token.outputs.token || secrets.OPENTIDE_REPO_TOKEN }}
 
-      - name: Checkout explorer
+      - name: Checkout explorer (deploy key)
+        if: ${{ env.HAS_EXPLORER_DEPLOY_KEY == 'true' }}
         uses: actions/checkout@v4
         with:
           repository: OpenTideHQ/explorer
           ref: main
           path: explorer
+          ssh-key: ${{ secrets.EXPLORER_DEPLOY_KEY }}
+
+      - name: Checkout explorer (token)
+        if: ${{ env.HAS_EXPLORER_DEPLOY_KEY != 'true' }}
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/explorer
+          ref: main
+          path: explorer
+          token: ${{ steps.generate_token.outputs.token || secrets.OPENTIDE_REPO_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:
@@ -116,7 +159,7 @@ jobs:
           node-version: "22"
 
       - name: Install opentide
-        run: pip install -e ./opentide
+        run: pip install -e "./opentide[cli]"
 
       - name: Build explorer static site
         run: opentide explorer build --output ./out/explorer --base-path /library
