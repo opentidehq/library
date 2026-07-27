@@ -26,10 +26,11 @@ threat:
     running in a highly privileged container, which means a host running 
     highly privileged containers with CAP_NET_ADMIN or CAP_SYS_MODULE 
     capabilities or Kubernetes pods running in privileged mode.
-
-    Domains: Embedded, Enterprise, Private Cloud, Public Cloud
-    Targets: Compute Cluster, Microservices, Virtual Machines Host
-    Platforms: Linux
+  surface:
+    - Embedded
+    - Linux
+    - Orchestration::Kubernetes
+    - Virtualisation::VMware ESXi
   severity: Significant incident
   leverage: Dwelling; Infrastructure Compromise; Repudiation; Software installation
   impact: Data Breach; Impairement; Lose Capabilities

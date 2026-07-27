@@ -40,10 +40,10 @@ threat:
   terrain: |-
     Adversaries need access to enumeration tools and a misconfigured Azure Blob Storage 
     environment with public access enabled.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Cloud Storage Accounts
-    Platforms: Blob Storage, Azure
+  surface:
+    - Azure::Storage::Blob Storage
+    - Azure
+    - AWS::Storage
   severity: Significant incident
   leverage: Information Disclosure; Tampering; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss

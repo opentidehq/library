@@ -38,10 +38,9 @@ threat:
     session to a LAN interface. The VPN connection allows actor-
     controlled systems within the local network to send ICMP Echo
     Requests that bypass traditional WAN-focused network monitoring.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment
-    Platforms: Network Router
+  surface:
+    - Routers
+    - Switches
   severity: Substantial incident
   leverage: Infrastructure Compromise; Information Disclosure; Spoofing
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security

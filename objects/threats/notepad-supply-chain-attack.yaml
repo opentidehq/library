@@ -27,8 +27,8 @@ threat:
     the legitimate update infrastructure, delivering malicious payloads disguised 
     as authentic software updates. Victims were distributed globally across multiple 
     sectors including government, financial services, and IT service providers.
-
-    Surface: OS::Windows::Desktop
+  surface:
+    - Windows::Desktop
   severity: Highly significant incident
   leverage: Elevation of privilege; Tampering; Information Disclosure; Repudiation
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss

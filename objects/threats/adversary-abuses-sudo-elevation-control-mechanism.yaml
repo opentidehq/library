@@ -20,12 +20,10 @@ threat:
   killchain: Privilege Escalation
   att&ck:
     - T1548
-  terrain: |-
-    Threat actor needs root level access to edit the sudoers file.
-
-    Domains: Enterprise
-    Targets: Control Server, Remote access
-    Platforms: Linux
+  terrain: Threat actor needs root level access to edit the sudoers file.
+  surface:
+    - Linux
+    - Remote Access
   severity: Significant incident
   leverage: Elevation of privilege; Dwelling; Infrastructure Compromise
   impact: Business disruption; Data Breach; Identity Theft; Impairement

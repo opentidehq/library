@@ -29,10 +29,13 @@ threat:
     A threat actor has gained control over a Windows endpoint and has
     privileges to disable event logging (in bulk or specific entries)
     through registry entries.
-
-    Domains: Enterprise, Public Cloud, Private Cloud
-    Targets: Workstations, Control Server, Desktop, Input/Output Server, Laptop, Server Logs, Web Application Servers, Public-Facing Servers
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Log Management
+    - Web Servers
   severity: Moderate incident
   leverage: Log tampering
   impact: Impairement

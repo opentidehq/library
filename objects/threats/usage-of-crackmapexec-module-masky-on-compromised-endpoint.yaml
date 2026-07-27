@@ -22,12 +22,12 @@ threat:
   killchain: Credential Access
   att&ck:
     - T1003
-  terrain: |-
-    On a compromised Windows or Linux variant endpoint, Masky can be used to collect the NT hash for all connected users
-
-    Domains: Enterprise, Public Cloud
-    Targets: Virtual Machines, Workstations
-    Platforms: Windows, Linux
+  terrain: On a compromised Windows or Linux variant endpoint, Masky can be used to collect the NT hash for all connected users
+  surface:
+    - Windows
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance

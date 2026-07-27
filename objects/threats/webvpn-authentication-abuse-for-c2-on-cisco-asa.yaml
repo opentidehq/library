@@ -38,10 +38,10 @@ threat:
     not adequately validate or sanitise crafted authentication requests,
     allowing arbitrary data to be embedded in standard authentication
     fields like device-type within the XML structure.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment, VPN Client
-    Platforms: Network Router
+  surface:
+    - Routers
+    - Switches
+    - VPN
   severity: Substantial incident
   leverage: Spoofing; Information Disclosure; Infrastructure Compromise
   impact: Data Breach; Lose Capabilities; Reputational Damages; National Security

@@ -28,11 +28,10 @@ threat:
     Example: A threat actor is using Operational Relay Box (ORB)
     network to gain an initial foothold and access to the victim's
     environment ref [1].
-
-    Domains: Enterprise
-    Cve: CVE-2024-8963, CVE-2024-8190
-    Targets: Customer, Laptop, Workstations
-    Platforms: Windows
+  surface:
+    - Windows
+    - Customer Support
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Elevation of privilege; Information Disclosure; Tampering
   impact: Impairement; Business disruption; Lose Capabilities

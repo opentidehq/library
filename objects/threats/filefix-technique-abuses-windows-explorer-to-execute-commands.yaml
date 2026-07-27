@@ -34,10 +34,10 @@ threat:
     The browser must allow JavaScript to run (standard), and the victim must
     be able to interactively paste content from the clipboard into the Explorer
     address bar or other UI (e.g., Run dialog).
-
-    Domains: Enterprise
-    Targets: Workstations, Customer, End-user
-    Platforms: Windows, PowerShell
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
   severity: Moderate incident
   leverage: Elevation of privilege; Infrastructure Compromise; Tampering
   impact: Business disruption; Impairement; Lose Capabilities

@@ -36,8 +36,8 @@ threat:
     of the compromised host and determine next steps for lateral movement or data 
     exfiltration. The reconnaissance commands are executed through cmd.exe with output 
     redirection to text files stored in seemingly legitimate application directories.
-
-    Surface: OS::Windows::Desktop
+  surface:
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach; Business disruption

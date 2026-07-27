@@ -59,10 +59,12 @@ threat:
   terrain: |-
     Adversaries must compromise an Azure AD account, through phishing,
     token theft or different means.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Key Store, Identity Services
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Entra ID
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft

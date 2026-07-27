@@ -37,10 +37,10 @@ threat:
     AAA validation routines. This requires prior compromise through
     bootkit deployment that provides the necessary execution context and
     privileges.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment, Server Authentication
-    Platforms: Network Router
+  surface:
+    - Routers
+    - Switches
+    - Kerberos
   severity: Substantial incident
   leverage: Elevation of privilege; Repudiation; Infrastructure Compromise; Tampering
   impact: Lose Capabilities; National Security; Reputational Damages; Data Breach

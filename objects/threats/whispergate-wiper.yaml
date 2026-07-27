@@ -31,10 +31,14 @@ threat:
   terrain: |-
     A threat actor needs an initial entry point to the system,
     for example can use stolen credentials to gain access.
-
-    Domains: Enterprise, Industrial
-    Targets: Disk drive, Workstations, Critical Documents, Customer, End-user, Data Historian, Desktop, Control Server, Laptop, Personal Information
-    Platforms: Windows, PowerShell
+  surface:
+    - Industrial
+    - Windows
+    - AWS::Storage::EBS
+    - Windows::Desktop
+    - File Sharing
+    - Customer Support
+    - Remote Access
   severity: Significant incident
   leverage: Denial of Service; Infrastructure Compromise
   impact: Business disruption; Catastrophic Loss; National Security; Operating costs; Reputational Damages

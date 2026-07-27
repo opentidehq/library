@@ -28,10 +28,15 @@ threat:
     A threat actor has gained control over a Windows endpoint and has
     privileges to disable event logging by using PowerShell commands or
     scripts.
-
-    Domains: Enterprise, Public Cloud, Private Cloud
-    Targets: Desktop, Laptop, Server Logs, Control Server, Public-Facing Servers, Web Application Servers, Workstations, Virtual Machines
-    Platforms: Windows, PowerShell, AWS, Azure
+  surface:
+    - Windows
+    - AWS
+    - Azure
+    - Windows::Desktop
+    - Log Management
+    - Remote Access
+    - Web Servers
+    - Azure::Compute::Virtual Machines
   severity: Moderate incident
   leverage: Log tampering
   impact: Impairement

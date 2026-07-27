@@ -40,10 +40,13 @@ threat:
     Adversaries gains access via phishing, credential stuffing, or exploiting misconfigurations 
     allowing access to an account with application management permissions or to a pipeline 
     that exposes service principal credentials.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Identity Services, Cloud Portal, Virtual Machines, IaaS
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Entra ID
+    - Azure::Compute::Virtual Machines
+    - AWS::Compute::EC2
   severity: Significant incident
   leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure
   impact: Data Breach; IP Loss

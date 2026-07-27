@@ -31,21 +31,21 @@ threat:
   chaining:
     - relation: sequence::succeeds
       vector: 1a68b5eb-0112-424d-a21f-88dda0b6b8df
-      description: |-
-        Attacker must be able to compromise the username and password of a valid account.
+      description: Attacker must be able to compromise the username and password of a valid account.
     - relation: sequence::succeeds
       vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
-      description: |-
-        Attacker must be able to compromise the username and password of a valid account.
+      description: Attacker must be able to compromise the username and password of a valid account.
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
-      description: |-
-        MFA bypass technique
-  terrain: |-
-    Adversaries must be in possession of the credentials of a valid account.
-
-    Domains: Enterprise, Public Cloud
-    Targets: Auth token, Cloud Portal, End-user, Helpdesk, Identity Services, Mobile phone
+      description: MFA bypass technique
+  terrain: Adversaries must be in possession of the credentials of a valid account.
+  surface:
+    - OAuth / OIDC
+    - Azure
+    - Windows::Desktop
+    - Customer Support
+    - Entra ID
+    - Mobile
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft

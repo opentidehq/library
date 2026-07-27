@@ -30,10 +30,13 @@ threat:
     context that has SeDebugPrivilege assigned (rarely on user context). 
     Windows servers and windows workstations/laptops - anything 
     Windows.
-
-    Domains: Enterprise, Public Cloud, Private Cloud
-    Targets: Auth token, Workstations, Windows API, Control Server, Web Application Servers, Public-Facing Servers
-    Platforms: Windows
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Windows::Desktop
+    - Application Layer::WMI
+    - Remote Access
+    - Web Servers
   severity: Moderate incident
   leverage: Elevation of privilege; Modify privileges; Spoofing
   impact: Impairement; Data Breach

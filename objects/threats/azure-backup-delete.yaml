@@ -50,10 +50,11 @@ threat:
     Adversaries gain privileged access to an Azure environment, often through phishing, 
     credential theft, or exploitation of misconfigurations, to compromise a global administrator 
     or backup operator account.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Virtual Machines, Server Backup
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Tampering; Information Disclosure; Denial of Service; Elevation of privilege; Modify configuration; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Lose Capabilities; Business disruption

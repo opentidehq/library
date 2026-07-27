@@ -35,10 +35,11 @@ threat:
   terrain: |-
     An adversary has gained control over a Windows endpoint and has privileges
     to create scheduled tasks.
-
-    Domains: Enterprise
-    Targets: Workstations, Control Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers
   severity: Moderate incident
   leverage: Elevation of privilege; Dwelling
   impact: Impairement

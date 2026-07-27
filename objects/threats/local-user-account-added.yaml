@@ -21,10 +21,14 @@ threat:
   terrain: |-
     Adversary must have existing administrative privileges on a compromised host 
     within the targeted infrastructure to create or modify local user accounts.
-
-    Domains: Enterprise, Networking
-    Targets: Workstations, Desktop, Laptop, Public-Facing Servers, Production Database, Virtual Machines, Engineering Workstation
-    Platforms: Windows, Linux, macOS
+  surface:
+    - Windows
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Web Servers
+    - Database Management
+    - Azure::Compute::Virtual Machines
   severity: Substantial incident
   leverage: Elevation of privilege; New Accounts; Modify configuration
   impact: Data Breach; Reputational Damages; Identity Theft; Business disruption

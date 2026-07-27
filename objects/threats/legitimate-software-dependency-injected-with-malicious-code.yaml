@@ -31,10 +31,12 @@ threat:
 
     They can use also a build-in or some type of an inherited vulnerability
     in the vendor's process which allows malicious code injection.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: CI/CD Pipelines, Developer, Other
-    Platforms: Windows, macOS, Linux
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Development::CI/CD
+    - Development
   severity: Significant incident
   leverage: Infrastructure Compromise; Tampering
   impact: Impairement; Business disruption; Lose Capabilities; Competitive disadvantage

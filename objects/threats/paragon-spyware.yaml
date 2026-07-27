@@ -28,10 +28,12 @@ threat:
   terrain: |-
     Attackers add targets to a WhatsApp group and send a PDF file. When the device automatically 
     processes the PDF, it exploits a vulnerability to load the Graphite spyware
-
-    Domains: Mobile
-    Targets: Mobile phone, Personal Information, Tablet, Identity Services
-    Platforms: iOS, Android
+  surface:
+    - Mobile
+    - Mobile::iOS
+    - Mobile::Android
+    - Mobile::iPadOS
+    - Entra ID
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Software installation
   impact: Competitive disadvantage; Data Breach; IP Loss; Identity Theft

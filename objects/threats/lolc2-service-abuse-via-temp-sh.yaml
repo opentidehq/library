@@ -37,8 +37,8 @@ threat:
     to blend malicious traffic with normal business operations. Particularly relevant
     in environments with developer workstations, laptops, and systems with curl.exe
     or similar HTTP client tools available.
-
-    Surface: OS::Windows::Desktop
+  surface:
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure; Dwelling
   impact: Data Breach; Reputational Damages

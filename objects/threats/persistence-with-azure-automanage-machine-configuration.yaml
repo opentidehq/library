@@ -21,10 +21,9 @@ threat:
     The adversary needs the owner access role on the targeted Azure 
     Subscription to apply the Azure Policy and grant permissions for
     the system-managed identities.
-
-    Domains: Public Cloud
-    Targets: Virtual Machines
-    Platforms: Azure
+  surface:
+    - Azure
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Infrastructure Compromise; Dwelling; Modify privileges
   impact: Business disruption; Data Breach; Impairement

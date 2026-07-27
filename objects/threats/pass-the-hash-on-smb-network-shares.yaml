@@ -53,10 +53,11 @@ threat:
     Attacker needs to have captured a valid NTLM hash,
     Kerberos is disabled or NTML authentication is accepted as alternate method,
     SMB ports needs to be open  from attacker perspective
-
-    Domains: Enterprise
-    Targets: Control Server, Desktop, End-user, Laptop, Remote access, Virtual Machines, Workstations
-    Platforms: Windows
+  surface:
+    - Windows
+    - Remote Access
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
   severity: Highly significant incident
   leverage: Alter behavior; Elevation of privilege; Spoofing
   impact: Data Breach; Impairement

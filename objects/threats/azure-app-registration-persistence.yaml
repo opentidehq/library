@@ -30,10 +30,20 @@ threat:
   terrain: |-
     Adversaries need to compromise user or administrator credentials that have permissions 
     to register or modify applications within Microsoft Entra ID (Azure AD).
-
-    Domains: Public Cloud, Enterprise, Private Cloud
-    Targets: Cloud Storage Accounts, Identity Services, Compute Cluster, Public-Facing Servers, Virtual Machines, Serverless, Email Platform, Web Application Servers, API Endpoints, Cloud Portal, Relational Database, NoSQL Database, Microservices, SAML-Joined Applications
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Entra ID
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Email
+    - Application Layer::HTTP
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Security::SAML
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; Modify configuration; Modify privileges; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft

@@ -38,11 +38,14 @@ threat:
   terrain: |-
     Vulnerable SharePoint server allowing unauthenticated requests leading to
     remote code execution.
-
-    Domains: Enterprise
-    Cve: CVE-2025-53770, CVE-2025-53771
-    Targets: Public-Facing Servers, Customer, End-user, Remote access, System admin
-    Platforms: Microsoft SharePoint, Windows
+  surface:
+    - Microsoft::SharePoint
+    - Windows
+    - Web Servers
+    - Customer Support
+    - Windows::Desktop
+    - Remote Access
+    - Microsoft::System Center
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Information Disclosure; Spoofing; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages

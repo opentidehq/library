@@ -37,10 +37,12 @@ threat:
   terrain: |-
     Adversary requires the user to open the disk image file and execute the malicious content within, 
     potentially bypassing security warnings.
-
-    Domains: Enterprise
-    Targets: Desktop, Email Platform, Laptop, Personal Information, Workstations
-    Platforms: macOS, Linux, Windows
+  surface:
+    - macOS
+    - Linux
+    - Windows
+    - Windows::Desktop
+    - Email
   severity: Significant incident
   leverage: Information Disclosure; Software installation; Spoofing; Tampering
   impact: Data Breach; Identity Theft

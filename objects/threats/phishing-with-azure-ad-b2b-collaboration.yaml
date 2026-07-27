@@ -23,12 +23,17 @@ threat:
   killchain: Social Engineering
   att&ck:
     - T1566
-  terrain: |-
-    Adversaries need administrative privileges or access to an existing Azure AD Premium account, or to create a new free trial account. After this, the capability to set up an Enterprise App with single sign-on through a user-defined URL, which can be their own website to deceive the user.
-
-    Domains: Public Cloud, Private Cloud, Enterprise, SaaS
-    Targets: Personal Information, End-user, Cloud Storage Accounts, Identity Services, Cloud Portal, Server Authentication, Remote access
-    Platforms: Windows, Office 365, Azure AD, Azure, PowerShell
+  terrain: Adversaries need administrative privileges or access to an existing Azure AD Premium account, or to create a new free trial account. After this, the capability to set up an Enterprise App with single sign-on through a user-defined URL, which can be their own website to deceive the user.
+  surface:
+    - Windows
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - Azure
+    - Windows::Desktop
+    - AWS::Storage
+    - Entra ID
+    - Kerberos
+    - Remote Access
   severity: Significant incident
   leverage: Spoofing; Infrastructure Compromise; Information Disclosure; New Accounts
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Competitive disadvantage; Business disruption; Lose Capabilities

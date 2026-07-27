@@ -28,10 +28,13 @@ threat:
     Threat actor must have sufficient privileges to modify environment variables or 
     system configurations and deploy malicious libraries in the filesystem in order 
     to hijack library calls via LD_PRELOAD.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Server Logs
-    Platforms: Linux, Docker Engine, Kubernetes
+  surface:
+    - Linux
+    - Container Runtime::Docker
+    - Orchestration::Kubernetes
+    - Windows::Desktop
+    - Web Servers
+    - Log Management
   severity: Significant incident
   leverage: Elevation of privilege; Modify configuration; Software installation; Infrastructure Compromise; Alter behavior
   impact: Data Breach; Business disruption; Monetary Loss; Reputational Damages

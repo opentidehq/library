@@ -75,8 +75,12 @@ threat:
     rely on any vulnerability in axios source code - the trust
     boundary between maintainer credentials and the npm publish
     pipeline is the actual vulnerable surface.
-
-    Surface: OS::Windows, OS::macOS, OS::Linux, Application::Development::Package Management::npm, Application::Development::CI/CD
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Development::Package Management::npm
+    - Development::CI/CD
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Tampering; Software installation; Information Gathering; Information Disclosure
   impact: Data Breach; Business disruption; Lose Capabilities; Reputational Damages; Operating costs

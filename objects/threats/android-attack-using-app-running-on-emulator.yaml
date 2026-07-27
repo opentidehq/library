@@ -30,10 +30,10 @@ threat:
     Adversaries require users to download emulators that have been
     compromised or misconfigured and through these, they can carry
     out malicious activities.
-
-    Domains: Mobile
-    Targets: Mobile phone, Personal Information, Tablet
-    Platforms: Android
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iPadOS
   severity: Significant incident
   leverage: Information Disclosure; Modify configuration; Modify data; Software installation; Tampering; Dwelling
   impact: Data Breach; Identity Theft; IP Loss; Nuisance; Reputational Damages

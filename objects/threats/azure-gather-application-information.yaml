@@ -51,10 +51,13 @@ threat:
     in the target Azure AD tenant, then utilizes API endpoints and tools, such as Azure CLI, 
     PowerShell modules (e.g., MSOnline, Microsoft.Graph), or custom scripts, to list 
     all registered applications.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Identity Services, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, Office 365
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - AWS::Storage
+    - Entra ID
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Spoofing
   impact: Data Breach; IP Loss

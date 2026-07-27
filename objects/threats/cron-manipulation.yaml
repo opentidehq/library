@@ -27,10 +27,11 @@ threat:
   terrain: |-
     Threat actor must already have privileged or administrative-level access 
     on a Linux or Unix-like system to insert or modify cron entries.
-
-    Domains: Enterprise
-    Targets: Public-Facing Servers, Workstations, Laptop
-    Platforms: Linux, macOS
+  surface:
+    - Linux
+    - macOS
+    - Web Servers
+    - Windows::Desktop
   severity: Substantial incident
   leverage: Dwelling; Modify configuration; Elevation of privilege
   impact: Data Breach; Business disruption; Operating costs; Reputational Damages

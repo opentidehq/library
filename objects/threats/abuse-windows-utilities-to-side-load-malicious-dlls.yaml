@@ -24,17 +24,16 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
-      description: |-
-        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
+      description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
   terrain: |-
     The targeted Windows systems must have applications that improperly handle DLL loading, 
     allowing unsigned or malicious DLLs to be loaded without proper validation. 
     This often involves software that looks for DLLs in directories writable 
     by non-administrative users
-
-    Domains: Enterprise
-    Targets: Laptop, Workstations, Virtual Machines
-    Platforms: Windows, PowerShell
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Tampering; Spoofing
   impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory

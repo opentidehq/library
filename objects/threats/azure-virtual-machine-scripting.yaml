@@ -84,10 +84,11 @@ threat:
   terrain: |-
     Through compromised account credentials or misused RBAC permissions, adversaries 
     obtains sufficient access to invoke scripting features (RunCommand, extensions).
-
-    Domains: Public Cloud
-    Targets: Virtual Machines
-    Platforms: Azure, Windows, Linux
+  surface:
+    - Azure
+    - Windows
+    - Linux
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft

@@ -27,10 +27,13 @@ threat:
   terrain: |-
     Adversary must have administrative privileges on the targeted operating system 
     with the necessary permissions to modify system firewall configurations.
-
-    Domains: Enterprise
-    Targets: Firewall, Workstations, Public-Facing Servers
-    Platforms: Windows, macOS, Linux
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Firewalls
+    - Windows::Desktop
+    - Web Servers
   severity: Substantial incident
   leverage: Modify configuration; Denial of Service; Tampering
   impact: Data Breach; Business disruption; Operating costs; Legal and regulatory

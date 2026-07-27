@@ -30,19 +30,30 @@ threat:
   chaining:
     - relation: sequence::succeeds
       vector: 66aafb61-9a46-4287-8b40-4785b42b77a3
-      description: |-
-        An adversary may obtain information and data within a resource.
+      description: An adversary may obtain information and data within a resource.
     - relation: sequence::succeeds
       vector: 9bb31c65-8abd-48fc-afe3-8aca76109737
-      description: |-
-        An adversary may obtain information and data within a resource.
+      description: An adversary may obtain information and data within a resource.
   terrain: |-
     The attacker obtains credentials (via phishing, password spray, leaked keys) granting 
     at least Reader access to the target Azure tenant.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Cloud Storage Accounts, Key Store, Virtual Machines, Identity Services, Compute Cluster, Public-Facing Servers, Network Equipment, Serverless, API Endpoints, Cloud Portal, Relational Database, NoSQL Database, Microservices, SAML-Joined Applications
-    Platforms: Azure, Azure AD, Windows, Linux, PowerShell
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Linux
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Azure::Compute::Virtual Machines
+    - Entra ID
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Switches
+    - Serverless
+    - Application Layer::HTTP
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Security::SAML
   severity: Significant incident
   leverage: Information Disclosure; Infrastructure Compromise; Elevation of privilege; Modify configuration; Modify privileges; Modify data
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption; Operating costs

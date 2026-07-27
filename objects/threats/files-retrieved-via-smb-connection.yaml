@@ -33,10 +33,11 @@ threat:
   terrain: |-
     Iniating a SMB connection requires a valid user account which imply
     that the endpoint is already infected.
-
-    Domains: Enterprise
-    Targets: Desktop, Laptop, Workstations, Public-Facing Servers, Web Application Servers
-    Platforms: Windows, Office 365
+  surface:
+    - Windows
+    - Microsoft::Microsoft 365
+    - Windows::Desktop
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling; Software installation; Elevation of privilege
   impact: Impairement

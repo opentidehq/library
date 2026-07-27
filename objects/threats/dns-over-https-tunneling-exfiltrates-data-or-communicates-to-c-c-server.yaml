@@ -32,10 +32,12 @@ threat:
   terrain: |-
     A threat actor can use DNS over HTTPS tunneling technique
     to hide traffic and activities.
-
-    Domains: Enterprise
-    Targets: Control Server, Customer, Public-Facing Servers
-    Platforms: Windows, Network Router
+  surface:
+    - Windows
+    - Routers
+    - Remote Access
+    - Customer Support
+    - Web Servers
   severity: Significant incident
   leverage: Dwelling; Infrastructure Compromise; Tampering
   impact: Impairement; Identity Theft; Data Breach; Operating costs; Reputational Damages

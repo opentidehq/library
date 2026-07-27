@@ -26,10 +26,16 @@ threat:
     it using the DKM key from Active Directory. This can be done remotely if the attacker 
     has the right privileges, and once they have the private key, they can forge SAML 
     tokens for any user, bypassing authentication controls.
-
-    Domains: Enterprise, SaaS
-    Targets: Identity Services, SAML-Joined Applications, Cloud Storage Accounts, Server Authentication
-    Platforms: AD FS, Active Directory, Azure AD, Office 365, Windows
+  surface:
+    - Active Directory::Federation Services
+    - Active Directory
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - Windows
+    - Entra ID
+    - Security::SAML
+    - AWS::Storage
+    - Kerberos
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Elevation of privilege; Information Disclosure
   impact: Data Breach; Identity Theft; Reputational Damages; Monetary Loss; Business disruption

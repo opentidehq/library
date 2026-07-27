@@ -22,10 +22,10 @@ threat:
     A web application vulnerable to path traversal, i.e. which does not
     sanitize user inputs sufficiently and with unsufficient resource access
     policy.
-
-    Domains: Enterprise, Public Cloud, Private Cloud, Networking
-    Targets: Web Application Servers
-    Platforms: Windows, Linux
+  surface:
+    - Windows
+    - Linux
+    - Web Servers
   severity: Significant incident
   leverage: Information Disclosure; Modify configuration; Modify data
   impact: Data Breach; IP Loss; Identity Theft

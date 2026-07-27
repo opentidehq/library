@@ -36,10 +36,16 @@ threat:
   terrain: |-
     Adversary must have administrative privileges over Azure Portal or have access to 
     Azure credentials.
-
-    Domains: Private Cloud, SaaS, Public Cloud
-    Targets: Cloud Storage Accounts, Key Store, Virtual Machines, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD, Office 365, Windows, Linux
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - Windows
+    - Linux
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Azure::Compute::Virtual Machines
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft

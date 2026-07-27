@@ -22,10 +22,10 @@ threat:
   terrain: |-
     The attacker needs to control an AWS account in order to send a VPC peering request. The AWS account controlled by the attacker may or may not
     be inside the EC AWS PROD organization.
-
-    Domains: Public Cloud, Networking
-    Targets: Network Equipment, System admin
-    Platforms: AWS VPC
+  surface:
+    - AWS::Networking::VPC
+    - Switches
+    - Microsoft::System Center
   severity: Moderate incident
   leverage: Infrastructure Compromise; Information Disclosure
   impact: Data Breach; Business disruption; IP Loss; Monetary Loss; Operating costs

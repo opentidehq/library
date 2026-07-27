@@ -24,10 +24,13 @@ threat:
     to modify or disable the system paging or swap settings. 
     They may also need to leverage local management tools or scripts 
     to carry out these modifications.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Server Authentication
-    Platforms: Windows, macOS, Linux
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Web Servers
+    - Kerberos
   severity: Significant incident
   leverage: Modify configuration; Denial of Service; Elevation of privilege
   impact: Business disruption; Impairement; Reputational Damages

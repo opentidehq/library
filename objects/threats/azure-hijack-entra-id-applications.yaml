@@ -24,10 +24,10 @@ threat:
     directory role that was granted the ability to modify Enterprise Applications 
     or Application Registrations. A frequently targeted role was the Application 
     Administrator, because it allowed complete control over applications in Azure AD.
-
-    Domains: Enterprise, Private Cloud
-    Targets: Identity Services
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Entra ID
   severity: Substantial incident
   leverage: Information Disclosure
   impact: Data Breach; IP Loss; National Security

@@ -21,10 +21,9 @@ threat:
   terrain: |-
     A threat actor requires authenticated access with permissions 
     cloudtrail:StopLogging to execute the StopLogging API call.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: IaaS
-    Platforms: AWS
+  surface:
+    - AWS
+    - AWS::Compute::EC2
   severity: Moderate incident
   leverage: Log tampering; Modify configuration; Repudiation
   impact: Impairement; Lose Capabilities

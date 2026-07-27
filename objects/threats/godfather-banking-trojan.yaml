@@ -27,12 +27,10 @@ threat:
   chaining:
     - relation: sequence::succeeds
       vector: 1a68b5eb-0112-424d-a21f-88dda0b6b8df
-      description: |-
-        Attacker must be able to compromise the username and password of a valid account.
+      description: Attacker must be able to compromise the username and password of a valid account.
     - relation: sequence::succeeds
       vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
-      description: |-
-        Attacker must be able to compromise the username and password of a valid account.
+      description: Attacker must be able to compromise the username and password of a valid account.
     - relation: support::synergize
       vector: 4a4a7c81-ca98-4761-8f23-7ef6354e9d1c
       description: |-
@@ -47,10 +45,9 @@ threat:
     Adversaries achieve granting AccessibilityService permissions to GodFather
     malware primarily through social engineering techniques that trick users into
     enabling these permissions.
-
-    Domains: Mobile
-    Targets: Mobile phone, Personal Information
-    Platforms: Android
+  surface:
+    - Mobile
+    - Mobile::Android
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege
   impact: Data Breach; Monetary Loss; Identity Theft

@@ -62,10 +62,16 @@ threat:
     - or compromised valid credentials and poor controls on the 
     management plane of the devices (no restriction on administrative 
     actions from Internet-facing interface)
-
-    Domains: Embedded, Enterprise, Networking
-    Targets: Firewall, IDS, Network Equipment, Public-Facing Servers, Router or switch, Virtual Machines Host, Other
-    Platforms: Linux, Windows, Network Router, VMWare
+  surface:
+    - Embedded
+    - Linux
+    - Windows
+    - Routers
+    - Virtualisation::VMware ESXi
+    - Firewalls
+    - Network Security::IDS
+    - Switches
+    - Web Servers
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Log tampering; Modify configuration; Modify privileges; New Accounts; Software installation; Tampering
   impact: Business disruption; Data Breach; Lose Capabilities; Operating costs

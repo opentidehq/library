@@ -22,12 +22,23 @@ threat:
   killchain: Impact
   att&ck:
     - T1498.001
-  terrain: |-
-    Anything with Internet connectivity
-
-    Domains: Enterprise, Networking, Private Cloud, Public Cloud, SaaS
-    Targets: API Endpoints, Serverless, Control Server, Web Application Servers, Public-Facing Servers
-    Platforms: AWS, Azure, Apache HTTP Server, Confluence, JIRA, Microsoft SharePoint, MySQL, Network Router, NGINX, OVHcloud, Outlook Web Access, Postgress
+  terrain: Anything with Internet connectivity
+  surface:
+    - AWS
+    - Azure
+    - Web Servers::Apache HTTP
+    - Atlassian::Confluence
+    - Atlassian::Jira
+    - Microsoft::SharePoint
+    - Database Management::MySQL
+    - Routers
+    - Web Servers::NGINX
+    - Microsoft::Outlook
+    - Database Management::PostgreSQL
+    - Application Layer::HTTP
+    - Serverless
+    - Remote Access
+    - Web Servers
   severity: Significant incident
   leverage: Denial of Service
   impact: Business disruption; Operating costs; Reputational Damages

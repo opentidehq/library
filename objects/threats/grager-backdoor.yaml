@@ -25,10 +25,11 @@ threat:
   terrain: |-
     A threat actor uses vulnerable Microsoft Graph APIs to deploy
     the malware and contact the C&C server.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: Workstations, Customer, Desktop, Control Server, Media
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
+    - Remote Access
   severity: Moderate incident
   leverage: Dwelling; Infrastructure Compromise; Elevation of privilege; Information Disclosure; Software installation
   impact: Business disruption; Impairement; Data Breach; Reputational Damages

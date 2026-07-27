@@ -29,12 +29,13 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1550.003
-  terrain: |-
-    Adversaries need to compromise an asset and be able to execute commands.
-
-    Domains: Enterprise
-    Targets: Auth token, End-user, Control Server, Workstations
-    Platforms: Windows, Active Directory
+  terrain: Adversaries need to compromise an asset and be able to execute commands.
+  surface:
+    - Windows
+    - Active Directory
+    - OAuth / OIDC
+    - Windows::Desktop
+    - Remote Access
   severity: Significant incident
   leverage: Alter behavior; Elevation of privilege; Infrastructure Compromise
   impact: Identity Theft; Business disruption; Data Breach

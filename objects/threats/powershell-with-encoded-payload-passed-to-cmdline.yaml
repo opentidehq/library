@@ -31,10 +31,10 @@ threat:
   terrain: |-
     A threat actors need an initial access to the system to use PowerShell
     console to execute commands to obfuscate their traffic and activities.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: Remote access, Workstations, Desktop
-    Platforms: PowerShell, Windows
+  surface:
+    - Windows
+    - Remote Access
+    - Windows::Desktop
   severity: Localised incident
   leverage: Dwelling; Tampering
   impact: Impairement

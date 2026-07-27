@@ -20,12 +20,10 @@ threat:
   killchain: Reconnaissance
   att&ck:
     - T1082
-  terrain: |-
-    A threat actor needs an initial access to a Linux system.
-
-    Domains: Enterprise
-    Targets: Laptop, Workstations
-    Platforms: Linux
+  terrain: A threat actor needs an initial access to a Linux system.
+  surface:
+    - Linux
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach; Identity Theft

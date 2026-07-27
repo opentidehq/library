@@ -34,10 +34,11 @@ threat:
   terrain: |-
     Adversary must have access to systems with archiving tools installed and permissions 
     to execute renamed or custom archiving utilities.
-
-    Domains: Enterprise
-    Targets: Workstations, Laptop
-    Platforms: Windows, macOS, Linux
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Information Disclosure; Modify data
   impact: Data Breach; IP Loss; Reputational Damages

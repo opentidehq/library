@@ -38,10 +38,11 @@ threat:
     Adversary must have enough privileges on the Windows host to bypass application
     control solutions via the rundll32.exe process. Natively, rundll32.exe will load
     DLLs and is a great example of a Living off the Land Binary.
-
-    Domains: Enterprise, Public Cloud, Private Cloud
-    Targets: Web Application Servers, Virtual Machines, Laptop, Workstations
-    Platforms: Windows
+  surface:
+    - Windows
+    - Web Servers
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Modify privileges; Elevation of privilege; Information Disclosure
   impact: Data Breach; Lose Capabilities

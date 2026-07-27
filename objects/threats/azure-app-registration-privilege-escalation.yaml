@@ -43,10 +43,14 @@ threat:
     Adversaries need access to an identity (user account or service principal) with 
     sufficient permissions to create, modify, or assign roles to app registrations or 
     service principals.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, Identity Services, Public-Facing Servers, API Endpoints, Cloud Portal, Serverless
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Entra ID
+    - Web Servers
+    - Application Layer::HTTP
+    - Serverless
   severity: Significant incident
   leverage: Elevation of privilege; Spoofing; Tampering; Information Disclosure
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities

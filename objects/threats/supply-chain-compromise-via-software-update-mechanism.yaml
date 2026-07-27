@@ -49,10 +49,18 @@ threat:
     - Administrative privileges for software installation/update
     - Insufficient supply chain security controls
     - Limited visibility into software build and update processes
-
-    Domains: Enterprise, Public Cloud, Private Cloud, SaaS
-    Targets: Production Software, Development Pipelines, Software Development Tools, Public-Facing Servers, Identity Services, Cloud Portal, API Endpoints
-    Platforms: Windows, Azure, Azure AD, Office 365, AWS
+  surface:
+    - Windows
+    - Azure
+    - Azure::Security::Entra ID
+    - Microsoft::Microsoft 365
+    - AWS
+    - Microsoft
+    - Development::CI/CD
+    - Development
+    - Web Servers
+    - Entra ID
+    - Application Layer::HTTP
   severity: National cyber emergency
   leverage: Infrastructure Compromise; Information Disclosure; Dwelling; Elevation of privilege; Spoofing; Tampering
   impact: National Security; Catastrophic Loss; Data Breach; IP Loss; Reputational Damages; Business disruption

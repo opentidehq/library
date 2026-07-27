@@ -21,10 +21,24 @@ threat:
   terrain: |-
     A threat actor controls either privileged credentials or a service 
     principal (SPN) and an endpoint from which Azure CLI can be run.
-
-    Domains: Public Cloud
-    Targets: Control Server, Cloud Storage Accounts, Compute Cluster, DNS, Firewall, Function-as-a-Service, Identity Services, Input/Output Server, Key Store, Network Equipment, Public-Facing Servers, NoSQL Database, Relational Database, Router or switch, Virtual Machines, Web Application Servers, Engineering Workstation
-    Platforms: Azure
+  surface:
+    - Azure
+    - Remote Access
+    - AWS::Storage
+    - Orchestration::Kubernetes
+    - Domain Name System::DNS
+    - Firewalls
+    - Serverless
+    - Entra ID
+    - Windows::Server
+    - Azure::Security::Key Vault
+    - Switches
+    - Web Servers
+    - Database Management::MongoDB
+    - Database Management::PostgreSQL
+    - Routers
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop
   severity: Localised incident
   leverage: Modify configuration
   impact: Data Breach; Identity Theft; Impairement; Lose Capabilities; Nuisance; Operating costs

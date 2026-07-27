@@ -52,10 +52,11 @@ threat:
     Adversaries obtains credentials or elevated permissions (via access keys, Service 
     Principal abuse, RBAC misconfigurations, or privilege escalation) to the victim’s 
     storage account.
-
-    Domains: Public Cloud
-    Targets: Cloud Storage Accounts, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Application Layer::HTTP
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Repudiation; Tampering
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Business disruption

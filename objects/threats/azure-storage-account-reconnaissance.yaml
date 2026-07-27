@@ -44,10 +44,14 @@ threat:
   terrain: |-
     Adversaries need to scan and discover publicly accessible storage containers by 
     guessing or enumerating storage account and container names.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Cloud Storage Accounts, API Endpoints, Serverless, Web Application Servers
-    Platforms: Azure, Azure AD, Blob Storage
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Azure::Storage::Blob Storage
+    - AWS::Storage
+    - Application Layer::HTTP
+    - Serverless
+    - Web Servers
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Denial of Service
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption

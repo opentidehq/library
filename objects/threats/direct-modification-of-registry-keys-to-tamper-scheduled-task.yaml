@@ -41,10 +41,9 @@ threat:
   terrain: |-
     A threat actor needs an Admin Windows System level to a target
     endpoint in order to perform direct modification of the registries.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: End-user, Workstations, Other
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering; Modify configuration
   impact: Business disruption; Impairement; Lose Capabilities; Operating costs

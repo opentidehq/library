@@ -48,12 +48,13 @@ threat:
   killchain: Credential Access
   att&ck:
     - T1056.001
-  terrain: |-
-    A threat actor needs to control a Windows endpoint and sufficient credentials to execute software.
-
-    Domains: Enterprise, Public Cloud
-    Targets: Control Server, Input/Output Server, Public-Facing Servers, Web Application Servers, Laptop, Workstations, Desktop
-    Platforms: Windows
+  terrain: A threat actor needs to control a Windows endpoint and sufficient credentials to execute software.
+  surface:
+    - Windows
+    - Remote Access
+    - Windows::Server
+    - Web Servers
+    - Windows::Desktop
   severity: Localised incident
   leverage: Modify configuration
   impact: Nuisance

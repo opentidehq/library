@@ -35,10 +35,11 @@ threat:
   terrain: |-
     The threat actor needs to have control over the DNS infrastructure that
     resolves the C2 domain.
-
-    Domains: Enterprise
-    Targets: Server Logs
-    Platforms: Windows, Linux, macOS
+  surface:
+    - Windows
+    - Linux
+    - macOS
+    - Log Management
   severity: Significant incident
   leverage: Spoofing
   impact: Business disruption; Impairement; Lose Capabilities

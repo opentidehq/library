@@ -40,10 +40,12 @@ threat:
   terrain: |-
     Adversaries need an exposed service or port that is accessible from outside the Azure 
     environment—typically via a public IP and a mapped port (such as SSH, RDP, or web services).
-
-    Domains: Public Cloud
-    Targets: Virtual Machines, Public-Facing Servers, Network Equipment
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Azure::Compute::Virtual Machines
+    - Web Servers
+    - Switches
   severity: Significant incident
   leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption

@@ -36,10 +36,10 @@ threat:
     last day of support or reach end of support September 30, 2025 [1].
     The absence of secure boot allows arbitrary modification of the GRUB
     bootloader without cryptographic validation.
-
-    Domains: Enterprise, Networking
-    Targets: Network Equipment, Firmware
-    Platforms: Network Router
+  surface:
+    - Routers
+    - Switches
+    - Embedded
   severity: Substantial incident
   leverage: Infrastructure Compromise; Tampering; Dwelling
   impact: Lose Capabilities; Reputational Damages; National Security

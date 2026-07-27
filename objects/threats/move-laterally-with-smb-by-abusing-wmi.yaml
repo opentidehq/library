@@ -59,10 +59,11 @@ threat:
   terrain: |-
     It is a built-in tool developped by Microsoft and belonging to Sysinternal command-line tools. It should be installed
     However SMB is a native protocol that do not require any installation.
-
-    Domains: Enterprise
-    Targets: Control Server, Desktop, End-user, Laptop, Remote access, Virtual Machines, Workstations
-    Platforms: Windows
+  surface:
+    - Windows
+    - Remote Access
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
   severity: Highly significant incident
   leverage: Alter behavior; Elevation of privilege; Spoofing
   impact: Identity Theft; Asset and fraud

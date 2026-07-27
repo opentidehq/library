@@ -27,10 +27,10 @@ threat:
   terrain: |-
     Attacker needs to control credentials required to deploy an EC2 instance,
     or to deploy a compute resource of a type that runs on EC2.
-
-    Domains: Public Cloud
-    Targets: IaaS
-    Platforms: AWS EC2, AWS ECS, AWS EKS
+  surface:
+    - AWS::Compute::EC2
+    - AWS::Compute::ECS
+    - AWS::Compute::EKS
   severity: Localised incident
   leverage: Software installation; Infrastructure Compromise
   impact: Operating costs; Asset and fraud; Legal and regulatory

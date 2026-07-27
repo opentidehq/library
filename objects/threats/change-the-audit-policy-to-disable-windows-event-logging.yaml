@@ -36,10 +36,13 @@ threat:
     A threat actor has gained control over a Windows endpoint and has
     privileges to disable event logging by making changes to the Windows audit
     policy.
-
-    Domains: Enterprise, Public Cloud
-    Targets: Workstations, Desktop, Laptop, Input/Output Server, Public-Facing Servers, Server Logs, Web Application Servers, Control Server
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Windows::Server
+    - Web Servers
+    - Log Management
+    - Remote Access
   severity: Moderate incident
   leverage: Log tampering
   impact: Impairement

@@ -26,10 +26,11 @@ threat:
     and now aim at escalating privileges while moving laterally.
     The credentials they gained access to also must have sufficient
     privileges to allow role assumption.
-
-    Domains: Public Cloud
-    Targets: Software Containers, Virtual Machines
-    Platforms: AWS IAM, Azure AD
+  surface:
+    - AWS::Security::IAM
+    - Azure::Security::Entra ID
+    - Container Runtime::Docker
+    - Azure::Compute::Virtual Machines
   severity: Substantial incident
   leverage: Modify privileges
   impact: Data Breach

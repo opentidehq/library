@@ -116,10 +116,15 @@ threat:
   terrain: |-
     Mimikatz is used on a Windows endpoint where a threat actor has 
     gained a foothold to elevate privileges and move laterally
-
-    Domains: Enterprise, Public Cloud
-    Targets: API Endpoints, Control Server, Desktop, Workstations, Engineering Workstation, Laptop, Identity Services, Key Store
-    Platforms: Active Directory, Azure, Windows
+  surface:
+    - Active Directory
+    - Azure
+    - Windows
+    - Application Layer::HTTP
+    - Remote Access
+    - Windows::Desktop
+    - Entra ID
+    - Azure::Security::Key Vault
   severity: Highly significant incident
   leverage: Elevation of privilege; Dwelling; Information Disclosure; Infrastructure Compromise; Software installation
   impact: Data Breach; Identity Theft; Operating costs; Reputational Damages; IP Loss

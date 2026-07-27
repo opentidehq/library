@@ -24,10 +24,12 @@ threat:
     Adversaries must have a well-crafted phishing or smishing campaign that impersonates 
     government authorities and popular messaging applications to trick victims into 
     downloading and installing the malicious MDM profile.
-
-    Domains: Mobile
-    Targets: Personal Information, Identity Services, Mobile phone, Tablet
-    Platforms: Android, iOS
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Entra ID
+    - Mobile::iPadOS
   severity: Significant incident
   leverage: Alter behavior; Dwelling; Elevation of privilege; Software installation; Spoofing
   impact: Identity Theft; IP Loss; Reputational Damages

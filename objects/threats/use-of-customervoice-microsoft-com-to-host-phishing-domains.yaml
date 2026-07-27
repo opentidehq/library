@@ -21,10 +21,9 @@ threat:
   terrain: |-
     Phishing email or message sent another way with a link that includes 
     the real microsoft.com domain as customervoice.microsoft.com
-
-    Domains: Enterprise
-    Targets: End-user
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
   severity: Localised incident
   leverage: Software installation; Information Disclosure; Dwelling; Infrastructure Compromise
   impact: Identity Theft; Reputational Damages; Operating costs; Data Breach; Legal and regulatory

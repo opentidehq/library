@@ -38,10 +38,26 @@ threat:
     An adversary is looking to exploit native system applications
     or to use enumeration external tools in an attempt to find
     an entry network point.
-
-    Domains: Enterprise, IoT, Mobile, Private Cloud, Public Cloud
-    Targets: End-user, Firewall, LAN, Laptop, Network Equipment, Router or switch, Workstations, Customer, Mobile phone, Peripheral, Web Application Servers, Other, Public-Facing Servers
-    Platforms: Active Directory, AWS VPC, Azure, Windows, Linux, macOS, Apache HTTP Server, Android, iOS, Network Router
+  surface:
+    - Industrial IoT::IoT Gateways
+    - Mobile
+    - Active Directory
+    - AWS::Networking::VPC
+    - Azure
+    - Windows
+    - Linux
+    - macOS
+    - Web Servers::Apache HTTP
+    - Mobile::Android
+    - Mobile::iOS
+    - Routers
+    - Windows::Desktop
+    - Firewalls
+    - Data Link Layer::VLAN
+    - Switches
+    - Customer Support
+    - Printers::Multi-Function Peripherals
+    - Web Servers
   severity: Localised incident
   leverage: Dwelling; Infrastructure Compromise; Tampering
   impact: Impairement; Lose Capabilities; Nuisance

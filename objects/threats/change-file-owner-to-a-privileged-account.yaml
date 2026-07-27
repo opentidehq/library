@@ -26,10 +26,17 @@ threat:
     The adversary must have sufficient privileges (e.g., local administrator 
     or root permissions) on the target host or domain controller to modify 
     file ownership attributes.
-
-    Domains: Enterprise, Networking
-    Targets: Workstations, Directory, Windows API, Critical Documents, Laptop, Public-Facing Servers, Production Database, Virtual Machines, Engineering Workstation
-    Platforms: Windows, Linux, macOS
+  surface:
+    - Windows
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Active Directory
+    - Application Layer::WMI
+    - File Sharing
+    - Web Servers
+    - Database Management
+    - Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage: Elevation of privilege; Modify privileges; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages; Business disruption

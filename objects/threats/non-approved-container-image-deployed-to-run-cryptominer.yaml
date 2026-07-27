@@ -24,12 +24,18 @@ threat:
     - T1610
     - T1525
     - T1496
-  terrain: |-
-    Running container clusters running in cloud, private cloud or in Enterprise Data Centre environments, potentially connected via a Continuous deployment tool
-
-    Domains: Public Cloud, Private Cloud, Enterprise
-    Targets: CI/CD Pipelines, Compute Cluster, Control Server, Development Pipelines
-    Platforms: AWS EC2, AWS EKS, AWS ECS, AWS Fargate, Azure AKS, VMware Tanzu, OVHcloud, IBM Cloud Kubernetes, Oracle Container Engine
+  terrain: Running container clusters running in cloud, private cloud or in Enterprise Data Centre environments, potentially connected via a Continuous deployment tool
+  surface:
+    - AWS::Compute::EC2
+    - AWS::Compute::EKS
+    - AWS::Compute::ECS
+    - AWS::Compute::Fargate
+    - Azure::Compute::Kubernetes Service
+    - Orchestration::Kubernetes
+    - IBM Cloud
+    - OCI::Container Engine
+    - Development::CI/CD
+    - Remote Access
   severity: Substantial incident
   leverage: Infrastructure Compromise; Dwelling; Software installation
   impact: Asset and fraud; Operating costs; Impairement

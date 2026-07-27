@@ -29,15 +29,15 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
-      description: |-
-        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
+      description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
   terrain: |-
     Adversary must have at least user-level code execution privileges on a Windows host 
     where Mshta is available to run.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Laptop
-    Platforms: Windows, Active Directory
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Web Servers
   severity: Significant incident
   leverage: Spoofing; Elevation of privilege; Software installation
   impact: Data Breach; Reputational Damages; Business disruption

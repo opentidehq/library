@@ -27,10 +27,12 @@ threat:
     A threat actor has gained control over privileges to create scheduled tasks 
     on a deployed resource using Azure CloudShell either via a browser or the
     Azure portal.
-
-    Domains: Enterprise, Public Cloud
-    Targets: Control Server, Cloud Portal, Workstations, Desktop, Public-Facing Servers, Web Application Servers, Remote access, Virtual Machines
-    Platforms: Azure
+  surface:
+    - Azure
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers
+    - Azure::Compute::Virtual Machines
   severity: Moderate incident
   leverage: Dwelling; Elevation of privilege; Tampering
   impact: Impairement

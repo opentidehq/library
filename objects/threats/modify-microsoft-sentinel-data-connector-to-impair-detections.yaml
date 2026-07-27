@@ -17,12 +17,11 @@ threat:
   killchain: Defense Evasion
   att&ck:
     - T1562.008
-  terrain: |-
-    Requires access to privileged Azure credentials
-
-    Domains: Public Cloud
-    Targets: CI/CD Pipelines, System admin
-    Platforms: Azure
+  terrain: Requires access to privileged Azure credentials
+  surface:
+    - Azure
+    - Development::CI/CD
+    - Microsoft::System Center
   severity: Highly significant incident
   leverage: Modify configuration
   impact: Lose Capabilities

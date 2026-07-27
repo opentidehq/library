@@ -25,10 +25,20 @@ threat:
     Attackers need to gain access to an Azure account with the Virtual Machine Contributor 
     role (or equivalent) can use custom script extensions to execute arbitrary code 
     as SYSTEM or root on VMs.
-
-    Domains: Public Cloud, Private Cloud, Enterprise
-    Targets: Cloud Storage Accounts, Key Store, Virtual Machines, Serverless, API Endpoints, Cloud Portal, Relational Database, NoSQL Database, Software Containers
-    Platforms: Azure, Windows, Linux, Azure AD, Blob Storage
+  surface:
+    - Azure
+    - Windows
+    - Linux
+    - Azure::Security::Entra ID
+    - Azure::Storage::Blob Storage
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Azure::Compute::Virtual Machines
+    - Serverless
+    - Application Layer::HTTP
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Container Runtime::Docker
   severity: Significant incident
   leverage: Information Disclosure; Elevation of privilege; Tampering; Repudiation; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption

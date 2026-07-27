@@ -45,10 +45,15 @@ threat:
     web page scripting languages as HTML, CSS, JavaScript
     and others. This vulnerability in the page can lead
     to an initial access to a targeted system.
-
-    Domains: Enterprise, Mobile
-    Targets: Customer, End-user, Workstations, Laptop, Web Application Servers, Public-Facing Servers, Personal Information, Remote access
-    Platforms: Windows, iOS, Android
+  surface:
+    - Mobile
+    - Windows
+    - Mobile::iOS
+    - Mobile::Android
+    - Customer Support
+    - Windows::Desktop
+    - Web Servers
+    - Remote Access
   severity: Localised incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering
   impact: Identity Theft; Impairement; Data Breach; Lose Capabilities; Business disruption

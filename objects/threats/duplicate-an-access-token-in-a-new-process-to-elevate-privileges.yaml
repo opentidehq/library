@@ -25,10 +25,11 @@ threat:
     their privileges to SYSTEM level access (NT AUTHORITY\SYSTEM), but the same 
     threat vector can also be used for defense evasion and other purposes by 
     duplicating other access token types and privilege levels.
-
-    Domains: Enterprise, Public Cloud
-    Targets: Auth token, Control Server, Desktop, Laptop
-    Platforms: Windows
+  surface:
+    - Windows
+    - OAuth / OIDC
+    - Remote Access
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Elevation of privilege
   impact: Identity Theft

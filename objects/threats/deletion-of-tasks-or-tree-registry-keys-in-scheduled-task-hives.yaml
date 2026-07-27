@@ -29,10 +29,12 @@ threat:
   terrain: |-
     Threat actor is using already compromised Windows endpoint and has the required 
     privileges to delete registry keys.
-
-    Domains: Enterprise, Public Cloud
-    Targets: Control Server, Remote access, Workstations, Desktop, Web Application Servers, Public-Facing Servers
-    Platforms: Windows, Azure
+  surface:
+    - Windows
+    - Azure
+    - Remote Access
+    - Windows::Desktop
+    - Web Servers
   severity: Moderate incident
   leverage: Tampering
   impact: Impairement

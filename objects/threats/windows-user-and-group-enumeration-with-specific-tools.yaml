@@ -57,10 +57,9 @@ threat:
   terrain: |-
     Adversaries can take advantage of already compromised system (Windows or 
     Linux OS or OSX) to run commands.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: Directory
-    Platforms: Windows
+  surface:
+    - Windows
+    - Active Directory
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Identity Theft

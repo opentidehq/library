@@ -62,10 +62,12 @@ threat:
   terrain: |-
     Adversaries obtain elevated access within AzureAD or Intune; often
     via credential theft, privilege escalation, or social engineering.
-
-    Domains: Public Cloud
-    Targets: Workstations, Mobile phone, Cloud Portal
-    Platforms: Azure AD, Windows, PowerShell
+  surface:
+    - Azure::Security::Entra ID
+    - Windows
+    - Windows::Desktop
+    - Mobile
+    - Azure
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure
   impact: Data Breach; Reputational Damages; Identity Theft

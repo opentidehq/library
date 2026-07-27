@@ -34,15 +34,15 @@ threat:
   chaining:
     - relation: sequence::succeeds
       vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
-      description: |-
-        Phishing emails with malicious macros are used to deliver the malware.
+      description: Phishing emails with malicious macros are used to deliver the malware.
   terrain: |-
     An adversary has gained control over a Windows endpoint and has privileges 
     to create scheduled tasks in order to maintain persistence in the registry.
-
-    Domains: Enterprise, Public Cloud, Private Cloud
-    Targets: Workstations, Control Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Remote Access
+    - Web Servers
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering; Modify configuration; Modify data
   impact: Impairement; Business disruption

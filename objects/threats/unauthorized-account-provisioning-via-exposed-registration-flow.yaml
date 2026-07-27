@@ -43,6 +43,10 @@ threat:
     invite-only, partner-only, domain-restricted, or approval-based. The weak terrain is account
     lifecycle logic where account records are created before approval is enforced and downstream
     authentication, password reset, or session issuance does not consistently check approval state.
+  surface:
+    - Web Servers
+    - Application Layer::HTTP
+    - Entra ID
   severity: Substantial incident
   leverage: New Accounts; Elevation of privilege; Information Disclosure
   impact: Data Breach; Identity Theft; Business disruption; Legal and regulatory

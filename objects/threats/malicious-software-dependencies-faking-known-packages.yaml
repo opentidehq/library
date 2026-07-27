@@ -20,10 +20,14 @@ threat:
   terrain: |-
     Software development performed internally need to rely on
     external dependencies, and sources are not rigorously checked.
-
-    Domains: Enterprise, Public Cloud, Private Cloud
-    Targets: Software Containers, Production Software, CI/CD Pipelines, Code Repositories, Software Development Tools
-    Platforms: Azure, AWS
+  surface:
+    - Azure
+    - AWS
+    - Container Runtime::Docker
+    - Microsoft
+    - Development::CI/CD
+    - Code Repositories
+    - Development
   severity: Substantial incident
   leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure
   impact: Data Breach; Impairement

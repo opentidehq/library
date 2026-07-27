@@ -36,10 +36,9 @@ threat:
     Adversaries must have access to a Windows environment where they can execute 
     built-in utilities. Limited user privileges may suffice, 
     but administrative privileges enhance the potential impact.
-
-    Domains: Enterprise
-    Targets: Workstations, Laptop
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Elevation of privilege; Information Disclosure; Modify configuration; Software installation
   impact: Data Breach; Reputational Damages; Business disruption; Identity Theft

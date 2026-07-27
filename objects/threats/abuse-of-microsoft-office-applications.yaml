@@ -31,16 +31,19 @@ threat:
   chaining:
     - relation: sequence::succeeds
       vector: dd5d942c-bac4-4000-b9a6-ca4fef6cfb84
-      description: |-
-        Most of malware comes from email attachment and can be executed afterwards
+      description: Most of malware comes from email attachment and can be executed afterwards
   terrain: |-
     Target systems must have Microsoft Office applications installed with macros 
     enabled or be susceptible to social engineering tactics that prompt users 
     to enable macros or execute malicious content.
-
-    Domains: Enterprise
-    Targets: Email Platform, Desktop, Laptop, Critical Documents, Personal Information, Workstations
-    Platforms: Windows, Office 365, Microsoft SharePoint, Outlook Web Access
+  surface:
+    - Windows
+    - Microsoft::Microsoft 365
+    - Microsoft::SharePoint
+    - Microsoft::Outlook
+    - Email
+    - Windows::Desktop
+    - File Sharing
   severity: Moderate incident
   leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Software installation
   impact: Data Breach; IP Loss; Identity Theft; Business disruption

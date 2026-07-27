@@ -38,10 +38,11 @@ threat:
     For example, well customised and legitimate looking company e-mail with
     administrative document protected with passwords or titled with ongoing
     meeting or agenda.
-
-    Domains: Enterprise
-    Targets: Customer, End-user, Workstations
-    Platforms: Office 365, Github
+  surface:
+    - Microsoft::Microsoft 365
+    - Code Repositories::GitHub
+    - Customer Support
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Infrastructure Compromise; Tampering
   impact: Business disruption; Lose Capabilities; Data Breach; Identity Theft; Impairement

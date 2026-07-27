@@ -23,10 +23,12 @@ threat:
     Requires a GitHub organization, either as SaaS or as an on-prem GitHub 
     instance. Attacker requires admin credentials to change the setting or 
     an exploit to bypass authentication or similar.
-
-    Domains: SaaS, Enterprise
-    Targets: Cloud Portal, Code Repositories, CI/CD Pipelines, Control Server
-    Platforms: Github
+  surface:
+    - Code Repositories::GitHub
+    - Azure
+    - Code Repositories
+    - Development::CI/CD
+    - Remote Access
   severity: Localised incident
   leverage: Dwelling; Infrastructure Compromise; Modify configuration
   impact: Impairement

@@ -35,10 +35,17 @@ threat:
   terrain: |-
     Adversaries can take advantage of already compromised system (Windows or 
     Linux OS or OSX) to run commands.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: Desktop, Directory, Engineering Workstation, Firewall, Laptop, Public-Facing Servers, Web Application Servers, Workstations
-    Platforms: AWS EC2, AWS ECS, AWS EKS, Linux, macOS, Windows
+  surface:
+    - AWS::Compute::EC2
+    - AWS::Compute::ECS
+    - AWS::Compute::EKS
+    - Linux
+    - macOS
+    - Windows
+    - Windows::Desktop
+    - Active Directory
+    - Firewalls
+    - Web Servers
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Identity Theft; Nuisance; Reputational Damages

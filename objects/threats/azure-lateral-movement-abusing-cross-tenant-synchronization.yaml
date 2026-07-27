@@ -18,12 +18,13 @@ threat:
   killchain: Command & Control
   att&ck:
     - T1021.007
-  terrain: |-
-    Attackers must have compromised a tenant and gained elevated privileges
-
-    Domains: Private Cloud, Public Cloud
-    Targets: Cloud Portal, Cloud Storage Accounts, IaaS
-    Platforms: Azure, Azure AD, Azure AKS
+  terrain: Attackers must have compromised a tenant and gained elevated privileges
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Azure::Compute::Kubernetes Service
+    - AWS::Storage
+    - AWS::Compute::EC2
   severity: Significant incident
   leverage: Elevation of privilege; Infrastructure Compromise; Modify configuration
   impact: Business disruption; Lose Capabilities; Data Breach; Reputational Damages

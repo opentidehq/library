@@ -30,12 +30,11 @@ threat:
       description: |-
         A threat actor commonly utilizes living-off-the-land techniques
         after gaining initial access to move laterally through the network.  
-  terrain: |-
-    A threat actor needs initial access to move laterally through the network.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: Customer, Laptop, Workstations, End-user, Other
-    Platforms: Windows
+  terrain: A threat actor needs initial access to move laterally through the network.
+  surface:
+    - Windows
+    - Customer Support
+    - Windows::Desktop
   severity: Localised incident
   leverage: Dwelling; Elevation of privilege
   impact: Identity Theft; Business disruption; Impairement; Nuisance

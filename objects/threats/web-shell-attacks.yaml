@@ -22,12 +22,12 @@ threat:
   killchain: Persistence
   att&ck:
     - T1505.003
-  terrain: |-
-    Adversary access to a compromise Web server with vulnerability or account to upload and serve the Web shell file.
-
-    Domains: Public Cloud, Enterprise, Private Cloud
-    Targets: Web Application Servers
-    Platforms: Linux, Windows, macOS
+  terrain: Adversary access to a compromise Web server with vulnerability or account to upload and serve the Web shell file.
+  surface:
+    - Linux
+    - Windows
+    - macOS
+    - Web Servers
   severity: Moderate incident
   leverage: Dwelling; Modify configuration; Modify privileges
   impact: Data Breach; Impairement

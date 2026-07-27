@@ -27,10 +27,13 @@ threat:
   terrain: |-
     Adversary must have the capability to run network configuration commands on 
     endpoints or servers, potentially with elevated privileges
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Network Equipment
-    Platforms: Windows, macOS, Linux
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Web Servers
+    - Switches
   severity: Substantial incident
   leverage: Information Disclosure; Infrastructure Compromise; Dwelling
   impact: Data Breach; Business disruption; Reputational Damages

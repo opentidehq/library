@@ -22,14 +22,13 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: 4a807ac4-f764-41b1-ae6f-94239041d349
-      description: |-
-        MFA bypass technique
-  terrain: |-
-    Application with SSO login requiring MFA, with legacy authentication (local login) not disabled.
-
-    Domains: SaaS, Private Cloud, Public Cloud
-    Targets: SAML-Joined Applications, Server Authentication
-    Platforms: Azure, Office 365
+      description: MFA bypass technique
+  terrain: Application with SSO login requiring MFA, with legacy authentication (local login) not disabled.
+  surface:
+    - Azure
+    - Microsoft::Microsoft 365
+    - Security::SAML
+    - Kerberos
   severity: Moderate incident
   leverage: Elevation of privilege; Spoofing
   impact: Identity Theft; Impairement

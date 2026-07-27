@@ -42,10 +42,15 @@ threat:
     Usually the threat actors are buying as much as possible domains
     on a bulk with impersonation goal, social engineering or just spreading
     disinformation.
-
-    Domains: Enterprise, Mobile, IoT, Private Cloud, Public Cloud
-    Targets: Customer, End-user, Email Platform, Other, Public-Facing Servers
-    Platforms: Windows, Linux
+  surface:
+    - Mobile
+    - Industrial IoT::IoT Gateways
+    - Windows
+    - Linux
+    - Customer Support
+    - Windows::Desktop
+    - Email
+    - Web Servers
   severity: Moderate incident
   leverage: Spoofing; Infrastructure Compromise
   impact: Impairement; Asset and fraud; Identity Theft

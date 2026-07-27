@@ -40,10 +40,10 @@ threat:
   terrain: |-
     Requires an initial access to a Linux system with sufficient
     rights to execute commands.
-
-    Domains: Enterprise
-    Targets: End-user, Customer
-    Platforms: Linux
+  surface:
+    - Linux
+    - Windows::Desktop
+    - Customer Support
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Data Breach

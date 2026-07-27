@@ -28,15 +28,15 @@ threat:
   chaining:
     - relation: atomicity::implements
       vector: d5039f2c-9fcc-4ba3-ad6a-da8c891ba745
-      description: |-
-        This TVM is implementing the bigger TVM : Abuse of Windows Utilities
+      description: 'This TVM is implementing the bigger TVM : Abuse of Windows Utilities'
   terrain: |-
     Threat actors must have access to a Windows system with user-level privileges 
     where Windows utilities are available.
-
-    Domains: Enterprise
-    Targets: Workstations, Laptop, Virtual Machines, Public-Facing Servers
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
+    - Web Servers
   severity: Significant incident
   leverage: Elevation of privilege; Tampering; Information Disclosure
   impact: Data Breach; Business disruption; Reputational Damages

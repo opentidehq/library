@@ -23,11 +23,13 @@ threat:
   terrain: |-
     A threat actor needs an initial access to the system with 
     standard user rights.
-
-    Domains: Enterprise
-    Cve: CVE-2020-0787
-    Targets: Workstations, Control Server, End-user, Desktop, Directory, Remote access, System admin
-    Platforms: Windows, Azure AD, Active Directory
+  surface:
+    - Windows
+    - Azure::Security::Entra ID
+    - Active Directory
+    - Windows::Desktop
+    - Remote Access
+    - Microsoft::System Center
   severity: Localised incident
   leverage: Infrastructure Compromise; Dwelling; Elevation of privilege; Tampering
   impact: Impairement; Nuisance; Data Breach; Reputational Damages

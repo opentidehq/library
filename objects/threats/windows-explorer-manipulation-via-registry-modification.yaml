@@ -27,10 +27,12 @@ threat:
     for broader impact, administrative rights to HKLM and the
     ability to execute **reg.exe**, PowerShell, or equivalent APIs on
     Windows 7 - 11 workstations joined to Active Directory.
-
-    Domains: Enterprise
-    Targets: Workstations, Desktop, Laptop, Virtual Machines, Windows API
-    Platforms: Windows, Active Directory, PowerShell
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Azure::Compute::Virtual Machines
+    - Application Layer::WMI
   severity: Significant incident
   leverage: Tampering; Modify configuration; Modify data; Elevation of privilege
   impact: Impairement; Data Breach; Business disruption; Reputational Damages

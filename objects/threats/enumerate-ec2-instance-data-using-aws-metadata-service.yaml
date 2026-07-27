@@ -28,10 +28,12 @@ threat:
     instance. A threat actor needs to control an EC2 instance or a
     vulnerability in a running application that enables querying the instance
     meta data service remotely, such as a SSRF vulnerability.
-
-    Domains: Public Cloud
-    Targets: Web Application Servers, Control Server, Input/Output Server, Public-Facing Servers
-    Platforms: AWS, AWS EC2
+  surface:
+    - AWS
+    - AWS::Compute::EC2
+    - Web Servers
+    - Remote Access
+    - Windows::Server
   severity: Moderate incident
   leverage: Information Disclosure
   impact: Nuisance

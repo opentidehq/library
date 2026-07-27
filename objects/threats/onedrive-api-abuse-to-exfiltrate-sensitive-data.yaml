@@ -23,10 +23,15 @@ threat:
     user account or a maliciously registered OAuth application) with the necessary permissions 
     to access OneDrive files. And also, API permissions (like “Files.Read.All” or “Files.ReadWrite.All”) 
     that allow reading or downloading files from OneDrive via the Microsoft Graph API.
-
-    Domains: Public Cloud, SaaS, Enterprise
-    Targets: Cloud Storage Accounts, Personal Information, Production Database, Identity Services, Public-Facing Servers, API Endpoints, Cloud Portal
-    Platforms: Office 365, Azure AD
+  surface:
+    - Microsoft::Microsoft 365
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Database Management
+    - Entra ID
+    - Web Servers
+    - Application Layer::HTTP
+    - Azure
   severity: Significant incident
   leverage: Information Disclosure; Tampering; Spoofing; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss

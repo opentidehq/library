@@ -35,10 +35,14 @@ threat:
   terrain: |-
     A threat actor needs an initial privileged access
     to already compromised host system.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: End-user, Workstations, Customer, Virtual Machines, Virtual Machines Host
-    Platforms: Windows, macOS, Linux
+  surface:
+    - Windows
+    - macOS
+    - Linux
+    - Windows::Desktop
+    - Customer Support
+    - Azure::Compute::Virtual Machines
+    - Virtualisation::VMware ESXi
   severity: Moderate incident
   leverage: Infrastructure Compromise; Elevation of privilege; Information Disclosure; Software installation; Tampering
   impact: Impairement; Data Breach; Business disruption; Reputational Damages; Nuisance

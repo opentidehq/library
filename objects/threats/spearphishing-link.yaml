@@ -35,10 +35,16 @@ threat:
     to compromise an email or messaging system trough other means, to use OSINT,
     scouring Social Media or glean personal information from the user's online
     presence.
-
-    Domains: Enterprise, Mobile, Public Cloud, Private Cloud
-    Targets: Email Platform, End-user, Mobile phone
-    Platforms: Windows, Office 365, Android, iOS, Github, Gitlab
+  surface:
+    - Mobile
+    - Windows
+    - Microsoft::Microsoft 365
+    - Mobile::Android
+    - Mobile::iOS
+    - Code Repositories::GitHub
+    - Code Repositories::GitLab
+    - Email
+    - Windows::Desktop
   severity: Significant incident
   leverage: Spoofing; Software installation; Elevation of privilege; Information Disclosure; Tampering; Infrastructure Compromise
   impact: Reputational Damages; Data Breach; Identity Theft; Business disruption; Impairement; Operating costs

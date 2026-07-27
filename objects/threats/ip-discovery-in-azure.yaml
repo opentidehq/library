@@ -23,10 +23,13 @@ threat:
     Adversary must have access to an Azure environment, either through compromised
     credentials, exposed keys, or abused privileges, and be able to use Azure Portal,
     Azure CLI, PowerShell, or Azure REST APIs.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Virtual Machines, Public-Facing Servers, Cloud Storage Accounts, Cloud Portal
-    Platforms: Azure, Azure AD, PowerShell
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - Windows
+    - Azure::Compute::Virtual Machines
+    - Web Servers
+    - AWS::Storage
   severity: Significant incident
   leverage: Information Disclosure; Infrastructure Compromise
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Business disruption

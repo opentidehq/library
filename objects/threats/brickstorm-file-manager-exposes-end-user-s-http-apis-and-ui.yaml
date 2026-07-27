@@ -39,10 +39,12 @@ threat:
   terrain: |-
     A threat actor abuses publicly exposed HTTP APIs
     and end-user publicly exposed UIs (User Interfaces).
-
-    Domains: Enterprise
-    Targets: API Endpoints, End-user, Laptop, Workstations, Public-Facing Servers, Web Application Servers
-    Platforms: Windows, Linux
+  surface:
+    - Windows
+    - Linux
+    - Application Layer::HTTP
+    - Windows::Desktop
+    - Web Servers
   severity: Localised incident
   leverage: Infrastructure Compromise; Tampering; Modify data
   impact: Impairement; Lose Capabilities; Operating costs

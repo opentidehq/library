@@ -29,10 +29,11 @@ threat:
     An adversary must have local or SSH access to the target system, with credentials 
     allowing the use of chmod or sudo. Typically, this involves default or weak 
     configurations enabling chmod modifications on critical executables or scripts.
-
-    Domains: Enterprise
-    Targets: Workstations, Public-Facing Servers, Laptop
-    Platforms: Linux, macOS
+  surface:
+    - Linux
+    - macOS
+    - Windows::Desktop
+    - Web Servers
   severity: Significant incident
   leverage: Elevation of privilege; Modify privileges; Dwelling; Log tampering; Information Disclosure
   impact: Reputational Damages; Data Breach; Operating costs

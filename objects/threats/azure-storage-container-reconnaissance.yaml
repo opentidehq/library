@@ -47,10 +47,12 @@ threat:
     Azure storage containers by scanning for storage account names and container names, 
     often using automated tools or scripts, to identify open containers that may expose 
     sensitive data.
-
-    Domains: Private Cloud, Public Cloud
-    Targets: Cloud Storage Accounts, Public-Facing Servers, API Endpoints, Cloud Portal
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Web Servers
+    - Application Layer::HTTP
   severity: Moderate incident
   leverage: Information Disclosure; Infrastructure Compromise; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Business disruption

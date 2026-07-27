@@ -25,10 +25,10 @@ threat:
   terrain: |-
     Adversary must have administrative privileges on Windows systems within 
      the enterprise network.
-
-    Domains: Enterprise
-    Targets: Laptop, Workstations
-    Platforms: Active Directory, Windows, PowerShell
+  surface:
+    - Active Directory
+    - Windows
+    - Windows::Desktop
   severity: Significant incident
   leverage: Modify configuration; Modify data; Tampering; New Accounts
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs

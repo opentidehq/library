@@ -44,10 +44,10 @@ threat:
   terrain: |-
     Adversary must have administrative privileges on Windows systems within 
     the enterprise network.
-
-    Domains: Enterprise
-    Targets: Workstations, Laptop
-    Platforms: Active Directory, PowerShell, Windows
+  surface:
+    - Active Directory
+    - Windows
+    - Windows::Desktop
   severity: Localised incident
   leverage: Modify configuration; Modify privileges; Software installation
   impact: Data Breach; Business disruption; Reputational Damages; Operating costs

@@ -25,10 +25,10 @@ threat:
   terrain: |-
     A threat actor uses a compromised endpoint to set and monitor specific time
     intervals known as beacons.
-
-    Domains: Enterprise
-    Targets: Customer, Workstations, End-user
-    Platforms: Windows
+  surface:
+    - Windows
+    - Customer Support
+    - Windows::Desktop
   severity: Moderate incident
   leverage: Dwelling; Information Disclosure
   impact: Data Breach

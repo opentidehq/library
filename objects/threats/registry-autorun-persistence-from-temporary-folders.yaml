@@ -33,8 +33,8 @@ threat:
     effective against systems with limited security monitoring of registry autorun
     mechanisms, especially when combined with execution from non-standard application
     data locations that evade traditional security controls.
-
-    Surface: OS::Windows::Desktop
+  surface:
+    - Windows::Desktop
   severity: Significant incident
   leverage: Tampering; Elevation of privilege; Infrastructure Compromise
   impact: Business disruption; Data Breach; Impairement

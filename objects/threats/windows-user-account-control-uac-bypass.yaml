@@ -38,10 +38,13 @@ threat:
   terrain: |-
     A threat actor uses vulnerabilities in software or applications running on
     the system to circumvent UAC (User Account Control) protection mechanism.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: End-user, Customer, Laptop, Workstations, Server Authentication, System admin, Other, Windows API
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
+    - Customer Support
+    - Kerberos
+    - Microsoft::System Center
+    - Application Layer::WMI
   severity: Substantial incident
   leverage: Elevation of privilege; Infrastructure Compromise; Dwelling; Tampering; Software installation
   impact: Lose Capabilities; Business disruption; Impairement; Nuisance; Reputational Damages

@@ -25,13 +25,11 @@ threat:
     - T1041
     - T1070
     - T1190
-  terrain: |-
-    Ivanti Connect Secure appliance vulnerable to authentication bypass (CVE-2023-46805)
-
-    Domains: Embedded, Enterprise, Networking
-    Cve: CVE-2023-46805, CVE-2024-21888, CVE-2024-21893, CVE-2024-22024
-    Targets: Remote access, VPN Client
-    Platforms: Placeholder
+  terrain: Ivanti Connect Secure appliance vulnerable to authentication bypass (CVE-2023-46805)
+  surface:
+    - Embedded
+    - Remote Access
+    - VPN
   severity: Highly significant incident
   leverage: Infrastructure Compromise; Elevation of privilege; Log tampering; Modify configuration; Tampering; New Accounts
   impact: Business disruption; Operating costs; Reputational Damages; Data Breach

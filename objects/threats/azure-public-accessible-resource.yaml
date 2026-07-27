@@ -30,10 +30,12 @@ threat:
   terrain: |-
     Adversary must have access to internet-facing IP space to scan for live Azure VMs 
     and network interfaces.
-
-    Domains: Public Cloud, Private Cloud
-    Targets: Virtual Machines, Network Equipment, Public-Facing Servers, Cloud Storage Accounts
-    Platforms: Azure
+  surface:
+    - Azure
+    - Azure::Compute::Virtual Machines
+    - Switches
+    - Web Servers
+    - AWS::Storage
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Denial of Service; Elevation of privilege
   impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Business disruption

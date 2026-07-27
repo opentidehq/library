@@ -26,10 +26,12 @@ threat:
     Adversaries rely on social engineering (e.g., phishing emails/SMS with fake security alerts), 
     and infrastructure such as spoofed domains, third-party app stores, or MitM tools 
     to distribute payloads or force installations.
-
-    Domains: Mobile
-    Targets: Mobile phone, Tablet, Personal Information, Critical Documents
-    Platforms: Android, iOS
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Mobile::iPadOS
+    - File Sharing
   severity: Significant incident
   leverage: Information Disclosure; Modify configuration; Modify privileges; Spoofing
   impact: Asset and fraud; Data Breach; Identity Theft; IP Loss; Nuisance

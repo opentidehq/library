@@ -27,10 +27,14 @@ threat:
     into internal CI/CD pipeline, uploading modified image into 
     internal registry or running the image directly 
     on compromised host.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: CI/CD Pipelines, Code Repositories, Software Containers, Microservices
-    Platforms: AWS, Azure, Docker Engine, Kubernetes, Linux
+  surface:
+    - AWS
+    - Azure
+    - Container Runtime::Docker
+    - Orchestration::Kubernetes
+    - Linux
+    - Development::CI/CD
+    - Code Repositories
   severity: Significant incident
   leverage: Dwelling; Elevation of privilege; Infrastructure Compromise; Software installation
   impact: Data Breach; Business disruption; Operating costs

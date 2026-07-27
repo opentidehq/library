@@ -33,6 +33,9 @@ threat:
     evaluated. The vulnerability is systemic rather than endpoint-specific,
     affecting multiple authenticated or role-restricted routes that share the
     same flawed request processing pipeline.
+  surface:
+    - Web Servers
+    - Application Layer::HTTP
   severity: Substantial incident
   leverage: Information Disclosure
   impact: Data Breach; IP Loss

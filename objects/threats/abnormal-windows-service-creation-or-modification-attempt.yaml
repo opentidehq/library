@@ -32,12 +32,14 @@ threat:
     - T1543.003
     - T1112
     - T1055
-  terrain: |-
-    An attacker has already compromised a Windows endpoint.
-
-    Domains: Enterprise, Public Cloud, Private Cloud
-    Targets: Workstations, Laptop, Control Server, Desktop, Input/Output Server, Public-Facing Servers, Web Application Servers, End-user, Other
-    Platforms: Windows, Active Directory
+  terrain: An attacker has already compromised a Windows endpoint.
+  surface:
+    - Windows
+    - Active Directory
+    - Windows::Desktop
+    - Remote Access
+    - Windows::Server
+    - Web Servers
   severity: Moderate incident
   leverage: Modify configuration; Tampering
   impact: Nuisance; Impairement; Lose Capabilities

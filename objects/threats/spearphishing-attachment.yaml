@@ -50,10 +50,16 @@ threat:
     attachment where the filename references a topic the recipient is interested in.
     The highly personalized nature of spear-phishing attacks makes it more 
     difficult to identity than widescale phishing attacks.
-
-    Domains: Enterprise, Mobile, Public Cloud, Private Cloud
-    Targets: Email Platform, End-user, Customer, Documents
-    Platforms: Windows, Office 365, Android, iOS
+  surface:
+    - Mobile
+    - Windows
+    - Microsoft::Microsoft 365
+    - Mobile::Android
+    - Mobile::iOS
+    - Email
+    - Windows::Desktop
+    - Customer Support
+    - File Sharing
   severity: Significant incident
   leverage: Spoofing; Software installation; Elevation of privilege; Information Disclosure; Infrastructure Compromise
   impact: Reputational Damages; Data Breach; Identity Theft; Business disruption

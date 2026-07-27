@@ -29,12 +29,15 @@ threat:
   killchain: Exfiltration
   att&ck:
     - T1567.001
-  terrain: |-
-    The attacker needs to obtain access to the CI pipeline.
-
-    Domains: Enterprise, Private Cloud, Public Cloud
-    Targets: CI/CD Pipelines, Code Repositories, Developer, Laptop
-    Platforms: Github, Gitlab, Bitbucket
+  terrain: The attacker needs to obtain access to the CI pipeline.
+  surface:
+    - Code Repositories::GitHub
+    - Code Repositories::GitLab
+    - Atlassian::Bitbucket
+    - Development::CI/CD
+    - Code Repositories
+    - Development
+    - Windows::Desktop
   severity: Localised incident
   leverage: Information Disclosure; Infrastructure Compromise
   impact: Data Breach; Reputational Damages; Impairement

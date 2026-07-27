@@ -35,10 +35,19 @@ threat:
   terrain: |-
     Adversaries must have an Azure role that grants the ability to write or deploy custom 
     script extensions on virtual machines.
-
-    Domains: Public Cloud, Enterprise
-    Targets: Virtual Machines, Cloud Storage Accounts, Compute Cluster, Public-Facing Servers, Serverless, API Endpoints, Cloud Portal, IaaS, Server Authentication, Server Backup, Server Logs
-    Platforms: Azure, Windows, Linux
+  surface:
+    - Azure
+    - Windows
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - AWS::Storage
+    - Orchestration::Kubernetes
+    - Web Servers
+    - Serverless
+    - Application Layer::HTTP
+    - AWS::Compute::EC2
+    - Kerberos
+    - Log Management
   severity: Significant incident
   leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering; Spoofing
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption

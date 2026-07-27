@@ -31,10 +31,12 @@ threat:
   terrain: |-
     Adversaries can abuse iOS or Android devices which are vulnerable
     to a zero-click or zero-day exploitation, without user intervention.
-
-    Domains: Mobile
-    Targets: End-user, Executive, Manager, Mobile phone, Personal Information, Tablet
-    Platforms: Android, iOS
+  surface:
+    - Mobile
+    - Mobile::Android
+    - Mobile::iOS
+    - Windows::Desktop
+    - Mobile::iPadOS
   severity: Significant incident
   leverage: Alter behavior; Information Disclosure; Modify configuration; Modify data; Software installation; Tampering
   impact: Data Breach; Identity Theft; Reputational Damages

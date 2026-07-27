@@ -29,10 +29,10 @@ threat:
     Threat actor must have root or sudo privileges on the target Linux system, 
     as well as the ability to interact with sshd_config 
     (e.g., via nano, vim, vi, or cat commands), before this threat is realized.
-
-    Domains: Enterprise
-    Targets: Virtual Machines, Workstations, Laptop
-    Platforms: Linux
+  surface:
+    - Linux
+    - Azure::Compute::Virtual Machines
+    - Windows::Desktop
   severity: Significant incident
   leverage: Tampering; Modify configuration; Elevation of privilege
   impact: Data Breach; Business disruption; Reputational Damages

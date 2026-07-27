@@ -23,10 +23,12 @@ threat:
   terrain: |-
     Attackers need to have gained administrative Azure Active Directory
     (Azure AD) privileges using compromised credentials
-
-    Domains: Public Cloud, Enterprise
-    Targets: Identity Services, SAML-Joined Applications
-    Platforms: Azure AD, AD FS, AWS IAM
+  surface:
+    - Azure::Security::Entra ID
+    - Active Directory::Federation Services
+    - AWS::Security::IAM
+    - Entra ID
+    - Security::SAML
   severity: National cyber emergency
   leverage: Elevation of privilege; Spoofing
   impact: Data Breach

@@ -36,11 +36,9 @@ threat:
   terrain: |-
     Threat actors need to deliver on the host a file that uses NTFS extended
     attributes.
-
-    Domains: Enterprise
-    Cve: CVE-2025-8088
-    Targets: Desktop, Workstations
-    Platforms: Windows
+  surface:
+    - Windows
+    - Windows::Desktop
   severity: Localised incident
   leverage: Dwelling; Elevation of privilege
   impact: Business disruption; Impairement

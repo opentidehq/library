@@ -40,10 +40,18 @@ threat:
   terrain: |-
     Adversaries must first compromise user accounts, service principals, or managed 
     identities that already possess some level of Azure access.
-
-    Domains: Public Cloud, Private Cloud, Enterprise
-    Targets: Cloud Storage Accounts, Key Store, Identity Services, Serverless, API Endpoints, Cloud Portal, IaaS, Relational Database, NoSQL Database, Server Authentication
-    Platforms: Azure, Azure AD
+  surface:
+    - Azure
+    - Azure::Security::Entra ID
+    - AWS::Storage
+    - Azure::Security::Key Vault
+    - Entra ID
+    - Serverless
+    - Application Layer::HTTP
+    - AWS::Compute::EC2
+    - Database Management::PostgreSQL
+    - Database Management::MongoDB
+    - Kerberos
   severity: Significant incident
   leverage: Information Disclosure; Infrastructure Compromise; Elevation of privilege; Tampering
   impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss

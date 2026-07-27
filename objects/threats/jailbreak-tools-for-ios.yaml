@@ -23,10 +23,10 @@ threat:
     If adversaries have physical access to the device, they can install a jailbreaking tool
     that include the neccesary exploit. If no physical access is available, it is possible
     to exploit a zero-day vuln to bypass the device' security mechanisms.
-
-    Domains: Mobile
-    Targets: Mobile phone, Personal Information, Tablet
-    Platforms: iOS
+  surface:
+    - Mobile
+    - Mobile::iOS
+    - Mobile::iPadOS
   severity: Significant incident
   leverage: Spoofing; Tampering; Information Disclosure; Software installation
   impact: Data Breach; Identity Theft; Impairement; IP Loss; Lose Capabilities
