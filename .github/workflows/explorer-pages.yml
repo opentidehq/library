@@ -1,0 +1,103 @@
+# Explorer GitHub Pages — independent of catalogue PyPI validate.
+#
+# opentide, explorer, and specifications are public. Do not pass a GitHub App /
+# PAT / deploy-key token (an empty token fails actions/checkout).
+#
+# `opentide explorer` is not a Typer command on PyPI (opentide#202). This
+# workflow builds OpenTideHQ/explorer with Node from this corpus.
+name: Explorer Pages
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: explorer-pages-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  build:
+    name: Build explorer
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout library
+        uses: actions/checkout@v4
+
+      - name: Checkout explorer
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/explorer
+          ref: main
+          path: explorer
+
+      - name: Checkout specifications
+        uses: actions/checkout@v4
+        with:
+          repository: OpenTideHQ/specifications
+          ref: main
+          path: specifications
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+          cache-dependency-path: explorer/pnpm-lock.yaml
+
+      - name: Install explorer dependencies
+        working-directory: explorer
+        run: pnpm install --frozen-lockfile
+
+      - name: Codegen vocab index from specifications
+        working-directory: explorer
+        env:
+          SPECIFICATIONS_REPO_ROOT: ${{ github.workspace }}/specifications
+        run: pnpm codegen:specs
+
+      - name: Require vocab.index.json
+        run: test -s explorer/public/data/vocab.index.json
+
+      - name: Build explorer static site
+        working-directory: explorer
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+          SPECIFICATIONS_REPO_ROOT: ${{ github.workspace }}/specifications
+          NEXT_PUBLIC_BASE_PATH: /library
+        run: |
+          node scripts/generate-mock-bundle.mjs
+          pnpm exec next build
+
+      - name: Require static export
+        run: |
+          test -s explorer/public/data/explorer.bundle.json
+          test -d explorer/out
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./explorer/out
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

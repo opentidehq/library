@@ -1,4 +1,4 @@
-# Catalogue CI — shape tests, PyPI validate, development-HEAD early warning, explorer Pages.
+# Catalogue CI — shape tests, PyPI validate, development-HEAD early warning.
 #
 # opentide, explorer, and specifications are public. Do not require GH App / PAT /
 # deploy-key credentials to clone them.
@@ -11,9 +11,8 @@
 # types those fields as str (opentide#189, blocked on specifications#12), so
 # that required check stays red until a released engine accepts list[str].
 #
-# `opentide explorer` is not a Typer command on PyPI 0.1.5 or current
-# development HEAD (github.py still emits it). Explorer CI therefore builds
-# OpenTideHQ/explorer with its own Node CLI and mock corpus generator.
+# Explorer GitHub Pages lives in explorer-pages.yml so a red PyPI validate job
+# does not bury the Pages deploy status.
 name: OpenTide
 
 on:
@@ -24,8 +23,6 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -108,59 +105,3 @@ jobs:
 
       - name: Validate objects against development HEAD
         run: opentide validate --strict
-
-  explorer:
-    name: Build explorer
-    runs-on: ubuntu-latest
-    needs: catalogue-tests
-    steps:
-      - name: Checkout library
-        uses: actions/checkout@v4
-
-      - name: Checkout explorer
-        uses: actions/checkout@v4
-        with:
-          repository: OpenTideHQ/explorer
-          ref: main
-          path: explorer
-
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: pnpm
-          cache-dependency-path: explorer/pnpm-lock.yaml
-
-      - name: Install explorer dependencies
-        working-directory: explorer
-        run: pnpm install --frozen-lockfile
-
-      - name: Build explorer static site
-        working-directory: explorer
-        env:
-          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
-          NEXT_PUBLIC_BASE_PATH: /library
-        run: |
-          node scripts/generate-mock-bundle.mjs
-          pnpm exec next build
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./explorer/out
-
-  deploy-explorer:
-    name: Deploy explorer to GitHub Pages
-    runs-on: ubuntu-latest
-    needs: explorer
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
