@@ -1,14 +1,15 @@
 # Host information gathering in Linux systems
 
 ## Metadata
-
-- **UUID**: `4f0f3e9c-8d61-422c-9c13-809aa75cab59`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-08-06`
-- **Modified**: `2025-08-07`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `4f0f3e9c-8d61-422c-9c13-809aa75cab59` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-08-06` |
+| Modified | `2025-08-07` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -85,17 +86,20 @@ vulnerabilities on the host.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs an initial access to a Linux system.
+A threat actor needs an initial access to a Linux system.
 
-Domains: Enterprise
-Targets: Laptop, Workstations
-Platforms: Linux**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Identity Theft | - |
+| Impact | Data Breach<br>Identity Theft | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
 | Leverage | Information Disclosure | Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Reconnaissance | Researching, identifying and selecting targets using active or passive reconnaissance. |

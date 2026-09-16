@@ -1,14 +1,15 @@
 # Scheduled tasks created with PowerShell
 
 ## Metadata
-
-- **UUID**: `a5f631c3-6fb0-484f-89e4-c8b2e038db8f`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-12-15`
-- **Modified**: `2022-12-15`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `a5f631c3-6fb0-484f-89e4-c8b2e038db8f` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-12-15` |
+| Modified | `2022-12-15` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -31,12 +32,24 @@ infrastructure, establish persistence or to execute binaries.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **An adversary has gained control over a Windows endpoint and has  
+An adversary has gained control over a Windows endpoint and has  
 privileges to create scheduled tasks using PowerShell.exe
 
-Domains: Enterprise, Public Cloud
-Targets: Workstations, Control Server, Input/Output Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Server**
+> Microsoft Windows Server editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

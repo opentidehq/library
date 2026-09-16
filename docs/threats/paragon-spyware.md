@@ -1,14 +1,15 @@
 # Paragon Spyware
 
 ## Metadata
-
-- **UUID**: `e1741a76-3df1-430a-8dda-5c6bc9c3e1dd`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-03-26`
-- **Modified**: `2025-03-26`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `e1741a76-3df1-430a-8dda-5c6bc9c3e1dd` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-03-26` |
+| Modified | `2025-03-26` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -46,19 +47,31 @@ by Paragon Spyware. The company notified approximately 90 Android users from ove
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Attackers add targets to a WhatsApp group and send a PDF file. When the device automatically 
+Attackers add targets to a WhatsApp group and send a PDF file. When the device automatically 
 processes the PDF, it exploits a vulnerability to load the Graphite spyware
 
-Domains: Mobile
-Targets: Mobile phone, Personal Information, Tablet, Identity Services
-Platforms: iOS, Android**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Competitive disadvantage; Data Breach; IP Loss; Identity Theft | - |
-| Leverage | Spoofing; Tampering; Information Disclosure; Software installation | - |
+| Impact | Competitive disadvantage<br>Data Breach<br>IP Loss<br>Identity Theft | Loss of competitive advantage<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Spoofing<br>Tampering<br>Information Disclosure<br>Software installation | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Software installation or code modification |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 

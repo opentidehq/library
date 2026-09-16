@@ -1,14 +1,15 @@
 # Detect LINE VIPER ICMP Covert Channel on Network Devices
 
 ## Metadata
-
-- **UUID**: `d8372ac1-2740-4cb2-b834-2e1622380b7b`
-- **Schema**: `objective::1.0`
-- **Version**: `1`
-- **Created**: `2026-06-18`
-- **Modified**: `2026-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d8372ac1-2740-4cb2-b834-2e1622380b7b` |
+| Schema | `objective::1.0` |
+| Version | `1` |
+| Created | `2026-06-18` |
+| Modified | `2026-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -87,7 +88,7 @@ to ASA LAN interfaces from VPN clients — this is typically
 near zero in production environments and thresholds should
 be set accordingly.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Anomaly
 - **Effort**: 5
 #### Data
@@ -138,7 +139,7 @@ the ASA device's own IP address, not from clients NAT'd through
 the ASA. This requires flow visibility on the upstream router
 or switch, not just firewall logs.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Behavioural
 - **Effort**: 4
 #### Data
@@ -163,18 +164,24 @@ Preferred log sources:
 | Anomalous ICMP Traffic to Cisco ASA LAN Interface via VPN | _None_ |
 | Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-4d828106_7e97_4830_8e49_2454a84a0621["4d828106-7e97-4830-8e49-2454a84a0621"]
-baad1929_d23a_4a58_a269_e49244a22ea6["baad1929-d23a-4a58-a269-e49244a22ea6"]
+subgraph "Threats"
+2a5faf22_c526_4d49_81b9_6a7b895de58b{{"ICMP tasking with TCP<br>response on network<br>devices"}}
 end
-subgraph "Threat"
-2a5faf22_c526_4d49_81b9_6a7b895de58b["ICMP tasking with TCP response on network devices"]
+subgraph "Signals"
+baad1929_d23a_4a58_a269_e49244a22ea6(("Anomalous ICMP Traffic<br>to Cisco ASA LAN<br>Interface via VPN"))
+4d828106_7e97_4830_8e49_2454a84a0621(("Unexpected Outbound Raw<br>TCP from Cisco ASA on<br>High Ephemeral Ports"))
 end
-d8372ac1_2740_4cb2_b834_2e1622380b7b["Detect LINE VIPER ICMP Covert Channel on Network Devices"]
-d8372ac1_2740_4cb2_b834_2e1622380b7b -->|signal| 4d828106_7e97_4830_8e49_2454a84a0621
-d8372ac1_2740_4cb2_b834_2e1622380b7b -->|signal| baad1929_d23a_4a58_a269_e49244a22ea6
-d8372ac1_2740_4cb2_b834_2e1622380b7b -->|threat| 2a5faf22_c526_4d49_81b9_6a7b895de58b
+d8372ac1_2740_4cb2_b834_2e1622380b7b(["Detect LINE VIPER ICMP<br>Covert Channel on<br>Network Devices"])
+2a5faf22_c526_4d49_81b9_6a7b895de58b -->|covers| d8372ac1_2740_4cb2_b834_2e1622380b7b
+d8372ac1_2740_4cb2_b834_2e1622380b7b --> baad1929_d23a_4a58_a269_e49244a22ea6
+d8372ac1_2740_4cb2_b834_2e1622380b7b --> 4d828106_7e97_4830_8e49_2454a84a0621
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [ICMP tasking with TCP response on network devices](../Threats/icmp-tasking-with-tcp-response-on-network-devices.md) (`2a5faf22-c526-4d49-81b9-6a7b895de58b`) | Upstream | threat |
+| Signal | [Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports](detect-line-viper-icmp-covert-channel-on-network-devices.md#unexpected-outbound-raw-tcp-from-cisco-asa-on-high-ephemeral-ports) (`4d828106-7e97-4830-8e49-2454a84a0621`) | Downstream | signal |
+| Signal | [Anomalous ICMP Traffic to Cisco ASA LAN Interface via VPN](detect-line-viper-icmp-covert-channel-on-network-devices.md#anomalous-icmp-traffic-to-cisco-asa-lan-interface-via-vpn) (`baad1929-d23a-4a58-a269-e49244a22ea6`) | Downstream | signal |

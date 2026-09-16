@@ -47,8 +47,20 @@ threat:
     - Web Servers
     - Switches
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Business disruption
   viability: Likely
   description: |-
     Port mapping in Azure refers to the process of exposing internal ports of virtual 

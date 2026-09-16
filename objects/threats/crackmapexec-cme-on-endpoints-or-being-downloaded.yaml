@@ -25,14 +25,14 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0035
-    - misp::64d6559c-6d5c-4585-bbf9-c17868f763ee
-    - att&ck::G0087
-    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
-    - att&ck::G0069
-    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
-    - att&ck::G0046
-    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - name: att&ck::G0035
+    - name: misp::64d6559c-6d5c-4585-bbf9-c17868f763ee
+    - name: att&ck::G0087
+    - name: misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - name: att&ck::G0069
+    - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - name: att&ck::G0046
+    - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
   killchain: Credential Access
   att&ck:
     - T1003.002
@@ -64,8 +64,24 @@ threat:
     - Azure::Compute::Virtual Machines
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Modify privileges; Elevation of privilege; Dwelling; Infrastructure Compromise; Information Disclosure; Modify configuration; Spoofing; Tampering
-  impact: Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance
+  leverage:
+    - Modify privileges
+    - Elevation of privilege
+    - Dwelling
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Modify configuration
+    - Spoofing
+    - Tampering
+  impact:
+    - Impairement
+    - Business disruption
+    - Competitive disadvantage
+    - Data Breach
+    - Reputational Damages
+    - Legal and regulatory
+    - Monetary Loss
+    - Nuisance
   viability: Likely
   description: |-
     CrackMapExec is a post-compromise tool that contains a number of

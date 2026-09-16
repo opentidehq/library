@@ -1,14 +1,15 @@
 # HTML smuggling technique
 
 ## Metadata
-
-- **UUID**: `c7ed4fad-a58f-47da-9938-4a673526b3f4`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-30`
-- **Modified**: `2025-07-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `c7ed4fad-a58f-47da-9938-4a673526b3f4` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-30` |
+| Modified | `2025-07-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -73,21 +74,42 @@ code within an HTML file.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor uses a legitimate and native features of
+A threat actor uses a legitimate and native features of
 web page scripting languages as HTML, CSS, JavaScript
 and others. This vulnerability in the page can lead
 to an initial access to a targeted system.
 
-Domains: Enterprise, Mobile
-Targets: Customer, End-user, Workstations, Laptop, Web Application Servers, Public-Facing Servers, Personal Information, Remote access
-Platforms: Windows, iOS, Android**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Identity Theft; Impairement; Data Breach; Lose Capabilities; Business disruption | - |
-| Leverage | Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering | - |
+| Impact | Identity Theft<br>Impairement<br>Data Breach<br>Lose Capabilities<br>Business disruption | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Business disruption |
+| Leverage | Elevation of privilege<br>Information Disclosure<br>Infrastructure Compromise<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -108,20 +130,29 @@ Platforms: Windows, iOS, Android**
 ## Chaining
 ```mermaid
 flowchart LR
-c7ed4fad_a58f_47da_9938_4a673526b3f4["HTML smuggling technique"]
-1a68b5eb_0112_424d_a21f_88dda0b6b8df["Spearphishing Link"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-c7ed4fad_a58f_47da_9938_4a673526b3f4 -->|sequence::succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
-1a68b5eb_0112_424d_a21f_88dda0b6b8df -->|sequence::succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+subgraph "Defense Evasion"
+c7ed4fad_a58f_47da_9938_4a673526b3f4{{"HTML smuggling technique"}}
+end
+subgraph "Persistence"
+53ca52ed_a7e7_4094_95ec_b4ef522dc689{{"VBS script creates a<br>scheduled task"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+53ca52ed_a7e7_4094_95ec_b4ef522dc689 -->|succeeds| c7ed4fad_a58f_47da_9938_4a673526b3f4
+53ca52ed_a7e7_4094_95ec_b4ef522dc689 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+c7ed4fad_a58f_47da_9938_4a673526b3f4 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+c7ed4fad_a58f_47da_9938_4a673526b3f4 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Link (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Link](spearphishing-link.md) (`1a68b5eb-0112-424d-a21f-88dda0b6b8df`) (`sequence::succeeds`)
 A threat actor can send a phishing email to a victim with
 embedded URL leading to an HTML page and further malicious
 smuggling exploitation.
 
 - **Target UUID**: `1a68b5eb-0112-424d-a21f-88dda0b6b8df`
-#### succeeds -> Spearphishing Attachment (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::succeeds`)
 A threat actor used HTML smuggling to deliver a password-protected
 ZIP archive containing a VBScript loader for AsyncRAT in an AI generated
 malware campaign in France.

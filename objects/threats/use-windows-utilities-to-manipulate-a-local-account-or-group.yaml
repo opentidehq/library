@@ -16,9 +16,9 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Execution
   att&ck:
     - T1546
@@ -59,8 +59,19 @@ threat:
     - Customer Support
     - Code Repositories
   severity: Significant incident
-  leverage: Elevation of privilege; Modify configuration; New Accounts; Information Disclosure; Infrastructure Compromise; Dwelling; Tampering
-  impact: Data Breach; Reputational Damages; Business disruption; Operating costs
+  leverage:
+    - Elevation of privilege
+    - Modify configuration
+    - New Accounts
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Dwelling
+    - Tampering
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Business disruption
+    - Operating costs
   viability: Likely
   description: |-
     Local account manipulation involves creating, modifying, or exploiting local 

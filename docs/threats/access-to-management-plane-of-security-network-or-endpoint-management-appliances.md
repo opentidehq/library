@@ -1,14 +1,15 @@
 # access to management plane of security, network, or endpoint management appliances
 
 ## Metadata
-
-- **UUID**: `63ab0120-28bc-4081-8184-c45d68b144b2`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2023-05-19`
-- **Modified**: `2023-08-10`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `63ab0120-28bc-4081-8184-c45d68b144b2` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2023-05-19` |
+| Modified | `2023-08-10` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -86,7 +87,7 @@ attacks against a limited number of customers.
 **Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
 
 ## Terrain
-> **The attackers need a way to reach to the appliance from Internet. 
+The attackers need a way to reach to the appliance from Internet. 
 Either 
 - Direct network connectivity for example appliances manageable 
 behind a reverse proxy e.g. Ivanti Endpoint Manager Mobile.
@@ -102,16 +103,40 @@ of the appliance. Quite often, this is enabled by
 management plane of the devices (no restriction on administrative 
 actions from Internet-facing interface)
 
-Domains: Embedded, Enterprise, Networking
-Targets: Firewall, IDS, Network Equipment, Public-Facing Servers, Router or switch, Virtual Machines Host, Other
-Platforms: Linux, Windows, Network Router, VMWare**
+## Surface
+> **Embedded**
+> Embedded and real-time operating systems
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Routers**
+> Network routers
+
+> **Virtualisation::VMware ESXi**
+> Broadcom VMware ESXi bare-metal Type 1 hypervisor
+
+> **Firewalls**
+> Network firewall appliances and software
+
+> **Network Security::IDS**
+> Intrusion detection and prevention systems
+
+> **Switches**
+> Network switches
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Data Breach; Lose Capabilities; Operating costs | - |
-| Leverage | Elevation of privilege; Information Disclosure; Infrastructure Compromise; Log tampering; Modify configuration; Modify privileges; New Accounts; Software installation; Tampering | - |
+| Impact | Business disruption<br>Data Breach<br>Lose Capabilities<br>Operating costs | Business disruption<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Increased operating costs |
+| Leverage | Elevation of privilege<br>Information Disclosure<br>Infrastructure Compromise<br>Log tampering<br>Modify configuration<br>Modify privileges<br>New Accounts<br>Software installation<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Log tampering or modification<br>Modify configuration or services<br>Modify privileges or permissions<br>Ability to create new arbitrary user accounts.<br>Software installation or code modification<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

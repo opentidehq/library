@@ -1,14 +1,15 @@
 # Windows User Account Control (UAC) bypass
 
 ## Metadata
-
-- **UUID**: `d5add960-1b86-41d4-869a-1defd392c8f9`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-02-06`
-- **Modified**: `2025-02-07`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d5add960-1b86-41d4-869a-1defd392c8f9` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-02-06` |
+| Modified | `2025-02-07` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -88,19 +89,34 @@ a user.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor uses vulnerabilities in software or applications running on
+A threat actor uses vulnerabilities in software or applications running on
 the system to circumvent UAC (User Account Control) protection mechanism.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user, Customer, Laptop, Workstations, Server Authentication, System admin, Other, Windows API
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Kerberos**
+> Kerberos network authentication protocol
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
+
+> **Application Layer::WMI**
+> Windows Management Instrumentation remote management protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Lose Capabilities; Business disruption; Impairement; Nuisance; Reputational Damages | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Dwelling; Tampering; Software installation | - |
+| Impact | Lose Capabilities<br>Business disruption<br>Impairement<br>Nuisance<br>Reputational Damages | Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Dwelling<br>Tampering<br>Software installation | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Software installation or code modification |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -120,12 +136,14 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-d5add960_1b86_41d4_869a_1defd392c8f9["Windows User Account Control (UAC) bypass"]
-68ab86f6_378d_4371_ad01_6209fb95d57d["WhisperGate wiper"]
-d5add960_1b86_41d4_869a_1defd392c8f9 -->|atomicity::implemented| 68ab86f6_378d_4371_ad01_6209fb95d57d
+subgraph "Defense Evasion"
+d5add960_1b86_41d4_869a_1defd392c8f9{{"Windows User Account<br>Control UAC bypass"}}
+end
+68ab86f6_378d_4371_ad01_6209fb95d57d{{"WhisperGate wiper"}}
+d5add960_1b86_41d4_869a_1defd392c8f9 -->|implemented| 68ab86f6_378d_4371_ad01_6209fb95d57d
 ```
 ### Chaining details
-#### implemented -> WhisperGate wiper (`atomicity::implemented`)
+#### implemented -> [WhisperGate wiper](whispergate-wiper.md) (`68ab86f6-378d-4371-ad01-6209fb95d57d`) (`atomicity::implemented`)
 WhisperGate wiper is a type of a payload which uses techniques
 triggering  User Account Control (UAC) dialog box for evelation
 access privilege purposes.

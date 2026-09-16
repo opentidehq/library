@@ -64,8 +64,17 @@ threat:
     - Email
     - Remote Access
   severity: Moderate incident
-  leverage: Information Disclosure; Infrastructure Compromise; Spoofing; Elevation of privilege
-  impact: Identity Theft; Data Breach; Impairement; Reputational Damages; Business disruption
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Spoofing
+    - Elevation of privilege
+  impact:
+    - Identity Theft
+    - Data Breach
+    - Impairement
+    - Reputational Damages
+    - Business disruption
   viability: Likely
   description: |-
     IT support impersonation via spoofed phone calls is a common social

@@ -31,8 +31,16 @@ threat:
     - Remote Access
     - Microsoft::System Center
   severity: Localised incident
-  leverage: Infrastructure Compromise; Dwelling; Elevation of privilege; Tampering
-  impact: Impairement; Nuisance; Data Breach; Reputational Damages
+  leverage:
+    - Infrastructure Compromise
+    - Dwelling
+    - Elevation of privilege
+    - Tampering
+  impact:
+    - Impairement
+    - Nuisance
+    - Data Breach
+    - Reputational Damages
   viability: Environment dependent
   description: |-
     By using different types of file system links, such as hard links or junctions, 

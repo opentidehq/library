@@ -1,14 +1,15 @@
 # AWS Stop Logging CloudTrail
 
 ## Metadata
-
-- **UUID**: `d370aaea-c3e5-4d58-a6c9-3d1a7ffe50e3`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-31`
-- **Modified**: `2024-10-31`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d370aaea-c3e5-4d58-a6c9-3d1a7ffe50e3` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-31` |
+| Modified | `2024-10-31` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -77,19 +78,22 @@ investigations by obscuring the attacker's actions.
 **Low** - A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor requires authenticated access with permissions 
+A threat actor requires authenticated access with permissions 
 cloudtrail:StopLogging to execute the StopLogging API call.
 
-Domains: Public Cloud, Private Cloud
-Targets: IaaS
-Platforms: AWS**
+## Surface
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **AWS::Compute::EC2**
+> Amazon Elastic Compute Cloud (virtual servers)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Lose Capabilities | - |
-| Leverage | Log tampering; Modify configuration; Repudiation | - |
+| Impact | Impairement<br>Lose Capabilities | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Log tampering<br>Modify configuration<br>Repudiation | Log tampering or modification<br>Modify configuration or services<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations. |
 | Viability | Unlikely | Improbable (improbably) - 20-45% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

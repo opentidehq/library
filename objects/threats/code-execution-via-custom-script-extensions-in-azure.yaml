@@ -49,8 +49,20 @@ threat:
     - Kerberos
     - Log Management
   severity: Significant incident
-  leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering; Spoofing
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption
+  leverage:
+    - Elevation of privilege
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Tampering
+    - Spoofing
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Lose Capabilities
+    - Business disruption
   viability: Very Likely
   description: |-
     The Azure Custom Script Extension (CSE) is designed to automate post-deployment 

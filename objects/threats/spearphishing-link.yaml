@@ -19,7 +19,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f
+    - name: misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f
   killchain: Delivery
   att&ck:
     - T1566.002
@@ -46,8 +46,20 @@ threat:
     - Email
     - Windows::Desktop
   severity: Significant incident
-  leverage: Spoofing; Software installation; Elevation of privilege; Information Disclosure; Tampering; Infrastructure Compromise
-  impact: Reputational Damages; Data Breach; Identity Theft; Business disruption; Impairement; Operating costs
+  leverage:
+    - Spoofing
+    - Software installation
+    - Elevation of privilege
+    - Information Disclosure
+    - Tampering
+    - Infrastructure Compromise
+  impact:
+    - Reputational Damages
+    - Data Breach
+    - Identity Theft
+    - Business disruption
+    - Impairement
+    - Operating costs
   viability: Very Likely
   description: |-
     Adversaries may send spearphishing emails with a malicious link in an

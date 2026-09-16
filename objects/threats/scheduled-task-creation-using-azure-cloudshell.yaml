@@ -34,8 +34,12 @@ threat:
     - Web Servers
     - Azure::Compute::Virtual Machines
   severity: Moderate incident
-  leverage: Dwelling; Elevation of privilege; Tampering
-  impact: Impairement
+  leverage:
+    - Dwelling
+    - Elevation of privilege
+    - Tampering
+  impact:
+    - Impairement
   viability: Likely
   description: |-
     Threat actors can use Azure CloudShell, which is accessible via the Azure

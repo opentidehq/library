@@ -1,14 +1,15 @@
 # Volumetric Distributed denial of service (DDoS) attack
 
 ## Metadata
-
-- **UUID**: `78e05130-58a9-49cd-9039-3d7f9ac0bcb5`
-- **Schema**: `threat::1.0`
-- **Version**: `4`
-- **Created**: `2022-11-23`
-- **Modified**: `2023-01-23`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `78e05130-58a9-49cd-9039-3d7f9ac0bcb5` |
+| Schema | `threat::1.0` |
+| Version | `4` |
+| Created | `2022-11-23` |
+| Modified | `2023-01-23` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -29,17 +30,44 @@ that relevant entries are overwritten.
 **Emergency** - An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or human lives.
 
 ## Terrain
-> **Anything with Internet connectivity.
+Anything with Internet connectivity.
 
-Domains: Enterprise, Networking, Private Cloud, Public Cloud, SaaS
-Targets: API Endpoints, Serverless, Control Server, Web Application Servers, Public-Facing Servers
-Platforms: AWS, Windows, Linux, Azure, Sysdig Backend, OVHcloud, Office 365, Kubernetes**
+## Surface
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Orchestration::Kubernetes**
+> Kubernetes container orchestration platform
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Serverless**
+> Cloud-agnostic serverless compute (when not provider-specific)
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Operating costs; Reputational Damages | - |
+| Impact | Business disruption<br>Operating costs<br>Reputational Damages | Business disruption<br>Increased operating costs<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
 | Leverage | Denial of Service | Threat action attempting to deny access to valid users, such as by making a web server temporarily unavailable or unusable. |
 | Viability | Almost certain | Nearly certain - 95-99% |
 | Kill Chain | Impact | Techniques aimed at manipulating, interrupting or destroying the target system or data. |

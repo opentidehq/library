@@ -26,8 +26,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::825abfd9-7238-4438-a9e7-c08791f4df4e
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: misp::825abfd9-7238-4438-a9e7-c08791f4df4e
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Delivery
   att&ck:
     - T1195.001
@@ -82,8 +82,18 @@ threat:
     - Development::Package Management::npm
     - Development::CI/CD
   severity: Highly significant incident
-  leverage: Infrastructure Compromise; Tampering; Software installation; Information Gathering; Information Disclosure
-  impact: Data Breach; Business disruption; Lose Capabilities; Reputational Damages; Operating costs
+  leverage:
+    - Infrastructure Compromise
+    - Tampering
+    - Software installation
+    - Information Gathering
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Business disruption
+    - Lose Capabilities
+    - Reputational Damages
+    - Operating costs
   viability: Almost certain
   description: |-
     ## Executive Summary

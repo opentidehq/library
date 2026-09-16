@@ -12,12 +12,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0082
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0082
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Persistence
   att&ck:
     - T1547.001
@@ -35,8 +35,16 @@ threat:
     - Windows::Desktop
     - Web Servers
   severity: Significant incident
-  leverage: Modify configuration; Modify data; Tampering; New Accounts
-  impact: Data Breach; Business disruption; Reputational Damages; Operating costs
+  leverage:
+    - Modify configuration
+    - Modify data
+    - Tampering
+    - New Accounts
+  impact:
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
+    - Operating costs
   viability: Likely
   description: |-
     1. Msdeploy.exe\

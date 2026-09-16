@@ -15,7 +15,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::3e595289-05b8-43fc-bd88-f8650436447f
+    - name: misp::3e595289-05b8-43fc-bd88-f8650436447f
   killchain: Credential Access
   att&ck:
     - T1566.002
@@ -35,8 +35,16 @@ threat:
     - Microsoft::Microsoft 365
     - Windows::Desktop
   severity: Significant incident
-  leverage: Dwelling; Information Disclosure; Elevation of privilege; Spoofing
-  impact: Identity Theft; Business disruption; Impairement; Monetary Loss
+  leverage:
+    - Dwelling
+    - Information Disclosure
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Identity Theft
+    - Business disruption
+    - Impairement
+    - Monetary Loss
   viability: Likely
   description: |-
     Threat actors use malicious attachments to send the users 

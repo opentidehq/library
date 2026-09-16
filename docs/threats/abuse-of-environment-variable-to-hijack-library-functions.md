@@ -1,14 +1,15 @@
 # Abuse of environment variable to hijack library functions
 
 ## Metadata
-
-- **UUID**: `4d0bd987-1430-4433-9b58-a71ba8798435`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-01-10`
-- **Modified**: `2025-01-10`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `4d0bd987-1430-4433-9b58-a71ba8798435` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-01-10` |
+| Modified | `2025-01-10` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -48,20 +49,35 @@ force-loaded into `anyApp`.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor must have sufficient privileges to modify environment variables or 
+Threat actor must have sufficient privileges to modify environment variables or 
 system configurations and deploy malicious libraries in the filesystem in order 
 to hijack library calls via LD_PRELOAD.
 
-Domains: Enterprise
-Targets: Workstations, Public-Facing Servers, Server Logs
-Platforms: Linux, Docker Engine, Kubernetes**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Container Runtime::Docker**
+> Docker Engine container runtime
+
+> **Orchestration::Kubernetes**
+> Kubernetes container orchestration platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Log Management**
+> Dedicated log management and log aggregation solutions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Business disruption; Monetary Loss; Reputational Damages | - |
-| Leverage | Elevation of privilege; Modify configuration; Software installation; Infrastructure Compromise; Alter behavior | - |
+| Impact | Data Breach<br>Business disruption<br>Monetary Loss<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Elevation of privilege<br>Modify configuration<br>Software installation<br>Infrastructure Compromise<br>Alter behavior | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Modify configuration or services<br>Software installation or code modification<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Influence or alter human behavior |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 

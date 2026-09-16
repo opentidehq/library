@@ -1,14 +1,15 @@
 # Supply chain compromise via software update mechanism
 
 ## Metadata
-
-- **UUID**: `7290ceff-561d-49e2-b5a4-c4cfd29c09f7`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-10-15`
-- **Modified**: `2025-10-15`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `7290ceff-561d-49e2-b5a4-c4cfd29c09f7` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-10-15` |
+| Modified | `2025-10-15` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -105,7 +106,7 @@ encompass the entire software development and distribution lifecycle.
 **Emergency** - An Emergency priority incident poses an imminent threat to the provision of wide-scale critical infrastructure services, national government stability, or human lives.
 
 ## Terrain
-> **Organizations using the compromised software (SolarWinds Orion Platform versions 2019.4 through 2020.2.1 HF1)
+Organizations using the compromised software (SolarWinds Orion Platform versions 2019.4 through 2020.2.1 HF1)
 that installed trojanized updates between March and June 2020. The attack vector requires:
 - Legitimate software update mechanism in place
 - Trust relationship between software vendor and customer
@@ -114,16 +115,46 @@ that installed trojanized updates between March and June 2020. The attack vector
 - Insufficient supply chain security controls
 - Limited visibility into software build and update processes
 
-Domains: Enterprise, Public Cloud, Private Cloud, SaaS
-Targets: Production Software, Development Pipelines, Software Development Tools, Public-Facing Servers, Identity Services, Cloud Portal, API Endpoints
-Platforms: Windows, Azure, Azure AD, Office 365, AWS**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Microsoft**
+> Microsoft application ecosystem
+
+> **Development::CI/CD**
+> Continuous integration and continuous delivery platforms
+
+> **Development**
+> Software development tools and platforms
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | National cyber emergency | A cyber attack which causes sustained disruption of (inter)national essential services or affects (inter)national national security, leading to severe economic or social consequences or to loss of life. |
-| Impact | National Security; Catastrophic Loss; Data Breach; IP Loss; Reputational Damages; Business disruption | - |
-| Leverage | Infrastructure Compromise; Information Disclosure; Dwelling; Elevation of privilege; Spoofing; Tampering | - |
+| Impact | National Security<br>Catastrophic Loss<br>Data Breach<br>IP Loss<br>Reputational Damages<br>Business disruption | The vector execution will expose or destroy such sufficient critical information infrastructure that the country will have to intervene due to loss to key national  or international functions.<br>The organization will lose a major part of its capacity to fulfill its strategic objective, and may not be able to recover fully or at all.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption |
+| Leverage | Infrastructure Compromise<br>Information Disclosure<br>Dwelling<br>Elevation of privilege<br>Spoofing<br>Tampering | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Very Likely | Highly probable - 80-95% |
 
 ## Actors

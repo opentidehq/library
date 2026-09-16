@@ -1,14 +1,15 @@
 # Unauthorized changes on shell configuration files
 
 ## Metadata
-
-- **UUID**: `97589310-35d6-4e7d-a8b5-2d6cfc6375f4`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-01-17`
-- **Modified**: `2025-01-17`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `97589310-35d6-4e7d-a8b5-2d6cfc6375f4` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-01-17` |
+| Modified | `2025-01-17` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -48,20 +49,29 @@ existing user accounts.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have the ability to modify or replace shell configuration files 
+Adversary must have the ability to modify or replace shell configuration files 
 (e.g., .bashrc, .profile) through existing privileges or successful elevation 
 of privileges on the target host.
 
-Domains: Enterprise
-Targets: Workstations, Laptop, Desktop, Public-Facing Servers
-Platforms: Linux, macOS**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Reputational Damages; Business disruption | - |
-| Leverage | Elevation of privilege; Modify configuration; Log tampering; New Accounts; Modify privileges; Modify data | - |
+| Impact | Data Breach<br>Reputational Damages<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption |
+| Leverage | Elevation of privilege<br>Modify configuration<br>Log tampering<br>New Accounts<br>Modify privileges<br>Modify data | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Modify configuration or services<br>Log tampering or modification<br>Ability to create new arbitrary user accounts.<br>Modify privileges or permissions<br>Modify stored data or content |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 

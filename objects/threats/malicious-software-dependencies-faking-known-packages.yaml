@@ -29,8 +29,13 @@ threat:
     - Code Repositories
     - Development
   severity: Substantial incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure
-  impact: Data Breach; Impairement
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Impairement
   viability: Likely
   description: |-
     Adversaries maymimick known and trusted software packages and

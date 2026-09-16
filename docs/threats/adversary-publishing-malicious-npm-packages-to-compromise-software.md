@@ -1,14 +1,15 @@
 # Adversary publishing malicious NPM packages to compromise software
 
 ## Metadata
-
-- **UUID**: `d24f2b4a-80fc-4ee7-9293-3f6e9e3bbbe4`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-09`
-- **Modified**: `2025-04-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d24f2b4a-80fc-4ee7-9293-3f6e9e3bbbe4` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-09` |
+| Modified | `2025-04-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -41,18 +42,42 @@ credentials, and encryption keys, which can be used for further attacks.
 **Low** - A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary publishing malicious NPM packages to compromise software.
+Adversary publishing malicious NPM packages to compromise software.
 
-Domains: Enterprise, Industrial, Mobile
-Targets: End-user, Developer, Laptop, Customer, Other, API Endpoints
-Platforms: Windows, Linux, macOS**
+## Surface
+> **Industrial**
+> Industrial control systems, operational technology and automation protocols
+
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Development**
+> Software development tools and platforms
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Impairement; Lose Capabilities | - |
-| Leverage | Infrastructure Compromise; Information Disclosure; Tampering | - |
+| Impact | Identity Theft<br>Impairement<br>Lose Capabilities | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Infrastructure Compromise<br>Information Disclosure<br>Tampering | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -73,12 +98,20 @@ Platforms: Windows, Linux, macOS**
 ## Chaining
 ```mermaid
 flowchart LR
-d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4["Adversary publishing malicious NPM packages to compromise software"]
-b6887f4b_eeae_462c_a2ac_7454efb5eabc["Legitimate software dependency injected with malicious code"]
-d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4 -->|atomicity::implements| b6887f4b_eeae_462c_a2ac_7454efb5eabc
+subgraph "Exploitation"
+d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4{{"Adversary publishing<br>malicious NPM packages<br>to compromise software"}}
+end
+subgraph "Delivery"
+000790d9_06de_49af_893d_e4993abe6e38{{"Axios npm supply chain<br>compromise"}}
+59548b96_9b01_414c_badd_c0bf2ab40d9a{{"Shai-Hulud npm and PyPI<br>supply chain compromise"}}
+end
+b6887f4b_eeae_462c_a2ac_7454efb5eabc{{"Legitimate software<br>dependency injected with<br>malicious code"}}
+000790d9_06de_49af_893d_e4993abe6e38 -->|implements| d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4
+59548b96_9b01_414c_badd_c0bf2ab40d9a -->|implements| d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4
+d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4 -->|implements| b6887f4b_eeae_462c_a2ac_7454efb5eabc
 ```
 ### Chaining details
-#### implements -> Legitimate software dependency injected with malicious code (`atomicity::implements`)
+#### implements -> [Legitimate software dependency injected with malicious code](legitimate-software-dependency-injected-with-malicious-code.md) (`b6887f4b-eeae-462c-a2ac-7454efb5eabc`) (`atomicity::implements`)
 Threat actors use a technique to mimic legitimate software
 packages in order to mislead the developers in downloading
 and infecting their systems.

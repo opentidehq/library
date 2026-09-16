@@ -12,6 +12,7 @@ metadata:
   created: 2024-05-16
   modified: 2026-06-22
   author: ec-digit-catch@ec.europa.eu
+detection_model: bfeb24bf-8a17-4ccc-8aec-91721743153d
 description: |-
   Detect base64 encoded PowerShell payload that could be used to launch 
   a process or a script.

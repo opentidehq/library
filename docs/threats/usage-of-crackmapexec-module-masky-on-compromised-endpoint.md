@@ -1,14 +1,15 @@
 # Usage of CrackMapExec module Masky on compromised endpoint
 
 ## Metadata
-
-- **UUID**: `9d4658ad-d4d5-4f3c-990f-bb486edd47f4`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-10-28`
-- **Modified**: `2022-10-28`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `9d4658ad-d4d5-4f3c-990f-bb486edd47f4` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-10-28` |
+| Modified | `2022-10-28` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -46,18 +47,27 @@ very noisy and detectable.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **On a compromised Windows or Linux variant endpoint, Masky can be used to collect the NT hash for all connected users
+On a compromised Windows or Linux variant endpoint, Masky can be used to collect the NT hash for all connected users
 
-Domains: Enterprise, Public Cloud
-Targets: Virtual Machines, Workstations
-Platforms: Windows, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance | - |
-| Leverage | Elevation of privilege; Spoofing | - |
+| Impact | Impairement<br>Business disruption<br>Competitive disadvantage<br>Data Breach<br>Reputational Damages<br>Legal and regulatory<br>Monetary Loss<br>Nuisance | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Business disruption<br>Loss of competitive advantage<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Legal and regulatory costs<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Small and mostly inconsequential to day to day operations, but noticed. |
+| Leverage | Elevation of privilege<br>Spoofing | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 

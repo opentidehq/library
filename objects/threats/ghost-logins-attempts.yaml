@@ -30,8 +30,12 @@ threat:
     - Security::SAML
     - Kerberos
   severity: Moderate incident
-  leverage: Elevation of privilege; Spoofing
-  impact: Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Identity Theft
+    - Impairement
   viability: Environment dependent
   description: |-
     Ghost logins is a technique that exploits the fact that SaaS user accounts

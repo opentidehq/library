@@ -1,14 +1,15 @@
 # System reconnaissance via shell commands in supply chain attack
 
 ## Metadata
-
-- **UUID**: `bee6e973-b0d0-4735-a26a-003f39b8c08d`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2026-02-09`
-- **Modified**: `2026-02-09`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `bee6e973-b0d0-4735-a26a-003f39b8c08d` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2026-02-09` |
+| Modified | `2026-02-09` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -383,7 +384,7 @@ risk management strategy.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Following successful exploitation via a compromised software supply chain, threat 
+Following successful exploitation via a compromised software supply chain, threat 
 actors execute a series of standard Windows reconnaissance commands to gather 
 information about the compromised system. This activity is typically observed 
 immediately after initial access is established, as attackers assess the value 
@@ -391,13 +392,15 @@ of the compromised host and determine next steps for lateral movement or data
 exfiltration. The reconnaissance commands are executed through cmd.exe with output 
 redirection to text files stored in seemingly legitimate application directories.
 
-Surface: OS::Windows::Desktop**
+## Surface
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Business disruption | - |
+| Impact | Data Breach<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption |
 | Leverage | Information Disclosure | Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Reconnaissance | Researching, identifying and selecting targets using active or passive reconnaissance. |
@@ -413,36 +416,67 @@ Surface: OS::Windows::Desktop**
 ## Chaining
 ```mermaid
 flowchart LR
-bee6e973_b0d0_4735_a26a_003f39b8c08d["System reconnaissance via shell commands in supply chain attack"]
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
-bee6e973_b0d0_4735_a26a_003f39b8c08d -->|atomicity::implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
+subgraph "Reconnaissance"
+bee6e973_b0d0_4735_a26a_003f39b8c08d{{"System reconnaissance<br>via shell commands in<br>supply chain attack"}}
+end
+subgraph "Delivery"
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22{{"Notepad++ supply chain<br>attack"}}
+end
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
 ```
 ### Chaining details
-#### implements -> Notepad++ supply chain attack (`atomicity::implements`)
+#### implements -> [Notepad++ supply chain attack](notepad-supply-chain-attack.md) (`8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`) (`atomicity::implements`)
 This TVM implements specific post-compromise reconnaissance activities observed 
 in the Notepad++ supply chain attack. These commands were executed immediately 
 after successful initial access through the compromised update mechanism.
 
 - **Target UUID**: `8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+subgraph "Objectives"
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d(["Detect Notepad++ Supply<br>Chain Compromise<br>Activity"])
 end
-subgraph "Signal"
-2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
-4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
-6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
-8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
-9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
+subgraph "Threats"
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22{{"Notepad++ supply chain<br>attack"}}
+52462685_bebb_4e86_94b0_fd46aeacb085{{"Malicious NSIS installer<br>deployment"}}
+23d06aa7_f6d5_44ee_be8f_e6de2f495bd9{{"ProShow vulnerability<br>exploitation for payload<br>delivery"}}
+bc365789_bdbb_4e78_b2ae_b097a7ccd35f{{"Lua interpreter<br>shellcode execution"}}
+bc95c747_ede2_4c16_a6b4_506b305e744a{{"Chrysalis backdoor<br>deployment via DLL<br>sideloading"}}
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a{{"Cobalt Strike Beacon<br>deployment via<br>Metasploit downloader"}}
+bf30d882_9b96_403a_9a47_83a2981fc526{{"LOLC2 service abuse via<br>temp.sh"}}
+55eaa437_5a25_4c29_b1fc_9c0fba4a18ad{{"Registry autorun<br>persistence from<br>temporary folders"}}
 end
-bee6e973_b0d0_4735_a26a_003f39b8c08d["System reconnaissance via shell commands in supply chain attack"]
-bee6e973_b0d0_4735_a26a_003f39b8c08d -->|objective| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
-bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-bee6e973_b0d0_4735_a26a_003f39b8c08d -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+subgraph "Signals"
+8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d(("NSIS Installer<br>Deployment from<br>Notepad++ Updater"))
+2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c(("System Reconnaissance<br>Commands Following<br>Software Update"))
+6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d(("Data Exfiltration to<br>temp.sh Web Service"))
+4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d(("Suspicious DLL<br>Side-Loading and<br>Exploit-Based Execution"))
+9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d(("Cobalt Strike Beacon C2<br>Communication"))
+end
+bee6e973_b0d0_4735_a26a_003f39b8c08d{{"System reconnaissance<br>via shell commands in<br>supply chain attack"}}
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+52462685_bebb_4e86_94b0_fd46aeacb085 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+23d06aa7_f6d5_44ee_be8f_e6de2f495bd9 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bc365789_bdbb_4e78_b2ae_b097a7ccd35f -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+55eaa437_5a25_4c29_b1fc_9c0fba4a18ad -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect Notepad++ Supply Chain Compromise Activity](../Objectives/detect-notepad-supply-chain-compromise-activity.md) (`3e8b5d7f-9c2a-4f6e-8b1d-7a4c9e3f6b2d`) | Downstream | objective |
+| Signal | [System Reconnaissance Commands Following Software Update](../Objectives/detect-notepad-supply-chain-compromise-activity.md#system-reconnaissance-commands-following-software-update) (`2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c`) | Downstream | signal |
+| Signal | [Suspicious DLL Side-Loading and Exploit-Based Execution](../Objectives/detect-notepad-supply-chain-compromise-activity.md#suspicious-dll-side-loading-and-exploit-based-execution) (`4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d`) | Downstream | signal |
+| Signal | [Data Exfiltration to temp.sh Web Service](../Objectives/detect-notepad-supply-chain-compromise-activity.md#data-exfiltration-to-temp-sh-web-service) (`6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d`) | Downstream | signal |
+| Signal | [NSIS Installer Deployment from Notepad++ Updater](../Objectives/detect-notepad-supply-chain-compromise-activity.md#nsis-installer-deployment-from-notepad-updater) (`8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d`) | Downstream | signal |
+| Signal | [Cobalt Strike Beacon C2 Communication](../Objectives/detect-notepad-supply-chain-compromise-activity.md#cobalt-strike-beacon-c2-communication) (`9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d`) | Downstream | signal |

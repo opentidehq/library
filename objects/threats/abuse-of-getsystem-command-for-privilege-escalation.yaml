@@ -17,27 +17,27 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0143
-    - att&ck::G0080
-    - att&ck::G1021
-    - att&ck::G1014
-    - misp::78bf726c-a9e6-11e8-9e43-77249a2f7339
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - misp::091a0b69-74de-44b6-bb12-16b7a8fd078b
-    - misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
-    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
-    - misp::8cca9a1d-66e4-4bc4-ad49-95f759f4c1ae
-    - misp::ce2c2dfd-2445-4fbc-a747-9e7092e383f9
-    - misp::3ce9610b-2435-4c41-80d1-3f95a5ff2984
-    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
-    - misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
-    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
-    - misp::f512de42-f76b-40d2-9923-59e7dbdfec35
-    - misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - misp::50cd027f-df14-40b2-aa22-bf5de5061163
-    - misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
-    - misp::658314bc-3bb8-48d2-913a-c528607b75c8
+    - name: att&ck::G0143
+    - name: att&ck::G0080
+    - name: att&ck::G1021
+    - name: att&ck::G1014
+    - name: misp::78bf726c-a9e6-11e8-9e43-77249a2f7339
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: misp::091a0b69-74de-44b6-bb12-16b7a8fd078b
+    - name: misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
+    - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - name: misp::8cca9a1d-66e4-4bc4-ad49-95f759f4c1ae
+    - name: misp::ce2c2dfd-2445-4fbc-a747-9e7092e383f9
+    - name: misp::3ce9610b-2435-4c41-80d1-3f95a5ff2984
+    - name: misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - name: misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
+    - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - name: misp::f512de42-f76b-40d2-9923-59e7dbdfec35
+    - name: misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::50cd027f-df14-40b2-aa22-bf5de5061163
+    - name: misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
+    - name: misp::658314bc-3bb8-48d2-913a-c528607b75c8
   killchain: Privilege Escalation
   att&ck:
     - T1134.002
@@ -49,8 +49,16 @@ threat:
     - Windows
     - Windows::Desktop
   severity: Significant incident
-  leverage: Modify configuration; Modify data; Tampering; New Accounts
-  impact: Data Breach; Business disruption; Reputational Damages; Operating costs
+  leverage:
+    - Modify configuration
+    - Modify data
+    - Tampering
+    - New Accounts
+  impact:
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
+    - Operating costs
   viability: Likely
   description: |-
     Use of Getsystem command to elevate from a local administrator to the SYSTEM user.

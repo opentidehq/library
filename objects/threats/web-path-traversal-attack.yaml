@@ -27,8 +27,14 @@ threat:
     - Linux
     - Web Servers
   severity: Significant incident
-  leverage: Information Disclosure; Modify configuration; Modify data
-  impact: Data Breach; IP Loss; Identity Theft
+  leverage:
+    - Information Disclosure
+    - Modify configuration
+    - Modify data
+  impact:
+    - Data Breach
+    - IP Loss
+    - Identity Theft
   viability: Likely
   description: |-
     Directory traversal (also known as file path traversal) is a web security

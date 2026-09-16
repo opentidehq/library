@@ -54,8 +54,15 @@ threat:
     - Web Servers
     - Application Layer::HTTP
   severity: Moderate incident
-  leverage: Information Disclosure; Infrastructure Compromise; Spoofing
-  impact: Data Breach; IP Loss; Reputational Damages; Business disruption
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Spoofing
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Business disruption
   viability: Likely
   description: |-
     Azure storage container reconnaissance is a threat vector involving adversaries 

@@ -1,14 +1,15 @@
 # Abuse of Getsystem command for privilege escalation
 
 ## Metadata
-
-- **UUID**: `49625e57-94e0-4185-8466-ac68fe15b7e1`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2025-02-03`
-- **Modified**: `2025-02-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `49625e57-94e0-4185-8466-ac68fe15b7e1` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2025-02-03` |
+| Modified | `2025-02-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -59,19 +60,25 @@ it does not require spawning a new process and it takes place entirely in memory
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have administrative privileges on Windows systems within 
+Adversary must have administrative privileges on Windows systems within 
 the enterprise network.
 
-Domains: Enterprise
-Targets: Laptop, Workstations
-Platforms: Active Directory, PowerShell, Windows**
+## Surface
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Business disruption; Reputational Damages; Operating costs | - |
-| Leverage | Modify configuration; Modify data; Tampering; New Accounts | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Increased operating costs |
+| Leverage | Modify configuration<br>Modify data<br>Tampering<br>New Accounts | Modify configuration or services<br>Modify stored data or content<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Ability to create new arbitrary user accounts. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 

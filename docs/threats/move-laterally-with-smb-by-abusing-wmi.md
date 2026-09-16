@@ -1,14 +1,15 @@
 # Move laterally with SMB by abusing WMI
 
 ## Metadata
-
-- **UUID**: `f33a693b-04cd-476e-9067-9deab561e55a`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2023-08-17`
-- **Modified**: `2025-01-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f33a693b-04cd-476e-9067-9deab561e55a` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2023-08-17` |
+| Modified | `2025-01-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -35,19 +36,28 @@ The named pipe is then used to move laterally with the protocol.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **It is a built-in tool developped by Microsoft and belonging to Sysinternal command-line tools. It should be installed
+It is a built-in tool developped by Microsoft and belonging to Sysinternal command-line tools. It should be installed
 However SMB is a native protocol that do not require any installation.
 
-Domains: Enterprise
-Targets: Control Server, Desktop, End-user, Laptop, Remote access, Virtual Machines, Workstations
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
-| Impact | Identity Theft; Asset and fraud | - |
-| Leverage | Alter behavior; Elevation of privilege; Spoofing | - |
+| Impact | Identity Theft<br>Asset and fraud | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Asset and fraud-related losses |
+| Leverage | Alter behavior<br>Elevation of privilege<br>Spoofing | Influence or alter human behavior<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Lateral Movement | Techniques that enable an adversary to horizontally access and control other remote systems. |
 
@@ -96,3 +106,23 @@ Platforms: Windows**
 | --- | --- | --- |
 | `T1570` | [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570) | Adversaries may transfer tools or other files between systems in a compromised environment. Once brought into the victim environment (i.e., [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105)) files may then be copied from one system to another to stage adversary tools or other files over the course of an operation.  Adversaries may copy files between internal victim systems to support lateral movement using inherent file sharing protocols such as file sharing over [SMB/Windows Admin Shares](https://attack.mitre.org/techniques/T1021/002) to connected network shares or with authenticated connections via [Remote Desktop Protocol](https://attack.mitre.org/techniques/T1021/001).(Citation: Unit42 LockerGoga 2019)  Files can also be transferred using native or otherwise present tools on the victim system, such as scp, rsync, curl, sftp, and [ftp](https://attack.mitre.org/software/S0095). In some cases, adversaries may be able to leverage [Web Service](https://attack.mitre.org/techniques/T1102)s such as Dropbox or OneDrive to copy files from one machine to another via shared, automatically synced folders.(Citation: Dropbox Malware Sync) |
 | `T1047` | [Windows Management Instrumentation](https://attack.mitre.org/techniques/T1047) | Adversaries may abuse Windows Management Instrumentation (WMI) to execute malicious commands and payloads. WMI is designed for programmers and is the infrastructure for management data and operations on Windows systems.(Citation: WMI 1-3) WMI is an administration feature that provides a uniform environment to access Windows system components.  The WMI service enables both local and remote access, though the latter is facilitated by [Remote Services](https://attack.mitre.org/techniques/T1021) such as [Distributed Component Object Model](https://attack.mitre.org/techniques/T1021/003) and [Windows Remote Management](https://attack.mitre.org/techniques/T1021/006).(Citation: WMI 1-3) Remote WMI over DCOM operates using port 135, whereas WMI over WinRM operates over port 5985 when using HTTP and 5986 for HTTPS.(Citation: WMI 1-3) (Citation: Mandiant WMI)  An adversary can use WMI to interact with local and remote systems and use it as a means to execute various behaviors, such as gathering information for [Discovery](https://attack.mitre.org/tactics/TA0007) as well as [Execution](https://attack.mitre.org/tactics/TA0002) of commands and payloads.(Citation: Mandiant WMI) For example, `wmic.exe` can be abused by an adversary to delete shadow copies with the command `wmic.exe Shadowcopy Delete` (i.e., [Inhibit System Recovery](https://attack.mitre.org/techniques/T1490)).(Citation: WMI 6)  **Note:** `wmic.exe` is deprecated as of January of 2024, with the WMIC feature being “disabled by default” on Windows 11+. WMIC will be removed from subsequent Windows releases and replaced by [PowerShell](https://attack.mitre.org/techniques/T1059/001) as the primary WMI interface.(Citation: WMI 7,8) In addition to PowerShell and tools like `wbemtool.exe`, COM APIs can also be used to programmatically interact with WMI via C++, .NET, VBScript, etc.(Citation: WMI 7,8) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Lateral Movement"
+f33a693b_04cd_476e_9067_9deab561e55a{{"Move laterally with SMB<br>by abusing WMI"}}
+end
+subgraph "Privilege Escalation"
+02810748_52b5_4d3a_a788_29a948538cd2{{"Admin SMB shares<br>privilege escalation<br>exploit"}}
+end
+subgraph "Credential Access"
+75415bc5_6615_487e_a69c_7a4ffc196996{{"Lateral movement using<br>Impacket framework"}}
+end
+subgraph "Discovery"
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+end
+02810748_52b5_4d3a_a788_29a948538cd2 -->|succeeds| f33a693b_04cd_476e_9067_9deab561e55a
+02810748_52b5_4d3a_a788_29a948538cd2 -->|implements| 75415bc5_6615_487e_a69c_7a4ffc196996
+75415bc5_6615_487e_a69c_7a4ffc196996 -->|succeeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+```

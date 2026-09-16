@@ -1,14 +1,15 @@
 # Change the audit policy to disable Windows event logging
 
 ## Metadata
-
-- **UUID**: `36694031-a3d8-474e-b0e6-f44ba94c2a22`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2023-01-05`
-- **Modified**: `2023-01-06`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `36694031-a3d8-474e-b0e6-f44ba94c2a22` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2023-01-05` |
+| Modified | `2023-01-06` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -97,13 +98,28 @@ Configuration to modify advanced policy settings.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor has gained control over a Windows endpoint and has
+A threat actor has gained control over a Windows endpoint and has
 privileges to disable event logging by making changes to the Windows audit
 policy.
 
-Domains: Enterprise, Public Cloud
-Targets: Workstations, Desktop, Laptop, Input/Output Server, Public-Facing Servers, Server Logs, Web Application Servers, Control Server
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Windows::Server**
+> Microsoft Windows Server editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Log Management**
+> Dedicated log management and log aggregation solutions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

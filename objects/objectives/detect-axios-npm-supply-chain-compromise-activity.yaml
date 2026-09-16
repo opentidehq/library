@@ -142,7 +142,7 @@ objective:
         Malicious Packages, Aikido Intel, Socket, StepSecurity),
         and into the runtime estate (file inventory across
         developer endpoints).
-      severity: High
+      severity: Substantial incident
       effort: 2
       methodology: Artifacts
       data:
@@ -167,10 +167,10 @@ objective:
           - EDR file inventory / file-event telemetry
           - Container registry image-scanning telemetry
       entities:
-        - host::Software
-        - host::File
-        - host::File Hash
-        - host::Hostname
+        - Software
+        - File
+        - File Hash
+        - Hostname
     - name: Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters
       uuid: 6c2c0f21-5821-4b5f-9279-9b91dfd5d148
       description: |-
@@ -212,7 +212,7 @@ objective:
         future npm supply-chain attack using the postinstall
         lifecycle to deliver native payloads will exhibit the
         same parent / child / file-write pattern.
-      severity: High
+      severity: Substantial incident
       effort: 4
       methodology: Behavioural
       data:
@@ -236,11 +236,11 @@ objective:
             framework
           - Windows Event ID 4688 with command line auditing
       entities:
-        - host::Process
-        - host::Command Line
-        - host::File
-        - host::Hostname
-        - network::URL
+        - Process
+        - Command Line
+        - File
+        - Hostname
+        - URL
     - name: WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts
       uuid: 6524f5a6-d9e9-48ff-983f-23c4aed9c1fd
       description: |-
@@ -285,7 +285,7 @@ objective:
         Detection should fire on file creation, not only on
         file presence, so that hosts which received but later
         cleaned the artefact are still surfaced.
-      severity: Critical
+      severity: Significant incident
       effort: 2
       methodology: Artifacts
       data:
@@ -308,10 +308,10 @@ objective:
           - EDR file telemetry (Defender for Endpoint,
             CrowdStrike, SentinelOne, Elastic Agent)
       entities:
-        - host::File
-        - host::File Hash
-        - host::Hostname
-        - host::Process
+        - File
+        - File Hash
+        - Hostname
+        - Process
     - name: Renamed PowerShell + Transient VBScript Loader from Node.js Process Tree (Windows)
       uuid: 9866b082-7f59-43d3-8ed8-2567eda7d4fc
       description: |-
@@ -354,7 +354,7 @@ objective:
         These patterns directly correspond to GTIG's
         `G_Hunting_Downloader_suspected_UNC1069_PS_1` YARA
         signal logic.
-      severity: High
+      severity: Substantial incident
       effort: 3
       methodology: Behavioural
       data:
@@ -376,11 +376,11 @@ objective:
           - Windows Event ID 4688 with command line auditing
           - EDR process telemetry
       entities:
-        - host::Process
-        - host::Command Line
-        - host::File
-        - host::File Hash
-        - host::Hostname
+        - Process
+        - Command Line
+        - File
+        - File Hash
+        - Hostname
     - name: WAVESHAPER.V2 C2 Communication to sfrclak[.]com
       uuid: a5331e78-144f-4300-8672-4b69b6ae732c
       description: |-
@@ -415,7 +415,7 @@ objective:
         This is the highest-fidelity confirmation of an
         active RAT and should be treated as Critical
         regardless of host-side signals.
-      severity: Critical
+      severity: Significant incident
       effort: 2
       methodology: Pattern Matching
       data:
@@ -441,13 +441,13 @@ objective:
           - Zeek / Suricata network security monitor
           - EDR network telemetry
       entities:
-        - host::Domain
-        - network::IP Address
-        - network::URL
-        - network::DNS Query
-        - network::Network Connection
-        - host::Process
-        - host::Hostname
+        - Domain
+        - IP Address
+        - URL
+        - DNS Query
+        - Network Connection
+        - Process
+        - Hostname
     - name: NPM Publisher Email or SLSA Provenance Regression on Critical Packages
       uuid: 68f4ac42-9bd8-4b1e-b547-56f890bfe457
       description: |-
@@ -493,7 +493,7 @@ objective:
         from being pulled into builds during the 18-hour
         window in which it was the most recent published
         version.
-      severity: Medium
+      severity: Moderate incident
       effort: 5
       methodology: Anomaly
       data:
@@ -519,9 +519,9 @@ objective:
             registry-side audit logs for self-hosted
             mirrors
       entities:
-        - host::Software
-        - host::User
-        - host::Hostname
+        - Software
+        - User
+        - Hostname
   attack:
     - T1195.001
     - T1195.002

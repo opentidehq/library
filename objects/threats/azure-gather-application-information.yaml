@@ -16,10 +16,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::f02679fa-5e85-4050-8eb5-c2677d93306f
-    - misp::bcaaad6f-0597-4b89-b69b-84a6be2b7bc3
-    - misp::f512de42-f76b-40d2-9923-59e7dbdfec35
-    - att&ck::G1033
+    - name: misp::f02679fa-5e85-4050-8eb5-c2677d93306f
+    - name: misp::bcaaad6f-0597-4b89-b69b-84a6be2b7bc3
+    - name: misp::f512de42-f76b-40d2-9923-59e7dbdfec35
+    - name: att&ck::G1033
   killchain: Reconnaissance
   att&ck:
     - T1078.004
@@ -59,8 +59,14 @@ threat:
     - Entra ID
     - Application Layer::HTTP
   severity: Significant incident
-  leverage: Information Disclosure; Elevation of privilege; Tampering; Spoofing
-  impact: Data Breach; IP Loss
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+    - Tampering
+    - Spoofing
+  impact:
+    - Data Breach
+    - IP Loss
   viability: Likely
   description: |-
     This technique involves adversaries collecting data about applications running within Azure, 

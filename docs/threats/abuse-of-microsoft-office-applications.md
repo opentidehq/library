@@ -1,14 +1,15 @@
 # Abuse of Microsoft Office Applications
 
 ## Metadata
-
-- **UUID**: `b663b684-a80f-4570-89b6-2f7faa16fece`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-31`
-- **Modified**: `2024-10-31`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `b663b684-a80f-4570-89b6-2f7faa16fece` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-31` |
+| Modified | `2024-10-31` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## Description
 An employee named receives an email that appears to be from a trusted business 
@@ -55,20 +56,38 @@ This code executes every time Outlook starts, performing actions without the use
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Target systems must have Microsoft Office applications installed with macros 
+Target systems must have Microsoft Office applications installed with macros 
 enabled or be susceptible to social engineering tactics that prompt users 
 to enable macros or execute malicious content.
 
-Domains: Enterprise
-Targets: Email Platform, Desktop, Laptop, Critical Documents, Personal Information, Workstations
-Platforms: Windows, Office 365, Microsoft SharePoint, Outlook Web Access**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Microsoft::SharePoint**
+> Microsoft SharePoint document management and collaboration
+
+> **Microsoft::Outlook**
+> Microsoft Outlook email client
+
+> **Email**
+> Email infrastructure and services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **File Sharing**
+> Cloud file sharing and storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; IP Loss; Identity Theft; Business disruption | - |
-| Leverage | Spoofing; Tampering; Information Disclosure; Elevation of privilege; Software installation | - |
+| Impact | Data Breach<br>IP Loss<br>Identity Theft<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Business disruption |
+| Leverage | Spoofing<br>Tampering<br>Information Disclosure<br>Elevation of privilege<br>Software installation | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Software installation or code modification |
 | Viability | Very Likely | Highly probable - 80-95% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -97,12 +116,22 @@ Platforms: Windows, Office 365, Microsoft SharePoint, Outlook Web Access**
 ## Chaining
 ```mermaid
 flowchart LR
-b663b684_a80f_4570_89b6_2f7faa16fece["Abuse of Microsoft Office Applications"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-b663b684_a80f_4570_89b6_2f7faa16fece -->|sequence::succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+subgraph "Execution"
+b663b684_a80f_4570_89b6_2f7faa16fece{{"Abuse of Microsoft<br>Office Applications"}}
+end
+subgraph "Lateral Movement"
+cc9003f7_a9e3_4407_a1ca_d514af469787{{"Lateral movement via a<br>compromised Teams<br>account"}}
+end
+subgraph "Delivery"
+06c60af1_5fa8_493c_bf9b_6b2e215819f1{{"Social engineering<br>attack using Microsoft<br>Teams"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+cc9003f7_a9e3_4407_a1ca_d514af469787 -->|enabling| b663b684_a80f_4570_89b6_2f7faa16fece
+cc9003f7_a9e3_4407_a1ca_d514af469787 -->|succeeds| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+b663b684_a80f_4570_89b6_2f7faa16fece -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Attachment (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::succeeds`)
 Most of malware comes from email attachment and can be executed afterwards
 
 - **Target UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`

@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0082
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0082
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Social Engineering
   att&ck:
     - T1589.001
@@ -47,8 +47,18 @@ threat:
     - Email
     - AWS::Storage
   severity: Significant incident
-  leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Fraudulent transaction; Infrastructure Compromise
-  impact: Data Breach; Monetary Loss; Reputational Damages; Identity Theft
+  leverage:
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+    - Elevation of privilege
+    - Fraudulent transaction
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - Monetary Loss
+    - Reputational Damages
+    - Identity Theft
   viability: Likely
   description: |-
     TOAD (Telephone-Oriented Attack Delivery) and BEC (Business Email Compromise) attacks 

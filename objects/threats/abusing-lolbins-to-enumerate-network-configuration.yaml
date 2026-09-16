@@ -15,12 +15,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0139
-    - misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
-    - att&ck::G0007
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0139
+    - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
+    - name: att&ck::G0007
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Discovery
   att&ck:
     - T1016
@@ -35,8 +35,14 @@ threat:
     - Web Servers
     - Switches
   severity: Substantial incident
-  leverage: Information Disclosure; Infrastructure Compromise; Dwelling
-  impact: Data Breach; Business disruption; Reputational Damages
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Dwelling
+  impact:
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
   viability: Likely
   description: |-
     System Network Configuration Discovery refers to an adversary’s effort to gather

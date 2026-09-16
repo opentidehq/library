@@ -23,8 +23,10 @@ threat:
     - Development::CI/CD
     - Microsoft::System Center
   severity: Highly significant incident
-  leverage: Modify configuration
-  impact: Lose Capabilities
+  leverage:
+    - Modify configuration
+  impact:
+    - Lose Capabilities
   viability: Very Unlikely
   description: |-
     A threat actor may want to disable, remove or update the configuration of

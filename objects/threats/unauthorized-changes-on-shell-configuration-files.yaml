@@ -15,12 +15,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0139
-    - misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
-    - att&ck::G0034
-    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
-    - att&ck::G0007
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: att&ck::G0139
+    - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
+    - name: att&ck::G0034
+    - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - name: att&ck::G0007
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Persistence
   att&ck:
     - T1546.004
@@ -34,8 +34,17 @@ threat:
     - Windows::Desktop
     - Web Servers
   severity: Significant incident
-  leverage: Elevation of privilege; Modify configuration; Log tampering; New Accounts; Modify privileges; Modify data
-  impact: Data Breach; Reputational Damages; Business disruption
+  leverage:
+    - Elevation of privilege
+    - Modify configuration
+    - Log tampering
+    - New Accounts
+    - Modify privileges
+    - Modify data
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Business disruption
   viability: Likely
   description: |-
     Attacker may change critical files on Unix-like systems,

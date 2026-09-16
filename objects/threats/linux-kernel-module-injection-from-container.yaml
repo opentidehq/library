@@ -32,8 +32,15 @@ threat:
     - Orchestration::Kubernetes
     - Virtualisation::VMware ESXi
   severity: Significant incident
-  leverage: Dwelling; Infrastructure Compromise; Repudiation; Software installation
-  impact: Data Breach; Impairement; Lose Capabilities
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Repudiation
+    - Software installation
+  impact:
+    - Data Breach
+    - Impairement
+    - Lose Capabilities
   viability: Environment dependent
   description: |-
     Loadable Kernel Modules (LKM) can be used by adversaries to deliver 

@@ -12,12 +12,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0046
-    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
-    - att&ck::G0010
-    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0046
+    - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - name: att&ck::G0010
+    - name: misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Execution
   att&ck:
     - T1105
@@ -35,8 +35,15 @@ threat:
     - Web Servers
     - Azure::Compute::Virtual Machines
   severity: Significant incident
-  leverage: Elevation of privilege; Software installation; Information Disclosure; Modify configuration
-  impact: Data Breach; Reputational Damages; Business disruption
+  leverage:
+    - Elevation of privilege
+    - Software installation
+    - Information Disclosure
+    - Modify configuration
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Business disruption
   viability: Likely
   description: |-
     1. Bitsadmin.exe\

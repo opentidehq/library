@@ -1,15 +1,16 @@
 # Late access control enforcement via redirect body leakage
 
 ## Metadata
-
-- **UUID**: `0663c192-cdeb-49a2-994c-4cc8e98f764e`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2026-03-30`
-- **Modified**: `2026-05-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Contributors**: Hold Security Threat Research
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `0663c192-cdeb-49a2-994c-4cc8e98f764e` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2026-03-30` |
+| Modified | `2026-05-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Contributors | Hold Security Threat Research |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -53,7 +54,7 @@ the application's security architecture rather than a simple misconfiguration.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A web application that performs access control checks late in the request
+A web application that performs access control checks late in the request
 processing pipeline, after the response body has already been constructed.
 The application must use HTTP redirects (typically 302 Found) for access
 control enforcement rather than blocking the request outright or returning
@@ -63,13 +64,20 @@ typically arises in framework-level middleware or filter configurations where
 page rendering occurs before authentication and authorisation gates are
 evaluated. The vulnerability is systemic rather than endpoint-specific,
 affecting multiple authenticated or role-restricted routes that share the
-same flawed request processing pipeline.**
+same flawed request processing pipeline.
+
+## Surface
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; IP Loss | - |
+| Impact | Data Breach<br>IP Loss | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries. |
 | Leverage | Information Disclosure | Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Collection | Techniques used to identify and gather data from a target network prior to exfiltration. |
@@ -79,20 +87,48 @@ same flawed request processing pipeline.**
 | --- | --- | --- |
 | `T1190` | [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190) | Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.  Exploited applications are often websites/web servers, but can also include databases (like SQL), standard services (like SMB or SSH), network device administration and management protocols (like SNMP and Smart Install), and any other system with Internet-accessible open sockets.(Citation: NVD CVE-2016-6662)(Citation: CIS Multiple SMB Vulnerabilities)(Citation: US-CERT TA18-106A Network Infrastructure Devices 2018)(Citation: Cisco Blog Legacy Device Attacks)(Citation: NVD CVE-2014-7169) On ESXi infrastructure, adversaries may exploit exposed OpenSLP services; they may alternatively exploit exposed VMware vCenter servers.(Citation: Recorded Future ESXiArgs Ransomware 2023)(Citation: Ars Technica VMWare Code Execution Vulnerability 2021) Depending on the flaw being exploited, this may also involve [Exploitation for Defense Evasion](https://attack.mitre.org/techniques/T1211) or [Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203).  If an application is hosted on cloud-based infrastructure and/or is containerized, then exploiting it may lead to compromise of the underlying instance or container. This can allow an adversary a path to access the cloud or container APIs (e.g., via the [Cloud Instance Metadata API](https://attack.mitre.org/techniques/T1552/005)), exploit container host access via [Escape to Host](https://attack.mitre.org/techniques/T1611), or take advantage of weak identity and access management policies.  Adversaries may also exploit edge network infrastructure and related appliances, specifically targeting devices that do not support robust host-based defenses.(Citation: Mandiant Fortinet Zero Day)(Citation: Wired Russia Cyberwar)  For websites and databases, the OWASP top 10 and CWE top 25 highlight the most common web-based vulnerabilities.(Citation: OWASP Top 10)(Citation: CWE top 25) |
 
-## Relations
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Collection"
+0663c192_cdeb_49a2_994c_4cc8e98f764e{{"Late access control<br>enforcement via redirect<br>body leakage"}}
+end
+subgraph "Exploitation"
+38adba1e_0961_4417_bd84_33fa9c42439f{{"Client-controlled<br>session state<br>authentication bypass"}}
+end
+subgraph "Credential Access"
+b0d6bf74_b204_4a48_9509_4499ed795771{{"Pass-the-cookie Attack"}}
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+38adba1e_0961_4417_bd84_33fa9c42439f <-->|synergize| 0663c192_cdeb_49a2_994c_4cc8e98f764e
+38adba1e_0961_4417_bd84_33fa9c42439f <-->|synergize| b0d6bf74_b204_4a48_9509_4499ed795771
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|succeeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+```
+
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544["Detect protected content in abnormal redirect responses"]
+subgraph "Objectives"
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544(["Detect protected content<br>in abnormal redirect<br>responses"])
 end
-subgraph "Signal"
-0770d2a4_9299_46d7_93f2_c3fff68aad26["0770d2a4-9299-46d7-93f2-c3fff68aad26"]
-077ee487_7694_4ed5_9a83_5ed36b4f31c5["077ee487-7694-4ed5-9a83-5ed36b4f31c5"]
-f798884c_46ea_424c_9958_45f2c4f8110a["f798884c-46ea-424c-9958-45f2c4f8110a"]
+subgraph "Signals"
+f798884c_46ea_424c_9958_45f2c4f8110a(("Large 302 response body<br>on protected route"))
+0770d2a4_9299_46d7_93f2_c3fff68aad26(("Restricted route<br>enumeration through<br>repeated redirects"))
+077ee487_7694_4ed5_9a83_5ed36b4f31c5(("Redirect body differs<br>from expected<br>unauthenticated template"))
 end
-0663c192_cdeb_49a2_994c_4cc8e98f764e["Late access control enforcement via redirect body leakage"]
-0663c192_cdeb_49a2_994c_4cc8e98f764e -->|objective| f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544
-0663c192_cdeb_49a2_994c_4cc8e98f764e -->|signal| 0770d2a4_9299_46d7_93f2_c3fff68aad26
-0663c192_cdeb_49a2_994c_4cc8e98f764e -->|signal| 077ee487_7694_4ed5_9a83_5ed36b4f31c5
-0663c192_cdeb_49a2_994c_4cc8e98f764e -->|signal| f798884c_46ea_424c_9958_45f2c4f8110a
+0663c192_cdeb_49a2_994c_4cc8e98f764e{{"Late access control<br>enforcement via redirect<br>body leakage"}}
+0663c192_cdeb_49a2_994c_4cc8e98f764e -->|covers| f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> f798884c_46ea_424c_9958_45f2c4f8110a
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> 0770d2a4_9299_46d7_93f2_c3fff68aad26
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> 077ee487_7694_4ed5_9a83_5ed36b4f31c5
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect protected content in abnormal redirect responses](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md) (`f8a95fcf-c5b0-4db0-bb8b-78e4edaa0544`) | Downstream | objective |
+| Signal | [Restricted route enumeration through repeated redirects](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md#restricted-route-enumeration-through-repeated-redirects) (`0770d2a4-9299-46d7-93f2-c3fff68aad26`) | Downstream | signal |
+| Signal | [Redirect body differs from expected unauthenticated template](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md#redirect-body-differs-from-expected-unauthenticated-template) (`077ee487-7694-4ed5-9a83-5ed36b4f31c5`) | Downstream | signal |
+| Signal | [Large 302 response body on protected route](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md#large-302-response-body-on-protected-route) (`f798884c-46ea-424c-9958-45f2c4f8110a`) | Downstream | signal |

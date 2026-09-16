@@ -21,30 +21,30 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
-    - att&ck::G0082
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G0035
-    - misp::64d6559c-6d5c-4585-bbf9-c17868f763ee
-    - att&ck::G0045
-    - misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
-    - att&ck::G0114
-    - misp::8bcd855f-a4c1-453a-bede-ff36582f4f40
-    - att&ck::G0037
-    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
-    - att&ck::G0004
-    - misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
-    - att&ck::G0069
-    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
-    - att&ck::G0010
-    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
-    - att&ck::G0049
-    - misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
-    - att&ck::G0060
-    - misp::add6554a-815a-4ac3-9b22-9337b9661ab8
-    - att&ck::G0117
-    - misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0082
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0035
+    - name: misp::64d6559c-6d5c-4585-bbf9-c17868f763ee
+    - name: att&ck::G0045
+    - name: misp::56b37b05-72e7-4a89-ba8a-61ce45269a8c
+    - name: att&ck::G0114
+    - name: misp::8bcd855f-a4c1-453a-bede-ff36582f4f40
+    - name: att&ck::G0037
+    - name: misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - name: att&ck::G0004
+    - name: misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
+    - name: att&ck::G0069
+    - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - name: att&ck::G0010
+    - name: misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - name: att&ck::G0049
+    - name: misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
+    - name: att&ck::G0060
+    - name: misp::add6554a-815a-4ac3-9b22-9337b9661ab8
+    - name: att&ck::G0117
+    - name: misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
   killchain: Discovery
   att&ck:
     - T1087.002
@@ -61,8 +61,10 @@ threat:
     - Windows
     - Active Directory
   severity: Moderate incident
-  leverage: Information Disclosure
-  impact: Identity Theft
+  leverage:
+    - Information Disclosure
+  impact:
+    - Identity Theft
   viability: Likely
   description: |-
     Adversaries may attempt to enumerate the environment and list all local system 

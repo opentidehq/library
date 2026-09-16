@@ -34,8 +34,18 @@ threat:
     - Mobile::iPadOS
     - File Sharing
   severity: Significant incident
-  leverage: Dwelling; Hardware tampering; Information Disclosure; Infrastructure Compromise; Spoofing
-  impact: Data Breach; Identity Theft; IP Loss; Nuisance; Reputational Damages
+  leverage:
+    - Dwelling
+    - Hardware tampering
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Spoofing
+  impact:
+    - Data Breach
+    - Identity Theft
+    - IP Loss
+    - Nuisance
+    - Reputational Damages
   viability: Likely
   description: |-
     GSM interception refers to the unauthorized capture and monitoring of communications 

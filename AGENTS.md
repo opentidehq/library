@@ -7,7 +7,7 @@ Public TLP:CLEAR detection object catalogue for the OpenTide community.
 ## Quick start
 
 ```bash
-pip install -e ../opentide   # until PyPI publish
+pip install opentide
 opentide generate
 opentide validate --strict
 opentide generate docs --output docs

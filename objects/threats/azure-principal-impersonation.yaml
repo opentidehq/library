@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Privilege Escalation
   att&ck:
     - T1098.001
@@ -48,8 +48,14 @@ threat:
     - Azure::Compute::Virtual Machines
     - AWS::Compute::EC2
   severity: Significant incident
-  leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure
-  impact: Data Breach; IP Loss
+  leverage:
+    - Spoofing
+    - Tampering
+    - Elevation of privilege
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - IP Loss
   viability: Likely
   description: |-
     This threat vector in Azure environments is a critical form of privilege escalation, 

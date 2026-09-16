@@ -1,14 +1,15 @@
 # WhisperGate wiper
 
 ## Metadata
-
-- **UUID**: `68ab86f6-378d-4371-ad01-6209fb95d57d`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-09-11`
-- **Modified**: `2024-09-11`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `68ab86f6-378d-4371-ad01-6209fb95d57d` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-09-11` |
+| Modified | `2024-09-11` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -85,19 +86,37 @@ such as the WhisperGate wiper attacks against ICS targets.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs an initial entry point to the system,
+A threat actor needs an initial entry point to the system,
 for example can use stolen credentials to gain access.
 
-Domains: Enterprise, Industrial
-Targets: Disk drive, Workstations, Critical Documents, Customer, End-user, Data Historian, Desktop, Control Server, Laptop, Personal Information
-Platforms: Windows, PowerShell**
+## Surface
+> **Industrial**
+> Industrial control systems, operational technology and automation protocols
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **AWS::Storage::EBS**
+> Amazon Elastic Block Store (block storage)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **File Sharing**
+> Cloud file sharing and storage services
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Catastrophic Loss; National Security; Operating costs; Reputational Damages | - |
-| Leverage | Denial of Service; Infrastructure Compromise | - |
+| Impact | Business disruption<br>Catastrophic Loss<br>National Security<br>Operating costs<br>Reputational Damages | Business disruption<br>The organization will lose a major part of its capacity to fulfill its strategic objective, and may not be able to recover fully or at all.<br>The vector execution will expose or destroy such sufficient critical information infrastructure that the country will have to intervene due to loss to key national  or international functions.<br>Increased operating costs<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Denial of Service<br>Infrastructure Compromise | Threat action attempting to deny access to valid users, such as by making a web server temporarily unavailable or unusable.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 
 ## Actors
@@ -115,3 +134,13 @@ Platforms: Windows, PowerShell**
 | `T1562.001` | [Impair Defenses: Disable or Modify Tools](https://attack.mitre.org/techniques/T1562/001) | Adversaries may modify and/or disable security tools to avoid possible detection of their malware/tools and activities. This may take many forms, such as killing security software processes or services, modifying / deleting Registry keys or configuration files so that tools do not operate properly, or other methods to interfere with security tools scanning or reporting information. Adversaries may also disable updates to prevent the latest security patches from reaching tools on victim systems.(Citation: SCADAfence_ransomware)  Adversaries may also tamper with artifacts deployed and utilized by security tools. Security tools may make dynamic changes to system components in order to maintain visibility into specific events. For example, security products may load their own modules and/or modify those loaded by processes to facilitate data collection. Similar to [Indicator Blocking](https://attack.mitre.org/techniques/T1562/006), adversaries may unhook or otherwise modify these features added by tools (especially those that exist in userland or are otherwise potentially accessible to adversaries) to avoid detection.(Citation: OutFlank System Calls)(Citation: MDSec System Calls) Alternatively, they may add new directories to an endpoint detection and response (EDR) tool’s exclusion list, enabling them to hide malicious files via [File/Path Exclusions](https://attack.mitre.org/techniques/T1564/012).(Citation: BlackBerry WhisperGate 2022)(Citation: Google Cloud Threat Intelligence FIN13 2021)  Adversaries may also focus on specific applications such as Sysmon. For example, the “Start” and “Enable” values in <code>HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\WMI\Autologger\EventLog-Microsoft-Windows-Sysmon-Operational</code> may be modified to tamper with and potentially disable Sysmon logging.(Citation: disable_win_evt_logging)   On network devices, adversaries may attempt to skip digital signature verification checks by altering startup configuration files and effectively disabling firmware verification that typically occurs at boot.(Citation: Fortinet Zero-Day and Custom Malware Used by Suspected Chinese Actor in Espionage Operation)(Citation: Analysis of FG-IR-22-369)  In cloud environments, tools disabled by adversaries may include cloud monitoring agents that report back to services such as AWS CloudWatch or Google Cloud Monitor.  Furthermore, although defensive tools may have anti-tampering mechanisms, adversaries may abuse tools such as legitimate rootkit removal kits to impair and/or disable these tools.(Citation: chasing_avaddon_ransomware)(Citation: dharma_ransomware)(Citation: demystifying_ryuk)(Citation: doppelpaymer_crowdstrike) For example, adversaries have used tools such as GMER to find and shut down hidden processes and antivirus software on infected systems.(Citation: demystifying_ryuk)  Additionally, adversaries may exploit legitimate drivers from anti-virus software to gain access to kernel space (i.e. [Exploitation for Privilege Escalation](https://attack.mitre.org/techniques/T1068)), which may lead to bypassing anti-tampering features.(Citation: avoslocker_ransomware) |
 | `T1036` | [Masquerading](https://attack.mitre.org/techniques/T1036) | Adversaries may attempt to manipulate features of their artifacts to make them appear legitimate or benign to users and/or security tools. Masquerading occurs when the name or location of an object, legitimate or malicious, is manipulated or abused for the sake of evading defenses and observation. This may include manipulating file metadata, tricking users into misidentifying the file type, and giving legitimate task or service names.  Renaming abusable system utilities to evade security monitoring is also a form of [Masquerading](https://attack.mitre.org/techniques/T1036).(Citation: LOLBAS Main Site) |
 | `T1134.002` | [Access Token Manipulation: Create Process with Token](https://attack.mitre.org/techniques/T1134/002) | Adversaries may create a new process with an existing token to escalate privileges and bypass access controls. Processes can be created with the token and resulting security context of another user using features such as <code>CreateProcessWithTokenW</code> and <code>runas</code>.(Citation: Microsoft RunAs)  Creating processes with a token not associated with the current user may require the credentials of the target user, specific privileges to impersonate that user, or access to the token to be used. For example, the token could be duplicated via [Token Impersonation/Theft](https://attack.mitre.org/techniques/T1134/001) or created via [Make and Impersonate Token](https://attack.mitre.org/techniques/T1134/003) before being used to create a process.  While this technique is distinct from [Token Impersonation/Theft](https://attack.mitre.org/techniques/T1134/001), the techniques can be used in conjunction where a token is duplicated and then used to create a new process. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Defense Evasion"
+d5add960_1b86_41d4_869a_1defd392c8f9{{"Windows User Account<br>Control UAC bypass"}}
+end
+68ab86f6_378d_4371_ad01_6209fb95d57d{{"WhisperGate wiper"}}
+d5add960_1b86_41d4_869a_1defd392c8f9 -->|implemented| 68ab86f6_378d_4371_ad01_6209fb95d57d
+```

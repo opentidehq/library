@@ -39,8 +39,14 @@ threat:
     - Windows::Desktop
     - Customer Support
   severity: Moderate incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Tampering
-  impact: Business disruption; Impairement; Lose Capabilities
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Business disruption
+    - Impairement
+    - Lose Capabilities
   viability: Likely
   description: |-
     The `FileFix` technique is a new social engineering method similar to

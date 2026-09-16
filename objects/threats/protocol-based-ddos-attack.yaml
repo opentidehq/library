@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0007
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: att&ck::G0007
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Impact
   att&ck:
     - T1498.001
@@ -40,7 +40,11 @@ threat:
     - Remote Access
     - Web Servers
   severity: Significant incident
-  leverage: Denial of Service
-  impact: Business disruption; Operating costs; Reputational Damages
+  leverage:
+    - Denial of Service
+  impact:
+    - Business disruption
+    - Operating costs
+    - Reputational Damages
   viability: Almost certain
   description: Threat actors may wish to cause business disruption, media/public attention, or to use the pretense of business disruption to disguise other activities. Any DDoS attack should always be followed up with other DFIR activities to determine if the attack was meant to distract from something else. DDoS can distract by pulling attention away, or even by spooling out log files so that relevant entries are overwritten.

@@ -31,8 +31,14 @@ threat:
     - AWS::Compute::EC2
     - Web Servers
   severity: Significant incident
-  leverage: Information Disclosure; Infrastructure Compromise
-  impact: Data Breach; Identity Theft; IP Loss; Reputational Damages
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - Identity Theft
+    - IP Loss
+    - Reputational Damages
   viability: Likely
   description: |-
     These connectors facilitate outbound connections to the Microsoft Entra Private 

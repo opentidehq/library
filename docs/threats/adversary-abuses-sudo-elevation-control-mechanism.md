@@ -1,14 +1,15 @@
 # Adversary abuses sudo elevation control mechanism
 
 ## Metadata
-
-- **UUID**: `422098a7-567e-47fe-9e92-9fd3ec6df768`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2022-10-27`
-- **Modified**: `2022-12-21`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `422098a7-567e-47fe-9e92-9fd3ec6df768` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2022-10-27` |
+| Modified | `2022-12-21` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -71,18 +72,21 @@ sudo pkexec /bin/sh
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor needs root level access to edit the sudoers file.
+Threat actor needs root level access to edit the sudoers file.
 
-Domains: Enterprise
-Targets: Control Server, Remote access
-Platforms: Linux**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Data Breach; Identity Theft; Impairement | - |
-| Leverage | Elevation of privilege; Dwelling; Infrastructure Compromise | - |
+| Impact | Business disruption<br>Data Breach<br>Identity Theft<br>Impairement | Business disruption<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Elevation of privilege<br>Dwelling<br>Infrastructure Compromise | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 

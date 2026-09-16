@@ -1,14 +1,15 @@
 # Windows system links used for file redirection attack
 
 ## Metadata
-
-- **UUID**: `9fc6fdcd-c06e-4f7b-8562-a6753d8be683`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-04-24`
-- **Modified**: `2024-06-25`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `9fc6fdcd-c06e-4f7b-8562-a6753d8be683` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-04-24` |
+| Modified | `2024-06-25` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -83,20 +84,34 @@ content in the ADS is executed without the user's knowledge.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs an initial access to the system with 
+A threat actor needs an initial access to the system with 
 standard user rights.
 
-Domains: Enterprise
-Cve: CVE-2020-0787
-Targets: Workstations, Control Server, End-user, Desktop, Directory, Remote access, System admin
-Platforms: Windows, Azure AD, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Impairement; Nuisance; Data Breach; Reputational Damages | - |
-| Leverage | Infrastructure Compromise; Dwelling; Elevation of privilege; Tampering | - |
+| Impact | Impairement<br>Nuisance<br>Data Breach<br>Reputational Damages | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Infrastructure Compromise<br>Dwelling<br>Elevation of privilege<br>Tampering | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

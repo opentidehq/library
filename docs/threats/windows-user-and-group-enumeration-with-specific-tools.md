@@ -1,14 +1,15 @@
 # Windows User and Group Enumeration with specific tools
 
 ## Metadata
-
-- **UUID**: `fe243f7f-ffc5-49c0-94e6-293ae2411ad6`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-01-29`
-- **Modified**: `2024-02-06`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `fe243f7f-ffc5-49c0-94e6-293ae2411ad6` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-01-29` |
+| Modified | `2024-02-06` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -48,12 +49,15 @@ tool Bloodhound.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries can take advantage of already compromised system (Windows or 
+Adversaries can take advantage of already compromised system (Windows or 
 Linux OS or OSX) to run commands.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Directory
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
@@ -100,12 +104,14 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-fe243f7f_ffc5_49c0_94e6_293ae2411ad6["Windows User and Group Enumeration with specific tools"]
-3b1026c6_7d04_4b91_ba6f_abc68e993616["Abusing Lolbins to Enumerate Local and Domain Accounts and Groups"]
-fe243f7f_ffc5_49c0_94e6_293ae2411ad6 -->|support::synergize| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+subgraph "Discovery"
+fe243f7f_ffc5_49c0_94e6_293ae2411ad6{{"Windows User and Group<br>Enumeration with<br>specific tools"}}
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+end
+fe243f7f_ffc5_49c0_94e6_293ae2411ad6 <-->|synergize| 3b1026c6_7d04_4b91_ba6f_abc68e993616
 ```
 ### Chaining details
-#### synergize -> Abusing Lolbins to Enumerate Local and Domain Accounts and Groups (`support::synergize`)
+#### synergize -> [Abusing Lolbins to Enumerate Local and Domain Accounts and Groups](abusing-lolbins-to-enumerate-local-and-domain-accounts-and-groups.md) (`3b1026c6-7d04-4b91-ba6f-abc68e993616`) (`support::synergize`)
 Several LOLBins tools are used by adversaries to enumerate 
 groups and users.
 

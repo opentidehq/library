@@ -1,14 +1,15 @@
 # Social engineering without attachment or URL
 
 ## Metadata
-
-- **UUID**: `0cdaee96-8595-4f3f-ba07-758b8be9d359`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2024-10-31`
-- **Modified**: `2025-01-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `0cdaee96-8595-4f3f-ba07-758b8be9d359` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2024-10-31` |
+| Modified | `2025-01-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -51,19 +52,46 @@ Key characteristics of BEC attacks:
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have access to legitimate email accounts or impersonate authority 
+Adversary must have access to legitimate email accounts or impersonate authority 
 figures to trick victims into disclosing sensitive information or transferring funds.
 
-Domains: Enterprise, SaaS, Mobile, Networking
-Targets: Email Platform, Personal Information, Cloud Storage Accounts, Mobile phone
-Platforms: AWS, Azure, Office 365, Windows, macOS, Android, iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Email**
+> Email infrastructure and services
+
+> **AWS::Storage**
+> AWS storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Monetary Loss; Reputational Damages; Identity Theft | - |
-| Leverage | Spoofing; Tampering; Information Disclosure; Elevation of privilege; Fraudulent transaction; Infrastructure Compromise | - |
+| Impact | Data Breach<br>Monetary Loss<br>Reputational Damages<br>Identity Theft | Non-public information has been accessed from the outside, and successfully extracted.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Spoofing<br>Tampering<br>Information Disclosure<br>Elevation of privilege<br>Fraudulent transaction<br>Infrastructure Compromise | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Initiate fraudulent transaction<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Social Engineering | Techniques aimed at the manipulation of people to perform unsafe actions. |
 
@@ -81,24 +109,41 @@ Platforms: AWS, Azure, Office 365, Windows, macOS, Android, iOS**
 ## Chaining
 ```mermaid
 flowchart LR
-0cdaee96_8595_4f3f_ba07_758b8be9d359["Social engineering without attachment or URL"]
-1a68b5eb_0112_424d_a21f_88dda0b6b8df["Spearphishing Link"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-6a7a493a_511a_4c9d_aa9c_4427c832a322["SIM-card swapping"]
-0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|sequence::preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
-1a68b5eb_0112_424d_a21f_88dda0b6b8df -->|sequence::preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84 -->|sequence::preceeds| 6a7a493a_511a_4c9d_aa9c_4427c832a322
+subgraph "Social Engineering"
+0cdaee96_8595_4f3f_ba07_758b8be9d359{{"Social engineering<br>without attachment or<br>URL"}}
+end
+subgraph "Reconnaissance"
+2900d389_3098_49d3_8166_5b2612d03576{{"Azure - Gather User<br>Information"}}
+end
+subgraph "Delivery"
+58b98d75_fc63_4662_8908_a2a7f4200902{{"Spearphishing with an<br>attachment extension<br>.rdp"}}
+06c60af1_5fa8_493c_bf9b_6b2e215819f1{{"Social engineering<br>attack using Microsoft<br>Teams"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+subgraph "Credential Access"
+6a7a493a_511a_4c9d_aa9c_4427c832a322{{"SIM-card swapping"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 0cdaee96_8595_4f3f_ba07_758b8be9d359
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+58b98d75_fc63_4662_8908_a2a7f4200902 -->|implements| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 6a7a493a_511a_4c9d_aa9c_4427c832a322
+6a7a493a_511a_4c9d_aa9c_4427c832a322 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
 ```
 ### Chaining details
-#### preceeds -> Spearphishing Link (`sequence::preceeds`)
+#### preceeds -> [Spearphishing Link](spearphishing-link.md) (`1a68b5eb-0112-424d-a21f-88dda0b6b8df`) (`sequence::preceeds`)
 After an initial conversation over email, attacker sends the user a malicious link
 
 - **Target UUID**: `1a68b5eb-0112-424d-a21f-88dda0b6b8df`
-#### preceeds -> Spearphishing Attachment (`sequence::preceeds`)
+#### preceeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::preceeds`)
 After an initial conversation over email, attacker sends the user a malicious attachment
 
 - **Target UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`
-#### preceeds -> SIM-card swapping (`sequence::preceeds`)
+#### preceeds -> [SIM-card swapping](sim-card-swapping.md) (`6a7a493a-511a-4c9d-aa9c-4427c832a322`) (`sequence::preceeds`)
 #After an initial conversation over email, attacker tricks the user pretending to be from IT Helpdesk to swap the SIM card
 
 - **Target UUID**: `6a7a493a-511a-4c9d-aa9c-4427c832a322`

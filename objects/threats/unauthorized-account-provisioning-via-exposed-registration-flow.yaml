@@ -48,8 +48,15 @@ threat:
     - Application Layer::HTTP
     - Entra ID
   severity: Substantial incident
-  leverage: New Accounts; Elevation of privilege; Information Disclosure
-  impact: Data Breach; Identity Theft; Business disruption; Legal and regulatory
+  leverage:
+    - New Accounts
+    - Elevation of privilege
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Identity Theft
+    - Business disruption
+    - Legal and regulatory
   viability: Likely
   description: |-
     An adversary provisions an unauthorised account through exposed registration or account lifecycle

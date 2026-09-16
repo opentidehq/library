@@ -1,14 +1,15 @@
 # Mobile device compromised by spyware app
 
 ## Metadata
-
-- **UUID**: `99c78650-8e19-4756-90fb-2573242577ca`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2022-09-12`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `99c78650-8e19-4756-90fb-2573242577ca` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2022-09-12` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -43,19 +44,31 @@ without the permission or knowledge of the user.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries can abuse iOS or Android devices which are vulnerable
+Adversaries can abuse iOS or Android devices which are vulnerable
 to a zero-click or zero-day exploitation, without user intervention.
 
-Domains: Mobile
-Targets: End-user, Executive, Manager, Mobile phone, Personal Information, Tablet
-Platforms: Android, iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft; Reputational Damages | - |
-| Leverage | Alter behavior; Information Disclosure; Modify configuration; Modify data; Software installation; Tampering | - |
+| Impact | Data Breach<br>Identity Theft<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Alter behavior<br>Information Disclosure<br>Modify configuration<br>Modify data<br>Software installation<br>Tampering | Influence or alter human behavior<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services<br>Modify stored data or content<br>Software installation or code modification<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
 
@@ -74,3 +87,27 @@ Platforms: Android, iOS**
 | `T1517` | [Mobile : Access Notifications](https://attack.mitre.org/techniques/T1517) | Adversaries may collect data within notifications sent by the operating system or other applications. Notifications may contain sensitive data such as one-time authentication codes sent over SMS, email, or other mediums. In the case of Credential Access, adversaries may attempt to intercept one-time code sent to the device. Adversaries can also dismiss notifications to prevent the user from noticing that the notification has arrived and can trigger action buttons contained within notifications.(Citation: ESET 2FA Bypass) |
 | `T1429` | [Mobile : Audio Capture](https://attack.mitre.org/techniques/T1429) | Adversaries may capture audio to collect information by leveraging standard operating system APIs of a mobile device. Examples of audio information adversaries may target include user conversations, surroundings, phone calls, or other sensitive information.      Android and iOS, by default, require that applications request device microphone access from the user.       On Android devices, applications must hold the `RECORD_AUDIO` permission to access the microphone or the `CAPTURE_AUDIO_OUTPUT` permission to access audio output. Because Android does not allow third-party applications to hold the `CAPTURE_AUDIO_OUTPUT` permission by default, only privileged applications, such as those distributed by Google or the device vendor, can access audio output.(Citation: Android Permissions) However, adversaries may be able to gain this access after successfully elevating their privileges. With the `CAPTURE_AUDIO_OUTPUT` permission, adversaries may pass the `MediaRecorder.AudioSource.VOICE_CALL` constant to `MediaRecorder.setAudioOutput`, allowing capture of both voice call uplink and downlink.(Citation: Manifest.permission)      On iOS devices, applications must include the `NSMicrophoneUsageDescription` key in their `Info.plist` file to access the microphone.(Citation: Requesting Auth-Media Capture) |
 | `T1643` | [Mobile : Generate Traffic from Victim](https://attack.mitre.org/techniques/T1643) | Adversaries may generate outbound traffic from devices. This is typically performed to manipulate external outcomes, such as to achieve carrier billing fraud or to manipulate app store rankings or ratings. Outbound traffic is typically generated as SMS messages or general web traffic, but may take other forms as well.  If done via SMS messages, Android apps must hold the `SEND_SMS` permission. Additionally, sending an SMS message requires user consent if the recipient is a premium number. Applications cannot send SMS messages on iOS |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Delivery"
+99c78650_8e19_4756_90fb_2573242577ca{{"Mobile device<br>compromised by spyware<br>app"}}
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3{{"GodFather Banking Trojan"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+subgraph "Defense Evasion"
+4a4a7c81_ca98_4761_8f23_7ef6354e9d1c{{"Android attack using app<br>running on emulator"}}
+end
+subgraph "Objectives"
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0{{"Mobile malware attacks<br>targeting iOS"}}
+end
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|enabled| 99c78650_8e19_4756_90fb_2573242577ca
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 <-->|synergize| 4a4a7c81_ca98_4761_8f23_7ef6354e9d1c
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0 -->|preceeds| 99c78650_8e19_4756_90fb_2573242577ca
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+```

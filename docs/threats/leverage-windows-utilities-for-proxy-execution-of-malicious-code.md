@@ -1,14 +1,15 @@
 # Leverage Windows Utilities for Proxy Execution of Malicious Code
 
 ## Metadata
-
-- **UUID**: `426a0ab5-66e7-4149-82b0-6357a1cf4b4b`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-11-04`
-- **Modified**: `2024-11-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `426a0ab5-66e7-4149-82b0-6357a1cf4b4b` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-11-04` |
+| Modified | `2024-11-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -104,19 +105,28 @@ ShowCommand=7
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actors must have access to a Windows system with user-level privileges 
+Threat actors must have access to a Windows system with user-level privileges 
 where Windows utilities are available.
 
-Domains: Enterprise
-Targets: Workstations, Laptop, Virtual Machines, Public-Facing Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Business disruption; Reputational Damages | - |
-| Leverage | Elevation of privilege; Tampering; Information Disclosure | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Elevation of privilege<br>Tampering<br>Information Disclosure | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -138,12 +148,14 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-426a0ab5_66e7_4149_82b0_6357a1cf4b4b["Leverage Windows Utilities for Proxy Execution of Malicious Code"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-426a0ab5_66e7_4149_82b0_6357a1cf4b4b -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Execution"
+426a0ab5_66e7_4149_82b0_6357a1cf4b4b{{"Leverage Windows<br>Utilities for Proxy<br>Execution of Malicious<br>Code"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+426a0ab5_66e7_4149_82b0_6357a1cf4b4b -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 This TVM is implementing the bigger TVM : Abuse of Windows Utilities
 
 - **Target UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`

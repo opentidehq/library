@@ -1,14 +1,15 @@
 # Azure - Port Mapping
 
 ## Metadata
-
-- **UUID**: `394dde97-4a8c-4b6a-8f8b-c6bf18a7a87f`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2025-07-10`
-- **Modified**: `2025-09-08`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `394dde97-4a8c-4b6a-8f8b-c6bf18a7a87f` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2025-07-10` |
+| Modified | `2025-09-08` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -55,19 +56,31 @@ of the environment, identifying potential entry points for further attacks.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries need an exposed service or port that is accessible from outside the Azure 
+Adversaries need an exposed service or port that is accessible from outside the Azure 
 environment—typically via a public IP and a mapped port (such as SSH, RDP, or web services).
 
-Domains: Public Cloud
-Targets: Virtual Machines, Public-Facing Servers, Network Equipment
-Platforms: Azure, Azure AD**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Switches**
+> Network switches
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption | - |
-| Leverage | Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Monetary Loss<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Business disruption |
+| Leverage | Spoofing<br>Tampering<br>Repudiation<br>Infrastructure Compromise<br>Information Disclosure<br>Elevation of privilege | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Reconnaissance | Researching, identifying and selecting targets using active or passive reconnaissance. |
 
@@ -81,26 +94,46 @@ Platforms: Azure, Azure AD**
 ## Chaining
 ```mermaid
 flowchart LR
-394dde97_4a8c_4b6a_8f8b_c6bf18a7a87f["Azure - Port Mapping"]
-4e7eae8e_6615_41f2_bfe1_21a04f7a6088["Azure - Gather Victim Data"]
-b1593e0b_1b3b_462d_9ab6_21d1c136469d["Azure - Gather Resource Data"]
-53063205_4404_4e6d_a2f5_d566c6085d96["Data collection using SharpHound, SoapHound, Bloodhound and Azurehound"]
-394dde97_4a8c_4b6a_8f8b_c6bf18a7a87f -->|support::enabled| 4e7eae8e_6615_41f2_bfe1_21a04f7a6088
-4e7eae8e_6615_41f2_bfe1_21a04f7a6088 -->|support::enabled| b1593e0b_1b3b_462d_9ab6_21d1c136469d
-b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|support::enabled| 53063205_4404_4e6d_a2f5_d566c6085d96
+subgraph "Reconnaissance"
+394dde97_4a8c_4b6a_8f8b_c6bf18a7a87f{{"Azure - Port Mapping"}}
+4e7eae8e_6615_41f2_bfe1_21a04f7a6088{{"Azure - Gather Victim<br>Data"}}
+b1593e0b_1b3b_462d_9ab6_21d1c136469d{{"Azure - Gather Resource<br>Data"}}
+53063205_4404_4e6d_a2f5_d566c6085d96{{"Data collection using<br>SharpHound, SoapHound,<br>Bloodhound and<br>Azurehound"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+subgraph "Credential Access"
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Lateral Movement"
+9bb31c65_8abd_48fc_afe3_8aca76109737{{"Azure - Modify<br>federation trust to<br>accept externally signed<br>tokens"}}
+end
+394dde97_4a8c_4b6a_8f8b_c6bf18a7a87f -->|enabled| 4e7eae8e_6615_41f2_bfe1_21a04f7a6088
+394dde97_4a8c_4b6a_8f8b_c6bf18a7a87f -->|enabled| b1593e0b_1b3b_462d_9ab6_21d1c136469d
+394dde97_4a8c_4b6a_8f8b_c6bf18a7a87f -->|enabled| 53063205_4404_4e6d_a2f5_d566c6085d96
+4e7eae8e_6615_41f2_bfe1_21a04f7a6088 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+4e7eae8e_6615_41f2_bfe1_21a04f7a6088 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|succeeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|succeeds| 9bb31c65_8abd_48fc_afe3_8aca76109737
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+53063205_4404_4e6d_a2f5_d566c6085d96 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+53063205_4404_4e6d_a2f5_d566c6085d96 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### enabled -> Azure - Gather Victim Data (`support::enabled`)
+#### enabled -> [Azure - Gather Victim Data](azure-gather-victim-data.md) (`4e7eae8e-6615-41f2-bfe1-21a04f7a6088`) (`support::enabled`)
 An adversary successfully compromises a user's Azure Active Directory account credentials 
 or session token through phishing, credential theft, or token theft.
 
 - **Target UUID**: `4e7eae8e-6615-41f2-bfe1-21a04f7a6088`
-#### enabled -> Azure - Gather Resource Data (`support::enabled`)
+#### enabled -> [Azure - Gather Resource Data](azure-gather-resource-data.md) (`b1593e0b-1b3b-462d-9ab6-21d1c136469d`) (`support::enabled`)
 The attacker obtains credentials (via phishing, password spray, leaked keys) granting 
 at least Reader access to the target Azure tenant.
 
 - **Target UUID**: `b1593e0b-1b3b-462d-9ab6-21d1c136469d`
-#### enabled -> Data collection using SharpHound, SoapHound, Bloodhound and Azurehound (`support::enabled`)
+#### enabled -> [Data collection using SharpHound, SoapHound, Bloodhound and Azurehound](data-collection-using-sharphound-soaphound-bloodhound-and-azurehound.md) (`53063205-4404-4e6d-a2f5-d566c6085d96`) (`support::enabled`)
 Attackers need to establish an initial presence within the target environment, in 
 order to gather sufficient permissions to execute the data collection tools.
 

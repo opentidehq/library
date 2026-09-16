@@ -1,14 +1,15 @@
 # Tampering system firewall on endpoint
 
 ## Metadata
-
-- **UUID**: `be73532a-1994-4db2-945e-ccdf586e2551`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-12-16`
-- **Modified**: `2024-12-16`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `be73532a-1994-4db2-945e-ccdf586e2551` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-12-16` |
+| Modified | `2024-12-16` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -50,19 +51,34 @@ or remove firewall protections.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have administrative privileges on the targeted operating system 
+Adversary must have administrative privileges on the targeted operating system 
 with the necessary permissions to modify system firewall configurations.
 
-Domains: Enterprise
-Targets: Firewall, Workstations, Public-Facing Servers
-Platforms: Windows, macOS, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Firewalls**
+> Network firewall appliances and software
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Business disruption; Operating costs; Legal and regulatory | - |
-| Leverage | Modify configuration; Denial of Service; Tampering | - |
+| Impact | Data Breach<br>Business disruption<br>Operating costs<br>Legal and regulatory | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Increased operating costs<br>Legal and regulatory costs |
+| Leverage | Modify configuration<br>Denial of Service<br>Tampering | Modify configuration or services<br>Threat action attempting to deny access to valid users, such as by making a web server temporarily unavailable or unusable.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

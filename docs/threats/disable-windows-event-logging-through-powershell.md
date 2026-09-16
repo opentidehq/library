@@ -1,14 +1,15 @@
 # Disable Windows event logging through PowerShell
 
 ## Metadata
-
-- **UUID**: `e5e4397f-eea4-423b-8b71-9b30d34a9d59`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2022-01-06`
-- **Modified**: `2022-01-06`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `e5e4397f-eea4-423b-8b71-9b30d34a9d59` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2022-01-06` |
+| Modified | `2022-01-06` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -71,13 +72,34 @@ threat actor wants to disable.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor has gained control over a Windows endpoint and has
+A threat actor has gained control over a Windows endpoint and has
 privileges to disable event logging by using PowerShell commands or
 scripts.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Desktop, Laptop, Server Logs, Control Server, Public-Facing Servers, Web Application Servers, Workstations, Virtual Machines
-Platforms: Windows, PowerShell, AWS, Azure**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Log Management**
+> Dedicated log management and log aggregation solutions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

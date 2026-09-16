@@ -1,14 +1,15 @@
 # Use Windows utilities to manipulate a local account or group
 
 ## Metadata
-
-- **UUID**: `596d294a-9aa8-41b2-9507-5c9d605de6b4`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2024-11-06`
-- **Modified**: `2025-02-10`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `596d294a-9aa8-41b2-9507-5c9d605de6b4` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2024-11-06` |
+| Modified | `2025-02-10` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -78,19 +79,31 @@ $user.SetPassword("NewP@ssw0rd!")
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actors must have access to a Windows system with sufficient privileges 
+Threat actors must have access to a Windows system with sufficient privileges 
 to execute administrative utilities.
 
-Domains: Enterprise
-Targets: Workstations, Laptop, Directory, Customer, End-user, Code Repositories, Other
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Code Repositories**
+> Source code hosting and version control platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Reputational Damages; Business disruption; Operating costs | - |
-| Leverage | Elevation of privilege; Modify configuration; New Accounts; Information Disclosure; Infrastructure Compromise; Dwelling; Tampering | - |
+| Impact | Data Breach<br>Reputational Damages<br>Business disruption<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption<br>Increased operating costs |
+| Leverage | Elevation of privilege<br>Modify configuration<br>New Accounts<br>Information Disclosure<br>Infrastructure Compromise<br>Dwelling<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Modify configuration or services<br>Ability to create new arbitrary user accounts.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -114,32 +127,37 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-596d294a_9aa8_41b2_9507_5c9d605de6b4["Use Windows utilities to manipulate a local account or group"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-e3d7cb59_7aca_4c3d_b488_48c785930b6d["PowerShell usage for credential manipulation"]
-06523ed4_7881_4466_9ac5_f8417e972d13["Using a Windows command prompt for credential manipulation"]
-66277f27_d57b_47f8_bc9c_b024c7cd1313["Abuse Windows Utilities to Enable Persistence"]
-596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745 -->|sequence::preceeds| e3d7cb59_7aca_4c3d_b488_48c785930b6d
-e3d7cb59_7aca_4c3d_b488_48c785930b6d -->|sequence::preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
-06523ed4_7881_4466_9ac5_f8417e972d13 -->|sequence::preceeds| 66277f27_d57b_47f8_bc9c_b024c7cd1313
+subgraph "Execution"
+596d294a_9aa8_41b2_9507_5c9d605de6b4{{"Use Windows utilities to<br>manipulate a local<br>account or group"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+e3d7cb59_7aca_4c3d_b488_48c785930b6d{{"PowerShell usage for<br>credential manipulation"}}
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+end
+subgraph "Persistence"
+66277f27_d57b_47f8_bc9c_b024c7cd1313{{"Abuse Windows Utilities<br>to Enable Persistence"}}
+end
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 66277f27_d57b_47f8_bc9c_b024c7cd1313
+66277f27_d57b_47f8_bc9c_b024c7cd1313 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 This TVM is implementing the bigger TVM : Abuse of Windows Utilities
 
 - **Target UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`
-#### preceeds -> PowerShell usage for credential manipulation (`sequence::preceeds`)
+#### preceeds -> [PowerShell usage for credential manipulation](powershell-usage-for-credential-manipulation.md) (`e3d7cb59-7aca-4c3d-b488-48c785930b6d`) (`sequence::preceeds`)
 PowerShell cmdlets and functions can be used to list and manipulate
 current user account (example Get-Credential).
 
 - **Target UUID**: `e3d7cb59-7aca-4c3d-b488-48c785930b6d`
-#### preceeds -> Using a Windows command prompt for credential manipulation (`sequence::preceeds`)
+#### preceeds -> [Using a Windows command prompt for credential manipulation](using-a-windows-command-prompt-for-credential-manipulation.md) (`06523ed4-7881-4466-9ac5-f8417e972d13`) (`sequence::preceeds`)
 A threat actor can use command prompt (CMD) utility to create,
 modify, delete or read a local user account.
 
 - **Target UUID**: `06523ed4-7881-4466-9ac5-f8417e972d13`
-#### preceeds -> Abuse Windows Utilities to Enable Persistence (`sequence::preceeds`)
+#### preceeds -> [Abuse Windows Utilities to Enable Persistence](abuse-windows-utilities-to-enable-persistence.md) (`66277f27-d57b-47f8-bc9c-b024c7cd1313`) (`sequence::preceeds`)
 A threat actor can abuse drop a web shell on Windows or
 to exploit native Windows tools and applications for
 malicious purposes (example: Microsoft Web Deployment

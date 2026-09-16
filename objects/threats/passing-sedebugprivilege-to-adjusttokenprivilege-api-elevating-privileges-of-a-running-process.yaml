@@ -38,8 +38,13 @@ threat:
     - Remote Access
     - Web Servers
   severity: Moderate incident
-  leverage: Elevation of privilege; Modify privileges; Spoofing
-  impact: Impairement; Data Breach
+  leverage:
+    - Elevation of privilege
+    - Modify privileges
+    - Spoofing
+  impact:
+    - Impairement
+    - Data Breach
   viability: Likely
   description: |-
     A threat actor can attempt to escalate privileges from a user or 

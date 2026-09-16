@@ -1,14 +1,15 @@
 # Abnormal Windows service creation or modification attempt
 
 ## Metadata
-
-- **UUID**: `f16deda4-65b1-4825-8042-fe15524d0ce1`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2023-02-07`
-- **Modified**: `2024-05-23`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f16deda4-65b1-4825-8042-fe15524d0ce1` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2023-02-07` |
+| Modified | `2024-05-23` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -52,18 +53,33 @@ some of the related ones.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **An attacker has already compromised a Windows endpoint.
+An attacker has already compromised a Windows endpoint.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Workstations, Laptop, Control Server, Desktop, Input/Output Server, Public-Facing Servers, Web Application Servers, End-user, Other
-Platforms: Windows, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Server**
+> Microsoft Windows Server editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Nuisance; Impairement; Lose Capabilities | - |
-| Leverage | Modify configuration; Tampering | - |
+| Impact | Nuisance<br>Impairement<br>Lose Capabilities | Small and mostly inconsequential to day to day operations, but noticed.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Modify configuration<br>Tampering | Modify configuration or services<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 

@@ -1,14 +1,15 @@
 # CrackMapExec (CME) on endpoints or being downloaded
 
 ## Metadata
-
-- **UUID**: `79357f02-6868-4bf5-9f21-1cfd6ab03056`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2022-10-27`
-- **Modified**: `2022-10-28`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `79357f02-6868-4bf5-9f21-1cfd6ab03056` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2022-10-27` |
+| Modified | `2022-10-28` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -35,20 +36,29 @@ is an important baseline security detection.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **CrackMapExec is used by threat actors on compromised endpoints to for
+CrackMapExec is used by threat actors on compromised endpoints to for
 credential access or a number of other techniques. CrackMapExec (CME)
 is a swiss army knife type of tool.
 
-Domains: Enterprise, Public Cloud
-Targets: Virtual Machines, Workstations
-Platforms: Windows, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance | - |
-| Leverage | Modify privileges; Elevation of privilege; Dwelling; Infrastructure Compromise; Information Disclosure; Modify configuration; Spoofing; Tampering | - |
+| Impact | Impairement<br>Business disruption<br>Competitive disadvantage<br>Data Breach<br>Reputational Damages<br>Legal and regulatory<br>Monetary Loss<br>Nuisance | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Business disruption<br>Loss of competitive advantage<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Legal and regulatory costs<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Small and mostly inconsequential to day to day operations, but noticed. |
+| Leverage | Modify privileges<br>Elevation of privilege<br>Dwelling<br>Infrastructure Compromise<br>Information Disclosure<br>Modify configuration<br>Spoofing<br>Tampering | Modify privileges or permissions<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 

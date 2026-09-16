@@ -16,8 +16,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Privilege Escalation
   att&ck:
     - T1098.003
@@ -32,8 +32,10 @@ threat:
     - Container Runtime::Docker
     - Azure::Compute::Virtual Machines
   severity: Substantial incident
-  leverage: Modify privileges
-  impact: Data Breach
+  leverage:
+    - Modify privileges
+  impact:
+    - Data Breach
   viability: Likely
   description: |-
     Once adversaries gained a set of creentials, they will

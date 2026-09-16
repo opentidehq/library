@@ -1,14 +1,15 @@
 # Pass the Primary Refresh Token (PRT)
 
 ## Metadata
-
-- **UUID**: `b1b6d2d7-0832-46fc-a3e5-6e6411179c45`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-30`
-- **Modified**: `2025-06-30`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `b1b6d2d7-0832-46fc-a3e5-6e6411179c45` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-30` |
+| Modified | `2025-06-30` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -63,21 +64,48 @@ passwords change.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries need initial access to a device that has a Primary Refresh Token (PRT) 
+Adversaries need initial access to a device that has a Primary Refresh Token (PRT) 
 issued to a legitimate user. Specifically, this means compromising a Windows 10 
 or newer device that is Azure AD-joined or hybrid Azure AD-joined and on which the 
 user has logged in, thus generating a PRT.
 
-Domains: Public Cloud, Enterprise, SaaS
-Targets: Cloud Storage Accounts, Identity Services, API Endpoints, Cloud Portal, Serverless, Virtual Machines, Server Authentication
-Platforms: Azure, Windows, Azure AD, Office 365**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Serverless**
+> Cloud-agnostic serverless compute (when not provider-specific)
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Kerberos**
+> Kerberos network authentication protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption | - |
-| Leverage | Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Monetary Loss<br>Lose Capabilities<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Business disruption |
+| Leverage | Spoofing<br>Tampering<br>Elevation of privilege<br>Information Disclosure<br>Modify configuration<br>Modify privileges | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services<br>Modify privileges or permissions |
 | Viability | Likely | Probable (probably) - 55-80% |
 
 ## ATT&CK Techniques
@@ -90,18 +118,24 @@ Platforms: Azure, Windows, Azure AD, Office 365**
 ## Chaining
 ```mermaid
 flowchart LR
-b1b6d2d7_0832_46fc_a3e5_6e6411179c45["Pass the Primary Refresh Token (PRT)"]
-66aafb61_9a46_4287_8b40_4785b42b77a3["Adversary in the Middle phishing sites to bypass MFA"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-b1b6d2d7_0832_46fc_a3e5_6e6411179c45 -->|sequence::preceeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
-66aafb61_9a46_4287_8b40_4785b42b77a3 -->|sequence::preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+subgraph "Credential Access"
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+b1b6d2d7_0832_46fc_a3e5_6e6411179c45{{"Pass the Primary Refresh<br>Token PRT"}}
+b1b6d2d7_0832_46fc_a3e5_6e6411179c45 -->|preceeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b1b6d2d7_0832_46fc_a3e5_6e6411179c45 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
 ```
 ### Chaining details
-#### preceeds -> Adversary in the Middle phishing sites to bypass MFA (`sequence::preceeds`)
+#### preceeds -> [Adversary in the Middle phishing sites to bypass MFA](adversary-in-the-middle-phishing-sites-to-bypass-mfa.md) (`66aafb61-9a46-4287-8b40-4785b42b77a3`) (`sequence::preceeds`)
 Gain access to user's device via phishing link.
 
 - **Target UUID**: `66aafb61-9a46-4287-8b40-4785b42b77a3`
-#### preceeds -> Spearphishing Attachment (`sequence::preceeds`)
+#### preceeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::preceeds`)
 Gain access to user's device via malware distributed on email attachment.
 
 - **Target UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`

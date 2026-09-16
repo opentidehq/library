@@ -1,14 +1,15 @@
 # IP Discovery in Azure
 
 ## Metadata
-
-- **UUID**: `777e22c5-e47d-42a2-a803-42a101dee575`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-07-30`
-- **Modified**: `2025-08-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `777e22c5-e47d-42a2-a803-42a101dee575` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-07-30` |
+| Modified | `2025-08-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -68,20 +69,35 @@ administrative activity, making detection challenging unless closely monitored.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have access to an Azure environment, either through compromised
+Adversary must have access to an Azure environment, either through compromised
 credentials, exposed keys, or abused privileges, and be able to use Azure Portal,
 Azure CLI, PowerShell, or Azure REST APIs.
 
-Domains: Public Cloud, Private Cloud
-Targets: Virtual Machines, Public-Facing Servers, Cloud Storage Accounts, Cloud Portal
-Platforms: Azure, Azure AD, PowerShell**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **AWS::Storage**
+> AWS storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Business disruption | - |
-| Leverage | Information Disclosure; Infrastructure Compromise | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Business disruption |
+| Leverage | Information Disclosure<br>Infrastructure Compromise | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Reconnaissance | Researching, identifying and selecting targets using active or passive reconnaissance. |
 

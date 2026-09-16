@@ -1,14 +1,15 @@
 # Duplicate an access token in a new process to elevate privileges
 
 ## Metadata
-
-- **UUID**: `349348ca-66f5-41d2-8610-6bb61556d773`
-- **Schema**: `threat::1.0`
-- **Version**: `4`
-- **Created**: `2022-11-18`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `349348ca-66f5-41d2-8610-6bb61556d773` |
+| Schema | `threat::1.0` |
+| Version | `4` |
+| Created | `2022-11-18` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -48,15 +49,24 @@ in a high integrity process (token duplication)
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actors are using already compromised Windows environment to create 
+Threat actors are using already compromised Windows environment to create 
 a new process with a duplicated token. Their purpose is often to elevate 
 their privileges to SYSTEM level access (NT AUTHORITY\SYSTEM), but the same 
 threat vector can also be used for defense evasion and other purposes by 
 duplicating other access token types and privilege levels.
 
-Domains: Enterprise, Public Cloud
-Targets: Auth token, Control Server, Desktop, Laptop
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
@@ -71,3 +81,17 @@ Platforms: Windows**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1134.002` | [Access Token Manipulation: Create Process with Token](https://attack.mitre.org/techniques/T1134/002) | Adversaries may create a new process with an existing token to escalate privileges and bypass access controls. Processes can be created with the token and resulting security context of another user using features such as <code>CreateProcessWithTokenW</code> and <code>runas</code>.(Citation: Microsoft RunAs)  Creating processes with a token not associated with the current user may require the credentials of the target user, specific privileges to impersonate that user, or access to the token to be used. For example, the token could be duplicated via [Token Impersonation/Theft](https://attack.mitre.org/techniques/T1134/001) or created via [Make and Impersonate Token](https://attack.mitre.org/techniques/T1134/003) before being used to create a process.  While this technique is distinct from [Token Impersonation/Theft](https://attack.mitre.org/techniques/T1134/001), the techniques can be used in conjunction where a token is duplicated and then used to create a new process. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Privilege Escalation"
+349348ca_66f5_41d2_8610_6bb61556d773{{"Duplicate an access<br>token in a new process<br>to elevate privileges"}}
+2404055a_10f8_4c50_9e9b_0f26756e7838{{"Access token<br>manipulation"}}
+end
+subgraph "Defense Evasion"
+1962f0c7_2f2f_4b4c_bab0_733af8033595{{"New Windows access token<br>creation"}}
+end
+1962f0c7_2f2f_4b4c_bab0_733af8033595 -->|succeeds| 349348ca_66f5_41d2_8610_6bb61556d773
+1962f0c7_2f2f_4b4c_bab0_733af8033595 -->|succeeds| 2404055a_10f8_4c50_9e9b_0f26756e7838
+```

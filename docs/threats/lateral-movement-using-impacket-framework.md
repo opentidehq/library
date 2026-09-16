@@ -1,14 +1,15 @@
 # Lateral movement using Impacket framework
 
 ## Metadata
-
-- **UUID**: `75415bc5-6615-487e-a69c-7a4ffc196996`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-09-17`
-- **Modified**: `2024-09-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `75415bc5-6615-487e-a69c-7a4ffc196996` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-09-17` |
+| Modified | `2024-09-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -45,18 +46,24 @@ object access` for successful and failed access events. ref [2, 3]
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs initial access to move laterally through the network.
+A threat actor needs initial access to move laterally through the network.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Customer, Laptop, Workstations, End-user, Other
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Identity Theft; Business disruption; Impairement; Nuisance | - |
-| Leverage | Dwelling; Elevation of privilege | - |
+| Impact | Identity Theft<br>Business disruption<br>Impairement<br>Nuisance | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Small and mostly inconsequential to day to day operations, but noticed. |
+| Leverage | Dwelling<br>Elevation of privilege | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -76,12 +83,24 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-75415bc5_6615_487e_a69c_7a4ffc196996["Lateral movement using Impacket framework"]
-3b1026c6_7d04_4b91_ba6f_abc68e993616["Abusing Lolbins to Enumerate Local and Domain Accounts and Groups"]
-75415bc5_6615_487e_a69c_7a4ffc196996 -->|sequence::succeeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+subgraph "Credential Access"
+75415bc5_6615_487e_a69c_7a4ffc196996{{"Lateral movement using<br>Impacket framework"}}
+end
+subgraph "Privilege Escalation"
+02810748_52b5_4d3a_a788_29a948538cd2{{"Admin SMB shares<br>privilege escalation<br>exploit"}}
+end
+subgraph "Lateral Movement"
+f33a693b_04cd_476e_9067_9deab561e55a{{"Move laterally with SMB<br>by abusing WMI"}}
+end
+subgraph "Discovery"
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+end
+02810748_52b5_4d3a_a788_29a948538cd2 -->|implements| 75415bc5_6615_487e_a69c_7a4ffc196996
+02810748_52b5_4d3a_a788_29a948538cd2 -->|succeeds| f33a693b_04cd_476e_9067_9deab561e55a
+75415bc5_6615_487e_a69c_7a4ffc196996 -->|succeeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
 ```
 ### Chaining details
-#### succeeds -> Abusing Lolbins to Enumerate Local and Domain Accounts and Groups (`sequence::succeeds`)
+#### succeeds -> [Abusing Lolbins to Enumerate Local and Domain Accounts and Groups](abusing-lolbins-to-enumerate-local-and-domain-accounts-and-groups.md) (`3b1026c6-7d04-4b91-ba6f-abc68e993616`) (`sequence::succeeds`)
 A threat actor commonly utilizes living-off-the-land techniques
 after gaining initial access to move laterally through the network.
 

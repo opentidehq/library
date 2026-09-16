@@ -33,8 +33,20 @@ threat:
     - AWS::Compute::Lambda
     - Serverless
   severity: Localised incident
-  leverage: Alter behavior; Dwelling; Information Disclosure; Infrastructure Compromise; Modify configuration; Modify data; Tampering
-  impact: Data Breach; IP Loss; Legal and regulatory; Nuisance; Operating costs
+  leverage:
+    - Alter behavior
+    - Dwelling
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Modify configuration
+    - Modify data
+    - Tampering
+  impact:
+    - Data Breach
+    - IP Loss
+    - Legal and regulatory
+    - Nuisance
+    - Operating costs
   viability: Likely
   description: |-
     A Lambda layer is an archive containing additional code, such as libraries,

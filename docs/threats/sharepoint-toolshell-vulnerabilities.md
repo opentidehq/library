@@ -1,14 +1,15 @@
 # SharePoint ToolShell vulnerabilities
 
 ## Metadata
-
-- **UUID**: `55227203-38dc-406b-943a-9c1c6023d1cd`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-07-28`
-- **Modified**: `2025-08-16`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `55227203-38dc-406b-943a-9c1c6023d1cd` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-07-28` |
+| Modified | `2025-08-16` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -63,20 +64,37 @@ guidance for SharePoint vulnerability ref [3],[4].
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Vulnerable SharePoint server allowing unauthenticated requests leading to
+Vulnerable SharePoint server allowing unauthenticated requests leading to
 remote code execution.
 
-Domains: Enterprise
-Cve: CVE-2025-53770, CVE-2025-53771
-Targets: Public-Facing Servers, Customer, End-user, Remote access, System admin
-Platforms: Microsoft SharePoint, Windows**
+## Surface
+> **Microsoft::SharePoint**
+> Microsoft SharePoint document management and collaboration
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
-| Impact | Data Breach; Identity Theft; Reputational Damages | - |
-| Leverage | Infrastructure Compromise; Information Disclosure; Spoofing; Tampering | - |
+| Impact | Data Breach<br>Identity Theft<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Infrastructure Compromise<br>Information Disclosure<br>Spoofing<br>Tampering | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

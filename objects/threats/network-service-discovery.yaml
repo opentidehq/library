@@ -22,8 +22,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0032
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0032
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Discovery
   att&ck:
     - T1046
@@ -59,8 +59,14 @@ threat:
     - Printers::Multi-Function Peripherals
     - Web Servers
   severity: Localised incident
-  leverage: Dwelling; Infrastructure Compromise; Tampering
-  impact: Impairement; Lose Capabilities; Nuisance
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Impairement
+    - Lose Capabilities
+    - Nuisance
   viability: Likely
   description: |-
     Network service discovery is the process of identifying and mapping

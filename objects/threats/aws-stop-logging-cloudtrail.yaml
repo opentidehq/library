@@ -25,8 +25,13 @@ threat:
     - AWS
     - AWS::Compute::EC2
   severity: Moderate incident
-  leverage: Log tampering; Modify configuration; Repudiation
-  impact: Impairement; Lose Capabilities
+  leverage:
+    - Log tampering
+    - Modify configuration
+    - Repudiation
+  impact:
+    - Impairement
+    - Lose Capabilities
   viability: Unlikely
   description: |-
     ### AWS Stop Logging CloudTrail Threat

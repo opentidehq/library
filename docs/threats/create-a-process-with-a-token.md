@@ -1,14 +1,15 @@
 # Create a process with a token
 
 ## Metadata
-
-- **UUID**: `54adba8e-e3f8-43e2-bcd5-7c3cd61112d9`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-08-04`
-- **Modified**: `2022-08-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `54adba8e-e3f8-43e2-bcd5-7c3cd61112d9` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-08-04` |
+| Modified | `2022-08-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -32,19 +33,28 @@ context of a different user.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The victim Window endpoints need to have vulnerable accounts with 
+The victim Window endpoints need to have vulnerable accounts with 
 misconfigured settings that may leak access tokens.
 
-Domains: Enterprise
-Targets: Auth token, Remote access, Identity Services
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Impairement | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise | - |
+| Impact | Identity Theft<br>Impairement | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 

@@ -1,14 +1,15 @@
 # Credential manipulation on local Windows endpoint
 
 ## Metadata
-
-- **UUID**: `ec8201d4-c135-406b-a3b5-4a070e80a2ee`
-- **Schema**: `threat::1.0`
-- **Version**: `4`
-- **Created**: `2023-02-02`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `ec8201d4-c135-406b-a3b5-4a070e80a2ee` |
+| Schema | `threat::1.0` |
+| Version | `4` |
+| Created | `2023-02-02` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -86,11 +87,26 @@ memory dump, for example:
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor is using already compromised Windows endpoint.
+A threat actor is using already compromised Windows endpoint.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Desktop, Laptop, End-user, Workstations, Control Server, System admin, Public-Facing Servers, Web Application Servers
-Platforms: Windows, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
@@ -125,72 +141,98 @@ Platforms: Windows, Active Directory**
 ## Chaining
 ```mermaid
 flowchart LR
-ec8201d4_c135_406b_a3b5_4a070e80a2ee["Credential manipulation on local Windows endpoint"]
-5ea50181_1124_49aa_9d2c_c74103e86fd5["Pass-the-hash on SMB network shares"]
-03cc9593_e7cf_484b_ae9c_684bf6f7199f["Pass the ticket using Kerberos ticket"]
-479a8b31_5f7e_4fd6_94ca_a5556315e1b8["Pass the hash using impersonation within an existing process"]
-4472e2b0_3dca_4d84_aab0_626fcba04fce["Pass the hash attack to elevate privileges"]
-7351e2ca_e198_427c_9cfa_202df36f6e2a["Mimikatz execution on compromised endpoint"]
-06523ed4_7881_4466_9ac5_f8417e972d13["Using a Windows command prompt for credential manipulation"]
-e3d7cb59_7aca_4c3d_b488_48c785930b6d["PowerShell usage for credential manipulation"]
-a566e405_e9db_475f_8447_7875fa127716["Script execution on Windows for credential manipulation"]
-2d0beed6_6520_4114_be1f_24067628e93c["Manipulation of credentials stored in LSASS"]
-ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|sequence::succeeds| 5ea50181_1124_49aa_9d2c_c74103e86fd5
-5ea50181_1124_49aa_9d2c_c74103e86fd5 -->|sequence::succeeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
-03cc9593_e7cf_484b_ae9c_684bf6f7199f -->|sequence::succeeds| 479a8b31_5f7e_4fd6_94ca_a5556315e1b8
-479a8b31_5f7e_4fd6_94ca_a5556315e1b8 -->|sequence::succeeds| 4472e2b0_3dca_4d84_aab0_626fcba04fce
-4472e2b0_3dca_4d84_aab0_626fcba04fce -->|atomicity::implements| 7351e2ca_e198_427c_9cfa_202df36f6e2a
-7351e2ca_e198_427c_9cfa_202df36f6e2a -->|atomicity::implements| 06523ed4_7881_4466_9ac5_f8417e972d13
-06523ed4_7881_4466_9ac5_f8417e972d13 -->|atomicity::implements| e3d7cb59_7aca_4c3d_b488_48c785930b6d
-e3d7cb59_7aca_4c3d_b488_48c785930b6d -->|atomicity::implements| a566e405_e9db_475f_8447_7875fa127716
-a566e405_e9db_475f_8447_7875fa127716 -->|sequence::preceeds| 2d0beed6_6520_4114_be1f_24067628e93c
+subgraph "Credential Access"
+ec8201d4_c135_406b_a3b5_4a070e80a2ee{{"Credential manipulation<br>on local Windows<br>endpoint"}}
+e8761933_3137_41f7_bf7a_2687cac68524{{"ProcDump cookie<br>exfiltration"}}
+b0d6bf74_b204_4a48_9509_4499ed795771{{"Pass-the-cookie Attack"}}
+b5e8300c_6887_48c2_a18d_e3d910478fe8{{"Retrieve browser cookie<br>with Python"}}
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+7351e2ca_e198_427c_9cfa_202df36f6e2a{{"Mimikatz execution on<br>compromised endpoint"}}
+2d0beed6_6520_4114_be1f_24067628e93c{{"Manipulation of<br>credentials stored in<br>LSASS"}}
+end
+subgraph "Lateral Movement"
+5ea50181_1124_49aa_9d2c_c74103e86fd5{{"Pass-the-hash on SMB<br>network shares"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+subgraph "Privilege Escalation"
+479a8b31_5f7e_4fd6_94ca_a5556315e1b8{{"Pass the hash using<br>impersonation within an<br>existing process"}}
+4472e2b0_3dca_4d84_aab0_626fcba04fce{{"Pass the hash attack to<br>elevate privileges"}}
+end
+subgraph "Execution"
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+e3d7cb59_7aca_4c3d_b488_48c785930b6d{{"PowerShell usage for<br>credential manipulation"}}
+a566e405_e9db_475f_8447_7875fa127716{{"Script execution on<br>Windows for credential<br>manipulation"}}
+end
+subgraph "Exploitation"
+02311e3e_b7b8_4369_9e1e_74c0a844ae0f{{"NTLM credentials dumping<br>via SMB connection"}}
+end
+e8761933_3137_41f7_bf7a_2687cac68524 -->|succeeds| ec8201d4_c135_406b_a3b5_4a070e80a2ee
+e8761933_3137_41f7_bf7a_2687cac68524 -->|implements| b0d6bf74_b204_4a48_9509_4499ed795771
+b5e8300c_6887_48c2_a18d_e3d910478fe8 -->|succeeds| ec8201d4_c135_406b_a3b5_4a070e80a2ee
+b5e8300c_6887_48c2_a18d_e3d910478fe8 -->|implements| b0d6bf74_b204_4a48_9509_4499ed795771
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|succeeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 5ea50181_1124_49aa_9d2c_c74103e86fd5
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 479a8b31_5f7e_4fd6_94ca_a5556315e1b8
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 4472e2b0_3dca_4d84_aab0_626fcba04fce
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 7351e2ca_e198_427c_9cfa_202df36f6e2a
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 06523ed4_7881_4466_9ac5_f8417e972d13
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| a566e405_e9db_475f_8447_7875fa127716
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|preceeds| 2d0beed6_6520_4114_be1f_24067628e93c
+5ea50181_1124_49aa_9d2c_c74103e86fd5 -->|succeeds| 02311e3e_b7b8_4369_9e1e_74c0a844ae0f
 ```
 ### Chaining details
-#### succeeds -> Pass-the-hash on SMB network shares (`sequence::succeeds`)
+#### succeeds -> [Pass-the-hash on SMB network shares](pass-the-hash-on-smb-network-shares.md) (`5ea50181-1124-49aa-9d2c-c74103e86fd5`) (`sequence::succeeds`)
 In a **Pass-the-Hash attack (PtH)**, Attackers may use offensive tools to load 
 the NTLM hash and try to connect to SMB network shares that are...
 
 - **Target UUID**: `5ea50181-1124-49aa-9d2c-c74103e86fd5`
-#### succeeds -> Pass the ticket using Kerberos ticket (`sequence::succeeds`)
+#### succeeds -> [Pass the ticket using Kerberos ticket](pass-the-ticket-using-kerberos-ticket.md) (`03cc9593-e7cf-484b-ae9c-684bf6f7199f`) (`sequence::succeeds`)
 Pass-the-Ticket using Kerberos tickets is an advanced method wherein threat 
 actors illicitly extract and exploit Kerberos tickets to gain unauthorized...
 
 - **Target UUID**: `03cc9593-e7cf-484b-ae9c-684bf6f7199f`
-#### succeeds -> Pass the hash using impersonation within an existing process (`sequence::succeeds`)
+#### succeeds -> [Pass the hash using impersonation within an existing process](pass-the-hash-using-impersonation-within-an-existing-process.md) (`479a8b31-5f7e-4fd6-94ca-a5556315e1b8`) (`sequence::succeeds`)
 Adversaries may use a particular flavor of pass the hash - to leverage 
 an acquired handle (hash) on NT AUTHORITY\SYSTEM access token to spawn a 
 new ...
 
 - **Target UUID**: `479a8b31-5f7e-4fd6-94ca-a5556315e1b8`
-#### succeeds -> Pass the hash attack to elevate privileges (`sequence::succeeds`)
+#### succeeds -> [Pass the hash attack to elevate privileges](pass-the-hash-attack-to-elevate-privileges.md) (`4472e2b0-3dca-4d84-aab0-626fcba04fce`) (`sequence::succeeds`)
 Elevating privileges on Windows to System allows a threat actor (or 
 sysadmin) to do things that are not possible without SYSTEM/root 
 privileges.
 
 - **Target UUID**: `4472e2b0-3dca-4d84-aab0-626fcba04fce`
-#### implements -> Mimikatz execution on compromised endpoint (`atomicity::implements`)
+#### implements -> [Mimikatz execution on compromised endpoint](mimikatz-execution-on-compromised-endpoint.md) (`7351e2ca-e198-427c-9cfa-202df36f6e2a`) (`atomicity::implements`)
 Mimikatz is a very versatile tool that comes with a lot of 
 options and capabilities. Detection of known Atomic IOCs of 
 the mimikatz tool itself or...
 
 - **Target UUID**: `7351e2ca-e198-427c-9cfa-202df36f6e2a`
-#### implements -> Using a Windows command prompt for credential manipulation (`atomicity::implements`)
+#### implements -> [Using a Windows command prompt for credential manipulation](using-a-windows-command-prompt-for-credential-manipulation.md) (`06523ed4-7881-4466-9ac5-f8417e972d13`) (`atomicity::implements`)
 Threat actors may use Windows commad prompt commands to search for, access
 in order to manipulate (create, modify, delete, read) user's credentials...
 
 - **Target UUID**: `06523ed4-7881-4466-9ac5-f8417e972d13`
-#### implements -> PowerShell usage for credential manipulation (`atomicity::implements`)
+#### implements -> [PowerShell usage for credential manipulation](powershell-usage-for-credential-manipulation.md) (`e3d7cb59-7aca-4c3d-b488-48c785930b6d`) (`atomicity::implements`)
 Threat actors are using different methods to manipulate user's credentials.
 One example of credential manipulation is by using PowerShell commands or
 ...
 
 - **Target UUID**: `e3d7cb59-7aca-4c3d-b488-48c785930b6d`
-#### implements -> Script execution on Windows for credential manipulation (`atomicity::implements`)
+#### implements -> [Script execution on Windows for credential manipulation](script-execution-on-windows-for-credential-manipulation.md) (`a566e405-e9db-475f-8447-7875fa127716`) (`atomicity::implements`)
 One example of script execution for credential manipulation is the use of a
 Python or other type of script to access and read/change a user's credential...
 
 - **Target UUID**: `a566e405-e9db-475f-8447-7875fa127716`
-#### preceeds -> Manipulation of credentials stored in LSASS (`sequence::preceeds`)
+#### preceeds -> [Manipulation of credentials stored in LSASS](manipulation-of-credentials-stored-in-lsass.md) (`2d0beed6-6520-4114-be1f-24067628e93c`) (`sequence::preceeds`)
 Credentials can be stored in the Local Security Authority Subsystem
 Service (LSASS) process in memory for use by the account. LSASS stores
 credentials...

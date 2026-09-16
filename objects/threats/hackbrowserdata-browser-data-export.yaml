@@ -33,8 +33,12 @@ threat:
     - Windows::Desktop
     - Entra ID
   severity: Moderate incident
-  leverage: Elevation of privilege; Spoofing
-  impact: Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Identity Theft
+    - Impairement
   viability: Environment dependent
   description: |-
     HackBrowserData is a command-line tool for decrypting and exporting data

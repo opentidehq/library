@@ -15,8 +15,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Lateral Movement
   att&ck:
     - T1484.002
@@ -30,8 +30,11 @@ threat:
     - Entra ID
     - Security::SAML
   severity: National cyber emergency
-  leverage: Elevation of privilege; Spoofing
-  impact: Data Breach
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Data Breach
   viability: Almost certain
   description: |-
     Once they acquired sufficient priviledges,attackers add their own certificate as 

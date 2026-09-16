@@ -19,10 +19,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Execution
   att&ck:
     - T1218.005
@@ -39,8 +39,14 @@ threat:
     - Windows::Desktop
     - Web Servers
   severity: Significant incident
-  leverage: Spoofing; Elevation of privilege; Software installation
-  impact: Data Breach; Reputational Damages; Business disruption
+  leverage:
+    - Spoofing
+    - Elevation of privilege
+    - Software installation
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Business disruption
   viability: Likely
   description: |-
     Mshta.exe is a legitimate Microsoft binary used for executing 

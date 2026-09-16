@@ -30,8 +30,15 @@ threat:
     - Database Management
     - Azure::Compute::Virtual Machines
   severity: Substantial incident
-  leverage: Elevation of privilege; New Accounts; Modify configuration
-  impact: Data Breach; Reputational Damages; Identity Theft; Business disruption
+  leverage:
+    - Elevation of privilege
+    - New Accounts
+    - Modify configuration
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Identity Theft
+    - Business disruption
   viability: Likely
   description: |-
     Threat actors may add or modify local user accounts on compromised systems to 

@@ -11,7 +11,7 @@ All objects are `TLP:CLEAR` and licensed under [CC-BY-SA 4.0](LICENSE).
 Generated object pages live under [`docs/`](docs/) (threats, objectives, rules). Refresh locally:
 
 ```bash
-pip install -e ../opentide   # until PyPI publish
+pip install opentide
 opentide generate docs --output docs
 ```
 
@@ -26,7 +26,7 @@ The static site is served under the `/library` base path. CI checks out the expl
 Local preview:
 
 ```bash
-pip install -e ../opentide
+pip install opentide
 export OPENTIDE_REPO_ROOT=$PWD
 export OPENTIDE_EXPLORER_PATH=../explorer
 opentide explorer build --output ./out/explorer --base-path /library
@@ -79,23 +79,26 @@ Import YAML files from this repository into your own OpenTide instance. We recom
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
-pip install -e ../opentide
+pip install opentide
 export OPENTIDE_REPO_ROOT=$PWD
 opentide generate
 opentide validate --strict
 opentide generate docs --output docs
 ```
 
-## Troubleshooting CI
+Install from a sibling `../opentide` checkout only when you need engine changes that are not on PyPI yet:
 
-GitHub Actions workflows that checkout **opentide** or build the **explorer** need read access to private or cross-repo dependencies. Configure **one** of the following as repository secrets (Settings → Secrets and variables → Actions):
+```bash
+pip install -e "../opentide[cli]"
+```
 
-| Secret | Purpose |
-|--------|---------|
-| `GH_APP_ID` + `GH_APP_KEY` | GitHub App installation token (recommended) with `contents:read` on `OpenTideHQ/opentide` and `OpenTideHQ/explorer` |
-| `OPENTIDE_REPO_TOKEN` | PAT or fine-grained token with `contents:read` on those repositories |
+## CI
 
-Without these secrets, jobs that run `opentide generate`, validate against the engine, or `opentide explorer build` will fail at checkout or with missing exports. Local development does not need them when sibling clones (`../opentide`, `../explorer`) are present.
+`opentide` and `explorer` are public. Catalogue CI installs the **released** engine with `pip install opentide` and runs `opentide validate --strict`. It does not need GitHub App, PAT, or deploy-key secrets to clone those repositories.
+
+A separate non-blocking job checks `OpenTideHQ/opentide@development` so engine drift is visible.
+
+`threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens. Released `opentide` 0.1.5 still types those fields as `str` ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189), blocked on [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12)). The PyPI validate job is the published-user contract and stays red until that engine release.
 
 ## Contributing
 

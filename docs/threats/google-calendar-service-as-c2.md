@@ -1,14 +1,15 @@
 # Google Calendar service as C2
 
 ## Metadata
-
-- **UUID**: `3f0b4b8e-6017-406a-9461-740d542d0917`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-11`
-- **Modified**: `2025-07-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `3f0b4b8e-6017-406a-9461-740d542d0917` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-11` |
+| Modified | `2025-07-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -93,22 +94,31 @@ implementing robust security controls to prevent such attacks ref [1], [2].
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor is using social engineering initial technique to entice an
+A threat actor is using social engineering initial technique to entice an
 end-user to open a malicious Google invitation (a mail or calendar
 invitation event) and get infected. 
 
 The goal is an access and maintain of a persistence.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Laptop, Customer, Control Server, Remote access, Other, Workstations
-Platforms: Google Workspace**
+## Surface
+> **Google Workspace**
+> Google Workspace (Gmail, Docs, Drive, Calendar, Meet)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Impairement; Lose Capabilities | - |
-| Leverage | Infrastructure Compromise; Information Disclosure; Modify configuration | - |
+| Impact | Data Breach<br>Impairement<br>Lose Capabilities | Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Infrastructure Compromise<br>Information Disclosure<br>Modify configuration | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 
@@ -128,12 +138,16 @@ Platforms: Google Workspace**
 ## Chaining
 ```mermaid
 flowchart LR
-3f0b4b8e_6017_406a_9461_740d542d0917["Google Calendar service as C2"]
-1a68b5eb_0112_424d_a21f_88dda0b6b8df["Spearphishing Link"]
-3f0b4b8e_6017_406a_9461_740d542d0917 -->|sequence::succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+subgraph "Persistence"
+3f0b4b8e_6017_406a_9461_740d542d0917{{"Google Calendar service<br>as C2"}}
+end
+subgraph "Delivery"
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+3f0b4b8e_6017_406a_9461_740d542d0917 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Link (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Link](spearphishing-link.md) (`1a68b5eb-0112-424d-a21f-88dda0b6b8df`) (`sequence::succeeds`)
 A threat actor initially sent spear phishing emails containing a link to
 the ZIP archive hosted on the exploited government website. The archive
 contains an LNK file, masquerading as a PDF, and a directory ref [1].

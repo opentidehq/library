@@ -42,8 +42,25 @@ threat:
     - Database Management::MongoDB
     - Kerberos
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; New Accounts; Modify configuration; Modify privileges; Modify data; Software installation
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Competitive disadvantage; Lose Capabilities
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Elevation of privilege
+    - New Accounts
+    - Modify configuration
+    - Modify privileges
+    - Modify data
+    - Software installation
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Competitive disadvantage
+    - Lose Capabilities
   viability: Likely
   description: |-
     Persistence through automation runbooks in Azure is a robust and often-overlooked 

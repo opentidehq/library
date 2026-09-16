@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::2dd31182-bae1-48ed-8bb3-805a3df89783
+    - name: misp::2dd31182-bae1-48ed-8bb3-805a3df89783
   killchain: Exploitation
   att&ck:
     - T1011
@@ -31,8 +31,18 @@ threat:
     - Remote Access
     - VPN
   severity: Highly significant incident
-  leverage: Infrastructure Compromise; Elevation of privilege; Log tampering; Modify configuration; Tampering; New Accounts
-  impact: Business disruption; Operating costs; Reputational Damages; Data Breach
+  leverage:
+    - Infrastructure Compromise
+    - Elevation of privilege
+    - Log tampering
+    - Modify configuration
+    - Tampering
+    - New Accounts
+  impact:
+    - Business disruption
+    - Operating costs
+    - Reputational Damages
+    - Data Breach
   viability: Almost certain
   description: |-
     ### chained exploitation of CVE-2023-46805 or CVE-2024-21893 together with CVE-2024-21887.

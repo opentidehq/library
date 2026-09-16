@@ -17,10 +17,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::f02679fa-5e85-4050-8eb5-c2677d93306f
-    - misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
-    - misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
-    - att&ck::G1045
+    - name: misp::f02679fa-5e85-4050-8eb5-c2677d93306f
+    - name: misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
+    - name: misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
+    - name: att&ck::G1045
   killchain: Reconnaissance
   att&ck:
     - T1526
@@ -55,8 +55,21 @@ threat:
     - Database Management::MongoDB
     - Security::SAML
   severity: Significant incident
-  leverage: Information Disclosure; Infrastructure Compromise; Elevation of privilege; Modify configuration; Modify privileges; Modify data
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption; Operating costs
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Elevation of privilege
+    - Modify configuration
+    - Modify privileges
+    - Modify data
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Business disruption
+    - Operating costs
   viability: Likely
   description: |-
     The “Gather Resource Data” technique is a key part of the reconnaissance phase in 

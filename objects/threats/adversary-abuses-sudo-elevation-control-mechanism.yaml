@@ -25,8 +25,15 @@ threat:
     - Linux
     - Remote Access
   severity: Significant incident
-  leverage: Elevation of privilege; Dwelling; Infrastructure Compromise
-  impact: Business disruption; Data Breach; Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Dwelling
+    - Infrastructure Compromise
+  impact:
+    - Business disruption
+    - Data Breach
+    - Identity Theft
+    - Impairement
   viability: Likely
   description: |-
     Sudo is a command-line utility for Unix and Linux-based systems that can

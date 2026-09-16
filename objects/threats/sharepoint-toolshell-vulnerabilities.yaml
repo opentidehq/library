@@ -24,12 +24,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0027
-    - misp::834e0acd-d92a-4e38-bb14-dc4159d7cb32
-    - att&ck::G0128
-    - misp::6bf7e6b6-5917-45a6-9567-f0baba79768c
-    - att&ck::G1019
-    - misp::981402be-3b2d-4310-a7c6-c773aec869c1
+    - name: att&ck::G0027
+    - name: misp::834e0acd-d92a-4e38-bb14-dc4159d7cb32
+    - name: att&ck::G0128
+    - name: misp::6bf7e6b6-5917-45a6-9567-f0baba79768c
+    - name: att&ck::G1019
+    - name: misp::981402be-3b2d-4310-a7c6-c773aec869c1
   killchain: Defense Evasion
   att&ck:
     - T1190
@@ -47,8 +47,15 @@ threat:
     - Remote Access
     - Microsoft::System Center
   severity: Highly significant incident
-  leverage: Infrastructure Compromise; Information Disclosure; Spoofing; Tampering
-  impact: Data Breach; Identity Theft; Reputational Damages
+  leverage:
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Spoofing
+    - Tampering
+  impact:
+    - Data Breach
+    - Identity Theft
+    - Reputational Damages
   viability: Likely
   description: |-
     SharePoint zero-day vulnerabilities, known also as `ToolShell` are affecting

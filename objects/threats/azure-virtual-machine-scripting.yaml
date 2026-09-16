@@ -17,26 +17,26 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - att&ck::G1024
-    - misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - att&ck::G0022
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - misp::4f69ec6d-cb6b-42af-b8e2-920a2aa4be10
-    - att&ck::G0082
-    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
-    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
-    - misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f
-    - misp::a47b79ae-7a0c-4308-9efc-294af19cc795
-    - att&ck::G0143
-    - att&ck::G1043
-    - att&ck::G0108
-    - att&ck::G0114
-    - misp::b7497d28-02de-4722-8b97-1fc53e1d1b68
-    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
-    - misp::98be4300-a9ef-11e8-9a95-bb9221083cfc
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G1024
+    - name: misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0022
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: misp::4f69ec6d-cb6b-42af-b8e2-920a2aa4be10
+    - name: att&ck::G0082
+    - name: misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - name: misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - name: misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f
+    - name: misp::a47b79ae-7a0c-4308-9efc-294af19cc795
+    - name: att&ck::G0143
+    - name: att&ck::G1043
+    - name: att&ck::G0108
+    - name: att&ck::G0114
+    - name: misp::b7497d28-02de-4722-8b97-1fc53e1d1b68
+    - name: misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - name: misp::98be4300-a9ef-11e8-9a95-bb9221083cfc
   killchain: Execution
   att&ck:
     - T1059
@@ -90,8 +90,15 @@ threat:
     - Linux
     - Azure::Compute::Virtual Machines
   severity: Significant incident
-  leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
+  leverage:
+    - Elevation of privilege
+    - Information Disclosure
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
   viability: Likely
   description: |-
     This threat vector refers to adversaries running scripts or commands directly 

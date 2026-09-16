@@ -16,8 +16,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::3b238f3a-c67a-4a9e-b474-dc3897e00129
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::3b238f3a-c67a-4a9e-b474-dc3897e00129
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Persistence
   att&ck:
     - T1133
@@ -74,8 +74,17 @@ threat:
     - Azure::Compute::Virtual Machines
     - Application Layer::HTTP
   severity: Significant incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Modify configuration
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Modify configuration
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
   viability: Likely
   description: |-
     The following threat vector refers to a set of persistence techniques where an adversary 

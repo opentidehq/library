@@ -1,14 +1,15 @@
 # Cron manipulation
 
 ## Metadata
-
-- **UUID**: `22c2fc38-93f5-41ee-be2d-a7737fa2b936`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-01-03`
-- **Modified**: `2025-01-03`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `22c2fc38-93f5-41ee-be2d-a7737fa2b936` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-01-03` |
+| Modified | `2025-01-03` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -37,19 +38,28 @@ are relaunched even after a reboot.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor must already have privileged or administrative-level access 
+Threat actor must already have privileged or administrative-level access 
 on a Linux or Unix-like system to insert or modify cron entries.
 
-Domains: Enterprise
-Targets: Public-Facing Servers, Workstations, Laptop
-Platforms: Linux, macOS**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Business disruption; Operating costs; Reputational Damages | - |
-| Leverage | Dwelling; Modify configuration; Elevation of privilege | - |
+| Impact | Data Breach<br>Business disruption<br>Operating costs<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Increased operating costs<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Modify configuration<br>Elevation of privilege | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Modify configuration or services<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 

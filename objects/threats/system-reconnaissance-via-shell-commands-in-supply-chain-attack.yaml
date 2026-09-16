@@ -39,8 +39,11 @@ threat:
   surface:
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Information Disclosure
-  impact: Data Breach; Business disruption
+  leverage:
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Business disruption
   viability: Likely
   description: |-
     ## Executive Summary

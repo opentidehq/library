@@ -22,10 +22,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0032
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G0016
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0032
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0016
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Exfiltration
   att&ck:
     - T1567.001
@@ -39,8 +39,13 @@ threat:
     - Development
     - Windows::Desktop
   severity: Localised incident
-  leverage: Information Disclosure; Infrastructure Compromise
-  impact: Data Breach; Reputational Damages; Impairement
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Impairement
   viability: Environment dependent
   description: |-
     A threat actor can clone legit repositories, embed malicious code

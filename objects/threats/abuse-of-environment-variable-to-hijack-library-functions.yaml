@@ -17,10 +17,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0139
-    - misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
-    - att&ck::G0067
-    - misp::50cd027f-df14-40b2-aa22-bf5de5061163
+    - name: att&ck::G0139
+    - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
+    - name: att&ck::G0067
+    - name: misp::50cd027f-df14-40b2-aa22-bf5de5061163
   killchain: Privilege Escalation
   att&ck:
     - T1574.006
@@ -36,8 +36,17 @@ threat:
     - Web Servers
     - Log Management
   severity: Significant incident
-  leverage: Elevation of privilege; Modify configuration; Software installation; Infrastructure Compromise; Alter behavior
-  impact: Data Breach; Business disruption; Monetary Loss; Reputational Damages
+  leverage:
+    - Elevation of privilege
+    - Modify configuration
+    - Software installation
+    - Infrastructure Compromise
+    - Alter behavior
+  impact:
+    - Data Breach
+    - Business disruption
+    - Monetary Loss
+    - Reputational Damages
   viability: Likely
   description: |-
     This threat vector focuses on the malicious use of the `LD_PRELOAD` environment 

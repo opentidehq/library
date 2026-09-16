@@ -1,14 +1,15 @@
 # SIM-card swapping
 
 ## Metadata
-
-- **UUID**: `6a7a493a-511a-4c9d-aa9c-4427c832a322`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-23`
-- **Modified**: `2024-11-13`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `6a7a493a-511a-4c9d-aa9c-4427c832a322` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-23` |
+| Modified | `2024-11-13` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -41,19 +42,40 @@ to login and reset passwords, gaining control of online accounts associated with
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Attacker must convince the mobile network operator (e.g. through social networking, forged
+Attacker must convince the mobile network operator (e.g. through social networking, forged
 identification, or insider attacks performed by trusted employees) to issue a new SIM card
 
-Domains: Enterprise, Mobile, Public Cloud
-Targets: Auth token, Cloud Portal, End-user, Helpdesk, Identity Services, Mobile phone
-Platforms: Android, iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Impairement | - |
-| Leverage | Elevation of privilege; Spoofing | - |
+| Impact | Identity Theft<br>Impairement | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Elevation of privilege<br>Spoofing | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Roughly even chance | Roughly even odds - 45-55% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -73,12 +95,27 @@ Platforms: Android, iOS**
 ## Chaining
 ```mermaid
 flowchart LR
-6a7a493a_511a_4c9d_aa9c_4427c832a322["SIM-card swapping"]
-4a807ac4_f764_41b1_ae6f_94239041d349["MFA Bypass Techniques"]
-6a7a493a_511a_4c9d_aa9c_4427c832a322 -->|atomicity::implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+subgraph "Credential Access"
+6a7a493a_511a_4c9d_aa9c_4427c832a322{{"SIM-card swapping"}}
+a1a17bd4_ec7e_4302_aedf_96ee7c436065{{"Self-Service Password<br>Reset SSPR abuse in<br>Azure AD"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Social Engineering"
+0cdaee96_8595_4f3f_ba07_758b8be9d359{{"Social engineering<br>without attachment or<br>URL"}}
+end
+subgraph "Delivery"
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+a1a17bd4_ec7e_4302_aedf_96ee7c436065 -->|succeeds| 6a7a493a_511a_4c9d_aa9c_4427c832a322
+a1a17bd4_ec7e_4302_aedf_96ee7c436065 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 6a7a493a_511a_4c9d_aa9c_4427c832a322
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+6a7a493a_511a_4c9d_aa9c_4427c832a322 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
 ```
 ### Chaining details
-#### implements -> MFA Bypass Techniques (`atomicity::implements`)
+#### implements -> [MFA Bypass Techniques](mfa-bypass-techniques.md) (`4a807ac4-f764-41b1-ae6f-94239041d349`) (`atomicity::implements`)
 MFA bypass technique
 
 - **Target UUID**: `4a807ac4-f764-41b1-ae6f-94239041d349`

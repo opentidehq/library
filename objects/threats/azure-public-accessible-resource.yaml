@@ -37,8 +37,18 @@ threat:
     - Web Servers
     - AWS::Storage
   severity: Significant incident
-  leverage: Spoofing; Tampering; Information Disclosure; Denial of Service; Elevation of privilege
-  impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Business disruption
+  leverage:
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+    - Denial of Service
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Monetary Loss
+    - Business disruption
   viability: Likely
   description: |-
     In Azure, this technique highlights the risk where certain resources—commonly **Network Interfaces** 

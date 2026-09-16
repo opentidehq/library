@@ -41,8 +41,14 @@ threat:
     - Switches
     - Embedded
   severity: Substantial incident
-  leverage: Infrastructure Compromise; Tampering; Dwelling
-  impact: Lose Capabilities; Reputational Damages; National Security
+  leverage:
+    - Infrastructure Compromise
+    - Tampering
+    - Dwelling
+  impact:
+    - Lose Capabilities
+    - Reputational Damages
+    - National Security
   viability: Likely
   description: |-
     RayInitiator is a sophisticated persistent multi-stage bootkit that

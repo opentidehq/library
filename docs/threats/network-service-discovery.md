@@ -1,14 +1,15 @@
 # Network service discovery
 
 ## Metadata
-
-- **UUID**: `fd0542bd-1541-42a7-8c07-0e073a198a53`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-02-04`
-- **Modified**: `2025-02-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `fd0542bd-1541-42a7-8c07-0e073a198a53` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-02-04` |
+| Modified | `2025-02-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -75,20 +76,74 @@ port ranges.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **An adversary is looking to exploit native system applications
+An adversary is looking to exploit native system applications
 or to use enumeration external tools in an attempt to find
 an entry network point.
 
-Domains: Enterprise, IoT, Mobile, Private Cloud, Public Cloud
-Targets: End-user, Firewall, LAN, Laptop, Network Equipment, Router or switch, Workstations, Customer, Mobile phone, Peripheral, Web Application Servers, Other, Public-Facing Servers
-Platforms: Active Directory, AWS VPC, Azure, Windows, Linux, macOS, Apache HTTP Server, Android, iOS, Network Router**
+## Surface
+> **Industrial IoT::IoT Gateways**
+> Industrial IoT edge gateways
+
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **AWS::Networking::VPC**
+> Amazon Virtual Private Cloud
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Web Servers::Apache HTTP**
+> Apache HTTP Server
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Routers**
+> Network routers
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Firewalls**
+> Network firewall appliances and software
+
+> **Data Link Layer::VLAN**
+> IEEE 802.1Q VLAN tagging
+
+> **Switches**
+> Network switches
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Printers::Multi-Function Peripherals**
+> Multi-function devices combining print, scan, fax and copy capabilities
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Impairement; Lose Capabilities; Nuisance | - |
-| Leverage | Dwelling; Infrastructure Compromise; Tampering | - |
+| Impact | Impairement<br>Lose Capabilities<br>Nuisance | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Small and mostly inconsequential to day to day operations, but noticed. |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Tampering | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Discovery | Techniques that allow an attacker to gain knowledge about a system and its network environment. |
 
@@ -106,12 +161,16 @@ Platforms: Active Directory, AWS VPC, Azure, Windows, Linux, macOS, Apache HTTP 
 ## Chaining
 ```mermaid
 flowchart LR
-fd0542bd_1541_42a7_8c07_0e073a198a53["Network service discovery"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-fd0542bd_1541_42a7_8c07_0e073a198a53 -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Discovery"
+fd0542bd_1541_42a7_8c07_0e073a198a53{{"Network service<br>discovery"}}
+end
+subgraph "Execution"
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+fd0542bd_1541_42a7_8c07_0e073a198a53 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 Some of the build-in Windows utilities can be used
 for network discovery. For example, net commands (net stat,
 net config, net view, net user, net session and others).

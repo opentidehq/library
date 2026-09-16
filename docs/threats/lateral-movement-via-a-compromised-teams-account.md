@@ -1,14 +1,15 @@
 # Lateral movement via a compromised Teams account
 
 ## Metadata
-
-- **UUID**: `cc9003f7-a9e3-4407-a1ca-d514af469787`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-01`
-- **Modified**: `2025-04-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `cc9003f7-a9e3-4407-a1ca-d514af469787` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-01` |
+| Modified | `2025-04-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -61,19 +62,34 @@ harder, as malicious actions appear normal in audit logs.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries through different means, they need to compromise an account in order 
+Adversaries through different means, they need to compromise an account in order 
 to be able to carry out lateral movement.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Workstations, Personal Information, Critical Documents, Remote access, Virtual Machines, Laptop, End-user
-Platforms: Windows, Microsoft Teams**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Microsoft::Teams**
+> Microsoft Teams communication and collaboration platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **File Sharing**
+> Cloud file sharing and storage services
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Impairement; IP Loss; Nuisance | - |
-| Leverage | Dwelling; Elevation of privilege; Spoofing; Information Disclosure | - |
+| Impact | Data Breach<br>Impairement<br>IP Loss<br>Nuisance | Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Small and mostly inconsequential to day to day operations, but noticed. |
+| Leverage | Dwelling<br>Elevation of privilege<br>Spoofing<br>Information Disclosure | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Lateral Movement | Techniques that enable an adversary to horizontally access and control other remote systems. |
 
@@ -89,20 +105,28 @@ Platforms: Windows, Microsoft Teams**
 ## Chaining
 ```mermaid
 flowchart LR
-cc9003f7_a9e3_4407_a1ca_d514af469787["Lateral movement via a compromised Teams account"]
-06c60af1_5fa8_493c_bf9b_6b2e215819f1["Social engineering attack using Microsoft Teams"]
-b663b684_a80f_4570_89b6_2f7faa16fece["Abuse of Microsoft Office Applications"]
-cc9003f7_a9e3_4407_a1ca_d514af469787 -->|sequence::succeeds| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
-06c60af1_5fa8_493c_bf9b_6b2e215819f1 -->|support::enabling| b663b684_a80f_4570_89b6_2f7faa16fece
+subgraph "Lateral Movement"
+cc9003f7_a9e3_4407_a1ca_d514af469787{{"Lateral movement via a<br>compromised Teams<br>account"}}
+end
+subgraph "Delivery"
+06c60af1_5fa8_493c_bf9b_6b2e215819f1{{"Social engineering<br>attack using Microsoft<br>Teams"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+subgraph "Execution"
+b663b684_a80f_4570_89b6_2f7faa16fece{{"Abuse of Microsoft<br>Office Applications"}}
+end
+cc9003f7_a9e3_4407_a1ca_d514af469787 -->|succeeds| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+cc9003f7_a9e3_4407_a1ca_d514af469787 -->|enabling| b663b684_a80f_4570_89b6_2f7faa16fece
+b663b684_a80f_4570_89b6_2f7faa16fece -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### succeeds -> Social engineering attack using Microsoft Teams (`sequence::succeeds`)
+#### succeeds -> [Social engineering attack using Microsoft Teams](social-engineering-attack-using-microsoft-teams.md) (`06c60af1-5fa8-493c-bf9b-6b2e215819f1`) (`sequence::succeeds`)
 Adversaries are using compromised Microsoft 365 tenants to create technical
 support-themed domains and send tech support lures via Microsoft Teams,
 attempting to trick users of the targeted organizations using social engineering.
 
 - **Target UUID**: `06c60af1-5fa8-493c-bf9b-6b2e215819f1`
-#### enabling -> Abuse of Microsoft Office Applications (`support::enabling`)
+#### enabling -> [Abuse of Microsoft Office Applications](abuse-of-microsoft-office-applications.md) (`b663b684-a80f-4570-89b6-2f7faa16fece`) (`support::enabling`)
 Can be a factor that allows attackers to use credential theft and lateral mobility 
 techniques, as Microsoft Office applications can be used to share malicious files 
 and gain access to Teams accounts.

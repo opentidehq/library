@@ -31,8 +31,19 @@ threat:
     - Windows::Desktop
     - Web Servers
   severity: Significant incident
-  leverage: Dwelling; Elevation of privilege; Information Disclosure; Infrastructure Compromise; Software installation; Tampering
-  impact: Business disruption; Lose Capabilities; Nuisance; Operating costs; Reputational Damages
+  leverage:
+    - Dwelling
+    - Elevation of privilege
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Software installation
+    - Tampering
+  impact:
+    - Business disruption
+    - Lose Capabilities
+    - Nuisance
+    - Operating costs
+    - Reputational Damages
   viability: Likely
   description: |-
     A process discovery refers to the process of identifying and analyzing

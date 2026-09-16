@@ -40,8 +40,15 @@ threat:
     - Azure::Compute::Virtual Machines
     - Windows::Desktop
   severity: Localised incident
-  leverage: Modify configuration
-  impact: Data Breach; Identity Theft; Impairement; Lose Capabilities; Nuisance; Operating costs
+  leverage:
+    - Modify configuration
+  impact:
+    - Data Breach
+    - Identity Theft
+    - Impairement
+    - Lose Capabilities
+    - Nuisance
+    - Operating costs
   viability: Almost certain
   description: |-
     A threat actor in control of the prerequisites may attempt to use the Azure

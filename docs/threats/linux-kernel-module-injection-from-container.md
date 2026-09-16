@@ -1,14 +1,15 @@
 # Linux kernel module injection from container
 
 ## Metadata
-
-- **UUID**: `dcccd7e5-9d3f-4b36-853a-5cd18a7ef752`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2023-01-09`
-- **Modified**: `2023-01-10`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `dcccd7e5-9d3f-4b36-853a-5cd18a7ef752` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2023-01-09` |
+| Modified | `2023-01-10` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -31,22 +32,31 @@ for hiding their presence on a system.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor has already escalated privileges to root via an exploit on a 
+Threat actor has already escalated privileges to root via an exploit on a 
 unprivileged container host, or the threat actor exploited an application 
 running in a highly privileged container, which means a host running 
 highly privileged containers with CAP_NET_ADMIN or CAP_SYS_MODULE 
 capabilities or Kubernetes pods running in privileged mode.
 
-Domains: Embedded, Enterprise, Private Cloud, Public Cloud
-Targets: Compute Cluster, Microservices, Virtual Machines Host
-Platforms: Linux**
+## Surface
+> **Embedded**
+> Embedded and real-time operating systems
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Orchestration::Kubernetes**
+> Kubernetes container orchestration platform
+
+> **Virtualisation::VMware ESXi**
+> Broadcom VMware ESXi bare-metal Type 1 hypervisor
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Impairement; Lose Capabilities | - |
-| Leverage | Dwelling; Infrastructure Compromise; Repudiation; Software installation | - |
+| Impact | Data Breach<br>Impairement<br>Lose Capabilities | Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Repudiation<br>Software installation | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations.<br>Software installation or code modification |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

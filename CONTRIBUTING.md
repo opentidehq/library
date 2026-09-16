@@ -4,13 +4,15 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 
 ## Before you open a PR
 
-1. Install the local engine (until PyPI publish):
+1. Install the released engine (and pytest for catalogue tests):
 
    ```bash
    python -m venv .venv && source .venv/bin/activate
-   pip install -e ../opentide
+   pip install -r requirements-dev.txt
    export OPENTIDE_REPO_ROOT=$PWD
    ```
+
+   `pip install opentide` is enough if you only need the CLI. Use `pip install -e ../opentide[cli]` only when testing unreleased engine changes.
 
 2. Add or edit YAML under `objects/threats/`, `objects/objectives/`, or `objects/rules/` using schema identifiers `threat::1.0`, `objective::1.0`, and `rule::1.0`.
 
@@ -19,11 +21,14 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 3. Validate and refresh docs:
 
    ```bash
-   python scripts/opentide_run.py generate schemas
-   python scripts/opentide_run.py generate templates
-   python scripts/opentide_run.py validate --strict
-   python scripts/opentide_run.py generate docs --output docs --flavor github
+   pytest
+   opentide generate schemas
+   opentide generate templates
+   opentide validate --strict
+   opentide generate docs --output docs --flavor github
    ```
+
+   `scripts/opentide_run.py` is a thin passthrough around the same CLI.
 
 4. Commit object YAML and updated `docs/` together.
 

@@ -26,8 +26,7 @@ objective:
     This detection objective was migrated from a Cyber Detection Model (CDM).
   composition:
     strategy: Independent
-    description: |-
-      Each signal triggers independently, covering different detection approaches for the same objective.
+    description: Each signal triggers independently, covering different detection approaches for the same objective.
   signals:
     - name: Powershell encoded payload to start new process
       uuid: cf9c69a2-9317-4f0f-9506-fbeeb1c73ff0
@@ -107,7 +106,7 @@ objective:
         which makes using PowerShell an easy way to circumvent security measures.
         - Encoded PowerShell can be abused to avoid any complexity with special characters that can be difficult
         to handle.
-      severity: High
+      severity: Substantial incident
       methodology: Event Search
       data:
         availability: Unknown
@@ -115,8 +114,7 @@ objective:
           Data collection: Carbon Black EDR Connectors, Sysmon Logs, Windows Security Logs.
           Data sources: Command, File, Script, Module, Process.
       entities:
-        - host::Process
+        - Process
 composition:
   strategy: Independent
-  description: |-
-    Each signal triggers independently, covering different detection approaches for the same objective.
+  description: Each signal triggers independently, covering different detection approaches for the same objective.

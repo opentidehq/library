@@ -16,14 +16,14 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
-    - att&ck::G1001
-    - misp::d9e5be22-1a04-4956-af6c-37af02330980
-    - att&ck::G0059
-    - misp::c432d032-ce2b-4eb8-ba87-312b2a43fb7a
-    - att&ck::G1033
-    - misp::f02679fa-5e85-4050-8eb5-c2677d93306f
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
+    - name: att&ck::G1001
+    - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - name: att&ck::G0059
+    - name: misp::c432d032-ce2b-4eb8-ba87-312b2a43fb7a
+    - name: att&ck::G1033
+    - name: misp::f02679fa-5e85-4050-8eb5-c2677d93306f
   killchain: Reconnaissance
   att&ck:
     - T1589
@@ -53,8 +53,17 @@ threat:
     - Application Layer::HTTP
     - Entra ID
   severity: Significant incident
-  leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
+  leverage:
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
   viability: Likely
   description: |-
     The "Gather Victim Data" is a reconnaissance threat vector within the 

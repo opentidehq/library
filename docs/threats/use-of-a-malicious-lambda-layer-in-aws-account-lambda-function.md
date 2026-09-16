@@ -1,14 +1,15 @@
 # Use of a malicious lambda layer in AWS account lambda function
 
 ## Metadata
-
-- **UUID**: `2d3b113e-c6ad-492f-a6cb-1590a8d1191d`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-11-22`
-- **Modified**: `2022-11-23`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `2d3b113e-c6ad-492f-a6cb-1590a8d1191d` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-11-22` |
+| Modified | `2022-11-23` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -39,21 +40,24 @@ functions.
 **Low** - A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires that a threat actor can deploy code changes to a third party
+Requires that a threat actor can deploy code changes to a third party
 or an EC controlled/deployed lambda layer in use by EC account(s), or 
 that a threat actor can add a malicious lambda layer to a new or existing
 lambda function.
 
-Domains: Public Cloud
-Targets: Serverless
-Platforms: AWS Lambda**
+## Surface
+> **AWS::Compute::Lambda**
+> AWS Lambda serverless compute
+
+> **Serverless**
+> Cloud-agnostic serverless compute (when not provider-specific)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Data Breach; IP Loss; Legal and regulatory; Nuisance; Operating costs | - |
-| Leverage | Alter behavior; Dwelling; Information Disclosure; Infrastructure Compromise; Modify configuration; Modify data; Tampering | - |
+| Impact | Data Breach<br>IP Loss<br>Legal and regulatory<br>Nuisance<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Legal and regulatory costs<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Increased operating costs |
+| Leverage | Alter behavior<br>Dwelling<br>Information Disclosure<br>Infrastructure Compromise<br>Modify configuration<br>Modify data<br>Tampering | Influence or alter human behavior<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Modify configuration or services<br>Modify stored data or content<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 

@@ -38,8 +38,16 @@ threat:
     - Windows::Desktop
     - Remote Access
   severity: Localised incident
-  leverage: Dwelling; Infrastructure Compromise; Information Disclosure; Tampering
-  impact: Data Breach; Impairement; Lose Capabilities; Reputational Damages
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Tampering
+  impact:
+    - Data Breach
+    - Impairement
+    - Lose Capabilities
+    - Reputational Damages
   viability: Likely
   description: |-
     MoonTag is a new backdoor which appears to be recently uploaded

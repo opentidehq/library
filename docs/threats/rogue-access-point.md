@@ -1,14 +1,15 @@
 # Rogue access point
 
 ## Metadata
-
-- **UUID**: `bdb9fd43-a9f9-4026-84a5-0b52d3b0243b`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-24`
-- **Modified**: `2025-04-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `bdb9fd43-a9f9-4026-84a5-0b52d3b0243b` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-24` |
+| Modified | `2025-04-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -53,21 +54,48 @@ causing downtime and instability.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries must be within range of the target network to deploy or broadcast their 
+Adversaries must be within range of the target network to deploy or broadcast their 
 rogue AP. This could mean physical access to the premises (to connect a device to 
 the wired network) or being close enough to broadcast a Wi-Fi signal that clients 
 can detect and join.
 
-Domains: Mobile, Enterprise
-Targets: Laptop, Mobile phone, Tablet, Router or switch, Personal Information, Critical Documents
-Platforms: macOS, Windows, Linux, Android, iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
+
+> **Routers**
+> Network routers
+
+> **File Sharing**
+> Cloud file sharing and storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Competitive disadvantage; Data Breach; Identity Theft; IP Loss; Reputational Damages | - |
-| Leverage | Dwelling; Information Disclosure; Spoofing; Tampering | - |
+| Impact | Competitive disadvantage<br>Data Breach<br>Identity Theft<br>IP Loss<br>Reputational Damages | Loss of competitive advantage<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Information Disclosure<br>Spoofing<br>Tampering | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Collection | Techniques used to identify and gather data from a target network prior to exfiltration. |
 

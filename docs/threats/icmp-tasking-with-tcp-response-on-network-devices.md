@@ -1,14 +1,15 @@
 # ICMP tasking with TCP response on network devices
 
 ## Metadata
-
-- **UUID**: `2a5faf22-c526-4d49-81b9-6a7b895de58b`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2026-06-18`
-- **Modified**: `2026-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `2a5faf22-c526-4d49-81b9-6a7b895de58b` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2026-06-18` |
+| Modified | `2026-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -128,7 +129,7 @@ leverage lower-layer protocols for increased stealth and resilience.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Network configurations where ICMP traffic is permitted to reach
+Network configurations where ICMP traffic is permitted to reach
 Cisco ASA LAN interfaces, particularly through established VPN
 tunnels [1]. In observed operations, ICMP tasking is not sent to the
 WAN interface but instead tunnelled through an established VPN
@@ -136,16 +137,19 @@ session to a LAN interface. The VPN connection allows actor-
 controlled systems within the local network to send ICMP Echo
 Requests that bypass traditional WAN-focused network monitoring.
 
-Domains: Enterprise, Networking
-Targets: Network Equipment
-Platforms: Network Router**
+## Surface
+> **Routers**
+> Network routers
+
+> **Switches**
+> Network switches
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Lose Capabilities; Reputational Damages; National Security | - |
-| Leverage | Infrastructure Compromise; Information Disclosure; Spoofing | - |
+| Impact | Data Breach<br>Lose Capabilities<br>Reputational Damages<br>National Security | Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>The vector execution will expose or destroy such sufficient critical information infrastructure that the country will have to intervene due to loss to key national  or international functions. |
+| Leverage | Infrastructure Compromise<br>Information Disclosure<br>Spoofing | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Command & Control | Techniques that allow attackers to communicate with controlled systems within a target network. |
 
@@ -161,12 +165,28 @@ Platforms: Network Router**
 ## Chaining
 ```mermaid
 flowchart LR
-2a5faf22_c526_4d49_81b9_6a7b895de58b["ICMP tasking with TCP response on network devices"]
-b6175f16_2b61_4116_bd97_de54b02b197e["LINE VIPER shellcode loader on Cisco ASA"]
-2a5faf22_c526_4d49_81b9_6a7b895de58b -->|support::enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+subgraph "Command & Control"
+2a5faf22_c526_4d49_81b9_6a7b895de58b{{"ICMP tasking with TCP<br>response on network<br>devices"}}
+b6175f16_2b61_4116_bd97_de54b02b197e{{"LINE VIPER shellcode<br>loader on Cisco ASA"}}
+fcc552fb_b4d1_4b47_b366_104ec4d806ef{{"WebVPN authentication<br>abuse for C2 on Cisco<br>ASA"}}
+end
+subgraph "Defense Evasion"
+53389577_fd8d_4ce6_9852_8365ed947c17{{"AAA bypass for<br>unauthorized access on<br>network devices"}}
+end
+subgraph "Persistence"
+a6f331e0_292d_4d83_87a9_46aa149555dd{{"RayInitiator GRUB<br>bootkit persistence on<br>Cisco ASA"}}
+end
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| 2a5faf22_c526_4d49_81b9_6a7b895de58b
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| fcc552fb_b4d1_4b47_b366_104ec4d806ef
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| 53389577_fd8d_4ce6_9852_8365ed947c17
+b6175f16_2b61_4116_bd97_de54b02b197e -->|succeeds| a6f331e0_292d_4d83_87a9_46aa149555dd
+a6f331e0_292d_4d83_87a9_46aa149555dd -->|preceeds| b6175f16_2b61_4116_bd97_de54b02b197e
+fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+53389577_fd8d_4ce6_9852_8365ed947c17 -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+2a5faf22_c526_4d49_81b9_6a7b895de58b -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
 ```
 ### Chaining details
-#### enabled -> LINE VIPER shellcode loader on Cisco ASA (`support::enabled`)
+#### enabled -> [LINE VIPER shellcode loader on Cisco ASA](line-viper-shellcode-loader-on-cisco-asa.md) (`b6175f16-2b61-4116-bd97-de54b02b197e`) (`support::enabled`)
 This ICMP-based C2 channel is enabled by the LINE VIPER implant
 resident in lina. LINE VIPER monitors for specially crafted ICMP
 Echo Requests containing encrypted tasking and responds over raw
@@ -175,18 +195,24 @@ C2 channel independent of WebVPN access [1].
 
 - **Target UUID**: `b6175f16-2b61-4116-bd97-de54b02b197e`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-d8372ac1_2740_4cb2_b834_2e1622380b7b["Detect LINE VIPER ICMP Covert Channel on Network Devices"]
+subgraph "Objectives"
+d8372ac1_2740_4cb2_b834_2e1622380b7b(["Detect LINE VIPER ICMP<br>Covert Channel on<br>Network Devices"])
 end
-subgraph "Signal"
-4d828106_7e97_4830_8e49_2454a84a0621["4d828106-7e97-4830-8e49-2454a84a0621"]
-baad1929_d23a_4a58_a269_e49244a22ea6["baad1929-d23a-4a58-a269-e49244a22ea6"]
+subgraph "Signals"
+baad1929_d23a_4a58_a269_e49244a22ea6(("Anomalous ICMP Traffic<br>to Cisco ASA LAN<br>Interface via VPN"))
+4d828106_7e97_4830_8e49_2454a84a0621(("Unexpected Outbound Raw<br>TCP from Cisco ASA on<br>High Ephemeral Ports"))
 end
-2a5faf22_c526_4d49_81b9_6a7b895de58b["ICMP tasking with TCP response on network devices"]
-2a5faf22_c526_4d49_81b9_6a7b895de58b -->|objective| d8372ac1_2740_4cb2_b834_2e1622380b7b
-2a5faf22_c526_4d49_81b9_6a7b895de58b -->|signal| 4d828106_7e97_4830_8e49_2454a84a0621
-2a5faf22_c526_4d49_81b9_6a7b895de58b -->|signal| baad1929_d23a_4a58_a269_e49244a22ea6
+2a5faf22_c526_4d49_81b9_6a7b895de58b{{"ICMP tasking with TCP<br>response on network<br>devices"}}
+2a5faf22_c526_4d49_81b9_6a7b895de58b -->|covers| d8372ac1_2740_4cb2_b834_2e1622380b7b
+d8372ac1_2740_4cb2_b834_2e1622380b7b --> baad1929_d23a_4a58_a269_e49244a22ea6
+d8372ac1_2740_4cb2_b834_2e1622380b7b --> 4d828106_7e97_4830_8e49_2454a84a0621
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect LINE VIPER ICMP Covert Channel on Network Devices](../Objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md) (`d8372ac1-2740-4cb2-b834-2e1622380b7b`) | Downstream | objective |
+| Signal | [Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports](../Objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md#unexpected-outbound-raw-tcp-from-cisco-asa-on-high-ephemeral-ports) (`4d828106-7e97-4830-8e49-2454a84a0621`) | Downstream | signal |
+| Signal | [Anomalous ICMP Traffic to Cisco ASA LAN Interface via VPN](../Objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md#anomalous-icmp-traffic-to-cisco-asa-lan-interface-via-vpn) (`baad1929-d23a-4a58-a269-e49244a22ea6`) | Downstream | signal |

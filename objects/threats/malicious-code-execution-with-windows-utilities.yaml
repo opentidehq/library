@@ -12,12 +12,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0046
-    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
-    - att&ck::G0080
-    - misp::01967480-c49b-4d4a-a7fa-aef0eaf535fe
-    - att&ck::G0007
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: att&ck::G0046
+    - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - name: att&ck::G0080
+    - name: misp::01967480-c49b-4d4a-a7fa-aef0eaf535fe
+    - name: att&ck::G0007
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Execution
   att&ck:
     - T1218.005
@@ -37,8 +37,15 @@ threat:
     - Azure::Compute::Virtual Machines
     - Windows::Desktop
   severity: Significant incident
-  leverage: Elevation of privilege; Tampering; Spoofing
-  impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory
+  leverage:
+    - Elevation of privilege
+    - Tampering
+    - Spoofing
+  impact:
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
+    - Legal and regulatory
   viability: Likely
   description: |-
     ### 1. Msxsl.exe

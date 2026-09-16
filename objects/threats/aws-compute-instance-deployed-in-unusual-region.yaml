@@ -19,8 +19,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0139
-    - misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
+    - name: att&ck::G0139
+    - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
   killchain: Impact
   att&ck:
     - T1496
@@ -32,8 +32,13 @@ threat:
     - AWS::Compute::ECS
     - AWS::Compute::EKS
   severity: Localised incident
-  leverage: Software installation; Infrastructure Compromise
-  impact: Operating costs; Asset and fraud; Legal and regulatory
+  leverage:
+    - Software installation
+    - Infrastructure Compromise
+  impact:
+    - Operating costs
+    - Asset and fraud
+    - Legal and regulatory
   viability: Likely
   description: |-
     Certain threat actors will try to launch AWS compute instances 

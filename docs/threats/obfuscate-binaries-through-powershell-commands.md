@@ -1,14 +1,15 @@
 # Obfuscate binaries through PowerShell commands
 
 ## Metadata
-
-- **UUID**: `a3df7d01-5fd9-4522-8eaf-f28895046b7d`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-12`
-- **Modified**: `2025-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `a3df7d01-5fd9-4522-8eaf-f28895046b7d` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-12` |
+| Modified | `2025-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -119,22 +120,27 @@ Start-Process -FilePath $path
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs an initially compromised end-point. 
+A threat actor needs an initially compromised end-point. 
 Example: A threat actor is using Operational Relay Box (ORB)
 network to gain an initial foothold and access to the victim's
 environment ref [1].
 
-Domains: Enterprise
-Cve: CVE-2024-8963, CVE-2024-8190
-Targets: Customer, Laptop, Workstations
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Business disruption; Lose Capabilities | - |
-| Leverage | Infrastructure Compromise; Elevation of privilege; Information Disclosure; Tampering | - |
+| Impact | Impairement<br>Business disruption<br>Lose Capabilities | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Business disruption<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Infrastructure Compromise<br>Elevation of privilege<br>Information Disclosure<br>Tampering | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

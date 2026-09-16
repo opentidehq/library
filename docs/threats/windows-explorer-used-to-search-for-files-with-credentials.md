@@ -1,14 +1,15 @@
 # Windows explorer used to search for files with credentials
 
 ## Metadata
-
-- **UUID**: `78d80d14-7260-44b8-95e9-6cf3693b0024`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-03-10`
-- **Modified**: `2025-03-12`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `78d80d14-7260-44b8-95e9-6cf3693b0024` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-03-10` |
+| Modified | `2025-03-12` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -122,18 +123,33 @@ Example for file extensions that may contain credentials:
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor is using an already compromised Windows endpoint.
+A threat actor is using an already compromised Windows endpoint.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Desktop, Laptop, End-user, Control Server, Remote access, System admin, Public-Facing Servers, Web Application Servers, Customer, Other
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Impairement | - |
-| Leverage | Tampering; Infrastructure Compromise; Information Disclosure | - |
+| Impact | Identity Theft<br>Impairement | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Tampering<br>Infrastructure Compromise<br>Information Disclosure | Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 

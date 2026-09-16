@@ -33,8 +33,17 @@ threat:
     - Mobile::iPadOS
     - File Sharing
   severity: Significant incident
-  leverage: Information Disclosure; Modify configuration; Modify privileges; Spoofing
-  impact: Asset and fraud; Data Breach; Identity Theft; IP Loss; Nuisance
+  leverage:
+    - Information Disclosure
+    - Modify configuration
+    - Modify privileges
+    - Spoofing
+  impact:
+    - Asset and fraud
+    - Data Breach
+    - Identity Theft
+    - IP Loss
+    - Nuisance
   viability: Likely
   description: |-
     A "malicious profile" refers to a configuration file installed on a mobile device 

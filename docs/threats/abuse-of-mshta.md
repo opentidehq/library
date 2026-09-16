@@ -1,14 +1,15 @@
 # Abuse of mshta
 
 ## Metadata
-
-- **UUID**: `767f10bd-1947-44e3-b999-5fbf50d99027`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-01-09`
-- **Modified**: `2025-01-09`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `767f10bd-1947-44e3-b999-5fbf50d99027` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-01-09` |
+| Modified | `2025-01-09` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -51,19 +52,28 @@ Once executed, mshta.exe runs with the same privileges as the invoking user
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have at least user-level code execution privileges on a Windows host 
+Adversary must have at least user-level code execution privileges on a Windows host 
 where Mshta is available to run.
 
-Domains: Enterprise
-Targets: Workstations, Public-Facing Servers, Laptop
-Platforms: Windows, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Reputational Damages; Business disruption | - |
-| Leverage | Spoofing; Elevation of privilege; Software installation | - |
+| Impact | Data Breach<br>Reputational Damages<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption |
+| Leverage | Spoofing<br>Elevation of privilege<br>Software installation | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Software installation or code modification |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -83,12 +93,14 @@ Platforms: Windows, Active Directory**
 ## Chaining
 ```mermaid
 flowchart LR
-767f10bd_1947_44e3_b999_5fbf50d99027["Abuse of mshta"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-767f10bd_1947_44e3_b999_5fbf50d99027 -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Execution"
+767f10bd_1947_44e3_b999_5fbf50d99027{{"Abuse of mshta"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+767f10bd_1947_44e3_b999_5fbf50d99027 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 This TVM is implementing the bigger TVM : Abuse of Windows Utilities
 
 - **Target UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`

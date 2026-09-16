@@ -47,8 +47,16 @@ threat:
     - Remote Access
     - Azure::Compute::Virtual Machines
   severity: Significant incident
-  leverage: Dwelling; Elevation of privilege; Spoofing; Information Disclosure
-  impact: Data Breach; Impairement; IP Loss; Nuisance
+  leverage:
+    - Dwelling
+    - Elevation of privilege
+    - Spoofing
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Impairement
+    - IP Loss
+    - Nuisance
   viability: Likely
   description: |-
     Lateral movement refers to attackers exploiting compromised accounts or systems 

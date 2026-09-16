@@ -52,8 +52,18 @@ threat:
     - Application Layer::HTTP
     - Serverless
   severity: Significant incident
-  leverage: Elevation of privilege; Spoofing; Tampering; Information Disclosure
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Lose Capabilities
   viability: Very Likely
   description: |-
     Azure app registration privilege escalation is a significant threat vector where 

@@ -72,8 +72,18 @@ threat:
     - Azure::Compute::Virtual Machines
     - Serverless
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Information Disclosure; Elevation of privilege; Modify configuration
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Information Disclosure
+    - Elevation of privilege
+    - Modify configuration
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
   viability: Very Likely
   description: |-
     The following threat vector, let attackers maintain long-term access or

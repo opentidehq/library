@@ -1,14 +1,15 @@
 # LINE VIPER shellcode loader on Cisco ASA
 
 ## Metadata
-
-- **UUID**: `b6175f16-2b61-4116-bd97-de54b02b197e`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2026-06-18`
-- **Modified**: `2026-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `b6175f16-2b61-4116-bd97-de54b02b197e` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2026-06-18` |
+| Modified | `2026-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -112,7 +113,7 @@ sophisticated threat to network infrastructure.
 **Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
 
 ## Terrain
-> **Compromised Cisco ASA devices running firmware versions 9.12(4)67
+Compromised Cisco ASA devices running firmware versions 9.12(4)67
 and 9.14(4)24, which were fully patched at time of discovery [1].
 Requires prior deployment of RayInitiator bootkit which installs
 hooks into lina binary to intercept WebVPN XML form element
@@ -120,16 +121,22 @@ processing. The WebVPN traffic handling codebase in lina processes
 XML data that can be weaponised to load shellcode when specific form
 elements are encountered.
 
-Domains: Enterprise, Networking
-Targets: Network Equipment, VPN Client
-Platforms: Network Router**
+## Surface
+> **Routers**
+> Network routers
+
+> **Switches**
+> Network switches
+
+> **VPN**
+> Virtual Private Network solutions and tunnelling protocols
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Lose Capabilities; Reputational Damages; National Security | - |
-| Leverage | Infrastructure Compromise; Information Disclosure; Dwelling; Tampering; Repudiation | - |
+| Impact | Data Breach<br>Lose Capabilities<br>Reputational Damages<br>National Security | Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>The vector execution will expose or destroy such sufficient critical information infrastructure that the country will have to intervene due to loss to key national  or international functions. |
+| Leverage | Infrastructure Compromise<br>Information Disclosure<br>Dwelling<br>Tampering<br>Repudiation | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Command & Control | Techniques that allow attackers to communicate with controlled systems within a target network. |
 
@@ -147,39 +154,49 @@ Platforms: Network Router**
 ## Chaining
 ```mermaid
 flowchart LR
-b6175f16_2b61_4116_bd97_de54b02b197e["LINE VIPER shellcode loader on Cisco ASA"]
-a6f331e0_292d_4d83_87a9_46aa149555dd["RayInitiator GRUB bootkit persistence on Cisco ASA"]
-fcc552fb_b4d1_4b47_b366_104ec4d806ef["WebVPN authentication abuse for C2 on Cisco ASA"]
-2a5faf22_c526_4d49_81b9_6a7b895de58b["ICMP tasking with TCP response on network devices"]
-53389577_fd8d_4ce6_9852_8365ed947c17["AAA bypass for unauthorized access on network devices"]
-b6175f16_2b61_4116_bd97_de54b02b197e -->|sequence::succeeds| a6f331e0_292d_4d83_87a9_46aa149555dd
-a6f331e0_292d_4d83_87a9_46aa149555dd -->|support::enabling| fcc552fb_b4d1_4b47_b366_104ec4d806ef
-fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|support::enabling| 2a5faf22_c526_4d49_81b9_6a7b895de58b
-2a5faf22_c526_4d49_81b9_6a7b895de58b -->|support::enabling| 53389577_fd8d_4ce6_9852_8365ed947c17
+subgraph "Command & Control"
+b6175f16_2b61_4116_bd97_de54b02b197e{{"LINE VIPER shellcode<br>loader on Cisco ASA"}}
+2a5faf22_c526_4d49_81b9_6a7b895de58b{{"ICMP tasking with TCP<br>response on network<br>devices"}}
+fcc552fb_b4d1_4b47_b366_104ec4d806ef{{"WebVPN authentication<br>abuse for C2 on Cisco<br>ASA"}}
+end
+subgraph "Defense Evasion"
+53389577_fd8d_4ce6_9852_8365ed947c17{{"AAA bypass for<br>unauthorized access on<br>network devices"}}
+end
+subgraph "Persistence"
+a6f331e0_292d_4d83_87a9_46aa149555dd{{"RayInitiator GRUB<br>bootkit persistence on<br>Cisco ASA"}}
+end
+53389577_fd8d_4ce6_9852_8365ed947c17 -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+2a5faf22_c526_4d49_81b9_6a7b895de58b -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+a6f331e0_292d_4d83_87a9_46aa149555dd -->|preceeds| b6175f16_2b61_4116_bd97_de54b02b197e
+fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+b6175f16_2b61_4116_bd97_de54b02b197e -->|succeeds| a6f331e0_292d_4d83_87a9_46aa149555dd
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| fcc552fb_b4d1_4b47_b366_104ec4d806ef
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| 2a5faf22_c526_4d49_81b9_6a7b895de58b
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| 53389577_fd8d_4ce6_9852_8365ed947c17
 ```
 ### Chaining details
-#### succeeds -> RayInitiator GRUB bootkit persistence on Cisco ASA (`sequence::succeeds`)
+#### succeeds -> [RayInitiator GRUB bootkit persistence on Cisco ASA](rayinitiator-grub-bootkit-persistence-on-cisco-asa.md) (`a6f331e0-292d-4d83-87a9-46aa149555dd`) (`sequence::succeeds`)
 LINE VIPER is deployed by the RayInitiator bootkit, which
 installs a handler in the lina binary (Stage 3) that triggers
 shellcode loading from a crafted WebVPN client authentication
 request containing a partial PKCS7 certificate [1].
 
 - **Target UUID**: `a6f331e0-292d-4d83-87a9-46aa149555dd`
-#### enabling -> WebVPN authentication abuse for C2 on Cisco ASA (`support::enabling`)
+#### enabling -> [WebVPN authentication abuse for C2 on Cisco ASA](webvpn-authentication-abuse-for-c2-on-cisco-asa.md) (`fcc552fb-b4d1-4b47-b366-104ec4d806ef`) (`support::enabling`)
 LINE VIPER hooks WebVPN XML form element processing in lina,
 enabling the WebVPN authentication channel to serve as a covert
 C2 mechanism. The implant intercepts and processes specially
 crafted authentication requests embedding tasking data [1].
 
 - **Target UUID**: `fcc552fb-b4d1-4b47-b366-104ec4d806ef`
-#### enabling -> ICMP tasking with TCP response on network devices (`support::enabling`)
+#### enabling -> [ICMP tasking with TCP response on network devices](icmp-tasking-with-tcp-response-on-network-devices.md) (`2a5faf22-c526-4d49-81b9-6a7b895de58b`) (`support::enabling`)
 LINE VIPER implements a secondary C2 channel that receives
 tasking via crafted ICMP packets and responds over raw TCP
 connections using high-ephemeral ports, providing operational
 resilience independent of WebVPN access [1].
 
 - **Target UUID**: `2a5faf22-c526-4d49-81b9-6a7b895de58b`
-#### enabling -> AAA bypass for unauthorized access on network devices (`support::enabling`)
+#### enabling -> [AAA bypass for unauthorized access on network devices](aaa-bypass-for-unauthorized-access-on-network-devices.md) (`53389577-fd8d-4ce6-9852-8365ed947c17`) (`support::enabling`)
 LINE VIPER's memory-resident hooks in lina intercept AAA
 processing logic at runtime, enabling actor-controlled devices
 to bypass authentication and accounting without generating
@@ -187,28 +204,47 @@ audit logs [1].
 
 - **Target UUID**: `53389577-fd8d-4ce6-9852-8365ed947c17`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc["Detect LINE VIPER Defence Evasion on Cisco ASA"]
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf["Detect LINE VIPER WebVPN Command and Control on Cisco ASA"]
+subgraph "Objectives"
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc(["Detect LINE VIPER<br>Defence Evasion on Cisco<br>ASA"])
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf(["Detect LINE VIPER WebVPN<br>Command and Control on<br>Cisco ASA"])
 end
-subgraph "Signal"
-0114324a_80a5_46cb_a75c_6f4a2301b7e5["0114324a-80a5-46cb-a75c-6f4a2301b7e5"]
-10482800_4d71_4246_93f4_6edfc4705b86["10482800-4d71-4246-93f4-6edfc4705b86"]
-22e8fb52_d101_4d67_90b7_6e697c2dbb2d["22e8fb52-d101-4d67-90b7-6e697c2dbb2d"]
-9666e19f_f48d_4a0b_bb3e_0efbd69e8eac["9666e19f-f48d-4a0b-bb3e-0efbd69e8eac"]
-cef505da_e628_469b_ad75_1a19091d31a6["cef505da-e628-469b-ad75-1a19091d31a6"]
-cff09577_eb0b_4ac9_9393_789dbe439b56["cff09577-eb0b-4ac9-9393-789dbe439b56"]
+subgraph "Threats"
+53389577_fd8d_4ce6_9852_8365ed947c17{{"AAA bypass for<br>unauthorized access on<br>network devices"}}
+a6f331e0_292d_4d83_87a9_46aa149555dd{{"RayInitiator GRUB<br>bootkit persistence on<br>Cisco ASA"}}
+fcc552fb_b4d1_4b47_b366_104ec4d806ef{{"WebVPN authentication<br>abuse for C2 on Cisco<br>ASA"}}
 end
-b6175f16_2b61_4116_bd97_de54b02b197e["LINE VIPER shellcode loader on Cisco ASA"]
-b6175f16_2b61_4116_bd97_de54b02b197e -->|objective| 7c0f2788_690e_4d34_b9eb_5f76e7363ccc
-b6175f16_2b61_4116_bd97_de54b02b197e -->|objective| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
-b6175f16_2b61_4116_bd97_de54b02b197e -->|signal| 0114324a_80a5_46cb_a75c_6f4a2301b7e5
-b6175f16_2b61_4116_bd97_de54b02b197e -->|signal| 10482800_4d71_4246_93f4_6edfc4705b86
-b6175f16_2b61_4116_bd97_de54b02b197e -->|signal| 22e8fb52_d101_4d67_90b7_6e697c2dbb2d
-b6175f16_2b61_4116_bd97_de54b02b197e -->|signal| 9666e19f_f48d_4a0b_bb3e_0efbd69e8eac
-b6175f16_2b61_4116_bd97_de54b02b197e -->|signal| cef505da_e628_469b_ad75_1a19091d31a6
-b6175f16_2b61_4116_bd97_de54b02b197e -->|signal| cff09577_eb0b_4ac9_9393_789dbe439b56
+subgraph "Signals"
+0114324a_80a5_46cb_a75c_6f4a2301b7e5(("Cisco ASA Authentication<br>Log Gap for Established<br>Network Connections"))
+10482800_4d71_4246_93f4_6edfc4705b86(("Anomalous Reduction in<br>Cisco ASA Syslog Message<br>Volume"))
+9666e19f_f48d_4a0b_bb3e_0efbd69e8eac(("Cisco ASA System<br>Integrity Check Result<br>Inconsistency"))
+22e8fb52_d101_4d67_90b7_6e697c2dbb2d(("Malformed PKCS7<br>Certificate in WebVPN<br>Authentication Request"))
+cff09577_eb0b_4ac9_9393_789dbe439b56(("Anomalous XML Payload in<br>WebVPN Authentication<br>Form Elements"))
+cef505da_e628_469b_ad75_1a19091d31a6(("Non-Standard Content in<br>Cisco ASA WebVPN<br>Authentication Response"))
+end
+b6175f16_2b61_4116_bd97_de54b02b197e{{"LINE VIPER shellcode<br>loader on Cisco ASA"}}
+53389577_fd8d_4ce6_9852_8365ed947c17 -->|covers| 7c0f2788_690e_4d34_b9eb_5f76e7363ccc
+b6175f16_2b61_4116_bd97_de54b02b197e -->|covers| 7c0f2788_690e_4d34_b9eb_5f76e7363ccc
+a6f331e0_292d_4d83_87a9_46aa149555dd -->|covers| 7c0f2788_690e_4d34_b9eb_5f76e7363ccc
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc --> 0114324a_80a5_46cb_a75c_6f4a2301b7e5
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc --> 10482800_4d71_4246_93f4_6edfc4705b86
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc --> 9666e19f_f48d_4a0b_bb3e_0efbd69e8eac
+fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|covers| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
+b6175f16_2b61_4116_bd97_de54b02b197e -->|covers| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> 22e8fb52_d101_4d67_90b7_6e697c2dbb2d
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> cff09577_eb0b_4ac9_9393_789dbe439b56
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> cef505da_e628_469b_ad75_1a19091d31a6
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect LINE VIPER Defence Evasion on Cisco ASA](../Objectives/detect-line-viper-defence-evasion-on-cisco-asa.md) (`7c0f2788-690e-4d34-b9eb-5f76e7363ccc`) | Downstream | objective |
+| Objective | [Detect LINE VIPER WebVPN Command and Control on Cisco ASA](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md) (`8546b0d8-c9e1-4a51-bf64-2b93c4159ebf`) | Downstream | objective |
+| Signal | [Cisco ASA Authentication Log Gap for Established Network Connections](../Objectives/detect-line-viper-defence-evasion-on-cisco-asa.md#cisco-asa-authentication-log-gap-for-established-network-connections) (`0114324a-80a5-46cb-a75c-6f4a2301b7e5`) | Downstream | signal |
+| Signal | [Anomalous Reduction in Cisco ASA Syslog Message Volume](../Objectives/detect-line-viper-defence-evasion-on-cisco-asa.md#anomalous-reduction-in-cisco-asa-syslog-message-volume) (`10482800-4d71-4246-93f4-6edfc4705b86`) | Downstream | signal |
+| Signal | [Malformed PKCS7 Certificate in WebVPN Authentication Request](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#malformed-pkcs7-certificate-in-webvpn-authentication-request) (`22e8fb52-d101-4d67-90b7-6e697c2dbb2d`) | Downstream | signal |
+| Signal | [Cisco ASA System Integrity Check Result Inconsistency](../Objectives/detect-line-viper-defence-evasion-on-cisco-asa.md#cisco-asa-system-integrity-check-result-inconsistency) (`9666e19f-f48d-4a0b-bb3e-0efbd69e8eac`) | Downstream | signal |
+| Signal | [Non-Standard Content in Cisco ASA WebVPN Authentication Response](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#non-standard-content-in-cisco-asa-webvpn-authentication-response) (`cef505da-e628-469b-ad75-1a19091d31a6`) | Downstream | signal |
+| Signal | [Anomalous XML Payload in WebVPN Authentication Form Elements](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#anomalous-xml-payload-in-webvpn-authentication-form-elements) (`cff09577-eb0b-4ac9-9393-789dbe439b56`) | Downstream | signal |

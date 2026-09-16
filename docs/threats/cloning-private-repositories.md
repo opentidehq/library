@@ -1,14 +1,15 @@
 # Cloning private repositories
 
 ## Metadata
-
-- **UUID**: `4ac2b666-736a-42c5-9548-50393ea6bc46`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-03-05`
-- **Modified**: `2025-03-06`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `4ac2b666-736a-42c5-9548-50393ea6bc46` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-03-05` |
+| Modified | `2025-03-06` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -87,18 +88,36 @@ sensitive files further ref [7].
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The attacker needs to obtain access to the CI pipeline.
+The attacker needs to obtain access to the CI pipeline.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: CI/CD Pipelines, Code Repositories, Developer, Laptop
-Platforms: Github, Gitlab, Bitbucket**
+## Surface
+> **Code Repositories::GitHub**
+> GitHub source code hosting and collaboration
+
+> **Code Repositories::GitLab**
+> GitLab DevOps lifecycle tool
+
+> **Atlassian::Bitbucket**
+> Atlassian Bitbucket (see also Code Repositories::Bitbucket for repository-focused context)
+
+> **Development::CI/CD**
+> Continuous integration and continuous delivery platforms
+
+> **Code Repositories**
+> Source code hosting and version control platforms
+
+> **Development**
+> Software development tools and platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Data Breach; Reputational Damages; Impairement | - |
-| Leverage | Information Disclosure; Infrastructure Compromise | - |
+| Impact | Data Breach<br>Reputational Damages<br>Impairement | Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Information Disclosure<br>Infrastructure Compromise | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Exfiltration | Techniques that result or aid in an attacker removing data from a target network. |
 

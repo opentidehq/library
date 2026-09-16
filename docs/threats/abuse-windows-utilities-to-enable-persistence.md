@@ -1,14 +1,15 @@
 # Abuse Windows Utilities to Enable Persistence
 
 ## Metadata
-
-- **UUID**: `66277f27-d57b-47f8-bc9c-b024c7cd1313`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-11-06`
-- **Modified**: `2024-11-06`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `66277f27-d57b-47f8-bc9c-b024c7cd1313` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-11-06` |
+| Modified | `2024-11-06` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## Description
 1. Msdeploy.exe\
@@ -50,19 +51,28 @@ This can be used to capture sensitive information or further compromise the syst
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have administrative privileges on Windows systems within 
+Adversary must have administrative privileges on Windows systems within 
 the enterprise network.
 
-Domains: Enterprise
-Targets: Workstations, Public-Facing Servers, Laptop
-Platforms: Windows, Active Directory, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Business disruption; Reputational Damages; Operating costs | - |
-| Leverage | Modify configuration; Modify data; Tampering; New Accounts | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Increased operating costs |
+| Leverage | Modify configuration<br>Modify data<br>Tampering<br>New Accounts | Modify configuration or services<br>Modify stored data or content<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Ability to create new arbitrary user accounts. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 
@@ -85,12 +95,23 @@ Platforms: Windows, Active Directory, PowerShell**
 ## Chaining
 ```mermaid
 flowchart LR
-66277f27_d57b_47f8_bc9c_b024c7cd1313["Abuse Windows Utilities to Enable Persistence"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-66277f27_d57b_47f8_bc9c_b024c7cd1313 -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Persistence"
+66277f27_d57b_47f8_bc9c_b024c7cd1313{{"Abuse Windows Utilities<br>to Enable Persistence"}}
+end
+subgraph "Execution"
+596d294a_9aa8_41b2_9507_5c9d605de6b4{{"Use Windows utilities to<br>manipulate a local<br>account or group"}}
+e3d7cb59_7aca_4c3d_b488_48c785930b6d{{"PowerShell usage for<br>credential manipulation"}}
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 66277f27_d57b_47f8_bc9c_b024c7cd1313
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+66277f27_d57b_47f8_bc9c_b024c7cd1313 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 This TVM is implementing the bigger TVM : Abuse of Windows Utilities
 
 - **Target UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`

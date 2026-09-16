@@ -40,8 +40,19 @@ threat:
     - Database Management::MongoDB
     - Container Runtime::Docker
   severity: Significant incident
-  leverage: Information Disclosure; Elevation of privilege; Tampering; Repudiation; Infrastructure Compromise
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+    - Tampering
+    - Repudiation
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Business disruption
   viability: Likely
   description: |-
     Custom Script Extensions in Azure are powerful automation tools for configuring 

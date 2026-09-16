@@ -33,8 +33,15 @@ threat:
     - Customer Support
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Infrastructure Compromise; Elevation of privilege; Information Disclosure; Tampering
-  impact: Impairement; Business disruption; Lose Capabilities
+  leverage:
+    - Infrastructure Compromise
+    - Elevation of privilege
+    - Information Disclosure
+    - Tampering
+  impact:
+    - Impairement
+    - Business disruption
+    - Lose Capabilities
   viability: Likely
   description: |-
     Obfuscating binaries through PowerShell commands is a technique

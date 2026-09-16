@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0102
+    - name: att&ck::G0102
   killchain: Defense Evasion
   att&ck:
     - T1112
@@ -34,8 +34,16 @@ threat:
     - Azure::Compute::Virtual Machines
     - Application Layer::WMI
   severity: Significant incident
-  leverage: Tampering; Modify configuration; Modify data; Elevation of privilege
-  impact: Impairement; Data Breach; Business disruption; Reputational Damages
+  leverage:
+    - Tampering
+    - Modify configuration
+    - Modify data
+    - Elevation of privilege
+  impact:
+    - Impairement
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
   viability: Likely
   description: |-
     Explorer behaviour can be twisted by editing the registry keys

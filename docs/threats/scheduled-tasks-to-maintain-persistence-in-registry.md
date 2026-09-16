@@ -1,14 +1,15 @@
 # Scheduled tasks to maintain persistence in registry
 
 ## Metadata
-
-- **UUID**: `5e66f826-4c4b-4357-b9c5-2f40da207f34`
-- **Schema**: `threat::1.0`
-- **Version**: `6`
-- **Created**: `2022-12-14`
-- **Modified**: `2025-06-11`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `5e66f826-4c4b-4357-b9c5-2f40da207f34` |
+| Schema | `threat::1.0` |
+| Version | `6` |
+| Created | `2022-12-14` |
+| Modified | `2025-06-11` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -87,19 +88,28 @@ folders so that they run automatically when a user logs into their account.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **An adversary has gained control over a Windows endpoint and has privileges 
+An adversary has gained control over a Windows endpoint and has privileges 
 to create scheduled tasks in order to maintain persistence in the registry.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Workstations, Control Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Business disruption | - |
-| Leverage | Infrastructure Compromise; Tampering; Modify configuration; Modify data | - |
+| Impact | Impairement<br>Business disruption | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Business disruption |
+| Leverage | Infrastructure Compromise<br>Tampering<br>Modify configuration<br>Modify data | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Modify configuration or services<br>Modify stored data or content |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 
@@ -122,12 +132,32 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-5e66f826_4c4b_4357_b9c5_2f40da207f34["Scheduled tasks to maintain persistence in registry"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|sequence::succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+subgraph "Persistence"
+5e66f826_4c4b_4357_b9c5_2f40da207f34{{"Scheduled tasks to<br>maintain persistence in<br>registry"}}
+efe13bd7_c621_423b_b226_9b536766a252{{"Direct modification of<br>registry keys to tamper<br>scheduled task"}}
+437a43b9_6344_45a9_915b_d733d23173ae{{"Scheduled task<br>manipulation using Azure<br>Portal"}}
+end
+subgraph "Execution"
+edfe43fd_4a92_4f2d_a733_40e235be1b25{{"Scheduled task<br>manipulation using Azure<br>CLI"}}
+670504aa_cfb8_4d1f_a5ad_16193822085f{{"Scheduled task creation<br>using Azure CloudShell"}}
+60c5b065_7d06_4697_850f_c2f80765f10b{{"Changes to Azure<br>infrastructure deployed<br>through Azure CLI"}}
+end
+subgraph "Social Engineering"
+f9a6f927_d08c_40c1_85af_01331c471def{{"Phishing with Azure AD<br>B2B Collaboration"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+efe13bd7_c621_423b_b226_9b536766a252 -->|implements| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+edfe43fd_4a92_4f2d_a733_40e235be1b25 <-->|synergize| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+edfe43fd_4a92_4f2d_a733_40e235be1b25 -->|enabled| 670504aa_cfb8_4d1f_a5ad_16193822085f
+edfe43fd_4a92_4f2d_a733_40e235be1b25 -->|preceeds| 60c5b065_7d06_4697_850f_c2f80765f10b
+437a43b9_6344_45a9_915b_d733d23173ae <-->|synergize| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+437a43b9_6344_45a9_915b_d733d23173ae -->|preceeds| f9a6f927_d08c_40c1_85af_01331c471def
+5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Attachment (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::succeeds`)
 Phishing emails with malicious macros are used to deliver the malware.
 
 - **Target UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`

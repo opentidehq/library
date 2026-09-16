@@ -45,8 +45,15 @@ threat:
     - Azure
     - AWS::Storage
   severity: Significant incident
-  leverage: Information Disclosure; Tampering; Infrastructure Compromise
-  impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss
+  leverage:
+    - Information Disclosure
+    - Tampering
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Monetary Loss
   viability: Likely
   description: |-
     The threat vector refers to techniques used by attackers to discover, enumerate, 

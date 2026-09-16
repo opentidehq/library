@@ -12,8 +12,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Collection
   att&ck:
     - T1114
@@ -29,8 +29,12 @@ threat:
     - Azure::Security::Entra ID
     - Entra ID
   severity: Substantial incident
-  leverage: Information Disclosure
-  impact: Data Breach; IP Loss; National Security
+  leverage:
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - IP Loss
+    - National Security
   viability: Very Likely
   description: |-
     Hijacking an application (by adding a rogue secret or certificate) with granted permissions 

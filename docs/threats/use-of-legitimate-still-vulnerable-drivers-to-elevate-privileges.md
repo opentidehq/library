@@ -1,14 +1,15 @@
 # Use of legitimate still vulnerable drivers to elevate privileges
 
 ## Metadata
-
-- **UUID**: `a5761988-391d-4cd3-8ade-690bd3315943`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-08-18`
-- **Modified**: `2025-08-22`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `a5761988-391d-4cd3-8ade-690bd3315943` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-08-18` |
+| Modified | `2025-08-22` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -70,21 +71,30 @@ the past
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor uses software vulnerabilities in legitimate Windows or other 
+A threat actor uses software vulnerabilities in legitimate Windows or other 
 driver. The adversary already has local code execution (e.g., user context),
 can trigger the vulnerable IOCTL/syscall surface, and the system is not yet
 patched.
 
-Domains: Enterprise
-Targets: Laptop, Workstations, Customer, End-user, Virtual Machines
-Platforms: Windows, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Impairement | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Tampering; Modify configuration; Software installation | - |
+| Impact | Data Breach<br>Impairement | Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Tampering<br>Modify configuration<br>Software installation | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Modify configuration or services<br>Software installation or code modification |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 

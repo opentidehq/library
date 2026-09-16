@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - misp::f02679fa-5e85-4050-8eb5-c2677d93306f
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: misp::f02679fa-5e85-4050-8eb5-c2677d93306f
   killchain: Privilege Escalation
   att&ck:
     - T1218
@@ -49,8 +49,15 @@ threat:
     - Windows
     - Windows::Desktop
   severity: Localised incident
-  leverage: Modify configuration; Modify privileges; Software installation
-  impact: Data Breach; Business disruption; Reputational Damages; Operating costs
+  leverage:
+    - Modify configuration
+    - Modify privileges
+    - Software installation
+  impact:
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
+    - Operating costs
   viability: Environment dependent
   description: |-
     ### AppLocker rules types 

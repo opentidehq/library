@@ -17,15 +17,15 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0006
-    - misp::1cb7e1cc-d695-42b1-92f4-fd0112a3c9be
-    - att&ck::G0114
-    - att&ck::G0050
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - att&ck::G0004
-    - misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0006
+    - name: misp::1cb7e1cc-d695-42b1-92f4-fd0112a3c9be
+    - name: att&ck::G0114
+    - name: att&ck::G0050
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: att&ck::G0004
+    - name: misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
   killchain: Discovery
   att&ck:
     - T1087.001
@@ -47,8 +47,12 @@ threat:
     - Firewalls
     - Web Servers
   severity: Moderate incident
-  leverage: Information Disclosure
-  impact: Identity Theft; Nuisance; Reputational Damages
+  leverage:
+    - Information Disclosure
+  impact:
+    - Identity Theft
+    - Nuisance
+    - Reputational Damages
   viability: Likely
   description: |-
     Adversaries may attempt to enumerate the environment and list all

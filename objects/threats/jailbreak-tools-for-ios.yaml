@@ -28,8 +28,17 @@ threat:
     - Mobile::iOS
     - Mobile::iPadOS
   severity: Significant incident
-  leverage: Spoofing; Tampering; Information Disclosure; Software installation
-  impact: Data Breach; Identity Theft; Impairement; IP Loss; Lose Capabilities
+  leverage:
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+    - Software installation
+  impact:
+    - Data Breach
+    - Identity Theft
+    - Impairement
+    - IP Loss
+    - Lose Capabilities
   viability: Likely
   description: |-
     Jailbreaking an iPhone involves bypassing Apple's security restrictions to gain 

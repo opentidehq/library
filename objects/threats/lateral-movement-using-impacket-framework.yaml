@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G1003
-    - misp::a5f64c1a-c829-4855-903d-e0ff2098b2d7
+    - name: att&ck::G1003
+    - name: misp::a5f64c1a-c829-4855-903d-e0ff2098b2d7
   killchain: Credential Access
   att&ck:
     - T1021
@@ -36,8 +36,14 @@ threat:
     - Customer Support
     - Windows::Desktop
   severity: Localised incident
-  leverage: Dwelling; Elevation of privilege
-  impact: Identity Theft; Business disruption; Impairement; Nuisance
+  leverage:
+    - Dwelling
+    - Elevation of privilege
+  impact:
+    - Identity Theft
+    - Business disruption
+    - Impairement
+    - Nuisance
   viability: Likely
   description: |-
     Threat actors conduct lateral movement with valid network credentials

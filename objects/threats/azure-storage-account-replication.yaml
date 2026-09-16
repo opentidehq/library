@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::f6a60403-4bcc-4fc6-ac07-abb913c1f080
+    - name: misp::f6a60403-4bcc-4fc6-ac07-abb913c1f080
   killchain: Impact
   att&ck:
     - T1567.002
@@ -58,8 +58,17 @@ threat:
     - AWS::Storage
     - Application Layer::HTTP
   severity: Significant incident
-  leverage: Information Disclosure; Elevation of privilege; Repudiation; Tampering
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Business disruption
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+    - Repudiation
+    - Tampering
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Business disruption
   viability: Likely
   description: |-
     The following threat vector enables adversaries to misuse Azure Storage's replication 

@@ -1,14 +1,15 @@
 # ADFS abuse
 
 ## Metadata
-
-- **UUID**: `19a7a12e-1c7a-4885-9359-56abd63c85c9`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-24`
-- **Modified**: `2025-06-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `19a7a12e-1c7a-4885-9359-56abd63c85c9` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-24` |
+| Modified | `2025-06-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -58,22 +59,46 @@ the victim’s environment, accessing multiple services.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actors can obtain the token signing certificate and private key by abusing 
+Threat actors can obtain the token signing certificate and private key by abusing 
 the Policy Store Transfer Service to extract the encrypted certificate, then decrypting 
 it using the DKM key from Active Directory. This can be done remotely if the attacker 
 has the right privileges, and once they have the private key, they can forge SAML 
 tokens for any user, bypassing authentication controls.
 
-Domains: Enterprise, SaaS
-Targets: Identity Services, SAML-Joined Applications, Cloud Storage Accounts, Server Authentication
-Platforms: AD FS, Active Directory, Azure AD, Office 365, Windows**
+## Surface
+> **Active Directory::Federation Services**
+> Active Directory Federation Services (AD FS)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **SAML**
+> Security Assertion Markup Language federation protocol
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Kerberos**
+> Kerberos network authentication protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft; Reputational Damages; Monetary Loss; Business disruption | - |
-| Leverage | Spoofing; Tampering; Repudiation; Elevation of privilege; Information Disclosure | - |
+| Impact | Data Breach<br>Identity Theft<br>Reputational Damages<br>Monetary Loss<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Business disruption |
+| Leverage | Spoofing<br>Tampering<br>Repudiation<br>Elevation of privilege<br>Information Disclosure | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 
 ## ATT&CK Techniques

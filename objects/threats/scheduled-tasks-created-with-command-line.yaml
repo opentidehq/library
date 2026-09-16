@@ -20,8 +20,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0092
-    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - name: att&ck::G0092
+    - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
   killchain: Execution
   att&ck:
     - T1053.005
@@ -35,8 +35,12 @@ threat:
     - Windows::Server
     - Web Servers
   severity: Moderate incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Dwelling
-  impact: Impairement
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Dwelling
+  impact:
+    - Impairement
   viability: Likely
   description: |-
     Adversaries can use  Windows Command Shell (cmd.exe) to execute specific commands 

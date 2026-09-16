@@ -1,14 +1,15 @@
 # Abuse Windows Utilities to Side-Load Malicious DLLs
 
 ## Metadata
-
-- **UUID**: `86f62c3a-6556-4a64-a9f5-a79168ad42d9`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-11-05`
-- **Modified**: `2024-11-05`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `86f62c3a-6556-4a64-a9f5-a79168ad42d9` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-11-05` |
+| Modified | `2024-11-05` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## Description
 ### 1. Squirrel.exe
@@ -90,21 +91,27 @@ odbcconf.exe /S /A {REGSVR C:\path\to\malicious.dll}
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The targeted Windows systems must have applications that improperly handle DLL loading, 
+The targeted Windows systems must have applications that improperly handle DLL loading, 
 allowing unsigned or malicious DLLs to be loaded without proper validation. 
 This often involves software that looks for DLLs in directories writable 
 by non-administrative users
 
-Domains: Enterprise
-Targets: Laptop, Workstations, Virtual Machines
-Platforms: Windows, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Business disruption; Reputational Damages; Legal and regulatory | - |
-| Leverage | Elevation of privilege; Tampering; Spoofing | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages<br>Legal and regulatory | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Legal and regulatory costs |
+| Leverage | Elevation of privilege<br>Tampering<br>Spoofing | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -126,12 +133,22 @@ Platforms: Windows, PowerShell**
 ## Chaining
 ```mermaid
 flowchart LR
-86f62c3a_6556_4a64_a9f5_a79168ad42d9["Abuse Windows Utilities to Side-Load Malicious DLLs"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-86f62c3a_6556_4a64_a9f5_a79168ad42d9 -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Execution"
+86f62c3a_6556_4a64_a9f5_a79168ad42d9{{"Abuse Windows Utilities<br>to Side-Load Malicious<br>DLLs"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+subgraph "Persistence"
+cce22952_735a_4255_8319_e5e44aef9d85{{"Windows startup folder<br>abused by malware"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+cce22952_735a_4255_8319_e5e44aef9d85 -->|implements| 86f62c3a_6556_4a64_a9f5_a79168ad42d9
+cce22952_735a_4255_8319_e5e44aef9d85 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+86f62c3a_6556_4a64_a9f5_a79168ad42d9 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 This TVM is implementing the bigger TVM : Abuse of Windows Utilities
 
 - **Target UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`

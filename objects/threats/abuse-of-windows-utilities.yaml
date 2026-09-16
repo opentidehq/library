@@ -17,12 +17,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
-    - att&ck::G0082
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0082
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Execution
   att&ck:
     - T1218
@@ -40,8 +40,16 @@ threat:
     - Windows
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Elevation of privilege; Information Disclosure; Modify configuration; Software installation
-  impact: Data Breach; Reputational Damages; Business disruption; Identity Theft
+  leverage:
+    - Elevation of privilege
+    - Information Disclosure
+    - Modify configuration
+    - Software installation
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Business disruption
+    - Identity Theft
   viability: Likely
   description: |-
     Advanced threat actors frequently abuse legitimate Windows utilities to execute 

@@ -40,8 +40,17 @@ threat:
     - Routers
     - File Sharing
   severity: Significant incident
-  leverage: Dwelling; Information Disclosure; Spoofing; Tampering
-  impact: Competitive disadvantage; Data Breach; Identity Theft; IP Loss; Reputational Damages
+  leverage:
+    - Dwelling
+    - Information Disclosure
+    - Spoofing
+    - Tampering
+  impact:
+    - Competitive disadvantage
+    - Data Breach
+    - Identity Theft
+    - IP Loss
+    - Reputational Damages
   viability: Likely
   description: |-
     A rogue access point (AP) is any wireless access point connected to a network without 

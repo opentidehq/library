@@ -1,14 +1,15 @@
 # Use of customervoice.microsoft.com to host Phishing domains
 
 ## Metadata
-
-- **UUID**: `cef11e0a-32c7-46c6-8c9c-667d0f1055e2`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-10-25`
-- **Modified**: `2022-10-25`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `cef11e0a-32c7-46c6-8c9c-667d0f1055e2` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-10-25` |
+| Modified | `2022-10-25` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -25,19 +26,22 @@ legit traffic going there.
 **Low** - A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Phishing email or message sent another way with a link that includes 
+Phishing email or message sent another way with a link that includes 
 the real microsoft.com domain as customervoice.microsoft.com
 
-Domains: Enterprise
-Targets: End-user
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Identity Theft; Reputational Damages; Operating costs; Data Breach; Legal and regulatory | - |
-| Leverage | Software installation; Information Disclosure; Dwelling; Infrastructure Compromise | - |
+| Impact | Identity Theft<br>Reputational Damages<br>Operating costs<br>Data Breach<br>Legal and regulatory | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Increased operating costs<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Legal and regulatory costs |
+| Leverage | Software installation<br>Information Disclosure<br>Dwelling<br>Infrastructure Compromise | Software installation or code modification<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Almost certain | Nearly certain - 95-99% |
 | Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
 

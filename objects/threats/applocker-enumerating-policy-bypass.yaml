@@ -21,8 +21,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0016
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Defense Evasion
   att&ck:
     - T1218
@@ -41,8 +41,14 @@ threat:
     - Windows::Desktop
     - Customer Support
   severity: Significant incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Tampering
-  impact: Impairement; Data Breach; Lose Capabilities
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Impairement
+    - Data Breach
+    - Lose Capabilities
   viability: Likely
   description: |-
     Enumerating policy bypass in AppLocker refers to the process of identifying

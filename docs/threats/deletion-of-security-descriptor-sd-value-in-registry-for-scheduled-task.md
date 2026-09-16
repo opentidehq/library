@@ -1,14 +1,15 @@
 # Deletion of Security Descriptor (SD) value in registry for scheduled task
 
 ## Metadata
-
-- **UUID**: `e2b93649-44d7-4007-9592-3baf79cd2b33`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2022-12-16`
-- **Modified**: `2022-12-19`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `e2b93649-44d7-4007-9592-3baf79cd2b33` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2022-12-16` |
+| Modified | `2022-12-19` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -48,19 +49,31 @@ evasion.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor deletes an entry in the registry value, called SD value
+Threat actor deletes an entry in the registry value, called SD value
 (Security Descriptor) to hide presence of running task in Task Scheduler.
 
-Domains: Enterprise, Public Cloud
-Targets: Workstations, Laptop, Desktop, Control Server, Web Application Servers, Public-Facing Servers, System admin
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
 | Impact | Impairement | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
-| Leverage | Dwelling; Infrastructure Compromise; Elevation of privilege | - |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Elevation of privilege | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 

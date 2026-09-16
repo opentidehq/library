@@ -1,14 +1,15 @@
 # LNK files downloaded on a workstation
 
 ## Metadata
-
-- **UUID**: `3088db32-843b-439f-9374-f8c04a82b2ec`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-05-23`
-- **Modified**: `2025-05-23`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `3088db32-843b-439f-9374-f8c04a82b2ec` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-05-23` |
+| Modified | `2025-05-23` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -47,21 +48,30 @@ repository. Further the payload executes and infect the host.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor rely on social engineering techniques for initial access.
+Threat actor rely on social engineering techniques for initial access.
 For example, well customised and legitimate looking company e-mail with
 administrative document protected with passwords or titled with ongoing
 meeting or agenda.
 
-Domains: Enterprise
-Targets: Customer, End-user, Workstations
-Platforms: Office 365, Github**
+## Surface
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Code Repositories::GitHub**
+> GitHub source code hosting and collaboration
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Business disruption; Lose Capabilities; Data Breach; Identity Theft; Impairement | - |
-| Leverage | Infrastructure Compromise; Tampering | - |
+| Impact | Business disruption<br>Lose Capabilities<br>Data Breach<br>Identity Theft<br>Impairement | Business disruption<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Infrastructure Compromise<br>Tampering | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -81,12 +91,16 @@ Platforms: Office 365, Github**
 ## Chaining
 ```mermaid
 flowchart LR
-3088db32_843b_439f_9374_f8c04a82b2ec["LNK files downloaded on a workstation"]
-1a68b5eb_0112_424d_a21f_88dda0b6b8df["Spearphishing Link"]
-3088db32_843b_439f_9374_f8c04a82b2ec -->|sequence::succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+subgraph "Defense Evasion"
+3088db32_843b_439f_9374_f8c04a82b2ec{{"LNK files downloaded on<br>a workstation"}}
+end
+subgraph "Delivery"
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+3088db32_843b_439f_9374_f8c04a82b2ec -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Link (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Link](spearphishing-link.md) (`1a68b5eb-0112-424d-a21f-88dda0b6b8df`) (`sequence::succeeds`)
 North Korean cyberespionage campaign distributes a spear-phishing
 e-mails which contains a link to download a password-protected
 file containing a LNK file. In this campaign the threat actor

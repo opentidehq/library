@@ -1,14 +1,15 @@
 # Windows credential access attempt
 
 ## Metadata
-
-- **UUID**: `d0522985-6001-4e25-a5ff-2dc87bf2fee8`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-02-03`
-- **Modified**: `2025-02-11`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d0522985-6001-4e25-a5ff-2dc87bf2fee8` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-02-03` |
+| Modified | `2025-02-11` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -128,21 +129,30 @@ which can be used to exploit credentials.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries can use different open source tools
+Adversaries can use different open source tools
 (or specially created by themselves) to attempt
 stealing Windows credentials from different places
 (SAM database, LSA, LSASS, NTDS.DIT and others).
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Workstations, Desktop, Laptop, Virtual Machines
-Platforms: Windows, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Reputational Damages; Data Breach; Identity Theft | - |
-| Leverage | Tampering; Dwelling; Infrastructure Compromise | - |
+| Impact | Reputational Damages<br>Data Breach<br>Identity Theft | Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Tampering<br>Dwelling<br>Infrastructure Compromise | Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -170,35 +180,43 @@ Platforms: Windows, Active Directory**
 ## Chaining
 ```mermaid
 flowchart LR
-d0522985_6001_4e25_a5ff_2dc87bf2fee8["Windows credential access attempt"]
-35c76d6c_2ac7_486e_b0b7_b56f6b110bec["Password hash cracking on Windows"]
-03cc9593_e7cf_484b_ae9c_684bf6f7199f["Pass the ticket using Kerberos ticket"]
-3b1026c6_7d04_4b91_ba6f_abc68e993616["Abusing Lolbins to Enumerate Local and Domain Accounts and Groups"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|sequence::preceeds| 35c76d6c_2ac7_486e_b0b7_b56f6b110bec
-35c76d6c_2ac7_486e_b0b7_b56f6b110bec -->|sequence::preceeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
-03cc9593_e7cf_484b_ae9c_684bf6f7199f -->|sequence::preceeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
-3b1026c6_7d04_4b91_ba6f_abc68e993616 -->|sequence::preceeds| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Credential Access"
+d0522985_6001_4e25_a5ff_2dc87bf2fee8{{"Windows credential<br>access attempt"}}
+35c76d6c_2ac7_486e_b0b7_b56f6b110bec{{"Password hash cracking<br>on Windows"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+subgraph "Discovery"
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+end
+subgraph "Execution"
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 35c76d6c_2ac7_486e_b0b7_b56f6b110bec
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### preceeds -> Password hash cracking on Windows (`sequence::preceeds`)
+#### preceeds -> [Password hash cracking on Windows](password-hash-cracking-on-windows.md) (`35c76d6c-2ac7-486e-b0b7-b56f6b110bec`) (`sequence::preceeds`)
 Using a hashed password to authenticate to a system without
 knowing the plaintext password.
 
 - **Target UUID**: `35c76d6c-2ac7-486e-b0b7-b56f6b110bec`
-#### preceeds -> Pass the ticket using Kerberos ticket (`sequence::preceeds`)
+#### preceeds -> [Pass the ticket using Kerberos ticket](pass-the-ticket-using-kerberos-ticket.md) (`03cc9593-e7cf-484b-ae9c-684bf6f7199f`) (`sequence::preceeds`)
 Exploiting Kerberos authentication tickets, which can include
 ticket forgery, ticket passing, or exploiting vulnerabilities
 in the Kerberos protocol.
 
 - **Target UUID**: `03cc9593-e7cf-484b-ae9c-684bf6f7199f`
-#### preceeds -> Abusing Lolbins to Enumerate Local and Domain Accounts and Groups (`sequence::preceeds`)
+#### preceeds -> [Abusing Lolbins to Enumerate Local and Domain Accounts and Groups](abusing-lolbins-to-enumerate-local-and-domain-accounts-and-groups.md) (`3b1026c6-7d04-4b91-ba6f-abc68e993616`) (`sequence::preceeds`)
 A threat actor can perform reconnaissance and gathering of user's account
 information. For example, listing of the local system and domain accounts
 and groups with an attempt and goal to collect Windows credentials.
 
 - **Target UUID**: `3b1026c6-7d04-4b91-ba6f-abc68e993616`
-#### preceeds -> Abuse of Windows Utilities (`sequence::preceeds`)
+#### preceeds -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`sequence::preceeds`)
 A threat actor can abuse Windows utilities, for example installed
 and native Windows tools like WCE, cmd runas, builded functionality
 and filters like wmic which can be used for enumeration credentials.

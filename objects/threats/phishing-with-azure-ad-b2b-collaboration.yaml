@@ -18,8 +18,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Social Engineering
   att&ck:
     - T1566
@@ -35,8 +35,19 @@ threat:
     - Kerberos
     - Remote Access
   severity: Significant incident
-  leverage: Spoofing; Infrastructure Compromise; Information Disclosure; New Accounts
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Competitive disadvantage; Business disruption; Lose Capabilities
+  leverage:
+    - Spoofing
+    - Infrastructure Compromise
+    - Information Disclosure
+    - New Accounts
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Competitive disadvantage
+    - Business disruption
+    - Lose Capabilities
   viability: Likely
   description: |-
     Phishing with Azure AD B2B Collaboration involves exploiting the service to send 

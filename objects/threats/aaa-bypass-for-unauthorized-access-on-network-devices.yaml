@@ -42,8 +42,16 @@ threat:
     - Switches
     - Kerberos
   severity: Substantial incident
-  leverage: Elevation of privilege; Repudiation; Infrastructure Compromise; Tampering
-  impact: Lose Capabilities; National Security; Reputational Damages; Data Breach
+  leverage:
+    - Elevation of privilege
+    - Repudiation
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Lose Capabilities
+    - National Security
+    - Reputational Damages
+    - Data Breach
   viability: Likely
   description: |-
     LINE VIPER implements a critical capability to bypass

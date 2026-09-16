@@ -39,8 +39,17 @@ threat:
   surface:
     - Windows::Desktop
   severity: Highly significant incident
-  leverage: Elevation of privilege; Tampering; Information Disclosure; Repudiation
-  impact: Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss
+  leverage:
+    - Elevation of privilege
+    - Tampering
+    - Information Disclosure
+    - Repudiation
+  impact:
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
+    - Legal and regulatory
+    - Monetary Loss
   viability: Almost certain
   description: |-
     ## Executive Summary

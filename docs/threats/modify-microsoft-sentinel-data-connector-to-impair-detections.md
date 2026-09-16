@@ -1,14 +1,15 @@
 # Modify Microsoft Sentinel Data Connector to impair Detections
 
 ## Metadata
-
-- **UUID**: `48432b70-77c4-4f5a-9d66-75764c1777c6`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-12-08`
-- **Modified**: `2022-12-08`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `48432b70-77c4-4f5a-9d66-75764c1777c6` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-12-08` |
+| Modified | `2022-12-08` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -28,11 +29,17 @@ using the Azure CLI or directly on the portal itself via a browser.
 **Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
 
 ## Terrain
-> **Requires access to privileged Azure credentials
+Requires access to privileged Azure credentials
 
-Domains: Public Cloud
-Targets: CI/CD Pipelines, System admin
-Platforms: Azure**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Development::CI/CD**
+> Continuous integration and continuous delivery platforms
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

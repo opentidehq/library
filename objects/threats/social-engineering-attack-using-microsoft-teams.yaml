@@ -16,8 +16,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Delivery
   att&ck:
     - T1199
@@ -31,8 +31,11 @@ threat:
     - Microsoft::Teams
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Information Disclosure
-  impact: Identity Theft; Data Breach
+  leverage:
+    - Information Disclosure
+  impact:
+    - Identity Theft
+    - Data Breach
   viability: Environment dependent
   description: |-
     Adversaries are using compromised Microsoft 365 tenants to create technical

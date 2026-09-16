@@ -37,8 +37,11 @@ threat:
     - Web Servers
     - Application Layer::HTTP
   severity: Substantial incident
-  leverage: Information Disclosure
-  impact: Data Breach; IP Loss
+  leverage:
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - IP Loss
   viability: Likely
   description: |-
     An adversary exploits a broken access control pattern in a web application

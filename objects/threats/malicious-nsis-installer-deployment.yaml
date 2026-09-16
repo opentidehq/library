@@ -34,8 +34,15 @@ threat:
   surface:
     - Windows::Desktop
   severity: Significant incident
-  leverage: Software installation; Infrastructure Compromise; Tampering
-  impact: Data Breach; Lose Capabilities; Business disruption; Reputational Damages
+  leverage:
+    - Software installation
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Data Breach
+    - Lose Capabilities
+    - Business disruption
+    - Reputational Damages
   viability: Likely
   description: |-
     ## Overview

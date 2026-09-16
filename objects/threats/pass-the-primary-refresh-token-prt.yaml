@@ -44,8 +44,21 @@ threat:
     - Azure::Compute::Virtual Machines
     - Kerberos
   severity: Significant incident
-  leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption
+  leverage:
+    - Spoofing
+    - Tampering
+    - Elevation of privilege
+    - Information Disclosure
+    - Modify configuration
+    - Modify privileges
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Lose Capabilities
+    - Business disruption
   viability: Likely
   description: |-
     Pass-the-PRT (Primary Refresh Token) is an advanced cyberattack technique targeting 

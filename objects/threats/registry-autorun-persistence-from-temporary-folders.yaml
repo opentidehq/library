@@ -36,8 +36,14 @@ threat:
   surface:
     - Windows::Desktop
   severity: Significant incident
-  leverage: Tampering; Elevation of privilege; Infrastructure Compromise
-  impact: Business disruption; Data Breach; Impairement
+  leverage:
+    - Tampering
+    - Elevation of privilege
+    - Infrastructure Compromise
+  impact:
+    - Business disruption
+    - Data Breach
+    - Impairement
   viability: Almost certain
   description: |-
     ## Overview

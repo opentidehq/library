@@ -33,8 +33,15 @@ threat:
     - Mobile::iPadOS
     - VPN
   severity: Significant incident
-  leverage: Dwelling; Information Disclosure; Spoofing
-  impact: Competitive disadvantage; Data Breach; Identity Theft; IP Loss
+  leverage:
+    - Dwelling
+    - Information Disclosure
+    - Spoofing
+  impact:
+    - Competitive disadvantage
+    - Data Breach
+    - Identity Theft
+    - IP Loss
   viability: Likely
   description: |-
     The "Always-on VPN" feature on mobile devices is designed to ensure that all network 

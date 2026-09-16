@@ -47,7 +47,7 @@ objective:
         state values only as masked labels or approved test artefacts.
         Triage by confirming there is no corresponding server-issued session, signed token, or login
         event that legitimately explains the successful response.
-      severity: High
+      severity: Substantial incident
       effort: 5
       methodology: Heuristic
       data:
@@ -58,10 +58,10 @@ objective:
           provide request path, response status, authentication outcome, and cookie/header names; raw
           values should be masked or omitted unless explicitly approved.
       entities:
-        - network::IP Address
-        - network::URL
-        - network::Session
-        - network::API Call
+        - IP Address
+        - URL
+        - Session
+        - API Call
     - name: Client-side role or identity claim changes authorisation outcome
       uuid: 9bfe87d7-c197-4893-b7e1-829ab6d1fcf5
       description: |-
@@ -72,7 +72,7 @@ objective:
         cookies, plain-text headers, or application variables that should never control privilege.
         Triage by comparing the claimed client-side identity or role against the server-side resolved
         principal and expected authorisation policy for the route.
-      severity: Critical
+      severity: Significant incident
       effort: 6
       methodology: Behavioural
       data:
@@ -83,10 +83,10 @@ objective:
           Cookie and header values should be redacted; retain field names, decision changes, and
           non-sensitive fingerprints.
       entities:
-        - network::Session
-        - cloud::Authentication
-        - host::Account
-        - network::URL
+        - Session
+        - Authentication
+        - Account
+        - URL
     - name: Session variable probing across protected routes
       uuid: 7ff9ea94-7bf4-4df5-83f1-7d3dc0174653
       description: |-
@@ -97,7 +97,7 @@ objective:
         200 response transitions without a corresponding login event.
         As a starting point, investigate sources that try multiple authentication-like cookie or header
         names across protected routes in a short window, especially when followed by successful access.
-      severity: Medium
+      severity: Moderate incident
       effort: 4
       methodology: Frequency Analysis
       data:
@@ -107,10 +107,10 @@ objective:
           and timestamps from WAF, proxy, API gateway, or application logs. Header values can be masked;
           field names and response outcomes are sufficient for this signal.
       entities:
-        - network::IP Address
-        - network::URL
-        - network::Session
-        - network::API Call
+        - IP Address
+        - URL
+        - Session
+        - API Call
   attack:
     - T1190
 composition:

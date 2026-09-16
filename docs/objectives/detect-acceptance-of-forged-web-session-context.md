@@ -1,15 +1,16 @@
 # Detect acceptance of forged web session context
 
 ## Metadata
-
-- **UUID**: `d4c509d7-f9ab-452a-a91d-4da040095414`
-- **Schema**: `objective::1.0`
-- **Version**: `3`
-- **Created**: `2026-05-04`
-- **Modified**: `2026-05-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Contributors**: Hold Security Threat Research
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d4c509d7-f9ab-452a-a91d-4da040095414` |
+| Schema | `objective::1.0` |
+| Version | `3` |
+| Created | `2026-05-04` |
+| Modified | `2026-05-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Contributors | Hold Security Threat Research |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -46,7 +47,7 @@ state values only as masked labels or approved test artefacts.
 Triage by confirming there is no corresponding server-issued session, signed token, or login
 event that legitimately explains the successful response.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Heuristic
 - **Effort**: 5
 #### Data
@@ -66,7 +67,7 @@ cookies, plain-text headers, or application variables that should never control 
 Triage by comparing the claimed client-side identity or role against the server-side resolved
 principal and expected authorisation policy for the route.
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Behavioural
 - **Effort**: 6
 #### Data
@@ -86,7 +87,7 @@ by focusing on high counts of distinct state names, tooling user-agents, and rep
 As a starting point, investigate sources that try multiple authentication-like cookie or header
 names across protected routes in a short window, especially when followed by successful access.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Frequency Analysis
 - **Effort**: 4
 #### Data
@@ -104,20 +105,27 @@ field names and response outcomes are sufficient for this signal.
 | Client-side role or identity claim changes authorisation outcome | _None_ |
 | Session variable probing across protected routes | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-7ff9ea94_7bf4_4df5_83f1_7d3dc0174653["7ff9ea94-7bf4-4df5-83f1-7d3dc0174653"]
-9ba566b6_bfed_4059_bdb1_50bb3cac3c29["9ba566b6-bfed-4059-bdb1-50bb3cac3c29"]
-9bfe87d7_c197_4893_b7e1_829ab6d1fcf5["9bfe87d7-c197-4893-b7e1-829ab6d1fcf5"]
+subgraph "Threats"
+38adba1e_0961_4417_bd84_33fa9c42439f{{"Client-controlled<br>session state<br>authentication bypass"}}
 end
-subgraph "Threat"
-38adba1e_0961_4417_bd84_33fa9c42439f["Client-controlled session state authentication bypass"]
+subgraph "Signals"
+9ba566b6_bfed_4059_bdb1_50bb3cac3c29(("Fabricated session value<br>grants protected access"))
+9bfe87d7_c197_4893_b7e1_829ab6d1fcf5(("Client-side role or<br>identity claim changes<br>authorisation outcome"))
+7ff9ea94_7bf4_4df5_83f1_7d3dc0174653(("Session variable probing<br>across protected routes"))
 end
-d4c509d7_f9ab_452a_a91d_4da040095414["Detect acceptance of forged web session context"]
-d4c509d7_f9ab_452a_a91d_4da040095414 -->|signal| 7ff9ea94_7bf4_4df5_83f1_7d3dc0174653
-d4c509d7_f9ab_452a_a91d_4da040095414 -->|signal| 9ba566b6_bfed_4059_bdb1_50bb3cac3c29
-d4c509d7_f9ab_452a_a91d_4da040095414 -->|signal| 9bfe87d7_c197_4893_b7e1_829ab6d1fcf5
-d4c509d7_f9ab_452a_a91d_4da040095414 -->|threat| 38adba1e_0961_4417_bd84_33fa9c42439f
+d4c509d7_f9ab_452a_a91d_4da040095414(["Detect acceptance of<br>forged web session<br>context"])
+38adba1e_0961_4417_bd84_33fa9c42439f -->|covers| d4c509d7_f9ab_452a_a91d_4da040095414
+d4c509d7_f9ab_452a_a91d_4da040095414 --> 9ba566b6_bfed_4059_bdb1_50bb3cac3c29
+d4c509d7_f9ab_452a_a91d_4da040095414 --> 9bfe87d7_c197_4893_b7e1_829ab6d1fcf5
+d4c509d7_f9ab_452a_a91d_4da040095414 --> 7ff9ea94_7bf4_4df5_83f1_7d3dc0174653
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [Client-controlled session state authentication bypass](../Threats/client-controlled-session-state-authentication-bypass.md) (`38adba1e-0961-4417-bd84-33fa9c42439f`) | Upstream | threat |
+| Signal | [Session variable probing across protected routes](detect-acceptance-of-forged-web-session-context.md#session-variable-probing-across-protected-routes) (`7ff9ea94-7bf4-4df5-83f1-7d3dc0174653`) | Downstream | signal |
+| Signal | [Fabricated session value grants protected access](detect-acceptance-of-forged-web-session-context.md#fabricated-session-value-grants-protected-access) (`9ba566b6-bfed-4059-bdb1-50bb3cac3c29`) | Downstream | signal |
+| Signal | [Client-side role or identity claim changes authorisation outcome](detect-acceptance-of-forged-web-session-context.md#client-side-role-or-identity-claim-changes-authorisation-outcome) (`9bfe87d7-c197-4893-b7e1-829ab6d1fcf5`) | Downstream | signal |

@@ -1,14 +1,15 @@
 # MoonTag backdoor
 
 ## Metadata
-
-- **UUID**: `4110c951-3120-49fb-b54b-3d3aa896296b`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-16`
-- **Modified**: `2024-10-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `4110c951-3120-49fb-b54b-3d3aa896296b` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-16` |
+| Modified | `2024-10-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -69,19 +70,25 @@ which could lead to further exploitation or system takeover.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor uses vulnerable Microsoft Graph APIs
+Threat actor uses vulnerable Microsoft Graph APIs
 to deploy a backdoor.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Laptop, Other, Remote access
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Data Breach; Impairement; Lose Capabilities; Reputational Damages | - |
-| Leverage | Dwelling; Infrastructure Compromise; Information Disclosure; Tampering | - |
+| Impact | Data Breach<br>Impairement<br>Lose Capabilities<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Information Disclosure<br>Tampering | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -95,12 +102,14 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-4110c951_3120_49fb_b54b_3d3aa896296b["MoonTag backdoor"]
-f3a392f7_3268_4c54_8bfa_8117b784f520["DLL Execution over Rundll32"]
-4110c951_3120_49fb_b54b_3d3aa896296b -->|sequence::preceeds| f3a392f7_3268_4c54_8bfa_8117b784f520
+subgraph "Exploitation"
+4110c951_3120_49fb_b54b_3d3aa896296b{{"MoonTag backdoor"}}
+f3a392f7_3268_4c54_8bfa_8117b784f520{{"DLL Execution over<br>Rundll32"}}
+end
+4110c951_3120_49fb_b54b_3d3aa896296b -->|preceeds| f3a392f7_3268_4c54_8bfa_8117b784f520
 ```
 ### Chaining details
-#### preceeds -> DLL Execution over Rundll32 (`sequence::preceeds`)
+#### preceeds -> [DLL Execution over Rundll32](dll-execution-over-rundll32.md) (`f3a392f7-3268-4c54-8bfa-8117b784f520`) (`sequence::preceeds`)
 In the code of the MoonTag backdoor is observed
 a call function installing dll library used over Rundll32
 

@@ -1,14 +1,15 @@
 # AppLocker bypass
 
 ## Metadata
-
-- **UUID**: `197c06c8-7959-4e28-9ede-b3e7b6f13442`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2025-02-04`
-- **Modified**: `2025-07-23`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `197c06c8-7959-4e28-9ede-b3e7b6f13442` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2025-02-04` |
+| Modified | `2025-07-23` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -63,19 +64,25 @@ requires the system to have installed these tools on it. An example would be usi
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have administrative privileges on Windows systems within 
+Adversary must have administrative privileges on Windows systems within 
 the enterprise network.
 
-Domains: Enterprise
-Targets: Workstations, Laptop
-Platforms: Active Directory, PowerShell, Windows**
+## Surface
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Data Breach; Business disruption; Reputational Damages; Operating costs | - |
-| Leverage | Modify configuration; Modify privileges; Software installation | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Increased operating costs |
+| Leverage | Modify configuration<br>Modify privileges<br>Software installation | Modify configuration or services<br>Modify privileges or permissions<br>Software installation or code modification |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 
@@ -93,28 +100,32 @@ Platforms: Active Directory, PowerShell, Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-197c06c8_7959_4e28_9ede_b3e7b6f13442["AppLocker bypass"]
-9a1aeae5_912e_492c_b5d4_8bce91a95dae["AppLocker enumerating policy bypass"]
-ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63["AppLocker bypass using writable folders"]
-a73c2506_8584_4c0b_bfdc_52e33c8bd229["AppLocker bypass using DLLs"]
-197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|atomicity::implemented| 9a1aeae5_912e_492c_b5d4_8bce91a95dae
-9a1aeae5_912e_492c_b5d4_8bce91a95dae -->|atomicity::implemented| ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63
-ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63 -->|atomicity::implemented| a73c2506_8584_4c0b_bfdc_52e33c8bd229
+subgraph "Privilege Escalation"
+197c06c8_7959_4e28_9ede_b3e7b6f13442{{"AppLocker bypass"}}
+end
+subgraph "Defense Evasion"
+9a1aeae5_912e_492c_b5d4_8bce91a95dae{{"AppLocker enumerating<br>policy bypass"}}
+a73c2506_8584_4c0b_bfdc_52e33c8bd229{{"AppLocker bypass using<br>DLLs"}}
+end
+ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63{{"AppLocker bypass using<br>writable folders"}}
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| 9a1aeae5_912e_492c_b5d4_8bce91a95dae
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| a73c2506_8584_4c0b_bfdc_52e33c8bd229
 ```
 ### Chaining details
-#### implemented -> AppLocker enumerating policy bypass (`atomicity::implemented`)
+#### implemented -> [AppLocker enumerating policy bypass](applocker-enumerating-policy-bypass.md) (`9a1aeae5-912e-492c-b5d4-8bce91a95dae`) (`atomicity::implemented`)
 One of the methods to bypass an Applocker is to enumerate AppLocker
 policies. A vulnerability in these policies can lead to compromise
 AppLocker defence mechanisms and unauthorised applications access.
 
 - **Target UUID**: `9a1aeae5-912e-492c-b5d4-8bce91a95dae`
-#### implemented -> AppLocker bypass using writable folders (`atomicity::implemented`)
+#### implemented -> [AppLocker bypass using writable folders](applocker-bypass-using-writable-folders.md) (`ff8c52ac-77d0-4bee-9f6d-e40fc6e0da63`) (`atomicity::implemented`)
 A threat actor can place a malicious executable in a writable folder
 that is not restricted by AppLocker. This technique is used to bypass
 AppLocker controls.
 
 - **Target UUID**: `ff8c52ac-77d0-4bee-9f6d-e40fc6e0da63`
-#### implemented -> AppLocker bypass using DLLs (`atomicity::implemented`)
+#### implemented -> [AppLocker bypass using DLLs](applocker-bypass-using-dlls.md) (`a73c2506-8584-4c0b-bfdc-52e33c8bd229`) (`atomicity::implemented`)
 A malicious DLL can mimic a legitimate process, which is allowed to run
 by AppLocker. A threat actor can use this technique to bypass AppLocker
 protection mechanism and functionality.

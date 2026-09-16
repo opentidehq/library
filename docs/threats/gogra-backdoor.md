@@ -1,14 +1,15 @@
 # GoGra backdoor
 
 ## Metadata
-
-- **UUID**: `f2c59a8e-3b1f-4a99-80f0-3675b8c1f184`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2023-10-15`
-- **Modified**: `2023-10-15`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f2c59a8e-3b1f-4a99-80f0-3675b8c1f184` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2023-10-15` |
+| Modified | `2023-10-15` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -45,21 +46,36 @@ C&C server ref [3].
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Cloud environments, with a primary focus on Microsoft cloud services
+Cloud environments, with a primary focus on Microsoft cloud services
 such as Microsoft 365 and Outlook. This threat leverages legitimate
 Microsoft Graph APIs and authentication mechanisms (OAuth) to interact
 with Microsoft services via a Command and Control server ref [a, 3].
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user, Windows API, Workstations, Desktop, Media, Public-Facing Servers, Email Platform
-Platforms: Office 365, Windows**
+## Surface
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Application Layer::WMI**
+> Windows Management Instrumentation remote management protocol
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Email**
+> Email infrastructure and services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Nuisance; Impairement; Data Breach; Operating costs | - |
-| Leverage | Dwelling; Infrastructure Compromise; Information Disclosure; Spoofing | - |
+| Impact | Nuisance<br>Impairement<br>Data Breach<br>Operating costs | Small and mostly inconsequential to day to day operations, but noticed.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Increased operating costs |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Information Disclosure<br>Spoofing | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -74,12 +90,16 @@ Platforms: Office 365, Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-f2c59a8e_3b1f_4a99_80f0_3675b8c1f184["GoGra backdoor"]
-06523ed4_7881_4466_9ac5_f8417e972d13["Using a Windows command prompt for credential manipulation"]
-f2c59a8e_3b1f_4a99_80f0_3675b8c1f184 -->|sequence::preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
+subgraph "Exploitation"
+f2c59a8e_3b1f_4a99_80f0_3675b8c1f184{{"GoGra backdoor"}}
+end
+subgraph "Execution"
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+end
+f2c59a8e_3b1f_4a99_80f0_3675b8c1f184 -->|preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
 ```
 ### Chaining details
-#### preceeds -> Using a Windows command prompt for credential manipulation (`sequence::preceeds`)
+#### preceeds -> [Using a Windows command prompt for credential manipulation](using-a-windows-command-prompt-for-credential-manipulation.md) (`06523ed4-7881-4466-9ac5-f8417e972d13`) (`sequence::preceeds`)
 GoGra malware can execute cmd commands and change directories
 for hiding and persistence purposes.
 

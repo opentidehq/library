@@ -1,14 +1,15 @@
 # User information gathering in Linux systems
 
 ## Metadata
-
-- **UUID**: `8bc82ff8-e106-4377-98f1-2cb912631ffa`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-08-07`
-- **Modified**: `2025-08-12`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `8bc82ff8-e106-4377-98f1-2cb912631ffa` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-08-07` |
+| Modified | `2025-08-12` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -83,12 +84,18 @@ Examples:
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires an initial access to a Linux system with sufficient
+Requires an initial access to a Linux system with sufficient
 rights to execute commands.
 
-Domains: Enterprise
-Targets: End-user, Customer
-Platforms: Linux**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
@@ -107,20 +114,26 @@ Platforms: Linux**
 ## Chaining
 ```mermaid
 flowchart LR
-8bc82ff8_e106_4377_98f1_2cb912631ffa["User information gathering in Linux systems"]
-3b1026c6_7d04_4b91_ba6f_abc68e993616["Abusing Lolbins to Enumerate Local and Domain Accounts and Groups"]
-e2d8ce6b_f21e_4444_a828_0c6b722a9c93["Local user account added"]
-8bc82ff8_e106_4377_98f1_2cb912631ffa -->|sequence::succeeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
-3b1026c6_7d04_4b91_ba6f_abc68e993616 -->|sequence::succeeds| e2d8ce6b_f21e_4444_a828_0c6b722a9c93
+subgraph "Reconnaissance"
+8bc82ff8_e106_4377_98f1_2cb912631ffa{{"User information<br>gathering in Linux<br>systems"}}
+end
+subgraph "Discovery"
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+end
+subgraph "Persistence"
+e2d8ce6b_f21e_4444_a828_0c6b722a9c93{{"Local user account added"}}
+end
+8bc82ff8_e106_4377_98f1_2cb912631ffa -->|succeeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+8bc82ff8_e106_4377_98f1_2cb912631ffa -->|succeeds| e2d8ce6b_f21e_4444_a828_0c6b722a9c93
 ```
 ### Chaining details
-#### succeeds -> Abusing Lolbins to Enumerate Local and Domain Accounts and Groups (`sequence::succeeds`)
+#### succeeds -> [Abusing Lolbins to Enumerate Local and Domain Accounts and Groups](abusing-lolbins-to-enumerate-local-and-domain-accounts-and-groups.md) (`3b1026c6-7d04-4b91-ba6f-abc68e993616`) (`sequence::succeeds`)
 The threat actors may attempt to enumerate the environment using some
 Lolbins on a local system, domain accounts or groups to gather
 information for the users in the enviornoment.
 
 - **Target UUID**: `3b1026c6-7d04-4b91-ba6f-abc68e993616`
-#### succeeds -> Local user account added (`sequence::succeeds`)
+#### succeeds -> [Local user account added](local-user-account-added.md) (`e2d8ce6b-f21e-4444-a828-0c6b722a9c93`) (`sequence::succeeds`)
 An adversary can use post-exploittaion techniques. For example, when a
 set of usernames is collected initally, after that the threat actor can
 use these names and data for further steps like add a local account to

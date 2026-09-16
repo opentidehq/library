@@ -1,14 +1,15 @@
 # FileFix technique abuses Windows Explorer to execute commands
 
 ## Metadata
-
-- **UUID**: `59d2eb7f-63cd-4ac4-9608-e65663fea667`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-09-24`
-- **Modified**: `2025-09-25`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `59d2eb7f-63cd-4ac4-9608-e65663fea667` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-09-24` |
+| Modified | `2025-09-25` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -58,22 +59,28 @@ the `ClickFix` social engineering attack.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The attack requires Windows hosts with interactive users who have the
+The attack requires Windows hosts with interactive users who have the
 ability to open File Explorer or paste into the Explorer address bar.
 The browser must allow JavaScript to run (standard), and the victim must
 be able to interactively paste content from the clipboard into the Explorer
 address bar or other UI (e.g., Run dialog).
 
-Domains: Enterprise
-Targets: Workstations, Customer, End-user
-Platforms: Windows, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Business disruption; Impairement; Lose Capabilities | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Tampering | - |
+| Impact | Business disruption<br>Impairement<br>Lose Capabilities | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -86,12 +93,16 @@ Platforms: Windows, PowerShell**
 ## Chaining
 ```mermaid
 flowchart LR
-59d2eb7f_63cd_4ac4_9608_e65663fea667["FileFix technique abuses Windows Explorer to execute commands"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-59d2eb7f_63cd_4ac4_9608_e65663fea667 -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Credential Access"
+59d2eb7f_63cd_4ac4_9608_e65663fea667{{"FileFix technique abuses<br>Windows Explorer to<br>execute commands"}}
+end
+subgraph "Execution"
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+59d2eb7f_63cd_4ac4_9608_e65663fea667 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 A threat actor uses native Windows utilities as Windows Explorer to
 execute binaries on the victim's system.
 

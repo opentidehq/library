@@ -19,15 +19,15 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0034
-    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
-    - att&ck::G0114
-    - att&ck::G0094
-    - misp::89f005f9-22e9-4c50-9b48-e94c521266e5
-    - att&ck::G1004
-    - misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0034
+    - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - name: att&ck::G0114
+    - name: att&ck::G0094
+    - name: misp::89f005f9-22e9-4c50-9b48-e94c521266e5
+    - name: att&ck::G1004
+    - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
   killchain: Credential Access
   att&ck:
     - T1111
@@ -49,8 +49,14 @@ threat:
     - Customer Support
     - Entra ID
   severity: Moderate incident
-  leverage: Elevation of privilege; Modify configuration; Modify privileges; Spoofing
-  impact: Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Modify configuration
+    - Modify privileges
+    - Spoofing
+  impact:
+    - Identity Theft
+    - Impairement
   viability: Environment dependent
   description: |-
     MFA is a technique that requires more than one piece of evidence to authorize the user to 

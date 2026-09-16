@@ -1,14 +1,15 @@
 # Scheduled tasks created with command line
 
 ## Metadata
-
-- **UUID**: `2b560980-d4c6-428c-963f-697e7e29938c`
-- **Schema**: `threat::1.0`
-- **Version**: `4`
-- **Created**: `2022-12-09`
-- **Modified**: `2022-12-13`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `2b560980-d4c6-428c-963f-697e7e29938c` |
+| Schema | `threat::1.0` |
+| Version | `4` |
+| Created | `2022-12-09` |
+| Modified | `2022-12-13` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -63,19 +64,31 @@ Parameters that can be used in creation scheduled task command:
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **An adversary has gained control over a Windows endpoint and has  
+An adversary has gained control over a Windows endpoint and has  
 privileges to create scheduled tasks using the command line.
 
-Domains: Enterprise, Public Cloud
-Targets: Workstations, Control Server, Input/Output Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Server**
+> Microsoft Windows Server editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
 | Impact | Impairement | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Dwelling | - |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Dwelling | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Active or passive extended presence in the target, which performs adversarial operations continuously. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 

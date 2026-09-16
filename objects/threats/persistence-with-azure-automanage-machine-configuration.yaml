@@ -25,8 +25,14 @@ threat:
     - Azure
     - Azure::Compute::Virtual Machines
   severity: Significant incident
-  leverage: Infrastructure Compromise; Dwelling; Modify privileges
-  impact: Business disruption; Data Breach; Impairement
+  leverage:
+    - Infrastructure Compromise
+    - Dwelling
+    - Modify privileges
+  impact:
+    - Business disruption
+    - Data Breach
+    - Impairement
   viability: Likely
   description: |-
     Azure Policy enables administrators to define, enforce and remediate
