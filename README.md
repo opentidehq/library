@@ -21,15 +21,18 @@ The [OpenTide Explorer](https://github.com/OpenTideHQ/explorer) UI is built from
 
 **https://opentidehq.github.io/library/**
 
-The static site is served under the `/library` base path. CI checks out the explorer repository and runs `opentide explorer build` (git-based — no npm publish required).
+The static site is served under the `/library` base path. CI checks out the public explorer repository and builds it with Node (`scripts/generate-mock-bundle.mjs` + `next build`). That path does **not** call `opentide explorer`: PyPI `opentide` 0.1.5 and current `development` HEAD have no such Typer command, even though the engine's GitHub workflow template still emits it.
 
-Local preview:
+Local preview from a sibling explorer checkout:
 
 ```bash
-pip install opentide
 export OPENTIDE_REPO_ROOT=$PWD
-export OPENTIDE_EXPLORER_PATH=../explorer
-opentide explorer build --output ./out/explorer --base-path /library
+export NEXT_PUBLIC_BASE_PATH=/library
+cd ../explorer
+pnpm install
+node scripts/generate-mock-bundle.mjs
+pnpm exec next build   # static export → explorer/out/
+pnpm dev               # interactive preview at http://localhost:3000
 ```
 
 ## Object families
@@ -99,6 +102,8 @@ pip install -e "../opentide[cli]"
 A separate non-blocking job checks `OpenTideHQ/opentide@development` so engine drift is visible.
 
 `threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens. Released `opentide` 0.1.5 still types those fields as `str` ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189), blocked on [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12)). The PyPI validate job is the published-user contract and stays red until that engine release.
+
+Explorer Pages CI does not wait on that engine command. It builds [OpenTideHQ/explorer](https://github.com/OpenTideHQ/explorer) with Node from this corpus (`OPENTIDE_REPO_ROOT`).
 
 ## Contributing
 

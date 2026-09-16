@@ -2,3 +2,14 @@
 pythonpath = ["scripts"]
 testpaths = ["tests"]
 addopts = "-q"
+
+[tool.coverage.run]
+branch = true
+source = ["migrate_trunk_models"]
+
+[tool.coverage.report]
+fail_under = 98
+show_missing = true
+exclude_lines = [
+    "if __name__ == .__main__.:",
+]

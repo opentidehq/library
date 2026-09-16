@@ -275,8 +275,17 @@ def load_yaml_mapping(path: Path) -> dict[str, Any]:
 def load_vocab_names(path: Path) -> set[str]:
     import tomllib
 
+    if not path.is_file():
+        raise MigrationError(f"vocabulary file not found: {path}")
     raw = tomllib.loads(path.read_text(encoding="utf-8"))
-    return {str(entry["name"]) for entry in raw.get("keys", []) if entry.get("name")}
+    names: set[str] = set()
+    for entry in raw.get("keys", []):
+        if not isinstance(entry, dict):
+            continue
+        name = entry.get("name")
+        if isinstance(name, str) and name.strip():
+            names.add(name.strip())
+    return names
 
 
 def default_vocab_dir() -> Path | None:

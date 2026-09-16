@@ -21,7 +21,7 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 3. Validate and refresh docs:
 
    ```bash
-   pytest
+   pytest --cov=migrate_trunk_models --cov-fail-under=98
    opentide generate schemas
    opentide generate templates
    opentide validate --strict
@@ -29,6 +29,8 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
    ```
 
    `scripts/opentide_run.py` is a thin passthrough around the same CLI.
+
+   `opentide validate --strict` against **released** `opentide` 0.1.5 still fails on `threat.impact` / `threat.leverage` YAML lists until [opentide#189](https://github.com/OpenTideHQ/opentide/issues/189) ships (blocked on [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12)). Catalogue shape tests (`pytest`) are the gate that can pass today. Do not collapse those fields back to semicolon-packed strings.
 
 4. Commit object YAML and updated `docs/` together.
 

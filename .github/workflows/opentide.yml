@@ -1,7 +1,7 @@
 # Catalogue CI — shape tests, PyPI validate, development-HEAD early warning, explorer Pages.
 #
-# opentide and explorer are public. Do not require GH App / PAT / deploy-key
-# credentials to clone them.
+# opentide, explorer, and specifications are public. Do not require GH App / PAT /
+# deploy-key credentials to clone them.
 #
 # The published-user contract is the PyPI job:
 #   pip install opentide
@@ -10,6 +10,10 @@
 # threat.impact / threat.leverage are YAML lists (library#7). PyPI 0.1.5 still
 # types those fields as str (opentide#189, blocked on specifications#12), so
 # that required check stays red until a released engine accepts list[str].
+#
+# `opentide explorer` is not a Typer command on PyPI 0.1.5 or current
+# development HEAD (github.py still emits it). Explorer CI therefore builds
+# OpenTideHQ/explorer with its own Node CLI and mock corpus generator.
 name: OpenTide
 
 on:
@@ -24,8 +28,8 @@ permissions:
   id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 env:
   OPENTIDE_REPO_ROOT: ${{ github.workspace }}
@@ -43,10 +47,10 @@ jobs:
           python-version: "3.12"
 
       - name: Install test dependencies
-        run: pip install pytest pyyaml "ruamel.yaml" opentide
+        run: pip install -r requirements-dev.txt
 
       - name: Run catalogue tests
-        run: pytest
+        run: pytest --cov=migrate_trunk_models --cov-fail-under=98 --cov-report=term-missing
 
   validate-pypi:
     name: Validate (PyPI opentide)
@@ -97,6 +101,11 @@ jobs:
       - name: Install opentide from development
         run: pip install -e "./opentide[cli]"
 
+      - name: Generate schemas and templates
+        run: |
+          opentide generate schemas
+          opentide generate templates
+
       - name: Validate objects against development HEAD
         run: opentide validate --strict
 
@@ -115,26 +124,33 @@ jobs:
           ref: main
           path: explorer
 
-      - uses: actions/setup-python@v5
+      - uses: pnpm/action-setup@v4
         with:
-          python-version: "3.12"
+          version: 9
 
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
+          cache: pnpm
+          cache-dependency-path: explorer/pnpm-lock.yaml
 
-      - name: Install released opentide
-        run: pip install opentide
+      - name: Install explorer dependencies
+        working-directory: explorer
+        run: pnpm install --frozen-lockfile
 
       - name: Build explorer static site
-        run: opentide explorer build --output ./out/explorer --base-path /library
+        working-directory: explorer
         env:
-          OPENTIDE_EXPLORER_PATH: ${{ github.workspace }}/explorer
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+          NEXT_PUBLIC_BASE_PATH: /library
+        run: |
+          node scripts/generate-mock-bundle.mjs
+          pnpm exec next build
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out/explorer
+          path: ./explorer/out
 
   deploy-explorer:
     name: Deploy explorer to GitHub Pages

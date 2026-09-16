@@ -244,6 +244,22 @@ def test_migrated_catalogue_is_idempotent(
         assert again == data, path
 
 
+def test_objects_have_required_identity_fields(
+    threats: list[tuple[Path, dict[str, Any]]],
+    objectives: list[tuple[Path, dict[str, Any]]],
+    rules: list[tuple[Path, dict[str, Any]]],
+) -> None:
+    for path, data in (*threats, *objectives, *rules):
+        assert isinstance(data.get("name"), str) and data["name"].strip(), path
+        metadata = data["metadata"]
+        assert isinstance(metadata.get("version"), int) or (
+            isinstance(metadata.get("version"), str) and str(metadata["version"]).strip()
+        ), path
+        org = metadata.get("organisation")
+        if org is not None:
+            assert isinstance(org, dict) and UUID_RE.match(str(org.get("uuid", ""))), path
+
+
 def test_no_legacy_packed_or_string_actors_remain(
     threats: list[tuple[Path, dict[str, Any]]],
     objectives: list[tuple[Path, dict[str, Any]]],

@@ -34,3 +34,14 @@ def test_docs_readme_uses_lowercase_section_paths() -> None:
     assert "](objectives/README.md)" in text
     assert "](rules/README.md)" in text
     assert "Threats/README.md" not in text
+
+
+def test_every_object_has_a_docs_page() -> None:
+    for family in ("threats", "objectives", "rules"):
+        yaml_stems = {path.stem for path in (ROOT / "objects" / family).glob("*.yaml")}
+        md_stems = {path.stem for path in (ROOT / "docs" / family).glob("*.md")} - {"README"}
+        assert yaml_stems, family
+        missing_docs = sorted(yaml_stems - md_stems)
+        extra_docs = sorted(md_stems - yaml_stems)
+        assert not missing_docs, f"{family}: YAML without docs {missing_docs[:5]}"
+        assert not extra_docs, f"{family}: docs without YAML {extra_docs[:5]}"

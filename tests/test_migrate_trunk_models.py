@@ -91,9 +91,6 @@ def test_main_errors_when_vocab_missing(monkeypatch: pytest.MonkeyPatch) -> None
     monkeypatch.setattr(migrate, "default_vocab_dir", lambda: None)
     with pytest.raises(SystemExit, match="Could not locate"):
         migrate.main()
-    assert migrate.split_packed_tokens(
-        "Data Breach; Reputational Damages; Nuisance", field="impact"
-    ) == ["Data Breach", "Reputational Damages", "Nuisance"]
 
 
 def test_split_packed_tokens_trims_and_drops_empties() -> None:
@@ -149,7 +146,7 @@ def test_wrap_actors_strings_and_existing_objects() -> None:
         {"name": "misp::abc"},
     ]
     assert migrate.wrap_actors(
-        [{"name": "att&ck::G0007", "sighting": "seen in 2024"}]
+        [{"name": "  att&ck::G0007  ", "sighting": "seen in 2024"}]
     ) == [{"name": "att&ck::G0007", "sighting": "seen in 2024"}]
 
 
@@ -201,9 +198,10 @@ def test_strip_entities_errors() -> None:
 
 def test_map_signal_severity_alert_and_ncsc() -> None:
     assert migrate.map_signal_severity("Medium") == "Moderate incident"
-    assert migrate.map_signal_severity("High") == "Substantial incident"
+    assert migrate.map_signal_severity("  High  ") == "Substantial incident"
     assert migrate.map_signal_severity("Critical") == "Significant incident"
     assert migrate.map_signal_severity("Substantial incident") == "Substantial incident"
+    assert migrate.map_signal_severity("Localised incident") == "Localised incident"
     with pytest.raises(migrate.MigrationError, match="not an alert label"):
         migrate.map_signal_severity("Low")
     with pytest.raises(migrate.MigrationError, match="missing"):
@@ -233,6 +231,24 @@ def test_migrate_threat_payload_full_shape_and_uuid_preserved() -> None:
     assert migrated["threat"]["impact"] == ["Data Breach", "Nuisance"]
     assert migrated["threat"]["leverage"] == ["Tampering", "Elevation of privilege"]
     assert migrated["threat"]["terrain"] == "Windows estate"
+
+
+def test_migrate_threat_payload_without_actors_still_splits_fields() -> None:
+    migrated = migrate.migrate_threat_payload(
+        {"threat": {"impact": "Data Breach", "leverage": "Tampering"}},
+        allowed_impact=ALLOWED_IMPACT,
+        allowed_leverage=ALLOWED_LEVERAGE,
+    )
+    assert "actors" not in migrated["threat"]
+    assert migrated["threat"]["impact"] == ["Data Breach"]
+    assert migrated["threat"]["leverage"] == ["Tampering"]
+
+
+def test_migrate_threat_payload_actors_only() -> None:
+    migrated = migrate.migrate_threat_payload({"threat": {"actors": ["att&ck::G0125"]}})
+    assert migrated["threat"]["actors"] == [{"name": "att&ck::G0125"}]
+    assert "impact" not in migrated["threat"]
+    assert "leverage" not in migrated["threat"]
 
 
 def test_migrate_threat_payload_idempotent_and_rejects_unknown_vocab() -> None:
@@ -419,6 +435,18 @@ def test_default_vocab_dir_returns_none_when_missing(monkeypatch: pytest.MonkeyP
     assert migrate.default_vocab_dir() is None
 
 
+def test_default_vocab_dir_skips_installed_package_without_vocab(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path
+) -> None:
+    import sys
+    import types
+
+    fake = types.SimpleNamespace(__file__=str(tmp_path / "site" / "opentide" / "__init__.py"))
+    monkeypatch.setitem(sys.modules, "opentide", fake)
+    monkeypatch.setattr(migrate, "REPO_ROOT", tmp_path / "library")
+    assert migrate.default_vocab_dir() is None
+
+
 def test_default_vocab_dir_finds_installed_opentide() -> None:
     vocab_dir = migrate.default_vocab_dir()
     assert vocab_dir is not None
@@ -431,10 +459,36 @@ def test_default_vocab_dir_finds_installed_opentide() -> None:
 def test_load_vocab_names(tmp_path: Path) -> None:
     path = tmp_path / "impact.vocab.toml"
     path.write_text(
-        'name = "Impact"\n[[keys]]\nname = "Data Breach"\n[[keys]]\nname = "Nuisance"\n',
+        'name = "Impact"\n[[keys]]\nname = "Data Breach"\n[[keys]]\nname = "Nuisance"\n'
+        '[[keys]]\nname = "  Impairement  "\n[[keys]]\nid = "no-name"\n',
         encoding="utf-8",
     )
-    assert migrate.load_vocab_names(path) == {"Data Breach", "Nuisance"}
+    assert migrate.load_vocab_names(path) == {"Data Breach", "Nuisance", "Impairement"}
+    with pytest.raises(migrate.MigrationError, match="vocabulary file not found"):
+        migrate.load_vocab_names(tmp_path / "missing.vocab.toml")
+    skip_non_maps = tmp_path / "mixed.vocab.toml"
+    skip_non_maps.write_text(
+        'keys = ["nope"]\n',
+        encoding="utf-8",
+    )
+    assert migrate.load_vocab_names(skip_non_maps) == set()
+
+
+def test_migrate_tree_errors_when_vocab_file_missing(tmp_path: Path) -> None:
+    threats = tmp_path / "threats"
+    objectives = tmp_path / "objectives"
+    threats.mkdir()
+    objectives.mkdir()
+    (threats / "ok.yaml").write_text(
+        "name: Ok\nthreat:\n  impact: Data Breach\n  leverage: Tampering\n",
+        encoding="utf-8",
+    )
+    with pytest.raises(migrate.MigrationError, match="vocabulary file not found"):
+        migrate.migrate_tree(
+            threats_dir=threats,
+            objectives_dir=objectives,
+            vocab_dir=tmp_path / "empty-vocab",
+        )
 
 
 def test_load_yaml_mapping_rejects_non_mapping(tmp_path: Path) -> None:
@@ -496,3 +550,24 @@ def test_dump_yaml_roundtrip_literals(tmp_path: Path) -> None:
     loaded = yaml.safe_load(text)
     assert loaded["threat"]["impact"] == ["Data Breach"]
     assert loaded["threat"]["actors"][0]["name"] == "att&ck::G0125"
+
+
+def test_dump_yaml_wraps_nested_lists_and_maps(tmp_path: Path) -> None:
+    path = tmp_path / "nested.yaml"
+    migrate.dump_yaml(
+        path,
+        {
+            "objective": {
+                "signals": [
+                    {
+                        "name": "sig",
+                        "description": "line a\nline b\n",
+                        "entities": ["Process", "Account"],
+                    }
+                ]
+            }
+        },
+    )
+    loaded = yaml.safe_load(path.read_text(encoding="utf-8"))
+    assert loaded["objective"]["signals"][0]["entities"] == ["Process", "Account"]
+    assert "line a" in loaded["objective"]["signals"][0]["description"]
