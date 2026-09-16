@@ -5,6 +5,11 @@
 #
 # `opentide explorer` is not a Typer command on PyPI (opentide#202). This
 # workflow builds OpenTideHQ/explorer with Node from this corpus.
+#
+# Explorer SSG inlines ExplorerProvider props into every object page
+# (https://github.com/OpenTideHQ/explorer/issues/36). Keep vocab.index.json
+# out of `next build` and copy it into out/data afterwards so the Pages
+# artifact stays deployable.
 name: Explorer Pages
 
 on:
@@ -27,7 +32,7 @@ jobs:
   build:
     name: Build explorer
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
     steps:
       - name: Checkout library
         uses: actions/checkout@v4
@@ -69,22 +74,39 @@ jobs:
       - name: Require vocab.index.json
         run: test -s explorer/public/data/vocab.index.json
 
-      - name: Build explorer static site
+      - name: Generate explorer bundle
         working-directory: explorer
         env:
           OPENTIDE_REPO_ROOT: ${{ github.workspace }}
           SPECIFICATIONS_REPO_ROOT: ${{ github.workspace }}/specifications
-          NEXT_PUBLIC_BASE_PATH: /library
+        run: node scripts/generate-mock-bundle.mjs
+
+      - name: Stash vocab index before static export
         run: |
-          node scripts/generate-mock-bundle.mjs
-          pnpm exec next build
+          mkdir -p "$RUNNER_TEMP/explorer-data"
+          mv explorer/public/data/vocab.index.json "$RUNNER_TEMP/explorer-data/vocab.index.json"
+
+      - name: Build explorer static site
+        working-directory: explorer
+        env:
+          OPENTIDE_REPO_ROOT: ${{ github.workspace }}
+          NEXT_PUBLIC_BASE_PATH: /library
+        run: pnpm exec next build
+
+      - name: Restore vocab.index.json into the static export
+        run: |
+          mkdir -p explorer/out/data
+          cp "$RUNNER_TEMP/explorer-data/vocab.index.json" explorer/out/data/vocab.index.json
 
       - name: Require static export
         run: |
           test -s explorer/public/data/explorer.bundle.json
           test -d explorer/out
+          test -s explorer/out/data/vocab.index.json
+          du -sh explorer/out explorer/out/data
 
       - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./explorer/out
