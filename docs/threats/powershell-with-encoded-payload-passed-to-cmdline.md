@@ -1,14 +1,15 @@
 # Powershell with encoded payload passed to cmdline
 
 ## Metadata
-
-- **UUID**: `bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-04-23`
-- **Modified**: `2024-04-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-04-23` |
+| Modified | `2024-04-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -68,19 +69,25 @@ Write-Host "Password: $Password"
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actors need an initial access to the system to use PowerShell
+A threat actors need an initial access to the system to use PowerShell
 console to execute commands to obfuscate their traffic and activities.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Remote access, Workstations, Desktop
-Platforms: PowerShell, Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
 | Impact | Impairement | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
-| Leverage | Dwelling; Tampering | - |
+| Leverage | Dwelling<br>Tampering | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -101,16 +108,26 @@ Platforms: PowerShell, Windows**
 | `T1140` | [Deobfuscate/Decode Files or Information](https://attack.mitre.org/techniques/T1140) | Adversaries may use [Obfuscated Files or Information](https://attack.mitre.org/techniques/T1027) to hide artifacts of an intrusion from analysis. They may require separate mechanisms to decode or deobfuscate that information depending on how they intend to use it. Methods for doing that include built-in functionality of malware or by using utilities present on the system.  One such example is the use of [certutil](https://attack.mitre.org/software/S0160) to decode a remote access tool portable executable file that has been hidden inside a certificate file.(Citation: Malwarebytes Targeted Attack against Saudi Arabia) Another example is using the Windows <code>copy /b</code> or <code>type</code> command to reassemble binary fragments into a malicious payload.(Citation: Carbon Black Obfuscation Sept 2016)(Citation: Sentinel One Tainted Love 2023)  Sometimes a user's action may be required to open it for deobfuscation or decryption as part of [User Execution](https://attack.mitre.org/techniques/T1204). The user may also be required to input a password to open a password protected compressed/encrypted file that was provided by the adversary.(Citation: Volexity PowerDuke November 2016) |
 | `T1068` | [Exploitation for Privilege Escalation](https://attack.mitre.org/techniques/T1068) | Adversaries may exploit software vulnerabilities in an attempt to elevate privileges. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. Security constructs such as permission levels will often hinder access to information and use of certain techniques, so adversaries will likely need to perform privilege escalation to include use of software exploitation to circumvent those restrictions.  When initially gaining access to a system, an adversary may be operating within a lower privileged process which will prevent them from accessing certain resources on the system. Vulnerabilities may exist, usually in operating system components and software commonly running at higher permissions, that can be exploited to gain higher levels of access on the system. This could enable someone to move from unprivileged or user level permissions to SYSTEM or root permissions depending on the component that is vulnerable. This could also enable an adversary to move from a virtualized environment, such as within a virtual machine or container, onto the underlying host. This may be a necessary step for an adversary compromising an endpoint system that has been properly configured and limits other privilege escalation methods.  Adversaries may bring a signed vulnerable driver onto a compromised machine so that they can exploit the vulnerability to execute code in kernel mode. This process is sometimes referred to as Bring Your Own Vulnerable Driver (BYOVD).(Citation: ESET InvisiMole June 2020)(Citation: Unit42 AcidBox June 2020) Adversaries may include the vulnerable driver with files delivered during Initial Access or download it to a compromised system via [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105) or [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570). |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-bfeb24bf_8a17_4ccc_8aec_91721743153d["Powershell encoded payload to start new process"]
+subgraph "Objectives"
+bfeb24bf_8a17_4ccc_8aec_91721743153d(["Powershell encoded<br>payload to start new<br>process"])
 end
-subgraph "Signal"
-cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0["cf9c69a2-9317-4f0f-9506-fbeeb1c73ff0"]
+subgraph "Signals"
+cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0(("Powershell encoded<br>payload to start new<br>process"))
 end
-bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7["Powershell with encoded payload passed to cmdline"]
-bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7 -->|objective| bfeb24bf_8a17_4ccc_8aec_91721743153d
-bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7 -->|signal| cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0
+subgraph "Rules"
+0be66eea_4ae4_4544_811b_52651e20d744["RBA_RR - WIN base64<br>encoded powershell<br>payload"]
+end
+bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7{{"Powershell with encoded<br>payload passed to<br>cmdline"}}
+bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7 -->|covers| bfeb24bf_8a17_4ccc_8aec_91721743153d
+bfeb24bf_8a17_4ccc_8aec_91721743153d --> cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0
+bfeb24bf_8a17_4ccc_8aec_91721743153d -->|implements| 0be66eea_4ae4_4544_811b_52651e20d744
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Powershell encoded payload to start new process](../Objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`) | Downstream | objective |
+| Signal | [Powershell encoded payload to start new process](../Objectives/powershell-encoded-payload-to-start-new-process.md#powershell-encoded-payload-to-start-new-process) (`cf9c69a2-9317-4f0f-9506-fbeeb1c73ff0`) | Downstream | signal |
+| Rule | [RBA_RR - WIN base64 encoded powershell payload](../Rules/rba-rr-win-base64-encoded-powershell-payload.md) (`0be66eea-4ae4-4544-811b-52651e20d744`) | Downstream | rule |

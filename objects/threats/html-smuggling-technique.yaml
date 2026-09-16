@@ -19,8 +19,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0016
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Defense Evasion
   att&ck:
     - T1190
@@ -55,8 +55,17 @@ threat:
     - Web Servers
     - Remote Access
   severity: Localised incident
-  leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Tampering
-  impact: Identity Theft; Impairement; Data Breach; Lose Capabilities; Business disruption
+  leverage:
+    - Elevation of privilege
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Identity Theft
+    - Impairement
+    - Data Breach
+    - Lose Capabilities
+    - Business disruption
   viability: Likely
   description: |-
     HTML smuggling is a technique used by attackers to embed a malicious

@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Delivery
   att&ck:
     - T1566.001
@@ -44,8 +44,15 @@ threat:
     - Customer Support
     - Remote Access
   severity: Localised incident
-  leverage: Dwelling; Tampering; Elevation of privilege; Infrastructure Compromise
-  impact: Identity Theft; Impairement; Business disruption
+  leverage:
+    - Dwelling
+    - Tampering
+    - Elevation of privilege
+    - Infrastructure Compromise
+  impact:
+    - Identity Theft
+    - Impairement
+    - Business disruption
   viability: Likely
   description: |-
     Spearphishing with an attachment extension .rdp refers to a targeted

@@ -1,14 +1,15 @@
 # C2 domains point to non-routable IP addresses
 
 ## Metadata
-
-- **UUID**: `ddab407e-d09d-4804-a4af-c11213553146`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-08-27`
-- **Modified**: `2025-08-28`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `ddab407e-d09d-4804-a4af-c11213553146` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-08-27` |
+| Modified | `2025-08-28` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -48,18 +49,27 @@ infrastructure.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The threat actor needs to have control over the DNS infrastructure that
+The threat actor needs to have control over the DNS infrastructure that
 resolves the C2 domain.
 
-Domains: Enterprise
-Targets: Server Logs
-Platforms: Windows, Linux, macOS**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Log Management**
+> Dedicated log management and log aggregation solutions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Impairement; Lose Capabilities | - |
+| Impact | Business disruption<br>Impairement<br>Lose Capabilities | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
 | Leverage | Spoofing | Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Command & Control | Techniques that allow attackers to communicate with controlled systems within a target network. |
@@ -77,12 +87,16 @@ Platforms: Windows, Linux, macOS**
 ## Chaining
 ```mermaid
 flowchart LR
-ddab407e_d09d_4804_a4af_c11213553146["C2 domains point to non-routable IP addresses"]
-7b122bb4_fc13_438b_a052_4388c501ec59["C2 beaconing on specific time intervals"]
-ddab407e_d09d_4804_a4af_c11213553146 -->|atomicity::implements| 7b122bb4_fc13_438b_a052_4388c501ec59
+subgraph "Command & Control"
+ddab407e_d09d_4804_a4af_c11213553146{{"C2 domains point to<br>non-routable IP<br>addresses"}}
+end
+subgraph "Exfiltration"
+7b122bb4_fc13_438b_a052_4388c501ec59{{"C2 beaconing on specific<br>time intervals"}}
+end
+ddab407e_d09d_4804_a4af_c11213553146 -->|implements| 7b122bb4_fc13_438b_a052_4388c501ec59
 ```
 ### Chaining details
-#### implements -> C2 beaconing on specific time intervals (`atomicity::implements`)
+#### implements -> [C2 beaconing on specific time intervals](c2-beaconing-on-specific-time-intervals.md) (`7b122bb4-fc13-438b-a052-4388c501ec59`) (`atomicity::implements`)
 C2 beaconing on specific intervals can be a related threat vector to
 additional threat actor's technique like point the C2 domain to private
 IP address for obfuscation purposes.

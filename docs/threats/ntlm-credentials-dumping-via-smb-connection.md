@@ -1,14 +1,15 @@
 # NTLM credentials dumping via SMB connection
 
 ## Metadata
-
-- **UUID**: `02311e3e-b7b8-4369-9e1e-74c0a844ae0f`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2023-03-17`
-- **Modified**: `2025-02-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `02311e3e-b7b8-4369-9e1e-74c0a844ae0f` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2023-03-17` |
+| Modified | `2025-02-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -67,22 +68,33 @@ enabling threat actors to steal NTLMv2 hashes for initial access.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **- vulnerable Outlook clients CVE-2023-23397  
+- vulnerable Outlook clients CVE-2023-23397  
 - spearphising with a link to a SMB network share  
 - SMB or Webdav protocols are allowed to connect to external network shares
 directly or via a proxy
 
-Domains: Enterprise
-Cve: CVE-2023-23397, CVE-2024-21413
-Targets: Desktop, Laptop, Workstations, End-user, Email Platform, Customer
-Platforms: Windows, Office 365**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Email**
+> Email infrastructure and services
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Identity Theft | - |
-| Leverage | Information Disclosure; Infrastructure Compromise | - |
+| Impact | Data Breach<br>Identity Theft | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Information Disclosure<br>Infrastructure Compromise | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -100,3 +112,15 @@ Platforms: Windows, Office 365**
 | `T1190` | [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190) | Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.  Exploited applications are often websites/web servers, but can also include databases (like SQL), standard services (like SMB or SSH), network device administration and management protocols (like SNMP and Smart Install), and any other system with Internet-accessible open sockets.(Citation: NVD CVE-2016-6662)(Citation: CIS Multiple SMB Vulnerabilities)(Citation: US-CERT TA18-106A Network Infrastructure Devices 2018)(Citation: Cisco Blog Legacy Device Attacks)(Citation: NVD CVE-2014-7169) On ESXi infrastructure, adversaries may exploit exposed OpenSLP services; they may alternatively exploit exposed VMware vCenter servers.(Citation: Recorded Future ESXiArgs Ransomware 2023)(Citation: Ars Technica VMWare Code Execution Vulnerability 2021) Depending on the flaw being exploited, this may also involve [Exploitation for Defense Evasion](https://attack.mitre.org/techniques/T1211) or [Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203).  If an application is hosted on cloud-based infrastructure and/or is containerized, then exploiting it may lead to compromise of the underlying instance or container. This can allow an adversary a path to access the cloud or container APIs (e.g., via the [Cloud Instance Metadata API](https://attack.mitre.org/techniques/T1552/005)), exploit container host access via [Escape to Host](https://attack.mitre.org/techniques/T1611), or take advantage of weak identity and access management policies.  Adversaries may also exploit edge network infrastructure and related appliances, specifically targeting devices that do not support robust host-based defenses.(Citation: Mandiant Fortinet Zero Day)(Citation: Wired Russia Cyberwar)  For websites and databases, the OWASP top 10 and CWE top 25 highlight the most common web-based vulnerabilities.(Citation: OWASP Top 10)(Citation: CWE top 25) |
 | `T1068` | [Exploitation for Privilege Escalation](https://attack.mitre.org/techniques/T1068) | Adversaries may exploit software vulnerabilities in an attempt to elevate privileges. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code. Security constructs such as permission levels will often hinder access to information and use of certain techniques, so adversaries will likely need to perform privilege escalation to include use of software exploitation to circumvent those restrictions.  When initially gaining access to a system, an adversary may be operating within a lower privileged process which will prevent them from accessing certain resources on the system. Vulnerabilities may exist, usually in operating system components and software commonly running at higher permissions, that can be exploited to gain higher levels of access on the system. This could enable someone to move from unprivileged or user level permissions to SYSTEM or root permissions depending on the component that is vulnerable. This could also enable an adversary to move from a virtualized environment, such as within a virtual machine or container, onto the underlying host. This may be a necessary step for an adversary compromising an endpoint system that has been properly configured and limits other privilege escalation methods.  Adversaries may bring a signed vulnerable driver onto a compromised machine so that they can exploit the vulnerability to execute code in kernel mode. This process is sometimes referred to as Bring Your Own Vulnerable Driver (BYOVD).(Citation: ESET InvisiMole June 2020)(Citation: Unit42 AcidBox June 2020) Adversaries may include the vulnerable driver with files delivered during Initial Access or download it to a compromised system via [Ingress Tool Transfer](https://attack.mitre.org/techniques/T1105) or [Lateral Tool Transfer](https://attack.mitre.org/techniques/T1570). |
 | `T1212` | [Exploitation for Credential Access](https://attack.mitre.org/techniques/T1212) | Adversaries may exploit software vulnerabilities in an attempt to collect credentials. Exploitation of a software vulnerability occurs when an adversary takes advantage of a programming error in a program, service, or within the operating system software or kernel itself to execute adversary-controlled code.xa0  Credentialing and authentication mechanisms may be targeted for exploitation by adversaries as a means to gain access to useful credentials or circumvent the process to gain authenticated access to systems. One example of this is `MS14-068`, which targets Kerberos and can be used to forge Kerberos tickets using domain user permissions.(Citation: Technet MS14-068)(Citation: ADSecurity Detecting Forged Tickets) Another example of this is replay attacks, in which the adversary intercepts data packets sent between parties and then later replays these packets. If services don't properly validate authentication requests, these replayed packets may allow an adversary to impersonate one of the parties and gain unauthorized access or privileges.(Citation: Bugcrowd Replay Attack)(Citation: Comparitech Replay Attack)(Citation: Microsoft Midnight Blizzard Replay Attack)  Such exploitation has been demonstrated in cloud environments as well. For example, adversaries have exploited vulnerabilities in public cloud infrastructure that allowed for unintended authentication token creation and renewal.(Citation: Storm-0558 techniques for unauthorized email access)  Exploitation for credential access may also result in Privilege Escalation depending on the process targeted or credentials obtained. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Exploitation"
+02311e3e_b7b8_4369_9e1e_74c0a844ae0f{{"NTLM credentials dumping<br>via SMB connection"}}
+end
+subgraph "Lateral Movement"
+5ea50181_1124_49aa_9d2c_c74103e86fd5{{"Pass-the-hash on SMB<br>network shares"}}
+end
+5ea50181_1124_49aa_9d2c_c74103e86fd5 -->|succeeds| 02311e3e_b7b8_4369_9e1e_74c0a844ae0f
+```

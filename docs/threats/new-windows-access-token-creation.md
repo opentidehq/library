@@ -1,14 +1,15 @@
 # New Windows access token creation
 
 ## Metadata
-
-- **UUID**: `1962f0c7-2f2f-4b4c-bab0-733af8033595`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-02-19`
-- **Modified**: `2025-02-27`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `1962f0c7-2f2f-4b4c-bab0-733af8033595` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-02-19` |
+| Modified | `2025-02-27` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -81,19 +82,31 @@ system.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor exploits native Windows features as Windows API calls or
+A threat actor exploits native Windows features as Windows API calls or
 Windows native commands to generate in the system a new user access token.
 
-Domains: Enterprise
-Targets: Auth token, End-user, Workstations, API Endpoints, Customer
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Impairement; Nuisance; Lose Capabilities; Operating costs | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Modify privileges; Dwelling | - |
+| Impact | Identity Theft<br>Impairement<br>Nuisance<br>Lose Capabilities<br>Operating costs | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Increased operating costs |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Modify privileges<br>Dwelling | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Modify privileges or permissions<br>Active or passive extended presence in the target, which performs adversarial operations continuously. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -114,19 +127,23 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-1962f0c7_2f2f_4b4c_bab0_733af8033595["New Windows access token creation"]
-349348ca_66f5_41d2_8610_6bb61556d773["Duplicate an access token in a new process to elevate privileges"]
-2404055a_10f8_4c50_9e9b_0f26756e7838["Access token manipulation"]
-1962f0c7_2f2f_4b4c_bab0_733af8033595 -->|sequence::succeeds| 349348ca_66f5_41d2_8610_6bb61556d773
-349348ca_66f5_41d2_8610_6bb61556d773 -->|sequence::succeeds| 2404055a_10f8_4c50_9e9b_0f26756e7838
+subgraph "Defense Evasion"
+1962f0c7_2f2f_4b4c_bab0_733af8033595{{"New Windows access token<br>creation"}}
+end
+subgraph "Privilege Escalation"
+349348ca_66f5_41d2_8610_6bb61556d773{{"Duplicate an access<br>token in a new process<br>to elevate privileges"}}
+2404055a_10f8_4c50_9e9b_0f26756e7838{{"Access token<br>manipulation"}}
+end
+1962f0c7_2f2f_4b4c_bab0_733af8033595 -->|succeeds| 349348ca_66f5_41d2_8610_6bb61556d773
+1962f0c7_2f2f_4b4c_bab0_733af8033595 -->|succeeds| 2404055a_10f8_4c50_9e9b_0f26756e7838
 ```
 ### Chaining details
-#### succeeds -> Duplicate an access token in a new process to elevate privileges (`sequence::succeeds`)
+#### succeeds -> [Duplicate an access token in a new process to elevate privileges](duplicate-an-access-token-in-a-new-process-to-elevate-privileges.md) (`349348ca-66f5-41d2-8610-6bb61556d773`) (`sequence::succeeds`)
 A creation of a new access token can be related to a further
 duplication of a process in the system.
 
 - **Target UUID**: `349348ca-66f5-41d2-8610-6bb61556d773`
-#### succeeds -> Access token manipulation (`sequence::succeeds`)
+#### succeeds -> [Access token manipulation](access-token-manipulation.md) (`2404055a-10f8-4c50-9e9b-0f26756e7838`) (`sequence::succeeds`)
 A threat actor may create a new token and use further token
 manipulation technique to create process and activities on
 behalf of an existing legitimate user in the environment.

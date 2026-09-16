@@ -60,8 +60,17 @@ threat:
     - Container Runtime::Docker
     - Azure::Compute::Virtual Machines
   severity: Significant incident
-  leverage: Information Disclosure; Infrastructure Compromise; Tampering; Spoofing
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Tampering
+    - Spoofing
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
   viability: Likely
   description: |-
     Reconnaissance targeting Azure Storage Blobs involves gathering intelligence to identify

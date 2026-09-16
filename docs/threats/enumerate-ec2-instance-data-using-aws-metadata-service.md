@@ -1,14 +1,15 @@
 # Enumerate EC2 instance data using AWS metadata service
 
 ## Metadata
-
-- **UUID**: `e7f05c4e-ca96-45e5-9788-116f802e1f32`
-- **Schema**: `threat::1.0`
-- **Version**: `6`
-- **Created**: `2022-11-30`
-- **Modified**: `2023-01-05`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `e7f05c4e-ca96-45e5-9788-116f802e1f32` |
+| Schema | `threat::1.0` |
+| Version | `6` |
+| Created | `2022-11-30` |
+| Modified | `2023-01-05` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -92,14 +93,26 @@ $ echo INSTANCEID
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **In AWS, the metadata service can by design be queried from a running
+In AWS, the metadata service can by design be queried from a running
 instance. A threat actor needs to control an EC2 instance or a
 vulnerability in a running application that enables querying the instance
 meta data service remotely, such as a SSRF vulnerability.
 
-Domains: Public Cloud
-Targets: Web Application Servers, Control Server, Input/Output Server, Public-Facing Servers
-Platforms: AWS, AWS EC2**
+## Surface
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **AWS::Compute::EC2**
+> Amazon Elastic Compute Cloud (virtual servers)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Server**
+> Microsoft Windows Server editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

@@ -31,8 +31,10 @@ threat:
     - Remote Access
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Elevation of privilege
-  impact: Identity Theft
+  leverage:
+    - Elevation of privilege
+  impact:
+    - Identity Theft
   viability: Likely
   description: |-
     An adversary can use automated solutions like CobaltStrike framework

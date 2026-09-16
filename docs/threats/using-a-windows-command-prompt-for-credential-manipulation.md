@@ -1,14 +1,15 @@
 # Using a Windows command prompt for credential manipulation
 
 ## Metadata
-
-- **UUID**: `06523ed4-7881-4466-9ac5-f8417e972d13`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2023-01-26`
-- **Modified**: `2023-01-26`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `06523ed4-7881-4466-9ac5-f8417e972d13` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2023-01-26` |
+| Modified | `2023-01-26` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -103,12 +104,24 @@ net user <username> /passwordreq:no
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires an already compromised Windows endpoint and in some cases elevated
+Requires an already compromised Windows endpoint and in some cases elevated
 administrator privileges to command prompt interface.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: API Endpoints, Control Server, Remote access, Desktop, Laptop, End-user, Workstations, Public-Facing Servers, Web Application Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
@@ -146,3 +159,53 @@ Platforms: Windows**
 | --- | --- | --- |
 | `T1059.003` | [Command and Scripting Interpreter: Windows Command Shell](https://attack.mitre.org/techniques/T1059/003) | Adversaries may abuse the Windows command shell for execution. The Windows command shell ([cmd](https://attack.mitre.org/software/S0106)) is the primary command prompt on Windows systems. The Windows command prompt can be used to control almost any aspect of a system, with various permission levels required for different subsets of commands. The command prompt can be invoked remotely via [Remote Services](https://attack.mitre.org/techniques/T1021) such as [SSH](https://attack.mitre.org/techniques/T1021/004).(Citation: SSH in Windows)  Batch files (ex: .bat or .cmd) also provide the shell with a list of sequential commands to run, as well as normal scripting operations such as conditionals and loops. Common uses of batch files include long or repetitive tasks, or the need to run the same set of commands on multiple systems.  Adversaries may leverage [cmd](https://attack.mitre.org/software/S0106) to execute various commands and payloads. Common uses include [cmd](https://attack.mitre.org/software/S0106) to execute a single command, or abusing [cmd](https://attack.mitre.org/software/S0106) interactively with input and output forwarded over a command and control channel. |
 | `T1098.001` | [Account Manipulation: Additional Cloud Credentials](https://attack.mitre.org/techniques/T1098/001) | Adversaries may add adversary-controlled credentials to a cloud account to maintain persistent access to victim accounts and instances within the environment.  For example, adversaries may add credentials for Service Principals and Applications in addition to existing legitimate credentials in Azure / Entra ID.(Citation: Microsoft SolarWinds Customer Guidance)(Citation: Blue Cloud of Death)(Citation: Blue Cloud of Death Video) These credentials include both x509 keys and passwords.(Citation: Microsoft SolarWinds Customer Guidance) With sufficient permissions, there are a variety of ways to add credentials including the Azure Portal, Azure command line interface, and Azure or Az PowerShell modules.(Citation: Demystifying Azure AD Service Principals)  In infrastructure-as-a-service (IaaS) environments, after gaining access through [Cloud Accounts](https://attack.mitre.org/techniques/T1078/004), adversaries may generate or import their own SSH keys using either the <code>CreateKeyPair</code> or <code>ImportKeyPair</code> API in AWS or the <code>gcloud compute os-login ssh-keys add</code> command in GCP.(Citation: GCP SSH Key Add) This allows persistent access to instances within the cloud environment without further usage of the compromised cloud accounts.(Citation: Expel IO Evil in AWS)(Citation: Expel Behind the Scenes)  Adversaries may also use the <code>CreateAccessKey</code> API in AWS or the <code>gcloud iam service-accounts keys create</code> command in GCP to add access keys to an account. Alternatively, they may use the <code>CreateLoginProfile</code> API in AWS to add a password that can be used to log into the AWS Management Console for [Cloud Service Dashboard](https://attack.mitre.org/techniques/T1538).(Citation: Permiso Scattered Spider 2023)(Citation: Lacework AI Resource Hijacking 2024) If the target account has different permissions from the requesting account, the adversary may also be able to escalate their privileges in the environment (i.e. [Cloud Accounts](https://attack.mitre.org/techniques/T1078/004)).(Citation: Rhino Security Labs AWS Privilege Escalation)(Citation: Sysdig ScarletEel 2.0) For example, in Entra ID environments, an adversary with the Application Administrator role can add a new set of credentials to their application's service principal. In doing so the adversary would be able to access the service principal’s roles and permissions, which may be different from those of the Application Administrator.(Citation: SpecterOps Azure Privilege Escalation)   In AWS environments, adversaries with the appropriate permissions may also use the `sts:GetFederationToken` API call to create a temporary set of credentials to [Forge Web Credentials](https://attack.mitre.org/techniques/T1606) tied to the permissions of the original user account. These temporary credentials may remain valid for the duration of their lifetime even if the original account’s API credentials are deactivated. (Citation: Crowdstrike AWS User Federation Persistence)  In Entra ID environments with the app password feature enabled, adversaries may be able to add an app password to a user account.(Citation: Mandiant APT42 Operations 2024) As app passwords are intended to be used with legacy devices that do not support multi-factor authentication (MFA), adding an app password can allow an adversary to bypass MFA requirements. Additionally, app passwords may remain valid even if the user’s primary password is reset.(Citation: Microsoft Entra ID App Passwords) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Execution"
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+e3d7cb59_7aca_4c3d_b488_48c785930b6d{{"PowerShell usage for<br>credential manipulation"}}
+a566e405_e9db_475f_8447_7875fa127716{{"Script execution on<br>Windows for credential<br>manipulation"}}
+596d294a_9aa8_41b2_9507_5c9d605de6b4{{"Use Windows utilities to<br>manipulate a local<br>account or group"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+subgraph "Credential Access"
+ec8201d4_c135_406b_a3b5_4a070e80a2ee{{"Credential manipulation<br>on local Windows<br>endpoint"}}
+7351e2ca_e198_427c_9cfa_202df36f6e2a{{"Mimikatz execution on<br>compromised endpoint"}}
+2d0beed6_6520_4114_be1f_24067628e93c{{"Manipulation of<br>credentials stored in<br>LSASS"}}
+end
+subgraph "Lateral Movement"
+5ea50181_1124_49aa_9d2c_c74103e86fd5{{"Pass-the-hash on SMB<br>network shares"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+subgraph "Privilege Escalation"
+479a8b31_5f7e_4fd6_94ca_a5556315e1b8{{"Pass the hash using<br>impersonation within an<br>existing process"}}
+4472e2b0_3dca_4d84_aab0_626fcba04fce{{"Pass the hash attack to<br>elevate privileges"}}
+end
+subgraph "Exploitation"
+f2c59a8e_3b1f_4a99_80f0_3675b8c1f184{{"GoGra backdoor"}}
+02311e3e_b7b8_4369_9e1e_74c0a844ae0f{{"NTLM credentials dumping<br>via SMB connection"}}
+end
+subgraph "Persistence"
+66277f27_d57b_47f8_bc9c_b024c7cd1313{{"Abuse Windows Utilities<br>to Enable Persistence"}}
+end
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 06523ed4_7881_4466_9ac5_f8417e972d13
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 7351e2ca_e198_427c_9cfa_202df36f6e2a
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| a566e405_e9db_475f_8447_7875fa127716
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 5ea50181_1124_49aa_9d2c_c74103e86fd5
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 479a8b31_5f7e_4fd6_94ca_a5556315e1b8
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 4472e2b0_3dca_4d84_aab0_626fcba04fce
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|preceeds| 2d0beed6_6520_4114_be1f_24067628e93c
+f2c59a8e_3b1f_4a99_80f0_3675b8c1f184 -->|preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 06523ed4_7881_4466_9ac5_f8417e972d13
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|preceeds| 66277f27_d57b_47f8_bc9c_b024c7cd1313
+596d294a_9aa8_41b2_9507_5c9d605de6b4 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+5ea50181_1124_49aa_9d2c_c74103e86fd5 -->|succeeds| 02311e3e_b7b8_4369_9e1e_74c0a844ae0f
+66277f27_d57b_47f8_bc9c_b024c7cd1313 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+```

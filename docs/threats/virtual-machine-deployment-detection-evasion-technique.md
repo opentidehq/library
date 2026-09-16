@@ -1,14 +1,15 @@
 # Virtual machine deployment detection evasion technique
 
 ## Metadata
-
-- **UUID**: `60bd6a35-3a71-47c2-8110-4562fb40976c`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-02`
-- **Modified**: `2025-07-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `60bd6a35-3a71-47c2-8110-4562fb40976c` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-02` |
+| Modified | `2025-07-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -54,19 +55,37 @@ data-exfiltration tool can be `GoodSync` tool ref [1], [2].
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs an initial privileged access
+A threat actor needs an initial privileged access
 to already compromised host system.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user, Workstations, Customer, Virtual Machines, Virtual Machines Host
-Platforms: Windows, macOS, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Virtualisation::VMware ESXi**
+> Broadcom VMware ESXi bare-metal Type 1 hypervisor
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Data Breach; Business disruption; Reputational Damages; Nuisance | - |
-| Leverage | Infrastructure Compromise; Elevation of privilege; Information Disclosure; Software installation; Tampering | - |
+| Impact | Impairement<br>Data Breach<br>Business disruption<br>Reputational Damages<br>Nuisance | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Small and mostly inconsequential to day to day operations, but noticed. |
+| Leverage | Infrastructure Compromise<br>Elevation of privilege<br>Information Disclosure<br>Software installation<br>Tampering | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Software installation or code modification<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -78,12 +97,24 @@ Platforms: Windows, macOS, Linux**
 ## Chaining
 ```mermaid
 flowchart LR
-60bd6a35_3a71_47c2_8110_4562fb40976c["Virtual machine deployment detection evasion technique"]
-c4456134_df7b_4969_b5ff_a24794996890["Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access"]
-60bd6a35_3a71_47c2_8110_4562fb40976c -->|sequence::succeeds| c4456134_df7b_4969_b5ff_a24794996890
+subgraph "Defense Evasion"
+60bd6a35_3a71_47c2_8110_4562fb40976c{{"Virtual machine<br>deployment detection<br>evasion technique"}}
+end
+subgraph "Social Engineering"
+c4456134_df7b_4969_b5ff_a24794996890{{"Impersonate IT support<br>via a spoofed phone call<br>to deceive a victim and<br>gain a remote access"}}
+end
+subgraph "Delivery"
+06c60af1_5fa8_493c_bf9b_6b2e215819f1{{"Social engineering<br>attack using Microsoft<br>Teams"}}
+58b98d75_fc63_4662_8908_a2a7f4200902{{"Spearphishing with an<br>attachment extension<br>.rdp"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+60bd6a35_3a71_47c2_8110_4562fb40976c -->|succeeds| c4456134_df7b_4969_b5ff_a24794996890
+c4456134_df7b_4969_b5ff_a24794996890 -->|implements| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+c4456134_df7b_4969_b5ff_a24794996890 -->|succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+58b98d75_fc63_4662_8908_a2a7f4200902 -->|implements| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### succeeds -> Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access (`sequence::succeeds`)
+#### succeeds -> [Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access](impersonate-it-support-via-a-spoofed-phone-call-to-deceive-a-victim-and-gain-a-remote-access.md) (`c4456134-df7b-4969-b5ff-a24794996890`) (`sequence::succeeds`)
 Threat actors are flooding initially a specific user within
 an organisation with unsolicited emails and/or messages and
 manage to gain unauthorised access to the host. The threat

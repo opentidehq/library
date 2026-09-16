@@ -1,14 +1,15 @@
 # Script execution on Windows for credential manipulation
 
 ## Metadata
-
-- **UUID**: `a566e405-e9db-475f-8447-7875fa127716`
-- **Schema**: `threat::1.0`
-- **Version**: `5`
-- **Created**: `2023-01-26`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `a566e405-e9db-475f-8447-7875fa127716` |
+| Schema | `threat::1.0` |
+| Version | `5` |
+| Created | `2023-01-26` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -105,12 +106,33 @@ credentials and propagate to additional systems in the network.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires an already compromised Windows endpoint and administrator
+Requires an already compromised Windows endpoint and administrator
 access to Windows command line interface.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: API Endpoints, Desktop, Laptop, End-user, Control Server, Remote access, System admin, Server Authentication, Public-Facing Servers, Web Application Servers
-Platforms: Windows, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
+
+> **Kerberos**
+> Kerberos network authentication protocol
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
@@ -147,3 +169,41 @@ Platforms: Windows, Active Directory**
 | `T1059.003` | [Command and Scripting Interpreter: Windows Command Shell](https://attack.mitre.org/techniques/T1059/003) | Adversaries may abuse the Windows command shell for execution. The Windows command shell ([cmd](https://attack.mitre.org/software/S0106)) is the primary command prompt on Windows systems. The Windows command prompt can be used to control almost any aspect of a system, with various permission levels required for different subsets of commands. The command prompt can be invoked remotely via [Remote Services](https://attack.mitre.org/techniques/T1021) such as [SSH](https://attack.mitre.org/techniques/T1021/004).(Citation: SSH in Windows)  Batch files (ex: .bat or .cmd) also provide the shell with a list of sequential commands to run, as well as normal scripting operations such as conditionals and loops. Common uses of batch files include long or repetitive tasks, or the need to run the same set of commands on multiple systems.  Adversaries may leverage [cmd](https://attack.mitre.org/software/S0106) to execute various commands and payloads. Common uses include [cmd](https://attack.mitre.org/software/S0106) to execute a single command, or abusing [cmd](https://attack.mitre.org/software/S0106) interactively with input and output forwarded over a command and control channel. |
 | `T1555` | [Credentials from Password Stores](https://attack.mitre.org/techniques/T1555) | Adversaries may search for common password storage locations to obtain user credentials.(Citation: F-Secure The Dukes) Passwords are stored in several places on a system, depending on the operating system or application holding the credentials. There are also specific applications and services that store passwords to make them easier for users to manage and maintain, such as password managers and cloud secrets vaults. Once credentials are obtained, they can be used to perform lateral movement and access restricted information. |
 | `T1003` | [OS Credential Dumping](https://attack.mitre.org/techniques/T1003) | Adversaries may attempt to dump credentials to obtain account login and credential material, normally in the form of a hash or a clear text password. Credentials can be obtained from OS caches, memory, or structures.(Citation: Brining MimiKatz to Unix) Credentials can then be used to perform [Lateral Movement](https://attack.mitre.org/tactics/TA0008) and access restricted information.  Several of the tools mentioned in associated sub-techniques may be used by both adversaries and professional security testers. Additional custom tools likely exist as well. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Execution"
+a566e405_e9db_475f_8447_7875fa127716{{"Script execution on<br>Windows for credential<br>manipulation"}}
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+e3d7cb59_7aca_4c3d_b488_48c785930b6d{{"PowerShell usage for<br>credential manipulation"}}
+end
+subgraph "Credential Access"
+ec8201d4_c135_406b_a3b5_4a070e80a2ee{{"Credential manipulation<br>on local Windows<br>endpoint"}}
+7351e2ca_e198_427c_9cfa_202df36f6e2a{{"Mimikatz execution on<br>compromised endpoint"}}
+2d0beed6_6520_4114_be1f_24067628e93c{{"Manipulation of<br>credentials stored in<br>LSASS"}}
+end
+subgraph "Lateral Movement"
+5ea50181_1124_49aa_9d2c_c74103e86fd5{{"Pass-the-hash on SMB<br>network shares"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+subgraph "Privilege Escalation"
+479a8b31_5f7e_4fd6_94ca_a5556315e1b8{{"Pass the hash using<br>impersonation within an<br>existing process"}}
+4472e2b0_3dca_4d84_aab0_626fcba04fce{{"Pass the hash attack to<br>elevate privileges"}}
+end
+subgraph "Exploitation"
+02311e3e_b7b8_4369_9e1e_74c0a844ae0f{{"NTLM credentials dumping<br>via SMB connection"}}
+end
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| a566e405_e9db_475f_8447_7875fa127716
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 7351e2ca_e198_427c_9cfa_202df36f6e2a
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 06523ed4_7881_4466_9ac5_f8417e972d13
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 5ea50181_1124_49aa_9d2c_c74103e86fd5
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 479a8b31_5f7e_4fd6_94ca_a5556315e1b8
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 4472e2b0_3dca_4d84_aab0_626fcba04fce
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|preceeds| 2d0beed6_6520_4114_be1f_24067628e93c
+5ea50181_1124_49aa_9d2c_c74103e86fd5 -->|succeeds| 02311e3e_b7b8_4369_9e1e_74c0a844ae0f
+```

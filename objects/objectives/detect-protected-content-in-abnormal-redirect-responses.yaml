@@ -49,7 +49,7 @@ objective:
         Triage by confirming route sensitivity, comparing against normal redirect templates, and
         capturing minimal request/response evidence for the application owner without storing protected
         body content.
-      severity: High
+      severity: Substantial incident
       effort: 3
       methodology: Anomaly
       data:
@@ -60,9 +60,9 @@ objective:
           patterns improves fidelity. Response bodies should not be logged in production unless a
           controlled validation process explicitly permits capture.
       entities:
-        - network::Network Connection
-        - network::URL
-        - network::IP Address
+        - Network Connection
+        - URL
+        - IP Address
     - name: Restricted route enumeration through repeated redirects
       uuid: 0770d2a4-9299-46d7-93f2-c3fff68aad26
       description: |-
@@ -73,7 +73,7 @@ objective:
         login event for the same source/session, or abnormal tooling indicators.
         As a non-normative starting point, investigate three or more distinct restricted routes from the
         same source within a short window when no successful authentication event follows.
-      severity: Medium
+      severity: Moderate incident
       effort: 4
       methodology: Frequency Analysis
       data:
@@ -83,9 +83,9 @@ objective:
           and timestamp. Authentication events or session telemetry improve tuning by distinguishing
           legitimate login redirects from automated probing.
       entities:
-        - network::IP Address
-        - network::URL
-        - network::Network Connection
+        - IP Address
+        - URL
+        - Network Connection
     - name: Redirect body differs from expected unauthenticated template
       uuid: 077ee487-7694-4ed5-9a83-5ed36b4f31c5
       description: |-
@@ -96,7 +96,7 @@ objective:
         than a production log-only signal.
         Triage by comparing the body fingerprint against the approved unauthenticated redirect template
         and validating that any exposed markers map to protected application content.
-      severity: High
+      severity: Substantial incident
       effort: 5
       methodology: Heuristic
       data:
@@ -107,9 +107,9 @@ objective:
           non-sensitive content fingerprints. Store only hashes, fingerprints, or minimal excerpts needed
           to prove exposure.
       entities:
-        - network::URL
-        - network::Session
-        - network::API Call
+        - URL
+        - Session
+        - API Call
   attack:
     - T1190
 composition:

@@ -1,14 +1,15 @@
 # Download and Execute Payloads with Windows Utilities
 
 ## Metadata
-
-- **UUID**: `765be5d9-4f79-4e3d-b894-fa428f285ab5`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-11-05`
-- **Modified**: `2024-11-05`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `765be5d9-4f79-4e3d-b894-fa428f285ab5` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-11-05` |
+| Modified | `2024-11-05` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## Description
 1. Bitsadmin.exe\
@@ -54,19 +55,28 @@ wmic /node:"REMOTE_COMPUTER_NAME" process call create "powershell.exe -Execution
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary has access to a Windows system where native utilities are available 
+Adversary has access to a Windows system where native utilities are available 
 and can execute commands without restrictions.
 
-Domains: Enterprise
-Targets: Workstations, Public-Facing Servers, Laptop, Virtual Machines
-Platforms: Windows, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Reputational Damages; Business disruption | - |
-| Leverage | Elevation of privilege; Software installation; Information Disclosure; Modify configuration | - |
+| Impact | Data Breach<br>Reputational Damages<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption |
+| Leverage | Elevation of privilege<br>Software installation<br>Information Disclosure<br>Modify configuration | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Software installation or code modification<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -89,12 +99,14 @@ Platforms: Windows, PowerShell**
 ## Chaining
 ```mermaid
 flowchart LR
-765be5d9_4f79_4e3d_b894_fa428f285ab5["Download and Execute Payloads with Windows Utilities"]
-d5039f2c_9fcc_4ba3_ad6a_da8c891ba745["Abuse of Windows Utilities"]
-765be5d9_4f79_4e3d_b894_fa428f285ab5 -->|atomicity::implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+subgraph "Execution"
+765be5d9_4f79_4e3d_b894_fa428f285ab5{{"Download and Execute<br>Payloads with Windows<br>Utilities"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+765be5d9_4f79_4e3d_b894_fa428f285ab5 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
 ```
 ### Chaining details
-#### implements -> Abuse of Windows Utilities (`atomicity::implements`)
+#### implements -> [Abuse of Windows Utilities](abuse-of-windows-utilities.md) (`d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`) (`atomicity::implements`)
 This TVM is implementing the bigger TVM : Abuse of Windows Utilities
 
 - **Target UUID**: `d5039f2c-9fcc-4ba3-ad6a-da8c891ba745`

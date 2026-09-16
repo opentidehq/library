@@ -42,8 +42,20 @@ threat:
     - Active Directory
     - Log Management
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Information Disclosure; Elevation of privilege; Modify configuration
-  impact: Data Breach; IP Loss; Reputational Damages; Lose Capabilities; Business disruption; Operating costs
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Information Disclosure
+    - Elevation of privilege
+    - Modify configuration
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Lose Capabilities
+    - Business disruption
+    - Operating costs
   viability: Likely
   description: |-
     Azure Active Directory (Azure AD) Connect abuse represents a critical threat vector 

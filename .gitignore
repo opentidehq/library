@@ -5,6 +5,7 @@ dist/
 build/
 *.egg-info/
 .pytest_cache/
+.coverage
 .opentide/exports/*.export.json
 .opentide/schemas/
 .opentide/templates/

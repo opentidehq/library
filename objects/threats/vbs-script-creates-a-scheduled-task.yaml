@@ -21,12 +21,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0046
-    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
-    - att&ck::G0032
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G0016
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0046
+    - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - name: att&ck::G0032
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0016
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Persistence
   att&ck:
     - T1569.002
@@ -60,8 +60,15 @@ threat:
     - Windows::Desktop
     - Remote Access
   severity: Significant incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Tampering
-  impact: Impairement; Data Breach; Lose Capabilities
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Tampering
+  impact:
+    - Impairement
+    - Data Breach
+    - Lose Capabilities
   viability: Likely
   description: |-
     Threat actors often use Visual Basic Scripting (VBS) to create scheduled

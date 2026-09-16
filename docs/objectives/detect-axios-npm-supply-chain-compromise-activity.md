@@ -1,14 +1,15 @@
 # Detect Axios npm Supply Chain Compromise Activity
 
 ## Metadata
-
-- **UUID**: `f45b9b82-a3c5-4643-932b-debfd8739bd8`
-- **Schema**: `objective::1.0`
-- **Version**: `1`
-- **Created**: `2026-04-28`
-- **Modified**: `2026-04-28`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f45b9b82-a3c5-4643-932b-debfd8739bd8` |
+| Schema | `objective::1.0` |
+| Version | `1` |
+| Created | `2026-04-28` |
+| Modified | `2026-04-28` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -142,7 +143,7 @@ Malicious Packages, Aikido Intel, Socket, StepSecurity),
 and into the runtime estate (file inventory across
 developer endpoints).
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Artifacts
 - **Effort**: 2
 #### Data
@@ -207,7 +208,7 @@ future npm supply-chain attack using the postinstall
 lifecycle to deliver native payloads will exhibit the
 same parent / child / file-write pattern.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Behavioural
 - **Effort**: 4
 #### Data
@@ -274,7 +275,7 @@ Detection should fire on file creation, not only on
 file presence, so that hosts which received but later
 cleaned the artefact are still surfaced.
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Artifacts
 - **Effort**: 2
 #### Data
@@ -338,7 +339,7 @@ These patterns directly correspond to GTIG's
 `G_Hunting_Downloader_suspected_UNC1069_PS_1` YARA
 signal logic.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Behavioural
 - **Effort**: 3
 #### Data
@@ -393,7 +394,7 @@ This is the highest-fidelity confirmation of an
 active RAT and should be treated as Critical
 regardless of host-side signals.
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Pattern Matching
 - **Effort**: 2
 #### Data
@@ -463,7 +464,7 @@ from being pulled into builds during the 18-hour
 window in which it was the most recent published
 version.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Anomaly
 - **Effort**: 5
 #### Data
@@ -500,26 +501,36 @@ Preferred log sources:
 | WAVESHAPER.V2 C2 Communication to sfrclak[.]com | _None_ |
 | NPM Publisher Email or SLSA Provenance Regression on Critical Packages | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-6524f5a6_d9e9_48ff_983f_23c4aed9c1fd["6524f5a6-d9e9-48ff-983f-23c4aed9c1fd"]
-68f4ac42_9bd8_4b1e_b547_56f890bfe457["68f4ac42-9bd8-4b1e-b547-56f890bfe457"]
-6c2c0f21_5821_4b5f_9279_9b91dfd5d148["6c2c0f21-5821-4b5f-9279-9b91dfd5d148"]
-9866b082_7f59_43d3_8ed8_2567eda7d4fc["9866b082-7f59-43d3-8ed8-2567eda7d4fc"]
-a5331e78_144f_4300_8672_4b69b6ae732c["a5331e78-144f-4300-8672-4b69b6ae732c"]
-cf53a85e_38af_4053_a2b5_549bce394b8a["cf53a85e-38af-4053-a2b5-549bce394b8a"]
+subgraph "Threats"
+000790d9_06de_49af_893d_e4993abe6e38{{"Axios npm supply chain<br>compromise"}}
 end
-subgraph "Threat"
-000790d9_06de_49af_893d_e4993abe6e38["Axios npm supply chain compromise"]
+subgraph "Signals"
+cf53a85e_38af_4053_a2b5_549bce394b8a(("Compromised Axios /<br>plain-crypto-js Versions<br>Resolved in Dependency<br>Manifests"))
+6c2c0f21_5821_4b5f_9279_9b91dfd5d148(("Suspicious npm<br>Postinstall Lifecycle<br>Execution Spawning<br>Unexpected Interpreters"))
+6524f5a6_d9e9_48ff_983f_23c4aed9c1fd(("WAVESHAPER.V2<br>Cross-Platform RAT<br>On-Disk Artefacts"))
+9866b082_7f59_43d3_8ed8_2567eda7d4fc(("Renamed PowerShell +<br>Transient VBScript<br>Loader from Node.js<br>Process Tree Windows"))
+a5331e78_144f_4300_8672_4b69b6ae732c(("WAVESHAPER.V2 C2<br>Communication to<br>sfrclak.com"))
+68f4ac42_9bd8_4b1e_b547_56f890bfe457(("NPM Publisher Email or<br>SLSA Provenance<br>Regression on Critical<br>Packages"))
 end
-f45b9b82_a3c5_4643_932b_debfd8739bd8["Detect Axios npm Supply Chain Compromise Activity"]
-f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 6524f5a6_d9e9_48ff_983f_23c4aed9c1fd
-f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 68f4ac42_9bd8_4b1e_b547_56f890bfe457
-f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 6c2c0f21_5821_4b5f_9279_9b91dfd5d148
-f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| 9866b082_7f59_43d3_8ed8_2567eda7d4fc
-f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| a5331e78_144f_4300_8672_4b69b6ae732c
-f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|signal| cf53a85e_38af_4053_a2b5_549bce394b8a
-f45b9b82_a3c5_4643_932b_debfd8739bd8 -->|threat| 000790d9_06de_49af_893d_e4993abe6e38
+f45b9b82_a3c5_4643_932b_debfd8739bd8(["Detect Axios npm Supply<br>Chain Compromise<br>Activity"])
+000790d9_06de_49af_893d_e4993abe6e38 -->|covers| f45b9b82_a3c5_4643_932b_debfd8739bd8
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> cf53a85e_38af_4053_a2b5_549bce394b8a
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 6c2c0f21_5821_4b5f_9279_9b91dfd5d148
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 6524f5a6_d9e9_48ff_983f_23c4aed9c1fd
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 9866b082_7f59_43d3_8ed8_2567eda7d4fc
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> a5331e78_144f_4300_8672_4b69b6ae732c
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 68f4ac42_9bd8_4b1e_b547_56f890bfe457
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [Axios npm supply chain compromise](../Threats/axios-npm-supply-chain-compromise.md) (`000790d9-06de-49af-893d-e4993abe6e38`) | Upstream | threat |
+| Signal | [WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts](detect-axios-npm-supply-chain-compromise-activity.md#waveshaper-v2-cross-platform-rat-on-disk-artefacts) (`6524f5a6-d9e9-48ff-983f-23c4aed9c1fd`) | Downstream | signal |
+| Signal | [NPM Publisher Email or SLSA Provenance Regression on Critical Packages](detect-axios-npm-supply-chain-compromise-activity.md#npm-publisher-email-or-slsa-provenance-regression-on-critical-packages) (`68f4ac42-9bd8-4b1e-b547-56f890bfe457`) | Downstream | signal |
+| Signal | [Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters](detect-axios-npm-supply-chain-compromise-activity.md#suspicious-npm-postinstall-lifecycle-execution-spawning-unexpected-interpreters) (`6c2c0f21-5821-4b5f-9279-9b91dfd5d148`) | Downstream | signal |
+| Signal | [Renamed PowerShell + Transient VBScript Loader from Node.js Process Tree (Windows)](detect-axios-npm-supply-chain-compromise-activity.md#renamed-powershell-transient-vbscript-loader-from-node-js-process-tree-windows) (`9866b082-7f59-43d3-8ed8-2567eda7d4fc`) | Downstream | signal |
+| Signal | [WAVESHAPER.V2 C2 Communication to sfrclak[.]com](detect-axios-npm-supply-chain-compromise-activity.md#waveshaper-v2-c2-communication-to-sfrclak-com) (`a5331e78-144f-4300-8672-4b69b6ae732c`) | Downstream | signal |
+| Signal | [Compromised Axios / plain-crypto-js Versions Resolved in Dependency Manifests](detect-axios-npm-supply-chain-compromise-activity.md#compromised-axios-plain-crypto-js-versions-resolved-in-dependency-manifests) (`cf53a85e-38af-4053-a2b5-549bce394b8a`) | Downstream | signal |

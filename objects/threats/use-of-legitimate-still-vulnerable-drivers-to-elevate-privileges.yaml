@@ -21,9 +21,9 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::fa80877c-f509-4daf-8b62-20aba1635f68
-    - att&ck::G0010
-    - misp::062938a2-6fa1-4217-ad73-f5e0b5186966
+    - name: misp::fa80877c-f509-4daf-8b62-20aba1635f68
+    - name: att&ck::G0010
+    - name: misp::062938a2-6fa1-4217-ad73-f5e0b5186966
   killchain: Privilege Escalation
   att&ck:
     - T1547.006
@@ -40,8 +40,15 @@ threat:
     - Customer Support
     - Azure::Compute::Virtual Machines
   severity: Significant incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Tampering; Modify configuration; Software installation
-  impact: Data Breach; Impairement
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Tampering
+    - Modify configuration
+    - Software installation
+  impact:
+    - Data Breach
+    - Impairement
   viability: Likely
   description: |-
     Threat actors can use legitimate and code-signed, but vulnerable drivers to 

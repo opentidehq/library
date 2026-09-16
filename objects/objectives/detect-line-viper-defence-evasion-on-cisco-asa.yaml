@@ -97,7 +97,7 @@ objective:
         pre-shared key VPNs configured without AAA) may legitimately
         lack authentication logs — these must be documented and
         excluded.
-      severity: High
+      severity: Substantial incident
       effort: 6
       methodology: Anomaly
       data:
@@ -117,10 +117,10 @@ objective:
           - Cisco Identity Services Engine (ISE) RADIUS/TACACS+ logs
             as supplementary authentication record source
       entities:
-        - host::Authentication
-        - network::IP Address
-        - host::Hostname
-        - network::Network Connection
+        - Authentication
+        - IP Address
+        - Hostname
+        - Network Connection
     - name: Anomalous Reduction in Cisco ASA Syslog Message Volume
       uuid: 10482800-4d71-4246-93f4-6edfc4705b86
       description: |-
@@ -152,7 +152,7 @@ objective:
         per device. Syslog gaps caused by network issues between the
         ASA and syslog server must be distinguished from in-device
         suppression through cross-validation with alternative telemetry.
-      severity: Medium
+      severity: Moderate incident
       effort: 7
       methodology: Statistical
       data:
@@ -170,8 +170,8 @@ objective:
           - SNMP interface counter polling for traffic volume baseline
           - NetFlow as independent traffic volume indicator
       entities:
-        - host::Hostname
-        - host::Software
+        - Hostname
+        - Software
     - name: Cisco ASA System Integrity Check Result Inconsistency
       uuid: 9666e19f-f48d-4a0b-bb3e-0efbd69e8eac
       description: |-
@@ -204,7 +204,7 @@ objective:
         Given that LINE VIPER targets firmware versions 9.12(4)67
         and 9.14(4)24, these specific versions warrant priority
         integrity verification when detected in the environment.
-      severity: Critical
+      severity: Significant incident
       effort: 5
       methodology: Artifacts
       data:
@@ -225,9 +225,9 @@ objective:
             hashes
           - ROMMON console output for independent boot image hash
       entities:
-        - host::Hostname
-        - host::Software
-        - host::File Hash
+        - Hostname
+        - Software
+        - File Hash
   attack:
     - T1562.001
     - T1562

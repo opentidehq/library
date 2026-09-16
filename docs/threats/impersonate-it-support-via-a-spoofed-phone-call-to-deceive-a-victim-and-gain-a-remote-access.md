@@ -1,14 +1,15 @@
 # Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access
 
 ## Metadata
-
-- **UUID**: `c4456134-df7b-4969-b5ff-a24794996890`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-02`
-- **Modified**: `2025-06-02`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `c4456134-df7b-4969-b5ff-a24794996890` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-02` |
+| Modified | `2025-06-02` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -68,20 +69,44 @@ can exfiltrates available data towards any server he controls.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs initial user's interaction to gain access
+A threat actor needs initial user's interaction to gain access
 to the platform. For example assistance, accept invitation to
 a fake technical support or other "assistance".
 
-Domains: Enterprise, Mobile
-Targets: Call center, Customer, End-user, Laptop, Workstations, Email Platform, Remote access, Desktop
-Platforms: Windows, Microsoft Teams, iOS, Android**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Microsoft::Teams**
+> Microsoft Teams communication and collaboration platform
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Email**
+> Email infrastructure and services
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Data Breach; Impairement; Reputational Damages; Business disruption | - |
-| Leverage | Information Disclosure; Infrastructure Compromise; Spoofing; Elevation of privilege | - |
+| Impact | Identity Theft<br>Data Breach<br>Impairement<br>Reputational Damages<br>Business disruption | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption |
+| Leverage | Information Disclosure<br>Infrastructure Compromise<br>Spoofing<br>Elevation of privilege | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Social Engineering | Techniques aimed at the manipulation of people to perform unsafe actions. |
 
@@ -101,14 +126,24 @@ Platforms: Windows, Microsoft Teams, iOS, Android**
 ## Chaining
 ```mermaid
 flowchart LR
-c4456134_df7b_4969_b5ff_a24794996890["Impersonate IT support via a spoofed phone call to deceive a victim and gain a remote access"]
-06c60af1_5fa8_493c_bf9b_6b2e215819f1["Social engineering attack using Microsoft Teams"]
-58b98d75_fc63_4662_8908_a2a7f4200902["Spearphishing with an attachment extension .rdp"]
-c4456134_df7b_4969_b5ff_a24794996890 -->|atomicity::implements| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
-06c60af1_5fa8_493c_bf9b_6b2e215819f1 -->|sequence::succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+subgraph "Social Engineering"
+c4456134_df7b_4969_b5ff_a24794996890{{"Impersonate IT support<br>via a spoofed phone call<br>to deceive a victim and<br>gain a remote access"}}
+end
+subgraph "Defense Evasion"
+60bd6a35_3a71_47c2_8110_4562fb40976c{{"Virtual machine<br>deployment detection<br>evasion technique"}}
+end
+subgraph "Delivery"
+06c60af1_5fa8_493c_bf9b_6b2e215819f1{{"Social engineering<br>attack using Microsoft<br>Teams"}}
+58b98d75_fc63_4662_8908_a2a7f4200902{{"Spearphishing with an<br>attachment extension<br>.rdp"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+60bd6a35_3a71_47c2_8110_4562fb40976c -->|succeeds| c4456134_df7b_4969_b5ff_a24794996890
+c4456134_df7b_4969_b5ff_a24794996890 -->|implements| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+c4456134_df7b_4969_b5ff_a24794996890 -->|succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+58b98d75_fc63_4662_8908_a2a7f4200902 -->|implements| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### implements -> Social engineering attack using Microsoft Teams (`atomicity::implements`)
+#### implements -> [Social engineering attack using Microsoft Teams](social-engineering-attack-using-microsoft-teams.md) (`06c60af1-5fa8-493c-bf9b-6b2e215819f1`) (`atomicity::implements`)
 In one of the ransomware campaigns is observed that the threat actors
 are purchasing intentionally Teams accounts which are used further for
 impersonation purposes. Example: 3AM Ransomware activities. 
@@ -120,7 +155,7 @@ over Microsoft Teams posing as a tech support team member to deceive
 that employee into allowing remote access to their computer ref [1].
 
 - **Target UUID**: `06c60af1-5fa8-493c-bf9b-6b2e215819f1`
-#### succeeds -> Spearphishing with an attachment extension .rdp (`sequence::succeeds`)
+#### succeeds -> [Spearphishing with an attachment extension .rdp](spearphishing-with-an-attachment-extension-rdp.md) (`58b98d75-fc63-4662-8908-a2a7f4200902`) (`sequence::succeeds`)
 A threat actor may send emails with a .rdp attachment to entice 
 the victim to establish a remote destop session with a server under 
 attacker control. The RDP session might have broad device mapping

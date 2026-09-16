@@ -25,8 +25,11 @@ threat:
     - Linux
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Information Disclosure
-  impact: Data Breach; Identity Theft
+  leverage:
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Identity Theft
   viability: Likely
   description: |-
     Host information gathering in Linux can be a part of a reconnaissance

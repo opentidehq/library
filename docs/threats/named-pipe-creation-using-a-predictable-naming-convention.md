@@ -1,14 +1,15 @@
 # Named pipe creation using a predictable naming convention
 
 ## Metadata
-
-- **UUID**: `db749144-8044-4479-ab34-bff22251a1d7`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2023-01-06`
-- **Modified**: `2023-01-17`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `db749144-8044-4479-ab34-bff22251a1d7` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2023-01-06` |
+| Modified | `2023-01-17` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -27,11 +28,23 @@ during the deployment (manual config in CS possible to deploy with custom named 
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs to control a Windows endpoint and sufficient credentials to execute software.
+A threat actor needs to control a Windows endpoint and sufficient credentials to execute software.
 
-Domains: Enterprise, Public Cloud
-Targets: Control Server, Input/Output Server, Public-Facing Servers, Web Application Servers, Laptop, Workstations, Desktop
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Server**
+> Microsoft Windows Server editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

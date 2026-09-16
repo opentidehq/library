@@ -38,8 +38,14 @@ threat:
     - Development::CI/CD
     - Development
   severity: Significant incident
-  leverage: Infrastructure Compromise; Tampering
-  impact: Impairement; Business disruption; Lose Capabilities; Competitive disadvantage
+  leverage:
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Impairement
+    - Business disruption
+    - Lose Capabilities
+    - Competitive disadvantage
   viability: Likely
   description: |-
     Legitimate software dependency injected with malicious code refers

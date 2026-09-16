@@ -53,8 +53,18 @@ threat:
     - Serverless
     - Web Servers
   severity: Significant incident
-  leverage: Information Disclosure; Elevation of privilege; Tampering; Denial of Service
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+    - Tampering
+    - Denial of Service
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Business disruption
   viability: Likely
   description: |-
     Azure storage account reconnaissance refers to the initial phase of cyberattacks 

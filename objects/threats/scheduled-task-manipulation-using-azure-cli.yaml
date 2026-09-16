@@ -50,8 +50,18 @@ threat:
     - Azure::Compute::Virtual Machines
     - Application Layer::HTTP
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Infrastructure Compromise
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
   viability: Likely
   description: |-
     Scheduled task manipulation using Azure CLI is a sophisticated threat vector that 

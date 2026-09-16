@@ -1,14 +1,15 @@
 # Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity
 
 ## Metadata
-
-- **UUID**: `fb62e879-9e91-4c5b-aaa7-999b2b1b3897`
-- **Schema**: `objective::1.0`
-- **Version**: `1`
-- **Created**: `2026-06-16`
-- **Modified**: `2026-06-16`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `fb62e879-9e91-4c5b-aaa7-999b2b1b3897` |
+| Schema | `objective::1.0` |
+| Version | `1` |
+| Created | `2026-06-16` |
+| Modified | `2026-06-16` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -106,7 +107,7 @@ compilation, `husky`, `esbuild` binary fetch). Tune with
 allowlists for known-good packages and CI image baselines;
 elevate when combined with secret-file access or IOC domains.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Behavioural
 - **Effort**: 4
 #### Data
@@ -152,7 +153,7 @@ tooling, and developer utilities (e.g. `gh auth login`). Scope to
 developer laptops and build agents; require multiple secret paths
 or IOC destination for higher fidelity.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Behavioural
 - **Effort**: 5
 #### Data
@@ -193,7 +194,7 @@ deliberately by security teams, and some IDE indexing. Exclude
 known inventory / backup service accounts; lower threshold on
 CI runners where breadth may be lower but paths more sensitive.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Statistical
 - **Effort**: 6
 #### Data
@@ -235,7 +236,7 @@ forks and workflows; hobby repositories with unusual names.
 Correlate with endpoint install anomalies or IOC network traffic
 on linked CI runners.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Event Search
 - **Effort**: 5
 #### Data
@@ -282,7 +283,7 @@ False positives: emergency hotfix publishes, migration between
 publish mechanisms, and monorepo bulk releases. Require manifest
 fingerprint or feed enrichment for auto-escalation.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Anomaly
 - **Effort**: 6
 #### Data
@@ -323,7 +324,7 @@ False positives: legitimate telemetry uploads, crash dumps,
 artefact uploads to internal registries. Tune minimum body size
 and require IOC destination or co-occurring secret-file reads.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Pattern Matching
 - **Effort**: 5
 #### Data
@@ -373,7 +374,7 @@ Detection criteria:
 Treat any match on a build or developer host as strong evidence
 of execution, not merely dependency declaration.
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Artifacts
 - **Effort**: 2
 #### Data
@@ -402,44 +403,62 @@ Preferred log sources:
 | Large Encoded Payload in Outbound HTTP from Developer or Build Hosts | _None_ |
 | Known Shai-Hulud On-Disk and Network Indicator Match | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-21a527de_8635_4187_87d4_c9e5f5c1badc["21a527de-8635-4187-87d4-c9e5f5c1badc"]
-287114bd_7d58_422d_9711_f5516900b9ce["287114bd-7d58-422d-9711-f5516900b9ce"]
-365e23e8_0367_4adf_b18a_f1440cc66005["365e23e8-0367-4adf-b18a-f1440cc66005"]
-678d0786_dfd7_40fb_ba90_3c368ed00342["678d0786-dfd7-40fb-ba90-3c368ed00342"]
-9f3abdc4_7c6e_480e_b722_6d31ddd9b2d2["9f3abdc4-7c6e-480e-b722-6d31ddd9b2d2"]
-a3f7d796_146c_44b0_8d22_7a08daa0d963["a3f7d796-146c-44b0-8d22-7a08daa0d963"]
-b49d0a94_ae13_49b3_8ad8_6c035fa3d681["b49d0a94-ae13-49b3-8ad8-6c035fa3d681"]
+subgraph "Threats"
+59548b96_9b01_414c_badd_c0bf2ab40d9a{{"Shai-Hulud npm and PyPI<br>supply chain compromise"}}
 end
-subgraph "Rule"
-0924c742_8fdb_4ee2_95fe_91d2e5725a90["Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts"]
-2fe6575d_513c_4588_999f_19c13d0fa4f9["Shai-Hulud Known On-Disk and Network Indicator Match"]
-7eb85d22_2e60_449f_b92c_8cecc28d34c6["Shai-Hulud Unexpected GitHub Repository or Workflow Creation"]
-bfae62bb_7ce1_46cd_a131_39803832fa9d["Shai-Hulud Package Manager Install Spawning Suspicious Child Processes"]
-c82cfa6b_066f_4ba3_ba07_d7eb642c8099["Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts"]
-ecd096d2_7fc5_45e3_803f_82d13f940210["Shai-Hulud Developer Secret-File Access Followed by Outbound Egress"]
-fae8ef2d_99e9_42f4_81ed_d40c515e8d3d["Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity"]
+subgraph "Signals"
+a3f7d796_146c_44b0_8d22_7a08daa0d963(("Package Manager Install<br>Spawning Unexpected<br>Download or Scripting<br>Child Processes"))
+365e23e8_0367_4adf_b18a_f1440cc66005(("Developer Secret-File<br>Access Followed by<br>Outbound Network Egress"))
+b49d0a94_ae13_49b3_8ad8_6c035fa3d681(("Bulk<br>Credential-Candidate<br>File Access on Developer<br>or CI Hosts"))
+287114bd_7d58_422d_9711_f5516900b9ce(("Unexpected GitHub<br>Repository or Workflow<br>Creation from Anomalous<br>Context"))
+9f3abdc4_7c6e_480e_b722_6d31ddd9b2d2(("Anomalous npm Package<br>Publish from<br>Non-Baseline Host or<br>Identity"))
+21a527de_8635_4187_87d4_c9e5f5c1badc(("Large Encoded Payload in<br>Outbound HTTP from<br>Developer or Build Hosts"))
+678d0786_dfd7_40fb_ba90_3c368ed00342(("Known Shai-Hulud On-Disk<br>and Network Indicator<br>Match"))
 end
-subgraph "Threat"
-59548b96_9b01_414c_badd_c0bf2ab40d9a["Shai-Hulud npm and PyPI supply chain compromise"]
+subgraph "Rules"
+fae8ef2d_99e9_42f4_81ed_d40c515e8d3d["Shai-Hulud Anomalous npm<br>Package Publish from<br>Non-Baseline Identity"]
+c82cfa6b_066f_4ba3_ba07_d7eb642c8099["Shai-Hulud Bulk<br>Credential-Candidate<br>File Access on Developer<br>Hosts"]
+ecd096d2_7fc5_45e3_803f_82d13f940210["Shai-Hulud Developer<br>Secret-File Access<br>Followed by Outbound<br>Egress"]
+2fe6575d_513c_4588_999f_19c13d0fa4f9["Shai-Hulud Known On-Disk<br>and Network Indicator<br>Match"]
+0924c742_8fdb_4ee2_95fe_91d2e5725a90["Shai-Hulud Large Encoded<br>Payload in Outbound HTTP<br>from Developer or Build<br>Hosts"]
+bfae62bb_7ce1_46cd_a131_39803832fa9d["Shai-Hulud Package<br>Manager Install Spawning<br>Suspicious Child<br>Processes"]
+7eb85d22_2e60_449f_b92c_8cecc28d34c6["Shai-Hulud Unexpected<br>GitHub Repository or<br>Workflow Creation"]
 end
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897["Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity"]
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 21a527de_8635_4187_87d4_c9e5f5c1badc
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 287114bd_7d58_422d_9711_f5516900b9ce
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 365e23e8_0367_4adf_b18a_f1440cc66005
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 678d0786_dfd7_40fb_ba90_3c368ed00342
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| 9f3abdc4_7c6e_480e_b722_6d31ddd9b2d2
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| a3f7d796_146c_44b0_8d22_7a08daa0d963
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|signal| b49d0a94_ae13_49b3_8ad8_6c035fa3d681
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| 0924c742_8fdb_4ee2_95fe_91d2e5725a90
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| 2fe6575d_513c_4588_999f_19c13d0fa4f9
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| 7eb85d22_2e60_449f_b92c_8cecc28d34c6
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| bfae62bb_7ce1_46cd_a131_39803832fa9d
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| c82cfa6b_066f_4ba3_ba07_d7eb642c8099
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| ecd096d2_7fc5_45e3_803f_82d13f940210
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|rule| fae8ef2d_99e9_42f4_81ed_d40c515e8d3d
-fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|threat| 59548b96_9b01_414c_badd_c0bf2ab40d9a
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897(["Detect Shai-Hulud npm<br>and PyPI Supply Chain<br>Compromise Activity"])
+59548b96_9b01_414c_badd_c0bf2ab40d9a -->|covers| fb62e879_9e91_4c5b_aaa7_999b2b1b3897
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> a3f7d796_146c_44b0_8d22_7a08daa0d963
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 365e23e8_0367_4adf_b18a_f1440cc66005
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> b49d0a94_ae13_49b3_8ad8_6c035fa3d681
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 287114bd_7d58_422d_9711_f5516900b9ce
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 9f3abdc4_7c6e_480e_b722_6d31ddd9b2d2
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 21a527de_8635_4187_87d4_c9e5f5c1badc
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 --> 678d0786_dfd7_40fb_ba90_3c368ed00342
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| fae8ef2d_99e9_42f4_81ed_d40c515e8d3d
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| c82cfa6b_066f_4ba3_ba07_d7eb642c8099
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| ecd096d2_7fc5_45e3_803f_82d13f940210
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| 2fe6575d_513c_4588_999f_19c13d0fa4f9
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| 0924c742_8fdb_4ee2_95fe_91d2e5725a90
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| bfae62bb_7ce1_46cd_a131_39803832fa9d
+fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| 7eb85d22_2e60_449f_b92c_8cecc28d34c6
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [Shai-Hulud npm and PyPI supply chain compromise](../Threats/shai-hulud-npm-and-pypi-supply-chain-compromise.md) (`59548b96-9b01-414c-badd-c0bf2ab40d9a`) | Upstream | threat |
+| Signal | [Large Encoded Payload in Outbound HTTP from Developer or Build Hosts](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#large-encoded-payload-in-outbound-http-from-developer-or-build-hosts) (`21a527de-8635-4187-87d4-c9e5f5c1badc`) | Downstream | signal |
+| Signal | [Unexpected GitHub Repository or Workflow Creation from Anomalous Context](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#unexpected-github-repository-or-workflow-creation-from-anomalous-context) (`287114bd-7d58-422d-9711-f5516900b9ce`) | Downstream | signal |
+| Signal | [Developer Secret-File Access Followed by Outbound Network Egress](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#developer-secret-file-access-followed-by-outbound-network-egress) (`365e23e8-0367-4adf-b18a-f1440cc66005`) | Downstream | signal |
+| Signal | [Known Shai-Hulud On-Disk and Network Indicator Match](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#known-shai-hulud-on-disk-and-network-indicator-match) (`678d0786-dfd7-40fb-ba90-3c368ed00342`) | Downstream | signal |
+| Signal | [Anomalous npm Package Publish from Non-Baseline Host or Identity](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#anomalous-npm-package-publish-from-non-baseline-host-or-identity) (`9f3abdc4-7c6e-480e-b722-6d31ddd9b2d2`) | Downstream | signal |
+| Signal | [Package Manager Install Spawning Unexpected Download or Scripting Child Processes](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#package-manager-install-spawning-unexpected-download-or-scripting-child-processes) (`a3f7d796-146c-44b0-8d22-7a08daa0d963`) | Downstream | signal |
+| Signal | [Bulk Credential-Candidate File Access on Developer or CI Hosts](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#bulk-credential-candidate-file-access-on-developer-or-ci-hosts) (`b49d0a94-ae13-49b3-8ad8-6c035fa3d681`) | Downstream | signal |
+| Rule | [Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts](../Rules/shai-hulud-large-encoded-payload-in-outbound-http-from-developer-or-build-hosts.md) (`0924c742-8fdb-4ee2-95fe-91d2e5725a90`) | Downstream | rule |
+| Rule | [Shai-Hulud Known On-Disk and Network Indicator Match](../Rules/shai-hulud-known-on-disk-and-network-indicator-match.md) (`2fe6575d-513c-4588-999f-19c13d0fa4f9`) | Downstream | rule |
+| Rule | [Shai-Hulud Unexpected GitHub Repository or Workflow Creation](../Rules/shai-hulud-unexpected-github-repository-or-workflow-creation.md) (`7eb85d22-2e60-449f-b92c-8cecc28d34c6`) | Downstream | rule |
+| Rule | [Shai-Hulud Package Manager Install Spawning Suspicious Child Processes](../Rules/shai-hulud-package-manager-install-spawning-suspicious-child-processes.md) (`bfae62bb-7ce1-46cd-a131-39803832fa9d`) | Downstream | rule |
+| Rule | [Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts](../Rules/shai-hulud-bulk-credential-candidate-file-access-on-developer-hosts.md) (`c82cfa6b-066f-4ba3-ba07-d7eb642c8099`) | Downstream | rule |
+| Rule | [Shai-Hulud Developer Secret-File Access Followed by Outbound Egress](../Rules/shai-hulud-developer-secret-file-access-followed-by-outbound-egress.md) (`ecd096d2-7fc5-45e3-803f-82d13f940210`) | Downstream | rule |
+| Rule | [Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity](../Rules/shai-hulud-anomalous-npm-package-publish-from-non-baseline-identity.md) (`fae8ef2d-99e9-42f4-81ed-d40c515e8d3d`) | Downstream | rule |

@@ -1,14 +1,15 @@
 # MFA fatigue
 
 ## Metadata
-
-- **UUID**: `56500aed-5dec-42a8-a275-f1392abac979`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-21`
-- **Modified**: `2024-11-11`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `56500aed-5dec-42a8-a275-f1392abac979` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-21` |
+| Modified | `2024-11-11` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -61,17 +62,33 @@ or just want the notifications to end out of annoyance.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries must be in possession of the credentials of a valid account.
+Adversaries must be in possession of the credentials of a valid account.
 
-Domains: Enterprise, Public Cloud
-Targets: Auth token, Cloud Portal, End-user, Helpdesk, Identity Services, Mobile phone**
+## Surface
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Mobile**
+> Mobile operating systems (Android, iOS)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
 | Impact | Identity Theft | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
-| Leverage | Elevation of privilege; Spoofing | - |
+| Leverage | Elevation of privilege<br>Spoofing | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -95,24 +112,28 @@ Targets: Auth token, Cloud Portal, End-user, Helpdesk, Identity Services, Mobile
 ## Chaining
 ```mermaid
 flowchart LR
-56500aed_5dec_42a8_a275_f1392abac979["MFA fatigue"]
-1a68b5eb_0112_424d_a21f_88dda0b6b8df["Spearphishing Link"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-4a807ac4_f764_41b1_ae6f_94239041d349["MFA Bypass Techniques"]
-56500aed_5dec_42a8_a275_f1392abac979 -->|sequence::succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
-1a68b5eb_0112_424d_a21f_88dda0b6b8df -->|sequence::succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84 -->|atomicity::implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+subgraph "Credential Access"
+56500aed_5dec_42a8_a275_f1392abac979{{"MFA fatigue"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Delivery"
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+56500aed_5dec_42a8_a275_f1392abac979 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+56500aed_5dec_42a8_a275_f1392abac979 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+56500aed_5dec_42a8_a275_f1392abac979 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Link (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Link](spearphishing-link.md) (`1a68b5eb-0112-424d-a21f-88dda0b6b8df`) (`sequence::succeeds`)
 Attacker must be able to compromise the username and password of a valid account.
 
 - **Target UUID**: `1a68b5eb-0112-424d-a21f-88dda0b6b8df`
-#### succeeds -> Spearphishing Attachment (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::succeeds`)
 Attacker must be able to compromise the username and password of a valid account.
 
 - **Target UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`
-#### implements -> MFA Bypass Techniques (`atomicity::implements`)
+#### implements -> [MFA Bypass Techniques](mfa-bypass-techniques.md) (`4a807ac4-f764-41b1-ae6f-94239041d349`) (`atomicity::implements`)
 MFA bypass technique
 
 - **Target UUID**: `4a807ac4-f764-41b1-ae6f-94239041d349`

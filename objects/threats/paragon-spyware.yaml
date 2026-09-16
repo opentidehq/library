@@ -35,8 +35,16 @@ threat:
     - Mobile::iPadOS
     - Entra ID
   severity: Significant incident
-  leverage: Spoofing; Tampering; Information Disclosure; Software installation
-  impact: Competitive disadvantage; Data Breach; IP Loss; Identity Theft
+  leverage:
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+    - Software installation
+  impact:
+    - Competitive disadvantage
+    - Data Breach
+    - IP Loss
+    - Identity Theft
   viability: Likely
   description: |-
     Paragon Spyware, also known as Graphite, is a sophisticated surveillance tool developed 

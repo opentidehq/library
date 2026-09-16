@@ -1,14 +1,15 @@
 # Android attack using app running on emulator
 
 ## Metadata
-
-- **UUID**: `4a4a7c81-ca98-4761-8f23-7ef6354e9d1c`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-10`
-- **Modified**: `2025-04-14`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `4a4a7c81-ca98-4761-8f23-7ef6354e9d1c` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-10` |
+| Modified | `2025-04-14` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -64,20 +65,26 @@ to modify app functionality and compromise security features.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries require users to download emulators that have been
+Adversaries require users to download emulators that have been
 compromised or misconfigured and through these, they can carry
 out malicious activities.
 
-Domains: Mobile
-Targets: Mobile phone, Personal Information, Tablet
-Platforms: Android**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft; IP Loss; Nuisance; Reputational Damages | - |
-| Leverage | Information Disclosure; Modify configuration; Modify data; Software installation; Tampering; Dwelling | - |
+| Impact | Data Breach<br>Identity Theft<br>IP Loss<br>Nuisance<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Information Disclosure<br>Modify configuration<br>Modify data<br>Software installation<br>Tampering<br>Dwelling | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services<br>Modify stored data or content<br>Software installation or code modification<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Active or passive extended presence in the target, which performs adversarial operations continuously. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -91,3 +98,21 @@ Platforms: Android**
 | `T1426` | [Mobile : System Information Discovery](https://attack.mitre.org/techniques/T1426) | Adversaries may attempt to get detailed information about a device’s operating system and hardware, including versions, patches, and architecture. Adversaries may use the information from [System Information Discovery](https://attack.mitre.org/techniques/T1426) during automated discovery to shape follow-on behaviors, including whether or not to fully infects the target and/or attempts specific actions.      On Android, much of this information is programmatically accessible to applications through the `android.os.Build` class. (Citation: Android-Build) iOS is much more restrictive with what information is visible to applications. Typically, applications will only be able to query the device model and which version of iOS it is running. |
 | `T0869` | [Industrial : Standard Application Layer Protocol](https://attack.mitre.org/techniques/T0869) | Adversaries may establish command and control capabilities over commonly used application layer protocols such as HTTP(S), OPC, RDP, telnet, DNP3, and modbus. These protocols may be used to disguise adversary actions as benign network traffic. Standard protocols may be seen on their associated port or in some cases over a non-standard port.  Adversaries may use these protocols to reach out of the network for command and control, or in some cases to other infected devices within the network. |
 | `T1641` | [Mobile : Data Manipulation](https://attack.mitre.org/techniques/T1641) | Adversaries may insert, delete, or alter data in order to manipulate external outcomes or hide activity. By manipulating data, adversaries may attempt to affect a business process, organizational understanding, or decision making.  The type of modification and the impact it will have depends on the target application, process, and the goals and objectives of the adversary. For complex systems, an adversary would likely need special expertise and possibly access to specialized software related to the system, typically gained through a prolonged information gathering campaign, in order to have the desired impact. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Defense Evasion"
+4a4a7c81_ca98_4761_8f23_7ef6354e9d1c{{"Android attack using app<br>running on emulator"}}
+end
+subgraph "Delivery"
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3{{"GodFather Banking Trojan"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+99c78650_8e19_4756_90fb_2573242577ca{{"Mobile device<br>compromised by spyware<br>app"}}
+end
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 <-->|synergize| 4a4a7c81_ca98_4761_8f23_7ef6354e9d1c
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|enabled| 99c78650_8e19_4756_90fb_2573242577ca
+```

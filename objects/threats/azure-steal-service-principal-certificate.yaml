@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Credential Access
   att&ck:
     - T1649
@@ -75,8 +75,15 @@ threat:
     - Entra ID
     - Kerberos
   severity: Significant incident
-  leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure
-  impact: Data Breach; Identity Theft; Reputational Damages
+  leverage:
+    - Spoofing
+    - Tampering
+    - Elevation of privilege
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Identity Theft
+    - Reputational Damages
   viability: Likely
   description: |-
     The following threat vector involves adversaries targeting certificates used by 

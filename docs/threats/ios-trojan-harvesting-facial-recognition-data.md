@@ -1,14 +1,15 @@
 # iOS Trojan harvesting facial recognition data
 
 ## Metadata
-
-- **UUID**: `9e93dc4d-486b-43b7-aab7-d3a336a6a72e`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-07-19`
-- **Modified**: `2024-07-30`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `9e93dc4d-486b-43b7-aab7-d3a336a6a72e` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-07-19` |
+| Modified | `2024-07-30` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -44,20 +45,32 @@ additional apps without the user's consent.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries must have a well-crafted phishing or smishing campaign that impersonates 
+Adversaries must have a well-crafted phishing or smishing campaign that impersonates 
 government authorities and popular messaging applications to trick victims into 
 downloading and installing the malicious MDM profile.
 
-Domains: Mobile
-Targets: Personal Information, Identity Services, Mobile phone, Tablet
-Platforms: Android, iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Identity Theft; IP Loss; Reputational Damages | - |
-| Leverage | Alter behavior; Dwelling; Elevation of privilege; Software installation; Spoofing | - |
+| Impact | Identity Theft<br>IP Loss<br>Reputational Damages | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Alter behavior<br>Dwelling<br>Elevation of privilege<br>Software installation<br>Spoofing | Influence or alter human behavior<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Software installation or code modification<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 

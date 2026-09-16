@@ -1,14 +1,15 @@
 # Credential file download to compromised Windows endpoint
 
 ## Metadata
-
-- **UUID**: `94b7287b-ae84-4b89-8093-63898c7475c9`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-03-12`
-- **Modified**: `2025-03-12`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `94b7287b-ae84-4b89-8093-63898c7475c9` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-03-12` |
+| Modified | `2025-03-12` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -78,18 +79,27 @@ stored in the credential file.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires an already compromised Windows endpoint.
+Requires an already compromised Windows endpoint.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Desktop, Workstations, Control Server, Laptop, Production Database, End-user, Remote access
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Database Management**
+> Database management systems
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Lose Capabilities; Nuisance; Reputational Damages | - |
-| Leverage | Tampering; Infrastructure Compromise | - |
+| Impact | Identity Theft<br>Lose Capabilities<br>Nuisance<br>Reputational Damages | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Tampering<br>Infrastructure Compromise | Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 

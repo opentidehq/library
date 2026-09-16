@@ -1,14 +1,15 @@
 # Spearphishing Attachment
 
 ## Metadata
-
-- **UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2022-03-14`
-- **Modified**: `2025-09-23`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2022-03-14` |
+| Modified | `2025-09-23` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -83,7 +84,7 @@ extension with the file name.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Spear phishing requires more preparation and time to achieve success 
+Spear phishing requires more preparation and time to achieve success 
 than a phishing attack. That is because spear-phishing attackers
 attempt to obtain vast amounts of personal information about their
 victims.  
@@ -98,16 +99,40 @@ attachment where the filename references a topic the recipient is interested in.
 The highly personalized nature of spear-phishing attacks makes it more 
 difficult to identity than widescale phishing attacks.
 
-Domains: Enterprise, Mobile, Public Cloud, Private Cloud
-Targets: Email Platform, End-user, Customer, Documents
-Platforms: Windows, Office 365, Android, iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Email**
+> Email infrastructure and services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **File Sharing**
+> Cloud file sharing and storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Reputational Damages; Data Breach; Identity Theft; Business disruption | - |
-| Leverage | Spoofing; Software installation; Elevation of privilege; Information Disclosure; Infrastructure Compromise | - |
+| Impact | Reputational Damages<br>Data Breach<br>Identity Theft<br>Business disruption | Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Business disruption |
+| Leverage | Spoofing<br>Software installation<br>Elevation of privilege<br>Information Disclosure<br>Infrastructure Compromise | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Software installation or code modification<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
 
@@ -132,3 +157,79 @@ Platforms: Windows, Office 365, Android, iOS**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1566.001` | [Phishing: Spearphishing Attachment](https://attack.mitre.org/techniques/T1566/001) | Adversaries may send spearphishing emails with a malicious attachment in an attempt to gain access to victim systems. Spearphishing attachment is a specific variant of spearphishing. Spearphishing attachment is different from other forms of spearphishing in that it employs the use of malware attached to an email. All forms of spearphishing are electronically delivered social engineering targeted at a specific individual, company, or industry. In this scenario, adversaries attach a file to the spearphishing email and usually rely upon [User Execution](https://attack.mitre.org/techniques/T1204) to gain execution.(Citation: Unit 42 DarkHydrus July 2018) Spearphishing may also involve social engineering techniques, such as posing as a trusted source.  There are many options for the attachment such as Microsoft Office documents, executables, PDFs, or archived files. Upon opening the attachment (and potentially clicking past protections), the adversary's payload exploits a vulnerability or directly executes on the user's system. The text of the spearphishing email usually tries to give a plausible reason why the file should be opened, and may explain how to bypass system protections in order to do so. The email may also contain instructions on how to decrypt an attachment, such as a zip file password, in order to evade email boundary defenses. Adversaries frequently manipulate file extensions and icons in order to make attached executables appear to be document files, or files exploiting one application appear to be a file for a different one. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3{{"GodFather Banking Trojan"}}
+99c78650_8e19_4756_90fb_2573242577ca{{"Mobile device<br>compromised by spyware<br>app"}}
+58b98d75_fc63_4662_8908_a2a7f4200902{{"Spearphishing with an<br>attachment extension<br>.rdp"}}
+end
+subgraph "Execution"
+b663b684_a80f_4570_89b6_2f7faa16fece{{"Abuse of Microsoft<br>Office Applications"}}
+ebdf49a9_52cb_43a5_8849_8110765f4fe1{{"Suspicious Disk Image<br>Files extracted via File<br>Archiver from Email or<br>Download directory"}}
+86f62c3a_6556_4a64_a9f5_a79168ad42d9{{"Abuse Windows Utilities<br>to Side-Load Malicious<br>DLLs"}}
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+subgraph "Reconnaissance"
+4e7eae8e_6615_41f2_bfe1_21a04f7a6088{{"Azure - Gather Victim<br>Data"}}
+53063205_4404_4e6d_a2f5_d566c6085d96{{"Data collection using<br>SharpHound, SoapHound,<br>Bloodhound and<br>Azurehound"}}
+end
+subgraph "Defense Evasion"
+4a4a7c81_ca98_4761_8f23_7ef6354e9d1c{{"Android attack using app<br>running on emulator"}}
+c7ed4fad_a58f_47da_9938_4a673526b3f4{{"HTML smuggling technique"}}
+end
+subgraph "Credential Access"
+56500aed_5dec_42a8_a275_f1392abac979{{"MFA fatigue"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+6a7a493a_511a_4c9d_aa9c_4427c832a322{{"SIM-card swapping"}}
+end
+subgraph "Objectives"
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0{{"Mobile malware attacks<br>targeting iOS"}}
+end
+subgraph "Persistence"
+5e66f826_4c4b_4357_b9c5_2f40da207f34{{"Scheduled tasks to<br>maintain persistence in<br>registry"}}
+53ca52ed_a7e7_4094_95ec_b4ef522dc689{{"VBS script creates a<br>scheduled task"}}
+cce22952_735a_4255_8319_e5e44aef9d85{{"Windows startup folder<br>abused by malware"}}
+end
+subgraph "Social Engineering"
+0cdaee96_8595_4f3f_ba07_758b8be9d359{{"Social engineering<br>without attachment or<br>URL"}}
+end
+b1b6d2d7_0832_46fc_a3e5_6e6411179c45{{"Pass the Primary Refresh<br>Token PRT"}}
+b663b684_a80f_4570_89b6_2f7faa16fece -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+4e7eae8e_6615_41f2_bfe1_21a04f7a6088 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+4e7eae8e_6615_41f2_bfe1_21a04f7a6088 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+53063205_4404_4e6d_a2f5_d566c6085d96 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+53063205_4404_4e6d_a2f5_d566c6085d96 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 <-->|synergize| 4a4a7c81_ca98_4761_8f23_7ef6354e9d1c
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|enabled| 99c78650_8e19_4756_90fb_2573242577ca
+c7ed4fad_a58f_47da_9938_4a673526b3f4 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+c7ed4fad_a58f_47da_9938_4a673526b3f4 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+56500aed_5dec_42a8_a275_f1392abac979 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+56500aed_5dec_42a8_a275_f1392abac979 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+56500aed_5dec_42a8_a275_f1392abac979 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+ef4ba2bf_dfcb_4b70_8f45_7625baeb96d0 -->|preceeds| 99c78650_8e19_4756_90fb_2573242577ca
+b1b6d2d7_0832_46fc_a3e5_6e6411179c45 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+b1b6d2d7_0832_46fc_a3e5_6e6411179c45 -->|preceeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 6a7a493a_511a_4c9d_aa9c_4427c832a322
+58b98d75_fc63_4662_8908_a2a7f4200902 -->|implements| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+ebdf49a9_52cb_43a5_8849_8110765f4fe1 -->|enabling| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+53ca52ed_a7e7_4094_95ec_b4ef522dc689 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+53ca52ed_a7e7_4094_95ec_b4ef522dc689 -->|succeeds| c7ed4fad_a58f_47da_9938_4a673526b3f4
+cce22952_735a_4255_8319_e5e44aef9d85 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+cce22952_735a_4255_8319_e5e44aef9d85 -->|implements| 86f62c3a_6556_4a64_a9f5_a79168ad42d9
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+6a7a493a_511a_4c9d_aa9c_4427c832a322 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+86f62c3a_6556_4a64_a9f5_a79168ad42d9 -->|implements| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+```

@@ -18,8 +18,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0125
-    - misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
+    - name: att&ck::G0125
+    - name: misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
   killchain: Execution
   att&ck:
     - T1053.005
@@ -34,8 +34,12 @@ threat:
     - Windows::Server
     - Web Servers
   severity: Moderate incident
-  leverage: Dwelling; Infrastructure Compromise; Elevation of privilege
-  impact: Impairement
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Elevation of privilege
+  impact:
+    - Impairement
   viability: Likely
   description: |-
     A scheduled task is a task that is set to run automatically at a specific

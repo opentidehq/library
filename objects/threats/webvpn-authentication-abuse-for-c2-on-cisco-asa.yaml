@@ -43,8 +43,15 @@ threat:
     - Switches
     - VPN
   severity: Substantial incident
-  leverage: Spoofing; Information Disclosure; Infrastructure Compromise
-  impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
+  leverage:
+    - Spoofing
+    - Information Disclosure
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - Lose Capabilities
+    - Reputational Damages
+    - National Security
   viability: Likely
   description: |-
     LINE VIPER implements a sophisticated command and control mechanism

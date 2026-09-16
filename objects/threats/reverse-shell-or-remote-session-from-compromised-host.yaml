@@ -12,16 +12,16 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - att&ck::G0067
-    - misp::50cd027f-df14-40b2-aa22-bf5de5061163
-    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
-    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
-    - misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
-    - misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
-    - misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
-    - misp::943f490e-ac7f-40fe-b6f3-33e2623649d2
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: att&ck::G0067
+    - name: misp::50cd027f-df14-40b2-aa22-bf5de5061163
+    - name: misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - name: misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
+    - name: misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
+    - name: misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
+    - name: misp::943f490e-ac7f-40fe-b6f3-33e2623649d2
   killchain: Command & Control
   att&ck:
     - T1071.001
@@ -41,8 +41,17 @@ threat:
     - Virtualisation::VMware ESXi
     - Web Servers
   severity: Significant incident
-  leverage: Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; Dwelling; Modify configuration
-  impact: Impairement; Data Breach; Reputational Damages
+  leverage:
+    - Repudiation
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Elevation of privilege
+    - Dwelling
+    - Modify configuration
+  impact:
+    - Impairement
+    - Data Breach
+    - Reputational Damages
   viability: Likely
   description: |-
     ### Threat vector

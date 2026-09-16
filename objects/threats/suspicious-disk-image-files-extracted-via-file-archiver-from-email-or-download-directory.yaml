@@ -17,12 +17,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
-    - att&ck::G0092
-    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0092
+    - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
   killchain: Execution
   att&ck:
     - T0865
@@ -44,8 +44,14 @@ threat:
     - Windows::Desktop
     - Email
   severity: Significant incident
-  leverage: Information Disclosure; Software installation; Spoofing; Tampering
-  impact: Data Breach; Identity Theft
+  leverage:
+    - Information Disclosure
+    - Software installation
+    - Spoofing
+    - Tampering
+  impact:
+    - Data Breach
+    - Identity Theft
   viability: Likely
   description: |-
     Disk image files, such as ISO or IMG files, are being used more lately in malware 

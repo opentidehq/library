@@ -1,14 +1,15 @@
 # Chrysalis backdoor deployment via DLL sideloading
 
 ## Metadata
-
-- **UUID**: `bc95c747-ede2-4c16-a6b4-506b305e744a`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2026-02-09`
-- **Modified**: `2026-02-09`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `bc95c747-ede2-4c16-a6b4-506b305e744a` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2026-02-09` |
+| Modified | `2026-02-09` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -300,21 +301,23 @@ Organizations affected by the Notepad++ supply chain attack should treat this as
 **Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
 
 ## Terrain
-> **Organizations and individuals who were compromised through the Notepad++ supply 
+Organizations and individuals who were compromised through the Notepad++ supply 
 chain attack (October 2025). The attack specifically targeted victims across 
 multiple countries including Vietnam, El Salvador, Australia, and Philippines, 
 affecting government agencies, financial services, IT service providers, and 
 individual developers. The malicious files were deployed to Windows systems via 
 compromised software updates.
 
-Surface: OS::Windows::Desktop**
+## Surface
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
-| Impact | Data Breach; Business disruption; Reputational Damages; Legal and regulatory; Monetary Loss | - |
-| Leverage | Elevation of privilege; Tampering; Information Disclosure; Repudiation | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages<br>Legal and regulatory<br>Monetary Loss | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Legal and regulatory costs<br>The vector will directly conduct to loss of value directly impacting the bottom line. |
+| Leverage | Elevation of privilege<br>Tampering<br>Information Disclosure<br>Repudiation | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations. |
 | Viability | Almost certain | Nearly certain - 95-99% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -329,12 +332,16 @@ Surface: OS::Windows::Desktop**
 ## Chaining
 ```mermaid
 flowchart LR
-bc95c747_ede2_4c16_a6b4_506b305e744a["Chrysalis backdoor deployment via DLL sideloading"]
-8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22["Notepad++ supply chain attack"]
-bc95c747_ede2_4c16_a6b4_506b305e744a -->|atomicity::implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
+subgraph "Exploitation"
+bc95c747_ede2_4c16_a6b4_506b305e744a{{"Chrysalis backdoor<br>deployment via DLL<br>sideloading"}}
+end
+subgraph "Delivery"
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22{{"Notepad++ supply chain<br>attack"}}
+end
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|implements| 8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22
 ```
 ### Chaining details
-#### implements -> Notepad++ supply chain attack (`atomicity::implements`)
+#### implements -> [Notepad++ supply chain attack](notepad-supply-chain-attack.md) (`8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`) (`atomicity::implements`)
 This threat vector represents Chain #3 of the Notepad++ supply chain attack. 
 The Chrysalis backdoor deployment was one of three distinct infection chains 
 used by attackers who compromised the Notepad++ update infrastructure between 
@@ -342,24 +349,51 @@ June and December 2025.
 
 - **Target UUID**: `8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d["Detect Notepad++ Supply Chain Compromise Activity"]
+subgraph "Objectives"
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d(["Detect Notepad++ Supply<br>Chain Compromise<br>Activity"])
 end
-subgraph "Signal"
-2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c["2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c"]
-4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d["4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d"]
-6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d["6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d"]
-8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d["8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d"]
-9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d["9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d"]
+subgraph "Threats"
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22{{"Notepad++ supply chain<br>attack"}}
+52462685_bebb_4e86_94b0_fd46aeacb085{{"Malicious NSIS installer<br>deployment"}}
+23d06aa7_f6d5_44ee_be8f_e6de2f495bd9{{"ProShow vulnerability<br>exploitation for payload<br>delivery"}}
+bc365789_bdbb_4e78_b2ae_b097a7ccd35f{{"Lua interpreter<br>shellcode execution"}}
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a{{"Cobalt Strike Beacon<br>deployment via<br>Metasploit downloader"}}
+bee6e973_b0d0_4735_a26a_003f39b8c08d{{"System reconnaissance<br>via shell commands in<br>supply chain attack"}}
+bf30d882_9b96_403a_9a47_83a2981fc526{{"LOLC2 service abuse via<br>temp.sh"}}
+55eaa437_5a25_4c29_b1fc_9c0fba4a18ad{{"Registry autorun<br>persistence from<br>temporary folders"}}
 end
-bc95c747_ede2_4c16_a6b4_506b305e744a["Chrysalis backdoor deployment via DLL sideloading"]
-bc95c747_ede2_4c16_a6b4_506b305e744a -->|objective| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
-bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
-bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
-bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
-bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
-bc95c747_ede2_4c16_a6b4_506b305e744a -->|signal| 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
+subgraph "Signals"
+8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d(("NSIS Installer<br>Deployment from<br>Notepad++ Updater"))
+2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c(("System Reconnaissance<br>Commands Following<br>Software Update"))
+6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d(("Data Exfiltration to<br>temp.sh Web Service"))
+4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d(("Suspicious DLL<br>Side-Loading and<br>Exploit-Based Execution"))
+9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d(("Cobalt Strike Beacon C2<br>Communication"))
+end
+bc95c747_ede2_4c16_a6b4_506b305e744a{{"Chrysalis backdoor<br>deployment via DLL<br>sideloading"}}
+8b7cae6f_b6cf_4414_9cdc_fe8c8ee7ee22 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+52462685_bebb_4e86_94b0_fd46aeacb085 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+23d06aa7_f6d5_44ee_be8f_e6de2f495bd9 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bc365789_bdbb_4e78_b2ae_b097a7ccd35f -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bc95c747_ede2_4c16_a6b4_506b305e744a -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+7c4d9a2e_8f3b_4e6a_9d1c_5a7b8e2f4d3a -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bee6e973_b0d0_4735_a26a_003f39b8c08d -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+bf30d882_9b96_403a_9a47_83a2981fc526 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+55eaa437_5a25_4c29_b1fc_9c0fba4a18ad -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 8d4f6b2e_9c7a_4e1f_8b3d_6a9c5e7f2b4d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 2f7c9b4e_8d3a_4e6f_9b1c_7a5d8e2f4b6c
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 6c9f3e7b_4d2a_4e8f_9b6d_3a7c5e1f8b4d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 4e7b9d3f_6c2a_4e8f_9b1d_7a5c8e3f6b2d
+3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3f6b2d --> 9b6e4d8f_7c3a_4e2f_8b1d_6a9c5e7f3b4d
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect Notepad++ Supply Chain Compromise Activity](../Objectives/detect-notepad-supply-chain-compromise-activity.md) (`3e8b5d7f-9c2a-4f6e-8b1d-7a4c9e3f6b2d`) | Downstream | objective |
+| Signal | [System Reconnaissance Commands Following Software Update](../Objectives/detect-notepad-supply-chain-compromise-activity.md#system-reconnaissance-commands-following-software-update) (`2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c`) | Downstream | signal |
+| Signal | [Suspicious DLL Side-Loading and Exploit-Based Execution](../Objectives/detect-notepad-supply-chain-compromise-activity.md#suspicious-dll-side-loading-and-exploit-based-execution) (`4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d`) | Downstream | signal |
+| Signal | [Data Exfiltration to temp.sh Web Service](../Objectives/detect-notepad-supply-chain-compromise-activity.md#data-exfiltration-to-temp-sh-web-service) (`6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d`) | Downstream | signal |
+| Signal | [NSIS Installer Deployment from Notepad++ Updater](../Objectives/detect-notepad-supply-chain-compromise-activity.md#nsis-installer-deployment-from-notepad-updater) (`8d4f6b2e-9c7a-4e1f-8b3d-6a9c5e7f2b4d`) | Downstream | signal |
+| Signal | [Cobalt Strike Beacon C2 Communication](../Objectives/detect-notepad-supply-chain-compromise-activity.md#cobalt-strike-beacon-c2-communication) (`9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d`) | Downstream | signal |

@@ -1,14 +1,15 @@
 # Direct modification of registry keys to tamper scheduled task
 
 ## Metadata
-
-- **UUID**: `efe13bd7-c621-423b-b226-9b536766a252`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-05-22`
-- **Modified**: `2025-06-02`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `efe13bd7-c621-423b-b226-9b536766a252` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-05-22` |
+| Modified | `2025-06-02` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -79,19 +80,22 @@ settings, such as executing a malicious executable.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs an Admin Windows System level to a target
+A threat actor needs an Admin Windows System level to a target
 endpoint in order to perform direct modification of the registries.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user, Workstations, Other
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Business disruption; Impairement; Lose Capabilities; Operating costs | - |
-| Leverage | Infrastructure Compromise; Tampering; Modify configuration | - |
+| Impact | Business disruption<br>Impairement<br>Lose Capabilities<br>Operating costs | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Increased operating costs |
+| Leverage | Infrastructure Compromise<br>Tampering<br>Modify configuration | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Modify configuration or services |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 
@@ -116,12 +120,18 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-efe13bd7_c621_423b_b226_9b536766a252["Direct modification of registry keys to tamper scheduled task"]
-5e66f826_4c4b_4357_b9c5_2f40da207f34["Scheduled tasks to maintain persistence in registry"]
-efe13bd7_c621_423b_b226_9b536766a252 -->|atomicity::implements| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+subgraph "Persistence"
+efe13bd7_c621_423b_b226_9b536766a252{{"Direct modification of<br>registry keys to tamper<br>scheduled task"}}
+5e66f826_4c4b_4357_b9c5_2f40da207f34{{"Scheduled tasks to<br>maintain persistence in<br>registry"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+efe13bd7_c621_423b_b226_9b536766a252 -->|implements| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### implements -> Scheduled tasks to maintain persistence in registry (`atomicity::implements`)
+#### implements -> [Scheduled tasks to maintain persistence in registry](scheduled-tasks-to-maintain-persistence-in-registry.md) (`5e66f826-4c4b-4357-b9c5-2f40da207f34`) (`atomicity::implements`)
 Direct access and modification of the Windows registry
 can tamper or create a new scheduled task. Threat actors
 use this technique usually to hide their activities and

@@ -1,14 +1,15 @@
 # Grager backdoor
 
 ## Metadata
-
-- **UUID**: `662af2da-7017-4899-88fc-e77617a15130`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-16`
-- **Modified**: `2024-10-16`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `662af2da-7017-4899-88fc-e77617a15130` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-16` |
+| Modified | `2024-10-16` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -45,19 +46,28 @@ to evade antivirus software and remain undetected.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor uses vulnerable Microsoft Graph APIs to deploy
+A threat actor uses vulnerable Microsoft Graph APIs to deploy
 the malware and contact the C&C server.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Workstations, Customer, Desktop, Control Server, Media
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Business disruption; Impairement; Data Breach; Reputational Damages | - |
-| Leverage | Dwelling; Infrastructure Compromise; Elevation of privilege; Information Disclosure; Software installation | - |
+| Impact | Business disruption<br>Impairement<br>Data Breach<br>Reputational Damages | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Elevation of privilege<br>Information Disclosure<br>Software installation | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Software installation or code modification |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 

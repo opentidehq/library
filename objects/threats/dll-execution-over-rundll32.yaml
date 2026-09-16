@@ -18,19 +18,19 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0007
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
-    - att&ck::G0034
-    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
-    - att&ck::G0125
-    - misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
-    - att&ck::G0059
-    - misp::c1d44f44-425e-48fd-b78b-84b988da8bc3
-    - att&ck::G0108
-    - att&ck::G0069
-    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
-    - att&ck::G0092
-    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - name: att&ck::G0007
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: att&ck::G0034
+    - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - name: att&ck::G0125
+    - name: misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
+    - name: att&ck::G0059
+    - name: misp::c1d44f44-425e-48fd-b78b-84b988da8bc3
+    - name: att&ck::G0108
+    - name: att&ck::G0069
+    - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - name: att&ck::G0092
+    - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
   killchain: Exploitation
   att&ck:
     - T1218.011
@@ -44,8 +44,13 @@ threat:
     - Azure::Compute::Virtual Machines
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Modify privileges; Elevation of privilege; Information Disclosure
-  impact: Data Breach; Lose Capabilities
+  leverage:
+    - Modify privileges
+    - Elevation of privilege
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Lose Capabilities
   viability: Likely
   description: |-
     Rundll32.exe is a powerful asset for adversaries to proxy execution of arbitrary

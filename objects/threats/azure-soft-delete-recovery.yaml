@@ -83,8 +83,16 @@ threat:
     - Serverless
     - Entra ID
   severity: Significant incident
-  leverage: Information Disclosure; Elevation of privilege; Modify configuration; Modify data
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+    - Modify configuration
+    - Modify data
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
   viability: Likely
   description: |-
     The following threat vector deals with adversaries exploiting the soft-delete state 

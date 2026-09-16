@@ -18,8 +18,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0096
-    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - name: att&ck::G0096
+    - name: misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
   killchain: Persistence
   att&ck:
     - T1566.002
@@ -44,8 +44,14 @@ threat:
     - Customer Support
     - Remote Access
   severity: Moderate incident
-  leverage: Infrastructure Compromise; Information Disclosure; Modify configuration
-  impact: Data Breach; Impairement; Lose Capabilities
+  leverage:
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Modify configuration
+  impact:
+    - Data Breach
+    - Impairement
+    - Lose Capabilities
   viability: Likely
   description: |-
     In some of the reports and analysis a Chinese-affiliated threat actor was

@@ -19,14 +19,14 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0009
-    - misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
-    - att&ck::G0050
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - att&ck::G0082
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G0096
-    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - name: att&ck::G0009
+    - name: misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
+    - name: att&ck::G0050
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: att&ck::G0082
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0096
+    - name: misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
   killchain: Persistence
   att&ck:
     - T1543.003
@@ -41,8 +41,13 @@ threat:
     - Windows::Server
     - Web Servers
   severity: Moderate incident
-  leverage: Modify configuration; Tampering
-  impact: Nuisance; Impairement; Lose Capabilities
+  leverage:
+    - Modify configuration
+    - Tampering
+  impact:
+    - Nuisance
+    - Impairement
+    - Lose Capabilities
   viability: Likely
   description: |-
     A threat actor may attempt to create Windows services in order to start and

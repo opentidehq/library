@@ -18,11 +18,11 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::647894f6-1723-4cba-aba4-0ef0966d5302
-    - att&ck::G0037
-    - misp::2dd31182-bae1-48ed-8bb3-805a3df89783
-    - misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
-    - att&ck::G1016
+    - name: misp::647894f6-1723-4cba-aba4-0ef0966d5302
+    - name: att&ck::G0037
+    - name: misp::2dd31182-bae1-48ed-8bb3-805a3df89783
+    - name: misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
+    - name: att&ck::G1016
   killchain: Defense Evasion
   att&ck:
     - T1134.003
@@ -48,8 +48,17 @@ threat:
     - Application Layer::HTTP
     - Customer Support
   severity: Moderate incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Modify privileges; Dwelling
-  impact: Identity Theft; Impairement; Nuisance; Lose Capabilities; Operating costs
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Modify privileges
+    - Dwelling
+  impact:
+    - Identity Theft
+    - Impairement
+    - Nuisance
+    - Lose Capabilities
+    - Operating costs
   viability: Likely
   description: |-
     A Windows access token is a data structure that contains information

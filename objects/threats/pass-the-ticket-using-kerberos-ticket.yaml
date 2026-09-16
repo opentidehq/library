@@ -20,12 +20,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0050
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - att&ck::G0060
-    - misp::add6554a-815a-4ac3-9b22-9337b9661ab8
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0050
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: att&ck::G0060
+    - name: misp::add6554a-815a-4ac3-9b22-9337b9661ab8
   killchain: Defense Evasion
   att&ck:
     - T1550.003
@@ -37,8 +37,14 @@ threat:
     - Windows::Desktop
     - Remote Access
   severity: Significant incident
-  leverage: Alter behavior; Elevation of privilege; Infrastructure Compromise
-  impact: Identity Theft; Business disruption; Data Breach
+  leverage:
+    - Alter behavior
+    - Elevation of privilege
+    - Infrastructure Compromise
+  impact:
+    - Identity Theft
+    - Business disruption
+    - Data Breach
   viability: Likely
   description: |-
     Pass-the-Ticket using Kerberos tickets is an advanced method wherein threat 

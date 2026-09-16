@@ -1,14 +1,15 @@
 # Automation accounts JWT extraction
 
 ## Metadata
-
-- **UUID**: `841e2a63-c95f-43f8-aef0-7ab96456445a`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-18`
-- **Modified**: `2025-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `841e2a63-c95f-43f8-aef0-7ab96456445a` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-18` |
+| Modified | `2025-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -54,21 +55,45 @@ resource enumeration.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries need to gain access to a valid JWT (JSON Web Token) associated with 
+Adversaries need to gain access to a valid JWT (JSON Web Token) associated with 
 the automation account’s managed identity. This access is typically achieved by 
 modifying automation runbooks or exploiting misconfigured permissions to execute 
 code that retrieves the JWT from the managed identity endpoint.
 
-Domains: Public Cloud, Private Cloud
-Targets: Cloud Storage Accounts, Key Store, Identity Services, Compute Cluster, Public-Facing Servers, API Endpoints, Cloud Portal
-Platforms: Azure, Azure AD, PowerShell**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Azure::Security::Key Vault**
+> Azure Key Vault secrets and key management
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Orchestration::Kubernetes**
+> Kubernetes container orchestration platform
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption | - |
-| Leverage | Spoofing; Tampering; Elevation of privilege; Information Disclosure | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Monetary Loss<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Business disruption |
+| Leverage | Spoofing<br>Tampering<br>Elevation of privilege<br>Information Disclosure | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 
 ## ATT&CK Techniques

@@ -20,8 +20,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::825abfd9-7238-4438-a9e7-c08791f4df4e
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: misp::825abfd9-7238-4438-a9e7-c08791f4df4e
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Exploitation
   att&ck:
     - T1195
@@ -47,8 +47,14 @@ threat:
     - Customer Support
     - Application Layer::HTTP
   severity: Moderate incident
-  leverage: Infrastructure Compromise; Information Disclosure; Tampering
-  impact: Identity Theft; Impairement; Lose Capabilities
+  leverage:
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Tampering
+  impact:
+    - Identity Theft
+    - Impairement
+    - Lose Capabilities
   viability: Likely
   description: |-
     Threat actors use a technique which includes updating of NPM packages

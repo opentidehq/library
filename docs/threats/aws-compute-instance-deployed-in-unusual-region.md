@@ -1,14 +1,15 @@
 # AWS Compute instance deployed in unusual region
 
 ## Metadata
-
-- **UUID**: `1040ebd2-4659-4844-9238-95fa69a7e63c`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-12-12`
-- **Modified**: `2022-12-12`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `1040ebd2-4659-4844-9238-95fa69a7e63c` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-12-12` |
+| Modified | `2022-12-12` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -38,19 +39,25 @@ for other purposes than the 2 listed above.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Attacker needs to control credentials required to deploy an EC2 instance,
+Attacker needs to control credentials required to deploy an EC2 instance,
 or to deploy a compute resource of a type that runs on EC2.
 
-Domains: Public Cloud
-Targets: IaaS
-Platforms: AWS EC2, AWS ECS, AWS EKS**
+## Surface
+> **AWS::Compute::EC2**
+> Amazon Elastic Compute Cloud (virtual servers)
+
+> **AWS::Compute::ECS**
+> Amazon Elastic Container Service
+
+> **AWS::Compute::EKS**
+> Amazon Elastic Kubernetes Service
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Operating costs; Asset and fraud; Legal and regulatory | - |
-| Leverage | Software installation; Infrastructure Compromise | - |
+| Impact | Operating costs<br>Asset and fraud<br>Legal and regulatory | Increased operating costs<br>Asset and fraud-related losses<br>Legal and regulatory costs |
+| Leverage | Software installation<br>Infrastructure Compromise | Software installation or code modification<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Impact | Techniques aimed at manipulating, interrupting or destroying the target system or data. |
 

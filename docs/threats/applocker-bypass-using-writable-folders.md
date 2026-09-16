@@ -1,14 +1,15 @@
 # AppLocker bypass using writable folders
 
 ## Metadata
-
-- **UUID**: `ff8c52ac-77d0-4bee-9f6d-e40fc6e0da63`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-07-14`
-- **Modified**: `2025-07-15`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `ff8c52ac-77d0-4bee-9f6d-e40fc6e0da63` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-07-14` |
+| Modified | `2025-07-15` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -87,20 +88,26 @@ Windows binary (e.g., AppVLP.exe), bypassing AppLocker rules.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs and initial access to a Windows system and user's write
+A threat actor needs and initial access to a Windows system and user's write
 permissions where AppLocker policies allow execution from common writable
 directories like C:\\Windows\\Temp or Tasks.
 
-Domains: Enterprise
-Targets: Workstations, End-user, Customer
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Impairement; Data Breach; Business disruption; Lose Capabilities; Reputational Damages | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Tampering | - |
+| Impact | Impairement<br>Data Breach<br>Business disruption<br>Lose Capabilities<br>Reputational Damages | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 
 ## Actors
@@ -113,3 +120,19 @@ Platforms: Windows**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1218` | [System Binary Proxy Execution](https://attack.mitre.org/techniques/T1218) | Adversaries may bypass process and/or signature-based defenses by proxying execution of malicious content with signed, or otherwise trusted, binaries. Binaries used in this technique are often Microsoft-signed files, indicating that they have been either downloaded from Microsoft or are already native in the operating system.(Citation: LOLBAS Project) Binaries signed with trusted digital certificates can typically execute on Windows systems protected by digital signature validation. Several Microsoft signed binaries that are default on Windows installations can be used to proxy execution of other files or commands.  Similarly, on Linux systems adversaries may abuse trusted binaries such as <code>split</code> to proxy execution of malicious commands.(Citation: split man page)(Citation: GTFO split) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Privilege Escalation"
+197c06c8_7959_4e28_9ede_b3e7b6f13442{{"AppLocker bypass"}}
+end
+subgraph "Defense Evasion"
+9a1aeae5_912e_492c_b5d4_8bce91a95dae{{"AppLocker enumerating<br>policy bypass"}}
+a73c2506_8584_4c0b_bfdc_52e33c8bd229{{"AppLocker bypass using<br>DLLs"}}
+end
+ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63{{"AppLocker bypass using<br>writable folders"}}
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| 9a1aeae5_912e_492c_b5d4_8bce91a95dae
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| a73c2506_8584_4c0b_bfdc_52e33c8bd229
+```

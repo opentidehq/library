@@ -31,8 +31,10 @@ threat:
     - Windows::Server
     - Web Servers
   severity: Moderate incident
-  leverage: Dwelling
-  impact: Impairement
+  leverage:
+    - Dwelling
+  impact:
+    - Impairement
   viability: Likely
   description: |-
     A threat actor can use PowerShell to create tasks for nefarious purposes. 

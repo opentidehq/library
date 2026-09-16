@@ -1,14 +1,15 @@
 # Access token manipulation
 
 ## Metadata
-
-- **UUID**: `2404055a-10f8-4c50-9e9b-0f26756e7838`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-02-03`
-- **Modified**: `2025-02-03`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `2404055a-10f8-4c50-9e9b-0f26756e7838` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-02-03` |
+| Modified | `2025-02-03` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -71,19 +72,25 @@ allowing them to undertake malicious operations and remotely access systems in t
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have administrative privileges on Windows systems within 
+Adversary must have administrative privileges on Windows systems within 
  the enterprise network.
 
-Domains: Enterprise
-Targets: Laptop, Workstations
-Platforms: Active Directory, Windows, PowerShell**
+## Surface
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Business disruption; Reputational Damages; Operating costs | - |
-| Leverage | Modify configuration; Modify data; Tampering; New Accounts | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Increased operating costs |
+| Leverage | Modify configuration<br>Modify data<br>Tampering<br>New Accounts | Modify configuration or services<br>Modify stored data or content<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Ability to create new arbitrary user accounts. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 
@@ -97,3 +104,17 @@ Platforms: Active Directory, Windows, PowerShell**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1098` | [Account Manipulation](https://attack.mitre.org/techniques/T1098) | Adversaries may manipulate accounts to maintain and/or elevate access to victim systems. Account manipulation may consist of any action that preserves or modifies adversary access to a compromised account, such as modifying credentials or permission groups.(Citation: FireEye SMOKEDHAM June 2021) These actions could also include account activity designed to subvert security policies, such as performing iterative password updates to bypass password duration policies and preserve the life of compromised credentials.   In order to create or manipulate accounts, the adversary must already have sufficient permissions on systems or the domain. However, account manipulation may also lead to privilege escalation where modifications grant access to additional roles, permissions, or higher-privileged [Valid Accounts](https://attack.mitre.org/techniques/T1078). |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Privilege Escalation"
+2404055a_10f8_4c50_9e9b_0f26756e7838{{"Access token<br>manipulation"}}
+349348ca_66f5_41d2_8610_6bb61556d773{{"Duplicate an access<br>token in a new process<br>to elevate privileges"}}
+end
+subgraph "Defense Evasion"
+1962f0c7_2f2f_4b4c_bab0_733af8033595{{"New Windows access token<br>creation"}}
+end
+1962f0c7_2f2f_4b4c_bab0_733af8033595 -->|succeeds| 2404055a_10f8_4c50_9e9b_0f26756e7838
+1962f0c7_2f2f_4b4c_bab0_733af8033595 -->|succeeds| 349348ca_66f5_41d2_8610_6bb61556d773
+```

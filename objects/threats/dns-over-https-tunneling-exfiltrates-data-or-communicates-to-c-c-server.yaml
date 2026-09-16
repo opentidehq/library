@@ -20,8 +20,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0022
-    - misp::d144c83e-2302-4947-9e24-856fbf7949ae
+    - name: att&ck::G0022
+    - name: misp::d144c83e-2302-4947-9e24-856fbf7949ae
   killchain: Exfiltration
   att&ck:
     - T1572
@@ -39,8 +39,16 @@ threat:
     - Customer Support
     - Web Servers
   severity: Significant incident
-  leverage: Dwelling; Infrastructure Compromise; Tampering
-  impact: Impairement; Identity Theft; Data Breach; Operating costs; Reputational Damages
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Impairement
+    - Identity Theft
+    - Data Breach
+    - Operating costs
+    - Reputational Damages
   viability: Likely
   description: |-
     DNS over HTTPS (DoH) tunneling is a technique used by threat actors

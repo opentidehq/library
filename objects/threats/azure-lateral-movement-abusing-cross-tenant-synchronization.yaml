@@ -26,8 +26,15 @@ threat:
     - AWS::Storage
     - AWS::Compute::EC2
   severity: Significant incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Modify configuration
-  impact: Business disruption; Lose Capabilities; Data Breach; Reputational Damages
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Modify configuration
+  impact:
+    - Business disruption
+    - Lose Capabilities
+    - Data Breach
+    - Reputational Damages
   viability: Environment dependent
   description: |-
     When configuring CTS, an Azure source tenant will be synchronized with a target tenant, 

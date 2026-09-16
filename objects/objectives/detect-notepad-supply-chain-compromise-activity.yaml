@@ -103,7 +103,7 @@ objective:
 
         This signal provides early detection at the initial deployment phase before
         reconnaissance or C2 establishment occurs.
-      severity: High
+      severity: Substantial incident
       effort: 2
       methodology: Pattern Matching
       data:
@@ -119,10 +119,10 @@ objective:
           - EDR process telemetry
           - Windows Event ID 4688 (Process Creation) with command line logging enabled
       entities:
-        - host::Process
-        - host::Command Line
-        - host::File
-        - host::Hostname
+        - Process
+        - Command Line
+        - File
+        - Hostname
     - name: System Reconnaissance Commands Following Software Update
       uuid: 2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c
       description: |-
@@ -147,7 +147,7 @@ objective:
         - Parent process legitimacy (suspicious if from AppData)
         - Working directory location
         - Output file naming patterns (1.txt, a.txt)
-      severity: Medium
+      severity: Moderate incident
       effort: 3
       methodology: Behavioural
       data:
@@ -165,11 +165,11 @@ objective:
           - Windows Event ID 4688 with command line auditing
           - PowerShell Script Block Logging (if PowerShell variants used)
       entities:
-        - host::Process
-        - host::Command Line
-        - host::File
-        - host::Hostname
-        - host::User
+        - Process
+        - Command Line
+        - File
+        - Hostname
+        - User
     - name: Data Exfiltration to temp.sh Web Service
       uuid: 6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d
       description: |-
@@ -199,7 +199,7 @@ objective:
 
         This signal is high severity due to confirmed data exfiltration activity
         and direct linkage to the attack campaign.
-      severity: High
+      severity: Substantial incident
       effort: 2
       methodology: Pattern Matching
       data:
@@ -218,11 +218,11 @@ objective:
           - Sysmon Event ID 1 (Process Create) and Event ID 3 (Network Connection)
           - EDR network telemetry
       entities:
-        - host::Domain
-        - network::URL
-        - network::IP Address
-        - host::Process
-        - host::Hostname
+        - Domain
+        - URL
+        - IP Address
+        - Process
+        - Hostname
     - name: Suspicious DLL Side-Loading and Exploit-Based Execution
       uuid: 4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d
       description: |-
@@ -257,7 +257,7 @@ objective:
         - Module load events showing DLLs loaded from non-standard paths
 
         High severity due to active exploitation and malicious code execution.
-      severity: High
+      severity: Substantial incident
       effort: 3
       methodology: Pattern Matching
       data:
@@ -277,10 +277,10 @@ objective:
           - Windows Event ID 4688 (Process Creation)
           - Windows Defender ATP / Microsoft Defender for Endpoint
       entities:
-        - host::Process
-        - host::File
-        - host::Software
-        - host::Hostname
+        - Process
+        - File
+        - Software
+        - Hostname
     - name: Cobalt Strike Beacon C2 Communication
       uuid: 9b6e4d8f-7c3a-4e2f-8b1d-6a9c5e7f3b4d
       description: |-
@@ -323,7 +323,7 @@ objective:
 
         Critical severity due to confirmed C2 channel establishment indicating
         active compromise and ongoing threat actor access to the environment.
-      severity: Critical
+      severity: Significant incident
       effort: 2
       methodology: Pattern Matching
       data:
@@ -345,12 +345,12 @@ objective:
           - Sysmon Event ID 3 (Network Connection)
           - IDS/IPS alerts (Snort, Suricata)
       entities:
-        - host::Domain
-        - network::IP Address
-        - network::URL
-        - network::Network Connection
-        - host::Process
-        - host::Hostname
+        - Domain
+        - IP Address
+        - URL
+        - Network Connection
+        - Process
+        - Hostname
   attack:
     - T1195.002
     - T1082

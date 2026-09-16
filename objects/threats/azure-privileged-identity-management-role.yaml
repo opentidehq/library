@@ -17,9 +17,9 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G1015
-    - misp::d9e5be22-1a04-4956-af6c-37af02330980
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G1015
+    - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Privilege Escalation
   att&ck:
     - T1078
@@ -55,8 +55,16 @@ threat:
     - Azure::Compute::Virtual Machines
     - AWS::Compute::EC2
   severity: Significant incident
-  leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges
-  impact: Data Breach; IP Loss
+  leverage:
+    - Spoofing
+    - Tampering
+    - Elevation of privilege
+    - Information Disclosure
+    - Modify configuration
+    - Modify privileges
+  impact:
+    - Data Breach
+    - IP Loss
   viability: Likely
   description: |-
     The threat vector describes the risk that an adversary may escalate privileges by 

@@ -35,8 +35,10 @@ threat:
     - Remote Access
     - Windows::Server
   severity: Moderate incident
-  leverage: Information Disclosure
-  impact: Nuisance
+  leverage:
+    - Information Disclosure
+  impact:
+    - Nuisance
   viability: Likely
   description: |-
     Threat actors collect AWS IDs from EC instances by using AWS metadata

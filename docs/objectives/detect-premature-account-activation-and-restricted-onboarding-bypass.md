@@ -1,15 +1,16 @@
 # Detect premature account activation and restricted onboarding bypass
 
 ## Metadata
-
-- **UUID**: `3a73c153-abd7-40cd-86a5-4d57a42b9a44`
-- **Schema**: `objective::1.0`
-- **Version**: `3`
-- **Created**: `2026-05-04`
-- **Modified**: `2026-05-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Contributors**: Hold Security Threat Research
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `3a73c153-abd7-40cd-86a5-4d57a42b9a44` |
+| Schema | `objective::1.0` |
+| Version | `3` |
+| Created | `2026-05-04` |
+| Modified | `2026-05-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Contributors | Hold Security Threat Research |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -45,7 +46,7 @@ list of public registration routes and approved domains.
 Triage by confirming the expected onboarding policy for the tenant or application module and
 verifying whether an invitation, reviewer action, or domain eligibility check existed.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Event Search
 - **Effort**: 4
 #### Data
@@ -64,7 +65,7 @@ principal signal that a provisioned but unapproved account has become usable.
 Triage by preserving the account lifecycle state at decision time and confirming whether the
 password reset, login, or token service incorrectly ignored that state.
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Event Search
 - **Effort**: 5
 #### Data
@@ -83,7 +84,7 @@ paths, or endpoints that should require an established trusted account.
 Triage by comparing first-access time with approval and activation timestamps, then assessing
 which data or functions were exposed before the account became eligible.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Behavioural
 - **Effort**: 5
 #### Data
@@ -101,20 +102,27 @@ should compare first resource access with approval or activation timestamps.
 | Authentication material issued while account approval is pending | _None_ |
 | Pre-approval account accesses restricted application resources | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-7f6d1aae_c807_42fb_8734_4d3c6c4e9670["7f6d1aae-c807-42fb-8734-4d3c6c4e9670"]
-958eeed6_43f6_43c8_8bb9_96397aab29a1["958eeed6-43f6-43c8-8bb9-96397aab29a1"]
-d5906e6c_0f66_4dd6_8add_216a90b2b1f2["d5906e6c-0f66-4dd6-8add-216a90b2b1f2"]
+subgraph "Threats"
+3d7dada6_5f9d_4f67_952e_faa2ab794fde{{"Unauthorized account<br>provisioning via exposed<br>registration flow"}}
 end
-subgraph "Threat"
-3d7dada6_5f9d_4f67_952e_faa2ab794fde["Unauthorized account provisioning via exposed registration flow"]
+subgraph "Signals"
+7f6d1aae_c807_42fb_8734_4d3c6c4e9670(("Account created without<br>required invitation or<br>approval context"))
+d5906e6c_0f66_4dd6_8add_216a90b2b1f2(("Authentication material<br>issued while account<br>approval is pending"))
+958eeed6_43f6_43c8_8bb9_96397aab29a1(("Pre-approval account<br>accesses restricted<br>application resources"))
 end
-3a73c153_abd7_40cd_86a5_4d57a42b9a44["Detect premature account activation and restricted onboarding bypass"]
-3a73c153_abd7_40cd_86a5_4d57a42b9a44 -->|signal| 7f6d1aae_c807_42fb_8734_4d3c6c4e9670
-3a73c153_abd7_40cd_86a5_4d57a42b9a44 -->|signal| 958eeed6_43f6_43c8_8bb9_96397aab29a1
-3a73c153_abd7_40cd_86a5_4d57a42b9a44 -->|signal| d5906e6c_0f66_4dd6_8add_216a90b2b1f2
-3a73c153_abd7_40cd_86a5_4d57a42b9a44 -->|threat| 3d7dada6_5f9d_4f67_952e_faa2ab794fde
+3a73c153_abd7_40cd_86a5_4d57a42b9a44(["Detect premature account<br>activation and<br>restricted onboarding<br>bypass"])
+3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|covers| 3a73c153_abd7_40cd_86a5_4d57a42b9a44
+3a73c153_abd7_40cd_86a5_4d57a42b9a44 --> 7f6d1aae_c807_42fb_8734_4d3c6c4e9670
+3a73c153_abd7_40cd_86a5_4d57a42b9a44 --> d5906e6c_0f66_4dd6_8add_216a90b2b1f2
+3a73c153_abd7_40cd_86a5_4d57a42b9a44 --> 958eeed6_43f6_43c8_8bb9_96397aab29a1
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [Unauthorized account provisioning via exposed registration flow](../Threats/unauthorized-account-provisioning-via-exposed-registration-flow.md) (`3d7dada6-5f9d-4f67-952e-faa2ab794fde`) | Upstream | threat |
+| Signal | [Account created without required invitation or approval context](detect-premature-account-activation-and-restricted-onboarding-bypass.md#account-created-without-required-invitation-or-approval-context) (`7f6d1aae-c807-42fb-8734-4d3c6c4e9670`) | Downstream | signal |
+| Signal | [Pre-approval account accesses restricted application resources](detect-premature-account-activation-and-restricted-onboarding-bypass.md#pre-approval-account-accesses-restricted-application-resources) (`958eeed6-43f6-43c8-8bb9-96397aab29a1`) | Downstream | signal |
+| Signal | [Authentication material issued while account approval is pending](detect-premature-account-activation-and-restricted-onboarding-bypass.md#authentication-material-issued-while-account-approval-is-pending) (`d5906e6c-0f66-4dd6-8add-216a90b2b1f2`) | Downstream | signal |

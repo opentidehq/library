@@ -1,14 +1,15 @@
 # Non-Approved container image deployed to run cryptominer
 
 ## Metadata
-
-- **UUID**: `eca91e9a-616f-4439-ac03-5d0ecc2266df`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-06-29`
-- **Modified**: `2022-06-29`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `eca91e9a-616f-4439-ac03-5d0ecc2266df` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-06-29` |
+| Modified | `2022-06-29` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -23,18 +24,45 @@ A threat actor can gain access to deployment workflows and pipelines and can the
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Running container clusters running in cloud, private cloud or in Enterprise Data Centre environments, potentially connected via a Continuous deployment tool
+Running container clusters running in cloud, private cloud or in Enterprise Data Centre environments, potentially connected via a Continuous deployment tool
 
-Domains: Public Cloud, Private Cloud, Enterprise
-Targets: CI/CD Pipelines, Compute Cluster, Control Server, Development Pipelines
-Platforms: AWS EC2, AWS EKS, AWS ECS, AWS Fargate, Azure AKS, VMware Tanzu, OVHcloud, IBM Cloud Kubernetes, Oracle Container Engine**
+## Surface
+> **AWS::Compute::EC2**
+> Amazon Elastic Compute Cloud (virtual servers)
+
+> **AWS::Compute::EKS**
+> Amazon Elastic Kubernetes Service
+
+> **AWS::Compute::ECS**
+> Amazon Elastic Container Service
+
+> **AWS::Compute::Fargate**
+> AWS Fargate serverless compute for containers
+
+> **Azure::Compute::Kubernetes Service**
+> Azure Kubernetes Service (AKS)
+
+> **Orchestration::Kubernetes**
+> Kubernetes container orchestration platform
+
+> **IBM Cloud**
+> IBM Cloud platform
+
+> **OCI::Container Engine**
+> Oracle Container Engine for Kubernetes (OKE)
+
+> **Development::CI/CD**
+> Continuous integration and continuous delivery platforms
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Asset and fraud; Operating costs; Impairement | - |
-| Leverage | Infrastructure Compromise; Dwelling; Software installation | - |
+| Impact | Asset and fraud<br>Operating costs<br>Impairement | Asset and fraud-related losses<br>Increased operating costs<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Infrastructure Compromise<br>Dwelling<br>Software installation | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Software installation or code modification |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Impact | Techniques aimed at manipulating, interrupting or destroying the target system or data. |
 

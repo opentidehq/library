@@ -27,8 +27,15 @@ threat:
     - Switches
     - Microsoft::System Center
   severity: Moderate incident
-  leverage: Infrastructure Compromise; Information Disclosure
-  impact: Data Breach; Business disruption; IP Loss; Monetary Loss; Operating costs
+  leverage:
+    - Infrastructure Compromise
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Business disruption
+    - IP Loss
+    - Monetary Loss
+    - Operating costs
   viability: Likely
   description: |-
     Threat actors may attempt to gain initial access to EC AWS environments by

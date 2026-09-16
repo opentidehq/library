@@ -1,14 +1,15 @@
 # GodFather Banking Trojan
 
 ## Metadata
-
-- **UUID**: `46a79e6f-3df1-4332-a452-3f1fe83bdaf3`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-09-17`
-- **Modified**: `2025-09-17`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `46a79e6f-3df1-4332-a452-3f1fe83bdaf3` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-09-17` |
+| Modified | `2025-09-17` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -65,20 +66,23 @@ impossible.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries achieve granting AccessibilityService permissions to GodFather
+Adversaries achieve granting AccessibilityService permissions to GodFather
 malware primarily through social engineering techniques that trick users into
 enabling these permissions.
 
-Domains: Mobile
-Targets: Mobile phone, Personal Information
-Platforms: Android**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Monetary Loss; Identity Theft | - |
-| Leverage | Spoofing; Tampering; Information Disclosure; Elevation of privilege | - |
+| Impact | Data Breach<br>Monetary Loss<br>Identity Theft | Non-public information has been accessed from the outside, and successfully extracted.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Spoofing<br>Tampering<br>Information Disclosure<br>Elevation of privilege | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Very Likely | Highly probable - 80-95% |
 | Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
 
@@ -98,31 +102,35 @@ Platforms: Android**
 ## Chaining
 ```mermaid
 flowchart LR
-46a79e6f_3df1_4332_a452_3f1fe83bdaf3["GodFather Banking Trojan"]
-1a68b5eb_0112_424d_a21f_88dda0b6b8df["Spearphishing Link"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-4a4a7c81_ca98_4761_8f23_7ef6354e9d1c["Android attack using app running on emulator"]
-99c78650_8e19_4756_90fb_2573242577ca["Mobile device compromised by spyware app"]
-46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|sequence::succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
-1a68b5eb_0112_424d_a21f_88dda0b6b8df -->|sequence::succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84 -->|support::synergize| 4a4a7c81_ca98_4761_8f23_7ef6354e9d1c
-4a4a7c81_ca98_4761_8f23_7ef6354e9d1c -->|support::enabled| 99c78650_8e19_4756_90fb_2573242577ca
+subgraph "Delivery"
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3{{"GodFather Banking Trojan"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+99c78650_8e19_4756_90fb_2573242577ca{{"Mobile device<br>compromised by spyware<br>app"}}
+end
+subgraph "Defense Evasion"
+4a4a7c81_ca98_4761_8f23_7ef6354e9d1c{{"Android attack using app<br>running on emulator"}}
+end
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 <-->|synergize| 4a4a7c81_ca98_4761_8f23_7ef6354e9d1c
+46a79e6f_3df1_4332_a452_3f1fe83bdaf3 -->|enabled| 99c78650_8e19_4756_90fb_2573242577ca
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Link (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Link](spearphishing-link.md) (`1a68b5eb-0112-424d-a21f-88dda0b6b8df`) (`sequence::succeeds`)
 Attacker must be able to compromise the username and password of a valid account.
 
 - **Target UUID**: `1a68b5eb-0112-424d-a21f-88dda0b6b8df`
-#### succeeds -> Spearphishing Attachment (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::succeeds`)
 Attacker must be able to compromise the username and password of a valid account.
 
 - **Target UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`
-#### synergize -> Android attack using app running on emulator (`support::synergize`)
+#### synergize -> [Android attack using app running on emulator](android-attack-using-app-running-on-emulator.md) (`4a4a7c81-ca98-4761-8f23-7ef6354e9d1c`) (`support::synergize`)
 Adversaries require users to download emulators that have been compromised or
 misconfigured and through these, they can carry out malicious activities.
 
 - **Target UUID**: `4a4a7c81-ca98-4761-8f23-7ef6354e9d1c`
-#### enabled -> Mobile device compromised by spyware app (`support::enabled`)
+#### enabled -> [Mobile device compromised by spyware app](mobile-device-compromised-by-spyware-app.md) (`99c78650-8e19-4756-90fb-2573242577ca`) (`support::enabled`)
 Adversaries can abuse iOS or Android devices which are vulnerable to a zero-click
 or zero-day exploitation, without user intervention.
 

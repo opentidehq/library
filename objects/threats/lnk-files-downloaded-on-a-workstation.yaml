@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0094
-    - misp::bcaaad6f-0597-4b89-b69b-84a6be2b7bc3
+    - name: att&ck::G0094
+    - name: misp::bcaaad6f-0597-4b89-b69b-84a6be2b7bc3
   killchain: Defense Evasion
   att&ck:
     - T1566.002
@@ -44,8 +44,15 @@ threat:
     - Customer Support
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Infrastructure Compromise; Tampering
-  impact: Business disruption; Lose Capabilities; Data Breach; Identity Theft; Impairement
+  leverage:
+    - Infrastructure Compromise
+    - Tampering
+  impact:
+    - Business disruption
+    - Lose Capabilities
+    - Data Breach
+    - Identity Theft
+    - Impairement
   viability: Likely
   description: |-
     A malicious .lnk file can be crafted to execute arbitrary code, download

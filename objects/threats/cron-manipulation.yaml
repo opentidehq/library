@@ -15,12 +15,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0139
-    - misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
-    - att&ck::G0082
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0139
+    - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
+    - name: att&ck::G0082
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Persistence
   att&ck:
     - T1053.003
@@ -33,8 +33,15 @@ threat:
     - Web Servers
     - Windows::Desktop
   severity: Substantial incident
-  leverage: Dwelling; Modify configuration; Elevation of privilege
-  impact: Data Breach; Business disruption; Operating costs; Reputational Damages
+  leverage:
+    - Dwelling
+    - Modify configuration
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - Business disruption
+    - Operating costs
+    - Reputational Damages
   viability: Likely
   description: |-
     Suspicious cron activity refers to the insertion or modification of scheduled tasks

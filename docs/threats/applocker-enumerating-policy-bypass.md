@@ -1,14 +1,15 @@
 # AppLocker enumerating policy bypass
 
 ## Metadata
-
-- **UUID**: `9a1aeae5-912e-492c-b5d4-8bce91a95dae`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-07-11`
-- **Modified**: `2025-07-11`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `9a1aeae5-912e-492c-b5d4-8bce91a95dae` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-07-11` |
+| Modified | `2025-07-11` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -89,7 +90,7 @@ related to WinPEAS Applocker enumeration usage check ref [2].
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs to have sufficient privileges to enumerate AppLocker
+A threat actor needs to have sufficient privileges to enumerate AppLocker
 policies and initial access to the targeted system. 
 
 Required level of privileges to enumerate SharpAppLocker could be one of
@@ -99,16 +100,22 @@ the listed below:
 - Access to the Windows Management Instrumentation (WMI) or Windows Registry
 - Ability to execute PowerShell scripts or commands
 
-Domains: Enterprise
-Targets: Workstations, Customer, End-user, Laptop, Other
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Impairement; Data Breach; Lose Capabilities | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Tampering | - |
+| Impact | Impairement<br>Data Breach<br>Lose Capabilities | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -122,3 +129,19 @@ Platforms: Windows**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1218` | [System Binary Proxy Execution](https://attack.mitre.org/techniques/T1218) | Adversaries may bypass process and/or signature-based defenses by proxying execution of malicious content with signed, or otherwise trusted, binaries. Binaries used in this technique are often Microsoft-signed files, indicating that they have been either downloaded from Microsoft or are already native in the operating system.(Citation: LOLBAS Project) Binaries signed with trusted digital certificates can typically execute on Windows systems protected by digital signature validation. Several Microsoft signed binaries that are default on Windows installations can be used to proxy execution of other files or commands.  Similarly, on Linux systems adversaries may abuse trusted binaries such as <code>split</code> to proxy execution of malicious commands.(Citation: split man page)(Citation: GTFO split) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Defense Evasion"
+9a1aeae5_912e_492c_b5d4_8bce91a95dae{{"AppLocker enumerating<br>policy bypass"}}
+a73c2506_8584_4c0b_bfdc_52e33c8bd229{{"AppLocker bypass using<br>DLLs"}}
+end
+subgraph "Privilege Escalation"
+197c06c8_7959_4e28_9ede_b3e7b6f13442{{"AppLocker bypass"}}
+end
+ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63{{"AppLocker bypass using<br>writable folders"}}
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| 9a1aeae5_912e_492c_b5d4_8bce91a95dae
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| ff8c52ac_77d0_4bee_9f6d_e40fc6e0da63
+197c06c8_7959_4e28_9ede_b3e7b6f13442 -->|implemented| a73c2506_8584_4c0b_bfdc_52e33c8bd229
+```

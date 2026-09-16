@@ -18,8 +18,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0022
-    - misp::d144c83e-2302-4947-9e24-856fbf7949ae
+    - name: att&ck::G0022
+    - name: misp::d144c83e-2302-4947-9e24-856fbf7949ae
   killchain: Discovery
   att&ck:
     - T1190
@@ -46,8 +46,14 @@ threat:
     - Windows::Desktop
     - Web Servers
   severity: Localised incident
-  leverage: Infrastructure Compromise; Tampering; Modify data
-  impact: Impairement; Lose Capabilities; Operating costs
+  leverage:
+    - Infrastructure Compromise
+    - Tampering
+    - Modify data
+  impact:
+    - Impairement
+    - Lose Capabilities
+    - Operating costs
   viability: Likely
   description: |-
     One of the observed China-nexus cluster achieves their goals with

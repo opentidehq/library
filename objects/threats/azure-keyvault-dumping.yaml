@@ -66,8 +66,15 @@ threat:
     - Azure::Security::Key Vault
     - Entra ID
   severity: Significant incident
-  leverage: Information Disclosure; Elevation of privilege; Tampering
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+    - Tampering
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
   viability: Likely
   description: |-
     In this threat vector an attacker extracts secrets, certificates, or keys from an 

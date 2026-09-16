@@ -1,14 +1,15 @@
 # Spearphishing with an attachment extension .rdp
 
 ## Metadata
-
-- **UUID**: `58b98d75-fc63-4662-8908-a2a7f4200902`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-11-05`
-- **Modified**: `2024-11-08`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `58b98d75-fc63-4662-8908-a2a7f4200902` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-11-05` |
+| Modified | `2024-11-08` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -45,22 +46,37 @@ to credential harvesting sites.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor relies on an email attachment lure.
+A threat actor relies on an email attachment lure.
 In this case a malicious file is masquerading as a RDP file
 in an attempt to deceive a victim about their identity and
 true nature of the file. The spear-phishing attachment provides
 a threat actor an initial access to the system.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user, Email Platform, Customer, Workstations, Laptop, Remote access
-Platforms: Windows, AWS**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Email**
+> Email infrastructure and services
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Identity Theft; Impairement; Business disruption | - |
-| Leverage | Dwelling; Tampering; Elevation of privilege; Infrastructure Compromise | - |
+| Impact | Identity Theft<br>Impairement<br>Business disruption | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Business disruption |
+| Leverage | Dwelling<br>Tampering<br>Elevation of privilege<br>Infrastructure Compromise | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
 
@@ -80,12 +96,36 @@ Platforms: Windows, AWS**
 ## Chaining
 ```mermaid
 flowchart LR
-58b98d75_fc63_4662_8908_a2a7f4200902["Spearphishing with an attachment extension .rdp"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-58b98d75_fc63_4662_8908_a2a7f4200902 -->|atomicity::implements| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+subgraph "Delivery"
+58b98d75_fc63_4662_8908_a2a7f4200902{{"Spearphishing with an<br>attachment extension<br>.rdp"}}
+06c60af1_5fa8_493c_bf9b_6b2e215819f1{{"Social engineering<br>attack using Microsoft<br>Teams"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+subgraph "Reconnaissance"
+2900d389_3098_49d3_8166_5b2612d03576{{"Azure - Gather User<br>Information"}}
+end
+subgraph "Social Engineering"
+0cdaee96_8595_4f3f_ba07_758b8be9d359{{"Social engineering<br>without attachment or<br>URL"}}
+c4456134_df7b_4969_b5ff_a24794996890{{"Impersonate IT support<br>via a spoofed phone call<br>to deceive a victim and<br>gain a remote access"}}
+end
+subgraph "Credential Access"
+6a7a493a_511a_4c9d_aa9c_4427c832a322{{"SIM-card swapping"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 0cdaee96_8595_4f3f_ba07_758b8be9d359
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+c4456134_df7b_4969_b5ff_a24794996890 -->|succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+c4456134_df7b_4969_b5ff_a24794996890 -->|implements| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 6a7a493a_511a_4c9d_aa9c_4427c832a322
+6a7a493a_511a_4c9d_aa9c_4427c832a322 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+58b98d75_fc63_4662_8908_a2a7f4200902 -->|implements| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### implements -> Spearphishing Attachment (`atomicity::implements`)
+#### implements -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`atomicity::implements`)
 Spearphishing with an attachment extension .rdp is a sub-category
 of spearphishing method with attachment.
 

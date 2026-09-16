@@ -1,14 +1,15 @@
 # VBS script creates a scheduled task
 
 ## Metadata
-
-- **UUID**: `53ca52ed-a7e7-4094-95ec-b4ef522dc689`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-25`
-- **Modified**: `2025-07-08`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `53ca52ed-a7e7-4094-95ec-b4ef522dc689` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-25` |
+| Modified | `2025-07-08` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -114,21 +115,30 @@ taskFolder.RegisterTaskDefinition "TestVBS Task", taskDefinition, 6, , , 3, , , 
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs to entice an end user to execute VBScript loader to
+A threat actor needs to entice an end user to execute VBScript loader to
 gain an initial access to the system. Some of these techniques include
 social engineering and targeted (spear-phishing) or mass-spread phishing
 campaigns.
 
-Domains: Enterprise
-Targets: Customer, End-user, Workstations, Other, Laptop, Remote access
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Impairement; Data Breach; Lose Capabilities | - |
-| Leverage | Elevation of privilege; Infrastructure Compromise; Information Disclosure; Tampering | - |
+| Impact | Impairement<br>Data Breach<br>Lose Capabilities | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Elevation of privilege<br>Infrastructure Compromise<br>Information Disclosure<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 
@@ -155,21 +165,30 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-53ca52ed_a7e7_4094_95ec_b4ef522dc689["VBS script creates a scheduled task"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-c7ed4fad_a58f_47da_9938_4a673526b3f4["HTML smuggling technique"]
-53ca52ed_a7e7_4094_95ec_b4ef522dc689 -->|sequence::succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84 -->|sequence::succeeds| c7ed4fad_a58f_47da_9938_4a673526b3f4
+subgraph "Persistence"
+53ca52ed_a7e7_4094_95ec_b4ef522dc689{{"VBS script creates a<br>scheduled task"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+subgraph "Defense Evasion"
+c7ed4fad_a58f_47da_9938_4a673526b3f4{{"HTML smuggling technique"}}
+end
+53ca52ed_a7e7_4094_95ec_b4ef522dc689 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+53ca52ed_a7e7_4094_95ec_b4ef522dc689 -->|succeeds| c7ed4fad_a58f_47da_9938_4a673526b3f4
+c7ed4fad_a58f_47da_9938_4a673526b3f4 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+c7ed4fad_a58f_47da_9938_4a673526b3f4 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### succeeds -> Spearphishing Attachment (`sequence::succeeds`)
+#### succeeds -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`sequence::succeeds`)
 A threat actor may use a delivery technique - for example spreading
 password protected documents which looks legitimate. This is a
 spear-phishing technique and the goal is a user interaction which
 leads to a payload execution and infection with a malware.
 
 - **Target UUID**: `dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`
-#### succeeds -> HTML smuggling technique (`sequence::succeeds`)
+#### succeeds -> [HTML smuggling technique](html-smuggling-technique.md) (`c7ed4fad-a58f-47da-9938-4a673526b3f4`) (`sequence::succeeds`)
 In one of the malicious campaigns a threat actor used HTML smuggling to
 deliver a password-protected ZIP archive containing a VBScript loader
 for remote access capabilities.

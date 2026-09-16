@@ -1,14 +1,15 @@
 # Detect Abuse of Valid Azure Credentials
 
 ## Metadata
-
-- **UUID**: `f4a8b3c2-7e5d-4f1a-bc8e-9d2a6e7c8f0b`
-- **Schema**: `objective::1.0`
-- **Version**: `1`
-- **Created**: `2025-10-15`
-- **Modified**: `2025-10-15`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f4a8b3c2-7e5d-4f1a-bc8e-9d2a6e7c8f0b` |
+| Schema | `objective::1.0` |
+| Version | `1` |
+| Created | `2025-10-15` |
+| Modified | `2025-10-15` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -72,7 +73,7 @@ Particular attention should be paid to privileged accounts (Global Administrator
 Security Administrators, Application Administrators) as these represent high-value 
 targets for attackers.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Anomaly
 - **Effort**: 3
 #### Data
@@ -148,7 +149,7 @@ access while evading user-focused security controls like MFA. These credentials
 are often stored in code repositories, configuration files, or automation scripts 
 where they can be harvested.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Pattern Matching
 - **Effort**: 5
 #### Data
@@ -193,7 +194,7 @@ to hours of anomalous authentication events represent high-confidence indicators
 of compromise. Attackers often move quickly to escalate privileges before 
 defenders can respond to initial access alerts.
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Behavioural
 - **Effort**: 6
 #### Data
@@ -281,7 +282,7 @@ behaviors distinct from normal administrative activities: broader scope, higher
 velocity, and less targeted access patterns. Correlation with earlier authentication 
 anomalies significantly increases detection confidence.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Anomaly
 - **Effort**: 7
 #### Data
@@ -312,22 +313,30 @@ platforms significantly enhances detection accuracy for this signal.
 | Privilege Escalation After Initial Access | _None_ |
 | Suspicious Resource Enumeration and Access Patterns | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-11686b3d_5f9d_4c1e_b3a8_4bae83653d24["11686b3d-5f9d-4c1e-b3a8-4bae83653d24"]
-12fb0e6a_a4e4_42d3_b77b_3c9c96f90f0b["12fb0e6a-a4e4-42d3-b77b-3c9c96f90f0b"]
-353add53_6e14_47df_b65a_a591d2c6aacd["353add53-6e14-47df-b65a-a591d2c6aacd"]
-d4d7e42b_3f9b_41c7_8dfb_ee7021ee806f["d4d7e42b-3f9b-41c7-8dfb-ee7021ee806f"]
+subgraph "Threats"
+2743bf18_3b86_4721_bf3e_153dcda0b149{{"Azure - Valid<br>Credentials"}}
 end
-subgraph "Threat"
-2743bf18_3b86_4721_bf3e_153dcda0b149["Azure - Valid Credentials"]
+subgraph "Signals"
+12fb0e6a_a4e4_42d3_b77b_3c9c96f90f0b(("Anomalous Azure AD<br>Sign-In Patterns"))
+d4d7e42b_3f9b_41c7_8dfb_ee7021ee806f(("Service Principal<br>Credential Abuse"))
+11686b3d_5f9d_4c1e_b3a8_4bae83653d24(("Privilege Escalation<br>After Initial Access"))
+353add53_6e14_47df_b65a_a591d2c6aacd(("Suspicious Resource<br>Enumeration and Access<br>Patterns"))
 end
-f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b["Detect Abuse of Valid Azure Credentials"]
-f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b -->|signal| 11686b3d_5f9d_4c1e_b3a8_4bae83653d24
-f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b -->|signal| 12fb0e6a_a4e4_42d3_b77b_3c9c96f90f0b
-f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b -->|signal| 353add53_6e14_47df_b65a_a591d2c6aacd
-f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b -->|signal| d4d7e42b_3f9b_41c7_8dfb_ee7021ee806f
-f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b -->|threat| 2743bf18_3b86_4721_bf3e_153dcda0b149
+f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b(["Detect Abuse of Valid<br>Azure Credentials"])
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|covers| f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b
+f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b --> 12fb0e6a_a4e4_42d3_b77b_3c9c96f90f0b
+f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b --> d4d7e42b_3f9b_41c7_8dfb_ee7021ee806f
+f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b --> 11686b3d_5f9d_4c1e_b3a8_4bae83653d24
+f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b --> 353add53_6e14_47df_b65a_a591d2c6aacd
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [Azure - Valid Credentials](../Threats/azure-valid-credentials.md) (`2743bf18-3b86-4721-bf3e-153dcda0b149`) | Upstream | threat |
+| Signal | [Privilege Escalation After Initial Access](detect-abuse-of-valid-azure-credentials.md#privilege-escalation-after-initial-access) (`11686b3d-5f9d-4c1e-b3a8-4bae83653d24`) | Downstream | signal |
+| Signal | [Anomalous Azure AD Sign-In Patterns](detect-abuse-of-valid-azure-credentials.md#anomalous-azure-ad-sign-in-patterns) (`12fb0e6a-a4e4-42d3-b77b-3c9c96f90f0b`) | Downstream | signal |
+| Signal | [Suspicious Resource Enumeration and Access Patterns](detect-abuse-of-valid-azure-credentials.md#suspicious-resource-enumeration-and-access-patterns) (`353add53-6e14-47df-b65a-a591d2c6aacd`) | Downstream | signal |
+| Signal | [Service Principal Credential Abuse](detect-abuse-of-valid-azure-credentials.md#service-principal-credential-abuse) (`d4d7e42b-3f9b-41c7-8dfb-ee7021ee806f`) | Downstream | signal |

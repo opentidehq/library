@@ -17,10 +17,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0034
-    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0034
+    - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
   killchain: Credential Access
   att&ck:
     - T1111
@@ -43,8 +43,12 @@ threat:
     - Windows::Desktop
     - Entra ID
   severity: Moderate incident
-  leverage: Elevation of privilege; Spoofing
-  impact: Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Identity Theft
+    - Impairement
   viability: Environment dependent
   description: |-
     We describe how an attacker could extract cookies using the example of the Chrome browser.

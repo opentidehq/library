@@ -1,14 +1,15 @@
 # Scheduled task manipulation using Azure CLI
 
 ## Metadata
-
-- **UUID**: `edfe43fd-4a92-4f2d-a733-40e235be1b25`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-12-18`
-- **Modified**: `2024-12-19`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `edfe43fd-4a92-4f2d-a733-40e235be1b25` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-12-18` |
+| Modified | `2024-12-19` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -58,18 +59,36 @@ or software updates to avoid suspicion.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have administrative privileges over the Azure CLI environment.
+Adversary must have administrative privileges over the Azure CLI environment.
 
-Domains: Public Cloud, Enterprise, Networking
-Targets: Cloud Storage Accounts, Identity Services, Virtual Machines, API Endpoints, Cloud Portal
-Platforms: Azure, Azure AD, Office 365**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss | - |
-| Leverage | Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Monetary Loss | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>The vector will directly conduct to loss of value directly impacting the bottom line. |
+| Leverage | Spoofing<br>Tampering<br>Repudiation<br>Infrastructure Compromise<br>Information Disclosure | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -86,26 +105,34 @@ Platforms: Azure, Azure AD, Office 365**
 ## Chaining
 ```mermaid
 flowchart LR
-edfe43fd_4a92_4f2d_a733_40e235be1b25["Scheduled task manipulation using Azure CLI"]
-670504aa_cfb8_4d1f_a5ad_16193822085f["Scheduled task creation using Azure CloudShell"]
-5e66f826_4c4b_4357_b9c5_2f40da207f34["Scheduled tasks to maintain persistence in registry"]
-60c5b065_7d06_4697_850f_c2f80765f10b["Changes to Azure infrastructure deployed through Azure CLI"]
-edfe43fd_4a92_4f2d_a733_40e235be1b25 -->|support::enabled| 670504aa_cfb8_4d1f_a5ad_16193822085f
-670504aa_cfb8_4d1f_a5ad_16193822085f -->|support::synergize| 5e66f826_4c4b_4357_b9c5_2f40da207f34
-5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|sequence::preceeds| 60c5b065_7d06_4697_850f_c2f80765f10b
+subgraph "Execution"
+edfe43fd_4a92_4f2d_a733_40e235be1b25{{"Scheduled task<br>manipulation using Azure<br>CLI"}}
+670504aa_cfb8_4d1f_a5ad_16193822085f{{"Scheduled task creation<br>using Azure CloudShell"}}
+60c5b065_7d06_4697_850f_c2f80765f10b{{"Changes to Azure<br>infrastructure deployed<br>through Azure CLI"}}
+end
+subgraph "Persistence"
+5e66f826_4c4b_4357_b9c5_2f40da207f34{{"Scheduled tasks to<br>maintain persistence in<br>registry"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+edfe43fd_4a92_4f2d_a733_40e235be1b25 -->|enabled| 670504aa_cfb8_4d1f_a5ad_16193822085f
+edfe43fd_4a92_4f2d_a733_40e235be1b25 <-->|synergize| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+edfe43fd_4a92_4f2d_a733_40e235be1b25 -->|preceeds| 60c5b065_7d06_4697_850f_c2f80765f10b
+5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### enabled -> Scheduled task creation using Azure CloudShell (`support::enabled`)
+#### enabled -> [Scheduled task creation using Azure CloudShell](scheduled-task-creation-using-azure-cloudshell.md) (`670504aa-cfb8-4d1f-a5ad-16193822085f`) (`support::enabled`)
 Threat actors can use Azure CloudShell, which is accessible via the Azure
 portal or the browser, to create scheduled tasks. The path to the Action pa...
 
 - **Target UUID**: `670504aa-cfb8-4d1f-a5ad-16193822085f`
-#### synergize -> Scheduled tasks to maintain persistence in registry (`support::synergize`)
+#### synergize -> [Scheduled tasks to maintain persistence in registry](scheduled-tasks-to-maintain-persistence-in-registry.md) (`5e66f826-4c4b-4357-b9c5-2f40da207f34`) (`support::synergize`)
 A threat actor can successfully maintain persistence on a compromised system 
 by using scheduled tasks to create or edit registry entries. Windows Sc...
 
 - **Target UUID**: `5e66f826-4c4b-4357-b9c5-2f40da207f34`
-#### preceeds -> Changes to Azure infrastructure deployed through Azure CLI (`sequence::preceeds`)
+#### preceeds -> [Changes to Azure infrastructure deployed through Azure CLI](changes-to-azure-infrastructure-deployed-through-azure-cli.md) (`60c5b065-7d06-4697-850f-c2f80765f10b`) (`sequence::preceeds`)
 A threat actor in control of the prerequisites may attempt to use the Azure
 CLI to perform changes either to the endpoint from which the CLI is acces...
 

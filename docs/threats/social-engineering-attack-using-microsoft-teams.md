@@ -1,14 +1,15 @@
 # Social engineering attack using Microsoft Teams
 
 ## Metadata
-
-- **UUID**: `06c60af1-5fa8-493c-bf9b-6b2e215819f1`
-- **Schema**: `threat::1.0`
-- **Version**: `4`
-- **Created**: `2023-08-07`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `06c60af1-5fa8-493c-bf9b-6b2e215819f1` |
+| Schema | `threat::1.0` |
+| Version | `4` |
+| Created | `2023-08-07` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -64,21 +65,24 @@ legitimate IT staff.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Attacker has compromised a valid Microsoft 365 tenant to host the lures, and valid
+Attacker has compromised a valid Microsoft 365 tenant to host the lures, and valid
 valid credentials in targeted M365 tenant too.
 Targeted organizations must use an app like Microsoft Authenticator as second
 factor (app taking the code received after successful authentication granted by 
 the victim, the user, in previous step).
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user
-Platforms: Microsoft Teams**
+## Surface
+> **Microsoft::Teams**
+> Microsoft Teams communication and collaboration platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Data Breach | - |
+| Impact | Identity Theft<br>Data Breach | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Non-public information has been accessed from the outside, and successfully extracted. |
 | Leverage | Information Disclosure | Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
@@ -93,3 +97,44 @@ Platforms: Microsoft Teams**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1199` | [Trusted Relationship](https://attack.mitre.org/techniques/T1199) | Adversaries may breach or otherwise leverage organizations who have access to intended victims. Access through trusted third party relationship abuses an existing connection that may not be protected or receives less scrutiny than standard mechanisms of gaining access to a network.  Organizations often grant elevated access to second or third-party external providers in order to allow them to manage internal systems as well as cloud-based environments. Some examples of these relationships include IT services contractors, managed security providers, infrastructure contractors (e.g. HVAC, elevators, physical security). The third-party provider's access may be intended to be limited to the infrastructure being maintained, but may exist on the same network as the rest of the enterprise. As such, [Valid Accounts](https://attack.mitre.org/techniques/T1078) used by the other party for access to internal network systems may be compromised and used.(Citation: CISA IT Service Providers)  In Office 365 environments, organizations may grant Microsoft partners or resellers delegated administrator permissions. By compromising a partner or reseller account, an adversary may be able to leverage existing delegated administrator relationships or send new delegated administrator offers to clients in order to gain administrative control over the victim tenant.(Citation: Office 365 Delegated Administration) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Delivery"
+06c60af1_5fa8_493c_bf9b_6b2e215819f1{{"Social engineering<br>attack using Microsoft<br>Teams"}}
+58b98d75_fc63_4662_8908_a2a7f4200902{{"Spearphishing with an<br>attachment extension<br>.rdp"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+subgraph "Reconnaissance"
+2900d389_3098_49d3_8166_5b2612d03576{{"Azure - Gather User<br>Information"}}
+end
+subgraph "Social Engineering"
+0cdaee96_8595_4f3f_ba07_758b8be9d359{{"Social engineering<br>without attachment or<br>URL"}}
+c4456134_df7b_4969_b5ff_a24794996890{{"Impersonate IT support<br>via a spoofed phone call<br>to deceive a victim and<br>gain a remote access"}}
+end
+subgraph "Lateral Movement"
+cc9003f7_a9e3_4407_a1ca_d514af469787{{"Lateral movement via a<br>compromised Teams<br>account"}}
+end
+subgraph "Execution"
+b663b684_a80f_4570_89b6_2f7faa16fece{{"Abuse of Microsoft<br>Office Applications"}}
+end
+subgraph "Credential Access"
+6a7a493a_511a_4c9d_aa9c_4427c832a322{{"SIM-card swapping"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+2900d389_3098_49d3_8166_5b2612d03576 -->|succeeds| 0cdaee96_8595_4f3f_ba07_758b8be9d359
+c4456134_df7b_4969_b5ff_a24794996890 -->|implements| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+c4456134_df7b_4969_b5ff_a24794996890 -->|succeeds| 58b98d75_fc63_4662_8908_a2a7f4200902
+cc9003f7_a9e3_4407_a1ca_d514af469787 -->|succeeds| 06c60af1_5fa8_493c_bf9b_6b2e215819f1
+cc9003f7_a9e3_4407_a1ca_d514af469787 -->|enabling| b663b684_a80f_4570_89b6_2f7faa16fece
+58b98d75_fc63_4662_8908_a2a7f4200902 -->|implements| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+0cdaee96_8595_4f3f_ba07_758b8be9d359 -->|preceeds| 6a7a493a_511a_4c9d_aa9c_4427c832a322
+6a7a493a_511a_4c9d_aa9c_4427c832a322 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+b663b684_a80f_4570_89b6_2f7faa16fece -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+```

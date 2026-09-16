@@ -1,14 +1,15 @@
 # OneDrive API abuse to exfiltrate sensitive data
 
 ## Metadata
-
-- **UUID**: `10663f4a-6432-4c8f-bd3a-eaa599bb474e`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-25`
-- **Modified**: `2025-06-25`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `10663f4a-6432-4c8f-bd3a-eaa599bb474e` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-25` |
+| Modified | `2025-06-25` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -58,21 +59,42 @@ with the OneDrive API, extracting sensitive files at scale.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries need an authenticated user or application identity (such as a compromised 
+Adversaries need an authenticated user or application identity (such as a compromised 
 user account or a maliciously registered OAuth application) with the necessary permissions 
 to access OneDrive files. And also, API permissions (like “Files.Read.All” or “Files.ReadWrite.All”) 
 that allow reading or downloading files from OneDrive via the Microsoft Graph API.
 
-Domains: Public Cloud, SaaS, Enterprise
-Targets: Cloud Storage Accounts, Personal Information, Production Database, Identity Services, Public-Facing Servers, API Endpoints, Cloud Portal
-Platforms: Office 365, Azure AD**
+## Surface
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Database Management**
+> Database management systems
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Azure**
+> Microsoft Azure cloud platform
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss | - |
-| Leverage | Information Disclosure; Tampering; Spoofing; Elevation of privilege | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Monetary Loss | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>The vector will directly conduct to loss of value directly impacting the bottom line. |
+| Leverage | Information Disclosure<br>Tampering<br>Spoofing<br>Elevation of privilege | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 
 ## ATT&CK Techniques

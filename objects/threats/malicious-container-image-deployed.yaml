@@ -36,8 +36,15 @@ threat:
     - Development::CI/CD
     - Code Repositories
   severity: Significant incident
-  leverage: Dwelling; Elevation of privilege; Infrastructure Compromise; Software installation
-  impact: Data Breach; Business disruption; Operating costs
+  leverage:
+    - Dwelling
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Software installation
+  impact:
+    - Data Breach
+    - Business disruption
+    - Operating costs
   viability: Likely
   description: |-
     Threat actors plant malicious code into container images which 

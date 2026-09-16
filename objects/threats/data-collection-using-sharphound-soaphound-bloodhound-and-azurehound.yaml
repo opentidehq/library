@@ -19,9 +19,9 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - name: misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
   killchain: Reconnaissance
   att&ck:
     - T1087
@@ -63,8 +63,21 @@ threat:
     - Security::SAML
     - Kerberos
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Catastrophic Loss
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Lose Capabilities
+    - Catastrophic Loss
   viability: Likely
   description: |-
     The threat vector of data collection using SharpHound, BloodHound, and AzureHound 

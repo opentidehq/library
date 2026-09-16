@@ -1,14 +1,15 @@
 # Windows Explorer Manipulation via Registry Modification
 
 ## Metadata
-
-- **UUID**: `8e5c12f1-cd48-417c-a9c9-883212bf98b6`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-07-11`
-- **Modified**: `2025-07-16`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `8e5c12f1-cd48-417c-a9c9-883212bf98b6` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-07-11` |
+| Modified | `2025-07-16` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -84,21 +85,33 @@ devices, such as network shares, potentially executing malicious code.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must obtain write access to the user-hive (HKCU) or,
+Adversary must obtain write access to the user-hive (HKCU) or,
 for broader impact, administrative rights to HKLM and the
 ability to execute **reg.exe**, PowerShell, or equivalent APIs on
 Windows 7 - 11 workstations joined to Active Directory.
 
-Domains: Enterprise
-Targets: Workstations, Desktop, Laptop, Virtual Machines, Windows API
-Platforms: Windows, Active Directory, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Application Layer::WMI**
+> Windows Management Instrumentation remote management protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Impairement; Data Breach; Business disruption; Reputational Damages | - |
-| Leverage | Tampering; Modify configuration; Modify data; Elevation of privilege | - |
+| Impact | Impairement<br>Data Breach<br>Business disruption<br>Reputational Damages | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Tampering<br>Modify configuration<br>Modify data<br>Elevation of privilege | Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Modify configuration or services<br>Modify stored data or content<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

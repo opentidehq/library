@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::b8c8b96d-61e6-47b1-8e38-fd8ad5d9854d
-    - att&ck::G1031
+    - name: misp::b8c8b96d-61e6-47b1-8e38-fd8ad5d9854d
+    - name: att&ck::G1031
   killchain: Delivery
   att&ck:
     - T1055
@@ -49,8 +49,15 @@ threat:
     - Mobile
     - Mobile::Android
   severity: Significant incident
-  leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege
-  impact: Data Breach; Monetary Loss; Identity Theft
+  leverage:
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - Monetary Loss
+    - Identity Theft
   viability: Very Likely
   description: |-
     The GodFather malware is a highly advanced Android banking trojan that has evolved 

@@ -1,14 +1,15 @@
 # Reverse shell or remote session from compromised host
 
 ## Metadata
-
-- **UUID**: `157710ff-962d-4fa3-a516-ac5883f2d5ef`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2023-09-27`
-- **Modified**: `2025-02-07`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `157710ff-962d-4fa3-a516-ac5883f2d5ef` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2023-09-27` |
+| Modified | `2025-02-07` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## Description
 ### Threat vector
@@ -102,20 +103,38 @@ Start a listener on the attackers machine
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries need way to initiate the reverse-shell 
+Adversaries need way to initiate the reverse-shell 
 connection on the victim host either through vulnerability 
 exploitation, social engineering, or by other means.
 
-Domains: Public Cloud, Private Cloud, Enterprise, Networking
-Targets: Personal Information, Workstations, Virtual Machines Host, Web Application Servers, Laptop
-Platforms: Windows, Linux, Azure, AWS**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Virtualisation::VMware ESXi**
+> Broadcom VMware ESXi bare-metal Type 1 hypervisor
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Impairement; Data Breach; Reputational Damages | - |
-| Leverage | Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; Dwelling; Modify configuration | - |
+| Impact | Impairement<br>Data Breach<br>Reputational Damages | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Repudiation<br>Infrastructure Compromise<br>Information Disclosure<br>Elevation of privilege<br>Dwelling<br>Modify configuration | Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Modify configuration or services |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Command & Control | Techniques that allow attackers to communicate with controlled systems within a target network. |
 

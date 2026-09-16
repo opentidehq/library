@@ -17,13 +17,13 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0114
-    - att&ck::G0094
-    - misp::89f005f9-22e9-4c50-9b48-e94c521266e5
-    - att&ck::G1004
-    - misp::d9e5be22-1a04-4956-af6c-37af02330980
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0114
+    - name: att&ck::G0094
+    - name: misp::89f005f9-22e9-4c50-9b48-e94c521266e5
+    - name: att&ck::G1004
+    - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Credential Access
   att&ck:
     - T1111
@@ -47,8 +47,11 @@ threat:
     - Entra ID
     - Mobile
   severity: Significant incident
-  leverage: Elevation of privilege; Spoofing
-  impact: Identity Theft
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Identity Theft
   viability: Likely
   description: |-
     MFA fatigue (aka MFA abuse, MFA bombing or MFA spamming) is a popular technique

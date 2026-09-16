@@ -1,14 +1,15 @@
 # Unusual use of archiving tools
 
 ## Metadata
-
-- **UUID**: `a1e8f8b3-48ef-4559-a3a0-ecaed496d5f3`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-23`
-- **Modified**: `2024-10-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `a1e8f8b3-48ef-4559-a3a0-ecaed496d5f3` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-23` |
+| Modified | `2024-10-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -39,19 +40,28 @@ may indicate attempts to exfiltrate data.
 **Low** - A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have access to systems with archiving tools installed and permissions 
+Adversary must have access to systems with archiving tools installed and permissions 
 to execute renamed or custom archiving utilities.
 
-Domains: Enterprise
-Targets: Workstations, Laptop
-Platforms: Windows, macOS, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; IP Loss; Reputational Damages | - |
-| Leverage | Information Disclosure; Modify data | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Information Disclosure<br>Modify data | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify stored data or content |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

@@ -1,14 +1,15 @@
 # Malicious kernel module
 
 ## Metadata
-
-- **UUID**: `83343a35-daa0-41a2-ae09-6876b3ef9c11`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-12-03`
-- **Modified**: `2024-12-03`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `83343a35-daa0-41a2-ae09-6876b3ef9c11` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-12-03` |
+| Modified | `2024-12-03` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -32,19 +33,28 @@ masking the adversary's footprint on the system.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have root-level access to the Linux system to modify kernel 
+Adversary must have root-level access to the Linux system to modify kernel 
 parameters or load malicious kernel modules.
 
-Domains: Enterprise
-Targets: Workstations, Public-Facing Servers, Virtual Machines
-Platforms: Linux**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Impairement; Data Breach; Business disruption; Reputational Damages | - |
-| Leverage | Elevation of privilege; Alter behavior; Modify configuration; Tampering; Software installation | - |
+| Impact | Impairement<br>Data Breach<br>Business disruption<br>Reputational Damages | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Elevation of privilege<br>Alter behavior<br>Modify configuration<br>Tampering<br>Software installation | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Influence or alter human behavior<br>Modify configuration or services<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Software installation or code modification |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 

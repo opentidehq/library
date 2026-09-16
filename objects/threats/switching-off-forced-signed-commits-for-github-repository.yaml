@@ -30,8 +30,12 @@ threat:
     - Development::CI/CD
     - Remote Access
   severity: Localised incident
-  leverage: Dwelling; Infrastructure Compromise; Modify configuration
-  impact: Impairement
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Modify configuration
+  impact:
+    - Impairement
   viability: Unlikely
   description: |-
     Development and DevOps teams may turn on signed commits to ensure that an 

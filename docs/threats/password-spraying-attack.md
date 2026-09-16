@@ -1,14 +1,15 @@
 # Password spraying attack
 
 ## Metadata
-
-- **UUID**: `cc546bbc-f71c-4538-934c-415d6adc293b`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2024-03-27`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `cc546bbc-f71c-4538-934c-415d6adc293b` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2024-03-27` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -69,21 +70,39 @@ or lack of consistency which makes them difficult to detect.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries must look for different accounts to test a list of different
+Adversaries must look for different accounts to test a list of different
 frequently used weak passwords. To have success, the attacker need to 
 research what are the valid account patterns used for the Internet-facing
 applications used by the organisation such as VPN service or O365.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user, Former employee, Executive
-Platforms: Windows, Linux, AWS, Azure, AD FS, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Active Directory::Federation Services**
+> Active Directory Federation Services (AD FS)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Identity Theft; Nuisance | - |
-| Leverage | Information Disclosure; Infrastructure Compromise; Modify privileges | - |
+| Impact | Identity Theft<br>Nuisance | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Small and mostly inconsequential to day to day operations, but noticed. |
+| Leverage | Information Disclosure<br>Infrastructure Compromise<br>Modify privileges | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Modify privileges or permissions |
 | Viability | Roughly even chance | Roughly even odds - 45-55% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -110,3 +129,13 @@ Platforms: Windows, Linux, AWS, Azure, AD FS, Active Directory**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1110.003` | [Brute Force: Password Spraying](https://attack.mitre.org/techniques/T1110/003) | Adversaries may use a single or small list of commonly used passwords against many different accounts to attempt to acquire valid account credentials. Password spraying uses one password (e.g. 'Password01'), or a small list of commonly used passwords, that may match the complexity policy of the domain. Logins are attempted with that password against many different accounts on a network to avoid account lockouts that would normally occur when brute forcing a single account with many passwords. (Citation: BlackHillsInfosec Password Spraying)  Typically, management services over commonly used ports are used when password spraying. Commonly targeted services include the following:  * SSH (22/TCP) * Telnet (23/TCP) * FTP (21/TCP) * NetBIOS / SMB / Samba (139/TCP & 445/TCP) * LDAP (389/TCP) * Kerberos (88/TCP) * RDP / Terminal Services (3389/TCP) * HTTP/HTTP Management Services (80/TCP & 443/TCP) * MSSQL (1433/TCP) * Oracle (1521/TCP) * MySQL (3306/TCP) * VNC (5900/TCP)  In addition to management services, adversaries may "target single sign-on (SSO) and cloud-based applications utilizing federated authentication protocols," as well as externally facing email applications, such as Office 365.(Citation: US-CERT TA18-068A 2018)  In default environments, LDAP and Kerberos connection attempts are less likely to trigger events over SMB, which creates Windows "logon failure" event ID 4625. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Credential Access"
+cc546bbc_f71c_4538_934c_415d6adc293b{{"Password spraying attack"}}
+fa4c66c6_a69b_4e16_84cb_7ad8c772af41{{"SMB login brute force"}}
+end
+fa4c66c6_a69b_4e16_84cb_7ad8c772af41 -->|implements| cc546bbc_f71c_4538_934c_415d6adc293b
+```

@@ -1,14 +1,15 @@
 # Suspicious Disk Image Files extracted via File Archiver from Email or Download directory
 
 ## Metadata
-
-- **UUID**: `ebdf49a9-52cb-43a5-8849-8110765f4fe1`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-10-22`
-- **Modified**: `2024-10-22`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `ebdf49a9-52cb-43a5-8849-8110765f4fe1` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-10-22` |
+| Modified | `2024-10-22` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -36,19 +37,31 @@ from unverified sources.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary requires the user to open the disk image file and execute the malicious content within, 
+Adversary requires the user to open the disk image file and execute the malicious content within, 
 potentially bypassing security warnings.
 
-Domains: Enterprise
-Targets: Desktop, Email Platform, Laptop, Personal Information, Workstations
-Platforms: macOS, Linux, Windows**
+## Surface
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Email**
+> Email infrastructure and services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft | - |
-| Leverage | Information Disclosure; Software installation; Spoofing; Tampering | - |
+| Impact | Data Breach<br>Identity Theft | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Information Disclosure<br>Software installation<br>Spoofing<br>Tampering | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Software installation or code modification<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -72,12 +85,16 @@ Platforms: macOS, Linux, Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-ebdf49a9_52cb_43a5_8849_8110765f4fe1["Suspicious Disk Image Files extracted via File Archiver from Email or Download directory"]
-dd5d942c_bac4_4000_b9a6_ca4fef6cfb84["Spearphishing Attachment"]
-ebdf49a9_52cb_43a5_8849_8110765f4fe1 -->|support::enabling| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+subgraph "Execution"
+ebdf49a9_52cb_43a5_8849_8110765f4fe1{{"Suspicious Disk Image<br>Files extracted via File<br>Archiver from Email or<br>Download directory"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+ebdf49a9_52cb_43a5_8849_8110765f4fe1 -->|enabling| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### enabling -> Spearphishing Attachment (`support::enabling`)
+#### enabling -> [Spearphishing Attachment](spearphishing-attachment.md) (`dd5d942c-bac4-4000-b9a6-ca4fef6cfb84`) (`support::enabling`)
 Email Attachment may contains these kind of file such as archive file
 that user enable by decompresing it.
 

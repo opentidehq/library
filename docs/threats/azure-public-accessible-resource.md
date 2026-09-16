@@ -1,14 +1,15 @@
 # Azure - Public Accessible Resource
 
 ## Metadata
-
-- **UUID**: `9b41d6cf-de4d-44d1-97cc-f3671f4ee5ab`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2025-07-31`
-- **Modified**: `2025-09-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `9b41d6cf-de4d-44d1-97cc-f3671f4ee5ab` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2025-07-31` |
+| Modified | `2025-09-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -63,19 +64,31 @@ a foothold to move deeper into the Azure environment.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have access to internet-facing IP space to scan for live Azure VMs 
+Adversary must have access to internet-facing IP space to scan for live Azure VMs 
 and network interfaces.
 
-Domains: Public Cloud, Private Cloud
-Targets: Virtual Machines, Network Equipment, Public-Facing Servers, Cloud Storage Accounts
-Platforms: Azure**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Switches**
+> Network switches
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **AWS::Storage**
+> AWS storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Monetary Loss; Business disruption | - |
-| Leverage | Spoofing; Tampering; Information Disclosure; Denial of Service; Elevation of privilege | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Monetary Loss<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Business disruption |
+| Leverage | Spoofing<br>Tampering<br>Information Disclosure<br>Denial of Service<br>Elevation of privilege | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action attempting to deny access to valid users, such as by making a web server temporarily unavailable or unusable.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Reconnaissance | Researching, identifying and selecting targets using active or passive reconnaissance. |
 
@@ -89,12 +102,24 @@ Platforms: Azure**
 ## Chaining
 ```mermaid
 flowchart LR
-9b41d6cf_de4d_44d1_97cc_f3671f4ee5ab["Azure - Public Accessible Resource"]
-b1593e0b_1b3b_462d_9ab6_21d1c136469d["Azure - Gather Resource Data"]
-9b41d6cf_de4d_44d1_97cc_f3671f4ee5ab -->|support::synergize| b1593e0b_1b3b_462d_9ab6_21d1c136469d
+subgraph "Reconnaissance"
+9b41d6cf_de4d_44d1_97cc_f3671f4ee5ab{{"Azure - Public<br>Accessible Resource"}}
+b1593e0b_1b3b_462d_9ab6_21d1c136469d{{"Azure - Gather Resource<br>Data"}}
+end
+subgraph "Credential Access"
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Lateral Movement"
+9bb31c65_8abd_48fc_afe3_8aca76109737{{"Azure - Modify<br>federation trust to<br>accept externally signed<br>tokens"}}
+end
+9b41d6cf_de4d_44d1_97cc_f3671f4ee5ab <-->|synergize| b1593e0b_1b3b_462d_9ab6_21d1c136469d
+b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|succeeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|succeeds| 9bb31c65_8abd_48fc_afe3_8aca76109737
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
 ```
 ### Chaining details
-#### synergize -> Azure - Gather Resource Data (`support::synergize`)
+#### synergize -> [Azure - Gather Resource Data](azure-gather-resource-data.md) (`b1593e0b-1b3b-462d-9ab6-21d1c136469d`) (`support::synergize`)
 The attacker obtains credentials (via phishing, password spray, leaked keys) granting 
 at least Reader access to the target Azure tenant.
 

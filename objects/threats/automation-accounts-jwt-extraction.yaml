@@ -37,8 +37,18 @@ threat:
     - Web Servers
     - Application Layer::HTTP
   severity: Significant incident
-  leverage: Spoofing; Tampering; Elevation of privilege; Information Disclosure
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
+  leverage:
+    - Spoofing
+    - Tampering
+    - Elevation of privilege
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Business disruption
   viability: Likely
   description: |-
     The threat vector refers to attacks where attackers exploit Azure Automation Accounts 

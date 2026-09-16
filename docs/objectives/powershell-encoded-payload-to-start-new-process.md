@@ -1,14 +1,15 @@
 # Powershell encoded payload to start new process
 
 ## Metadata
-
-- **UUID**: `bfeb24bf-8a17-4ccc-8aec-91721743153d`
-- **Schema**: `objective::1.0`
-- **Version**: `1`
-- **Created**: `2026-03-24`
-- **Modified**: `2026-03-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `bfeb24bf-8a17-4ccc-8aec-91721743153d` |
+| Schema | `objective::1.0` |
+| Version | `1` |
+| Created | `2026-03-24` |
+| Modified | `2026-03-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -107,7 +108,7 @@ which makes using PowerShell an easy way to circumvent security measures.
 - Encoded PowerShell can be abused to avoid any complexity with special characters that can be difficult
 to handle.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Event Search
 #### Data
 
@@ -121,16 +122,26 @@ Data sources: Command, File, Script, Module, Process.
 | --- | --- |
 | Powershell encoded payload to start new process | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0["cf9c69a2-9317-4f0f-9506-fbeeb1c73ff0"]
+subgraph "Threats"
+bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7{{"Powershell with encoded<br>payload passed to<br>cmdline"}}
 end
-subgraph "Threat"
-bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7["Powershell with encoded payload passed to cmdline"]
+subgraph "Signals"
+cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0(("Powershell encoded<br>payload to start new<br>process"))
 end
-bfeb24bf_8a17_4ccc_8aec_91721743153d["Powershell encoded payload to start new process"]
-bfeb24bf_8a17_4ccc_8aec_91721743153d -->|signal| cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0
-bfeb24bf_8a17_4ccc_8aec_91721743153d -->|threat| bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7
+subgraph "Rules"
+0be66eea_4ae4_4544_811b_52651e20d744["RBA_RR - WIN base64<br>encoded powershell<br>payload"]
+end
+bfeb24bf_8a17_4ccc_8aec_91721743153d(["Powershell encoded<br>payload to start new<br>process"])
+bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7 -->|covers| bfeb24bf_8a17_4ccc_8aec_91721743153d
+bfeb24bf_8a17_4ccc_8aec_91721743153d --> cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0
+bfeb24bf_8a17_4ccc_8aec_91721743153d -->|implements| 0be66eea_4ae4_4544_811b_52651e20d744
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [Powershell with encoded payload passed to cmdline](../Threats/powershell-with-encoded-payload-passed-to-cmdline.md) (`bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7`) | Upstream | threat |
+| Signal | [Powershell encoded payload to start new process](powershell-encoded-payload-to-start-new-process.md#powershell-encoded-payload-to-start-new-process) (`cf9c69a2-9317-4f0f-9506-fbeeb1c73ff0`) | Downstream | signal |
+| Rule | [RBA_RR - WIN base64 encoded powershell payload](../Rules/rba-rr-win-base64-encoded-powershell-payload.md) (`0be66eea-4ae4-4544-811b-52651e20d744`) | Downstream | rule |

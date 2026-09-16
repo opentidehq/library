@@ -17,8 +17,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0125
-    - att&ck::G0032
+    - name: att&ck::G0125
+    - name: att&ck::G0032
   killchain: Privilege Escalation
   att&ck:
     - T1098
@@ -30,8 +30,16 @@ threat:
     - Windows
     - Windows::Desktop
   severity: Significant incident
-  leverage: Modify configuration; Modify data; Tampering; New Accounts
-  impact: Data Breach; Business disruption; Reputational Damages; Operating costs
+  leverage:
+    - Modify configuration
+    - Modify data
+    - Tampering
+    - New Accounts
+  impact:
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
+    - Operating costs
   viability: Likely
   description: |-
     ### Access token:

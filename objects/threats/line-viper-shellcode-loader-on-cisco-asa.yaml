@@ -65,8 +65,17 @@ threat:
     - Switches
     - VPN
   severity: Substantial incident
-  leverage: Infrastructure Compromise; Information Disclosure; Dwelling; Tampering; Repudiation
-  impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
+  leverage:
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Dwelling
+    - Tampering
+    - Repudiation
+  impact:
+    - Data Breach
+    - Lose Capabilities
+    - Reputational Damages
+    - National Security
   viability: Likely
   description: |-
     LINE VIPER is a sophisticated user-mode shellcode loader with

@@ -1,14 +1,15 @@
 # Web Shell Attacks
 
 ## Metadata
-
-- **UUID**: `4d6104e3-10d4-4a12-b081-d937df848891`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-07-08`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `4d6104e3-10d4-4a12-b081-d937df848891` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-07-08` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -23,18 +24,27 @@ Adversaries may backdoor web servers with web shells to establish persistent acc
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary access to a compromise Web server with vulnerability or account to upload and serve the Web shell file.
+Adversary access to a compromise Web server with vulnerability or account to upload and serve the Web shell file.
 
-Domains: Public Cloud, Enterprise, Private Cloud
-Targets: Web Application Servers
-Platforms: Linux, Windows, macOS**
+## Surface
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Impairement | - |
-| Leverage | Dwelling; Modify configuration; Modify privileges | - |
+| Impact | Data Breach<br>Impairement | Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Dwelling<br>Modify configuration<br>Modify privileges | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Modify configuration or services<br>Modify privileges or permissions |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 
@@ -48,3 +58,17 @@ Platforms: Linux, Windows, macOS**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1505.003` | [Server Software Component: Web Shell](https://attack.mitre.org/techniques/T1505/003) | Adversaries may backdoor web servers with web shells to establish persistent access to systems. A Web shell is a Web script that is placed on an openly accessible Web server to allow an adversary to access the Web server as a gateway into a network. A Web shell may provide a set of functions to execute or a command-line interface on the system that hosts the Web server.(Citation: volexity_0day_sophos_FW)  In addition to a server-side script, a Web shell may have a client interface program that is used to talk to the Web server (e.g. [China Chopper](https://attack.mitre.org/software/S0020) Web shell client).(Citation: Lee 2013) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Persistence"
+4d6104e3_10d4_4a12_b081_d937df848891{{"Web Shell Attacks"}}
+end
+subgraph "Exploitation"
+4b1c47ee_f45a_4b89_98e7_e943bcd5dd19{{"Command injection on web<br>components of Ivanti<br>Connect Secure<br>appliances"}}
+810057c6_cb84_41e4_add4_ae56b52c8ab7{{"authentication bypass on<br>Ivanti Connect Secure<br>appliances"}}
+end
+4b1c47ee_f45a_4b89_98e7_e943bcd5dd19 -->|enabling| 4d6104e3_10d4_4a12_b081_d937df848891
+4b1c47ee_f45a_4b89_98e7_e943bcd5dd19 <-->|synergize| 810057c6_cb84_41e4_add4_ae56b52c8ab7
+```

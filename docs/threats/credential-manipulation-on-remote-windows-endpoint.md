@@ -1,14 +1,15 @@
 # Credential manipulation on remote Windows endpoint
 
 ## Metadata
-
-- **UUID**: `cfc6369a-e3df-4827-bb0d-969342f1558c`
-- **Schema**: `threat::1.0`
-- **Version**: `6`
-- **Created**: `2023-01-27`
-- **Modified**: `2023-02-07`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `cfc6369a-e3df-4827-bb0d-969342f1558c` |
+| Schema | `threat::1.0` |
+| Version | `6` |
+| Created | `2023-01-27` |
+| Modified | `2023-02-07` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -62,11 +63,29 @@ impacket-secretdump -sam /root/Desktop/sam.save -security /root/Desktop/security
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires an already compromised Windows endpoint.
+Requires an already compromised Windows endpoint.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Workstations, Desktop, Laptop, End-user, Email Platform, Control Server, Remote access, System admin, Public-Facing Servers, Web Application Servers
-Platforms: Windows, Active Directory, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Email**
+> Email infrastructure and services
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

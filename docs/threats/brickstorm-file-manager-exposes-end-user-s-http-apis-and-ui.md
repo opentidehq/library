@@ -1,14 +1,15 @@
 # BRICKSTORM file manager exposes end-user's HTTP APIs and UI
 
 ## Metadata
-
-- **UUID**: `5e6af460-db12-4278-b44d-7a7a3fa7fe76`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-23`
-- **Modified**: `2025-05-20`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `5e6af460-db12-4278-b44d-7a7a3fa7fe76` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-23` |
+| Modified | `2025-05-20` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -53,19 +54,31 @@ file system and download files by their choice ref [1].
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor abuses publicly exposed HTTP APIs
+A threat actor abuses publicly exposed HTTP APIs
 and end-user publicly exposed UIs (User Interfaces).
 
-Domains: Enterprise
-Targets: API Endpoints, End-user, Laptop, Workstations, Public-Facing Servers, Web Application Servers
-Platforms: Windows, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Impairement; Lose Capabilities; Operating costs | - |
-| Leverage | Infrastructure Compromise; Tampering; Modify data | - |
+| Impact | Impairement<br>Lose Capabilities<br>Operating costs | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Increased operating costs |
+| Leverage | Infrastructure Compromise<br>Tampering<br>Modify data | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Modify stored data or content |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Discovery | Techniques that allow an attacker to gain knowledge about a system and its network environment. |
 
@@ -88,12 +101,16 @@ Platforms: Windows, Linux**
 ## Chaining
 ```mermaid
 flowchart LR
-5e6af460_db12_4278_b44d_7a7a3fa7fe76["BRICKSTORM file manager exposes end-user's HTTP APIs and UI"]
-901dd804_00cc_4034_85aa_3d10e257c16c["DNS over HTTPS tunneling exfiltrates data or communicates to C&C server"]
-5e6af460_db12_4278_b44d_7a7a3fa7fe76 -->|atomicity::implements| 901dd804_00cc_4034_85aa_3d10e257c16c
+subgraph "Discovery"
+5e6af460_db12_4278_b44d_7a7a3fa7fe76{{"BRICKSTORM file manager<br>exposes end-user's HTTP<br>APIs and UI"}}
+end
+subgraph "Exfiltration"
+901dd804_00cc_4034_85aa_3d10e257c16c{{"DNS over HTTPS tunneling<br>exfiltrates data or<br>communicates to C&C<br>server"}}
+end
+5e6af460_db12_4278_b44d_7a7a3fa7fe76 -->|implements| 901dd804_00cc_4034_85aa_3d10e257c16c
 ```
 ### Chaining details
-#### implements -> DNS over HTTPS tunneling exfiltrates data or communicates to C&C server (`atomicity::implements`)
+#### implements -> [DNS over HTTPS tunneling exfiltrates data or communicates to C&C server](dns-over-https-tunneling-exfiltrates-data-or-communicates-to-c-c-server.md) (`901dd804-00cc-4034-85aa-3d10e257c16c`) (`atomicity::implements`)
 `BRICKSTORM` espionage backdoor provides threat actors the
 ability to execute file management and network tunneling
 functions and in this way to manipulate files and exfiltrate

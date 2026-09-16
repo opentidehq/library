@@ -1,14 +1,15 @@
 # Possible Smart App Control Evasion Attempt
 
 ## Metadata
-
-- **UUID**: `dcf021a5-2846-40b4-8189-2695a7a32b9a`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-12`
-- **Modified**: `2025-06-24`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `dcf021a5-2846-40b4-8189-2695a7a32b9a` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-12` |
+| Modified | `2025-06-24` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -66,19 +67,40 @@ considered trusted.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adverdaries need to sign malware with a legitimate or fraudulently obtained code-signing 
+Adverdaries need to sign malware with a legitimate or fraudulently obtained code-signing 
 certificate—especially Extended Validation (EV) certificates.
 
-Domains: Enterprise, OSINT
-Targets: Workstations, Public-Facing Servers, Virtual Machines, Software Containers, Windows API, Critical Documents
-Platforms: Windows, PowerShell**
+## Surface
+> **Attack Surface Management**
+> External attack surface management and internet exposure discovery
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Container Runtime::Docker**
+> Docker Engine container runtime
+
+> **Application Layer::WMI**
+> Windows Management Instrumentation remote management protocol
+
+> **File Sharing**
+> Cloud file sharing and storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption | - |
-| Leverage | Spoofing; Tampering; Elevation of privilege; Information Disclosure; Modify configuration; Modify privileges; Modify data | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Monetary Loss<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Business disruption |
+| Leverage | Spoofing<br>Tampering<br>Elevation of privilege<br>Information Disclosure<br>Modify configuration<br>Modify privileges<br>Modify data | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Modify configuration or services<br>Modify privileges or permissions<br>Modify stored data or content |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

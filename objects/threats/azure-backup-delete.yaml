@@ -17,9 +17,9 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
-    - misp::f512de42-f76b-40d2-9923-59e7dbdfec35
-    - att&ck::G1043
+    - name: misp::bdf4fe4f-af8a-495f-a719-cf175cecda1f
+    - name: misp::f512de42-f76b-40d2-9923-59e7dbdfec35
+    - name: att&ck::G1043
   killchain: Impact
   att&ck:
     - T1485
@@ -56,8 +56,20 @@ threat:
     - AWS::Storage
     - Azure::Compute::Virtual Machines
   severity: Significant incident
-  leverage: Tampering; Information Disclosure; Denial of Service; Elevation of privilege; Modify configuration; Modify data
-  impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss; Lose Capabilities; Business disruption
+  leverage:
+    - Tampering
+    - Information Disclosure
+    - Denial of Service
+    - Elevation of privilege
+    - Modify configuration
+    - Modify data
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Monetary Loss
+    - Lose Capabilities
+    - Business disruption
   viability: Likely
   description: |-
     The following threat vector involves adversaries deleting backup data from Recovery 

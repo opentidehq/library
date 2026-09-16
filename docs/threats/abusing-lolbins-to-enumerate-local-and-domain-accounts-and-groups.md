@@ -1,14 +1,15 @@
 # Abusing Lolbins to Enumerate Local and Domain Accounts and Groups
 
 ## Metadata
-
-- **UUID**: `3b1026c6-7d04-4b91-ba6f-abc68e993616`
-- **Schema**: `threat::1.0`
-- **Version**: `5`
-- **Created**: `2022-11-10`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `3b1026c6-7d04-4b91-ba6f-abc68e993616` |
+| Schema | `threat::1.0` |
+| Version | `5` |
+| Created | `2022-11-10` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -83,18 +84,45 @@ and groups.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries can take advantage of already compromised system (Windows or 
+Adversaries can take advantage of already compromised system (Windows or 
 Linux OS or OSX) to run commands.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Desktop, Directory, Engineering Workstation, Firewall, Laptop, Public-Facing Servers, Web Application Servers, Workstations
-Platforms: AWS EC2, AWS ECS, AWS EKS, Linux, macOS, Windows**
+## Surface
+> **AWS::Compute::EC2**
+> Amazon Elastic Compute Cloud (virtual servers)
+
+> **AWS::Compute::ECS**
+> Amazon Elastic Container Service
+
+> **AWS::Compute::EKS**
+> Amazon Elastic Kubernetes Service
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Firewalls**
+> Network firewall appliances and software
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Identity Theft; Nuisance; Reputational Damages | - |
+| Impact | Identity Theft<br>Nuisance<br>Reputational Damages | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
 | Leverage | Information Disclosure | Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Discovery | Techniques that allow an attacker to gain knowledge about a system and its network environment. |
@@ -119,3 +147,37 @@ Platforms: AWS EC2, AWS ECS, AWS EKS, Linux, macOS, Windows**
 | `T1087.002` | [Account Discovery: Domain Account](https://attack.mitre.org/techniques/T1087/002) | Adversaries may attempt to get a listing of domain accounts. This information can help adversaries determine which domain accounts exist to aid in follow-on behavior such as targeting specific accounts which possess particular privileges.  Commands such as <code>net user /domain</code> and <code>net group /domain</code> of the [Net](https://attack.mitre.org/software/S0039) utility, <code>dscacheutil -q group</code> on macOS, and <code>ldapsearch</code> on Linux can list domain users and groups. [PowerShell](https://attack.mitre.org/techniques/T1059/001) cmdlets including <code>Get-ADUser</code> and <code>Get-ADGroupMember</code> may enumerate members of Active Directory groups.(Citation: CrowdStrike StellarParticle January 2022) |
 | `T1069.001` | [Permission Groups Discovery: Local Groups](https://attack.mitre.org/techniques/T1069/001) | Adversaries may attempt to find local system groups and permission settings. The knowledge of local system permission groups can help adversaries determine which groups exist and which users belong to a particular group. Adversaries may use this information to determine which users have elevated permissions, such as the users found within the local administrators group.  Commands such as <code>net localgroup</code> of the [Net](https://attack.mitre.org/software/S0039) utility, <code>dscl . -list /Groups</code> on macOS, and <code>groups</code> on Linux can list local groups. |
 | `T1069.002` | [Permission Groups Discovery: Domain Groups](https://attack.mitre.org/techniques/T1069/002) | Adversaries may attempt to find domain-level groups and permission settings. The knowledge of domain-level permission groups can help adversaries determine which groups exist and which users belong to a particular group. Adversaries may use this information to determine which users have elevated permissions, such as domain administrators.  Commands such as <code>net group /domain</code> of the [Net](https://attack.mitre.org/software/S0039) utility,  <code>dscacheutil -q group</code> on macOS, and <code>ldapsearch</code> on Linux can list domain-level groups. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Discovery"
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+fe243f7f_ffc5_49c0_94e6_293ae2411ad6{{"Windows User and Group<br>Enumeration with<br>specific tools"}}
+end
+subgraph "Credential Access"
+75415bc5_6615_487e_a69c_7a4ffc196996{{"Lateral movement using<br>Impacket framework"}}
+d0522985_6001_4e25_a5ff_2dc87bf2fee8{{"Windows credential<br>access attempt"}}
+35c76d6c_2ac7_486e_b0b7_b56f6b110bec{{"Password hash cracking<br>on Windows"}}
+end
+subgraph "Reconnaissance"
+8bc82ff8_e106_4377_98f1_2cb912631ffa{{"User information<br>gathering in Linux<br>systems"}}
+end
+subgraph "Persistence"
+e2d8ce6b_f21e_4444_a828_0c6b722a9c93{{"Local user account added"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+subgraph "Execution"
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+75415bc5_6615_487e_a69c_7a4ffc196996 -->|succeeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+8bc82ff8_e106_4377_98f1_2cb912631ffa -->|succeeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+8bc82ff8_e106_4377_98f1_2cb912631ffa -->|succeeds| e2d8ce6b_f21e_4444_a828_0c6b722a9c93
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 35c76d6c_2ac7_486e_b0b7_b56f6b110bec
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+fe243f7f_ffc5_49c0_94e6_293ae2411ad6 <-->|synergize| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+```

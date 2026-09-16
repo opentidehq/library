@@ -45,8 +45,21 @@ threat:
     - Database Management::MongoDB
     - Security::SAML
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; Modify configuration; Modify privileges; Modify data
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Elevation of privilege
+    - Modify configuration
+    - Modify privileges
+    - Modify data
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
   viability: Likely
   description: |-
     Azure app registration persistence is a technique where adversaries exploit Azure 

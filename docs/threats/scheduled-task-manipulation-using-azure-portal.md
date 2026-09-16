@@ -1,14 +1,15 @@
 # Scheduled task manipulation using Azure Portal
 
 ## Metadata
-
-- **UUID**: `437a43b9-6344-45a9-915b-d733d23173ae`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2024-12-17`
-- **Modified**: `2025-02-26`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `437a43b9-6344-45a9-915b-d733d23173ae` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2024-12-17` |
+| Modified | `2025-02-26` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -68,19 +69,43 @@ it harder to investigate and remediate the attack.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have administrative privileges over Azure Portal or have access to 
+Adversary must have administrative privileges over Azure Portal or have access to 
 Azure credentials.
 
-Domains: Private Cloud, SaaS, Public Cloud
-Targets: Cloud Storage Accounts, Key Store, Virtual Machines, API Endpoints, Cloud Portal
-Platforms: Azure, Azure AD, Office 365, Windows, Linux**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Azure::Security::Key Vault**
+> Azure Key Vault secrets and key management
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft | - |
-| Leverage | Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Spoofing<br>Tampering<br>Repudiation<br>Infrastructure Compromise<br>Information Disclosure | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 
@@ -93,19 +118,27 @@ Platforms: Azure, Azure AD, Office 365, Windows, Linux**
 ## Chaining
 ```mermaid
 flowchart LR
-437a43b9_6344_45a9_915b_d733d23173ae["Scheduled task manipulation using Azure Portal"]
-5e66f826_4c4b_4357_b9c5_2f40da207f34["Scheduled tasks to maintain persistence in registry"]
-f9a6f927_d08c_40c1_85af_01331c471def["Phishing with Azure AD B2B Collaboration"]
-437a43b9_6344_45a9_915b_d733d23173ae -->|support::synergize| 5e66f826_4c4b_4357_b9c5_2f40da207f34
-5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|sequence::preceeds| f9a6f927_d08c_40c1_85af_01331c471def
+subgraph "Persistence"
+437a43b9_6344_45a9_915b_d733d23173ae{{"Scheduled task<br>manipulation using Azure<br>Portal"}}
+5e66f826_4c4b_4357_b9c5_2f40da207f34{{"Scheduled tasks to<br>maintain persistence in<br>registry"}}
+end
+subgraph "Social Engineering"
+f9a6f927_d08c_40c1_85af_01331c471def{{"Phishing with Azure AD<br>B2B Collaboration"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+437a43b9_6344_45a9_915b_d733d23173ae <-->|synergize| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+437a43b9_6344_45a9_915b_d733d23173ae -->|preceeds| f9a6f927_d08c_40c1_85af_01331c471def
+5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
 ```
 ### Chaining details
-#### synergize -> Scheduled tasks to maintain persistence in registry (`support::synergize`)
+#### synergize -> [Scheduled tasks to maintain persistence in registry](scheduled-tasks-to-maintain-persistence-in-registry.md) (`5e66f826-4c4b-4357-b9c5-2f40da207f34`) (`support::synergize`)
 A threat actor can successfully maintain persistence on a compromised system 
 by using scheduled tasks to create or edit registry entries. Windows Sc...
 
 - **Target UUID**: `5e66f826-4c4b-4357-b9c5-2f40da207f34`
-#### preceeds -> Phishing with Azure AD B2B Collaboration (`sequence::preceeds`)
+#### preceeds -> [Phishing with Azure AD B2B Collaboration](phishing-with-azure-ad-b2b-collaboration.md) (`f9a6f927-d08c-40c1-85af-01331c471def`) (`sequence::preceeds`)
 Phishing with Azure AD B2B Collaboration involves exploiting the service to send 
 malicious invitations that appear to come from Microsoft or other th...
 

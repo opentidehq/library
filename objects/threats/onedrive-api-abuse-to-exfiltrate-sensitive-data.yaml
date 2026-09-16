@@ -33,8 +33,17 @@ threat:
     - Application Layer::HTTP
     - Azure
   severity: Significant incident
-  leverage: Information Disclosure; Tampering; Spoofing; Elevation of privilege
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss
+  leverage:
+    - Information Disclosure
+    - Tampering
+    - Spoofing
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
   viability: Likely
   description: |-
     OneDrive API abuse to exfiltrate sensitive data occurs when attackers misuse legitimate 

@@ -67,8 +67,28 @@ threat:
     - Database Management::MongoDB
     - Security::SAML
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Infrastructure Compromise; Information Disclosure; Elevation of privilege; New Accounts; Modify configuration; Modify privileges; Modify data; Software installation
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Lose Capabilities; Business disruption; Operating costs; Competitive disadvantage
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Elevation of privilege
+    - New Accounts
+    - Modify configuration
+    - Modify privileges
+    - Modify data
+    - Software installation
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Lose Capabilities
+    - Business disruption
+    - Operating costs
+    - Competitive disadvantage
   viability: Likely
   description: |-
     Azure DevOps pipelines are a critical component in modern software development but 

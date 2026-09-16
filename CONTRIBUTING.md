@@ -4,13 +4,15 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 
 ## Before you open a PR
 
-1. Install the local engine (until PyPI publish):
+1. Install the released engine (and pytest for catalogue tests):
 
    ```bash
    python -m venv .venv && source .venv/bin/activate
-   pip install -e ../opentide
+   pip install -r requirements-dev.txt
    export OPENTIDE_REPO_ROOT=$PWD
    ```
+
+   `pip install opentide` is enough if you only need the CLI. Use `pip install -e ../opentide[cli]` only when testing unreleased engine changes.
 
 2. Add or edit YAML under `objects/threats/`, `objects/objectives/`, or `objects/rules/` using schema identifiers `threat::1.0`, `objective::1.0`, and `rule::1.0`.
 
@@ -19,11 +21,16 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 3. Validate and refresh docs:
 
    ```bash
-   python scripts/opentide_run.py generate schemas
-   python scripts/opentide_run.py generate templates
-   python scripts/opentide_run.py validate --strict
-   python scripts/opentide_run.py generate docs --output docs --flavor github
+   pytest --cov=migrate_trunk_models --cov-fail-under=98
+   opentide generate schemas
+   opentide generate templates
+   opentide validate --strict
+   opentide generate docs --output docs --flavor github
    ```
+
+   `scripts/opentide_run.py` is a thin passthrough around the same CLI.
+
+   `opentide validate --strict` against **released** `opentide` 0.1.5 still fails on `threat.impact` / `threat.leverage` YAML lists until [opentide#189](https://github.com/OpenTideHQ/opentide/issues/189) ships (blocked on [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12)). Catalogue shape tests (`pytest`) are the gate that can pass today. Do not collapse those fields back to semicolon-packed strings.
 
 4. Commit object YAML and updated `docs/` together.
 

@@ -21,8 +21,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0096
-    - misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
+    - name: att&ck::G0096
+    - name: misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
   killchain: Credential Access
   att&ck:
     - T1110
@@ -43,8 +43,17 @@ threat:
     - Remote Access
     - Customer Support
   severity: Moderate incident
-  leverage: Information Disclosure; Elevation of privilege; Infrastructure Compromise; Tampering; Denial of Service
-  impact: Data Breach; Impairement; Lose Capabilities; Reputational Damages
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Tampering
+    - Denial of Service
+  impact:
+    - Data Breach
+    - Impairement
+    - Lose Capabilities
+    - Reputational Damages
   viability: Likely
   description: |-
     SMB (Server Message Block) brute-force is a type of cyber attack where an

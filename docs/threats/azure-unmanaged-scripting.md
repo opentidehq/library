@@ -1,14 +1,15 @@
 # Azure - Unmanaged Scripting
 
 ## Metadata
-
-- **UUID**: `0815bc77-169d-4320-aa32-770cf062509a`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-09-02`
-- **Modified**: `2025-09-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `0815bc77-169d-4320-aa32-770cf062509a` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-09-02` |
+| Modified | `2025-09-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -62,20 +63,29 @@ or exfiltrate sensitive data.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries obtains valid credentials, permissions, or exploits a 
+Adversaries obtains valid credentials, permissions, or exploits a 
 vulnerability to gain access to the Azure portal or a relevant
 scripting service.
 
-Domains: Public Cloud
-Targets: Cloud Storage Accounts, Function-as-a-Service, Serverless
-Platforms: Azure, Azure AD**
+## Surface
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Serverless**
+> Cloud-agnostic serverless compute (when not provider-specific)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Reputational Damages | - |
-| Leverage | Elevation of privilege; Modify configuration; Modify privileges | - |
+| Impact | Data Breach<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Elevation of privilege<br>Modify configuration<br>Modify privileges | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Modify configuration or services<br>Modify privileges or permissions |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 
@@ -94,47 +104,120 @@ Platforms: Azure, Azure AD**
 ## Chaining
 ```mermaid
 flowchart LR
-0815bc77_169d_4320_aa32_770cf062509a["Azure - Unmanaged Scripting"]
-140907eb_c9fb_4330_9d71_656422388b2b["Azure - Gather Role Information"]
-b1593e0b_1b3b_462d_9ab6_21d1c136469d["Azure - Gather Resource Data"]
-2743bf18_3b86_4721_bf3e_153dcda0b149["Azure - Valid Credentials"]
-61ddc240_e5a6_4ca8_ae77_6b471b498913["Code execution via custom script extensions in Azure"]
-23f6a192_a25d_48b8_a235_7bb55e483682["Persistence with Azure Automanage Machine Configuration"]
-b954303c_0ad0_4dc0_b5ca_492c3de9cd53["Collecting sensitive information via custom script extensions"]
-0815bc77_169d_4320_aa32_770cf062509a -->|sequence::succeeds| 140907eb_c9fb_4330_9d71_656422388b2b
-140907eb_c9fb_4330_9d71_656422388b2b -->|sequence::succeeds| b1593e0b_1b3b_462d_9ab6_21d1c136469d
-b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|sequence::succeeds| 2743bf18_3b86_4721_bf3e_153dcda0b149
-2743bf18_3b86_4721_bf3e_153dcda0b149 -->|sequence::preceeds| 61ddc240_e5a6_4ca8_ae77_6b471b498913
-61ddc240_e5a6_4ca8_ae77_6b471b498913 -->|sequence::preceeds| 23f6a192_a25d_48b8_a235_7bb55e483682
-23f6a192_a25d_48b8_a235_7bb55e483682 -->|sequence::preceeds| b954303c_0ad0_4dc0_b5ca_492c3de9cd53
+subgraph "Execution"
+0815bc77_169d_4320_aa32_770cf062509a{{"Azure - Unmanaged<br>Scripting"}}
+61ddc240_e5a6_4ca8_ae77_6b471b498913{{"Code execution via<br>custom script extensions<br>in Azure"}}
+60c5b065_7d06_4697_850f_c2f80765f10b{{"Changes to Azure<br>infrastructure deployed<br>through Azure CLI"}}
+end
+subgraph "Reconnaissance"
+140907eb_c9fb_4330_9d71_656422388b2b{{"Azure - Gather Role<br>Information"}}
+b1593e0b_1b3b_462d_9ab6_21d1c136469d{{"Azure - Gather Resource<br>Data"}}
+fe6827f2_efb4_43b3_9ca3_b7d417111b32{{"Azure - Gather<br>Application Information"}}
+53063205_4404_4e6d_a2f5_d566c6085d96{{"Data collection using<br>SharpHound, SoapHound,<br>Bloodhound and<br>Azurehound"}}
+end
+subgraph "Credential Access"
+2743bf18_3b86_4721_bf3e_153dcda0b149{{"Azure - Valid<br>Credentials"}}
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+6e988fa7_69c9_4aef_897c_a34fa5066dac{{"Ghost logins attempts"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Persistence"
+23f6a192_a25d_48b8_a235_7bb55e483682{{"Persistence with Azure<br>Automanage Machine<br>Configuration"}}
+5d43ef75_4637_4a75_b1ed_6716052cff0e{{"Azure - App registration<br>persistence"}}
+50c7e353_ac1c_48a7_8c98_2515b45f31f4{{"Persistence through<br>automation runbooks in<br>Azure"}}
+end
+subgraph "Lateral Movement"
+a8c7b250_a2d4_4a0d_82f8_23dc99c77d7b{{"Addition of credentials<br>to OAuth applications<br>and service principals"}}
+ca2751c7_8641_4fb0_a90b_30c5987015dc{{"Externally controlled<br>Azure credentials added<br>to an Enterprise app or<br>its SPN"}}
+9bb31c65_8abd_48fc_afe3_8aca76109737{{"Azure - Modify<br>federation trust to<br>accept externally signed<br>tokens"}}
+end
+subgraph "Privilege Escalation"
+f1dc4341_eb45_4d07_8075_b1a6b227cc76{{"Cloud IAM role<br>assumption"}}
+c698fc79_3ed6_44a7_a9d7_bc447600e4c3{{"Azure AD Connect abuse"}}
+c7e260d8_d391_41eb_be1a_7f276c99b383{{"Azure app registration -<br>privilege escalation"}}
+bb2501d5_99c7_44a6_ac5a_9510102d6611{{"Azure - Principal<br>Impersonation"}}
+end
+subgraph "Collection"
+78d5e363_14db_40c0_a1c4_4ba02a3e60d4{{"Azure - Hijack Entra ID<br>Applications"}}
+f18be76e_f2b3_410a_80c5_d67e7b8e7b03{{"Perform Microsoft Entra<br>ID connectors MITM<br>attack"}}
+end
+subgraph "Command & Control"
+2fd1cddb_c66d_4a99_9779_31e32b67495e{{"Azure - Lateral movement<br>abusing Cross-Tenant<br>Synchronization"}}
+end
+subgraph "Delivery"
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+b954303c_0ad0_4dc0_b5ca_492c3de9cd53{{"Collecting sensitive<br>information via custom<br>script extensions"}}
+20bd3620_b13b_4895_b291_b1a26bd9aef3{{"MS 365 admin compromised<br>account"}}
+0815bc77_169d_4320_aa32_770cf062509a -->|succeeds| 140907eb_c9fb_4330_9d71_656422388b2b
+0815bc77_169d_4320_aa32_770cf062509a -->|succeeds| b1593e0b_1b3b_462d_9ab6_21d1c136469d
+0815bc77_169d_4320_aa32_770cf062509a -->|succeeds| 2743bf18_3b86_4721_bf3e_153dcda0b149
+0815bc77_169d_4320_aa32_770cf062509a -->|preceeds| 61ddc240_e5a6_4ca8_ae77_6b471b498913
+0815bc77_169d_4320_aa32_770cf062509a -->|preceeds| 23f6a192_a25d_48b8_a235_7bb55e483682
+0815bc77_169d_4320_aa32_770cf062509a -->|preceeds| b954303c_0ad0_4dc0_b5ca_492c3de9cd53
+140907eb_c9fb_4330_9d71_656422388b2b -->|preceeds| a8c7b250_a2d4_4a0d_82f8_23dc99c77d7b
+140907eb_c9fb_4330_9d71_656422388b2b -->|preceeds| 61ddc240_e5a6_4ca8_ae77_6b471b498913
+140907eb_c9fb_4330_9d71_656422388b2b -->|preceeds| f1dc4341_eb45_4d07_8075_b1a6b227cc76
+61ddc240_e5a6_4ca8_ae77_6b471b498913 -->|enabled| 140907eb_c9fb_4330_9d71_656422388b2b
+61ddc240_e5a6_4ca8_ae77_6b471b498913 -->|enabled| 2743bf18_3b86_4721_bf3e_153dcda0b149
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| a8c7b250_a2d4_4a0d_82f8_23dc99c77d7b
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| c698fc79_3ed6_44a7_a9d7_bc447600e4c3
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 5d43ef75_4637_4a75_b1ed_6716052cff0e
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 60c5b065_7d06_4697_850f_c2f80765f10b
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 6e988fa7_69c9_4aef_897c_a34fa5066dac
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 78d5e363_14db_40c0_a1c4_4ba02a3e60d4
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 2fd1cddb_c66d_4a99_9779_31e32b67495e
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 20bd3620_b13b_4895_b291_b1a26bd9aef3
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| f18be76e_f2b3_410a_80c5_d67e7b8e7b03
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 50c7e353_ac1c_48a7_8c98_2515b45f31f4
+2743bf18_3b86_4721_bf3e_153dcda0b149 -->|preceeds| 23f6a192_a25d_48b8_a235_7bb55e483682
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+c698fc79_3ed6_44a7_a9d7_bc447600e4c3 -->|enabled| 2743bf18_3b86_4721_bf3e_153dcda0b149
+5d43ef75_4637_4a75_b1ed_6716052cff0e -->|succeeds| c7e260d8_d391_41eb_be1a_7f276c99b383
+c7e260d8_d391_41eb_be1a_7f276c99b383 -->|enabled| bb2501d5_99c7_44a6_ac5a_9510102d6611
+c7e260d8_d391_41eb_be1a_7f276c99b383 -->|enabled| 2743bf18_3b86_4721_bf3e_153dcda0b149
+c7e260d8_d391_41eb_be1a_7f276c99b383 -->|enabled| fe6827f2_efb4_43b3_9ca3_b7d417111b32
+bb2501d5_99c7_44a6_ac5a_9510102d6611 -->|preceeds| 2743bf18_3b86_4721_bf3e_153dcda0b149
+bb2501d5_99c7_44a6_ac5a_9510102d6611 -->|preceeds| fe6827f2_efb4_43b3_9ca3_b7d417111b32
+6e988fa7_69c9_4aef_897c_a34fa5066dac -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+fe6827f2_efb4_43b3_9ca3_b7d417111b32 -->|enabled| 140907eb_c9fb_4330_9d71_656422388b2b
+fe6827f2_efb4_43b3_9ca3_b7d417111b32 -->|enabled| 53063205_4404_4e6d_a2f5_d566c6085d96
+fe6827f2_efb4_43b3_9ca3_b7d417111b32 -->|enabling| ca2751c7_8641_4fb0_a90b_30c5987015dc
+fe6827f2_efb4_43b3_9ca3_b7d417111b32 -->|enabling| c7e260d8_d391_41eb_be1a_7f276c99b383
+53063205_4404_4e6d_a2f5_d566c6085d96 -->|succeeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+53063205_4404_4e6d_a2f5_d566c6085d96 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|succeeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b1593e0b_1b3b_462d_9ab6_21d1c136469d -->|succeeds| 9bb31c65_8abd_48fc_afe3_8aca76109737
 ```
 ### Chaining details
-#### succeeds -> Azure - Gather Role Information (`sequence::succeeds`)
+#### succeeds -> [Azure - Gather Role Information](azure-gather-role-information.md) (`140907eb-c9fb-4330-9d71-656422388b2b`) (`sequence::succeeds`)
 Adversaries need to identify privileged accounts and misconfigured role 
 assignments that can be exploited for privilege escalation.
 
 - **Target UUID**: `140907eb-c9fb-4330-9d71-656422388b2b`
-#### succeeds -> Azure - Gather Resource Data (`sequence::succeeds`)
+#### succeeds -> [Azure - Gather Resource Data](azure-gather-resource-data.md) (`b1593e0b-1b3b-462d-9ab6-21d1c136469d`) (`sequence::succeeds`)
 The attacker obtains credentials (via phishing, password spray, leaked keys)
 granting at least Reader access to the target Azure tenant.
 
 - **Target UUID**: `b1593e0b-1b3b-462d-9ab6-21d1c136469d`
-#### succeeds -> Azure - Valid Credentials (`sequence::succeeds`)
+#### succeeds -> [Azure - Valid Credentials](azure-valid-credentials.md) (`2743bf18-3b86-4721-bf3e-153dcda0b149`) (`sequence::succeeds`)
 Adversaries obtain the username and password of an AzureAD user either through
 phishing, password spraying, brute-force attacks, or credentials leaked online.
 
 - **Target UUID**: `2743bf18-3b86-4721-bf3e-153dcda0b149`
-#### preceeds -> Code execution via custom script extensions in Azure (`sequence::preceeds`)
+#### preceeds -> [Code execution via custom script extensions in Azure](code-execution-via-custom-script-extensions-in-azure.md) (`61ddc240-e5a6-4ca8-ae77-6b471b498913`) (`sequence::preceeds`)
 Adversaries must have an Azure role that grants the ability to write or deploy 
 custom script extensions on virtual machines.
 
 - **Target UUID**: `61ddc240-e5a6-4ca8-ae77-6b471b498913`
-#### preceeds -> Persistence with Azure Automanage Machine Configuration (`sequence::preceeds`)
+#### preceeds -> [Persistence with Azure Automanage Machine Configuration](persistence-with-azure-automanage-machine-configuration.md) (`23f6a192-a25d-48b8-a235-7bb55e483682`) (`sequence::preceeds`)
 The adversary needs the owner access role on the targeted Azure subscription to apply
 the Azure Policy and grant permissions for the system-managed identities.
 
 - **Target UUID**: `23f6a192-a25d-48b8-a235-7bb55e483682`
-#### preceeds -> Collecting sensitive information via custom script extensions (`sequence::preceeds`)
+#### preceeds -> [Collecting sensitive information via custom script extensions](collecting-sensitive-information-via-custom-script-extensions.md) (`b954303c-0ad0-4dc0-b5ca-492c3de9cd53`) (`sequence::preceeds`)
 Attackers need to gain access to an Azure account with the Virtual Machine Contributor 
 role (or equivalent) can use custom script extensions to execute arbitrary code 
 as SYSTEM or root on VMs.

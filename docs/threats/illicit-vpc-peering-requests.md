@@ -1,14 +1,15 @@
 # Illicit VPC peering requests
 
 ## Metadata
-
-- **UUID**: `cf14af27-ea36-4306-9134-8d9ccb69a617`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-11-21`
-- **Modified**: `2022-11-21`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `cf14af27-ea36-4306-9134-8d9ccb69a617` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-11-21` |
+| Modified | `2022-11-21` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -34,19 +35,25 @@ allow different services to communicate to each others.
 **Low** - A Low priority incident is unlikely to affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The attacker needs to control an AWS account in order to send a VPC peering request. The AWS account controlled by the attacker may or may not
+The attacker needs to control an AWS account in order to send a VPC peering request. The AWS account controlled by the attacker may or may not
 be inside the EC AWS PROD organization.
 
-Domains: Public Cloud, Networking
-Targets: Network Equipment, System admin
-Platforms: AWS VPC**
+## Surface
+> **AWS::Networking::VPC**
+> Amazon Virtual Private Cloud
+
+> **Switches**
+> Network switches
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Business disruption; IP Loss; Monetary Loss; Operating costs | - |
-| Leverage | Infrastructure Compromise; Information Disclosure | - |
+| Impact | Data Breach<br>Business disruption<br>IP Loss<br>Monetary Loss<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>The vector will directly conduct to loss of value directly impacting the bottom line.<br>Increased operating costs |
+| Leverage | Infrastructure Compromise<br>Information Disclosure | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Social Engineering | Techniques aimed at the manipulation of people to perform unsafe actions. |
 

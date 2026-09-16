@@ -1,14 +1,15 @@
 # Compromised software packages
 
 ## Metadata
-
-- **UUID**: `1c1c9665-a30e-479b-bd80-1afb7b53ac83`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-15`
-- **Modified**: `2025-04-22`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `1c1c9665-a30e-479b-bd80-1afb7b53ac83` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-15` |
+| Modified | `2025-04-22` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -66,19 +67,37 @@ selecting packages from trusted sources and monitoring their activity.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor can use vulnerabilities in the function and appearance
+A threat actor can use vulnerabilities in the function and appearance
 of software malicious dev packages to entice a developer to install them.
 
-Domains: Enterprise, IoT, Private Cloud, Public Cloud
-Targets: CI/CD Pipelines, Developer, Workstations, Laptop
-Platforms: Windows, macOS, Linux**
+## Surface
+> **Industrial IoT::IoT Gateways**
+> Industrial IoT edge gateways
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Development::CI/CD**
+> Continuous integration and continuous delivery platforms
+
+> **Development**
+> Software development tools and platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
-| Impact | Business disruption; Impairement; Lose Capabilities | - |
-| Leverage | Information Disclosure; Infrastructure Compromise; Elevation of privilege; Tampering | - |
+| Impact | Business disruption<br>Impairement<br>Lose Capabilities | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Information Disclosure<br>Infrastructure Compromise<br>Elevation of privilege<br>Tampering | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -106,12 +125,14 @@ Platforms: Windows, macOS, Linux**
 ## Chaining
 ```mermaid
 flowchart LR
-1c1c9665_a30e_479b_bd80_1afb7b53ac83["Compromised software packages"]
-78683822_44dc_41ac_8fef_b5f0968743c9["Malicious Software Dependencies Faking Known Packages"]
-1c1c9665_a30e_479b_bd80_1afb7b53ac83 -->|atomicity::implements| 78683822_44dc_41ac_8fef_b5f0968743c9
+subgraph "Exploitation"
+1c1c9665_a30e_479b_bd80_1afb7b53ac83{{"Compromised software<br>packages"}}
+78683822_44dc_41ac_8fef_b5f0968743c9{{"Malicious Software<br>Dependencies Faking<br>Known Packages"}}
+end
+1c1c9665_a30e_479b_bd80_1afb7b53ac83 -->|implements| 78683822_44dc_41ac_8fef_b5f0968743c9
 ```
 ### Chaining details
-#### implements -> Malicious Software Dependencies Faking Known Packages (`atomicity::implements`)
+#### implements -> [Malicious Software Dependencies Faking Known Packages](malicious-software-dependencies-faking-known-packages.md) (`78683822-44dc-41ac-8fef-b5f0968743c9`) (`atomicity::implements`)
 Threat actors use a technique to mimic legitimate software
 packages in order to mislead the developers in downloading
 and infecting their systems.

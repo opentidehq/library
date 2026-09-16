@@ -1,14 +1,15 @@
 # Abuse of 'Always-on VPN' feature on mobile device
 
 ## Metadata
-
-- **UUID**: `80329dfd-eb12-49da-9f20-565758b55eab`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-23`
-- **Modified**: `2025-04-23`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `80329dfd-eb12-49da-9f20-565758b55eab` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-23` |
+| Modified | `2025-04-23` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -61,20 +62,32 @@ of the VPN.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries must obtain valid user or device credentials, or compromise authentication 
+Adversaries must obtain valid user or device credentials, or compromise authentication 
 certificates used for VPN access. This could be achieved through phishing, credential 
 theft, or exploiting weak authentication practices.
 
-Domains: Mobile
-Targets: Mobile phone, Tablet, VPN Client, Personal Information
-Platforms: iOS, Android**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
+
+> **VPN**
+> Virtual Private Network solutions and tunnelling protocols
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Competitive disadvantage; Data Breach; Identity Theft; IP Loss | - |
-| Leverage | Dwelling; Information Disclosure; Spoofing | - |
+| Impact | Competitive disadvantage<br>Data Breach<br>Identity Theft<br>IP Loss | Loss of competitive advantage<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries. |
+| Leverage | Dwelling<br>Information Disclosure<br>Spoofing | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Persistence | Any access, action or change to a system that gives an attacker persistent presence on the system. |
 

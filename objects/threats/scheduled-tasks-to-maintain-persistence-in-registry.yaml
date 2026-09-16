@@ -21,12 +21,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0125
-    - misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
-    - att&ck::G0117
-    - misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0125
+    - name: misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
+    - name: att&ck::G0117
+    - name: misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Persistence
   att&ck:
     - T1053.005
@@ -44,8 +44,14 @@ threat:
     - Remote Access
     - Web Servers
   severity: Moderate incident
-  leverage: Infrastructure Compromise; Tampering; Modify configuration; Modify data
-  impact: Impairement; Business disruption
+  leverage:
+    - Infrastructure Compromise
+    - Tampering
+    - Modify configuration
+    - Modify data
+  impact:
+    - Impairement
+    - Business disruption
   viability: Likely
   description: |-
     A threat actor can successfully maintain persistence on a compromised system 

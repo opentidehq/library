@@ -1,14 +1,15 @@
 # Process discovery
 
 ## Metadata
-
-- **UUID**: `cc7dd57f-8d9e-451f-8ec7-4bb2ad10e96c`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-02-04`
-- **Modified**: `2025-02-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `cc7dd57f-8d9e-451f-8ec7-4bb2ad10e96c` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-02-04` |
+| Modified | `2025-02-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -117,19 +118,37 @@ identify potential targets for exploitation.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actors rely on exposed / public visible processes,
+Threat actors rely on exposed / public visible processes,
 they can scan and gather information for a target.
 
-Domains: Embedded, Private Cloud, Public Cloud
-Targets: Customer, End-user, Workstations, Laptop, Public-Facing Servers, Web Application Servers
-Platforms: Windows, Linux, macOS, PowerShell**
+## Surface
+> **Embedded**
+> Embedded and real-time operating systems
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Lose Capabilities; Nuisance; Operating costs; Reputational Damages | - |
-| Leverage | Dwelling; Elevation of privilege; Information Disclosure; Infrastructure Compromise; Software installation; Tampering | - |
+| Impact | Business disruption<br>Lose Capabilities<br>Nuisance<br>Operating costs<br>Reputational Damages | Business disruption<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Increased operating costs<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Elevation of privilege<br>Information Disclosure<br>Infrastructure Compromise<br>Software installation<br>Tampering | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Software installation or code modification<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Discovery | Techniques that allow an attacker to gain knowledge about a system and its network environment. |
 

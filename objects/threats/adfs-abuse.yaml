@@ -37,8 +37,18 @@ threat:
     - AWS::Storage
     - Kerberos
   severity: Significant incident
-  leverage: Spoofing; Tampering; Repudiation; Elevation of privilege; Information Disclosure
-  impact: Data Breach; Identity Theft; Reputational Damages; Monetary Loss; Business disruption
+  leverage:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Elevation of privilege
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Identity Theft
+    - Reputational Damages
+    - Monetary Loss
+    - Business disruption
   viability: Likely
   description: |-
     AD FS (Active Directory Federation Services) is a critical identity provider solution 

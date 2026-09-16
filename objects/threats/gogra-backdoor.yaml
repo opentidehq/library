@@ -41,8 +41,16 @@ threat:
     - Web Servers
     - Email
   severity: Localised incident
-  leverage: Dwelling; Infrastructure Compromise; Information Disclosure; Spoofing
-  impact: Nuisance; Impairement; Data Breach; Operating costs
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Spoofing
+  impact:
+    - Nuisance
+    - Impairement
+    - Data Breach
+    - Operating costs
   viability: Likely
   description: |-
     GoGra or also known as Trojan.Gogra is a newly discovered backdoor,

@@ -1,14 +1,15 @@
 # Typosquatting domain attack for disinformation
 
 ## Metadata
-
-- **UUID**: `db3cae2f-3e6b-4aed-b346-43686bbb382e`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-01-09`
-- **Modified**: `2025-01-09`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `db3cae2f-3e6b-4aed-b346-43686bbb382e` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-01-09` |
+| Modified | `2025-01-09` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -63,23 +64,44 @@ divisions within the EU and its member states.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor use vulnerabilities in domain providers to buy similar
+A threat actor use vulnerabilities in domain providers to buy similar
 to a legit domain and to use them for malicious purposes.
 
 Usually the threat actors are buying as much as possible domains
 on a bulk with impersonation goal, social engineering or just spreading
 disinformation.
 
-Domains: Enterprise, Mobile, IoT, Private Cloud, Public Cloud
-Targets: Customer, End-user, Email Platform, Other, Public-Facing Servers
-Platforms: Windows, Linux**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Industrial IoT::IoT Gateways**
+> Industrial IoT edge gateways
+
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Email**
+> Email infrastructure and services
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Asset and fraud; Identity Theft | - |
-| Leverage | Spoofing; Infrastructure Compromise | - |
+| Impact | Impairement<br>Asset and fraud<br>Identity Theft | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Asset and fraud-related losses<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships. |
+| Leverage | Spoofing<br>Infrastructure Compromise | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 
 ## Actors
@@ -102,12 +124,14 @@ Platforms: Windows, Linux**
 ## Chaining
 ```mermaid
 flowchart LR
-db3cae2f_3e6b_4aed_b346_43686bbb382e["Typosquatting domain attack for disinformation"]
-1a68b5eb_0112_424d_a21f_88dda0b6b8df["Spearphishing Link"]
-db3cae2f_3e6b_4aed_b346_43686bbb382e -->|sequence::preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
+subgraph "Delivery"
+1a68b5eb_0112_424d_a21f_88dda0b6b8df{{"Spearphishing Link"}}
+end
+db3cae2f_3e6b_4aed_b346_43686bbb382e{{"Typosquatting domain<br>attack for<br>disinformation"}}
+db3cae2f_3e6b_4aed_b346_43686bbb382e -->|preceeds| 1a68b5eb_0112_424d_a21f_88dda0b6b8df
 ```
 ### Chaining details
-#### preceeds -> Spearphishing Link (`sequence::preceeds`)
+#### preceeds -> [Spearphishing Link](spearphishing-link.md) (`1a68b5eb-0112-424d-a21f-88dda0b6b8df`) (`sequence::preceeds`)
 Malicious spearphishing campaign can use a typosquatting domain
 technique - a threat actor may embed fraudulent web pages / domains
 in the links in a customized and initially prepared emails.

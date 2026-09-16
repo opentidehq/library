@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Execution
   att&ck:
     - T1059
@@ -65,8 +65,13 @@ threat:
     - AWS::Storage
     - Serverless
   severity: Significant incident
-  leverage: Elevation of privilege; Modify configuration; Modify privileges
-  impact: Data Breach; Reputational Damages
+  leverage:
+    - Elevation of privilege
+    - Modify configuration
+    - Modify privileges
+  impact:
+    - Data Breach
+    - Reputational Damages
   viability: Likely
   description: |-
     Adversaries can use Azure function apps, automation accounts, or other scriptable 

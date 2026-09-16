@@ -18,10 +18,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G1004
-    - misp::d9e5be22-1a04-4956-af6c-37af02330980
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G1004
+    - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Credential Access
   att&ck:
     - T1541
@@ -42,8 +42,12 @@ threat:
     - Customer Support
     - Entra ID
   severity: Moderate incident
-  leverage: Elevation of privilege; Spoofing
-  impact: Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Identity Theft
+    - Impairement
   viability: Roughly even chance
   description: |-
     SIM swapping is a malicious technique where threat actors target mobile carriers to gain access to

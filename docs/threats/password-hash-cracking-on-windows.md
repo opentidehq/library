@@ -1,14 +1,15 @@
 # Password hash cracking on Windows
 
 ## Metadata
-
-- **UUID**: `35c76d6c-2ac7-486e-b0b7-b56f6b110bec`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2023-02-03`
-- **Modified**: `2023-02-06`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `35c76d6c-2ac7-486e-b0b7-b56f6b110bec` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2023-02-03` |
+| Modified | `2023-02-06` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -71,11 +72,29 @@ hashcat --attack-mode 3 --custom-charset1 "?u" --custom-charset2 "?l?u?d" --cust
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor is using already compromised Windows endpoint.
+A threat actor is using already compromised Windows endpoint.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Desktop, Laptop, Workstations, Control Server, Remote access, System admin, Public-Facing Servers, Web Application Servers, Production Database
-Platforms: Windows, Active Directory**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Database Management**
+> Database management systems
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
@@ -98,3 +117,25 @@ Platforms: Windows, Active Directory**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1110.002` | [Brute Force: Password Cracking](https://attack.mitre.org/techniques/T1110/002) | Adversaries may use password cracking to attempt to recover usable credentials, such as plaintext passwords, when credential material such as password hashes are obtained. [OS Credential Dumping](https://attack.mitre.org/techniques/T1003) can be used to obtain password hashes, this may only get an adversary so far when [Pass the Hash](https://attack.mitre.org/techniques/T1550/002) is not an option. Further,  adversaries may leverage [Data from Configuration Repository](https://attack.mitre.org/techniques/T1602) in order to obtain hashed credentials for network devices.(Citation: US-CERT-TA18-106A)   Techniques to systematically guess the passwords used to compute hashes are available, or the adversary may use a pre-computed rainbow table to crack hashes. Cracking hashes is usually done on adversary-controlled systems outside of the target network.(Citation: Wikipedia Password cracking) The resulting plaintext password resulting from a successfully cracked hash may be used to log into systems, resources, and services in which the account has access. |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Credential Access"
+35c76d6c_2ac7_486e_b0b7_b56f6b110bec{{"Password hash cracking<br>on Windows"}}
+d0522985_6001_4e25_a5ff_2dc87bf2fee8{{"Windows credential<br>access attempt"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+subgraph "Discovery"
+3b1026c6_7d04_4b91_ba6f_abc68e993616{{"Abusing Lolbins to<br>Enumerate Local and<br>Domain Accounts and<br>Groups"}}
+end
+subgraph "Execution"
+d5039f2c_9fcc_4ba3_ad6a_da8c891ba745{{"Abuse of Windows<br>Utilities"}}
+end
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 35c76d6c_2ac7_486e_b0b7_b56f6b110bec
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| 3b1026c6_7d04_4b91_ba6f_abc68e993616
+d0522985_6001_4e25_a5ff_2dc87bf2fee8 -->|preceeds| d5039f2c_9fcc_4ba3_ad6a_da8c891ba745
+```

@@ -1,14 +1,15 @@
 # SMB login brute force
 
 ## Metadata
-
-- **UUID**: `fa4c66c6-a69b-4e16-84cb-7ad8c772af41`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-07-21`
-- **Modified**: `2025-08-07`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `fa4c66c6-a69b-4e16-84cb-7ad8c772af41` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-07-21` |
+| Modified | `2025-08-07` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -97,19 +98,28 @@ msf5 auxilary(scanner/smb/smb_login) > run
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs an access to a compromised host and availability to
+A threat actor needs an access to a compromised host and availability to
 try to connect to a SMB share.
 
-Domains: Enterprise
-Targets: Workstations, Remote access, Other, Laptop, Customer
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Data Breach; Impairement; Lose Capabilities; Reputational Damages | - |
-| Leverage | Information Disclosure; Elevation of privilege; Infrastructure Compromise; Tampering; Denial of Service | - |
+| Impact | Data Breach<br>Impairement<br>Lose Capabilities<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Information Disclosure<br>Elevation of privilege<br>Infrastructure Compromise<br>Tampering<br>Denial of Service | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action attempting to deny access to valid users, such as by making a web server temporarily unavailable or unusable. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -128,12 +138,14 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-fa4c66c6_a69b_4e16_84cb_7ad8c772af41["SMB login brute force"]
-cc546bbc_f71c_4538_934c_415d6adc293b["Password spraying attack"]
-fa4c66c6_a69b_4e16_84cb_7ad8c772af41 -->|atomicity::implements| cc546bbc_f71c_4538_934c_415d6adc293b
+subgraph "Credential Access"
+fa4c66c6_a69b_4e16_84cb_7ad8c772af41{{"SMB login brute force"}}
+cc546bbc_f71c_4538_934c_415d6adc293b{{"Password spraying attack"}}
+end
+fa4c66c6_a69b_4e16_84cb_7ad8c772af41 -->|implements| cc546bbc_f71c_4538_934c_415d6adc293b
 ```
 ### Chaining details
-#### implements -> Password spraying attack (`atomicity::implements`)
+#### implements -> [Password spraying attack](password-spraying-attack.md) (`cc546bbc-f71c-4538-934c-415d6adc293b`) (`atomicity::implements`)
 A password spraying technique can be used to bruteforce and compromise
 an SMB share. Threat actors brute-force the credentials using a list of
 common or expected passwords against a set of usernames.

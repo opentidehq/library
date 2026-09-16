@@ -1,14 +1,15 @@
 # Jailbreak Tools for iOS
 
 ## Metadata
-
-- **UUID**: `024a10fb-fc65-485b-9d7c-98a2372d75c0`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-09`
-- **Modified**: `2025-04-16`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `024a10fb-fc65-485b-9d7c-98a2372d75c0` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-09` |
+| Modified | `2025-04-16` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -78,20 +79,26 @@ tweak support.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **If adversaries have physical access to the device, they can install a jailbreaking tool
+If adversaries have physical access to the device, they can install a jailbreaking tool
 that include the neccesary exploit. If no physical access is available, it is possible
 to exploit a zero-day vuln to bypass the device' security mechanisms.
 
-Domains: Mobile
-Targets: Mobile phone, Personal Information, Tablet
-Platforms: iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft; Impairement; IP Loss; Lose Capabilities | - |
-| Leverage | Spoofing; Tampering; Information Disclosure; Software installation | - |
+| Impact | Data Breach<br>Identity Theft<br>Impairement<br>IP Loss<br>Lose Capabilities | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Spoofing<br>Tampering<br>Information Disclosure<br>Software installation | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Software installation or code modification |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

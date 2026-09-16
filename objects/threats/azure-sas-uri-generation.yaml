@@ -58,8 +58,14 @@ threat:
     - Orchestration::Kubernetes
     - Serverless
   severity: Significant incident
-  leverage: Information Disclosure; Elevation of privilege
-  impact: Data Breach; IP Loss; Reputational Damages; Monetary Loss
+  leverage:
+    - Information Disclosure
+    - Elevation of privilege
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Monetary Loss
   viability: Likely
   description: |-
     The following threat vector enables attackers to exfiltrate or manipulate data by 

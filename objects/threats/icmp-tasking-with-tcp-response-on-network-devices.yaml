@@ -42,8 +42,15 @@ threat:
     - Routers
     - Switches
   severity: Substantial incident
-  leverage: Infrastructure Compromise; Information Disclosure; Spoofing
-  impact: Data Breach; Lose Capabilities; Reputational Damages; National Security
+  leverage:
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Spoofing
+  impact:
+    - Data Breach
+    - Lose Capabilities
+    - Reputational Damages
+    - National Security
   viability: Likely
   description: |-
     LINE VIPER implements a sophisticated alternative command and

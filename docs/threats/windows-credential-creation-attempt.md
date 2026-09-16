@@ -1,14 +1,15 @@
 # Windows credential creation attempt
 
 ## Metadata
-
-- **UUID**: `09b9aee8-3849-4578-8243-17157d6d54e0`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-02-10`
-- **Modified**: `2025-02-14`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `09b9aee8-3849-4578-8243-17157d6d54e0` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-02-10` |
+| Modified | `2025-02-14` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -72,19 +73,34 @@ credentials on a Windows system.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor needs a valid and privileged accounts 
+A threat actor needs a valid and privileged accounts 
 or equivalent
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: Auth token, Customer, Laptop, Web Application Servers, Workstations, Remote access
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Identity Theft; Impairement; Lose Capabilities; Reputational Damages | - |
-| Leverage | Dwelling; Elevation of privilege; New Accounts; Modify configuration; Tampering | - |
+| Impact | Business disruption<br>Identity Theft<br>Impairement<br>Lose Capabilities<br>Reputational Damages | Business disruption<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Elevation of privilege<br>New Accounts<br>Modify configuration<br>Tampering | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Ability to create new arbitrary user accounts.<br>Modify configuration or services<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Environment dependent | Depends |
 | Kill Chain | Credential Access | Techniques resulting in the access of, or control over, system, service or domain credentials. |
 
@@ -109,12 +125,14 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-09b9aee8_3849_4578_8243_17157d6d54e0["Windows credential creation attempt"]
-444e014f_d830_4d0d_9c2e_1f76d80ba380["Windows credential dumping through Local Security Authority (LSA) Secrets"]
-09b9aee8_3849_4578_8243_17157d6d54e0 -->|sequence::succeeds| 444e014f_d830_4d0d_9c2e_1f76d80ba380
+subgraph "Credential Access"
+09b9aee8_3849_4578_8243_17157d6d54e0{{"Windows credential<br>creation attempt"}}
+444e014f_d830_4d0d_9c2e_1f76d80ba380{{"Windows credential<br>dumping through Local<br>Security Authority LSA<br>Secrets"}}
+end
+09b9aee8_3849_4578_8243_17157d6d54e0 -->|succeeds| 444e014f_d830_4d0d_9c2e_1f76d80ba380
 ```
 ### Chaining details
-#### succeeds -> Windows credential dumping through Local Security Authority (LSA) Secrets (`sequence::succeeds`)
+#### succeeds -> [Windows credential dumping through Local Security Authority (LSA) Secrets](windows-credential-dumping-through-local-security-authority-lsa-secrets.md) (`444e014f-d830-4d0d-9c2e-1f76d80ba380`) (`sequence::succeeds`)
 A threat actor can use a technique for Local Security Authority
 (LSA) Secrets dumping in order to abuse a Windows process and
 in this way to initiate a process, passing the credentials

@@ -1,14 +1,15 @@
 # GSM interception
 
 ## Metadata
-
-- **UUID**: `5238718b-13c4-46d7-a84c-d29c77e5d801`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-04-16`
-- **Modified**: `2025-04-16`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `5238718b-13c4-46d7-a84c-d29c77e5d801` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-04-16` |
+| Modified | `2025-04-16` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -73,20 +74,32 @@ interception to gain access to bank accounts by intercepting SMS-based authentic
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries need specialized hardware such as passive or active GSM interceptors 
+Adversaries need specialized hardware such as passive or active GSM interceptors 
 (e.g., IMSI catchers, fake base stations). These devices can mimic legitimate cell 
 towers and force nearby mobile phones to connect, enabling interception of communications.
 
-Domains: Mobile
-Targets: Tablet, Mobile phone, Personal Information, Critical Documents
-Platforms: Android, iOS**
+## Surface
+> **Mobile**
+> Mobile operating systems (Android, iOS)
+
+> **Mobile::Android**
+> Google Android mobile operating system (all versions)
+
+> **Mobile::iOS**
+> Apple iOS mobile operating system (all versions)
+
+> **Mobile::iPadOS**
+> Apple iPadOS (distinct from iOS for tablet devices)
+
+> **File Sharing**
+> Cloud file sharing and storage services
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft; IP Loss; Nuisance; Reputational Damages | - |
-| Leverage | Dwelling; Hardware tampering; Information Disclosure; Infrastructure Compromise; Spoofing | - |
+| Impact | Data Breach<br>Identity Theft<br>IP Loss<br>Nuisance<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Small and mostly inconsequential to day to day operations, but noticed.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Hardware tampering<br>Information Disclosure<br>Infrastructure Compromise<br>Spoofing | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Hardware tampering or physical alteration<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Collection | Techniques used to identify and gather data from a target network prior to exfiltration. |
 

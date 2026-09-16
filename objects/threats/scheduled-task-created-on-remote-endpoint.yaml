@@ -32,8 +32,13 @@ threat:
     - Windows::Server
     - Web Servers
   severity: Moderate incident
-  leverage: Dwelling; Infrastructure Compromise; Modify configuration; Software installation
-  impact: Impairement
+  leverage:
+    - Dwelling
+    - Infrastructure Compromise
+    - Modify configuration
+    - Software installation
+  impact:
+    - Impairement
   viability: Likely
   description: |-
     Adversaries with access to the right credentials can create scheduled tasks 

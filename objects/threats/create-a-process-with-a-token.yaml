@@ -27,8 +27,12 @@ threat:
     - Remote Access
     - Entra ID
   severity: Moderate incident
-  leverage: Elevation of privilege; Infrastructure Compromise
-  impact: Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+  impact:
+    - Identity Theft
+    - Impairement
   viability: Likely
   description: |-
     Adversaries may create a new process with a different token 

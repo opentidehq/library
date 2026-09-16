@@ -1,14 +1,15 @@
 # Hide Artifacts using NTFS File Attributes
 
 ## Metadata
-
-- **UUID**: `d15bff6c-b902-4975-ad3a-7a18f3026aca`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-06-27`
-- **Modified**: `2025-08-26`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d15bff6c-b902-4975-ad3a-7a18f3026aca` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-06-27` |
+| Modified | `2025-08-26` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -60,20 +61,22 @@ along with all its ADSes ref [5].
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actors need to deliver on the host a file that uses NTFS extended
+Threat actors need to deliver on the host a file that uses NTFS extended
 attributes.
 
-Domains: Enterprise
-Cve: CVE-2025-8088
-Targets: Desktop, Workstations
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
-| Impact | Business disruption; Impairement | - |
-| Leverage | Dwelling; Elevation of privilege | - |
+| Impact | Business disruption<br>Impairement | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
+| Leverage | Dwelling<br>Elevation of privilege | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 
@@ -92,12 +95,16 @@ Platforms: Windows**
 ## Chaining
 ```mermaid
 flowchart LR
-d15bff6c_b902_4975_ad3a_7a18f3026aca["Hide Artifacts using NTFS File Attributes"]
-b330d3a8_1783_4210_9fec_11e6ecfe135e["Web Path Traversal Attack"]
-d15bff6c_b902_4975_ad3a_7a18f3026aca -->|atomicity::implements| b330d3a8_1783_4210_9fec_11e6ecfe135e
+subgraph "Defense Evasion"
+d15bff6c_b902_4975_ad3a_7a18f3026aca{{"Hide Artifacts using<br>NTFS File Attributes"}}
+end
+subgraph "Discovery"
+b330d3a8_1783_4210_9fec_11e6ecfe135e{{"Web Path Traversal<br>Attack"}}
+end
+d15bff6c_b902_4975_ad3a_7a18f3026aca -->|implements| b330d3a8_1783_4210_9fec_11e6ecfe135e
 ```
 ### Chaining details
-#### implements -> Web Path Traversal Attack (`atomicity::implements`)
+#### implements -> [Web Path Traversal Attack](web-path-traversal-attack.md) (`b330d3a8-1783-4210-9fec-11e6ecfe135e`) (`atomicity::implements`)
 A threat actor can provide multiple ADSes with increasing depths of
 parent directory relative path elements (`..\\`). They can use ADSes for
 path traversal attack. An example is WinRAR traversal exploitation

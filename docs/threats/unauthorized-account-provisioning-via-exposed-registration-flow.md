@@ -1,15 +1,16 @@
 # Unauthorized account provisioning via exposed registration flow
 
 ## Metadata
-
-- **UUID**: `3d7dada6-5f9d-4f67-952e-faa2ab794fde`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2026-05-04`
-- **Modified**: `2026-05-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Contributors**: Hold Security Threat Research
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `3d7dada6-5f9d-4f67-952e-faa2ab794fde` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2026-05-04` |
+| Modified | `2026-05-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Contributors | Hold Security Threat Research |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -45,18 +46,28 @@ endpoint, request and response pairs, reset behaviour, token issuance, and acces
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **External web applications with registration, signup, password-reset, or token issuance endpoints
+External web applications with registration, signup, password-reset, or token issuance endpoints
 that remain reachable even when the user interface is hidden or onboarding is intended to be
 invite-only, partner-only, domain-restricted, or approval-based. The weak terrain is account
 lifecycle logic where account records are created before approval is enforced and downstream
-authentication, password reset, or session issuance does not consistently check approval state.**
+authentication, password reset, or session issuance does not consistently check approval state.
+
+## Surface
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Identity Theft; Business disruption; Legal and regulatory | - |
-| Leverage | New Accounts; Elevation of privilege; Information Disclosure | - |
+| Impact | Data Breach<br>Identity Theft<br>Business disruption<br>Legal and regulatory | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Business disruption<br>Legal and regulatory costs |
+| Leverage | New Accounts<br>Elevation of privilege<br>Information Disclosure | Ability to create new arbitrary user accounts.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -69,40 +80,64 @@ authentication, password reset, or session issuance does not consistently check 
 ## Chaining
 ```mermaid
 flowchart LR
-3d7dada6_5f9d_4f67_952e_faa2ab794fde["Unauthorized account provisioning via exposed registration flow"]
-38adba1e_0961_4417_bd84_33fa9c42439f["Client-controlled session state authentication bypass"]
-e2d8ce6b_f21e_4444_a828_0c6b722a9c93["Local user account added"]
-3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|support::enabling| 38adba1e_0961_4417_bd84_33fa9c42439f
-38adba1e_0961_4417_bd84_33fa9c42439f -->|support::synergize| e2d8ce6b_f21e_4444_a828_0c6b722a9c93
+subgraph "Exploitation"
+3d7dada6_5f9d_4f67_952e_faa2ab794fde{{"Unauthorized account<br>provisioning via exposed<br>registration flow"}}
+38adba1e_0961_4417_bd84_33fa9c42439f{{"Client-controlled<br>session state<br>authentication bypass"}}
+end
+subgraph "Persistence"
+e2d8ce6b_f21e_4444_a828_0c6b722a9c93{{"Local user account added"}}
+end
+subgraph "Credential Access"
+b0d6bf74_b204_4a48_9509_4499ed795771{{"Pass-the-cookie Attack"}}
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Collection"
+0663c192_cdeb_49a2_994c_4cc8e98f764e{{"Late access control<br>enforcement via redirect<br>body leakage"}}
+end
+3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|enabling| 38adba1e_0961_4417_bd84_33fa9c42439f
+3d7dada6_5f9d_4f67_952e_faa2ab794fde <-->|synergize| e2d8ce6b_f21e_4444_a828_0c6b722a9c93
+38adba1e_0961_4417_bd84_33fa9c42439f <-->|synergize| b0d6bf74_b204_4a48_9509_4499ed795771
+38adba1e_0961_4417_bd84_33fa9c42439f <-->|synergize| 0663c192_cdeb_49a2_994c_4cc8e98f764e
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|succeeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
 ```
 ### Chaining details
-#### enabling -> Client-controlled session state authentication bypass (`support::enabling`)
+#### enabling -> [Client-controlled session state authentication bypass](client-controlled-session-state-authentication-bypass.md) (`38adba1e-0961-4417-bd84-33fa9c42439f`) (`support::enabling`)
 Client-controlled session-state trust can allow an unapproved or partially provisioned account
 to become usable by bypassing the server-side approval state that should block authentication
 or token issuance.
 
 - **Target UUID**: `38adba1e-0961-4417-bd84-33fa9c42439f`
-#### synergize -> Local user account added (`support::synergize`)
+#### synergize -> [Local user account added](local-user-account-added.md) (`e2d8ce6b-f21e-4444-a828-0c6b722a9c93`) (`support::synergize`)
 Both vectors involve unauthorised account creation, but at different layers. This vector is a
 web-application business-logic failure, while the linked vector covers host-local account
 creation after administrative compromise.
 
 - **Target UUID**: `e2d8ce6b-f21e-4444-a828-0c6b722a9c93`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-3a73c153_abd7_40cd_86a5_4d57a42b9a44["Detect premature account activation and restricted onboarding bypass"]
+subgraph "Objectives"
+3a73c153_abd7_40cd_86a5_4d57a42b9a44(["Detect premature account<br>activation and<br>restricted onboarding<br>bypass"])
 end
-subgraph "Signal"
-7f6d1aae_c807_42fb_8734_4d3c6c4e9670["7f6d1aae-c807-42fb-8734-4d3c6c4e9670"]
-958eeed6_43f6_43c8_8bb9_96397aab29a1["958eeed6-43f6-43c8-8bb9-96397aab29a1"]
-d5906e6c_0f66_4dd6_8add_216a90b2b1f2["d5906e6c-0f66-4dd6-8add-216a90b2b1f2"]
+subgraph "Signals"
+7f6d1aae_c807_42fb_8734_4d3c6c4e9670(("Account created without<br>required invitation or<br>approval context"))
+d5906e6c_0f66_4dd6_8add_216a90b2b1f2(("Authentication material<br>issued while account<br>approval is pending"))
+958eeed6_43f6_43c8_8bb9_96397aab29a1(("Pre-approval account<br>accesses restricted<br>application resources"))
 end
-3d7dada6_5f9d_4f67_952e_faa2ab794fde["Unauthorized account provisioning via exposed registration flow"]
-3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|objective| 3a73c153_abd7_40cd_86a5_4d57a42b9a44
-3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|signal| 7f6d1aae_c807_42fb_8734_4d3c6c4e9670
-3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|signal| 958eeed6_43f6_43c8_8bb9_96397aab29a1
-3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|signal| d5906e6c_0f66_4dd6_8add_216a90b2b1f2
+3d7dada6_5f9d_4f67_952e_faa2ab794fde{{"Unauthorized account<br>provisioning via exposed<br>registration flow"}}
+3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|covers| 3a73c153_abd7_40cd_86a5_4d57a42b9a44
+3a73c153_abd7_40cd_86a5_4d57a42b9a44 --> 7f6d1aae_c807_42fb_8734_4d3c6c4e9670
+3a73c153_abd7_40cd_86a5_4d57a42b9a44 --> d5906e6c_0f66_4dd6_8add_216a90b2b1f2
+3a73c153_abd7_40cd_86a5_4d57a42b9a44 --> 958eeed6_43f6_43c8_8bb9_96397aab29a1
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect premature account activation and restricted onboarding bypass](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md) (`3a73c153-abd7-40cd-86a5-4d57a42b9a44`) | Downstream | objective |
+| Signal | [Account created without required invitation or approval context](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#account-created-without-required-invitation-or-approval-context) (`7f6d1aae-c807-42fb-8734-4d3c6c4e9670`) | Downstream | signal |
+| Signal | [Pre-approval account accesses restricted application resources](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#pre-approval-account-accesses-restricted-application-resources) (`958eeed6-43f6-43c8-8bb9-96397aab29a1`) | Downstream | signal |
+| Signal | [Authentication material issued while account approval is pending](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#authentication-material-issued-while-account-approval-is-pending) (`d5906e6c-0f66-4dd6-8add-216a90b2b1f2`) | Downstream | signal |

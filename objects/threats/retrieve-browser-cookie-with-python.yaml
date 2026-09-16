@@ -39,8 +39,12 @@ threat:
     - Windows::Desktop
     - Entra ID
   severity: Moderate incident
-  leverage: Elevation of privilege; Spoofing
-  impact: Identity Theft; Impairement
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Identity Theft
+    - Impairement
   viability: Environment dependent
   description: |-
     Cookies contain information stored in a user browser, such as session state and

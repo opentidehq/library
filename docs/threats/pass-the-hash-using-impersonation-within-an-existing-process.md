@@ -1,14 +1,15 @@
 # Pass the hash using impersonation within an existing process
 
 ## Metadata
-
-- **UUID**: `479a8b31-5f7e-4fd6-94ca-a5556315e1b8`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2022-11-15`
-- **Modified**: `2024-05-15`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `479a8b31-5f7e-4fd6-94ca-a5556315e1b8` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2022-11-15` |
+| Modified | `2024-05-15` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -54,7 +55,7 @@ procedures.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires an already compromised endpoint.
+Requires an already compromised endpoint.
 
 Doing pass-the-hash on a Windows system requires specific privilege. 
 It either requires elevated privileges (by previously running 
@@ -64,16 +65,31 @@ account). This doesn't apply to pass-the-ticket which uses an official API.
 Pth works on windows computers of every kind, however later versions 
 natively have some level of defenses/mitigations built in.
 
-Domains: Enterprise, Public Cloud
-Targets: Auth token, Control Server, Workstations, End-user, Public-Facing Servers, Server Authentication, Laptop, Desktop
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Kerberos**
+> Kerberos network authentication protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Identity Theft; Impairement; Data Breach | - |
-| Leverage | Elevation of privilege; Information Disclosure; Spoofing; Tampering; Repudiation | - |
+| Impact | Identity Theft<br>Impairement<br>Data Breach | Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted. |
+| Leverage | Elevation of privilege<br>Information Disclosure<br>Spoofing<br>Tampering<br>Repudiation | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Threat action aimed at performing prohibited operations in a system that lacks the ability to trace the operations. |
 | Viability | Very Likely | Highly probable - 80-95% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 
@@ -96,3 +112,41 @@ Platforms: Windows**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1550.002` | [Use Alternate Authentication Material: Pass the Hash](https://attack.mitre.org/techniques/T1550/002) | Adversaries may “pass the hash” using stolen password hashes to move laterally within an environment, bypassing normal system access controls. Pass the hash (PtH) is a method of authenticating as a user without having access to the user's cleartext password. This method bypasses standard authentication steps that require a cleartext password, moving directly into the portion of the authentication that uses the password hash.  When performing PtH, valid password hashes for the account being used are captured using a [Credential Access](https://attack.mitre.org/tactics/TA0006) technique. Captured hashes are used with PtH to authenticate as that user. Once authenticated, PtH may be used to perform actions on local or remote systems.  Adversaries may also use stolen password hashes to "overpass the hash." Similar to PtH, this involves using a password hash to authenticate as a user but also uses the password hash to create a valid Kerberos ticket. This ticket can then be used to perform [Pass the Ticket](https://attack.mitre.org/techniques/T1550/003) attacks.(Citation: Stealthbits Overpass-the-Hash) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Privilege Escalation"
+479a8b31_5f7e_4fd6_94ca_a5556315e1b8{{"Pass the hash using<br>impersonation within an<br>existing process"}}
+4472e2b0_3dca_4d84_aab0_626fcba04fce{{"Pass the hash attack to<br>elevate privileges"}}
+end
+subgraph "Credential Access"
+ec8201d4_c135_406b_a3b5_4a070e80a2ee{{"Credential manipulation<br>on local Windows<br>endpoint"}}
+7351e2ca_e198_427c_9cfa_202df36f6e2a{{"Mimikatz execution on<br>compromised endpoint"}}
+2d0beed6_6520_4114_be1f_24067628e93c{{"Manipulation of<br>credentials stored in<br>LSASS"}}
+end
+subgraph "Lateral Movement"
+5ea50181_1124_49aa_9d2c_c74103e86fd5{{"Pass-the-hash on SMB<br>network shares"}}
+end
+subgraph "Defense Evasion"
+03cc9593_e7cf_484b_ae9c_684bf6f7199f{{"Pass the ticket using<br>Kerberos ticket"}}
+end
+subgraph "Execution"
+06523ed4_7881_4466_9ac5_f8417e972d13{{"Using a Windows command<br>prompt for credential<br>manipulation"}}
+e3d7cb59_7aca_4c3d_b488_48c785930b6d{{"PowerShell usage for<br>credential manipulation"}}
+a566e405_e9db_475f_8447_7875fa127716{{"Script execution on<br>Windows for credential<br>manipulation"}}
+end
+subgraph "Exploitation"
+02311e3e_b7b8_4369_9e1e_74c0a844ae0f{{"NTLM credentials dumping<br>via SMB connection"}}
+end
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 479a8b31_5f7e_4fd6_94ca_a5556315e1b8
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 5ea50181_1124_49aa_9d2c_c74103e86fd5
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 03cc9593_e7cf_484b_ae9c_684bf6f7199f
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|succeeds| 4472e2b0_3dca_4d84_aab0_626fcba04fce
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 7351e2ca_e198_427c_9cfa_202df36f6e2a
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| 06523ed4_7881_4466_9ac5_f8417e972d13
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| e3d7cb59_7aca_4c3d_b488_48c785930b6d
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|implements| a566e405_e9db_475f_8447_7875fa127716
+ec8201d4_c135_406b_a3b5_4a070e80a2ee -->|preceeds| 2d0beed6_6520_4114_be1f_24067628e93c
+5ea50181_1124_49aa_9d2c_c74103e86fd5 -->|succeeds| 02311e3e_b7b8_4369_9e1e_74c0a844ae0f
+```

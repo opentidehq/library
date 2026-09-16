@@ -15,11 +15,11 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
-    - misp::bcaaad6f-0597-4b89-b69b-84a6be2b7bc3
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G1036
-    - att&ck::G1017
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: misp::bcaaad6f-0597-4b89-b69b-84a6be2b7bc3
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G1036
+    - name: att&ck::G1017
   killchain: Reconnaissance
   att&ck:
     - T1589
@@ -63,8 +63,20 @@ threat:
     - Development::CI/CD
     - Kerberos
   severity: Significant incident
-  leverage: Information Disclosure; Spoofing; Tampering; Elevation of privilege; Modify configuration; Modify privileges
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Monetary Loss; Business disruption
+  leverage:
+    - Information Disclosure
+    - Spoofing
+    - Tampering
+    - Elevation of privilege
+    - Modify configuration
+    - Modify privileges
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Monetary Loss
+    - Business disruption
   viability: Likely
   description: |-
     This technique describes how adversaries obtain information about user accounts 

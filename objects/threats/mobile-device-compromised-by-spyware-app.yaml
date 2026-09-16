@@ -18,8 +18,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0069
-    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - name: att&ck::G0069
+    - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
   killchain: Delivery
   att&ck:
     - T1512
@@ -38,8 +38,17 @@ threat:
     - Windows::Desktop
     - Mobile::iPadOS
   severity: Significant incident
-  leverage: Alter behavior; Information Disclosure; Modify configuration; Modify data; Software installation; Tampering
-  impact: Data Breach; Identity Theft; Reputational Damages
+  leverage:
+    - Alter behavior
+    - Information Disclosure
+    - Modify configuration
+    - Modify data
+    - Software installation
+    - Tampering
+  impact:
+    - Data Breach
+    - Identity Theft
+    - Reputational Damages
   viability: Likely
   description: |-
     Earlier versions of spyware apps were installed on smartphones through vulnerabilities

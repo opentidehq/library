@@ -1,14 +1,15 @@
 # Switching off forced signed commits for GitHub repository
 
 ## Metadata
-
-- **UUID**: `cd1baed8-3ea8-42e1-a27d-9da9ddb2f5b8`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-11-28`
-- **Modified**: `2022-11-28`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `cd1baed8-3ea8-42e1-a27d-9da9ddb2f5b8` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-11-28` |
+| Modified | `2022-11-28` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -29,20 +30,32 @@ commit policy.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Requires a GitHub organization, either as SaaS or as an on-prem GitHub 
+Requires a GitHub organization, either as SaaS or as an on-prem GitHub 
 instance. Attacker requires admin credentials to change the setting or 
 an exploit to bypass authentication or similar.
 
-Domains: SaaS, Enterprise
-Targets: Cloud Portal, Code Repositories, CI/CD Pipelines, Control Server
-Platforms: Github**
+## Surface
+> **Code Repositories::GitHub**
+> GitHub source code hosting and collaboration
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Code Repositories**
+> Source code hosting and version control platforms
+
+> **Development::CI/CD**
+> Continuous integration and continuous delivery platforms
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Localised incident | A cyber attack on an individual, or preliminary indications of cyber activity against a small or medium-sized organisation. |
 | Impact | Impairement | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery. |
-| Leverage | Dwelling; Infrastructure Compromise; Modify configuration | - |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Modify configuration | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Modify configuration or services |
 | Viability | Unlikely | Improbable (improbably) - 20-45% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

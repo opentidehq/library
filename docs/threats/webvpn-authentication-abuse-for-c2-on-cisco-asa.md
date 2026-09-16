@@ -1,14 +1,15 @@
 # WebVPN authentication abuse for C2 on Cisco ASA
 
 ## Metadata
-
-- **UUID**: `fcc552fb-b4d1-4b47-b366-104ec4d806ef`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2026-06-18`
-- **Modified**: `2026-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `fcc552fb-b4d1-4b47-b366-104ec4d806ef` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2026-06-18` |
+| Modified | `2026-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -110,7 +111,7 @@ analysis beyond standard network monitoring.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Cisco ASA devices with WebVPN functionality enabled and accessible
+Cisco ASA devices with WebVPN functionality enabled and accessible
 to attacker infrastructure [1]. The WebVPN client authentication
 mechanism processes XML data containing device-id, version, and form
 elements through a large codebase in lina. This XML processing does
@@ -118,16 +119,22 @@ not adequately validate or sanitise crafted authentication requests,
 allowing arbitrary data to be embedded in standard authentication
 fields like device-type within the XML structure.
 
-Domains: Enterprise, Networking
-Targets: Network Equipment, VPN Client
-Platforms: Network Router**
+## Surface
+> **Routers**
+> Network routers
+
+> **Switches**
+> Network switches
+
+> **VPN**
+> Virtual Private Network solutions and tunnelling protocols
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Lose Capabilities; Reputational Damages; National Security | - |
-| Leverage | Spoofing; Information Disclosure; Infrastructure Compromise | - |
+| Impact | Data Breach<br>Lose Capabilities<br>Reputational Damages<br>National Security | Non-public information has been accessed from the outside, and successfully extracted.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>The vector execution will expose or destroy such sufficient critical information infrastructure that the country will have to intervene due to loss to key national  or international functions. |
+| Leverage | Spoofing<br>Information Disclosure<br>Infrastructure Compromise | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Command & Control | Techniques that allow attackers to communicate with controlled systems within a target network. |
 
@@ -142,12 +149,28 @@ Platforms: Network Router**
 ## Chaining
 ```mermaid
 flowchart LR
-fcc552fb_b4d1_4b47_b366_104ec4d806ef["WebVPN authentication abuse for C2 on Cisco ASA"]
-b6175f16_2b61_4116_bd97_de54b02b197e["LINE VIPER shellcode loader on Cisco ASA"]
-fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|support::enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+subgraph "Command & Control"
+fcc552fb_b4d1_4b47_b366_104ec4d806ef{{"WebVPN authentication<br>abuse for C2 on Cisco<br>ASA"}}
+b6175f16_2b61_4116_bd97_de54b02b197e{{"LINE VIPER shellcode<br>loader on Cisco ASA"}}
+2a5faf22_c526_4d49_81b9_6a7b895de58b{{"ICMP tasking with TCP<br>response on network<br>devices"}}
+end
+subgraph "Defense Evasion"
+53389577_fd8d_4ce6_9852_8365ed947c17{{"AAA bypass for<br>unauthorized access on<br>network devices"}}
+end
+subgraph "Persistence"
+a6f331e0_292d_4d83_87a9_46aa149555dd{{"RayInitiator GRUB<br>bootkit persistence on<br>Cisco ASA"}}
+end
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| fcc552fb_b4d1_4b47_b366_104ec4d806ef
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| 2a5faf22_c526_4d49_81b9_6a7b895de58b
+b6175f16_2b61_4116_bd97_de54b02b197e -->|enabling| 53389577_fd8d_4ce6_9852_8365ed947c17
+b6175f16_2b61_4116_bd97_de54b02b197e -->|succeeds| a6f331e0_292d_4d83_87a9_46aa149555dd
+a6f331e0_292d_4d83_87a9_46aa149555dd -->|preceeds| b6175f16_2b61_4116_bd97_de54b02b197e
+2a5faf22_c526_4d49_81b9_6a7b895de58b -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+53389577_fd8d_4ce6_9852_8365ed947c17 -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
+fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|enabled| b6175f16_2b61_4116_bd97_de54b02b197e
 ```
 ### Chaining details
-#### enabled -> LINE VIPER shellcode loader on Cisco ASA (`support::enabled`)
+#### enabled -> [LINE VIPER shellcode loader on Cisco ASA](line-viper-shellcode-loader-on-cisco-asa.md) (`b6175f16-2b61-4116-bd97-de54b02b197e`) (`support::enabled`)
 This WebVPN-based C2 channel is enabled by the LINE VIPER
 implant, which hooks XML form element processing in lina to
 intercept crafted authentication requests. The initial LINE VIPER
@@ -157,20 +180,31 @@ a crafted authentication request [1].
 
 - **Target UUID**: `b6175f16-2b61-4116-bd97-de54b02b197e`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf["Detect LINE VIPER WebVPN Command and Control on Cisco ASA"]
+subgraph "Objectives"
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf(["Detect LINE VIPER WebVPN<br>Command and Control on<br>Cisco ASA"])
 end
-subgraph "Signal"
-22e8fb52_d101_4d67_90b7_6e697c2dbb2d["22e8fb52-d101-4d67-90b7-6e697c2dbb2d"]
-cef505da_e628_469b_ad75_1a19091d31a6["cef505da-e628-469b-ad75-1a19091d31a6"]
-cff09577_eb0b_4ac9_9393_789dbe439b56["cff09577-eb0b-4ac9-9393-789dbe439b56"]
+subgraph "Threats"
+b6175f16_2b61_4116_bd97_de54b02b197e{{"LINE VIPER shellcode<br>loader on Cisco ASA"}}
 end
-fcc552fb_b4d1_4b47_b366_104ec4d806ef["WebVPN authentication abuse for C2 on Cisco ASA"]
-fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|objective| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
-fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|signal| 22e8fb52_d101_4d67_90b7_6e697c2dbb2d
-fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|signal| cef505da_e628_469b_ad75_1a19091d31a6
-fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|signal| cff09577_eb0b_4ac9_9393_789dbe439b56
+subgraph "Signals"
+22e8fb52_d101_4d67_90b7_6e697c2dbb2d(("Malformed PKCS7<br>Certificate in WebVPN<br>Authentication Request"))
+cff09577_eb0b_4ac9_9393_789dbe439b56(("Anomalous XML Payload in<br>WebVPN Authentication<br>Form Elements"))
+cef505da_e628_469b_ad75_1a19091d31a6(("Non-Standard Content in<br>Cisco ASA WebVPN<br>Authentication Response"))
+end
+fcc552fb_b4d1_4b47_b366_104ec4d806ef{{"WebVPN authentication<br>abuse for C2 on Cisco<br>ASA"}}
+fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|covers| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
+b6175f16_2b61_4116_bd97_de54b02b197e -->|covers| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> 22e8fb52_d101_4d67_90b7_6e697c2dbb2d
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> cff09577_eb0b_4ac9_9393_789dbe439b56
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> cef505da_e628_469b_ad75_1a19091d31a6
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect LINE VIPER WebVPN Command and Control on Cisco ASA](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md) (`8546b0d8-c9e1-4a51-bf64-2b93c4159ebf`) | Downstream | objective |
+| Signal | [Malformed PKCS7 Certificate in WebVPN Authentication Request](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#malformed-pkcs7-certificate-in-webvpn-authentication-request) (`22e8fb52-d101-4d67-90b7-6e697c2dbb2d`) | Downstream | signal |
+| Signal | [Non-Standard Content in Cisco ASA WebVPN Authentication Response](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#non-standard-content-in-cisco-asa-webvpn-authentication-response) (`cef505da-e628-469b-ad75-1a19091d31a6`) | Downstream | signal |
+| Signal | [Anomalous XML Payload in WebVPN Authentication Form Elements](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#anomalous-xml-payload-in-webvpn-authentication-form-elements) (`cff09577-eb0b-4ac9-9393-789dbe439b56`) | Downstream | signal |

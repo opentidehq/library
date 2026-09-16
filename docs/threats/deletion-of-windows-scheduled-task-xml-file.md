@@ -1,14 +1,15 @@
 # Deletion of Windows Scheduled Task XML file
 
 ## Metadata
-
-- **UUID**: `3c4d13c9-d40f-4f97-b8fa-607b6f7ad263`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2022-12-20`
-- **Modified**: `2022-12-20`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `3c4d13c9-d40f-4f97-b8fa-607b6f7ad263` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2022-12-20` |
+| Modified | `2022-12-20` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -57,12 +58,27 @@ with the task.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **An adversary has gained control over a Windows endpoint and has privileges
+An adversary has gained control over a Windows endpoint and has privileges
 to delete scheduled task XML file.
 
-Domains: Enterprise, Public Cloud
-Targets: Workstations, Desktop, Laptop, Control Server, Public-Facing Servers, Web Application Servers
-Platforms: Windows, Azure, AWS**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **AWS**
+> Amazon Web Services cloud platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

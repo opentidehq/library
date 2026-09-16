@@ -1,14 +1,15 @@
 # Scheduled tasks created with taskschlr.exe
 
 ## Metadata
-
-- **UUID**: `24503678-9a1b-4af3-9837-a90bf47b7dda`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2022-12-12`
-- **Modified**: `2022-12-13`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `24503678-9a1b-4af3-9837-a90bf47b7dda` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2022-12-12` |
+| Modified | `2022-12-13` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -62,19 +63,31 @@ Example for Settings section in XML file with potentially malicious executable f
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **An adversary has gained control over a Windows endpoint and has  
+An adversary has gained control over a Windows endpoint and has  
 privileges to create scheduled tasks using taskschlr.exe
 
-Domains: Enterprise
-Targets: Workstations, Control Server, Input/Output Server, Laptop, Desktop, Remote access, Web Application Servers, Public-Facing Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Server**
+> Microsoft Windows Server editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Business disruption; Impairement; Lose Capabilities | - |
-| Leverage | Dwelling; Infrastructure Compromise; Elevation of privilege | - |
+| Impact | Business disruption<br>Impairement<br>Lose Capabilities | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Elevation of privilege | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Execution | Techniques that result in execution of attacker-controlled code on a local or remote system. |
 

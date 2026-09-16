@@ -30,8 +30,11 @@ threat:
     - Customer Support
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Dwelling; Information Disclosure
-  impact: Data Breach
+  leverage:
+    - Dwelling
+    - Information Disclosure
+  impact:
+    - Data Breach
   viability: Likely
   description: |-
     C2 beaconing refers to the periodic communication between a compromised

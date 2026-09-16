@@ -1,14 +1,15 @@
 # RBA_RR - WIN base64 encoded powershell payload
 
 ## Metadata
-
-- **UUID**: `0be66eea-4ae4-4544-811b-52651e20d744`
-- **Schema**: `rule::1.0`
-- **Version**: `6`
-- **Created**: `2024-05-16`
-- **Modified**: `2026-06-22`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Author**: ec-digit-catch@ec.europa.eu
+| Field | Value |
+| --- | --- |
+| UUID | `0be66eea-4ae4-4544-811b-52651e20d744` |
+| Schema | `rule::1.0` |
+| Version | `6` |
+| Created | `2024-05-16` |
+| Modified | `2026-06-22` |
+| TLP | clear (`TLP:CLEAR`) |
+| Author | ec-digit-catch@ec.europa.eu |
 
 ## References
 ### Public
@@ -48,9 +49,13 @@ to filter legitimate or benign base64 encoded payloads used by PowerShell
 on EC Windows devices.
 
 ## Status
+| Field | Value |
+| --- | --- |
+| Status | `STAGING` |
+| Severity | `Informational` |
 
-- **Status**: `STAGING`
-- **Severity**: `Informational`
+## Detection model
+- **Objective**: [Powershell encoded payload to start new process](../Objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`)
 
 ## Response
 
@@ -147,3 +152,26 @@ SecurityEvent
 
 
 </details>
+
+## Coverage
+```mermaid
+flowchart TB
+subgraph "Objectives"
+bfeb24bf_8a17_4ccc_8aec_91721743153d(["Powershell encoded<br>payload to start new<br>process"])
+end
+subgraph "Threats"
+bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7{{"Powershell with encoded<br>payload passed to<br>cmdline"}}
+end
+subgraph "Signals"
+cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0(("Powershell encoded<br>payload to start new<br>process"))
+end
+0be66eea_4ae4_4544_811b_52651e20d744["RBA_RR - WIN base64<br>encoded powershell<br>payload"]
+bdc58fee_8da6_4fc9_8fbd_30f8fd156bc7 -->|covers| bfeb24bf_8a17_4ccc_8aec_91721743153d
+bfeb24bf_8a17_4ccc_8aec_91721743153d --> cf9c69a2_9317_4f0f_9506_fbeeb1c73ff0
+bfeb24bf_8a17_4ccc_8aec_91721743153d -->|implements| 0be66eea_4ae4_4544_811b_52651e20d744
+```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Powershell encoded payload to start new process](../Objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`) | Upstream | objective |
+| Threat | [Powershell with encoded payload passed to cmdline](../Threats/powershell-with-encoded-payload-passed-to-cmdline.md) (`bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7`) | Upstream | threat |

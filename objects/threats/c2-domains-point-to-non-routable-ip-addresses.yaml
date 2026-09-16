@@ -21,7 +21,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - misp::1b54a3c1-023b-4a3c-8f11-50d811cced88
+    - name: misp::1b54a3c1-023b-4a3c-8f11-50d811cced88
   killchain: Command & Control
   att&ck:
     - T1568
@@ -41,8 +41,12 @@ threat:
     - macOS
     - Log Management
   severity: Significant incident
-  leverage: Spoofing
-  impact: Business disruption; Impairement; Lose Capabilities
+  leverage:
+    - Spoofing
+  impact:
+    - Business disruption
+    - Impairement
+    - Lose Capabilities
   viability: Likely
   description: |-
     The attackers may configure their own C2 domain to point to a non-internet

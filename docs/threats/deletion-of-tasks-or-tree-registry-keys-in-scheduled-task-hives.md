@@ -1,14 +1,15 @@
 # Deletion of Tasks or Tree registry keys in scheduled task hives
 
 ## Metadata
-
-- **UUID**: `d2ca077d-6ec6-4442-bdc5-b1822e9f4ae8`
-- **Schema**: `threat::1.0`
-- **Version**: `4`
-- **Created**: `2022-12-19`
-- **Modified**: `2022-12-20`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `d2ca077d-6ec6-4442-bdc5-b1822e9f4ae8` |
+| Schema | `threat::1.0` |
+| Version | `4` |
+| Created | `2022-12-19` |
+| Modified | `2022-12-20` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -63,12 +64,24 @@ rm "HKLM:\Software\MyKey"
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Threat actor is using already compromised Windows endpoint and has the required 
+Threat actor is using already compromised Windows endpoint and has the required 
 privileges to delete registry keys.
 
-Domains: Enterprise, Public Cloud
-Targets: Control Server, Remote access, Workstations, Desktop, Web Application Servers, Public-Facing Servers
-Platforms: Windows, Azure**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

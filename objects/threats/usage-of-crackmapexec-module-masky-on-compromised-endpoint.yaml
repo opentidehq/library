@@ -29,8 +29,18 @@ threat:
     - Azure::Compute::Virtual Machines
     - Windows::Desktop
   severity: Moderate incident
-  leverage: Elevation of privilege; Spoofing
-  impact: Impairement; Business disruption; Competitive disadvantage; Data Breach; Reputational Damages; Legal and regulatory; Monetary Loss; Nuisance
+  leverage:
+    - Elevation of privilege
+    - Spoofing
+  impact:
+    - Impairement
+    - Business disruption
+    - Competitive disadvantage
+    - Data Breach
+    - Reputational Damages
+    - Legal and regulatory
+    - Monetary Loss
+    - Nuisance
   viability: Likely
   description: |-
     CrackMapExec is a post-compromise tool that contains a number of

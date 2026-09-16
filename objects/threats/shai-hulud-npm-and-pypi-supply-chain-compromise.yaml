@@ -64,8 +64,18 @@ threat:
     - Development::Package Management::PyPI
     - Development::CI/CD::GitHub Actions
   severity: Highly significant incident
-  leverage: Infrastructure Compromise; Tampering; Software installation; Information Gathering; Information Disclosure
-  impact: Data Breach; Business disruption; Lose Capabilities; Reputational Damages; Operating costs
+  leverage:
+    - Infrastructure Compromise
+    - Tampering
+    - Software installation
+    - Information Gathering
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Business disruption
+    - Lose Capabilities
+    - Reputational Damages
+    - Operating costs
   viability: Almost certain
   description: |-
     ## Executive Summary

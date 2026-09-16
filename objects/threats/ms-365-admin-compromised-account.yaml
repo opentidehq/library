@@ -15,30 +15,30 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0026
-    - misp::9a683d9c-8f7d-43df-bba2-ad0ca71e277c
-    - att&ck::G1024
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - att&ck::G0016
-    - misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
-    - att&ck::G0087
-    - misp::e400b6c5-77cf-453d-ba0f-44575583ac6c
-    - att&ck::G0001
-    - att&ck::G0008
-    - att&ck::G0114
-    - att&ck::G1021
-    - att&ck::G0051
-    - att&ck::G0085
-    - att&ck::G0061
-    - att&ck::G0117
-    - att&ck::G0093
-    - att&ck::G0119
-    - misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
-    - att&ck::G0004
-    - misp::d9e5be22-1a04-4956-af6c-37af02330980
-    - att&ck::G1004
-    - misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
-    - att&ck::G0065
+    - name: att&ck::G0026
+    - name: misp::9a683d9c-8f7d-43df-bba2-ad0ca71e277c
+    - name: att&ck::G1024
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0016
+    - name: misp::c2c64bd3-a325-446f-91a8-b4c0f173a30b
+    - name: att&ck::G0087
+    - name: misp::e400b6c5-77cf-453d-ba0f-44575583ac6c
+    - name: att&ck::G0001
+    - name: att&ck::G0008
+    - name: att&ck::G0114
+    - name: att&ck::G1021
+    - name: att&ck::G0051
+    - name: att&ck::G0085
+    - name: att&ck::G0061
+    - name: att&ck::G0117
+    - name: att&ck::G0093
+    - name: att&ck::G0119
+    - name: misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
+    - name: att&ck::G0004
+    - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
+    - name: att&ck::G1004
+    - name: misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
+    - name: att&ck::G0065
   att&ck:
     - T1078
     - T1566
@@ -47,8 +47,14 @@ threat:
     - Microsoft::Microsoft 365
     - Microsoft::System Center
   severity: Significant incident
-  leverage: Elevation of privilege; Modify privileges; New Accounts; Software installation
-  impact: Identity Theft; Lose Capabilities
+  leverage:
+    - Elevation of privilege
+    - Modify privileges
+    - New Accounts
+    - Software installation
+  impact:
+    - Identity Theft
+    - Lose Capabilities
   viability: Roughly even chance
   description: |-
     Compromised credentials may be used to bypass access controls placed on various resources on systems

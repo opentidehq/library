@@ -1,15 +1,16 @@
 # Client-controlled session state authentication bypass
 
 ## Metadata
-
-- **UUID**: `38adba1e-0961-4417-bd84-33fa9c42439f`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2026-05-04`
-- **Modified**: `2026-05-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Contributors**: Hold Security Threat Research
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `38adba1e-0961-4417-bd84-33fa9c42439f` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2026-05-04` |
+| Modified | `2026-05-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Contributors | Hold Security Threat Research |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -46,19 +47,29 @@ breadth of affected endpoints.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **External web applications that derive authentication or authorisation state from client-supplied
+External web applications that derive authentication or authorisation state from client-supplied
 cookies, Authorization headers, or other request variables without strong server-side validation.
 The vulnerable terrain may be shared middleware or framework logic rather than a single
 endpoint. The server accepts the presence of values, simple strings, usernames, role flags, or
 fabricated bearer values instead of verifying cryptographic integrity, server-issued session
-binding, token signature, expiry, and privilege state.**
+binding, token signature, expiry, and privilege state.
+
+## Surface
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Application Layer::HTTP**
+> Hypertext Transfer Protocol
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Identity Theft; Business disruption; Legal and regulatory | - |
-| Leverage | Spoofing; Elevation of privilege; Information Disclosure | - |
+| Impact | Data Breach<br>Identity Theft<br>Business disruption<br>Legal and regulatory | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Business disruption<br>Legal and regulatory costs |
+| Leverage | Spoofing<br>Elevation of privilege<br>Information Disclosure | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exploitation | Techniques to exploit vulnerabilities in systems that may, amongst others, result in code execution. |
 
@@ -70,40 +81,64 @@ binding, token signature, expiry, and privilege state.**
 ## Chaining
 ```mermaid
 flowchart LR
-38adba1e_0961_4417_bd84_33fa9c42439f["Client-controlled session state authentication bypass"]
-b0d6bf74_b204_4a48_9509_4499ed795771["Pass-the-cookie Attack"]
-0663c192_cdeb_49a2_994c_4cc8e98f764e["Late access control enforcement via redirect body leakage"]
-38adba1e_0961_4417_bd84_33fa9c42439f -->|support::synergize| b0d6bf74_b204_4a48_9509_4499ed795771
-b0d6bf74_b204_4a48_9509_4499ed795771 -->|support::synergize| 0663c192_cdeb_49a2_994c_4cc8e98f764e
+subgraph "Exploitation"
+38adba1e_0961_4417_bd84_33fa9c42439f{{"Client-controlled<br>session state<br>authentication bypass"}}
+3d7dada6_5f9d_4f67_952e_faa2ab794fde{{"Unauthorized account<br>provisioning via exposed<br>registration flow"}}
+end
+subgraph "Persistence"
+e2d8ce6b_f21e_4444_a828_0c6b722a9c93{{"Local user account added"}}
+end
+subgraph "Credential Access"
+b0d6bf74_b204_4a48_9509_4499ed795771{{"Pass-the-cookie Attack"}}
+66aafb61_9a46_4287_8b40_4785b42b77a3{{"Adversary in the Middle<br>phishing sites to bypass<br>MFA"}}
+4a807ac4_f764_41b1_ae6f_94239041d349{{"MFA Bypass Techniques"}}
+end
+subgraph "Collection"
+0663c192_cdeb_49a2_994c_4cc8e98f764e{{"Late access control<br>enforcement via redirect<br>body leakage"}}
+end
+3d7dada6_5f9d_4f67_952e_faa2ab794fde -->|enabling| 38adba1e_0961_4417_bd84_33fa9c42439f
+3d7dada6_5f9d_4f67_952e_faa2ab794fde <-->|synergize| e2d8ce6b_f21e_4444_a828_0c6b722a9c93
+38adba1e_0961_4417_bd84_33fa9c42439f <-->|synergize| b0d6bf74_b204_4a48_9509_4499ed795771
+38adba1e_0961_4417_bd84_33fa9c42439f <-->|synergize| 0663c192_cdeb_49a2_994c_4cc8e98f764e
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|succeeds| 66aafb61_9a46_4287_8b40_4785b42b77a3
+b0d6bf74_b204_4a48_9509_4499ed795771 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
+66aafb61_9a46_4287_8b40_4785b42b77a3 -->|implements| 4a807ac4_f764_41b1_ae6f_94239041d349
 ```
 ### Chaining details
-#### synergize -> Pass-the-cookie Attack (`support::synergize`)
+#### synergize -> [Pass-the-cookie Attack](pass-the-cookie-attack.md) (`b0d6bf74-b204-4a48-9509-4499ed795771`) (`support::synergize`)
 Both vectors abuse web session trust. Pass-the-cookie reuses a valid stolen session token,
 while this vector fabricates or alters weak client-controlled session values. Detection and
 hardening should therefore consider cookie and header integrity together.
 
 - **Target UUID**: `b0d6bf74-b204-4a48-9509-4499ed795771`
-#### synergize -> Late access control enforcement via redirect body leakage (`support::synergize`)
+#### synergize -> [Late access control enforcement via redirect body leakage](late-access-control-enforcement-via-redirect-body-leakage.md) (`0663c192-cdeb-49a2-994c-4cc8e98f764e`) (`support::synergize`)
 Both vectors expose systemic web access-control failures. Differential HTTP testing across
 unauthenticated, injected, and modified state can reveal either leaked protected content or
 client-controlled authentication decisions.
 
 - **Target UUID**: `0663c192-cdeb-49a2-994c-4cc8e98f764e`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-d4c509d7_f9ab_452a_a91d_4da040095414["Detect acceptance of forged web session context"]
+subgraph "Objectives"
+d4c509d7_f9ab_452a_a91d_4da040095414(["Detect acceptance of<br>forged web session<br>context"])
 end
-subgraph "Signal"
-7ff9ea94_7bf4_4df5_83f1_7d3dc0174653["7ff9ea94-7bf4-4df5-83f1-7d3dc0174653"]
-9ba566b6_bfed_4059_bdb1_50bb3cac3c29["9ba566b6-bfed-4059-bdb1-50bb3cac3c29"]
-9bfe87d7_c197_4893_b7e1_829ab6d1fcf5["9bfe87d7-c197-4893-b7e1-829ab6d1fcf5"]
+subgraph "Signals"
+9ba566b6_bfed_4059_bdb1_50bb3cac3c29(("Fabricated session value<br>grants protected access"))
+9bfe87d7_c197_4893_b7e1_829ab6d1fcf5(("Client-side role or<br>identity claim changes<br>authorisation outcome"))
+7ff9ea94_7bf4_4df5_83f1_7d3dc0174653(("Session variable probing<br>across protected routes"))
 end
-38adba1e_0961_4417_bd84_33fa9c42439f["Client-controlled session state authentication bypass"]
-38adba1e_0961_4417_bd84_33fa9c42439f -->|objective| d4c509d7_f9ab_452a_a91d_4da040095414
-38adba1e_0961_4417_bd84_33fa9c42439f -->|signal| 7ff9ea94_7bf4_4df5_83f1_7d3dc0174653
-38adba1e_0961_4417_bd84_33fa9c42439f -->|signal| 9ba566b6_bfed_4059_bdb1_50bb3cac3c29
-38adba1e_0961_4417_bd84_33fa9c42439f -->|signal| 9bfe87d7_c197_4893_b7e1_829ab6d1fcf5
+38adba1e_0961_4417_bd84_33fa9c42439f{{"Client-controlled<br>session state<br>authentication bypass"}}
+38adba1e_0961_4417_bd84_33fa9c42439f -->|covers| d4c509d7_f9ab_452a_a91d_4da040095414
+d4c509d7_f9ab_452a_a91d_4da040095414 --> 9ba566b6_bfed_4059_bdb1_50bb3cac3c29
+d4c509d7_f9ab_452a_a91d_4da040095414 --> 9bfe87d7_c197_4893_b7e1_829ab6d1fcf5
+d4c509d7_f9ab_452a_a91d_4da040095414 --> 7ff9ea94_7bf4_4df5_83f1_7d3dc0174653
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect acceptance of forged web session context](../Objectives/detect-acceptance-of-forged-web-session-context.md) (`d4c509d7-f9ab-452a-a91d-4da040095414`) | Downstream | objective |
+| Signal | [Session variable probing across protected routes](../Objectives/detect-acceptance-of-forged-web-session-context.md#session-variable-probing-across-protected-routes) (`7ff9ea94-7bf4-4df5-83f1-7d3dc0174653`) | Downstream | signal |
+| Signal | [Fabricated session value grants protected access](../Objectives/detect-acceptance-of-forged-web-session-context.md#fabricated-session-value-grants-protected-access) (`9ba566b6-bfed-4059-bdb1-50bb3cac3c29`) | Downstream | signal |
+| Signal | [Client-side role or identity claim changes authorisation outcome](../Objectives/detect-acceptance-of-forged-web-session-context.md#client-side-role-or-identity-claim-changes-authorisation-outcome) (`9bfe87d7-c197-4893-b7e1-829ab6d1fcf5`) | Downstream | signal |

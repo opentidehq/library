@@ -17,22 +17,22 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0047
-    - misp::1a77e156-76bc-43f5-bdd7-bd67f30fbbbb
-    - att&ck::G0129
-    - misp::fceed509-938e-4f9e-acd4-76e6c28dc6f1
-    - att&ck::G0034
-    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
-    - att&ck::G0027
-    - misp::834e0acd-d92a-4e38-bb14-dc4159d7cb32
-    - att&ck::G0093
-    - misp::e400b6c5-77cf-453d-ba0f-44575583ac6c
-    - att&ck::G0069
-    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
-    - att&ck::G0069
-    - misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0047
+    - name: misp::1a77e156-76bc-43f5-bdd7-bd67f30fbbbb
+    - name: att&ck::G0129
+    - name: misp::fceed509-938e-4f9e-acd4-76e6c28dc6f1
+    - name: att&ck::G0034
+    - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - name: att&ck::G0027
+    - name: misp::834e0acd-d92a-4e38-bb14-dc4159d7cb32
+    - name: att&ck::G0093
+    - name: misp::e400b6c5-77cf-453d-ba0f-44575583ac6c
+    - name: att&ck::G0069
+    - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
+    - name: att&ck::G0069
+    - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
   killchain: Defense Evasion
   att&ck:
     - T1027
@@ -73,8 +73,21 @@ threat:
     - Switches
     - Web Servers
   severity: Significant incident
-  leverage: Elevation of privilege; Information Disclosure; Infrastructure Compromise; Log tampering; Modify configuration; Modify privileges; New Accounts; Software installation; Tampering
-  impact: Business disruption; Data Breach; Lose Capabilities; Operating costs
+  leverage:
+    - Elevation of privilege
+    - Information Disclosure
+    - Infrastructure Compromise
+    - Log tampering
+    - Modify configuration
+    - Modify privileges
+    - New Accounts
+    - Software installation
+    - Tampering
+  impact:
+    - Business disruption
+    - Data Breach
+    - Lose Capabilities
+    - Operating costs
   viability: Likely
   description: |-
     ### overall description

@@ -17,10 +17,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0034
-    - misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0034
+    - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
   killchain: Defense Evasion
   att&ck:
     - T1562.002
@@ -38,8 +38,10 @@ threat:
     - Web Servers
     - Azure::Compute::Virtual Machines
   severity: Moderate incident
-  leverage: Log tampering
-  impact: Impairement
+  leverage:
+    - Log tampering
+  impact:
+    - Impairement
   viability: Likely
   description: |-
     Threat actors can use PowerShell to disable Windows event logging.

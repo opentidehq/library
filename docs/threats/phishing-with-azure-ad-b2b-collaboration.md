@@ -1,14 +1,15 @@
 # Phishing with Azure AD B2B Collaboration
 
 ## Metadata
-
-- **UUID**: `f9a6f927-d08c-40c1-85af-01331c471def`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2023-12-12`
-- **Modified**: `2025-10-01`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f9a6f927-d08c-40c1-85af-01331c471def` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2023-12-12` |
+| Modified | `2025-10-01` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -49,18 +50,42 @@ customize the invitation message and ensure it appears legitimate[2][4].
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversaries need administrative privileges or access to an existing Azure AD Premium account, or to create a new free trial account. After this, the capability to set up an Enterprise App with single sign-on through a user-defined URL, which can be their own website to deceive the user.
+Adversaries need administrative privileges or access to an existing Azure AD Premium account, or to create a new free trial account. After this, the capability to set up an Enterprise App with single sign-on through a user-defined URL, which can be their own website to deceive the user.
 
-Domains: Public Cloud, Private Cloud, Enterprise, SaaS
-Targets: Personal Information, End-user, Cloud Storage Accounts, Identity Services, Cloud Portal, Server Authentication, Remote access
-Platforms: Windows, Office 365, Azure AD, Azure, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Microsoft::Microsoft 365**
+> Microsoft 365 cloud-based productivity suite (formerly Office 365)
+
+> **Azure::Security::Entra ID**
+> Microsoft Entra ID in Azure (cloud identity)
+
+> **Azure**
+> Microsoft Azure cloud platform
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **AWS::Storage**
+> AWS storage services
+
+> **Entra ID**
+> Microsoft Entra ID (formerly Azure Active Directory)
+
+> **Kerberos**
+> Kerberos network authentication protocol
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; IP Loss; Reputational Damages; Identity Theft; Competitive disadvantage; Business disruption; Lose Capabilities | - |
-| Leverage | Spoofing; Infrastructure Compromise; Information Disclosure; New Accounts | - |
+| Impact | Data Breach<br>IP Loss<br>Reputational Damages<br>Identity Theft<br>Competitive disadvantage<br>Business disruption<br>Lose Capabilities | Non-public information has been accessed from the outside, and successfully extracted.<br>Particular, key data, information and blueprint conducive to the organization capability to gain and retain a commercial or geopolitical advantage has been accessed, and their content potentially used by competitors or other adversaries.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Loss of competitive advantage<br>Business disruption<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss. |
+| Leverage | Spoofing<br>Infrastructure Compromise<br>Information Disclosure<br>New Accounts | Threat action aimed at accessing and use of another user’s credentials, such as username and password.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Ability to create new arbitrary user accounts. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Social Engineering | Techniques aimed at the manipulation of people to perform unsafe actions. |
 
@@ -74,3 +99,21 @@ Platforms: Windows, Office 365, Azure AD, Azure, PowerShell**
 | Technique | Name | Description |
 | --- | --- | --- |
 | `T1566` | [Phishing](https://attack.mitre.org/techniques/T1566) | Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering. Phishing can be targeted, known as spearphishing. In spearphishing, a specific individual, company, or industry will be targeted by the adversary. More generally, adversaries can conduct non-targeted phishing, such as in mass malware spam campaigns.  Adversaries may send victims emails containing malicious attachments or links, typically to execute malicious code on victim systems. Phishing may also be conducted via third-party services, like social media platforms. Phishing may also involve social engineering techniques, such as posing as a trusted source, as well as evasive techniques such as removing or manipulating emails or metadata/headers from compromised accounts being abused to send messages (e.g., [Email Hiding Rules](https://attack.mitre.org/techniques/T1564/008)).(Citation: Microsoft OAuth Spam 2022)(Citation: Palo Alto Unit 42 VBA Infostealer 2014) Another way to accomplish this is by [Email Spoofing](https://attack.mitre.org/techniques/T1672)(Citation: Proofpoint-spoof) the identity of the sender, which can be used to fool both the human recipient as well as automated security tools,(Citation: cyberproof-double-bounce) or by including the intended target as a party to an existing email thread that includes malicious files or links (i.e., "thread hijacking").(Citation: phishing-krebs)  Victims may also receive phishing messages that instruct them to call a phone number where they are directed to visit a malicious URL, download malware,(Citation: sygnia Luna Month)(Citation: CISA Remote Monitoring and Management Software) or install adversary-accessible remote management tools onto their computer (i.e., [User Execution](https://attack.mitre.org/techniques/T1204)).(Citation: Unit42 Luna Moth) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Social Engineering"
+f9a6f927_d08c_40c1_85af_01331c471def{{"Phishing with Azure AD<br>B2B Collaboration"}}
+end
+subgraph "Persistence"
+437a43b9_6344_45a9_915b_d733d23173ae{{"Scheduled task<br>manipulation using Azure<br>Portal"}}
+5e66f826_4c4b_4357_b9c5_2f40da207f34{{"Scheduled tasks to<br>maintain persistence in<br>registry"}}
+end
+subgraph "Delivery"
+dd5d942c_bac4_4000_b9a6_ca4fef6cfb84{{"Spearphishing Attachment"}}
+end
+437a43b9_6344_45a9_915b_d733d23173ae -->|preceeds| f9a6f927_d08c_40c1_85af_01331c471def
+437a43b9_6344_45a9_915b_d733d23173ae <-->|synergize| 5e66f826_4c4b_4357_b9c5_2f40da207f34
+5e66f826_4c4b_4357_b9c5_2f40da207f34 -->|succeeds| dd5d942c_bac4_4000_b9a6_ca4fef6cfb84
+```

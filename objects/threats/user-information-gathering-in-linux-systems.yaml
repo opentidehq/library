@@ -45,8 +45,10 @@ threat:
     - Windows::Desktop
     - Customer Support
   severity: Moderate incident
-  leverage: Information Disclosure
-  impact: Data Breach
+  leverage:
+    - Information Disclosure
+  impact:
+    - Data Breach
   viability: Likely
   description: |-
     Threat actors use various methods and tools to collect user data on Linux

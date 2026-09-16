@@ -1,14 +1,15 @@
 # Disable swapping paging devices
 
 ## Metadata
-
-- **UUID**: `497ccceb-c012-4830-aa61-4a046e7b6ce9`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-01-03`
-- **Modified**: `2025-01-03`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `497ccceb-c012-4830-aa61-4a046e7b6ce9` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-01-03` |
+| Modified | `2025-01-03` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## Description
 Disable Swapping/Paging Devices is a tactic adversaries may employ to impair defenses, 
@@ -49,21 +50,36 @@ ensuring the change persists on reboot.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The attacker requires administrative privileges on the target operating system 
+The attacker requires administrative privileges on the target operating system 
 to modify or disable the system paging or swap settings. 
 They may also need to leverage local management tools or scripts 
 to carry out these modifications.
 
-Domains: Enterprise
-Targets: Workstations, Public-Facing Servers, Server Authentication
-Platforms: Windows, macOS, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Kerberos**
+> Kerberos network authentication protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Business disruption; Impairement; Reputational Damages | - |
-| Leverage | Modify configuration; Denial of Service; Elevation of privilege | - |
+| Impact | Business disruption<br>Impairement<br>Reputational Damages | Business disruption<br>Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Modify configuration<br>Denial of Service<br>Elevation of privilege | Modify configuration or services<br>Threat action attempting to deny access to valid users, such as by making a web server temporarily unavailable or unusable.<br>Capacity to augment leverage over the target system by upgrading the compromised access rights |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Defense Evasion | Techniques an attacker may specifically use for evading detection or avoiding other defenses. |
 

@@ -1,14 +1,15 @@
 # Detect LINE VIPER Defence Evasion on Cisco ASA
 
 ## Metadata
-
-- **UUID**: `7c0f2788-690e-4d34-b9eb-5f76e7363ccc`
-- **Schema**: `objective::1.0`
-- **Version**: `1`
-- **Created**: `2026-06-18`
-- **Modified**: `2026-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `7c0f2788-690e-4d34-b9eb-5f76e7363ccc` |
+| Schema | `objective::1.0` |
+| Version | `1` |
+| Created | `2026-06-18` |
+| Modified | `2026-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -95,7 +96,7 @@ pre-shared key VPNs configured without AAA) may legitimately
 lack authentication logs — these must be documented and
 excluded.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Anomaly
 - **Effort**: 6
 #### Data
@@ -145,7 +146,7 @@ per device. Syslog gaps caused by network issues between the
 ASA and syslog server must be distinguished from in-device
 suppression through cross-validation with alternative telemetry.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Statistical
 - **Effort**: 7
 #### Data
@@ -194,7 +195,7 @@ Given that LINE VIPER targets firmware versions 9.12(4)67
 and 9.14(4)24, these specific versions warrant priority
 integrity verification when detected in the environment.
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Artifacts
 - **Effort**: 5
 #### Data
@@ -223,24 +224,33 @@ Preferred log sources:
 | Anomalous Reduction in Cisco ASA Syslog Message Volume | _None_ |
 | Cisco ASA System Integrity Check Result Inconsistency | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-0114324a_80a5_46cb_a75c_6f4a2301b7e5["0114324a-80a5-46cb-a75c-6f4a2301b7e5"]
-10482800_4d71_4246_93f4_6edfc4705b86["10482800-4d71-4246-93f4-6edfc4705b86"]
-9666e19f_f48d_4a0b_bb3e_0efbd69e8eac["9666e19f-f48d-4a0b-bb3e-0efbd69e8eac"]
+subgraph "Threats"
+53389577_fd8d_4ce6_9852_8365ed947c17{{"AAA bypass for<br>unauthorized access on<br>network devices"}}
+b6175f16_2b61_4116_bd97_de54b02b197e{{"LINE VIPER shellcode<br>loader on Cisco ASA"}}
+a6f331e0_292d_4d83_87a9_46aa149555dd{{"RayInitiator GRUB<br>bootkit persistence on<br>Cisco ASA"}}
 end
-subgraph "Threat"
-53389577_fd8d_4ce6_9852_8365ed947c17["AAA bypass for unauthorized access on network devices"]
-a6f331e0_292d_4d83_87a9_46aa149555dd["RayInitiator GRUB bootkit persistence on Cisco ASA"]
-b6175f16_2b61_4116_bd97_de54b02b197e["LINE VIPER shellcode loader on Cisco ASA"]
+subgraph "Signals"
+0114324a_80a5_46cb_a75c_6f4a2301b7e5(("Cisco ASA Authentication<br>Log Gap for Established<br>Network Connections"))
+10482800_4d71_4246_93f4_6edfc4705b86(("Anomalous Reduction in<br>Cisco ASA Syslog Message<br>Volume"))
+9666e19f_f48d_4a0b_bb3e_0efbd69e8eac(("Cisco ASA System<br>Integrity Check Result<br>Inconsistency"))
 end
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc["Detect LINE VIPER Defence Evasion on Cisco ASA"]
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc -->|signal| 0114324a_80a5_46cb_a75c_6f4a2301b7e5
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc -->|signal| 10482800_4d71_4246_93f4_6edfc4705b86
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc -->|signal| 9666e19f_f48d_4a0b_bb3e_0efbd69e8eac
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc -->|threat| 53389577_fd8d_4ce6_9852_8365ed947c17
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc -->|threat| a6f331e0_292d_4d83_87a9_46aa149555dd
-7c0f2788_690e_4d34_b9eb_5f76e7363ccc -->|threat| b6175f16_2b61_4116_bd97_de54b02b197e
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc(["Detect LINE VIPER<br>Defence Evasion on Cisco<br>ASA"])
+53389577_fd8d_4ce6_9852_8365ed947c17 -->|covers| 7c0f2788_690e_4d34_b9eb_5f76e7363ccc
+b6175f16_2b61_4116_bd97_de54b02b197e -->|covers| 7c0f2788_690e_4d34_b9eb_5f76e7363ccc
+a6f331e0_292d_4d83_87a9_46aa149555dd -->|covers| 7c0f2788_690e_4d34_b9eb_5f76e7363ccc
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc --> 0114324a_80a5_46cb_a75c_6f4a2301b7e5
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc --> 10482800_4d71_4246_93f4_6edfc4705b86
+7c0f2788_690e_4d34_b9eb_5f76e7363ccc --> 9666e19f_f48d_4a0b_bb3e_0efbd69e8eac
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [AAA bypass for unauthorized access on network devices](../Threats/aaa-bypass-for-unauthorized-access-on-network-devices.md) (`53389577-fd8d-4ce6-9852-8365ed947c17`) | Upstream | threat |
+| Threat | [RayInitiator GRUB bootkit persistence on Cisco ASA](../Threats/rayinitiator-grub-bootkit-persistence-on-cisco-asa.md) (`a6f331e0-292d-4d83-87a9-46aa149555dd`) | Upstream | threat |
+| Threat | [LINE VIPER shellcode loader on Cisco ASA](../Threats/line-viper-shellcode-loader-on-cisco-asa.md) (`b6175f16-2b61-4116-bd97-de54b02b197e`) | Upstream | threat |
+| Signal | [Cisco ASA Authentication Log Gap for Established Network Connections](detect-line-viper-defence-evasion-on-cisco-asa.md#cisco-asa-authentication-log-gap-for-established-network-connections) (`0114324a-80a5-46cb-a75c-6f4a2301b7e5`) | Downstream | signal |
+| Signal | [Anomalous Reduction in Cisco ASA Syslog Message Volume](detect-line-viper-defence-evasion-on-cisco-asa.md#anomalous-reduction-in-cisco-asa-syslog-message-volume) (`10482800-4d71-4246-93f4-6edfc4705b86`) | Downstream | signal |
+| Signal | [Cisco ASA System Integrity Check Result Inconsistency](detect-line-viper-defence-evasion-on-cisco-asa.md#cisco-asa-system-integrity-check-result-inconsistency) (`9666e19f-f48d-4a0b-bb3e-0efbd69e8eac`) | Downstream | signal |

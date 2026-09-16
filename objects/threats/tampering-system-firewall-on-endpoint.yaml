@@ -15,12 +15,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0082
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0082
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Defense Evasion
   att&ck:
     - T1562.004
@@ -35,8 +35,15 @@ threat:
     - Windows::Desktop
     - Web Servers
   severity: Substantial incident
-  leverage: Modify configuration; Denial of Service; Tampering
-  impact: Data Breach; Business disruption; Operating costs; Legal and regulatory
+  leverage:
+    - Modify configuration
+    - Denial of Service
+    - Tampering
+  impact:
+    - Data Breach
+    - Business disruption
+    - Operating costs
+    - Legal and regulatory
   viability: Likely
   description: |-
     The firewall is a foundational defensive mechanism designed to control inbound and 

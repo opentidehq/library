@@ -1,14 +1,15 @@
 # Change file owner to a privileged account
 
 ## Metadata
-
-- **UUID**: `682bf600-ec3e-4780-9f8f-8305ac602bef`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-12-13`
-- **Modified**: `2024-12-13`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `682bf600-ec3e-4780-9f8f-8305ac602bef` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-12-13` |
+| Modified | `2024-12-13` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -58,20 +59,47 @@ or extended attributes, enabling the file to run with elevated privileges.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **The adversary must have sufficient privileges (e.g., local administrator 
+The adversary must have sufficient privileges (e.g., local administrator 
 or root permissions) on the target host or domain controller to modify 
 file ownership attributes.
 
-Domains: Enterprise, Networking
-Targets: Workstations, Directory, Windows API, Critical Documents, Laptop, Public-Facing Servers, Production Database, Virtual Machines, Engineering Workstation
-Platforms: Windows, Linux, macOS**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Application Layer::WMI**
+> Windows Management Instrumentation remote management protocol
+
+> **File Sharing**
+> Cloud file sharing and storage services
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Database Management**
+> Database management systems
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft; Reputational Damages; Business disruption | - |
-| Leverage | Elevation of privilege; Modify privileges; Tampering | - |
+| Impact | Data Breach<br>Identity Theft<br>Reputational Damages<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Business disruption |
+| Leverage | Elevation of privilege<br>Modify privileges<br>Tampering | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Modify privileges or permissions<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 

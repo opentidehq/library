@@ -19,7 +19,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
+    - name: att&ck::G0016
   att&ck:
     - T1195.002
     - T1195
@@ -62,8 +62,20 @@ threat:
     - Entra ID
     - Application Layer::HTTP
   severity: National cyber emergency
-  leverage: Infrastructure Compromise; Information Disclosure; Dwelling; Elevation of privilege; Spoofing; Tampering
-  impact: National Security; Catastrophic Loss; Data Breach; IP Loss; Reputational Damages; Business disruption
+  leverage:
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Dwelling
+    - Elevation of privilege
+    - Spoofing
+    - Tampering
+  impact:
+    - National Security
+    - Catastrophic Loss
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Business disruption
   viability: Very Likely
   description: |-
     The SolarWinds supply chain attack, also known as SUNBURST or Solorigate, represents one of the 

@@ -1,15 +1,16 @@
 # Detect protected content in abnormal redirect responses
 
 ## Metadata
-
-- **UUID**: `f8a95fcf-c5b0-4db0-bb8b-78e4edaa0544`
-- **Schema**: `objective::1.0`
-- **Version**: `3`
-- **Created**: `2026-03-30`
-- **Modified**: `2026-05-04`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Contributors**: Hold Security Threat Research
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `f8a95fcf-c5b0-4db0-bb8b-78e4edaa0544` |
+| Schema | `objective::1.0` |
+| Version | `3` |
+| Created | `2026-03-30` |
+| Modified | `2026-05-04` |
+| TLP | clear (`TLP:CLEAR`) |
+| Contributors | Hold Security Threat Research |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -48,7 +49,7 @@ Triage by confirming route sensitivity, comparing against normal redirect templa
 capturing minimal request/response evidence for the application owner without storing protected
 body content.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Anomaly
 - **Effort**: 3
 #### Data
@@ -68,7 +69,7 @@ login event for the same source/session, or abnormal tooling indicators.
 As a non-normative starting point, investigate three or more distinct restricted routes from the
 same source within a short window when no successful authentication event follows.
 
-- **Severity**: Medium
+- **Severity**: Moderate incident
 - **Methodology**: Frequency Analysis
 - **Effort**: 4
 #### Data
@@ -87,7 +88,7 @@ than a production log-only signal.
 Triage by comparing the body fingerprint against the approved unauthenticated redirect template
 and validating that any exposed markers map to protected application content.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Heuristic
 - **Effort**: 5
 #### Data
@@ -106,20 +107,27 @@ to prove exposure.
 | Restricted route enumeration through repeated redirects | _None_ |
 | Redirect body differs from expected unauthenticated template | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-0770d2a4_9299_46d7_93f2_c3fff68aad26["0770d2a4-9299-46d7-93f2-c3fff68aad26"]
-077ee487_7694_4ed5_9a83_5ed36b4f31c5["077ee487-7694-4ed5-9a83-5ed36b4f31c5"]
-f798884c_46ea_424c_9958_45f2c4f8110a["f798884c-46ea-424c-9958-45f2c4f8110a"]
+subgraph "Threats"
+0663c192_cdeb_49a2_994c_4cc8e98f764e{{"Late access control<br>enforcement via redirect<br>body leakage"}}
 end
-subgraph "Threat"
-0663c192_cdeb_49a2_994c_4cc8e98f764e["Late access control enforcement via redirect body leakage"]
+subgraph "Signals"
+f798884c_46ea_424c_9958_45f2c4f8110a(("Large 302 response body<br>on protected route"))
+0770d2a4_9299_46d7_93f2_c3fff68aad26(("Restricted route<br>enumeration through<br>repeated redirects"))
+077ee487_7694_4ed5_9a83_5ed36b4f31c5(("Redirect body differs<br>from expected<br>unauthenticated template"))
 end
-f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544["Detect protected content in abnormal redirect responses"]
-f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 -->|signal| 0770d2a4_9299_46d7_93f2_c3fff68aad26
-f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 -->|signal| 077ee487_7694_4ed5_9a83_5ed36b4f31c5
-f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 -->|signal| f798884c_46ea_424c_9958_45f2c4f8110a
-f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 -->|threat| 0663c192_cdeb_49a2_994c_4cc8e98f764e
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544(["Detect protected content<br>in abnormal redirect<br>responses"])
+0663c192_cdeb_49a2_994c_4cc8e98f764e -->|covers| f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> f798884c_46ea_424c_9958_45f2c4f8110a
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> 0770d2a4_9299_46d7_93f2_c3fff68aad26
+f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> 077ee487_7694_4ed5_9a83_5ed36b4f31c5
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [Late access control enforcement via redirect body leakage](../Threats/late-access-control-enforcement-via-redirect-body-leakage.md) (`0663c192-cdeb-49a2-994c-4cc8e98f764e`) | Upstream | threat |
+| Signal | [Restricted route enumeration through repeated redirects](detect-protected-content-in-abnormal-redirect-responses.md#restricted-route-enumeration-through-repeated-redirects) (`0770d2a4-9299-46d7-93f2-c3fff68aad26`) | Downstream | signal |
+| Signal | [Redirect body differs from expected unauthenticated template](detect-protected-content-in-abnormal-redirect-responses.md#redirect-body-differs-from-expected-unauthenticated-template) (`077ee487-7694-4ed5-9a83-5ed36b4f31c5`) | Downstream | signal |
+| Signal | [Large 302 response body on protected route](detect-protected-content-in-abnormal-redirect-responses.md#large-302-response-body-on-protected-route) (`f798884c-46ea-424c-9958-45f2c4f8110a`) | Downstream | signal |

@@ -12,16 +12,16 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0007
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
-    - att&ck::G0016
-    - misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
-    - att&ck::G0046
-    - misp::00220228-a5a4-4032-a30d-826bb55aa3fb
-    - att&ck::G0092
-    - misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
-    - att&ck::G0102
-    - misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
+    - name: att&ck::G0007
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: att&ck::G0016
+    - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
+    - name: att&ck::G0046
+    - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
+    - name: att&ck::G0092
+    - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
+    - name: att&ck::G0102
+    - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Execution
   att&ck:
     - T1059.005
@@ -45,8 +45,17 @@ threat:
     - Windows::Desktop
     - File Sharing
   severity: Moderate incident
-  leverage: Spoofing; Tampering; Information Disclosure; Elevation of privilege; Software installation
-  impact: Data Breach; IP Loss; Identity Theft; Business disruption
+  leverage:
+    - Spoofing
+    - Tampering
+    - Information Disclosure
+    - Elevation of privilege
+    - Software installation
+  impact:
+    - Data Breach
+    - IP Loss
+    - Identity Theft
+    - Business disruption
   viability: Very Likely
   description: |-
     An employee named receives an email that appears to be from a trusted business 

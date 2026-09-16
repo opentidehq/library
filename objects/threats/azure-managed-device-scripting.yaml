@@ -16,18 +16,18 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G1024
-    - misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - att&ck::G0022
-    - misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
-    - misp::50cd027f-df14-40b2-aa22-bf5de5061163
-    - att&ck::G0035
-    - att&ck::G1039
-    - misp::53583c40-935e-11e9-b4fc-d7e217a306d2
-    - misp::0ab7c8de-fc23-4793-99aa-7ee336199e26
-    - misp::6bf7e6b6-5917-45a6-9567-f0baba79768c
+    - name: att&ck::G1024
+    - name: misp::066d25c1-71bd-4bd4-8ca7-edbba00063f4
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0022
+    - name: misp::aa29ae56-e54b-47a2-ad16-d3ab0242d5d7
+    - name: misp::50cd027f-df14-40b2-aa22-bf5de5061163
+    - name: att&ck::G0035
+    - name: att&ck::G1039
+    - name: misp::53583c40-935e-11e9-b4fc-d7e217a306d2
+    - name: misp::0ab7c8de-fc23-4793-99aa-7ee336199e26
+    - name: misp::6bf7e6b6-5917-45a6-9567-f0baba79768c
   killchain: Execution
   att&ck:
     - T1059
@@ -69,8 +69,13 @@ threat:
     - Mobile
     - Azure
   severity: Significant incident
-  leverage: Elevation of privilege; Information Disclosure
-  impact: Data Breach; Reputational Damages; Identity Theft
+  leverage:
+    - Elevation of privilege
+    - Information Disclosure
+  impact:
+    - Data Breach
+    - Reputational Damages
+    - Identity Theft
   viability: Likely
   description: |-
     The following threat vector involves adversaries abusing device management capabilities 

@@ -1,14 +1,15 @@
 # Axios npm supply chain compromise
 
 ## Metadata
-
-- **UUID**: `000790d9-06de-49af-893d-e4993abe6e38`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2026-04-28`
-- **Modified**: `2026-04-28`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `000790d9-06de-49af-893d-e4993abe6e38` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2026-04-28` |
+| Modified | `2026-04-28` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -284,7 +285,7 @@ process termination.
 **Severe** - A Severe priority incident is likely to result in a significant impact to public health or safety, national security, economic security, foreign relations, or civil liberties.
 
 ## Terrain
-> **Any organisation, developer workstation, or CI/CD pipeline that
+Any organisation, developer workstation, or CI/CD pipeline that
 resolved axios from the public npm registry between 2026-03-31
 ~00:21 UTC and ~03:20 UTC, where the resolved version was either
 axios@1.14.1 (tagged latest) or axios@0.30.4 (tagged legacy).
@@ -301,14 +302,28 @@ rely on any vulnerability in axios source code - the trust
 boundary between maintainer credentials and the npm publish
 pipeline is the actual vulnerable surface.
 
-Surface: OS::Windows, OS::macOS, OS::Linux, Application::Development::Package Management::npm, Application::Development::CI/CD**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Development::Package Management::npm**
+> npm JavaScript package manager
+
+> **Development::CI/CD**
+> Continuous integration and continuous delivery platforms
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Highly significant incident | A cyber attack which has a serious impact on central government, (inter)national essential services, a large proportion of the (inter)national population, or the (inter)national economy. |
-| Impact | Data Breach; Business disruption; Lose Capabilities; Reputational Damages; Operating costs | - |
-| Leverage | Infrastructure Compromise; Tampering; Software installation; Information Gathering; Information Disclosure | - |
+| Impact | Data Breach<br>Business disruption<br>Lose Capabilities<br>Reputational Damages<br>Operating costs | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Vector execution will remove key functions to the organization, which will not be easily circumvented. Most day-to-day is heavily impaired, but processes can reorganize at a loss.<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered.<br>Increased operating costs |
+| Leverage | Infrastructure Compromise<br>Tampering<br>Software installation<br>Information Gathering<br>Information Disclosure | The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet.<br>Software installation or code modification<br>Gathering information about the target system, network, or environment to inform subsequent attack phases.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Almost certain | Nearly certain - 95-99% |
 | Kill Chain | Delivery | Techniques resulting in the transmission of a weaponized object to the targeted environment. |
 
@@ -342,12 +357,18 @@ Surface: OS::Windows, OS::macOS, OS::Linux, Application::Development::Package Ma
 ## Chaining
 ```mermaid
 flowchart LR
-000790d9_06de_49af_893d_e4993abe6e38["Axios npm supply chain compromise"]
-d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4["Adversary publishing malicious NPM packages to compromise software"]
-000790d9_06de_49af_893d_e4993abe6e38 -->|atomicity::implements| d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4
+subgraph "Delivery"
+000790d9_06de_49af_893d_e4993abe6e38{{"Axios npm supply chain<br>compromise"}}
+end
+subgraph "Exploitation"
+d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4{{"Adversary publishing<br>malicious NPM packages<br>to compromise software"}}
+end
+b6887f4b_eeae_462c_a2ac_7454efb5eabc{{"Legitimate software<br>dependency injected with<br>malicious code"}}
+000790d9_06de_49af_893d_e4993abe6e38 -->|implements| d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4
+d24f2b4a_80fc_4ee7_9293_3f6e9e3bbbe4 -->|implements| b6887f4b_eeae_462c_a2ac_7454efb5eabc
 ```
 ### Chaining details
-#### implements -> Adversary publishing malicious NPM packages to compromise software (`atomicity::implements`)
+#### implements -> [Adversary publishing malicious NPM packages to compromise software](adversary-publishing-malicious-npm-packages-to-compromise-software.md) (`d24f2b4a-80fc-4ee7-9293-3f6e9e3bbbe4`) (`atomicity::implements`)
 The Axios npm supply chain compromise is a concrete, named
 instance of the broader pattern of adversaries publishing
 malicious npm packages to compromise downstream software.
@@ -358,26 +379,36 @@ dependency to deliver a cross-platform RAT.
 
 - **Target UUID**: `d24f2b4a-80fc-4ee7-9293-3f6e9e3bbbe4`
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Objective"
-f45b9b82_a3c5_4643_932b_debfd8739bd8["Detect Axios npm Supply Chain Compromise Activity"]
+subgraph "Objectives"
+f45b9b82_a3c5_4643_932b_debfd8739bd8(["Detect Axios npm Supply<br>Chain Compromise<br>Activity"])
 end
-subgraph "Signal"
-6524f5a6_d9e9_48ff_983f_23c4aed9c1fd["6524f5a6-d9e9-48ff-983f-23c4aed9c1fd"]
-68f4ac42_9bd8_4b1e_b547_56f890bfe457["68f4ac42-9bd8-4b1e-b547-56f890bfe457"]
-6c2c0f21_5821_4b5f_9279_9b91dfd5d148["6c2c0f21-5821-4b5f-9279-9b91dfd5d148"]
-9866b082_7f59_43d3_8ed8_2567eda7d4fc["9866b082-7f59-43d3-8ed8-2567eda7d4fc"]
-a5331e78_144f_4300_8672_4b69b6ae732c["a5331e78-144f-4300-8672-4b69b6ae732c"]
-cf53a85e_38af_4053_a2b5_549bce394b8a["cf53a85e-38af-4053-a2b5-549bce394b8a"]
+subgraph "Signals"
+cf53a85e_38af_4053_a2b5_549bce394b8a(("Compromised Axios /<br>plain-crypto-js Versions<br>Resolved in Dependency<br>Manifests"))
+6c2c0f21_5821_4b5f_9279_9b91dfd5d148(("Suspicious npm<br>Postinstall Lifecycle<br>Execution Spawning<br>Unexpected Interpreters"))
+6524f5a6_d9e9_48ff_983f_23c4aed9c1fd(("WAVESHAPER.V2<br>Cross-Platform RAT<br>On-Disk Artefacts"))
+9866b082_7f59_43d3_8ed8_2567eda7d4fc(("Renamed PowerShell +<br>Transient VBScript<br>Loader from Node.js<br>Process Tree Windows"))
+a5331e78_144f_4300_8672_4b69b6ae732c(("WAVESHAPER.V2 C2<br>Communication to<br>sfrclak.com"))
+68f4ac42_9bd8_4b1e_b547_56f890bfe457(("NPM Publisher Email or<br>SLSA Provenance<br>Regression on Critical<br>Packages"))
 end
-000790d9_06de_49af_893d_e4993abe6e38["Axios npm supply chain compromise"]
-000790d9_06de_49af_893d_e4993abe6e38 -->|objective| f45b9b82_a3c5_4643_932b_debfd8739bd8
-000790d9_06de_49af_893d_e4993abe6e38 -->|signal| 6524f5a6_d9e9_48ff_983f_23c4aed9c1fd
-000790d9_06de_49af_893d_e4993abe6e38 -->|signal| 68f4ac42_9bd8_4b1e_b547_56f890bfe457
-000790d9_06de_49af_893d_e4993abe6e38 -->|signal| 6c2c0f21_5821_4b5f_9279_9b91dfd5d148
-000790d9_06de_49af_893d_e4993abe6e38 -->|signal| 9866b082_7f59_43d3_8ed8_2567eda7d4fc
-000790d9_06de_49af_893d_e4993abe6e38 -->|signal| a5331e78_144f_4300_8672_4b69b6ae732c
-000790d9_06de_49af_893d_e4993abe6e38 -->|signal| cf53a85e_38af_4053_a2b5_549bce394b8a
+000790d9_06de_49af_893d_e4993abe6e38{{"Axios npm supply chain<br>compromise"}}
+000790d9_06de_49af_893d_e4993abe6e38 -->|covers| f45b9b82_a3c5_4643_932b_debfd8739bd8
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> cf53a85e_38af_4053_a2b5_549bce394b8a
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 6c2c0f21_5821_4b5f_9279_9b91dfd5d148
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 6524f5a6_d9e9_48ff_983f_23c4aed9c1fd
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 9866b082_7f59_43d3_8ed8_2567eda7d4fc
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> a5331e78_144f_4300_8672_4b69b6ae732c
+f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 68f4ac42_9bd8_4b1e_b547_56f890bfe457
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Objective | [Detect Axios npm Supply Chain Compromise Activity](../Objectives/detect-axios-npm-supply-chain-compromise-activity.md) (`f45b9b82-a3c5-4643-932b-debfd8739bd8`) | Downstream | objective |
+| Signal | [WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts](../Objectives/detect-axios-npm-supply-chain-compromise-activity.md#waveshaper-v2-cross-platform-rat-on-disk-artefacts) (`6524f5a6-d9e9-48ff-983f-23c4aed9c1fd`) | Downstream | signal |
+| Signal | [NPM Publisher Email or SLSA Provenance Regression on Critical Packages](../Objectives/detect-axios-npm-supply-chain-compromise-activity.md#npm-publisher-email-or-slsa-provenance-regression-on-critical-packages) (`68f4ac42-9bd8-4b1e-b547-56f890bfe457`) | Downstream | signal |
+| Signal | [Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters](../Objectives/detect-axios-npm-supply-chain-compromise-activity.md#suspicious-npm-postinstall-lifecycle-execution-spawning-unexpected-interpreters) (`6c2c0f21-5821-4b5f-9279-9b91dfd5d148`) | Downstream | signal |
+| Signal | [Renamed PowerShell + Transient VBScript Loader from Node.js Process Tree (Windows)](../Objectives/detect-axios-npm-supply-chain-compromise-activity.md#renamed-powershell-transient-vbscript-loader-from-node-js-process-tree-windows) (`9866b082-7f59-43d3-8ed8-2567eda7d4fc`) | Downstream | signal |
+| Signal | [WAVESHAPER.V2 C2 Communication to sfrclak[.]com](../Objectives/detect-axios-npm-supply-chain-compromise-activity.md#waveshaper-v2-c2-communication-to-sfrclak-com) (`a5331e78-144f-4300-8672-4b69b6ae732c`) | Downstream | signal |
+| Signal | [Compromised Axios / plain-crypto-js Versions Resolved in Dependency Manifests](../Objectives/detect-axios-npm-supply-chain-compromise-activity.md#compromised-axios-plain-crypto-js-versions-resolved-in-dependency-manifests) (`cf53a85e-38af-4053-a2b5-549bce394b8a`) | Downstream | signal |

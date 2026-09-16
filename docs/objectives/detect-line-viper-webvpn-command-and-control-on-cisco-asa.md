@@ -1,14 +1,15 @@
 # Detect LINE VIPER WebVPN Command and Control on Cisco ASA
 
 ## Metadata
-
-- **UUID**: `8546b0d8-c9e1-4a51-bf64-2b93c4159ebf`
-- **Schema**: `objective::1.0`
-- **Version**: `1`
-- **Created**: `2026-06-18`
-- **Modified**: `2026-06-18`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `8546b0d8-c9e1-4a51-bf64-2b93c4159ebf` |
+| Schema | `objective::1.0` |
+| Version | `1` |
+| Created | `2026-06-18` |
+| Modified | `2026-06-18` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -105,7 +106,7 @@ Detection approach:
 This signal requires TLS inspection or out-of-band network
 visibility (e.g., mirrored traffic, firewall deep inspection).
 
-- **Severity**: Critical
+- **Severity**: Significant incident
 - **Methodology**: Pattern Matching
 - **Effort**: 7
 #### Data
@@ -152,7 +153,7 @@ Baseline of legitimate WebVPN authentication traffic is required
 to tune thresholds and reduce false positives from non-standard
 VPN clients.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Anomaly
 - **Effort**: 6
 #### Data
@@ -200,7 +201,7 @@ Detection criteria:
 Requires visibility into outbound ASA HTTPS responses, achievable
 via inline inspection or traffic mirroring.
 
-- **Severity**: High
+- **Severity**: Substantial incident
 - **Methodology**: Anomaly
 - **Effort**: 7
 #### Data
@@ -224,22 +225,30 @@ Preferred log sources:
 | Anomalous XML Payload in WebVPN Authentication Form Elements | _None_ |
 | Non-Standard Content in Cisco ASA WebVPN Authentication Response | _None_ |
 
-## Relations
+## Coverage
 ```mermaid
 flowchart TB
-subgraph "Signal"
-22e8fb52_d101_4d67_90b7_6e697c2dbb2d["22e8fb52-d101-4d67-90b7-6e697c2dbb2d"]
-cef505da_e628_469b_ad75_1a19091d31a6["cef505da-e628-469b-ad75-1a19091d31a6"]
-cff09577_eb0b_4ac9_9393_789dbe439b56["cff09577-eb0b-4ac9-9393-789dbe439b56"]
+subgraph "Threats"
+fcc552fb_b4d1_4b47_b366_104ec4d806ef{{"WebVPN authentication<br>abuse for C2 on Cisco<br>ASA"}}
+b6175f16_2b61_4116_bd97_de54b02b197e{{"LINE VIPER shellcode<br>loader on Cisco ASA"}}
 end
-subgraph "Threat"
-b6175f16_2b61_4116_bd97_de54b02b197e["LINE VIPER shellcode loader on Cisco ASA"]
-fcc552fb_b4d1_4b47_b366_104ec4d806ef["WebVPN authentication abuse for C2 on Cisco ASA"]
+subgraph "Signals"
+22e8fb52_d101_4d67_90b7_6e697c2dbb2d(("Malformed PKCS7<br>Certificate in WebVPN<br>Authentication Request"))
+cff09577_eb0b_4ac9_9393_789dbe439b56(("Anomalous XML Payload in<br>WebVPN Authentication<br>Form Elements"))
+cef505da_e628_469b_ad75_1a19091d31a6(("Non-Standard Content in<br>Cisco ASA WebVPN<br>Authentication Response"))
 end
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf["Detect LINE VIPER WebVPN Command and Control on Cisco ASA"]
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf -->|signal| 22e8fb52_d101_4d67_90b7_6e697c2dbb2d
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf -->|signal| cef505da_e628_469b_ad75_1a19091d31a6
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf -->|signal| cff09577_eb0b_4ac9_9393_789dbe439b56
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf -->|threat| b6175f16_2b61_4116_bd97_de54b02b197e
-8546b0d8_c9e1_4a51_bf64_2b93c4159ebf -->|threat| fcc552fb_b4d1_4b47_b366_104ec4d806ef
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf(["Detect LINE VIPER WebVPN<br>Command and Control on<br>Cisco ASA"])
+fcc552fb_b4d1_4b47_b366_104ec4d806ef -->|covers| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
+b6175f16_2b61_4116_bd97_de54b02b197e -->|covers| 8546b0d8_c9e1_4a51_bf64_2b93c4159ebf
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> 22e8fb52_d101_4d67_90b7_6e697c2dbb2d
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> cff09577_eb0b_4ac9_9393_789dbe439b56
+8546b0d8_c9e1_4a51_bf64_2b93c4159ebf --> cef505da_e628_469b_ad75_1a19091d31a6
 ```
+## Related objects
+| Type | Name | Direction | Relation |
+| --- | --- | --- | --- |
+| Threat | [LINE VIPER shellcode loader on Cisco ASA](../Threats/line-viper-shellcode-loader-on-cisco-asa.md) (`b6175f16-2b61-4116-bd97-de54b02b197e`) | Upstream | threat |
+| Threat | [WebVPN authentication abuse for C2 on Cisco ASA](../Threats/webvpn-authentication-abuse-for-c2-on-cisco-asa.md) (`fcc552fb-b4d1-4b47-b366-104ec4d806ef`) | Upstream | threat |
+| Signal | [Malformed PKCS7 Certificate in WebVPN Authentication Request](detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#malformed-pkcs7-certificate-in-webvpn-authentication-request) (`22e8fb52-d101-4d67-90b7-6e697c2dbb2d`) | Downstream | signal |
+| Signal | [Non-Standard Content in Cisco ASA WebVPN Authentication Response](detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#non-standard-content-in-cisco-asa-webvpn-authentication-response) (`cef505da-e628-469b-ad75-1a19091d31a6`) | Downstream | signal |
+| Signal | [Anomalous XML Payload in WebVPN Authentication Form Elements](detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#anomalous-xml-payload-in-webvpn-authentication-form-elements) (`cff09577-eb0b-4ac9-9393-789dbe439b56`) | Downstream | signal |

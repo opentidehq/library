@@ -1,14 +1,15 @@
 # C2 beaconing on specific time intervals
 
 ## Metadata
-
-- **UUID**: `7b122bb4-fc13-438b-a052-4388c501ec59`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-08-22`
-- **Modified**: `2025-08-26`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `7b122bb4-fc13-438b-a052-4388c501ec59` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-08-22` |
+| Modified | `2025-08-26` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -65,19 +66,25 @@ servers depends on different reasons and goals.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor uses a compromised endpoint to set and monitor specific time
+A threat actor uses a compromised endpoint to set and monitor specific time
 intervals known as beacons.
 
-Domains: Enterprise
-Targets: Customer, Workstations, End-user
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
 | Impact | Data Breach | Non-public information has been accessed from the outside, and successfully extracted. |
-| Leverage | Dwelling; Information Disclosure | - |
+| Leverage | Dwelling<br>Information Disclosure | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action intending to read a file that one was not granted access to, or to read data in transit. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exfiltration | Techniques that result or aid in an attacker removing data from a target network. |
 
@@ -86,3 +93,15 @@ Platforms: Windows**
 | --- | --- | --- |
 | `T1205` | [Traffic Signaling](https://attack.mitre.org/techniques/T1205) | Adversaries may use traffic signaling to hide open ports or other malicious functionality used for persistence or command and control. Traffic signaling involves the use of a magic value or sequence that must be sent to a system to trigger a special response, such as opening a closed port or executing a malicious task. This may take the form of sending a series of packets with certain characteristics before a port will be opened that the adversary can use for command and control. Usually this series of packets consists of attempted connections to a predefined sequence of closed ports (i.e. [Port Knocking](https://attack.mitre.org/techniques/T1205/001)), but can involve unusual flags, specific strings, or other unique characteristics. After the sequence is completed, opening a port may be accomplished by the host-based firewall, but could also be implemented by custom software.  Adversaries may also communicate with an already open port, but the service listening on that port will only respond to commands or trigger other malicious functionality if passed the appropriate magic value(s).  The observation of the signal packets to trigger the communication can be conducted through different methods. One means, originally implemented by Cd00r (Citation: Hartrell cd00r 2002), is to use the libpcap libraries to sniff for the packets in question. Another method leverages raw sockets, which enables the malware to use ports that are already open for use by other programs.  On network devices, adversaries may use crafted packets to enable [Network Device Authentication](https://attack.mitre.org/techniques/T1556/004) for standard services offered by the device such as telnet.  Such signaling may also be used to open a closed service port such as telnet, or to trigger module modification of malware implants on the device, adding, removing, or changing malicious capabilities.  Adversaries may use crafted packets to attempt to connect to one or more (open or closed) ports, but may also attempt to connect to a router interface, broadcast, and network address IP on the same port in order to achieve their goals and objectives.(Citation: Cisco Synful Knock Evolution)(Citation: Mandiant - Synful Knock)(Citation: Cisco Blog Legacy Device Attacks)  To enable this traffic signaling on embedded devices, adversaries must first achieve and leverage [Patch System Image](https://attack.mitre.org/techniques/T1601/001) due to the monolithic nature of the architecture.  Adversaries may also use the Wake-on-LAN feature to turn on powered off systems. Wake-on-LAN is a hardware feature that allows a powered down system to be powered on, or woken up, by sending a magic packet to it. Once the system is powered on, it may become a target for lateral movement.(Citation: Bleeping Computer - Ryuk WoL)(Citation: AMD Magic Packet) |
 | `T1029` | [Scheduled Transfer](https://attack.mitre.org/techniques/T1029) | Adversaries may schedule data exfiltration to be performed only at certain times of day or at certain intervals. This could be done to blend traffic patterns with normal activity or availability.  When scheduled exfiltration is used, other exfiltration techniques likely apply as well to transfer the information out of the network, such as [Exfiltration Over C2 Channel](https://attack.mitre.org/techniques/T1041) or [Exfiltration Over Alternative Protocol](https://attack.mitre.org/techniques/T1048). |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Exfiltration"
+7b122bb4_fc13_438b_a052_4388c501ec59{{"C2 beaconing on specific<br>time intervals"}}
+end
+subgraph "Command & Control"
+ddab407e_d09d_4804_a4af_c11213553146{{"C2 domains point to<br>non-routable IP<br>addresses"}}
+end
+ddab407e_d09d_4804_a4af_c11213553146 -->|implements| 7b122bb4_fc13_438b_a052_4388c501ec59
+```

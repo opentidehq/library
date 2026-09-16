@@ -19,9 +19,9 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0007
-    - misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
-    - misp::ba9e1ed2-e142-48d0-a593-f73ac6d59ccd
+    - name: att&ck::G0007
+    - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
+    - name: misp::ba9e1ed2-e142-48d0-a593-f73ac6d59ccd
   killchain: Defense Evasion
   att&ck:
     - T1564.004
@@ -40,8 +40,12 @@ threat:
     - Windows
     - Windows::Desktop
   severity: Localised incident
-  leverage: Dwelling; Elevation of privilege
-  impact: Business disruption; Impairement
+  leverage:
+    - Dwelling
+    - Elevation of privilege
+  impact:
+    - Business disruption
+    - Impairement
   viability: Likely
   description: |-
     Threat actors are using a hiding technique to conceal malicious files,

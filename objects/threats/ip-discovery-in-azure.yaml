@@ -31,8 +31,15 @@ threat:
     - Web Servers
     - AWS::Storage
   severity: Significant incident
-  leverage: Information Disclosure; Infrastructure Compromise
-  impact: Data Breach; IP Loss; Reputational Damages; Identity Theft; Business disruption
+  leverage:
+    - Information Disclosure
+    - Infrastructure Compromise
+  impact:
+    - Data Breach
+    - IP Loss
+    - Reputational Damages
+    - Identity Theft
+    - Business disruption
   viability: Likely
   description: |-
     IP Discovery in the context of Azure refers to an adversary’s technique for identifying 

@@ -1,14 +1,15 @@
 # Passing SeDebugPrivilege to AdjustTokenPrivilege API elevating privileges of a running process
 
 ## Metadata
-
-- **UUID**: `5d373113-18f9-41bb-bdde-3abbfa53cb86`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2022-11-16`
-- **Modified**: `2022-11-17`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `5d373113-18f9-41bb-bdde-3abbfa53cb86` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2022-11-16` |
+| Modified | `2022-11-17` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -44,21 +45,36 @@ access tokens for further account access and malicious purposes.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **On an already compromised Windows endpoint in a user or administrator 
+On an already compromised Windows endpoint in a user or administrator 
 context that has SeDebugPrivilege assigned (rarely on user context). 
 Windows servers and windows workstations/laptops - anything 
 Windows.
 
-Domains: Enterprise, Public Cloud, Private Cloud
-Targets: Auth token, Workstations, Windows API, Control Server, Web Application Servers, Public-Facing Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **OAuth / OIDC**
+> OAuth 2.0 and OpenID Connect authorisation/authentication protocols
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Application Layer::WMI**
+> Windows Management Instrumentation remote management protocol
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Moderate incident | A cyber attack on a small organisation, or which poses a considerable risk to a medium-sized organisation, or preliminary indications of cyber activity against a large organisation or the government. |
-| Impact | Impairement; Data Breach | - |
-| Leverage | Elevation of privilege; Modify privileges; Spoofing | - |
+| Impact | Impairement<br>Data Breach | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Non-public information has been accessed from the outside, and successfully extracted. |
+| Leverage | Elevation of privilege<br>Modify privileges<br>Spoofing | Capacity to augment leverage over the target system by upgrading the compromised access rights<br>Modify privileges or permissions<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Privilege Escalation | The result of techniques that provide an attacker with higher permissions on a system or network. |
 

@@ -1,14 +1,15 @@
 # Listing passwords stored in registry
 
 ## Metadata
-
-- **UUID**: `0834302b-90d3-45ec-95d1-3e41ec14f7c6`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2024-11-27`
-- **Modified**: `2024-11-27`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `0834302b-90d3-45ec-95d1-3e41ec14f7c6` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2024-11-27` |
+| Modified | `2024-11-27` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -49,20 +50,29 @@ VPN clients or database tools might store user credentials under their software 
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have access to a Windows system where applications store credentials 
+Adversary must have access to a Windows system where applications store credentials 
 in the registry and possess sufficient privileges to read registry keys 
 containing those credentials.
 
-Domains: Enterprise
-Targets: Workstations, Laptop, Desktop, Virtual Machines
-Platforms: Windows, Active Directory, PowerShell**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Active Directory**
+> Microsoft Active Directory on-premises directory services
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Azure::Compute::Virtual Machines**
+> Azure Virtual Machines
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Data Breach; Identity Theft; Business disruption | - |
-| Leverage | Information Disclosure; Dwelling; Spoofing | - |
+| Impact | Data Breach<br>Identity Theft<br>Business disruption | Non-public information has been accessed from the outside, and successfully extracted.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Business disruption |
+| Leverage | Information Disclosure<br>Dwelling<br>Spoofing | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>Active or passive extended presence in the target, which performs adversarial operations continuously.<br>Threat action aimed at accessing and use of another user’s credentials, such as username and password. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Collection | Techniques used to identify and gather data from a target network prior to exfiltration. |
 

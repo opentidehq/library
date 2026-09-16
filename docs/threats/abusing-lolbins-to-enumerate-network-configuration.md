@@ -1,14 +1,15 @@
 # Abusing Lolbins to Enumerate Network Configuration
 
 ## Metadata
-
-- **UUID**: `fc858766-0618-4a4f-973c-526402a83582`
-- **Schema**: `threat::1.0`
-- **Version**: `1`
-- **Created**: `2025-01-14`
-- **Modified**: `2025-01-14`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `fc858766-0618-4a4f-973c-526402a83582` |
+| Schema | `threat::1.0` |
+| Version | `1` |
+| Created | `2025-01-14` |
+| Modified | `2025-01-14` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -60,19 +61,34 @@ and security gaps that could be exploited in subsequent stages of an attack.
 **High** - A High priority incident is likely to result in a demonstrable impact to public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **Adversary must have the capability to run network configuration commands on 
+Adversary must have the capability to run network configuration commands on 
 endpoints or servers, potentially with elevated privileges
 
-Domains: Enterprise
-Targets: Workstations, Public-Facing Servers, Network Equipment
-Platforms: Windows, macOS, Linux**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **macOS**
+> Apple macOS operating systems (all versions)
+
+> **Linux**
+> Linux-based operating systems (all distributions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Web Servers**
+> HTTP servers and reverse proxies
+
+> **Switches**
+> Network switches
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Substantial incident | A cyber attack which has a serious impact on a medium-sized organisation, or which poses a considerable risk to a large organisation or wider / local government. |
-| Impact | Data Breach; Business disruption; Reputational Damages | - |
-| Leverage | Information Disclosure; Infrastructure Compromise; Dwelling | - |
+| Impact | Data Breach<br>Business disruption<br>Reputational Damages | Non-public information has been accessed from the outside, and successfully extracted.<br>Business disruption<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Information Disclosure<br>Infrastructure Compromise<br>Dwelling | Threat action intending to read a file that one was not granted access to, or to read data in transit.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Active or passive extended presence in the target, which performs adversarial operations continuously. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Discovery | Techniques that allow an attacker to gain knowledge about a system and its network environment. |
 

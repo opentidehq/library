@@ -19,8 +19,8 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G1003
-    - misp::a5f64c1a-c829-4855-903d-e0ff2098b2d7
+    - name: att&ck::G1003
+    - name: misp::a5f64c1a-c829-4855-903d-e0ff2098b2d7
   att&ck:
     - T1485
     - T1561.001
@@ -40,8 +40,15 @@ threat:
     - Customer Support
     - Remote Access
   severity: Significant incident
-  leverage: Denial of Service; Infrastructure Compromise
-  impact: Business disruption; Catastrophic Loss; National Security; Operating costs; Reputational Damages
+  leverage:
+    - Denial of Service
+    - Infrastructure Compromise
+  impact:
+    - Business disruption
+    - Catastrophic Loss
+    - National Security
+    - Operating costs
+    - Reputational Damages
   viability: Likely
   description: |-
     WisperGate is a multi-stage malicious wiper disguised as ransomware,

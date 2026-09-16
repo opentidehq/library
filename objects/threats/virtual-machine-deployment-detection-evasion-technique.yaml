@@ -44,8 +44,18 @@ threat:
     - Azure::Compute::Virtual Machines
     - Virtualisation::VMware ESXi
   severity: Moderate incident
-  leverage: Infrastructure Compromise; Elevation of privilege; Information Disclosure; Software installation; Tampering
-  impact: Impairement; Data Breach; Business disruption; Reputational Damages; Nuisance
+  leverage:
+    - Infrastructure Compromise
+    - Elevation of privilege
+    - Information Disclosure
+    - Software installation
+    - Tampering
+  impact:
+    - Impairement
+    - Data Breach
+    - Business disruption
+    - Reputational Damages
+    - Nuisance
   viability: Likely
   description: |-
     A threat actor can use virtualisation platforms and utilities

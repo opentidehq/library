@@ -1,14 +1,15 @@
 # DNS over HTTPS tunneling exfiltrates data or communicates to C&C server
 
 ## Metadata
-
-- **UUID**: `901dd804-00cc-4034-85aa-3d10e257c16c`
-- **Schema**: `threat::1.0`
-- **Version**: `2`
-- **Created**: `2025-04-22`
-- **Modified**: `2025-05-08`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `901dd804-00cc-4034-85aa-3d10e257c16c` |
+| Schema | `threat::1.0` |
+| Version | `2` |
+| Created | `2025-04-22` |
+| Modified | `2025-05-08` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -67,19 +68,31 @@ the encapsulated data, and stores or forwards it to the threat actor.
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor can use DNS over HTTPS tunneling technique
+A threat actor can use DNS over HTTPS tunneling technique
 to hide traffic and activities.
 
-Domains: Enterprise
-Targets: Control Server, Customer, Public-Facing Servers
-Platforms: Windows, Network Router**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Routers**
+> Network routers
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Customer Support**
+> Customer support and helpdesk platforms
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |
 | --- | --- | --- |
 | Severity | Significant incident | A cyber attack which has a serious impact on a large organisation or on wider / local government, or which poses a considerable risk to central government or (inter)national essential services. |
-| Impact | Impairement; Identity Theft; Data Breach; Operating costs; Reputational Damages | - |
-| Leverage | Dwelling; Infrastructure Compromise; Tampering | - |
+| Impact | Impairement<br>Identity Theft<br>Data Breach<br>Operating costs<br>Reputational Damages | Incapacitation of a particular key system that will cause disruptions in day-to-day operations, and eventually service delivery.<br>Acquisition of sufficient information and privileges to profess as a given individual, for the purpose of abusing and deceiving human trust relationships.<br>Non-public information has been accessed from the outside, and successfully extracted.<br>Increased operating costs<br>Damages to the organization public view may be achieved by using directly the access gained, or indirectly with data gathered. |
+| Leverage | Dwelling<br>Infrastructure Compromise<br>Tampering | Active or passive extended presence in the target, which performs adversarial operations continuously.<br>The compromised target is likely to be used to further expand the sphere of influence of the attacker and allow more potent vectors to be executed.<br>Threat action intending to maliciously change or modify persistent data, such as records in a database, and the alteration of data in transit between two computers over an open network, such as the Internet. |
 | Viability | Likely | Probable (probably) - 55-80% |
 | Kill Chain | Exfiltration | Techniques that result or aid in an attacker removing data from a target network. |
 
@@ -97,3 +110,15 @@ Platforms: Windows, Network Router**
 | `T1041` | [Exfiltration Over C2 Channel](https://attack.mitre.org/techniques/T1041) | Adversaries may steal data by exfiltrating it over an existing command and control channel. Stolen data is encoded into the normal communications channel using the same protocol as command and control communications. |
 | `T1190` | [Exploit Public-Facing Application](https://attack.mitre.org/techniques/T1190) | Adversaries may attempt to exploit a weakness in an Internet-facing host or system to initially access a network. The weakness in the system can be a software bug, a temporary glitch, or a misconfiguration.  Exploited applications are often websites/web servers, but can also include databases (like SQL), standard services (like SMB or SSH), network device administration and management protocols (like SNMP and Smart Install), and any other system with Internet-accessible open sockets.(Citation: NVD CVE-2016-6662)(Citation: CIS Multiple SMB Vulnerabilities)(Citation: US-CERT TA18-106A Network Infrastructure Devices 2018)(Citation: Cisco Blog Legacy Device Attacks)(Citation: NVD CVE-2014-7169) On ESXi infrastructure, adversaries may exploit exposed OpenSLP services; they may alternatively exploit exposed VMware vCenter servers.(Citation: Recorded Future ESXiArgs Ransomware 2023)(Citation: Ars Technica VMWare Code Execution Vulnerability 2021) Depending on the flaw being exploited, this may also involve [Exploitation for Defense Evasion](https://attack.mitre.org/techniques/T1211) or [Exploitation for Client Execution](https://attack.mitre.org/techniques/T1203).  If an application is hosted on cloud-based infrastructure and/or is containerized, then exploiting it may lead to compromise of the underlying instance or container. This can allow an adversary a path to access the cloud or container APIs (e.g., via the [Cloud Instance Metadata API](https://attack.mitre.org/techniques/T1552/005)), exploit container host access via [Escape to Host](https://attack.mitre.org/techniques/T1611), or take advantage of weak identity and access management policies.  Adversaries may also exploit edge network infrastructure and related appliances, specifically targeting devices that do not support robust host-based defenses.(Citation: Mandiant Fortinet Zero Day)(Citation: Wired Russia Cyberwar)  For websites and databases, the OWASP top 10 and CWE top 25 highlight the most common web-based vulnerabilities.(Citation: OWASP Top 10)(Citation: CWE top 25) |
 | `T1566` | [Phishing](https://attack.mitre.org/techniques/T1566) | Adversaries may send phishing messages to gain access to victim systems. All forms of phishing are electronically delivered social engineering. Phishing can be targeted, known as spearphishing. In spearphishing, a specific individual, company, or industry will be targeted by the adversary. More generally, adversaries can conduct non-targeted phishing, such as in mass malware spam campaigns.  Adversaries may send victims emails containing malicious attachments or links, typically to execute malicious code on victim systems. Phishing may also be conducted via third-party services, like social media platforms. Phishing may also involve social engineering techniques, such as posing as a trusted source, as well as evasive techniques such as removing or manipulating emails or metadata/headers from compromised accounts being abused to send messages (e.g., [Email Hiding Rules](https://attack.mitre.org/techniques/T1564/008)).(Citation: Microsoft OAuth Spam 2022)(Citation: Palo Alto Unit 42 VBA Infostealer 2014) Another way to accomplish this is by [Email Spoofing](https://attack.mitre.org/techniques/T1672)(Citation: Proofpoint-spoof) the identity of the sender, which can be used to fool both the human recipient as well as automated security tools,(Citation: cyberproof-double-bounce) or by including the intended target as a party to an existing email thread that includes malicious files or links (i.e., "thread hijacking").(Citation: phishing-krebs)  Victims may also receive phishing messages that instruct them to call a phone number where they are directed to visit a malicious URL, download malware,(Citation: sygnia Luna Month)(Citation: CISA Remote Monitoring and Management Software) or install adversary-accessible remote management tools onto their computer (i.e., [User Execution](https://attack.mitre.org/techniques/T1204)).(Citation: Unit42 Luna Moth) |
+
+## Chaining
+```mermaid
+flowchart LR
+subgraph "Exfiltration"
+901dd804_00cc_4034_85aa_3d10e257c16c{{"DNS over HTTPS tunneling<br>exfiltrates data or<br>communicates to C&C<br>server"}}
+end
+subgraph "Discovery"
+5e6af460_db12_4278_b44d_7a7a3fa7fe76{{"BRICKSTORM file manager<br>exposes end-user's HTTP<br>APIs and UI"}}
+end
+5e6af460_db12_4278_b44d_7a7a3fa7fe76 -->|implements| 901dd804_00cc_4034_85aa_3d10e257c16c
+```

@@ -1,14 +1,15 @@
 # Manipulation of credentials stored in plain text files
 
 ## Metadata
-
-- **UUID**: `82dce94c-7b18-4cb9-bae0-56716b580418`
-- **Schema**: `threat::1.0`
-- **Version**: `3`
-- **Created**: `2023-01-30`
-- **Modified**: `2023-02-03`
-- **TLP**: clear (`TLP:CLEAR`)
-- **Organisation**: EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`)
+| Field | Value |
+| --- | --- |
+| UUID | `82dce94c-7b18-4cb9-bae0-56716b580418` |
+| Schema | `threat::1.0` |
+| Version | `3` |
+| Created | `2023-01-30` |
+| Modified | `2023-02-03` |
+| TLP | clear (`TLP:CLEAR`) |
+| Organisation | EC DIGIT CSOC (`56b0a0f0-b0bc-47d9-bb46-02f80ae2065a`) |
 
 ## References
 ### Public
@@ -77,11 +78,29 @@ exception_path = ["snapshot"]
 **Medium** - A Medium priority incident may affect public health or safety, national security, economic security, foreign relations, civil liberties, or public confidence.
 
 ## Terrain
-> **A threat actor is using an already compromised Windows endpoint.
+A threat actor is using an already compromised Windows endpoint.
 
-Domains: Enterprise, Private Cloud, Public Cloud
-Targets: End-user, Desktop, Laptop, Workstations, Control Server, Remote access, System admin, Developer, Production Database, Public-Facing Servers, Web Application Servers
-Platforms: Windows**
+## Surface
+> **Windows**
+> Microsoft Windows operating systems (all versions)
+
+> **Windows::Desktop**
+> Microsoft Windows desktop editions
+
+> **Remote Access**
+> Remote access solutions (non-VPN)
+
+> **Microsoft::System Center**
+> Microsoft System Center enterprise management suite
+
+> **Development**
+> Software development tools and platforms
+
+> **Database Management**
+> Database management systems
+
+> **Web Servers**
+> HTTP servers and reverse proxies
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

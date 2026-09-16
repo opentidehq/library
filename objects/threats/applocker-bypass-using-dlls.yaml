@@ -22,10 +22,10 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   actors:
-    - att&ck::G0016
-    - misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
-    - att&ck::G0032
-    - misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
+    - name: att&ck::G0016
+    - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
+    - name: att&ck::G0032
+    - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Defense Evasion
   att&ck:
     - T1218
@@ -39,8 +39,17 @@ threat:
     - Windows::Desktop
     - Customer Support
   severity: Significant incident
-  leverage: Elevation of privilege; Infrastructure Compromise; Information Disclosure; Tampering
-  impact: Business disruption; Impairement; Legal and regulatory; Data Breach; Lose Capabilities
+  leverage:
+    - Elevation of privilege
+    - Infrastructure Compromise
+    - Information Disclosure
+    - Tampering
+  impact:
+    - Business disruption
+    - Impairement
+    - Legal and regulatory
+    - Data Breach
+    - Lose Capabilities
   viability: Likely
   description: |-
     AppLocker bypass using DLLs involves exploiting the way Windows loads DLLs
