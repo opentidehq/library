@@ -21,7 +21,7 @@ The [OpenTide Explorer](https://github.com/OpenTideHQ/explorer) UI is built from
 
 **https://opentidehq.github.io/library/**
 
-The static site is served under the `/library` base path. CI checks out the public explorer repository and builds it with Node (`scripts/generate-mock-bundle.mjs` + `next build`). That path does **not** call `opentide explorer`: PyPI `opentide` 0.1.5 and current `development` HEAD have no such Typer command, even though the engine's GitHub workflow template still emits it.
+The static site is served under the `/library` base path. [`.github/workflows/explorer-pages.yml`](.github/workflows/explorer-pages.yml) is a dedicated workflow (independent of the red PyPI validate job). It checks out public `OpenTideHQ/explorer` and `OpenTideHQ/specifications` with no App/PAT token, runs `pnpm codegen:specs` so `vocab.index.json` exists, then builds with Node (`scripts/generate-mock-bundle.mjs` + `next build`). That path does **not** call `opentide explorer`: PyPI `opentide` has no such Typer command ([opentide#202](https://github.com/OpenTideHQ/opentide/issues/202)).
 
 Local preview from a sibling explorer checkout:
 
@@ -103,7 +103,7 @@ A separate non-blocking job checks `OpenTideHQ/opentide@development` so engine d
 
 `threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens. Released `opentide` 0.1.5 still types those fields as `str` ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189), blocked on [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12)). The PyPI validate job is the published-user contract and stays red until that engine release.
 
-Explorer Pages CI does not wait on that engine command. It builds [OpenTideHQ/explorer](https://github.com/OpenTideHQ/explorer) with Node from this corpus (`OPENTIDE_REPO_ROOT`).
+Explorer Pages is a **separate** workflow (`.github/workflows/explorer-pages.yml`) so that red job does not bury deploy status. It builds [OpenTideHQ/explorer](https://github.com/OpenTideHQ/explorer) with Node from this corpus (`OPENTIDE_REPO_ROOT`) and generates ATT&CK vocab from [OpenTideHQ/specifications](https://github.com/OpenTideHQ/specifications) (`SPECIFICATIONS_REPO_ROOT`). `vocab.index.json` is copied into the export **after** `next build` so the static HTML does not inline the ATT&CK index on every object page ([explorer#36](https://github.com/OpenTideHQ/explorer/issues/36)).
 
 ## Contributing
 
