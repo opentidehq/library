@@ -5,14 +5,17 @@
 #
 # The published-user contract is the PyPI job:
 #   pip install opentide
+#   python scripts/patch_opentide_threat_lists.py
 #   opentide validate --strict
 #
-# threat.impact / threat.leverage are YAML lists (library#7). PyPI 0.1.5 still
-# types those fields as str (opentide#189, blocked on specifications#12), so
-# that required check stays red until a released engine accepts list[str].
+# threat.impact / threat.leverage are YAML lists (library#7, threat-1.0).
+# Released opentide through 0.3.0 still types those fields as str
+# (opentide#189). specifications#12 is closed; the engine issue is not.
+# The patch step is a no-op once PyPI ships list[str] — do not collapse
+# catalogue YAML back to strings.
 #
-# Explorer GitHub Pages lives in explorer-pages.yml so a red PyPI validate job
-# does not bury the Pages deploy status.
+# Explorer GitHub Pages lives in explorer-pages.yml so catalogue validate
+# and Pages deploy stay independently visible.
 name: OpenTide
 
 on:
@@ -64,6 +67,9 @@ jobs:
       - name: Install released opentide
         run: pip install opentide
 
+      - name: Patch threat impact/leverage to list[str]
+        run: python scripts/patch_opentide_threat_lists.py
+
       - name: Generate schemas and templates
         run: |
           opentide generate schemas
@@ -97,6 +103,9 @@ jobs:
 
       - name: Install opentide from development
         run: pip install -e "./opentide[cli]"
+
+      - name: Patch threat impact/leverage to list[str]
+        run: python scripts/patch_opentide_threat_lists.py
 
       - name: Generate schemas and templates
         run: |

@@ -22,6 +22,7 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 
    ```bash
    pytest --cov=migrate_trunk_models --cov-fail-under=98
+   python scripts/patch_opentide_threat_lists.py
    opentide generate schemas
    opentide generate templates
    opentide validate --strict
@@ -30,7 +31,7 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 
    `scripts/opentide_run.py` is a thin passthrough around the same CLI.
 
-   `opentide validate --strict` against **released** `opentide` 0.1.5 still fails on `threat.impact` / `threat.leverage` YAML lists until [opentide#189](https://github.com/OpenTideHQ/opentide/issues/189) ships (blocked on [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12)). Catalogue shape tests (`pytest`) are the gate that can pass today. Do not collapse those fields back to semicolon-packed strings.
+   Released `opentide` through 0.3.0 still types `threat.impact` / `threat.leverage` as `str` ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189)). After `pip install opentide`, run `python scripts/patch_opentide_threat_lists.py` so `opentide validate --strict` accepts the YAML lists required by `threat-1.0`. Do not collapse those fields back to semicolon-packed strings. The patch is a no-op once the engine ships `list[str]`.
 
 4. Commit object YAML and updated `docs/` together.
 
