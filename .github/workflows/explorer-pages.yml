@@ -6,10 +6,11 @@
 # `opentide explorer` is not a Typer command on PyPI (opentide#202). This
 # workflow builds OpenTideHQ/explorer with Node from this corpus.
 #
-# Explorer SSG inlines ExplorerProvider props into every object page
-# (https://github.com/OpenTideHQ/explorer/issues/36). Keep vocab.index.json
-# out of `next build` and copy it into out/data afterwards so the Pages
-# artifact stays deployable.
+# Explorer fetches catalogue JSON on the client (explorer#36), but a large
+# vocab.index.json in public/ during `next build` still inflates the Pages
+# artifact. Keep it out of the SSG pass and copy it into out/data afterwards.
+# Checkout OpenTideHQ/explorer@main so each library main push deploys the
+# latest explorer UI.
 name: Explorer Pages
 
 on:
@@ -50,6 +51,11 @@ jobs:
           repository: OpenTideHQ/specifications
           ref: main
           path: specifications
+
+      - name: Record explorer and specifications revisions
+        run: |
+          echo "explorer $(git -C explorer rev-parse --short HEAD) $(git -C explorer log -1 --pretty=%s)"
+          echo "specifications $(git -C specifications rev-parse --short HEAD) $(git -C specifications log -1 --pretty=%s)"
 
       - uses: pnpm/action-setup@v4
         with:

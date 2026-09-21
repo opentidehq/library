@@ -36,6 +36,10 @@ def test_ci_does_not_require_private_opentide_credentials() -> None:
     install = next(step for step in steps if step.get("name") == "Install released opentide")
     assert "pip install opentide" in install["run"]
     assert 'pip install -e "./opentide' not in install["run"]
+    patch = next(
+        step for step in steps if step.get("name") == "Patch threat impact/leverage to list[str]"
+    )
+    assert "scripts/patch_opentide_threat_lists.py" in patch["run"]
     validate = next(step for step in steps if step.get("name") == "Validate objects")
     assert "opentide validate --strict" in validate["run"]
 
@@ -51,6 +55,10 @@ def test_ci_keeps_development_head_as_non_blocking_early_warning() -> None:
     assert "ssh-key" not in checkout.get("with", {})
     generate = next(step for step in job["steps"] if step.get("name") == "Generate schemas and templates")
     assert "opentide generate schemas" in generate["run"]
+    patch = next(
+        step for step in job["steps"] if step.get("name") == "Patch threat impact/leverage to list[str]"
+    )
+    assert "scripts/patch_opentide_threat_lists.py" in patch["run"]
     validate = next(
         step for step in job["steps"] if step.get("name") == "Validate objects against development HEAD"
     )
@@ -74,6 +82,10 @@ def test_ci_checks_out_explorer_publicly() -> None:
     assert checkout["with"]["ref"] == "main"
     assert "token" not in checkout.get("with", {})
     assert "ssh-key" not in checkout.get("with", {})
+    record = next(
+        step for step in job["steps"] if step.get("name") == "Record explorer and specifications revisions"
+    )
+    assert "git -C explorer rev-parse" in record["run"]
     specs = next(step for step in job["steps"] if step.get("name") == "Checkout specifications")
     assert specs["with"]["repository"] == "OpenTideHQ/specifications"
     assert specs["with"]["ref"] == "main"

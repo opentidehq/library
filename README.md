@@ -84,6 +84,7 @@ Import YAML files from this repository into your own OpenTide instance. We recom
 python -m venv .venv && source .venv/bin/activate
 pip install opentide
 export OPENTIDE_REPO_ROOT=$PWD
+python scripts/patch_opentide_threat_lists.py
 opentide generate
 opentide validate --strict
 opentide generate docs --output docs
@@ -101,9 +102,9 @@ pip install -e "../opentide[cli]"
 
 A separate non-blocking job checks `OpenTideHQ/opentide@development` so engine drift is visible.
 
-`threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens. Released `opentide` 0.1.5 still types those fields as `str` ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189), blocked on [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12)). The PyPI validate job is the published-user contract and stays red until that engine release.
+`threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens (`threat-1.0`; [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12) is closed). Released `opentide` through 0.3.0 still types those fields as `str` ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189)). Catalogue CI runs [`scripts/patch_opentide_threat_lists.py`](scripts/patch_opentide_threat_lists.py) after `pip install opentide` so `opentide validate --strict` can pass until that engine release. Do not collapse the YAML back to strings.
 
-Explorer Pages is a **separate** workflow (`.github/workflows/explorer-pages.yml`) so that red job does not bury deploy status. It builds [OpenTideHQ/explorer](https://github.com/OpenTideHQ/explorer) with Node from this corpus (`OPENTIDE_REPO_ROOT`) and generates ATT&CK vocab from [OpenTideHQ/specifications](https://github.com/OpenTideHQ/specifications) (`SPECIFICATIONS_REPO_ROOT`). `vocab.index.json` is copied into the export **after** `next build` so the static HTML does not inline the ATT&CK index on every object page ([explorer#36](https://github.com/OpenTideHQ/explorer/issues/36)).
+Explorer Pages is a **separate** workflow (`.github/workflows/explorer-pages.yml`). It checks out [OpenTideHQ/explorer](https://github.com/OpenTideHQ/explorer) `@main` and builds with Node from this corpus (`OPENTIDE_REPO_ROOT`) plus ATT&CK vocab from [OpenTideHQ/specifications](https://github.com/OpenTideHQ/specifications) (`SPECIFICATIONS_REPO_ROOT`). `vocab.index.json` is copied into the export **after** `next build` so the Pages artifact stays small ([explorer#36](https://github.com/OpenTideHQ/explorer/issues/36)). Merges to `main` deploy https://opentidehq.github.io/library/.
 
 ## Contributing
 
