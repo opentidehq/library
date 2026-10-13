@@ -6,9 +6,10 @@
 # `opentide explorer` is not a Typer command on PyPI (opentide#202). This
 # workflow builds OpenTideHQ/explorer with Node from this corpus.
 #
-# Explorer fetches catalogue JSON on the client (explorer#36), but a large
-# vocab.index.json in public/ during `next build` still inflates the Pages
-# artifact. Keep it out of the SSG pass and copy it into out/data afterwards.
+# Explorer fetches catalogue JSON on the client (explorer#36). The bundle step
+# writes explorer.vocab.json, the vocabulary terms the client reads (~0.8 MB);
+# the full vocab.index.json from codegen (~15 MB) only feeds it, so it stays
+# out of the Pages artifact.
 # Checkout OpenTideHQ/explorer@main so each library main push deploys the
 # latest explorer UI.
 name: Explorer Pages
@@ -87,10 +88,10 @@ jobs:
           SPECIFICATIONS_REPO_ROOT: ${{ github.workspace }}/specifications
         run: node scripts/generate-mock-bundle.mjs
 
-      - name: Stash vocab index before static export
+      - name: Keep the full vocabulary index out of the export
         run: |
-          mkdir -p "$RUNNER_TEMP/explorer-data"
-          mv explorer/public/data/vocab.index.json "$RUNNER_TEMP/explorer-data/vocab.index.json"
+          test -s explorer/public/data/explorer.vocab.json
+          rm explorer/public/data/vocab.index.json
 
       - name: Build explorer static site
         working-directory: explorer
@@ -99,16 +100,12 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /library
         run: pnpm exec next build
 
-      - name: Restore vocab.index.json into the static export
-        run: |
-          mkdir -p explorer/out/data
-          cp "$RUNNER_TEMP/explorer-data/vocab.index.json" explorer/out/data/vocab.index.json
-
       - name: Require static export
         run: |
-          test -s explorer/public/data/explorer.bundle.json
-          test -d explorer/out
-          test -s explorer/out/data/vocab.index.json
+          test -s explorer/out/index.html
+          test -s explorer/out/data/explorer.bundle.json
+          test -s explorer/out/data/explorer.vocab.json
+          test ! -e explorer/out/data/vocab.index.json
           du -sh explorer/out explorer/out/data
 
       - name: Upload Pages artifact
