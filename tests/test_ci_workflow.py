@@ -115,8 +115,11 @@ def test_ci_builds_explorer_with_node_not_missing_pypi_cli() -> None:
     assert "node scripts/generate-mock-bundle.mjs" in bundle["run"]
     assert bundle["env"]["OPENTIDE_REPO_ROOT"] == "${{ github.workspace }}"
 
-    stash = next(step for step in job["steps"] if step.get("name") == "Stash vocab index before static export")
-    assert "vocab.index.json" in stash["run"]
+    trim = next(step for step in job["steps"] if step.get("name") == "Keep the full vocabulary index out of the export")
+    assert "test -s explorer/public/data/explorer.vocab.json" in trim["run"]
+    assert "rm explorer/public/data/vocab.index.json" in trim["run"]
+    steps = [step.get("name") for step in job["steps"]]
+    assert steps.index("Keep the full vocabulary index out of the export") < steps.index("Build explorer static site")
 
     build = next(step for step in job["steps"] if step.get("name") == "Build explorer static site")
     assert build["working-directory"] == "explorer"
@@ -125,8 +128,10 @@ def test_ci_builds_explorer_with_node_not_missing_pypi_cli() -> None:
     assert build["env"]["OPENTIDE_REPO_ROOT"] == "${{ github.workspace }}"
     assert build["env"]["NEXT_PUBLIC_BASE_PATH"] == "/library"
 
-    restore = next(step for step in job["steps"] if step.get("name") == "Restore vocab.index.json into the static export")
-    assert "explorer/out/data/vocab.index.json" in restore["run"]
+    require = next(step for step in job["steps"] if step.get("name") == "Require static export")
+    assert "test -s explorer/out/data/explorer.vocab.json" in require["run"]
+    assert "test ! -e explorer/out/data/vocab.index.json" in require["run"]
+    assert not any("Restore vocab.index.json" in (name or "") for name in steps)
 
     upload = next(step for step in job["steps"] if step.get("name") == "Upload Pages artifact")
     assert upload["with"]["path"] == "./explorer/out"
