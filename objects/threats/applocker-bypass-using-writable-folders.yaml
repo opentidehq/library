@@ -23,16 +23,16 @@ threat:
   actors:
     - name: att&ck::G0032
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
-  att&ck:
+  mitre_attack:
     - T1218
   terrain: |-
     A threat actor needs and initial access to a Windows system and user's write
     permissions where AppLocker policies allow execution from common writable
     directories like C:\\Windows\\Temp or Tasks.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Customer Support
   severity: Significant incident
   leverage:
     - Elevation of privilege

@@ -23,7 +23,7 @@ threat:
     - name: misp::42be2a84-5a5c-4c6d-9864-3f09d75bb0ba
     - name: misp::943f490e-ac7f-40fe-b6f3-33e2623649d2
   killchain: Command & Control
-  att&ck:
+  mitre_attack:
     - T1071.001
     - T1571
     - T1572
@@ -33,13 +33,13 @@ threat:
     connection on the victim host either through vulnerability 
     exploitation, social engineering, or by other means.
   surface:
-    - Windows
-    - Linux
-    - Azure
-    - AWS
-    - Windows::Desktop
-    - Virtualisation::VMware ESXi
-    - Web Servers
+    - OS::Windows
+    - OS::Linux
+    - Cloud::Azure
+    - Cloud::AWS
+    - OS::Windows::Desktop
+    - Infrastructure::Virtualisation::VMware ESXi
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Repudiation

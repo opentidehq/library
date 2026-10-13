@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1430
     - T1636.003
     - T1189
@@ -29,11 +29,11 @@ threat:
     Attackers add targets to a WhatsApp group and send a PDF file. When the device automatically 
     processes the PDF, it exploits a vulnerability to load the Graphite spyware
   surface:
-    - Mobile
-    - Mobile::iOS
-    - Mobile::Android
-    - Mobile::iPadOS
-    - Entra ID
+    - OS::Mobile
+    - OS::Mobile::iOS
+    - OS::Mobile::Android
+    - OS::Mobile::iPadOS
+    - Authentication::Entra ID
   severity: Significant incident
   leverage:
     - Spoofing

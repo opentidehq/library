@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1630.003
     - T1398
   terrain: |-
@@ -24,9 +24,9 @@ threat:
     that include the neccesary exploit. If no physical access is available, it is possible
     to exploit a zero-day vuln to bypass the device' security mechanisms.
   surface:
-    - Mobile
-    - Mobile::iOS
-    - Mobile::iPadOS
+    - OS::Mobile
+    - OS::Mobile::iOS
+    - OS::Mobile::iPadOS
   severity: Significant incident
   leverage:
     - Spoofing

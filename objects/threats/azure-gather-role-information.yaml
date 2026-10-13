@@ -20,7 +20,7 @@ threat:
     - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
     - name: misp::f02679fa-5e85-4050-8eb5-c2677d93306f
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1591.004
     - T1087.002
     - T1589.001
@@ -39,17 +39,17 @@ threat:
     Adversaries need to identify privileged accounts and misconfigured role assignments 
     that can be exploited for privilege escalation.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Entra ID
-    - AWS::Storage
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Application Layer::HTTP
-    - Kerberos
-    - Active Directory
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Authentication::Entra ID
+    - Cloud::AWS::Storage
+    - Infrastructure::Orchestration::Kubernetes
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::Serverless
+    - Protocol::Application Layer::HTTP
+    - Authentication::Kerberos
+    - Authentication::Active Directory
   severity: Significant incident
   leverage:
     - Information Disclosure

@@ -21,20 +21,20 @@ threat:
     - name: att&ck::G0007
     - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Impact
-  att&ck:
+  mitre_attack:
     - T1498
   terrain: Anything with Internet connectivity.
   surface:
-    - AWS
-    - Windows
-    - Linux
-    - Azure
-    - Microsoft::Microsoft 365
-    - Orchestration::Kubernetes
-    - Application Layer::HTTP
-    - Serverless
-    - Remote Access
-    - Web Servers
+    - Cloud::AWS
+    - OS::Windows
+    - OS::Linux
+    - Cloud::Azure
+    - Application::Microsoft::Microsoft 365
+    - Infrastructure::Orchestration::Kubernetes
+    - Protocol::Application Layer::HTTP
+    - Cloud::Serverless
+    - Infrastructure::Remote Access
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Denial of Service

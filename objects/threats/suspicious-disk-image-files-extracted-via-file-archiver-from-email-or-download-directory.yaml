@@ -24,7 +24,7 @@ threat:
     - name: att&ck::G0092
     - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T0865
     - T1204.002
     - T1059
@@ -38,11 +38,11 @@ threat:
     Adversary requires the user to open the disk image file and execute the malicious content within, 
     potentially bypassing security warnings.
   surface:
-    - macOS
-    - Linux
-    - Windows
-    - Windows::Desktop
-    - Email
+    - OS::macOS
+    - OS::Linux
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Infrastructure::Email
   severity: Significant incident
   leverage:
     - Information Disclosure

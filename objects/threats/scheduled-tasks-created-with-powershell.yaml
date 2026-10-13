@@ -19,17 +19,17 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1053.005
   terrain: |-
     An adversary has gained control over a Windows endpoint and has  
     privileges to create scheduled tasks using PowerShell.exe
   surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
+    - OS::Windows::Server
+    - Application::Web Servers
   severity: Moderate incident
   leverage:
     - Dwelling

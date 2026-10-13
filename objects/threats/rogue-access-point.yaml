@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Collection
-  att&ck:
+  mitre_attack:
     - T0860
     - T1422.002
     - T1638
@@ -29,16 +29,16 @@ threat:
     the wired network) or being close enough to broadcast a Wi-Fi signal that clients 
     can detect and join.
   surface:
-    - Mobile
-    - macOS
-    - Windows
-    - Linux
-    - Mobile::Android
-    - Mobile::iOS
-    - Windows::Desktop
-    - Mobile::iPadOS
-    - Routers
-    - File Sharing
+    - OS::Mobile
+    - OS::macOS
+    - OS::Windows
+    - OS::Linux
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - OS::Windows::Desktop
+    - OS::Mobile::iPadOS
+    - Infrastructure::Routers
+    - Application::File Sharing
   severity: Significant incident
   leverage:
     - Dwelling

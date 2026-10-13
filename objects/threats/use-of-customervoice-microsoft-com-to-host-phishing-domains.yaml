@@ -15,15 +15,15 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1566.002
     - T1566.003
   terrain: |-
     Phishing email or message sent another way with a link that includes 
     the real microsoft.com domain as customervoice.microsoft.com
   surface:
-    - Windows
-    - Windows::Desktop
+    - OS::Windows
+    - OS::Windows::Desktop
   severity: Localised incident
   leverage:
     - Software installation

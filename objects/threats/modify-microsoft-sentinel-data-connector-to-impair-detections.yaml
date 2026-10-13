@@ -15,13 +15,13 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1562.008
   terrain: Requires access to privileged Azure credentials
   surface:
-    - Azure
-    - Development::CI/CD
-    - Microsoft::System Center
+    - Cloud::Azure
+    - Application::Development::CI/CD
+    - Application::Microsoft::System Center
   severity: Highly significant incident
   leverage:
     - Modify configuration

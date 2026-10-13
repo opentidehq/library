@@ -20,7 +20,7 @@ threat:
     - name: att&ck::G0082
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Social Engineering
-  att&ck:
+  mitre_attack:
     - T1589.001
   chaining:
     - relation: sequence::preceeds
@@ -36,16 +36,16 @@ threat:
     Adversary must have access to legitimate email accounts or impersonate authority 
     figures to trick victims into disclosing sensitive information or transferring funds.
   surface:
-    - Mobile
-    - AWS
-    - Azure
-    - Microsoft::Microsoft 365
-    - Windows
-    - macOS
-    - Mobile::Android
-    - Mobile::iOS
-    - Email
-    - AWS::Storage
+    - OS::Mobile
+    - Cloud::AWS
+    - Cloud::Azure
+    - Application::Microsoft::Microsoft 365
+    - OS::Windows
+    - OS::macOS
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - Infrastructure::Email
+    - Cloud::AWS::Storage
   severity: Significant incident
   leverage:
     - Spoofing

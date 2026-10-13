@@ -22,18 +22,18 @@ threat:
     - name: att&ck::G0007
     - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Discovery
-  att&ck:
+  mitre_attack:
     - T1016
   terrain: |-
     Adversary must have the capability to run network configuration commands on 
     endpoints or servers, potentially with elevated privileges
   surface:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
-    - Web Servers
-    - Switches
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Infrastructure::Switches
   severity: Substantial incident
   leverage:
     - Information Disclosure

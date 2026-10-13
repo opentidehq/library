@@ -20,17 +20,17 @@ threat:
     - name: att&ck::G0125
     - name: misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1053.005
   terrain: |-
     Threat actor deletes an entry in the registry value, called SD value
     (Security Descriptor) to hide presence of running task in Task Scheduler.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Web Servers
-    - Microsoft::System Center
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
+    - Application::Web Servers
+    - Application::Microsoft::System Center
   severity: Moderate incident
   leverage:
     - Dwelling

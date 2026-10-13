@@ -55,7 +55,7 @@ on EC Windows devices.
 | Severity | `Informational` |
 
 ## Detection model
-- **Objective**: [Powershell encoded payload to start new process](../Objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`)
+- **Objective**: [Powershell encoded payload to start new process](../objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`)
 
 ## Response
 
@@ -173,5 +173,5 @@ bfeb24bf_8a17_4ccc_8aec_91721743153d -->|implements| 0be66eea_4ae4_4544_811b_526
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Objective | [Powershell encoded payload to start new process](../Objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`) | Upstream | objective |
-| Threat | [Powershell with encoded payload passed to cmdline](../Threats/powershell-with-encoded-payload-passed-to-cmdline.md) (`bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7`) | Upstream | threat |
+| Objective | [Powershell encoded payload to start new process](../objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`) | Upstream | objective |
+| Threat | [Powershell with encoded payload passed to cmdline](../threats/powershell-with-encoded-payload-passed-to-cmdline.md) (`bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7`) | Upstream | threat |

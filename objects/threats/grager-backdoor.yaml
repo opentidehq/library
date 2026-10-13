@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1071
     - T1105
     - T1059
@@ -26,10 +26,10 @@ threat:
     A threat actor uses vulnerable Microsoft Graph APIs to deploy
     the malware and contact the C&C server.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
-    - Remote Access
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Infrastructure::Remote Access
   severity: Moderate incident
   leverage:
     - Dwelling

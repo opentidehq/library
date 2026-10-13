@@ -32,17 +32,17 @@ threat:
     - name: att&ck::G0092
     - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1218.011
   terrain: |-
     Adversary must have enough privileges on the Windows host to bypass application
     control solutions via the rundll32.exe process. Natively, rundll32.exe will load
     DLLs and is a great example of a Living off the Land Binary.
   surface:
-    - Windows
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+    - OS::Windows
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Modify privileges

@@ -21,7 +21,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1190
   chaining:
     - relation: support::synergize
@@ -44,9 +44,9 @@ threat:
     fabricated bearer values instead of verifying cryptographic integrity, server-issued session
     binding, token signature, expiry, and privilege state.
   surface:
-    - Web Servers
-    - Application Layer::HTTP
-    - OAuth / OIDC
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
+    - Authentication::OAuth / OIDC
   severity: Substantial incident
   leverage:
     - Spoofing

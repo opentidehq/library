@@ -16,16 +16,16 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Social Engineering
-  att&ck:
+  mitre_attack:
     - T1078.004
     - T1599
   terrain: |-
     The attacker needs to control an AWS account in order to send a VPC peering request. The AWS account controlled by the attacker may or may not
     be inside the EC AWS PROD organization.
   surface:
-    - AWS::Networking::VPC
-    - Switches
-    - Microsoft::System Center
+    - Cloud::AWS::Networking::VPC
+    - Infrastructure::Switches
+    - Application::Microsoft::System Center
   severity: Moderate incident
   leverage:
     - Infrastructure Compromise

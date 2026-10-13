@@ -107,7 +107,7 @@ compilation, `husky`, `esbuild` binary fetch). Tune with
 allowlists for known-good packages and CI image baselines;
 elevate when combined with secret-file access or IOC domains.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Behavioural
 - **Effort**: 4
 #### Data
@@ -153,7 +153,7 @@ tooling, and developer utilities (e.g. `gh auth login`). Scope to
 developer laptops and build agents; require multiple secret paths
 or IOC destination for higher fidelity.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Behavioural
 - **Effort**: 5
 #### Data
@@ -194,7 +194,7 @@ deliberately by security teams, and some IDE indexing. Exclude
 known inventory / backup service accounts; lower threshold on
 CI runners where breadth may be lower but paths more sensitive.
 
-- **Severity**: Moderate incident
+- **Severity**: Medium
 - **Methodology**: Statistical
 - **Effort**: 6
 #### Data
@@ -236,7 +236,7 @@ forks and workflows; hobby repositories with unusual names.
 Correlate with endpoint install anomalies or IOC network traffic
 on linked CI runners.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Event Search
 - **Effort**: 5
 #### Data
@@ -283,7 +283,7 @@ False positives: emergency hotfix publishes, migration between
 publish mechanisms, and monorepo bulk releases. Require manifest
 fingerprint or feed enrichment for auto-escalation.
 
-- **Severity**: Moderate incident
+- **Severity**: Medium
 - **Methodology**: Anomaly
 - **Effort**: 6
 #### Data
@@ -324,7 +324,7 @@ False positives: legitimate telemetry uploads, crash dumps,
 artefact uploads to internal registries. Tune minimum body size
 and require IOC destination or co-occurring secret-file reads.
 
-- **Severity**: Moderate incident
+- **Severity**: Medium
 - **Methodology**: Pattern Matching
 - **Effort**: 5
 #### Data
@@ -374,7 +374,7 @@ Detection criteria:
 Treat any match on a build or developer host as strong evidence
 of execution, not merely dependency declaration.
 
-- **Severity**: Significant incident
+- **Severity**: Critical
 - **Methodology**: Artifacts
 - **Effort**: 2
 #### Data
@@ -447,7 +447,7 @@ fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| 7eb85d22_2e60_449f_b92c_8ce
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [Shai-Hulud npm and PyPI supply chain compromise](../Threats/shai-hulud-npm-and-pypi-supply-chain-compromise.md) (`59548b96-9b01-414c-badd-c0bf2ab40d9a`) | Upstream | threat |
+| Threat | [Shai-Hulud npm and PyPI supply chain compromise](../threats/shai-hulud-npm-and-pypi-supply-chain-compromise.md) (`59548b96-9b01-414c-badd-c0bf2ab40d9a`) | Upstream | threat |
 | Signal | [Large Encoded Payload in Outbound HTTP from Developer or Build Hosts](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#large-encoded-payload-in-outbound-http-from-developer-or-build-hosts) (`21a527de-8635-4187-87d4-c9e5f5c1badc`) | Downstream | signal |
 | Signal | [Unexpected GitHub Repository or Workflow Creation from Anomalous Context](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#unexpected-github-repository-or-workflow-creation-from-anomalous-context) (`287114bd-7d58-422d-9711-f5516900b9ce`) | Downstream | signal |
 | Signal | [Developer Secret-File Access Followed by Outbound Network Egress](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#developer-secret-file-access-followed-by-outbound-network-egress) (`365e23e8-0367-4adf-b18a-f1440cc66005`) | Downstream | signal |
@@ -455,10 +455,10 @@ fb62e879_9e91_4c5b_aaa7_999b2b1b3897 -->|implements| 7eb85d22_2e60_449f_b92c_8ce
 | Signal | [Anomalous npm Package Publish from Non-Baseline Host or Identity](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#anomalous-npm-package-publish-from-non-baseline-host-or-identity) (`9f3abdc4-7c6e-480e-b722-6d31ddd9b2d2`) | Downstream | signal |
 | Signal | [Package Manager Install Spawning Unexpected Download or Scripting Child Processes](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#package-manager-install-spawning-unexpected-download-or-scripting-child-processes) (`a3f7d796-146c-44b0-8d22-7a08daa0d963`) | Downstream | signal |
 | Signal | [Bulk Credential-Candidate File Access on Developer or CI Hosts](detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md#bulk-credential-candidate-file-access-on-developer-or-ci-hosts) (`b49d0a94-ae13-49b3-8ad8-6c035fa3d681`) | Downstream | signal |
-| Rule | [Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts](../Rules/shai-hulud-large-encoded-payload-in-outbound-http-from-developer-or-build-hosts.md) (`0924c742-8fdb-4ee2-95fe-91d2e5725a90`) | Downstream | rule |
-| Rule | [Shai-Hulud Known On-Disk and Network Indicator Match](../Rules/shai-hulud-known-on-disk-and-network-indicator-match.md) (`2fe6575d-513c-4588-999f-19c13d0fa4f9`) | Downstream | rule |
-| Rule | [Shai-Hulud Unexpected GitHub Repository or Workflow Creation](../Rules/shai-hulud-unexpected-github-repository-or-workflow-creation.md) (`7eb85d22-2e60-449f-b92c-8cecc28d34c6`) | Downstream | rule |
-| Rule | [Shai-Hulud Package Manager Install Spawning Suspicious Child Processes](../Rules/shai-hulud-package-manager-install-spawning-suspicious-child-processes.md) (`bfae62bb-7ce1-46cd-a131-39803832fa9d`) | Downstream | rule |
-| Rule | [Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts](../Rules/shai-hulud-bulk-credential-candidate-file-access-on-developer-hosts.md) (`c82cfa6b-066f-4ba3-ba07-d7eb642c8099`) | Downstream | rule |
-| Rule | [Shai-Hulud Developer Secret-File Access Followed by Outbound Egress](../Rules/shai-hulud-developer-secret-file-access-followed-by-outbound-egress.md) (`ecd096d2-7fc5-45e3-803f-82d13f940210`) | Downstream | rule |
-| Rule | [Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity](../Rules/shai-hulud-anomalous-npm-package-publish-from-non-baseline-identity.md) (`fae8ef2d-99e9-42f4-81ed-d40c515e8d3d`) | Downstream | rule |
+| Rule | [Shai-Hulud Large Encoded Payload in Outbound HTTP from Developer or Build Hosts](../rules/shai-hulud-large-encoded-payload-in-outbound-http-from-developer-or-build-hosts.md) (`0924c742-8fdb-4ee2-95fe-91d2e5725a90`) | Downstream | rule |
+| Rule | [Shai-Hulud Known On-Disk and Network Indicator Match](../rules/shai-hulud-known-on-disk-and-network-indicator-match.md) (`2fe6575d-513c-4588-999f-19c13d0fa4f9`) | Downstream | rule |
+| Rule | [Shai-Hulud Unexpected GitHub Repository or Workflow Creation](../rules/shai-hulud-unexpected-github-repository-or-workflow-creation.md) (`7eb85d22-2e60-449f-b92c-8cecc28d34c6`) | Downstream | rule |
+| Rule | [Shai-Hulud Package Manager Install Spawning Suspicious Child Processes](../rules/shai-hulud-package-manager-install-spawning-suspicious-child-processes.md) (`bfae62bb-7ce1-46cd-a131-39803832fa9d`) | Downstream | rule |
+| Rule | [Shai-Hulud Bulk Credential-Candidate File Access on Developer Hosts](../rules/shai-hulud-bulk-credential-candidate-file-access-on-developer-hosts.md) (`c82cfa6b-066f-4ba3-ba07-d7eb642c8099`) | Downstream | rule |
+| Rule | [Shai-Hulud Developer Secret-File Access Followed by Outbound Egress](../rules/shai-hulud-developer-secret-file-access-followed-by-outbound-egress.md) (`ecd096d2-7fc5-45e3-803f-82d13f940210`) | Downstream | rule |
+| Rule | [Shai-Hulud Anomalous npm Package Publish from Non-Baseline Identity](../rules/shai-hulud-anomalous-npm-package-publish-from-non-baseline-identity.md) (`fae8ef2d-99e9-42f4-81ed-d40c515e8d3d`) | Downstream | rule |

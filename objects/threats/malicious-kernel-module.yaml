@@ -27,17 +27,17 @@ threat:
     - name: att&ck::G0020
     - name: misp::7036fb3d-86b7-4d9c-bc66-1e1ead8b7840
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1547.006
     - T1014
   terrain: |-
     Adversary must have root-level access to the Linux system to modify kernel 
     parameters or load malicious kernel modules.
   surface:
-    - Linux
-    - Windows::Desktop
-    - Web Servers
-    - Azure::Compute::Virtual Machines
+    - OS::Linux
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Elevation of privilege

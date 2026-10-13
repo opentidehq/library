@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1204.002
     - T1059
   chaining:
@@ -32,7 +32,7 @@ threat:
     developer environments and end-user workstations. The NSIS framework creates temporary 
     directories during runtime that can serve as indicators of compromise.
   surface:
-    - Windows::Desktop
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Software installation

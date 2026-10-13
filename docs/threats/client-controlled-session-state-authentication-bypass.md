@@ -138,7 +138,7 @@ d4c509d7_f9ab_452a_a91d_4da040095414 --> 7ff9ea94_7bf4_4df5_83f1_7d3dc0174653
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Objective | [Detect acceptance of forged web session context](../Objectives/detect-acceptance-of-forged-web-session-context.md) (`d4c509d7-f9ab-452a-a91d-4da040095414`) | Downstream | objective |
-| Signal | [Session variable probing across protected routes](../Objectives/detect-acceptance-of-forged-web-session-context.md#session-variable-probing-across-protected-routes) (`7ff9ea94-7bf4-4df5-83f1-7d3dc0174653`) | Downstream | signal |
-| Signal | [Fabricated session value grants protected access](../Objectives/detect-acceptance-of-forged-web-session-context.md#fabricated-session-value-grants-protected-access) (`9ba566b6-bfed-4059-bdb1-50bb3cac3c29`) | Downstream | signal |
-| Signal | [Client-side role or identity claim changes authorisation outcome](../Objectives/detect-acceptance-of-forged-web-session-context.md#client-side-role-or-identity-claim-changes-authorisation-outcome) (`9bfe87d7-c197-4893-b7e1-829ab6d1fcf5`) | Downstream | signal |
+| Objective | [Detect acceptance of forged web session context](../objectives/detect-acceptance-of-forged-web-session-context.md) (`d4c509d7-f9ab-452a-a91d-4da040095414`) | Downstream | objective |
+| Signal | [Session variable probing across protected routes](../objectives/detect-acceptance-of-forged-web-session-context.md#session-variable-probing-across-protected-routes) (`7ff9ea94-7bf4-4df5-83f1-7d3dc0174653`) | Downstream | signal |
+| Signal | [Fabricated session value grants protected access](../objectives/detect-acceptance-of-forged-web-session-context.md#fabricated-session-value-grants-protected-access) (`9ba566b6-bfed-4059-bdb1-50bb3cac3c29`) | Downstream | signal |
+| Signal | [Client-side role or identity claim changes authorisation outcome](../objectives/detect-acceptance-of-forged-web-session-context.md#client-side-role-or-identity-claim-changes-authorisation-outcome) (`9bfe87d7-c197-4893-b7e1-829ab6d1fcf5`) | Downstream | signal |

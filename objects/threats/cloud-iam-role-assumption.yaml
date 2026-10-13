@@ -19,7 +19,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1098.003
   terrain: |-
     Adversaries will have already compromised some cloud credentials,
@@ -27,10 +27,10 @@ threat:
     The credentials they gained access to also must have sufficient
     privileges to allow role assumption.
   surface:
-    - AWS::Security::IAM
-    - Azure::Security::Entra ID
-    - Container Runtime::Docker
-    - Azure::Compute::Virtual Machines
+    - Cloud::AWS::Security::IAM
+    - Cloud::Azure::Security::Entra ID
+    - OS::Container Runtime::Docker
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Substantial incident
   leverage:
     - Modify privileges

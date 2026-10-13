@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1059.010
     - T1055.001
     - T1106
@@ -35,7 +35,7 @@ threat:
     in supply chain attacks where malicious files are dropped to application data 
     directories (%APPDATA%) to appear as legitimate software components.
   surface:
-    - Windows::Desktop
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Elevation of privilege

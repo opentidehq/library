@@ -25,7 +25,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1111
     - T1621
   chaining:
@@ -40,12 +40,12 @@ threat:
       description: MFA bypass technique
   terrain: Adversaries must be in possession of the credentials of a valid account.
   surface:
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Customer Support
-    - Entra ID
-    - Mobile
+    - Authentication::OAuth / OIDC
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Authentication::Entra ID
+    - OS::Mobile
   severity: Significant incident
   leverage:
     - Elevation of privilege

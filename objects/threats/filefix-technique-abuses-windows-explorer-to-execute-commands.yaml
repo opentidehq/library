@@ -19,7 +19,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1555.003
     - T1204.004
   chaining:
@@ -35,9 +35,9 @@ threat:
     be able to interactively paste content from the clipboard into the Explorer
     address bar or other UI (e.g., Run dialog).
   surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Customer Support
   severity: Moderate incident
   leverage:
     - Elevation of privilege

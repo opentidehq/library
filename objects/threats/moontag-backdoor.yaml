@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1219
     - T1036
     - T1574.001
@@ -34,9 +34,9 @@ threat:
     Threat actor uses vulnerable Microsoft Graph APIs
     to deploy a backdoor.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
   severity: Localised incident
   leverage:
     - Dwelling

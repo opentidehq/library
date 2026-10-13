@@ -17,7 +17,7 @@ threat:
   actors:
     - name: misp::3e595289-05b8-43fc-bd88-f8650436447f
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1566.002
     - T1557
     - T1539
@@ -32,8 +32,8 @@ threat:
     to distribute the malware, it's used a massive distrigution 
     technique on a random principle.
   surface:
-    - Microsoft::Microsoft 365
-    - Windows::Desktop
+    - Application::Microsoft::Microsoft 365
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Dwelling

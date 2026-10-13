@@ -46,7 +46,7 @@ threat:
     - name: att&ck::G0117
     - name: misp::bfb0bc20-5bdf-47ff-b07f-dbd9a3cb9772
   killchain: Discovery
-  att&ck:
+  mitre_attack:
     - T1087.002
   chaining:
     - relation: support::synergize
@@ -58,8 +58,8 @@ threat:
     Adversaries can take advantage of already compromised system (Windows or 
     Linux OS or OSX) to run commands.
   surface:
-    - Windows
-    - Active Directory
+    - OS::Windows
+    - Authentication::Active Directory
   severity: Moderate incident
   leverage:
     - Information Disclosure

@@ -20,7 +20,7 @@ threat:
     - name: att&ck::G1003
     - name: misp::a5f64c1a-c829-4855-903d-e0ff2098b2d7
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1021
     - T1059.001
     - T1552.002
@@ -32,9 +32,9 @@ threat:
         after gaining initial access to move laterally through the network.  
   terrain: A threat actor needs initial access to move laterally through the network.
   surface:
-    - Windows
-    - Customer Support
-    - Windows::Desktop
+    - OS::Windows
+    - Application::Customer Support
+    - OS::Windows::Desktop
   severity: Localised incident
   leverage:
     - Dwelling

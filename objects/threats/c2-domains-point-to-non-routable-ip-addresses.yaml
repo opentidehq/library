@@ -23,7 +23,7 @@ threat:
   actors:
     - name: misp::1b54a3c1-023b-4a3c-8f11-50d811cced88
   killchain: Command & Control
-  att&ck:
+  mitre_attack:
     - T1568
   chaining:
     - relation: atomicity::implements
@@ -36,10 +36,10 @@ threat:
     The threat actor needs to have control over the DNS infrastructure that
     resolves the C2 domain.
   surface:
-    - Windows
-    - Linux
-    - macOS
-    - Log Management
+    - OS::Windows
+    - OS::Linux
+    - OS::macOS
+    - Security::Log Management
   severity: Significant incident
   leverage:
     - Spoofing

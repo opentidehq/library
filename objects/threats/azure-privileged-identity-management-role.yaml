@@ -21,7 +21,7 @@ threat:
     - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
     - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1078
     - T1548
     - T1543
@@ -48,12 +48,12 @@ threat:
     Adversaries exploit Azure Privileged Identity Management (PIM) roles by compromising 
     accounts eligible for privileged activation or by abusing misconfigured PIM policies.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Entra ID
-    - Application Layer::HTTP
-    - Azure::Compute::Virtual Machines
-    - AWS::Compute::EC2
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Authentication::Entra ID
+    - Protocol::Application Layer::HTTP
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::AWS::Compute::EC2
   severity: Significant incident
   leverage:
     - Spoofing

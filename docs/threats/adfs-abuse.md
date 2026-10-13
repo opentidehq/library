@@ -84,8 +84,8 @@ tokens for any user, bypassing authentication controls.
 > **Entra ID**
 > Microsoft Entra ID (formerly Azure Active Directory)
 
-> **SAML**
-> Security Assertion Markup Language federation protocol
+> **Security::SAML**
+> Security Assertion Markup Language protocol
 
 > **AWS::Storage**
 > AWS storage services

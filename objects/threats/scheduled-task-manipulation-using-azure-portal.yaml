@@ -19,7 +19,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1053.005
     - T1651
   chaining:
@@ -37,15 +37,15 @@ threat:
     Adversary must have administrative privileges over Azure Portal or have access to 
     Azure credentials.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - Windows
-    - Linux
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Azure::Compute::Virtual Machines
-    - Application Layer::HTTP
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - OS::Windows
+    - OS::Linux
+    - Cloud::AWS::Storage
+    - Cloud::Azure::Security::Key Vault
+    - Cloud::Azure::Compute::Virtual Machines
+    - Protocol::Application Layer::HTTP
   severity: Significant incident
   leverage:
     - Spoofing

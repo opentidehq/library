@@ -23,16 +23,16 @@ threat:
     - name: att&ck::G0139
     - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1098.004
   terrain: |-
     Threat actor must have root or sudo privileges on the target Linux system, 
     as well as the ability to interact with sshd_config 
     (e.g., via nano, vim, vi, or cat commands), before this threat is realized.
   surface:
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+    - OS::Linux
+    - Cloud::Azure::Compute::Virtual Machines
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Tampering

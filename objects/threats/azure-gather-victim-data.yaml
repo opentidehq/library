@@ -25,7 +25,7 @@ threat:
     - name: att&ck::G1033
     - name: misp::f02679fa-5e85-4050-8eb5-c2677d93306f
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1589
     - T1590
     - T1078.004
@@ -44,14 +44,14 @@ threat:
     An adversary successfully compromises a user's Azure Active Directory account credentials 
     or session token through phishing, credential theft, or token theft.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - AWS::Storage
-    - Email
-    - Web Servers
-    - Application Layer::HTTP
-    - Entra ID
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - Cloud::AWS::Storage
+    - Infrastructure::Email
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
+    - Authentication::Entra ID
   severity: Significant incident
   leverage:
     - Spoofing

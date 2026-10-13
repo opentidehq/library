@@ -53,17 +53,17 @@ threat:
     - name: att&ck::G0102
     - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Lateral Movement
-  att&ck:
+  mitre_attack:
     - T1570
     - T1047
   terrain: |-
     It is a built-in tool developped by Microsoft and belonging to Sysinternal command-line tools. It should be installed
     However SMB is a native protocol that do not require any installation.
   surface:
-    - Windows
-    - Remote Access
-    - Windows::Desktop
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - Infrastructure::Remote Access
+    - OS::Windows::Desktop
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Highly significant incident
   leverage:
     - Alter behavior

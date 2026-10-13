@@ -45,7 +45,7 @@ threat:
       vector: 02311e3e-b7b8-4369-9e1e-74c0a844ae0f
       description: Attackers needs to have successfully captured a valid NTLM hash
   killchain: Lateral Movement
-  att&ck:
+  mitre_attack:
     - T1003.001
     - T1550.002
     - T1021.002
@@ -54,10 +54,10 @@ threat:
     Kerberos is disabled or NTML authentication is accepted as alternate method,
     SMB ports needs to be open  from attacker perspective
   surface:
-    - Windows
-    - Remote Access
-    - Windows::Desktop
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - Infrastructure::Remote Access
+    - OS::Windows::Desktop
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Highly significant incident
   leverage:
     - Alter behavior

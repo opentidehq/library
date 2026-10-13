@@ -19,16 +19,16 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exfiltration
-  att&ck:
+  mitre_attack:
     - T1205
     - T1029
   terrain: |-
     A threat actor uses a compromised endpoint to set and monitor specific time
     intervals known as beacons.
   surface:
-    - Windows
-    - Customer Support
-    - Windows::Desktop
+    - OS::Windows
+    - Application::Customer Support
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Dwelling

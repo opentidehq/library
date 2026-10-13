@@ -16,7 +16,7 @@ metadata:
     uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
     name: EC DIGIT CSOC
 threat:
-  att&ck:
+  mitre_attack:
     - T1530
     - T1078.004
   chaining:
@@ -45,13 +45,13 @@ threat:
     Adversaries need to scan and discover publicly accessible storage containers by 
     guessing or enumerating storage account and container names.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Azure::Storage::Blob Storage
-    - AWS::Storage
-    - Application Layer::HTTP
-    - Serverless
-    - Web Servers
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::Azure::Storage::Blob Storage
+    - Cloud::AWS::Storage
+    - Protocol::Application Layer::HTTP
+    - Cloud::Serverless
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Information Disclosure

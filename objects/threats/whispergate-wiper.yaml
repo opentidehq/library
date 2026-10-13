@@ -21,7 +21,7 @@ threat:
   actors:
     - name: att&ck::G1003
     - name: misp::a5f64c1a-c829-4855-903d-e0ff2098b2d7
-  att&ck:
+  mitre_attack:
     - T1485
     - T1561.001
     - T1561.002
@@ -32,13 +32,13 @@ threat:
     A threat actor needs an initial entry point to the system,
     for example can use stolen credentials to gain access.
   surface:
-    - Industrial
-    - Windows
-    - AWS::Storage::EBS
-    - Windows::Desktop
-    - File Sharing
-    - Customer Support
-    - Remote Access
+    - Infrastructure::Industrial
+    - OS::Windows
+    - Cloud::AWS::Storage::EBS
+    - OS::Windows::Desktop
+    - Application::File Sharing
+    - Application::Customer Support
+    - Infrastructure::Remote Access
   severity: Significant incident
   leverage:
     - Denial of Service

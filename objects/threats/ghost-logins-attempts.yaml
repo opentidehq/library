@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1556
     - T1078.003
   chaining:
@@ -25,10 +25,10 @@ threat:
       description: MFA bypass technique
   terrain: Application with SSO login requiring MFA, with legacy authentication (local login) not disabled.
   surface:
-    - Azure
-    - Microsoft::Microsoft 365
-    - Security::SAML
-    - Kerberos
+    - Cloud::Azure
+    - Application::Microsoft::Microsoft 365
+    - Protocol::Security::SAML
+    - Authentication::Kerberos
   severity: Moderate incident
   leverage:
     - Elevation of privilege

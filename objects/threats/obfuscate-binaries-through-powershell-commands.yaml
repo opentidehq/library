@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1190
     - T1027.013
     - T1027.002
@@ -29,9 +29,9 @@ threat:
     network to gain an initial foothold and access to the victim's
     environment ref [1].
   surface:
-    - Windows
-    - Customer Support
-    - Windows::Desktop
+    - OS::Windows
+    - Application::Customer Support
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Infrastructure Compromise

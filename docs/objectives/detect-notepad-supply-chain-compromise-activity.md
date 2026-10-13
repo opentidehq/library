@@ -96,7 +96,7 @@ Detection focuses on:
 This signal provides early detection at the initial deployment phase before
 reconnaissance or C2 establishment occurs.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Pattern Matching
 - **Effort**: 2
 #### Data
@@ -135,7 +135,7 @@ Behavioral correlation should consider:
 - Working directory location
 - Output file naming patterns (1.txt, a.txt)
 
-- **Severity**: Moderate incident
+- **Severity**: Medium
 - **Methodology**: Behavioural
 - **Effort**: 3
 #### Data
@@ -181,7 +181,7 @@ Context enrichment:
 This signal is high severity due to confirmed data exfiltration activity
 and direct linkage to the attack campaign.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Pattern Matching
 - **Effort**: 2
 #### Data
@@ -233,7 +233,7 @@ Common indicators across all techniques:
 
 High severity due to active exploitation and malicious code execution.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Pattern Matching
 - **Effort**: 3
 #### Data
@@ -294,7 +294,7 @@ Detection criteria:
 Critical severity due to confirmed C2 channel establishment indicating
 active compromise and ongoing threat actor access to the environment.
 
-- **Severity**: Significant incident
+- **Severity**: Critical
 - **Methodology**: Pattern Matching
 - **Effort**: 2
 #### Data
@@ -366,15 +366,15 @@ bf30d882_9b96_403a_9a47_83a2981fc526 -->|covers| 3e8b5d7f_9c2a_4f6e_8b1d_7a4c9e3
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [ProShow vulnerability exploitation for payload delivery](../Threats/proshow-vulnerability-exploitation-for-payload-delivery.md) (`23d06aa7-f6d5-44ee-be8f-e6de2f495bd9`) | Upstream | threat |
-| Threat | [Malicious NSIS installer deployment](../Threats/malicious-nsis-installer-deployment.md) (`52462685-bebb-4e86-94b0-fd46aeacb085`) | Upstream | threat |
-| Threat | [Registry autorun persistence from temporary folders](../Threats/registry-autorun-persistence-from-temporary-folders.md) (`55eaa437-5a25-4c29-b1fc-9c0fba4a18ad`) | Upstream | threat |
-| Threat | [Cobalt Strike Beacon deployment via Metasploit downloader](../Threats/cobalt-strike-beacon-deployment-via-metasploit-downloader.md) (`7c4d9a2e-8f3b-4e6a-9d1c-5a7b8e2f4d3a`) | Upstream | threat |
-| Threat | [Notepad++ supply chain attack](../Threats/notepad-supply-chain-attack.md) (`8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`) | Upstream | threat |
-| Threat | [Lua interpreter shellcode execution](../Threats/lua-interpreter-shellcode-execution.md) (`bc365789-bdbb-4e78-b2ae-b097a7ccd35f`) | Upstream | threat |
-| Threat | [Chrysalis backdoor deployment via DLL sideloading](../Threats/chrysalis-backdoor-deployment-via-dll-sideloading.md) (`bc95c747-ede2-4c16-a6b4-506b305e744a`) | Upstream | threat |
-| Threat | [System reconnaissance via shell commands in supply chain attack](../Threats/system-reconnaissance-via-shell-commands-in-supply-chain-attack.md) (`bee6e973-b0d0-4735-a26a-003f39b8c08d`) | Upstream | threat |
-| Threat | [LOLC2 service abuse via temp.sh](../Threats/lolc2-service-abuse-via-temp-sh.md) (`bf30d882-9b96-403a-9a47-83a2981fc526`) | Upstream | threat |
+| Threat | [ProShow vulnerability exploitation for payload delivery](../threats/proshow-vulnerability-exploitation-for-payload-delivery.md) (`23d06aa7-f6d5-44ee-be8f-e6de2f495bd9`) | Upstream | threat |
+| Threat | [Malicious NSIS installer deployment](../threats/malicious-nsis-installer-deployment.md) (`52462685-bebb-4e86-94b0-fd46aeacb085`) | Upstream | threat |
+| Threat | [Registry autorun persistence from temporary folders](../threats/registry-autorun-persistence-from-temporary-folders.md) (`55eaa437-5a25-4c29-b1fc-9c0fba4a18ad`) | Upstream | threat |
+| Threat | [Cobalt Strike Beacon deployment via Metasploit downloader](../threats/cobalt-strike-beacon-deployment-via-metasploit-downloader.md) (`7c4d9a2e-8f3b-4e6a-9d1c-5a7b8e2f4d3a`) | Upstream | threat |
+| Threat | [Notepad++ supply chain attack](../threats/notepad-supply-chain-attack.md) (`8b7cae6f-b6cf-4414-9cdc-fe8c8ee7ee22`) | Upstream | threat |
+| Threat | [Lua interpreter shellcode execution](../threats/lua-interpreter-shellcode-execution.md) (`bc365789-bdbb-4e78-b2ae-b097a7ccd35f`) | Upstream | threat |
+| Threat | [Chrysalis backdoor deployment via DLL sideloading](../threats/chrysalis-backdoor-deployment-via-dll-sideloading.md) (`bc95c747-ede2-4c16-a6b4-506b305e744a`) | Upstream | threat |
+| Threat | [System reconnaissance via shell commands in supply chain attack](../threats/system-reconnaissance-via-shell-commands-in-supply-chain-attack.md) (`bee6e973-b0d0-4735-a26a-003f39b8c08d`) | Upstream | threat |
+| Threat | [LOLC2 service abuse via temp.sh](../threats/lolc2-service-abuse-via-temp-sh.md) (`bf30d882-9b96-403a-9a47-83a2981fc526`) | Upstream | threat |
 | Signal | [System Reconnaissance Commands Following Software Update](detect-notepad-supply-chain-compromise-activity.md#system-reconnaissance-commands-following-software-update) (`2f7c9b4e-8d3a-4e6f-9b1c-7a5d8e2f4b6c`) | Downstream | signal |
 | Signal | [Suspicious DLL Side-Loading and Exploit-Based Execution](detect-notepad-supply-chain-compromise-activity.md#suspicious-dll-side-loading-and-exploit-based-execution) (`4e7b9d3f-6c2a-4e8f-9b1d-7a5c8e3f6b2d`) | Downstream | signal |
 | Signal | [Data Exfiltration to temp.sh Web Service](detect-notepad-supply-chain-compromise-activity.md#data-exfiltration-to-temp-sh-web-service) (`6c9f3e7b-4d2a-4e8f-9b6d-3a7c5e1f8b4d`) | Downstream | signal |

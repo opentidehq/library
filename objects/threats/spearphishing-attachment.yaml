@@ -33,7 +33,7 @@ threat:
     - name: misp::03c80674-35f8-4fe0-be2b-226ed0fcd69f
     - name: misp::ba9e1ed2-e142-48d0-a593-f73ac6d59ccd
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1566.001
   terrain: |-
     Spear phishing requires more preparation and time to achieve success 
@@ -51,15 +51,15 @@ threat:
     The highly personalized nature of spear-phishing attacks makes it more 
     difficult to identity than widescale phishing attacks.
   surface:
-    - Mobile
-    - Windows
-    - Microsoft::Microsoft 365
-    - Mobile::Android
-    - Mobile::iOS
-    - Email
-    - Windows::Desktop
-    - Customer Support
-    - File Sharing
+    - OS::Mobile
+    - OS::Windows
+    - Application::Microsoft::Microsoft 365
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - Infrastructure::Email
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Application::File Sharing
   severity: Significant incident
   leverage:
     - Spoofing

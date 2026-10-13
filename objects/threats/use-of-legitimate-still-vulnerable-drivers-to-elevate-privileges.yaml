@@ -25,7 +25,7 @@ threat:
     - name: att&ck::G0010
     - name: misp::062938a2-6fa1-4217-ad73-f5e0b5186966
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1547.006
     - T1068
     - T1547
@@ -35,10 +35,10 @@ threat:
     can trigger the vulnerable IOCTL/syscall surface, and the system is not yet
     patched.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Elevation of privilege

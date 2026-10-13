@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1525
     - T1204.003
   terrain: |-
@@ -28,13 +28,13 @@ threat:
     internal registry or running the image directly 
     on compromised host.
   surface:
-    - AWS
-    - Azure
-    - Container Runtime::Docker
-    - Orchestration::Kubernetes
-    - Linux
-    - Development::CI/CD
-    - Code Repositories
+    - Cloud::AWS
+    - Cloud::Azure
+    - OS::Container Runtime::Docker
+    - Infrastructure::Orchestration::Kubernetes
+    - OS::Linux
+    - Application::Development::CI/CD
+    - Application::Code Repositories
   severity: Significant incident
   leverage:
     - Dwelling

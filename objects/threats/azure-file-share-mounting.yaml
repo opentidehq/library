@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Impact
-  att&ck:
+  mitre_attack:
     - T1039
     - T1530
     - T1021.007
@@ -57,15 +57,15 @@ threat:
     or Azure AD credentials that have permissions to access file shares. This could 
     be through phishing, credential dumping, or leveraging misconfigurations
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - Linux
-    - macOS
-    - AWS::Storage
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Application Layer::HTTP
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - OS::Windows
+    - OS::Linux
+    - OS::macOS
+    - Cloud::AWS::Storage
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::Serverless
+    - Protocol::Application Layer::HTTP
   severity: Significant incident
   leverage:
     - Spoofing

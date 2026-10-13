@@ -29,7 +29,7 @@ threat:
     - name: misp::0ab7c8de-fc23-4793-99aa-7ee336199e26
     - name: misp::6bf7e6b6-5917-45a6-9567-f0baba79768c
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1059
     - T1021
     - T1078
@@ -63,11 +63,11 @@ threat:
     Adversaries obtain elevated access within AzureAD or Intune; often
     via credential theft, privilege escalation, or social engineering.
   surface:
-    - Azure::Security::Entra ID
-    - Windows
-    - Windows::Desktop
-    - Mobile
-    - Azure
+    - Cloud::Azure::Security::Entra ID
+    - OS::Windows
+    - OS::Windows::Desktop
+    - OS::Mobile
+    - Cloud::Azure
   severity: Significant incident
   leverage:
     - Elevation of privilege

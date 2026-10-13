@@ -29,7 +29,7 @@ threat:
     - name: att&ck::G1004
     - name: misp::d9e5be22-1a04-4956-af6c-37af02330980
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1111
     - T1621
     - T1566.001
@@ -37,17 +37,17 @@ threat:
     - T1566.004
   terrain: Sufficient reconnaissance to identify a target account and MFA technologies being used.
   surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - OAuth / OIDC
-    - Application Layer::HTTP
-    - Azure
-    - Windows::Desktop
-    - Customer Support
-    - Entra ID
+    - OS::Mobile
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - Authentication::OAuth / OIDC
+    - Protocol::Application Layer::HTTP
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Authentication::Entra ID
   severity: Moderate incident
   leverage:
     - Elevation of privilege

@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1626
     - T1633
     - T1417
@@ -31,9 +31,9 @@ threat:
     compromised or misconfigured and through these, they can carry
     out malicious activities.
   surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iPadOS
+    - OS::Mobile
+    - OS::Mobile::Android
+    - OS::Mobile::iPadOS
   severity: Significant incident
   leverage:
     - Information Disclosure

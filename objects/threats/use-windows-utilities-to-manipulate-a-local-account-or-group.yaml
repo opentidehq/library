@@ -20,7 +20,7 @@ threat:
     - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1546
     - T1562.001
     - T1078.003
@@ -53,11 +53,11 @@ threat:
     Threat actors must have access to a Windows system with sufficient privileges 
     to execute administrative utilities.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Active Directory
-    - Customer Support
-    - Code Repositories
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Authentication::Active Directory
+    - Application::Customer Support
+    - Application::Code Repositories
   severity: Significant incident
   leverage:
     - Elevation of privilege

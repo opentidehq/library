@@ -24,7 +24,7 @@ threat:
     - name: att&ck::G0082
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1218
     - T1197
     - T1218.004
@@ -37,8 +37,8 @@ threat:
     built-in utilities. Limited user privileges may suffice, 
     but administrative privileges enhance the potential impact.
   surface:
-    - Windows
-    - Windows::Desktop
+    - OS::Windows
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Elevation of privilege

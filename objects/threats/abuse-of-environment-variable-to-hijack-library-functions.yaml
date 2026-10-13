@@ -22,19 +22,19 @@ threat:
     - name: att&ck::G0067
     - name: misp::50cd027f-df14-40b2-aa22-bf5de5061163
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1574.006
   terrain: |-
     Threat actor must have sufficient privileges to modify environment variables or 
     system configurations and deploy malicious libraries in the filesystem in order 
     to hijack library calls via LD_PRELOAD.
   surface:
-    - Linux
-    - Container Runtime::Docker
-    - Orchestration::Kubernetes
-    - Windows::Desktop
-    - Web Servers
-    - Log Management
+    - OS::Linux
+    - OS::Container Runtime::Docker
+    - Infrastructure::Orchestration::Kubernetes
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Security::Log Management
   severity: Significant incident
   leverage:
     - Elevation of privilege

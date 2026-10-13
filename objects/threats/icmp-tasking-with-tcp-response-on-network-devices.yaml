@@ -15,7 +15,7 @@ metadata:
   tlp: clear
 threat:
   killchain: Command & Control
-  att&ck:
+  mitre_attack:
     - T1095
     - T1571
     - T1573.001
@@ -39,8 +39,8 @@ threat:
     controlled systems within the local network to send ICMP Echo
     Requests that bypass traditional WAN-focused network monitoring.
   surface:
-    - Routers
-    - Switches
+    - Infrastructure::Routers
+    - Infrastructure::Switches
   severity: Substantial incident
   leverage:
     - Infrastructure Compromise

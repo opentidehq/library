@@ -27,7 +27,7 @@ threat:
     - name: att&ck::G0004
     - name: misp::3501fbf2-098f-47e7-be6a-6b0ff5742ce8
   killchain: Discovery
-  att&ck:
+  mitre_attack:
     - T1087.001
     - T1087.002
     - T1069.001
@@ -36,16 +36,16 @@ threat:
     Adversaries can take advantage of already compromised system (Windows or 
     Linux OS or OSX) to run commands.
   surface:
-    - AWS::Compute::EC2
-    - AWS::Compute::ECS
-    - AWS::Compute::EKS
-    - Linux
-    - macOS
-    - Windows
-    - Windows::Desktop
-    - Active Directory
-    - Firewalls
-    - Web Servers
+    - Cloud::AWS::Compute::EC2
+    - Cloud::AWS::Compute::ECS
+    - Cloud::AWS::Compute::EKS
+    - OS::Linux
+    - OS::macOS
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Authentication::Active Directory
+    - Infrastructure::Firewalls
+    - Application::Web Servers
   severity: Moderate incident
   leverage:
     - Information Disclosure

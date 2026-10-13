@@ -21,7 +21,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1648
     - T1195.001
   terrain: |-
@@ -30,8 +30,8 @@ threat:
     that a threat actor can add a malicious lambda layer to a new or existing
     lambda function.
   surface:
-    - AWS::Compute::Lambda
-    - Serverless
+    - Cloud::AWS::Compute::Lambda
+    - Cloud::Serverless
   severity: Localised incident
   leverage:
     - Alter behavior

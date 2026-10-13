@@ -16,7 +16,7 @@ metadata:
     uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
     name: EC DIGIT CSOC
 threat:
-  att&ck:
+  mitre_attack:
     - T1134
     - T1539
     - T1550.004
@@ -33,16 +33,16 @@ threat:
     or newer device that is Azure AD-joined or hybrid Azure AD-joined and on which the 
     user has logged in, thus generating a PRT.
   surface:
-    - Azure
-    - Windows
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - AWS::Storage
-    - Entra ID
-    - Application Layer::HTTP
-    - Serverless
-    - Azure::Compute::Virtual Machines
-    - Kerberos
+    - Cloud::Azure
+    - OS::Windows
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - Cloud::AWS::Storage
+    - Authentication::Entra ID
+    - Protocol::Application Layer::HTTP
+    - Cloud::Serverless
+    - Cloud::Azure::Compute::Virtual Machines
+    - Authentication::Kerberos
   severity: Significant incident
   leverage:
     - Spoofing

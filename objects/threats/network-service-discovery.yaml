@@ -25,7 +25,7 @@ threat:
     - name: att&ck::G0032
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Discovery
-  att&ck:
+  mitre_attack:
     - T1046
   chaining:
     - relation: atomicity::implements
@@ -39,25 +39,25 @@ threat:
     or to use enumeration external tools in an attempt to find
     an entry network point.
   surface:
-    - Industrial IoT::IoT Gateways
-    - Mobile
-    - Active Directory
-    - AWS::Networking::VPC
-    - Azure
-    - Windows
-    - Linux
-    - macOS
-    - Web Servers::Apache HTTP
-    - Mobile::Android
-    - Mobile::iOS
-    - Routers
-    - Windows::Desktop
-    - Firewalls
-    - Data Link Layer::VLAN
-    - Switches
-    - Customer Support
-    - Printers::Multi-Function Peripherals
-    - Web Servers
+    - IoT::Industrial IoT::IoT Gateways
+    - OS::Mobile
+    - Authentication::Active Directory
+    - Cloud::AWS::Networking::VPC
+    - Cloud::Azure
+    - OS::Windows
+    - OS::Linux
+    - OS::macOS
+    - Application::Web Servers::Apache HTTP
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - Infrastructure::Routers
+    - OS::Windows::Desktop
+    - Infrastructure::Firewalls
+    - Protocol::Data Link Layer::VLAN
+    - Infrastructure::Switches
+    - Application::Customer Support
+    - IoT::Printers::Multi-Function Peripherals
+    - Application::Web Servers
   severity: Localised incident
   leverage:
     - Dwelling

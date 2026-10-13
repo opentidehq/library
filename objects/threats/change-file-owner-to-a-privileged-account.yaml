@@ -20,23 +20,23 @@ threat:
     - name: att&ck::G0102
     - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1222
   terrain: |-
     The adversary must have sufficient privileges (e.g., local administrator 
     or root permissions) on the target host or domain controller to modify 
     file ownership attributes.
   surface:
-    - Windows
-    - Linux
-    - macOS
-    - Windows::Desktop
-    - Active Directory
-    - Application Layer::WMI
-    - File Sharing
-    - Web Servers
-    - Database Management
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - OS::Linux
+    - OS::macOS
+    - OS::Windows::Desktop
+    - Authentication::Active Directory
+    - Protocol::Application Layer::WMI
+    - Application::File Sharing
+    - Application::Web Servers
+    - Application::Database Management
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Elevation of privilege

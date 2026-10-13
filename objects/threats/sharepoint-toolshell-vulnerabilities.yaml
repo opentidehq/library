@@ -31,7 +31,7 @@ threat:
     - name: att&ck::G1019
     - name: misp::981402be-3b2d-4310-a7c6-c773aec869c1
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1190
     - T1212
     - T1078
@@ -39,13 +39,13 @@ threat:
     Vulnerable SharePoint server allowing unauthenticated requests leading to
     remote code execution.
   surface:
-    - Microsoft::SharePoint
-    - Windows
-    - Web Servers
-    - Customer Support
-    - Windows::Desktop
-    - Remote Access
-    - Microsoft::System Center
+    - Application::Microsoft::SharePoint
+    - OS::Windows
+    - Application::Web Servers
+    - Application::Customer Support
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
+    - Application::Microsoft::System Center
   severity: Highly significant incident
   leverage:
     - Infrastructure Compromise

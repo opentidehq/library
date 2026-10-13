@@ -20,22 +20,22 @@ threat:
     - name: att&ck::G0139
     - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
   killchain: Impact
-  att&ck:
+  mitre_attack:
     - T1610
     - T1525
     - T1496
   terrain: Running container clusters running in cloud, private cloud or in Enterprise Data Centre environments, potentially connected via a Continuous deployment tool
   surface:
-    - AWS::Compute::EC2
-    - AWS::Compute::EKS
-    - AWS::Compute::ECS
-    - AWS::Compute::Fargate
-    - Azure::Compute::Kubernetes Service
-    - Orchestration::Kubernetes
-    - IBM Cloud
-    - OCI::Container Engine
-    - Development::CI/CD
-    - Remote Access
+    - Cloud::AWS::Compute::EC2
+    - Cloud::AWS::Compute::EKS
+    - Cloud::AWS::Compute::ECS
+    - Cloud::AWS::Compute::Fargate
+    - Cloud::Azure::Compute::Kubernetes Service
+    - Infrastructure::Orchestration::Kubernetes
+    - Cloud::IBM Cloud
+    - Cloud::OCI::Container Engine
+    - Application::Development::CI/CD
+    - Infrastructure::Remote Access
   severity: Substantial incident
   leverage:
     - Infrastructure Compromise

@@ -15,7 +15,7 @@ metadata:
   tlp: clear
 threat:
   killchain: Command & Control
-  att&ck:
+  mitre_attack:
     - T1071.001
     - T1573.001
     - T1573.002
@@ -39,9 +39,9 @@ threat:
     allowing arbitrary data to be embedded in standard authentication
     fields like device-type within the XML structure.
   surface:
-    - Routers
-    - Switches
-    - VPN
+    - Infrastructure::Routers
+    - Infrastructure::Switches
+    - Infrastructure::VPN
   severity: Substantial incident
   leverage:
     - Spoofing

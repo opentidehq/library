@@ -22,18 +22,18 @@ threat:
     - name: att&ck::G0102
     - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1562.004
   terrain: |-
     Adversary must have administrative privileges on the targeted operating system 
     with the necessary permissions to modify system firewall configurations.
   surface:
-    - Windows
-    - macOS
-    - Linux
-    - Firewalls
-    - Windows::Desktop
-    - Web Servers
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - Infrastructure::Firewalls
+    - OS::Windows::Desktop
+    - Application::Web Servers
   severity: Substantial incident
   leverage:
     - Modify configuration

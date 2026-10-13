@@ -15,7 +15,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1111
   chaining:
     - relation: atomicity::implements
@@ -26,12 +26,12 @@ threat:
     Cookies can be found on disk, in the process memory of the browser, and in
     network traffic to remote systems.
   surface:
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Entra ID
+    - Application::Microsoft::Microsoft 365
+    - Cloud::Azure::Security::Entra ID
+    - Authentication::OAuth / OIDC
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Authentication::Entra ID
   severity: Moderate incident
   leverage:
     - Elevation of privilege

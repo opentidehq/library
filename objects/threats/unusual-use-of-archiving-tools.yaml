@@ -27,7 +27,7 @@ threat:
     - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
     - name: att&ck::G0114
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1036
     - T1027
     - T1070
@@ -35,10 +35,10 @@ threat:
     Adversary must have access to systems with archiving tools installed and permissions 
     to execute renamed or custom archiving utilities.
   surface:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Information Disclosure

@@ -22,7 +22,7 @@ threat:
     - name: misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
     - name: att&ck::G1045
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1526
     - T1087
     - T1552.001
@@ -38,22 +38,22 @@ threat:
     The attacker obtains credentials (via phishing, password spray, leaked keys) granting 
     at least Reader access to the target Azure tenant.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - Linux
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Azure::Compute::Virtual Machines
-    - Entra ID
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Switches
-    - Serverless
-    - Application Layer::HTTP
-    - Database Management::PostgreSQL
-    - Database Management::MongoDB
-    - Security::SAML
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - OS::Windows
+    - OS::Linux
+    - Cloud::AWS::Storage
+    - Cloud::Azure::Security::Key Vault
+    - Cloud::Azure::Compute::Virtual Machines
+    - Authentication::Entra ID
+    - Infrastructure::Orchestration::Kubernetes
+    - Application::Web Servers
+    - Infrastructure::Switches
+    - Cloud::Serverless
+    - Protocol::Application Layer::HTTP
+    - Application::Database Management::PostgreSQL
+    - Application::Database Management::MongoDB
+    - Protocol::Security::SAML
   severity: Significant incident
   leverage:
     - Information Disclosure

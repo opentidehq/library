@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1134
     - T1027
     - T1059.003
@@ -34,12 +34,12 @@ threat:
     Microsoft Graph APIs and authentication mechanisms (OAuth) to interact
     with Microsoft services via a Command and Control server ref [a, 3].
   surface:
-    - Microsoft::Microsoft 365
-    - Windows
-    - Windows::Desktop
-    - Application Layer::WMI
-    - Web Servers
-    - Email
+    - Application::Microsoft::Microsoft 365
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Protocol::Application Layer::WMI
+    - Application::Web Servers
+    - Infrastructure::Email
   severity: Localised incident
   leverage:
     - Dwelling

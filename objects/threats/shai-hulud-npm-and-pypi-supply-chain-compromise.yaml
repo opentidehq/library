@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1195.001
     - T1195.002
     - T1546.016
@@ -57,12 +57,12 @@ threat:
     victim maintains and republishes trojanised versions, amplifying blast
     radius beyond the initial namespace.
   surface:
-    - Windows::Desktop
-    - macOS
-    - Linux
-    - Development::Package Management::npm
-    - Development::Package Management::PyPI
-    - Development::CI/CD::GitHub Actions
+    - OS::Windows::Desktop
+    - OS::macOS
+    - OS::Linux
+    - Application::Development::Package Management::npm
+    - Application::Development::Package Management::PyPI
+    - Application::Development::CI/CD::GitHub Actions
   severity: Highly significant incident
   leverage:
     - Infrastructure Compromise

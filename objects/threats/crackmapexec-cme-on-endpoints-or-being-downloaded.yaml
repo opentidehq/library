@@ -34,7 +34,7 @@ threat:
     - name: att&ck::G0046
     - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1003.002
     - T1003.003
     - T1003.004
@@ -59,10 +59,10 @@ threat:
     credential access or a number of other techniques. CrackMapExec (CME)
     is a swiss army knife type of tool.
   surface:
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+    - OS::Windows
+    - OS::Linux
+    - Cloud::Azure::Compute::Virtual Machines
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Modify privileges

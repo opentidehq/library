@@ -143,7 +143,7 @@ Malicious Packages, Aikido Intel, Socket, StepSecurity),
 and into the runtime estate (file inventory across
 developer endpoints).
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Artifacts
 - **Effort**: 2
 #### Data
@@ -208,7 +208,7 @@ future npm supply-chain attack using the postinstall
 lifecycle to deliver native payloads will exhibit the
 same parent / child / file-write pattern.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Behavioural
 - **Effort**: 4
 #### Data
@@ -275,7 +275,7 @@ Detection should fire on file creation, not only on
 file presence, so that hosts which received but later
 cleaned the artefact are still surfaced.
 
-- **Severity**: Significant incident
+- **Severity**: Critical
 - **Methodology**: Artifacts
 - **Effort**: 2
 #### Data
@@ -339,7 +339,7 @@ These patterns directly correspond to GTIG's
 `G_Hunting_Downloader_suspected_UNC1069_PS_1` YARA
 signal logic.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Behavioural
 - **Effort**: 3
 #### Data
@@ -394,7 +394,7 @@ This is the highest-fidelity confirmation of an
 active RAT and should be treated as Critical
 regardless of host-side signals.
 
-- **Severity**: Significant incident
+- **Severity**: Critical
 - **Methodology**: Pattern Matching
 - **Effort**: 2
 #### Data
@@ -464,7 +464,7 @@ from being pulled into builds during the 18-hour
 window in which it was the most recent published
 version.
 
-- **Severity**: Moderate incident
+- **Severity**: Medium
 - **Methodology**: Anomaly
 - **Effort**: 5
 #### Data
@@ -527,7 +527,7 @@ f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 68f4ac42_9bd8_4b1e_b547_56f890bfe457
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [Axios npm supply chain compromise](../Threats/axios-npm-supply-chain-compromise.md) (`000790d9-06de-49af-893d-e4993abe6e38`) | Upstream | threat |
+| Threat | [Axios npm supply chain compromise](../threats/axios-npm-supply-chain-compromise.md) (`000790d9-06de-49af-893d-e4993abe6e38`) | Upstream | threat |
 | Signal | [WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts](detect-axios-npm-supply-chain-compromise-activity.md#waveshaper-v2-cross-platform-rat-on-disk-artefacts) (`6524f5a6-d9e9-48ff-983f-23c4aed9c1fd`) | Downstream | signal |
 | Signal | [NPM Publisher Email or SLSA Provenance Regression on Critical Packages](detect-axios-npm-supply-chain-compromise-activity.md#npm-publisher-email-or-slsa-provenance-regression-on-critical-packages) (`68f4ac42-9bd8-4b1e-b547-56f890bfe457`) | Downstream | signal |
 | Signal | [Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters](detect-axios-npm-supply-chain-compromise-activity.md#suspicious-npm-postinstall-lifecycle-execution-spawning-unexpected-interpreters) (`6c2c0f21-5821-4b5f-9279-9b91dfd5d148`) | Downstream | signal |

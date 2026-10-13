@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1574
     - T1071
     - T1055
@@ -37,7 +37,7 @@ threat:
     individual developers. The malicious files were deployed to Windows systems via 
     compromised software updates.
   surface:
-    - Windows::Desktop
+    - OS::Windows::Desktop
   severity: Highly significant incident
   leverage:
     - Elevation of privilege

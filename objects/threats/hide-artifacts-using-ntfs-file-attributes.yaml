@@ -23,7 +23,7 @@ threat:
     - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
     - name: misp::ba9e1ed2-e142-48d0-a593-f73ac6d59ccd
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1564.004
   chaining:
     - relation: atomicity::implements
@@ -37,8 +37,8 @@ threat:
     Threat actors need to deliver on the host a file that uses NTFS extended
     attributes.
   surface:
-    - Windows
-    - Windows::Desktop
+    - OS::Windows
+    - OS::Windows::Desktop
   severity: Localised incident
   leverage:
     - Dwelling

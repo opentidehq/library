@@ -16,29 +16,29 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1059
   terrain: |-
     A threat actor controls either privileged credentials or a service 
     principal (SPN) and an endpoint from which Azure CLI can be run.
   surface:
-    - Azure
-    - Remote Access
-    - AWS::Storage
-    - Orchestration::Kubernetes
-    - Domain Name System::DNS
-    - Firewalls
-    - Serverless
-    - Entra ID
-    - Windows::Server
-    - Azure::Security::Key Vault
-    - Switches
-    - Web Servers
-    - Database Management::MongoDB
-    - Database Management::PostgreSQL
-    - Routers
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+    - Cloud::Azure
+    - Infrastructure::Remote Access
+    - Cloud::AWS::Storage
+    - Infrastructure::Orchestration::Kubernetes
+    - Protocol::Domain Name System::DNS
+    - Infrastructure::Firewalls
+    - Cloud::Serverless
+    - Authentication::Entra ID
+    - OS::Windows::Server
+    - Cloud::Azure::Security::Key Vault
+    - Infrastructure::Switches
+    - Application::Web Servers
+    - Application::Database Management::MongoDB
+    - Application::Database Management::PostgreSQL
+    - Infrastructure::Routers
+    - Cloud::Azure::Compute::Virtual Machines
+    - OS::Windows::Desktop
   severity: Localised incident
   leverage:
     - Modify configuration

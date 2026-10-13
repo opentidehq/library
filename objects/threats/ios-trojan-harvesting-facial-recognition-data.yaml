@@ -15,7 +15,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1566.001
     - T1566.002
     - T1078
@@ -25,11 +25,11 @@ threat:
     government authorities and popular messaging applications to trick victims into 
     downloading and installing the malicious MDM profile.
   surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Entra ID
-    - Mobile::iPadOS
+    - OS::Mobile
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - Authentication::Entra ID
+    - OS::Mobile::iPadOS
   severity: Significant incident
   leverage:
     - Alter behavior

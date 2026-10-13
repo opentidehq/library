@@ -17,7 +17,7 @@ threat:
     - name: att&ck::G0082
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1562.001
   terrain: |-
     The attacker requires administrative privileges on the target operating system 
@@ -25,12 +25,12 @@ threat:
     They may also need to leverage local management tools or scripts 
     to carry out these modifications.
   surface:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
-    - Web Servers
-    - Kerberos
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Authentication::Kerberos
   severity: Significant incident
   leverage:
     - Modify configuration

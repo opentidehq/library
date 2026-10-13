@@ -17,19 +17,19 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Discovery
-  att&ck:
+  mitre_attack:
     - T1057
   terrain: |-
     Threat actors rely on exposed / public visible processes,
     they can scan and gather information for a target.
   surface:
-    - Embedded
-    - Windows
-    - Linux
-    - macOS
-    - Customer Support
-    - Windows::Desktop
-    - Web Servers
+    - OS::Embedded
+    - OS::Windows
+    - OS::Linux
+    - OS::macOS
+    - Application::Customer Support
+    - OS::Windows::Desktop
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Dwelling

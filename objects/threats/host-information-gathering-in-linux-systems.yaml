@@ -18,12 +18,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1082
   terrain: A threat actor needs an initial access to a Linux system.
   surface:
-    - Linux
-    - Windows::Desktop
+    - OS::Linux
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Information Disclosure

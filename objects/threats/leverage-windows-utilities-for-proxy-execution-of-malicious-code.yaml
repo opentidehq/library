@@ -23,7 +23,7 @@ threat:
     - name: att&ck::G0082
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1218
   chaining:
     - relation: atomicity::implements
@@ -33,10 +33,10 @@ threat:
     Threat actors must have access to a Windows system with user-level privileges 
     where Windows utilities are available.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Azure::Compute::Virtual Machines
-    - Web Servers
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Cloud::Azure::Compute::Virtual Machines
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Elevation of privilege

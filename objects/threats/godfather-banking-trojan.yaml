@@ -20,7 +20,7 @@ threat:
     - name: misp::b8c8b96d-61e6-47b1-8e38-fd8ad5d9854d
     - name: att&ck::G1031
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1055
     - T1497
     - T1056.001
@@ -46,8 +46,8 @@ threat:
     malware primarily through social engineering techniques that trick users into
     enabling these permissions.
   surface:
-    - Mobile
-    - Mobile::Android
+    - OS::Mobile
+    - OS::Mobile::Android
   severity: Significant incident
   leverage:
     - Spoofing

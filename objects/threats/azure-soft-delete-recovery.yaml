@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Impact
-  att&ck:
+  mitre_attack:
     - T1530
     - T1490
     - T1485
@@ -75,13 +75,13 @@ threat:
     on the Azure tenant to interact with resources 
     in a soft-deleted state.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Azure::Security::Key Vault
-    - AWS::Storage
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Entra ID
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::Azure::Security::Key Vault
+    - Cloud::AWS::Storage
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::Serverless
+    - Authentication::Entra ID
   severity: Significant incident
   leverage:
     - Information Disclosure

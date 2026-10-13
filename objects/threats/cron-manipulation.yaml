@@ -22,16 +22,16 @@ threat:
     - name: att&ck::G0102
     - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1053.003
   terrain: |-
     Threat actor must already have privileged or administrative-level access 
     on a Linux or Unix-like system to insert or modify cron entries.
   surface:
-    - Linux
-    - macOS
-    - Web Servers
-    - Windows::Desktop
+    - OS::Linux
+    - OS::macOS
+    - Application::Web Servers
+    - OS::Windows::Desktop
   severity: Substantial incident
   leverage:
     - Dwelling
