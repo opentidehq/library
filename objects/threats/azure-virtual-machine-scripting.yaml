@@ -38,7 +38,7 @@ threat:
     - name: misp::fa80877c-f509-4daf-8b62-20aba1635f68
     - name: misp::98be4300-a9ef-11e8-9a95-bb9221083cfc
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1059
     - T1078
     - T1204
@@ -85,10 +85,10 @@ threat:
     Through compromised account credentials or misused RBAC permissions, adversaries 
     obtains sufficient access to invoke scripting features (RunCommand, extensions).
   surface:
-    - Azure
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
+    - Cloud::Azure
+    - OS::Windows
+    - OS::Linux
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Elevation of privilege

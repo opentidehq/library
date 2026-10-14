@@ -15,7 +15,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Collection
-  att&ck:
+  mitre_attack:
     - T1114
     - T1114.002
     - T1098.001
@@ -25,9 +25,9 @@ threat:
     or Application Registrations. A frequently targeted role was the Application 
     Administrator, because it allowed complete control over applications in Azure AD.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Entra ID
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Authentication::Entra ID
   severity: Substantial incident
   leverage:
     - Information Disclosure

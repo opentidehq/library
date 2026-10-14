@@ -49,7 +49,7 @@ Triage by confirming route sensitivity, comparing against normal redirect templa
 capturing minimal request/response evidence for the application owner without storing protected
 body content.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Anomaly
 - **Effort**: 3
 #### Data
@@ -69,7 +69,7 @@ login event for the same source/session, or abnormal tooling indicators.
 As a non-normative starting point, investigate three or more distinct restricted routes from the
 same source within a short window when no successful authentication event follows.
 
-- **Severity**: Moderate incident
+- **Severity**: Medium
 - **Methodology**: Frequency Analysis
 - **Effort**: 4
 #### Data
@@ -88,7 +88,7 @@ than a production log-only signal.
 Triage by comparing the body fingerprint against the approved unauthenticated redirect template
 and validating that any exposed markers map to protected application content.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Heuristic
 - **Effort**: 5
 #### Data
@@ -127,7 +127,7 @@ f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> 077ee487_7694_4ed5_9a83_5ed36b4f31c5
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [Late access control enforcement via redirect body leakage](../Threats/late-access-control-enforcement-via-redirect-body-leakage.md) (`0663c192-cdeb-49a2-994c-4cc8e98f764e`) | Upstream | threat |
+| Threat | [Late access control enforcement via redirect body leakage](../threats/late-access-control-enforcement-via-redirect-body-leakage.md) (`0663c192-cdeb-49a2-994c-4cc8e98f764e`) | Upstream | threat |
 | Signal | [Restricted route enumeration through repeated redirects](detect-protected-content-in-abnormal-redirect-responses.md#restricted-route-enumeration-through-repeated-redirects) (`0770d2a4-9299-46d7-93f2-c3fff68aad26`) | Downstream | signal |
 | Signal | [Redirect body differs from expected unauthenticated template](detect-protected-content-in-abnormal-redirect-responses.md#redirect-body-differs-from-expected-unauthenticated-template) (`077ee487-7694-4ed5-9a83-5ed36b4f31c5`) | Downstream | signal |
 | Signal | [Large 302 response body on protected route](detect-protected-content-in-abnormal-redirect-responses.md#large-302-response-body-on-protected-route) (`f798884c-46ea-424c-9958-45f2c4f8110a`) | Downstream | signal |

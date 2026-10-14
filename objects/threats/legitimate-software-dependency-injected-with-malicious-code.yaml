@@ -17,7 +17,7 @@ metadata:
     uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
     name: EC DIGIT CSOC
 threat:
-  att&ck:
+  mitre_attack:
     - T1195.002
     - T1195.001
     - T1204
@@ -32,11 +32,11 @@ threat:
     They can use also a build-in or some type of an inherited vulnerability
     in the vendor's process which allows malicious code injection.
   surface:
-    - Windows
-    - macOS
-    - Linux
-    - Development::CI/CD
-    - Development
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - Application::Development::CI/CD
+    - Application::Development
   severity: Significant incident
   leverage:
     - Infrastructure Compromise

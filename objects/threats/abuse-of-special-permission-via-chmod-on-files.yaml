@@ -23,17 +23,17 @@ threat:
     - name: att&ck::G0102
     - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1548.001
   terrain: |-
     An adversary must have local or SSH access to the target system, with credentials 
     allowing the use of chmod or sudo. Typically, this involves default or weak 
     configurations enabling chmod modifications on critical executables or scripts.
   surface:
-    - Linux
-    - macOS
-    - Windows::Desktop
-    - Web Servers
+    - OS::Linux
+    - OS::macOS
+    - OS::Windows::Desktop
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Elevation of privilege

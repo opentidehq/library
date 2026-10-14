@@ -27,17 +27,17 @@ threat:
     - name: att&ck::G0016
     - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Exfiltration
-  att&ck:
+  mitre_attack:
     - T1567.001
   terrain: The attacker needs to obtain access to the CI pipeline.
   surface:
-    - Code Repositories::GitHub
-    - Code Repositories::GitLab
-    - Atlassian::Bitbucket
-    - Development::CI/CD
-    - Code Repositories
-    - Development
-    - Windows::Desktop
+    - Application::Code Repositories::GitHub
+    - Application::Code Repositories::GitLab
+    - Application::Atlassian::Bitbucket
+    - Application::Development::CI/CD
+    - Application::Code Repositories
+    - Application::Development
+    - OS::Windows::Desktop
   severity: Localised incident
   leverage:
     - Information Disclosure

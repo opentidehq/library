@@ -17,18 +17,18 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1562
   terrain: |-
     Requires a GitHub organization, either as SaaS or as an on-prem GitHub 
     instance. Attacker requires admin credentials to change the setting or 
     an exploit to bypass authentication or similar.
   surface:
-    - Code Repositories::GitHub
-    - Azure
-    - Code Repositories
-    - Development::CI/CD
-    - Remote Access
+    - Application::Code Repositories::GitHub
+    - Cloud::Azure
+    - Application::Code Repositories
+    - Application::Development::CI/CD
+    - Infrastructure::Remote Access
   severity: Localised incident
   leverage:
     - Dwelling

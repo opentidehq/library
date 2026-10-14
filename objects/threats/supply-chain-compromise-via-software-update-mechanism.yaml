@@ -20,7 +20,7 @@ metadata:
 threat:
   actors:
     - name: att&ck::G0016
-  att&ck:
+  mitre_attack:
     - T1195.002
     - T1195
     - T1199
@@ -50,17 +50,17 @@ threat:
     - Insufficient supply chain security controls
     - Limited visibility into software build and update processes
   surface:
-    - Windows
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - AWS
-    - Microsoft
-    - Development::CI/CD
-    - Development
-    - Web Servers
-    - Entra ID
-    - Application Layer::HTTP
+    - OS::Windows
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - Cloud::AWS
+    - Application::Microsoft
+    - Application::Development::CI/CD
+    - Application::Development
+    - Application::Web Servers
+    - Authentication::Entra ID
+    - Protocol::Application Layer::HTTP
   severity: National cyber emergency
   leverage:
     - Infrastructure Compromise

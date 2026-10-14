@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Lateral Movement
-  att&ck:
+  mitre_attack:
     - T1210
     - T1534
     - T1570
@@ -40,12 +40,12 @@ threat:
     Adversaries through different means, they need to compromise an account in order 
     to be able to carry out lateral movement.
   surface:
-    - Windows
-    - Microsoft::Teams
-    - Windows::Desktop
-    - File Sharing
-    - Remote Access
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - Application::Microsoft::Teams
+    - OS::Windows::Desktop
+    - Application::File Sharing
+    - Infrastructure::Remote Access
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Dwelling

@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1082
     - T1016
     - T1033
@@ -37,7 +37,7 @@ threat:
     exfiltration. The reconnaissance commands are executed through cmd.exe with output 
     redirection to text files stored in seemingly legitimate application directories.
   surface:
-    - Windows::Desktop
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Information Disclosure

@@ -16,7 +16,7 @@ metadata:
     uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
     name: EC DIGIT CSOC
 threat:
-  att&ck:
+  mitre_attack:
     - T1456
     - T1624
     - T1631.001
@@ -27,11 +27,11 @@ threat:
     and infrastructure such as spoofed domains, third-party app stores, or MitM tools 
     to distribute payloads or force installations.
   surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Mobile::iPadOS
-    - File Sharing
+    - OS::Mobile
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - OS::Mobile::iPadOS
+    - Application::File Sharing
   severity: Significant incident
   leverage:
     - Information Disclosure

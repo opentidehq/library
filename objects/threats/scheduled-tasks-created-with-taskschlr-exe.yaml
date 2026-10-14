@@ -23,17 +23,17 @@ threat:
     - name: att&ck::G0125
     - name: misp::4f05d6c1-3fc1-4567-91cd-dd4637cc38b5
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1053.005
   terrain: |-
     An adversary has gained control over a Windows endpoint and has  
     privileges to create scheduled tasks using taskschlr.exe
   surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Windows::Server
-    - Web Servers
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
+    - OS::Windows::Server
+    - Application::Web Servers
   severity: Moderate incident
   leverage:
     - Dwelling

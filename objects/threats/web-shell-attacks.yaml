@@ -20,14 +20,14 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1505.003
   terrain: Adversary access to a compromise Web server with vulnerability or account to upload and serve the Web shell file.
   surface:
-    - Linux
-    - Windows
-    - macOS
-    - Web Servers
+    - OS::Linux
+    - OS::Windows
+    - OS::macOS
+    - Application::Web Servers
   severity: Moderate incident
   leverage:
     - Dwelling

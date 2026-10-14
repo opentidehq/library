@@ -20,7 +20,7 @@ threat:
   actors:
     - name: misp::f6a60403-4bcc-4fc6-ac07-abb913c1f080
   killchain: Impact
-  att&ck:
+  mitre_attack:
     - T1567.002
     - T1078.004
     - T1530
@@ -53,10 +53,10 @@ threat:
     Principal abuse, RBAC misconfigurations, or privilege escalation) to the victim’s 
     storage account.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Application Layer::HTTP
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Protocol::Application Layer::HTTP
   severity: Significant incident
   leverage:
     - Information Disclosure

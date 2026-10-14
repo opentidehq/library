@@ -26,7 +26,7 @@ threat:
     - name: att&ck::G0007
     - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1570
     - T1021.002
     - T1021.007
@@ -34,10 +34,10 @@ threat:
     Iniating a SMB connection requires a valid user account which imply
     that the endpoint is already infected.
   surface:
-    - Windows
-    - Microsoft::Microsoft 365
-    - Windows::Desktop
-    - Web Servers
+    - OS::Windows
+    - Application::Microsoft::Microsoft 365
+    - OS::Windows::Desktop
+    - Application::Web Servers
   severity: Moderate incident
   leverage:
     - Dwelling

@@ -28,7 +28,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1569.002
     - T1053
     - T1082
@@ -55,10 +55,10 @@ threat:
     social engineering and targeted (spear-phishing) or mass-spread phishing
     campaigns.
   surface:
-    - Windows
-    - Customer Support
-    - Windows::Desktop
-    - Remote Access
+    - OS::Windows
+    - Application::Customer Support
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
   severity: Significant incident
   leverage:
     - Elevation of privilege

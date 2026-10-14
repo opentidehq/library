@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1133
     - T1078
     - T1195
@@ -27,11 +27,11 @@ threat:
     certificates used for VPN access. This could be achieved through phishing, credential 
     theft, or exploiting weak authentication practices.
   surface:
-    - Mobile
-    - Mobile::iOS
-    - Mobile::Android
-    - Mobile::iPadOS
-    - VPN
+    - OS::Mobile
+    - OS::Mobile::iOS
+    - OS::Mobile::Android
+    - OS::Mobile::iPadOS
+    - Infrastructure::VPN
   severity: Significant incident
   leverage:
     - Dwelling

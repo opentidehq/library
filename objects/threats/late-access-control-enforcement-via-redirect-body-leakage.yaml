@@ -19,7 +19,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Collection
-  att&ck:
+  mitre_attack:
     - T1190
   terrain: |-
     A web application that performs access control checks late in the request
@@ -34,8 +34,8 @@ threat:
     affecting multiple authenticated or role-restricted routes that share the
     same flawed request processing pipeline.
   surface:
-    - Web Servers
-    - Application Layer::HTTP
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
   severity: Substantial incident
   leverage:
     - Information Disclosure

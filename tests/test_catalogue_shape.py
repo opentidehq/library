@@ -47,6 +47,16 @@ def _vocab_names(filename: str) -> set[str] | None:
     return migrate.load_vocab_names(path)
 
 
+def _entity_stages() -> tuple[str, ...] | None:
+    vocab_dir = migrate.default_vocab_dir()
+    if vocab_dir is None:
+        return None
+    path = vocab_dir / "signal.entities.vocab.toml"
+    if not path.is_file():
+        return None
+    return migrate.load_vocab_stages(path)
+
+
 @pytest.fixture(scope="module")
 def threats() -> list[tuple[Path, dict[str, Any]]]:
     files = _iter_yaml(THREATS_DIR)
@@ -167,24 +177,40 @@ def test_threat_surface_is_non_empty_list(threats: list[tuple[Path, dict[str, An
         assert all(isinstance(item, str) and item.strip() for item in surface), path
 
 
-def test_objective_signals_use_ncsc_severity_and_bare_entities(
+def test_objective_signals_use_alert_severity_and_scoped_entities(
     objectives: list[tuple[Path, dict[str, Any]]],
 ) -> None:
     entity_vocab = _vocab_names("signal.entities.vocab.toml")
+    alert_severity_vocab = _vocab_names("alert_severity.vocab.toml")
+    entity_stages = _entity_stages()
     signal_count = 0
     for path, data in objectives:
         signals = data["objective"]["signals"]
         assert isinstance(signals, list) and signals, path
         for signal in signals:
             signal_count += 1
-            assert signal["severity"] in migrate.NCSC_SEVERITY, path
+            severity = signal["severity"]
+            # objective.signals.severity is pinned to alert_severity::1.0, NOT
+            # the NCSC threat-severity (severity::1.0) long names.
+            assert severity not in migrate.NCSC_SEVERITY, (
+                f"{path}: signal severity {severity!r} is an NCSC threat-severity name"
+            )
+            if alert_severity_vocab is not None:
+                assert severity in alert_severity_vocab, (
+                    f"{path}: severity {severity!r} not in alert_severity vocab"
+                )
             entities = signal.get("entities")
             assert isinstance(entities, list) and entities, path
             for entity in entities:
                 assert isinstance(entity, str) and entity.strip(), path
-                assert "::" not in entity, f"{path}: staged entity {entity!r}"
+                # 0.14.0 (#509): entities are scoped <Stage>::<Key>, not bare.
+                stage, sep, key = entity.partition("::")
+                assert sep, f"{path}: unscoped entity {entity!r}"
+                assert key.strip() and "::" not in key, f"{path}: malformed entity {entity!r}"
+                if entity_stages is not None:
+                    assert stage in entity_stages, f"{path}: unknown stage in {entity!r}"
                 if entity_vocab is not None:
-                    assert entity in entity_vocab, f"{path}: unknown entity {entity!r}"
+                    assert key in entity_vocab, f"{path}: unknown entity key {entity!r}"
             assert len(entities) == len(set(entities)), f"{path}: duplicate entities"
     assert signal_count >= 11
 
@@ -271,5 +297,8 @@ def test_no_legacy_packed_or_string_actors_remain(
             assert not isinstance(data["threat"][field], str), path
     for path, data in objectives:
         for signal in data["objective"]["signals"]:
-            assert signal["severity"] not in migrate.SIGNAL_SEVERITY_MAP, path
-            assert all("::" not in entity for entity in signal["entities"]), path
+            # Signal severity must not have regressed to an NCSC threat-severity
+            # name (the pre-0.14.0 wrong-vocabulary defect), and entities must
+            # stay scoped <Stage>::<Key> rather than bare (pre-#509).
+            assert signal["severity"] not in migrate.NCSC_SEVERITY, path
+            assert all("::" in entity for entity in signal["entities"]), path

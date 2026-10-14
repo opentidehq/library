@@ -22,15 +22,15 @@ threat:
     - name: att&ck::G0139
     - name: misp::27de6a09-844b-4dcb-9ff9-7292aad826ba
   killchain: Impact
-  att&ck:
+  mitre_attack:
     - T1496
   terrain: |-
     Attacker needs to control credentials required to deploy an EC2 instance,
     or to deploy a compute resource of a type that runs on EC2.
   surface:
-    - AWS::Compute::EC2
-    - AWS::Compute::ECS
-    - AWS::Compute::EKS
+    - Cloud::AWS::Compute::EC2
+    - Cloud::AWS::Compute::ECS
+    - Cloud::AWS::Compute::EKS
   severity: Localised incident
   leverage:
     - Software installation

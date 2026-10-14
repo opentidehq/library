@@ -19,7 +19,7 @@ threat:
     - name: att&ck::G0007
     - name: misp::5b4ee3ea-eee3-4c8e-8323-85ae32658754
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1218.005
     - T1218.010
   chaining:
@@ -32,10 +32,10 @@ threat:
     This often requires initial access through phishing, exploitation of vulnerabilities, 
     or use of valid credentials.
   surface:
-    - Windows
-    - Active Directory
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+    - OS::Windows
+    - Authentication::Active Directory
+    - Cloud::Azure::Compute::Virtual Machines
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Elevation of privilege

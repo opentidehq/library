@@ -20,7 +20,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1566.001
     - T1204.002
     - T1036
@@ -37,12 +37,12 @@ threat:
     true nature of the file. The spear-phishing attachment provides
     a threat actor an initial access to the system.
   surface:
-    - Windows
-    - AWS
-    - Windows::Desktop
-    - Email
-    - Customer Support
-    - Remote Access
+    - OS::Windows
+    - Cloud::AWS
+    - OS::Windows::Desktop
+    - Infrastructure::Email
+    - Application::Customer Support
+    - Infrastructure::Remote Access
   severity: Localised incident
   leverage:
     - Dwelling

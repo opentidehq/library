@@ -15,19 +15,19 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1195
   terrain: |-
     Software development performed internally need to rely on
     external dependencies, and sources are not rigorously checked.
   surface:
-    - Azure
-    - AWS
-    - Container Runtime::Docker
-    - Microsoft
-    - Development::CI/CD
-    - Code Repositories
-    - Development
+    - Cloud::Azure
+    - Cloud::AWS
+    - OS::Container Runtime::Docker
+    - Application::Microsoft
+    - Application::Development::CI/CD
+    - Application::Code Repositories
+    - Application::Development
   severity: Substantial incident
   leverage:
     - Elevation of privilege

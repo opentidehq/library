@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1580
     - T1046
     - T1133
@@ -31,11 +31,11 @@ threat:
     Adversary must have access to internet-facing IP space to scan for live Azure VMs 
     and network interfaces.
   surface:
-    - Azure
-    - Azure::Compute::Virtual Machines
-    - Switches
-    - Web Servers
-    - AWS::Storage
+    - Cloud::Azure
+    - Cloud::Azure::Compute::Virtual Machines
+    - Infrastructure::Switches
+    - Application::Web Servers
+    - Cloud::AWS::Storage
   severity: Significant incident
   leverage:
     - Spoofing

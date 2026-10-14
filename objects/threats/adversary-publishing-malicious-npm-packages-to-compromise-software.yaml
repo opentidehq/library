@@ -23,7 +23,7 @@ threat:
     - name: misp::825abfd9-7238-4438-a9e7-c08791f4df4e
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1195
     - T1082
     - T1546.016
@@ -37,15 +37,15 @@ threat:
         and infecting their systems.   
   terrain: Adversary publishing malicious NPM packages to compromise software.
   surface:
-    - Industrial
-    - Mobile
-    - Windows
-    - Linux
-    - macOS
-    - Windows::Desktop
-    - Development
-    - Customer Support
-    - Application Layer::HTTP
+    - Infrastructure::Industrial
+    - OS::Mobile
+    - OS::Windows
+    - OS::Linux
+    - OS::macOS
+    - OS::Windows::Desktop
+    - Application::Development
+    - Application::Customer Support
+    - Protocol::Application Layer::HTTP
   severity: Moderate incident
   leverage:
     - Infrastructure Compromise

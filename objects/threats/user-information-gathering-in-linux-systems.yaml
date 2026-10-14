@@ -21,7 +21,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1589
   chaining:
     - relation: sequence::succeeds
@@ -41,9 +41,9 @@ threat:
     Requires an initial access to a Linux system with sufficient
     rights to execute commands.
   surface:
-    - Linux
-    - Windows::Desktop
-    - Customer Support
+    - OS::Linux
+    - OS::Windows::Desktop
+    - Application::Customer Support
   severity: Moderate incident
   leverage:
     - Information Disclosure

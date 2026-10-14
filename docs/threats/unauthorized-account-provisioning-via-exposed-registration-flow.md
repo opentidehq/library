@@ -137,7 +137,7 @@ end
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Objective | [Detect premature account activation and restricted onboarding bypass](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md) (`3a73c153-abd7-40cd-86a5-4d57a42b9a44`) | Downstream | objective |
-| Signal | [Account created without required invitation or approval context](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#account-created-without-required-invitation-or-approval-context) (`7f6d1aae-c807-42fb-8734-4d3c6c4e9670`) | Downstream | signal |
-| Signal | [Pre-approval account accesses restricted application resources](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#pre-approval-account-accesses-restricted-application-resources) (`958eeed6-43f6-43c8-8bb9-96397aab29a1`) | Downstream | signal |
-| Signal | [Authentication material issued while account approval is pending](../Objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#authentication-material-issued-while-account-approval-is-pending) (`d5906e6c-0f66-4dd6-8add-216a90b2b1f2`) | Downstream | signal |
+| Objective | [Detect premature account activation and restricted onboarding bypass](../objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md) (`3a73c153-abd7-40cd-86a5-4d57a42b9a44`) | Downstream | objective |
+| Signal | [Account created without required invitation or approval context](../objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#account-created-without-required-invitation-or-approval-context) (`7f6d1aae-c807-42fb-8734-4d3c6c4e9670`) | Downstream | signal |
+| Signal | [Pre-approval account accesses restricted application resources](../objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#pre-approval-account-accesses-restricted-application-resources) (`958eeed6-43f6-43c8-8bb9-96397aab29a1`) | Downstream | signal |
+| Signal | [Authentication material issued while account approval is pending](../objectives/detect-premature-account-activation-and-restricted-onboarding-bypass.md#authentication-material-issued-while-account-approval-is-pending) (`d5906e6c-0f66-4dd6-8add-216a90b2b1f2`) | Downstream | signal |

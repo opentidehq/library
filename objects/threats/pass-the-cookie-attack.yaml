@@ -23,7 +23,7 @@ threat:
     - name: att&ck::G0034
     - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1111
   chaining:
     - relation: sequence::succeeds
@@ -40,12 +40,12 @@ threat:
     Additionally, other applications on the user endpoint machine might store sensitive
     authentication cookies in memory (e.g. apps which authenticate to cloud services).
   surface:
-    - Microsoft::Microsoft 365
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Entra ID
-    - Mobile
+    - Application::Microsoft::Microsoft 365
+    - Authentication::OAuth / OIDC
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Authentication::Entra ID
+    - OS::Mobile
   severity: Significant incident
   leverage:
     - Elevation of privilege

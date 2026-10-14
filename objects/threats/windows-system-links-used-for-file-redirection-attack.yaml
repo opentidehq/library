@@ -17,19 +17,19 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1562
     - T1027.012
   terrain: |-
     A threat actor needs an initial access to the system with 
     standard user rights.
   surface:
-    - Windows
-    - Azure::Security::Entra ID
-    - Active Directory
-    - Windows::Desktop
-    - Remote Access
-    - Microsoft::System Center
+    - OS::Windows
+    - Cloud::Azure::Security::Entra ID
+    - Authentication::Active Directory
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
+    - Application::Microsoft::System Center
   severity: Localised incident
   leverage:
     - Infrastructure Compromise

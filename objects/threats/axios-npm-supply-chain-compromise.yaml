@@ -29,7 +29,7 @@ threat:
     - name: misp::825abfd9-7238-4438-a9e7-c08791f4df4e
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1195.001
     - T1195.002
     - T1546.016
@@ -76,11 +76,11 @@ threat:
     boundary between maintainer credentials and the npm publish
     pipeline is the actual vulnerable surface.
   surface:
-    - Windows
-    - macOS
-    - Linux
-    - Development::Package Management::npm
-    - Development::CI/CD
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - Application::Development::Package Management::npm
+    - Application::Development::CI/CD
   severity: Highly significant incident
   leverage:
     - Infrastructure Compromise

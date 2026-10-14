@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1134.002
   terrain: |-
     Threat actors are using already compromised Windows environment to create 
@@ -26,10 +26,10 @@ threat:
     threat vector can also be used for defense evasion and other purposes by 
     duplicating other access token types and privilege levels.
   surface:
-    - Windows
-    - OAuth / OIDC
-    - Remote Access
-    - Windows::Desktop
+    - OS::Windows
+    - Authentication::OAuth / OIDC
+    - Infrastructure::Remote Access
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Elevation of privilege

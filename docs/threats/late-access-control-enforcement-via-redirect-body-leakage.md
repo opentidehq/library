@@ -128,7 +128,7 @@ f8a95fcf_c5b0_4db0_bb8b_78e4edaa0544 --> 077ee487_7694_4ed5_9a83_5ed36b4f31c5
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Objective | [Detect protected content in abnormal redirect responses](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md) (`f8a95fcf-c5b0-4db0-bb8b-78e4edaa0544`) | Downstream | objective |
-| Signal | [Restricted route enumeration through repeated redirects](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md#restricted-route-enumeration-through-repeated-redirects) (`0770d2a4-9299-46d7-93f2-c3fff68aad26`) | Downstream | signal |
-| Signal | [Redirect body differs from expected unauthenticated template](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md#redirect-body-differs-from-expected-unauthenticated-template) (`077ee487-7694-4ed5-9a83-5ed36b4f31c5`) | Downstream | signal |
-| Signal | [Large 302 response body on protected route](../Objectives/detect-protected-content-in-abnormal-redirect-responses.md#large-302-response-body-on-protected-route) (`f798884c-46ea-424c-9958-45f2c4f8110a`) | Downstream | signal |
+| Objective | [Detect protected content in abnormal redirect responses](../objectives/detect-protected-content-in-abnormal-redirect-responses.md) (`f8a95fcf-c5b0-4db0-bb8b-78e4edaa0544`) | Downstream | objective |
+| Signal | [Restricted route enumeration through repeated redirects](../objectives/detect-protected-content-in-abnormal-redirect-responses.md#restricted-route-enumeration-through-repeated-redirects) (`0770d2a4-9299-46d7-93f2-c3fff68aad26`) | Downstream | signal |
+| Signal | [Redirect body differs from expected unauthenticated template](../objectives/detect-protected-content-in-abnormal-redirect-responses.md#redirect-body-differs-from-expected-unauthenticated-template) (`077ee487-7694-4ed5-9a83-5ed36b4f31c5`) | Downstream | signal |
+| Signal | [Large 302 response body on protected route](../objectives/detect-protected-content-in-abnormal-redirect-responses.md#large-302-response-body-on-protected-route) (`f798884c-46ea-424c-9958-45f2c4f8110a`) | Downstream | signal |

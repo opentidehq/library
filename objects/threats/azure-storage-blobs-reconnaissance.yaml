@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1530
     - T1552
     - T1619
@@ -52,13 +52,13 @@ threat:
     reconnaissance-especially when misconfigurations or
     public access are present.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Web Servers
-    - Application Layer::HTTP
-    - Container Runtime::Docker
-    - Azure::Compute::Virtual Machines
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
+    - OS::Container Runtime::Docker
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Information Disclosure

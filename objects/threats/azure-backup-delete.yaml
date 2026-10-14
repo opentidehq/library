@@ -21,7 +21,7 @@ threat:
     - name: misp::f512de42-f76b-40d2-9923-59e7dbdfec35
     - name: att&ck::G1043
   killchain: Impact
-  att&ck:
+  mitre_attack:
     - T1485
     - T1485.001
     - T1561
@@ -51,10 +51,10 @@ threat:
     credential theft, or exploitation of misconfigurations, to compromise a global administrator 
     or backup operator account.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Azure::Compute::Virtual Machines
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Tampering

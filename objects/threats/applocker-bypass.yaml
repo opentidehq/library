@@ -20,7 +20,7 @@ threat:
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
     - name: misp::f02679fa-5e85-4050-8eb5-c2677d93306f
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1218
   chaining:
     - relation: atomicity::implemented
@@ -45,9 +45,9 @@ threat:
     Adversary must have administrative privileges on Windows systems within 
     the enterprise network.
   surface:
-    - Active Directory
-    - Windows
-    - Windows::Desktop
+    - Authentication::Active Directory
+    - OS::Windows
+    - OS::Windows::Desktop
   severity: Localised incident
   leverage:
     - Modify configuration

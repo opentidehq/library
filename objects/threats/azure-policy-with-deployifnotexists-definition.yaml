@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1098
     - T1078.004
     - T1578
@@ -65,12 +65,12 @@ threat:
     acquiring sufficient privileges over Azure Policy management and
     remediation.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Orchestration::Kubernetes
-    - Azure::Compute::Virtual Machines
-    - Serverless
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Infrastructure::Orchestration::Kubernetes
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::Serverless
   severity: Significant incident
   leverage:
     - Spoofing

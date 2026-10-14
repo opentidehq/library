@@ -21,7 +21,7 @@ threat:
     - name: att&ck::G0069
     - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1512
     - T1582
     - T1513
@@ -32,11 +32,11 @@ threat:
     Adversaries can abuse iOS or Android devices which are vulnerable
     to a zero-click or zero-day exploitation, without user intervention.
   surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - Windows::Desktop
-    - Mobile::iPadOS
+    - OS::Mobile
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - OS::Windows::Desktop
+    - OS::Mobile::iPadOS
   severity: Significant incident
   leverage:
     - Alter behavior

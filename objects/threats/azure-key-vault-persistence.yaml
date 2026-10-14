@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1098.001
     - T1548
     - T1555.006
@@ -25,16 +25,16 @@ threat:
     Adversaries must first gain access to an Azure environment, typically through compromised 
     user accounts, service principals, or managed identities.
   surface:
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Azure::Security::Key Vault
-    - Entra ID
-    - Web Servers
-    - Application Layer::HTTP
-    - Azure
-    - Serverless
-    - Azure::Compute::Virtual Machines
-    - AWS::Compute::EC2
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Cloud::Azure::Security::Key Vault
+    - Authentication::Entra ID
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
+    - Cloud::Azure
+    - Cloud::Serverless
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::AWS::Compute::EC2
   severity: Significant incident
   leverage:
     - Spoofing

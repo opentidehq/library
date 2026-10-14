@@ -19,7 +19,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1199
   terrain: |-
     Attacker has compromised a valid Microsoft 365 tenant to host the lures, and valid
@@ -28,8 +28,8 @@ threat:
     factor (app taking the code received after successful authentication granted by 
     the victim, the user, in previous step).
   surface:
-    - Microsoft::Teams
-    - Windows::Desktop
+    - Application::Microsoft::Teams
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Information Disclosure

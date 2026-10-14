@@ -16,16 +16,16 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Discovery
-  att&ck:
+  mitre_attack:
     - T1083
   terrain: |-
     A web application vulnerable to path traversal, i.e. which does not
     sanitize user inputs sufficiently and with unsufficient resource access
     policy.
   surface:
-    - Windows
-    - Linux
-    - Web Servers
+    - OS::Windows
+    - OS::Linux
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Information Disclosure

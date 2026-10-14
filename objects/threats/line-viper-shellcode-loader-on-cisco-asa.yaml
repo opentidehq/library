@@ -15,7 +15,7 @@ metadata:
   tlp: clear
 threat:
   killchain: Command & Control
-  att&ck:
+  mitre_attack:
     - T1059.008
     - T1014
     - T1562.001
@@ -61,9 +61,9 @@ threat:
     XML data that can be weaponised to load shellcode when specific form
     elements are encountered.
   surface:
-    - Routers
-    - Switches
-    - VPN
+    - Infrastructure::Routers
+    - Infrastructure::Switches
+    - Infrastructure::VPN
   severity: Substantial incident
   leverage:
     - Infrastructure Compromise

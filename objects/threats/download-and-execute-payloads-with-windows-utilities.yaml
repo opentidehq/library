@@ -19,7 +19,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1105
     - T1218
   chaining:
@@ -30,10 +30,10 @@ threat:
     Adversary has access to a Windows system where native utilities are available 
     and can execute commands without restrictions.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Web Servers
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Significant incident
   leverage:
     - Elevation of privilege

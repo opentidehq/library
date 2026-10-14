@@ -21,7 +21,7 @@ threat:
   actors:
     - name: misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1566.002
     - T1036
     - T1656
@@ -36,15 +36,15 @@ threat:
     scouring Social Media or glean personal information from the user's online
     presence.
   surface:
-    - Mobile
-    - Windows
-    - Microsoft::Microsoft 365
-    - Mobile::Android
-    - Mobile::iOS
-    - Code Repositories::GitHub
-    - Code Repositories::GitLab
-    - Email
-    - Windows::Desktop
+    - OS::Mobile
+    - OS::Windows
+    - Application::Microsoft::Microsoft 365
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - Application::Code Repositories::GitHub
+    - Application::Code Repositories::GitLab
+    - Infrastructure::Email
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Spoofing

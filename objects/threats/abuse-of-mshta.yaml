@@ -24,7 +24,7 @@ threat:
     - name: att&ck::G0102
     - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1218.005
   chaining:
     - relation: atomicity::implements
@@ -34,10 +34,10 @@ threat:
     Adversary must have at least user-level code execution privileges on a Windows host 
     where Mshta is available to run.
   surface:
-    - Windows
-    - Active Directory
-    - Windows::Desktop
-    - Web Servers
+    - OS::Windows
+    - Authentication::Active Directory
+    - OS::Windows::Desktop
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Spoofing

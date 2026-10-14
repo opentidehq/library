@@ -15,7 +15,7 @@ metadata:
     uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
     name: EC DIGIT CSOC
 threat:
-  att&ck:
+  mitre_attack:
     - T1190
     - T1534
   terrain: |-
@@ -24,14 +24,14 @@ threat:
     to access OneDrive files. And also, API permissions (like “Files.Read.All” or “Files.ReadWrite.All”) 
     that allow reading or downloading files from OneDrive via the Microsoft Graph API.
   surface:
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Database Management
-    - Entra ID
-    - Web Servers
-    - Application Layer::HTTP
-    - Azure
+    - Application::Microsoft::Microsoft 365
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Application::Database Management
+    - Authentication::Entra ID
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
+    - Cloud::Azure
   severity: Significant incident
   leverage:
     - Information Disclosure

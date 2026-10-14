@@ -21,7 +21,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1566.002
   chaining:
     - relation: sequence::succeeds
@@ -32,13 +32,13 @@ threat:
       description: 'technique used to steal browser cookies '
   terrain: User must click on a malicious link sent via email by attackers
   surface:
-    - Azure
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - Microsoft::Exchange
-    - Application Layer::HTTP
-    - Windows::Desktop
-    - OAuth / OIDC
+    - Cloud::Azure
+    - Application::Microsoft::Microsoft 365
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Exchange
+    - Protocol::Application Layer::HTTP
+    - OS::Windows::Desktop
+    - Authentication::OAuth / OIDC
   severity: Moderate incident
   leverage:
     - Elevation of privilege

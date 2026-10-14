@@ -108,7 +108,7 @@ which makes using PowerShell an easy way to circumvent security measures.
 - Encoded PowerShell can be abused to avoid any complexity with special characters that can be difficult
 to handle.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Event Search
 #### Data
 
@@ -142,6 +142,6 @@ bfeb24bf_8a17_4ccc_8aec_91721743153d -->|implements| 0be66eea_4ae4_4544_811b_526
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [Powershell with encoded payload passed to cmdline](../Threats/powershell-with-encoded-payload-passed-to-cmdline.md) (`bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7`) | Upstream | threat |
+| Threat | [Powershell with encoded payload passed to cmdline](../threats/powershell-with-encoded-payload-passed-to-cmdline.md) (`bdc58fee-8da6-4fc9-8fbd-30f8fd156bc7`) | Upstream | threat |
 | Signal | [Powershell encoded payload to start new process](powershell-encoded-payload-to-start-new-process.md#powershell-encoded-payload-to-start-new-process) (`cf9c69a2-9317-4f0f-9506-fbeeb1c73ff0`) | Downstream | signal |
-| Rule | [RBA_RR - WIN base64 encoded powershell payload](../Rules/rba-rr-win-base64-encoded-powershell-payload.md) (`0be66eea-4ae4-4544-811b-52651e20d744`) | Downstream | rule |
+| Rule | [RBA_RR - WIN base64 encoded powershell payload](../rules/rba-rr-win-base64-encoded-powershell-payload.md) (`0be66eea-4ae4-4544-811b-52651e20d744`) | Downstream | rule |

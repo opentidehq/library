@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1555
     - T1190
     - T1204
@@ -36,18 +36,18 @@ threat:
     Adversaries must have an Azure role that grants the ability to write or deploy custom 
     script extensions on virtual machines.
   surface:
-    - Azure
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - AWS::Storage
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Serverless
-    - Application Layer::HTTP
-    - AWS::Compute::EC2
-    - Kerberos
-    - Log Management
+    - Cloud::Azure
+    - OS::Windows
+    - OS::Linux
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::AWS::Storage
+    - Infrastructure::Orchestration::Kubernetes
+    - Application::Web Servers
+    - Cloud::Serverless
+    - Protocol::Application Layer::HTTP
+    - Cloud::AWS::Compute::EC2
+    - Authentication::Kerberos
+    - Security::Log Management
   severity: Significant incident
   leverage:
     - Elevation of privilege

@@ -24,7 +24,7 @@ threat:
     - name: misp::60fa684d-c738-4b77-98fb-3f6605e2bb82
     - name: att&ck::G1016
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1134.003
   chaining:
     - relation: sequence::succeeds
@@ -42,11 +42,11 @@ threat:
     A threat actor exploits native Windows features as Windows API calls or
     Windows native commands to generate in the system a new user access token.
   surface:
-    - Windows
-    - OAuth / OIDC
-    - Windows::Desktop
-    - Application Layer::HTTP
-    - Customer Support
+    - OS::Windows
+    - Authentication::OAuth / OIDC
+    - OS::Windows::Desktop
+    - Protocol::Application Layer::HTTP
+    - Application::Customer Support
   severity: Moderate incident
   leverage:
     - Elevation of privilege

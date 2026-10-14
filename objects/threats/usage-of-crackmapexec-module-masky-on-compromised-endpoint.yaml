@@ -20,14 +20,14 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1003
   terrain: On a compromised Windows or Linux variant endpoint, Masky can be used to collect the NT hash for all connected users
   surface:
-    - Windows
-    - Linux
-    - Azure::Compute::Virtual Machines
-    - Windows::Desktop
+    - OS::Windows
+    - OS::Linux
+    - Cloud::Azure::Compute::Virtual Machines
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Elevation of privilege

@@ -26,7 +26,7 @@ threat:
     - name: att&ck::G0032
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1548.002
   chaining:
     - relation: atomicity::implemented
@@ -39,12 +39,12 @@ threat:
     A threat actor uses vulnerabilities in software or applications running on
     the system to circumvent UAC (User Account Control) protection mechanism.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
-    - Kerberos
-    - Microsoft::System Center
-    - Application Layer::WMI
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Authentication::Kerberos
+    - Application::Microsoft::System Center
+    - Protocol::Application Layer::WMI
   severity: Substantial incident
   leverage:
     - Elevation of privilege

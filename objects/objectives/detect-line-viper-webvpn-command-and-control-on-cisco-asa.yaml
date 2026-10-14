@@ -106,7 +106,7 @@ objective:
 
         This signal requires TLS inspection or out-of-band network
         visibility (e.g., mirrored traffic, firewall deep inspection).
-      severity: Significant incident
+      severity: Critical
       effort: 7
       methodology: Pattern Matching
       data:
@@ -123,10 +123,10 @@ objective:
           - Network TAP or SPAN port capture feeding Suricata/Zeek
           - Cisco ASA firewall logs with extended logging enabled
       entities:
-        - IP Address
-        - URL
-        - Certificate
-        - Network Connection
+        - Network::IP Address
+        - Network::URL
+        - Network::Certificate
+        - Network::Network Connection
     - name: Anomalous XML Payload in WebVPN Authentication Form Elements
       uuid: cff09577-eb0b-4ac9-9393-789dbe439b56
       description: |-
@@ -158,7 +158,7 @@ objective:
         Baseline of legitimate WebVPN authentication traffic is required
         to tune thresholds and reduce false positives from non-standard
         VPN clients.
-      severity: Substantial incident
+      severity: High
       effort: 6
       methodology: Anomaly
       data:
@@ -175,10 +175,10 @@ objective:
           - Zeek HTTP/TLS logs with body extraction enabled
           - Intrusion Detection System with custom WebVPN signatures
       entities:
-        - IP Address
-        - URL
-        - Network Connection
-        - Authentication
+        - Network::IP Address
+        - Network::URL
+        - Network::Network Connection
+        - Host::Authentication
     - name: Non-Standard Content in Cisco ASA WebVPN Authentication Response
       uuid: cef505da-e628-469b-ad75-1a19091d31a6
       description: |-
@@ -211,7 +211,7 @@ objective:
 
         Requires visibility into outbound ASA HTTPS responses, achievable
         via inline inspection or traffic mirroring.
-      severity: Substantial incident
+      severity: High
       effort: 7
       methodology: Anomaly
       data:
@@ -227,11 +227,11 @@ objective:
           - NGFW with SSL decryption and response body inspection
           - Zeek SSL/TLS logs with response body extraction
       entities:
-        - IP Address
-        - Network Connection
-        - URL
-        - Hostname
-  attack:
+        - Network::IP Address
+        - Network::Network Connection
+        - Network::URL
+        - Host::Hostname
+  mitre_attack:
     - T1071.001
     - T1573.001
     - T1573.002

@@ -48,7 +48,7 @@ technique on a random principle.
 ## Actors
 | Actor | ID | Source | Description |
 | --- | --- | --- | --- |
-| Storm-0829 | `misp::3e595289-05b8-43fc-bd88-f8650436447f` | ('misp',) | Nwgen is a group that focuses on data exfiltration and ransomware activities. They have been found to share techniques with other threat groups such as Karakurt, Lapsus$, and Yanluowang. Nwgen has been observed carrying out attacks and deploying ransomware, encrypting files and demanding a ransom of $150,000 in Monero cryptocurrency for the decryption software. |
+| Storm-0829 | `misp::3e595289-05b8-43fc-bd88-f8650436447f` | misp | Nwgen is a group that focuses on data exfiltration and ransomware activities. They have been found to share techniques with other threat groups such as Karakurt, Lapsus$, and Yanluowang. Nwgen has been observed carrying out attacks and deploying ransomware, encrypting files and demanding a ransom of $150,000 in Monero cryptocurrency for the decryption software. |
 
 ## ATT&CK Techniques
 | Technique | Name | Description |

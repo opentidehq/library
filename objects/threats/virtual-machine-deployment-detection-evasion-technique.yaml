@@ -19,7 +19,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1497
   chaining:
     - relation: sequence::succeeds
@@ -36,13 +36,13 @@ threat:
     A threat actor needs an initial privileged access
     to already compromised host system.
   surface:
-    - Windows
-    - macOS
-    - Linux
-    - Windows::Desktop
-    - Customer Support
-    - Azure::Compute::Virtual Machines
-    - Virtualisation::VMware ESXi
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Cloud::Azure::Compute::Virtual Machines
+    - Infrastructure::Virtualisation::VMware ESXi
   severity: Moderate incident
   leverage:
     - Infrastructure Compromise

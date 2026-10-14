@@ -23,7 +23,7 @@ threat:
     - name: att&ck::G0102
     - name: misp::3c2bb7d7-a085-4594-adc7-4a20cf724abb
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1059.005
     - T1204.002
     - T1137
@@ -37,13 +37,13 @@ threat:
     enabled or be susceptible to social engineering tactics that prompt users 
     to enable macros or execute malicious content.
   surface:
-    - Windows
-    - Microsoft::Microsoft 365
-    - Microsoft::SharePoint
-    - Microsoft::Outlook
-    - Email
-    - Windows::Desktop
-    - File Sharing
+    - OS::Windows
+    - Application::Microsoft::Microsoft 365
+    - Application::Microsoft::SharePoint
+    - Application::Microsoft::Outlook
+    - Infrastructure::Email
+    - OS::Windows::Desktop
+    - Application::File Sharing
   severity: Moderate incident
   leverage:
     - Spoofing

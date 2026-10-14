@@ -21,19 +21,19 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Social Engineering
-  att&ck:
+  mitre_attack:
     - T1566
   terrain: Adversaries need administrative privileges or access to an existing Azure AD Premium account, or to create a new free trial account. After this, the capability to set up an Enterprise App with single sign-on through a user-defined URL, which can be their own website to deceive the user.
   surface:
-    - Windows
-    - Microsoft::Microsoft 365
-    - Azure::Security::Entra ID
-    - Azure
-    - Windows::Desktop
-    - AWS::Storage
-    - Entra ID
-    - Kerberos
-    - Remote Access
+    - OS::Windows
+    - Application::Microsoft::Microsoft 365
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Cloud::AWS::Storage
+    - Authentication::Entra ID
+    - Authentication::Kerberos
+    - Infrastructure::Remote Access
   severity: Significant incident
   leverage:
     - Spoofing

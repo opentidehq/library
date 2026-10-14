@@ -20,16 +20,16 @@ threat:
   actors:
     - name: misp::2dd31182-bae1-48ed-8bb3-805a3df89783
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1011
     - T1041
     - T1070
     - T1190
   terrain: Ivanti Connect Secure appliance vulnerable to authentication bypass (CVE-2023-46805)
   surface:
-    - Embedded
-    - Remote Access
-    - VPN
+    - OS::Embedded
+    - Infrastructure::Remote Access
+    - Infrastructure::VPN
   severity: Highly significant incident
   leverage:
     - Infrastructure Compromise

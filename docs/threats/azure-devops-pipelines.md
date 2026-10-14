@@ -140,8 +140,8 @@ credential theft.
 > **Database Management::MongoDB**
 > MongoDB NoSQL document database
 
-> **SAML**
-> Security Assertion Markup Language federation protocol
+> **Security::SAML**
+> Security Assertion Markup Language protocol
 
 ## Threat Assessment
 | Dimension | Assessment | Description |

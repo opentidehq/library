@@ -16,19 +16,19 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1136.001
   terrain: |-
     Adversary must have existing administrative privileges on a compromised host 
     within the targeted infrastructure to create or modify local user accounts.
   surface:
-    - Windows
-    - Linux
-    - macOS
-    - Windows::Desktop
-    - Web Servers
-    - Database Management
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - OS::Linux
+    - OS::macOS
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Application::Database Management
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Substantial incident
   leverage:
     - Elevation of privilege

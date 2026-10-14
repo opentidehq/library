@@ -87,7 +87,7 @@ objective:
         to ASA LAN interfaces from VPN clients — this is typically
         near zero in production environments and thresholds should
         be set accordingly.
-      severity: Substantial incident
+      severity: High
       effort: 5
       methodology: Anomaly
       data:
@@ -107,10 +107,10 @@ objective:
           - Zeek conn.log and icmp.log
           - NGFW with ICMP inspection and logging enabled
       entities:
-        - IP Address
-        - Protocol
-        - Network Connection
-        - Hostname
+        - Network::IP Address
+        - Network::Protocol
+        - Network::Network Connection
+        - Host::Hostname
     - name: Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports
       uuid: 4d828106-7e97-4830-8e49-2454a84a0621
       description: |-
@@ -143,7 +143,7 @@ objective:
         the ASA device's own IP address, not from clients NAT'd through
         the ASA. This requires flow visibility on the upstream router
         or switch, not just firewall logs.
-      severity: Substantial incident
+      severity: High
       effort: 4
       methodology: Behavioural
       data:
@@ -161,11 +161,11 @@ objective:
           - Zeek conn.log scoped to ASA device IPs as source
           - NGFW inspection rules targeting ASA management IPs
       entities:
-        - IP Address
-        - Port
-        - Network Connection
-        - Hostname
-  attack:
+        - Network::IP Address
+        - Network::Port
+        - Network::Network Connection
+        - Host::Hostname
+  mitre_attack:
     - T1095
     - T1571
     - T1573.001

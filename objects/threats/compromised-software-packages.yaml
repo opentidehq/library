@@ -31,7 +31,7 @@ threat:
     - name: att&ck::G0032
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1546.016
     - T1195
   chaining:
@@ -45,13 +45,13 @@ threat:
     A threat actor can use vulnerabilities in the function and appearance
     of software malicious dev packages to entice a developer to install them.
   surface:
-    - Industrial IoT::IoT Gateways
-    - Windows
-    - macOS
-    - Linux
-    - Development::CI/CD
-    - Development
-    - Windows::Desktop
+    - IoT::Industrial IoT::IoT Gateways
+    - OS::Windows
+    - OS::macOS
+    - OS::Linux
+    - Application::Development::CI/CD
+    - Application::Development
+    - OS::Windows::Desktop
   severity: Highly significant incident
   leverage:
     - Information Disclosure

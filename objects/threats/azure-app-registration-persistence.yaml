@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1098
     - T1566.003
   chaining:
@@ -31,19 +31,19 @@ threat:
     Adversaries need to compromise user or administrator credentials that have permissions 
     to register or modify applications within Microsoft Entra ID (Azure AD).
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Entra ID
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Email
-    - Application Layer::HTTP
-    - Database Management::PostgreSQL
-    - Database Management::MongoDB
-    - Security::SAML
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Authentication::Entra ID
+    - Infrastructure::Orchestration::Kubernetes
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::Serverless
+    - Infrastructure::Email
+    - Protocol::Application Layer::HTTP
+    - Application::Database Management::PostgreSQL
+    - Application::Database Management::MongoDB
+    - Protocol::Security::SAML
   severity: Significant incident
   leverage:
     - Spoofing

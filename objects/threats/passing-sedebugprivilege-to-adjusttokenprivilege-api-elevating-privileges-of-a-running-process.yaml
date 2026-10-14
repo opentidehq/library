@@ -23,7 +23,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1134.001
   terrain: |-
     On an already compromised Windows endpoint in a user or administrator 
@@ -31,12 +31,12 @@ threat:
     Windows servers and windows workstations/laptops - anything 
     Windows.
   surface:
-    - Windows
-    - OAuth / OIDC
-    - Windows::Desktop
-    - Application Layer::WMI
-    - Remote Access
-    - Web Servers
+    - OS::Windows
+    - Authentication::OAuth / OIDC
+    - OS::Windows::Desktop
+    - Protocol::Application Layer::WMI
+    - Infrastructure::Remote Access
+    - Application::Web Servers
   severity: Moderate incident
   leverage:
     - Elevation of privilege

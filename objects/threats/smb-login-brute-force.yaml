@@ -24,7 +24,7 @@ threat:
     - name: att&ck::G0096
     - name: misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1110
     - T1110.001
   chaining:
@@ -38,10 +38,10 @@ threat:
     A threat actor needs an access to a compromised host and availability to
     try to connect to a SMB share.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Remote Access
-    - Customer Support
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Infrastructure::Remote Access
+    - Application::Customer Support
   severity: Moderate incident
   leverage:
     - Information Disclosure

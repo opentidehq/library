@@ -16,20 +16,20 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Collection
-  att&ck:
+  mitre_attack:
     - T1557
   terrain: |-
     The threat actors would need to access the credentials of the users or administrators 
     interacting with the connectors. This could be achieved through phishing techniques, 
     social engineering, or other forms of credential theft.
   surface:
-    - Microsoft::Microsoft 365
-    - File Sharing
-    - Azure
-    - Windows::Desktop
-    - Microsoft::System Center
-    - AWS::Compute::EC2
-    - Web Servers
+    - Application::Microsoft::Microsoft 365
+    - Application::File Sharing
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Application::Microsoft::System Center
+    - Cloud::AWS::Compute::EC2
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Information Disclosure

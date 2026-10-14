@@ -46,7 +46,7 @@ list of public registration routes and approved domains.
 Triage by confirming the expected onboarding policy for the tenant or application module and
 verifying whether an invitation, reviewer action, or domain eligibility check existed.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Event Search
 - **Effort**: 4
 #### Data
@@ -65,7 +65,7 @@ principal signal that a provisioned but unapproved account has become usable.
 Triage by preserving the account lifecycle state at decision time and confirming whether the
 password reset, login, or token service incorrectly ignored that state.
 
-- **Severity**: Significant incident
+- **Severity**: Critical
 - **Methodology**: Event Search
 - **Effort**: 5
 #### Data
@@ -84,7 +84,7 @@ paths, or endpoints that should require an established trusted account.
 Triage by comparing first-access time with approval and activation timestamps, then assessing
 which data or functions were exposed before the account became eligible.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Behavioural
 - **Effort**: 5
 #### Data
@@ -122,7 +122,7 @@ end
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [Unauthorized account provisioning via exposed registration flow](../Threats/unauthorized-account-provisioning-via-exposed-registration-flow.md) (`3d7dada6-5f9d-4f67-952e-faa2ab794fde`) | Upstream | threat |
+| Threat | [Unauthorized account provisioning via exposed registration flow](../threats/unauthorized-account-provisioning-via-exposed-registration-flow.md) (`3d7dada6-5f9d-4f67-952e-faa2ab794fde`) | Upstream | threat |
 | Signal | [Account created without required invitation or approval context](detect-premature-account-activation-and-restricted-onboarding-bypass.md#account-created-without-required-invitation-or-approval-context) (`7f6d1aae-c807-42fb-8734-4d3c6c4e9670`) | Downstream | signal |
 | Signal | [Pre-approval account accesses restricted application resources](detect-premature-account-activation-and-restricted-onboarding-bypass.md#pre-approval-account-accesses-restricted-application-resources) (`958eeed6-43f6-43c8-8bb9-96397aab29a1`) | Downstream | signal |
 | Signal | [Authentication material issued while account approval is pending](detect-premature-account-activation-and-restricted-onboarding-bypass.md#authentication-material-issued-while-account-approval-is-pending) (`d5906e6c-0f66-4dd6-8add-216a90b2b1f2`) | Downstream | signal |

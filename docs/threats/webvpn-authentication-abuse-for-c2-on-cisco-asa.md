@@ -204,7 +204,7 @@ b6175f16_2b61_4116_bd97_de54b02b197e -->|covers| 8546b0d8_c9e1_4a51_bf64_2b93c41
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Objective | [Detect LINE VIPER WebVPN Command and Control on Cisco ASA](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md) (`8546b0d8-c9e1-4a51-bf64-2b93c4159ebf`) | Downstream | objective |
-| Signal | [Malformed PKCS7 Certificate in WebVPN Authentication Request](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#malformed-pkcs7-certificate-in-webvpn-authentication-request) (`22e8fb52-d101-4d67-90b7-6e697c2dbb2d`) | Downstream | signal |
-| Signal | [Non-Standard Content in Cisco ASA WebVPN Authentication Response](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#non-standard-content-in-cisco-asa-webvpn-authentication-response) (`cef505da-e628-469b-ad75-1a19091d31a6`) | Downstream | signal |
-| Signal | [Anomalous XML Payload in WebVPN Authentication Form Elements](../Objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#anomalous-xml-payload-in-webvpn-authentication-form-elements) (`cff09577-eb0b-4ac9-9393-789dbe439b56`) | Downstream | signal |
+| Objective | [Detect LINE VIPER WebVPN Command and Control on Cisco ASA](../objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md) (`8546b0d8-c9e1-4a51-bf64-2b93c4159ebf`) | Downstream | objective |
+| Signal | [Malformed PKCS7 Certificate in WebVPN Authentication Request](../objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#malformed-pkcs7-certificate-in-webvpn-authentication-request) (`22e8fb52-d101-4d67-90b7-6e697c2dbb2d`) | Downstream | signal |
+| Signal | [Non-Standard Content in Cisco ASA WebVPN Authentication Response](../objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#non-standard-content-in-cisco-asa-webvpn-authentication-response) (`cef505da-e628-469b-ad75-1a19091d31a6`) | Downstream | signal |
+| Signal | [Anomalous XML Payload in WebVPN Authentication Form Elements](../objectives/detect-line-viper-webvpn-command-and-control-on-cisco-asa.md#anomalous-xml-payload-in-webvpn-authentication-form-elements) (`cff09577-eb0b-4ac9-9393-789dbe439b56`) | Downstream | signal |

@@ -27,7 +27,7 @@ threat:
     - name: att&ck::G0032
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1218
   terrain: |-
     The target must be a Windows environment with AppLocker enabled in
@@ -35,9 +35,9 @@ threat:
     system (e.g., via phishing or exploit) and the ability to drop or register
     a DLL alongside a permitted LOLbin.
   surface:
-    - Windows
-    - Windows::Desktop
-    - Customer Support
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Customer Support
   severity: Significant incident
   leverage:
     - Elevation of privilege

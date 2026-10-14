@@ -73,7 +73,7 @@ Particular attention should be paid to privileged accounts (Global Administrator
 Security Administrators, Application Administrators) as these represent high-value 
 targets for attackers.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Anomaly
 - **Effort**: 3
 #### Data
@@ -149,7 +149,7 @@ access while evading user-focused security controls like MFA. These credentials
 are often stored in code repositories, configuration files, or automation scripts 
 where they can be harvested.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Pattern Matching
 - **Effort**: 5
 #### Data
@@ -194,7 +194,7 @@ to hours of anomalous authentication events represent high-confidence indicators
 of compromise. Attackers often move quickly to escalate privileges before 
 defenders can respond to initial access alerts.
 
-- **Severity**: Significant incident
+- **Severity**: Critical
 - **Methodology**: Behavioural
 - **Effort**: 6
 #### Data
@@ -282,7 +282,7 @@ behaviors distinct from normal administrative activities: broader scope, higher
 velocity, and less targeted access patterns. Correlation with earlier authentication 
 anomalies significantly increases detection confidence.
 
-- **Severity**: Moderate incident
+- **Severity**: Medium
 - **Methodology**: Anomaly
 - **Effort**: 7
 #### Data
@@ -335,7 +335,7 @@ f4a8b3c2_7e5d_4f1a_bc8e_9d2a6e7c8f0b --> 353add53_6e14_47df_b65a_a591d2c6aacd
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [Azure - Valid Credentials](../Threats/azure-valid-credentials.md) (`2743bf18-3b86-4721-bf3e-153dcda0b149`) | Upstream | threat |
+| Threat | [Azure - Valid Credentials](../threats/azure-valid-credentials.md) (`2743bf18-3b86-4721-bf3e-153dcda0b149`) | Upstream | threat |
 | Signal | [Privilege Escalation After Initial Access](detect-abuse-of-valid-azure-credentials.md#privilege-escalation-after-initial-access) (`11686b3d-5f9d-4c1e-b3a8-4bae83653d24`) | Downstream | signal |
 | Signal | [Anomalous Azure AD Sign-In Patterns](detect-abuse-of-valid-azure-credentials.md#anomalous-azure-ad-sign-in-patterns) (`12fb0e6a-a4e4-42d3-b77b-3c9c96f90f0b`) | Downstream | signal |
 | Signal | [Suspicious Resource Enumeration and Access Patterns](detect-abuse-of-valid-azure-credentials.md#suspicious-resource-enumeration-and-access-patterns) (`353add53-6e14-47df-b65a-a591d2c6aacd`) | Downstream | signal |

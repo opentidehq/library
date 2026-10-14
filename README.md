@@ -84,7 +84,6 @@ Import YAML files from this repository into your own OpenTide instance. We recom
 python -m venv .venv && source .venv/bin/activate
 pip install opentide
 export OPENTIDE_REPO_ROOT=$PWD
-python scripts/patch_opentide_threat_lists.py
 opentide generate
 opentide validate --strict
 opentide generate docs --output docs
@@ -102,7 +101,7 @@ pip install -e "../opentide[cli]"
 
 A separate non-blocking job checks `OpenTideHQ/opentide@development` so engine drift is visible.
 
-`threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens (`threat-1.0`; [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12) is closed). Released `opentide` through 0.3.0 still types those fields as `str` ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189)). Catalogue CI runs [`scripts/patch_opentide_threat_lists.py`](scripts/patch_opentide_threat_lists.py) after `pip install opentide` so `opentide validate --strict` can pass until that engine release. Do not collapse the YAML back to strings.
+`threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens (`threat-1.0`; [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12) is closed). `opentide` 0.14.0 types those fields as `list[VocabName]` natively, so `opentide validate --strict` accepts them against both the released engine and `@development`. The former `scripts/patch_opentide_threat_lists.py` workaround ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189)) is no longer needed and has been removed. Do not collapse the YAML back to strings.
 
 Explorer Pages is a **separate** workflow (`.github/workflows/explorer-pages.yml`). It checks out [OpenTideHQ/explorer](https://github.com/OpenTideHQ/explorer) `@main` and builds with Node from this corpus (`OPENTIDE_REPO_ROOT`) plus ATT&CK vocab from [OpenTideHQ/specifications](https://github.com/OpenTideHQ/specifications) (`SPECIFICATIONS_REPO_ROOT`). `vocab.index.json` is copied into the export **after** `next build` so the Pages artifact stays small ([explorer#36](https://github.com/OpenTideHQ/explorer/issues/36)). Merges to `main` deploy https://opentidehq.github.io/library/.
 

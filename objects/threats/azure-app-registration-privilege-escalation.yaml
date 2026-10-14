@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1098
     - T1068
   chaining:
@@ -44,13 +44,13 @@ threat:
     sufficient permissions to create, modify, or assign roles to app registrations or 
     service principals.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - AWS::Storage
-    - Entra ID
-    - Web Servers
-    - Application Layer::HTTP
-    - Serverless
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::AWS::Storage
+    - Authentication::Entra ID
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
+    - Cloud::Serverless
   severity: Significant incident
   leverage:
     - Elevation of privilege

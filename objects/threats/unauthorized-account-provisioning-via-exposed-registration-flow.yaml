@@ -21,7 +21,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Exploitation
-  att&ck:
+  mitre_attack:
     - T1190
     - T1136
   chaining:
@@ -44,9 +44,9 @@ threat:
     lifecycle logic where account records are created before approval is enforced and downstream
     authentication, password reset, or session issuance does not consistently check approval state.
   surface:
-    - Web Servers
-    - Application Layer::HTTP
-    - Entra ID
+    - Application::Web Servers
+    - Protocol::Application Layer::HTTP
+    - Authentication::Entra ID
   severity: Substantial incident
   leverage:
     - New Accounts

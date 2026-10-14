@@ -19,7 +19,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Social Engineering
-  att&ck:
+  mitre_attack:
     - T1624
     - T1566
     - T1566.004
@@ -54,15 +54,15 @@ threat:
     to the platform. For example assistance, accept invitation to
     a fake technical support or other "assistance".
   surface:
-    - Mobile
-    - Windows
-    - Microsoft::Teams
-    - Mobile::iOS
-    - Mobile::Android
-    - Customer Support
-    - Windows::Desktop
-    - Email
-    - Remote Access
+    - OS::Mobile
+    - OS::Windows
+    - Application::Microsoft::Teams
+    - OS::Mobile::iOS
+    - OS::Mobile::Android
+    - Application::Customer Support
+    - OS::Windows::Desktop
+    - Infrastructure::Email
+    - Infrastructure::Remote Access
   severity: Moderate incident
   leverage:
     - Information Disclosure

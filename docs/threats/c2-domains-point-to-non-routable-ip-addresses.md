@@ -77,7 +77,7 @@ resolves the C2 domain.
 ## Actors
 | Actor | ID | Source | Description |
 | --- | --- | --- | --- |
-| NightEagle | `misp::1b54a3c1-023b-4a3c-8f11-50d811cced88` | ('misp',) | NightEagle is an advanced Threat Actor that targeted China's High-Tech Industry and Military Organisation, leveraging sophisticated techniques, 0 days, and specialized detection avoiding malware. The threat actor seems to have access to significant funding, with dedicated infrastructure, and focuses on low-noise, low-impact intelligence gathering operations. NightEagle is identified as a North-American, state-sponsored or affiliated group that has been active since at least 2023. |
+| NightEagle | `misp::1b54a3c1-023b-4a3c-8f11-50d811cced88` | misp | NightEagle is an advanced Threat Actor that targeted China's High-Tech Industry and Military Organisation, leveraging sophisticated techniques, 0 days, and specialized detection avoiding malware. The threat actor seems to have access to significant funding, with dedicated infrastructure, and focuses on low-noise, low-impact intelligence gathering operations. NightEagle is identified as a North-American, state-sponsored or affiliated group that has been active since at least 2023. |
 
 ## ATT&CK Techniques
 | Technique | Name | Description |

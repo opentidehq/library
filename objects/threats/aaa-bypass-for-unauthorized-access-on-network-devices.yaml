@@ -15,7 +15,7 @@ metadata:
   tlp: clear
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1562.001
     - T1562
     - T1556
@@ -38,9 +38,9 @@ threat:
     bootkit deployment that provides the necessary execution context and
     privileges.
   surface:
-    - Routers
-    - Switches
-    - Kerberos
+    - Infrastructure::Routers
+    - Infrastructure::Switches
+    - Authentication::Kerberos
   severity: Substantial incident
   leverage:
     - Elevation of privilege

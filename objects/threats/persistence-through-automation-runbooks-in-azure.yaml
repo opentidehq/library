@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1098
     - T1204
   terrain: |-
@@ -26,21 +26,21 @@ threat:
     to roles like Owner, Contributor, or Automation Operator within the Azure subscription 
     or resource group.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Windows
-    - Linux
-    - AWS::Storage
-    - Entra ID
-    - Orchestration::Kubernetes
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Serverless
-    - Application Layer::HTTP
-    - AWS::Compute::EC2
-    - Database Management::PostgreSQL
-    - Database Management::MongoDB
-    - Kerberos
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - OS::Windows
+    - OS::Linux
+    - Cloud::AWS::Storage
+    - Authentication::Entra ID
+    - Infrastructure::Orchestration::Kubernetes
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
+    - Cloud::Serverless
+    - Protocol::Application Layer::HTTP
+    - Cloud::AWS::Compute::EC2
+    - Application::Database Management::PostgreSQL
+    - Application::Database Management::MongoDB
+    - Authentication::Kerberos
   severity: Significant incident
   leverage:
     - Spoofing

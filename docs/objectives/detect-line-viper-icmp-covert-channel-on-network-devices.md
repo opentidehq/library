@@ -88,7 +88,7 @@ to ASA LAN interfaces from VPN clients — this is typically
 near zero in production environments and thresholds should
 be set accordingly.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Anomaly
 - **Effort**: 5
 #### Data
@@ -139,7 +139,7 @@ the ASA device's own IP address, not from clients NAT'd through
 the ASA. This requires flow visibility on the upstream router
 or switch, not just firewall logs.
 
-- **Severity**: Substantial incident
+- **Severity**: High
 - **Methodology**: Behavioural
 - **Effort**: 4
 #### Data
@@ -182,6 +182,6 @@ d8372ac1_2740_4cb2_b834_2e1622380b7b --> 4d828106_7e97_4830_8e49_2454a84a0621
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Threat | [ICMP tasking with TCP response on network devices](../Threats/icmp-tasking-with-tcp-response-on-network-devices.md) (`2a5faf22-c526-4d49-81b9-6a7b895de58b`) | Upstream | threat |
+| Threat | [ICMP tasking with TCP response on network devices](../threats/icmp-tasking-with-tcp-response-on-network-devices.md) (`2a5faf22-c526-4d49-81b9-6a7b895de58b`) | Upstream | threat |
 | Signal | [Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports](detect-line-viper-icmp-covert-channel-on-network-devices.md#unexpected-outbound-raw-tcp-from-cisco-asa-on-high-ephemeral-ports) (`4d828106-7e97-4830-8e49-2454a84a0621`) | Downstream | signal |
 | Signal | [Anomalous ICMP Traffic to Cisco ASA LAN Interface via VPN](detect-line-viper-icmp-covert-channel-on-network-devices.md#anomalous-icmp-traffic-to-cisco-asa-lan-interface-via-vpn) (`baad1929-d23a-4a58-a269-e49244a22ea6`) | Downstream | signal |

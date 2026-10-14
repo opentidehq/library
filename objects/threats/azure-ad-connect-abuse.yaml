@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1556.007
     - T1098.001
     - T1078.004
@@ -30,17 +30,17 @@ threat:
         password spraying, brute-force attacks, or credentials leaked online.
   terrain: Adversaries need local administrative access to the Azure AD Connect server.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - Entra ID
-    - AWS::Storage
-    - Windows::Desktop
-    - Azure::Compute::Virtual Machines
-    - Application Layer::HTTP
-    - Kerberos
-    - Active Directory
-    - Log Management
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - Authentication::Entra ID
+    - Cloud::AWS::Storage
+    - OS::Windows::Desktop
+    - Cloud::Azure::Compute::Virtual Machines
+    - Protocol::Application Layer::HTTP
+    - Authentication::Kerberos
+    - Authentication::Active Directory
+    - Security::Log Management
   severity: Significant incident
   leverage:
     - Spoofing

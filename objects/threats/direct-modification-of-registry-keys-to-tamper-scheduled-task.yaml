@@ -25,7 +25,7 @@ threat:
     - name: att&ck::G0032
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1112
     - T1543
     - T1543.003
@@ -42,8 +42,8 @@ threat:
     A threat actor needs an Admin Windows System level to a target
     endpoint in order to perform direct modification of the registries.
   surface:
-    - Windows
-    - Windows::Desktop
+    - OS::Windows
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Infrastructure Compromise

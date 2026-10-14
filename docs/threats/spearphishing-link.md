@@ -168,7 +168,7 @@ presence.
 ## Actors
 | Actor | ID | Source | Description |
 | --- | --- | --- | --- |
-| APT42 | `misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f` | ('misp',) | Iranian state-sponsored cyber espionage group tasked with conducting information collection and surveillance operations against individuals and organizations of strategic interest to the Iranian government. |
+| APT42 | `misp::35f887ad-6709-4d0b-8e9c-6b3fa09c783f` | misp | Iranian state-sponsored cyber espionage group tasked with conducting information collection and surveillance operations against individuals and organizations of strategic interest to the Iranian government. |
 
 ## ATT&CK Techniques
 | Technique | Name | Description |

@@ -21,7 +21,7 @@ threat:
     - name: misp::f512de42-f76b-40d2-9923-59e7dbdfec35
     - name: att&ck::G1033
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1078.004
     - T1110
     - T1555
@@ -52,12 +52,12 @@ threat:
     PowerShell modules (e.g., MSOnline, Microsoft.Graph), or custom scripts, to list 
     all registered applications.
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - AWS::Storage
-    - Entra ID
-    - Application Layer::HTTP
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - Cloud::AWS::Storage
+    - Authentication::Entra ID
+    - Protocol::Application Layer::HTTP
   severity: Significant incident
   leverage:
     - Information Disclosure

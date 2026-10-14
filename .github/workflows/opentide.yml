@@ -5,14 +5,12 @@
 #
 # The published-user contract is the PyPI job:
 #   pip install opentide
-#   python scripts/patch_opentide_threat_lists.py
 #   opentide validate --strict
 #
 # threat.impact / threat.leverage are YAML lists (library#7, threat-1.0).
-# Released opentide through 0.3.0 still types those fields as str
-# (opentide#189). specifications#12 is closed; the engine issue is not.
-# The patch step is a no-op once PyPI ships list[str] — do not collapse
-# catalogue YAML back to strings.
+# opentide 0.14.0 types those fields as list[VocabName] natively, so the former
+# patch_opentide_threat_lists.py workaround (opentide#189) is no longer needed
+# and has been removed. Do not collapse catalogue YAML back to strings.
 #
 # Explorer GitHub Pages lives in explorer-pages.yml so catalogue validate
 # and Pages deploy stay independently visible.
@@ -67,9 +65,6 @@ jobs:
       - name: Install released opentide
         run: pip install opentide
 
-      - name: Patch threat impact/leverage to list[str]
-        run: python scripts/patch_opentide_threat_lists.py
-
       - name: Generate schemas and templates
         run: |
           opentide generate schemas
@@ -103,9 +98,6 @@ jobs:
 
       - name: Install opentide from development
         run: pip install -e "./opentide[cli]"
-
-      - name: Patch threat impact/leverage to list[str]
-        run: python scripts/patch_opentide_threat_lists.py
 
       - name: Generate schemas and templates
         run: |

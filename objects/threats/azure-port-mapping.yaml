@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Reconnaissance
-  att&ck:
+  mitre_attack:
     - T1190
     - T1078
     - T1110
@@ -41,11 +41,11 @@ threat:
     Adversaries need an exposed service or port that is accessible from outside the Azure 
     environment—typically via a public IP and a mapped port (such as SSH, RDP, or web services).
   surface:
-    - Azure
-    - Azure::Security::Entra ID
-    - Azure::Compute::Virtual Machines
-    - Web Servers
-    - Switches
+    - Cloud::Azure
+    - Cloud::Azure::Security::Entra ID
+    - Cloud::Azure::Compute::Virtual Machines
+    - Application::Web Servers
+    - Infrastructure::Switches
   severity: Significant incident
   leverage:
     - Spoofing

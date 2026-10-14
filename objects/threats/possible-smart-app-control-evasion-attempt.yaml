@@ -18,7 +18,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1112
     - T1195
     - T1204
@@ -26,14 +26,14 @@ threat:
     Adverdaries need to sign malware with a legitimate or fraudulently obtained code-signing 
     certificate—especially Extended Validation (EV) certificates.
   surface:
-    - Attack Surface Management
-    - Windows
-    - Windows::Desktop
-    - Web Servers
-    - Azure::Compute::Virtual Machines
-    - Container Runtime::Docker
-    - Application Layer::WMI
-    - File Sharing
+    - Security::Attack Surface Management
+    - OS::Windows
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
+    - OS::Container Runtime::Docker
+    - Protocol::Application Layer::WMI
+    - Application::File Sharing
   severity: Significant incident
   leverage:
     - Spoofing

@@ -18,12 +18,12 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1548
   terrain: Threat actor needs root level access to edit the sudoers file.
   surface:
-    - Linux
-    - Remote Access
+    - OS::Linux
+    - Infrastructure::Remote Access
   severity: Significant incident
   leverage:
     - Elevation of privilege

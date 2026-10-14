@@ -21,18 +21,18 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Execution
-  att&ck:
+  mitre_attack:
     - T1053.005
   terrain: |-
     A threat actor has gained control over privileges to create scheduled tasks 
     on a deployed resource using Azure CloudShell either via a browser or the
     Azure portal.
   surface:
-    - Azure
-    - Remote Access
-    - Windows::Desktop
-    - Web Servers
-    - Azure::Compute::Virtual Machines
+    - Cloud::Azure
+    - Infrastructure::Remote Access
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Moderate incident
   leverage:
     - Dwelling

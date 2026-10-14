@@ -60,8 +60,8 @@ Application with SSO login requiring MFA, with legacy authentication (local logi
 > **Microsoft::Microsoft 365**
 > Microsoft 365 cloud-based productivity suite (formerly Office 365)
 
-> **SAML**
-> Security Assertion Markup Language federation protocol
+> **Security::SAML**
+> Security Assertion Markup Language protocol
 
 > **Kerberos**
 > Kerberos network authentication protocol

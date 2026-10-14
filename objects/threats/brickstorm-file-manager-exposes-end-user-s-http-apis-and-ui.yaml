@@ -21,7 +21,7 @@ threat:
     - name: att&ck::G0022
     - name: misp::d144c83e-2302-4947-9e24-856fbf7949ae
   killchain: Discovery
-  att&ck:
+  mitre_attack:
     - T1190
     - T1204
     - T1071.001
@@ -40,11 +40,11 @@ threat:
     A threat actor abuses publicly exposed HTTP APIs
     and end-user publicly exposed UIs (User Interfaces).
   surface:
-    - Windows
-    - Linux
-    - Application Layer::HTTP
-    - Windows::Desktop
-    - Web Servers
+    - OS::Windows
+    - OS::Linux
+    - Protocol::Application Layer::HTTP
+    - OS::Windows::Desktop
+    - Application::Web Servers
   severity: Localised incident
   leverage:
     - Infrastructure Compromise

@@ -16,7 +16,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Delivery
-  att&ck:
+  mitre_attack:
     - T1195.002
     - T1071
     - T1059
@@ -28,7 +28,7 @@ threat:
     as authentic software updates. Victims were distributed globally across multiple 
     sectors including government, financial services, and IT service providers.
   surface:
-    - Windows::Desktop
+    - OS::Windows::Desktop
   severity: Highly significant incident
   leverage:
     - Elevation of privilege

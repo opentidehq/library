@@ -26,7 +26,7 @@ threat:
     - name: misp::68391641-859f-4a9a-9a1e-3e5cf71ec376
     - name: att&ck::G0046
     - name: misp::00220228-a5a4-4032-a30d-826bb55aa3fb
-  att&ck:
+  mitre_attack:
     - T1583.001
   chaining:
     - relation: sequence::preceeds
@@ -43,14 +43,14 @@ threat:
     on a bulk with impersonation goal, social engineering or just spreading
     disinformation.
   surface:
-    - Mobile
-    - Industrial IoT::IoT Gateways
-    - Windows
-    - Linux
-    - Customer Support
-    - Windows::Desktop
-    - Email
-    - Web Servers
+    - OS::Mobile
+    - IoT::Industrial IoT::IoT Gateways
+    - OS::Windows
+    - OS::Linux
+    - Application::Customer Support
+    - OS::Windows::Desktop
+    - Infrastructure::Email
+    - Application::Web Servers
   severity: Moderate incident
   leverage:
     - Spoofing

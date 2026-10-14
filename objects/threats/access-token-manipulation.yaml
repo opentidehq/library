@@ -20,15 +20,15 @@ threat:
     - name: att&ck::G0125
     - name: att&ck::G0032
   killchain: Privilege Escalation
-  att&ck:
+  mitre_attack:
     - T1098
   terrain: |-
     Adversary must have administrative privileges on Windows systems within 
      the enterprise network.
   surface:
-    - Active Directory
-    - Windows
-    - Windows::Desktop
+    - Authentication::Active Directory
+    - OS::Windows
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Modify configuration

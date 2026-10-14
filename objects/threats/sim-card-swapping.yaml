@@ -23,7 +23,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::2ee5ed7a-c4d0-40be-a837-20817474a15b
   killchain: Credential Access
-  att&ck:
+  mitre_attack:
     - T1541
   chaining:
     - relation: atomicity::implements
@@ -33,14 +33,14 @@ threat:
     Attacker must convince the mobile network operator (e.g. through social networking, forged
     identification, or insider attacks performed by trusted employees) to issue a new SIM card
   surface:
-    - Mobile
-    - Mobile::Android
-    - Mobile::iOS
-    - OAuth / OIDC
-    - Azure
-    - Windows::Desktop
-    - Customer Support
-    - Entra ID
+    - OS::Mobile
+    - OS::Mobile::Android
+    - OS::Mobile::iOS
+    - Authentication::OAuth / OIDC
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Authentication::Entra ID
   severity: Moderate incident
   leverage:
     - Elevation of privilege

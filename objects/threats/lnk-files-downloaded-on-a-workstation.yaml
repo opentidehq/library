@@ -20,7 +20,7 @@ threat:
     - name: att&ck::G0094
     - name: misp::bcaaad6f-0597-4b89-b69b-84a6be2b7bc3
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1566.002
     - T1027
     - T1204
@@ -39,10 +39,10 @@ threat:
     administrative document protected with passwords or titled with ongoing
     meeting or agenda.
   surface:
-    - Microsoft::Microsoft 365
-    - Code Repositories::GitHub
-    - Customer Support
-    - Windows::Desktop
+    - Application::Microsoft::Microsoft 365
+    - Application::Code Repositories::GitHub
+    - Application::Customer Support
+    - OS::Windows::Desktop
   severity: Moderate incident
   leverage:
     - Infrastructure Compromise

@@ -22,7 +22,7 @@ threat:
     - name: att&ck::G0016
     - name: misp::b2056ff0-00b9-482e-b11c-c771daa5f28a
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1190
     - T1189
     - T1204
@@ -46,14 +46,14 @@ threat:
     and others. This vulnerability in the page can lead
     to an initial access to a targeted system.
   surface:
-    - Mobile
-    - Windows
-    - Mobile::iOS
-    - Mobile::Android
-    - Customer Support
-    - Windows::Desktop
-    - Web Servers
-    - Remote Access
+    - OS::Mobile
+    - OS::Windows
+    - OS::Mobile::iOS
+    - OS::Mobile::Android
+    - Application::Customer Support
+    - OS::Windows::Desktop
+    - Application::Web Servers
+    - Infrastructure::Remote Access
   severity: Localised incident
   leverage:
     - Elevation of privilege

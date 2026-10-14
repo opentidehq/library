@@ -39,13 +39,13 @@ threat:
     - name: att&ck::G1004
     - name: misp::5b4b6980-3bc7-11e8-84d6-879aaac37dd9
     - name: att&ck::G0065
-  att&ck:
+  mitre_attack:
     - T1078
     - T1566
   terrain: Attackers got valid credentials from MS 365 admin, and they manage to bypass 2FA mechanism.
   surface:
-    - Microsoft::Microsoft 365
-    - Microsoft::System Center
+    - Application::Microsoft::Microsoft 365
+    - Application::Microsoft::System Center
   severity: Significant incident
   leverage:
     - Elevation of privilege

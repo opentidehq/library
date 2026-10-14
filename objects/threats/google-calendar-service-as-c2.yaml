@@ -21,7 +21,7 @@ threat:
     - name: att&ck::G0096
     - name: misp::9c124874-042d-48cd-b72b-ccdc51ecbbd6
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1566.002
     - T1204.002
     - T1190
@@ -39,10 +39,10 @@ threat:
 
     The goal is an access and maintain of a persistence.
   surface:
-    - Google Workspace
-    - Windows::Desktop
-    - Customer Support
-    - Remote Access
+    - Application::Google Workspace
+    - OS::Windows::Desktop
+    - Application::Customer Support
+    - Infrastructure::Remote Access
   severity: Moderate incident
   leverage:
     - Infrastructure Compromise

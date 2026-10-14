@@ -213,6 +213,6 @@ d8372ac1_2740_4cb2_b834_2e1622380b7b --> 4d828106_7e97_4830_8e49_2454a84a0621
 ## Related objects
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
-| Objective | [Detect LINE VIPER ICMP Covert Channel on Network Devices](../Objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md) (`d8372ac1-2740-4cb2-b834-2e1622380b7b`) | Downstream | objective |
-| Signal | [Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports](../Objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md#unexpected-outbound-raw-tcp-from-cisco-asa-on-high-ephemeral-ports) (`4d828106-7e97-4830-8e49-2454a84a0621`) | Downstream | signal |
-| Signal | [Anomalous ICMP Traffic to Cisco ASA LAN Interface via VPN](../Objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md#anomalous-icmp-traffic-to-cisco-asa-lan-interface-via-vpn) (`baad1929-d23a-4a58-a269-e49244a22ea6`) | Downstream | signal |
+| Objective | [Detect LINE VIPER ICMP Covert Channel on Network Devices](../objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md) (`d8372ac1-2740-4cb2-b834-2e1622380b7b`) | Downstream | objective |
+| Signal | [Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports](../objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md#unexpected-outbound-raw-tcp-from-cisco-asa-on-high-ephemeral-ports) (`4d828106-7e97-4830-8e49-2454a84a0621`) | Downstream | signal |
+| Signal | [Anomalous ICMP Traffic to Cisco ASA LAN Interface via VPN](../objectives/detect-line-viper-icmp-covert-channel-on-network-devices.md#anomalous-icmp-traffic-to-cisco-asa-lan-interface-via-vpn) (`baad1929-d23a-4a58-a269-e49244a22ea6`) | Downstream | signal |

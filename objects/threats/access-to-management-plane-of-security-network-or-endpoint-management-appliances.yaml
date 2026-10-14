@@ -34,7 +34,7 @@ threat:
     - name: att&ck::G0069
     - name: misp::a29af069-03c3-4534-b78b-7d1a77ea085b
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1027
     - T1068
     - T1070
@@ -63,15 +63,15 @@ threat:
     management plane of the devices (no restriction on administrative 
     actions from Internet-facing interface)
   surface:
-    - Embedded
-    - Linux
-    - Windows
-    - Routers
-    - Virtualisation::VMware ESXi
-    - Firewalls
-    - Network Security::IDS
-    - Switches
-    - Web Servers
+    - OS::Embedded
+    - OS::Linux
+    - OS::Windows
+    - Infrastructure::Routers
+    - Infrastructure::Virtualisation::VMware ESXi
+    - Infrastructure::Firewalls
+    - Security::Network Security::IDS
+    - Infrastructure::Switches
+    - Application::Web Servers
   severity: Significant incident
   leverage:
     - Elevation of privilege

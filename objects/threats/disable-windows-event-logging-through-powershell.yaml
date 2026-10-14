@@ -22,21 +22,21 @@ threat:
     - name: att&ck::G0034
     - name: misp::d52ca4c4-d214-11e8-8d29-c3e7cb78acce
   killchain: Defense Evasion
-  att&ck:
+  mitre_attack:
     - T1562.002
   terrain: |-
     A threat actor has gained control over a Windows endpoint and has
     privileges to disable event logging by using PowerShell commands or
     scripts.
   surface:
-    - Windows
-    - AWS
-    - Azure
-    - Windows::Desktop
-    - Log Management
-    - Remote Access
-    - Web Servers
-    - Azure::Compute::Virtual Machines
+    - OS::Windows
+    - Cloud::AWS
+    - Cloud::Azure
+    - OS::Windows::Desktop
+    - Security::Log Management
+    - Infrastructure::Remote Access
+    - Application::Web Servers
+    - Cloud::Azure::Compute::Virtual Machines
   severity: Moderate incident
   leverage:
     - Log tampering

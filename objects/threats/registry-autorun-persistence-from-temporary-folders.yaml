@@ -17,7 +17,7 @@ metadata:
     name: EC DIGIT CSOC
 threat:
   killchain: Persistence
-  att&ck:
+  mitre_attack:
     - T1547.001
   chaining:
     - relation: atomicity::implements
@@ -34,7 +34,7 @@ threat:
     mechanisms, especially when combined with execution from non-standard application
     data locations that evade traditional security controls.
   surface:
-    - Windows::Desktop
+    - OS::Windows::Desktop
   severity: Significant incident
   leverage:
     - Tampering

@@ -16,7 +16,7 @@ metadata:
     uuid: 56b0a0f0-b0bc-47d9-bb46-02f80ae2065a
     name: EC DIGIT CSOC
 threat:
-  att&ck:
+  mitre_attack:
     - T1556
     - T1133
     - T1606.002
@@ -27,15 +27,15 @@ threat:
     has the right privileges, and once they have the private key, they can forge SAML 
     tokens for any user, bypassing authentication controls.
   surface:
-    - Active Directory::Federation Services
-    - Active Directory
-    - Azure::Security::Entra ID
-    - Microsoft::Microsoft 365
-    - Windows
-    - Entra ID
-    - Security::SAML
-    - AWS::Storage
-    - Kerberos
+    - Authentication::Active Directory::Federation Services
+    - Authentication::Active Directory
+    - Cloud::Azure::Security::Entra ID
+    - Application::Microsoft::Microsoft 365
+    - OS::Windows
+    - Authentication::Entra ID
+    - Protocol::Security::SAML
+    - Cloud::AWS::Storage
+    - Authentication::Kerberos
   severity: Significant incident
   leverage:
     - Spoofing
