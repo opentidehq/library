@@ -134,7 +134,9 @@ def _migrate_objective(data: dict[str, Any]) -> dict[str, Any]:
     objective = data.get("objective")
     if isinstance(objective, dict):
         if "att&ck" in objective:
-            objective["attack"] = objective.pop("att&ck")
+            # 0.14.0 field is objective.mitre_attack (pinned to att&ck::1.1),
+            # not "attack". See opentide models/objective.py:mitre_attack.
+            objective["mitre_attack"] = objective.pop("att&ck")
         composition = objective.get("composition")
         if composition and "composition" not in data:
             data["composition"] = copy.deepcopy(composition)

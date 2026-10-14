@@ -3,13 +3,21 @@
 
 Transforms (OpenTideHQ/library#7):
 
-- ``threat.actors`` strings → ``{name: ...}`` objects
-- semicolon-packed ``threat.impact`` / ``threat.leverage`` → YAML lists
-- ``signals.entities`` stage prefixes (``host::`` / ``network::`` / ``cloud::``) stripped
-- ``signals.severity`` alert labels → NCSC ``severity::1.0``
+- ``threat.actors`` strings -> ``{name: ...}`` objects
+- semicolon-packed ``threat.impact`` / ``threat.leverage`` -> YAML lists
+- ``signals.entities`` kept as scoped ``<Stage>::<Key>`` values, validated
+  against the engine's ``signal.entities`` vocabulary (opentide#509 /
+  specifications RFC 0005 capitalised the stage ids to Host/Network/Cloud)
+- ``signals.severity`` validated against ``alert_severity::1.0``
 
 Does not coerce actors in the engine. Does not collapse packed fields to a
 single token. Semicolon-packed strings are not a valid ``list[string]`` encoding.
+
+Signal severity is pinned to ``alert_severity::1.0`` (see
+``src/opentide/data/pins/objective.toml`` -> ``objective.signals.severity``),
+whose values are Informational/Low/Medium/High/Critical. The NCSC long names
+(``severity::1.0``) are the THREAT severity vocabulary, a different field, and
+must never be written onto a signal.
 """
 
 from __future__ import annotations
@@ -27,14 +35,14 @@ from ruamel.yaml.scalarstring import LiteralScalarString
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 
-ENTITY_STAGE_PREFIXES = ("host::", "network::", "cloud::")
+# Fallback stage ids used only when the engine vocabulary cannot be located
+# (``--no-vocab`` or no installed opentide). The authoritative source is the
+# ``[[stages]]`` table of ``signal.entities.vocab.toml``; see load_vocab_stages.
+DEFAULT_ENTITY_STAGES: tuple[str, ...] = ("Host", "Network", "Cloud")
 
-SIGNAL_SEVERITY_MAP: dict[str, str] = {
-    "Medium": "Moderate incident",
-    "High": "Substantial incident",
-    "Critical": "Significant incident",
-}
-
+# The NCSC incident-categorisation names. These are the THREAT ``severity::1.0``
+# vocabulary (``threat.severity``), NOT the signal severity vocabulary. Kept for
+# the threat-severity invariant; never applied to ``objective.signals.severity``.
 NCSC_SEVERITY = frozenset(
     {
         "Localised incident",
@@ -134,60 +142,83 @@ def wrap_actors(value: Any) -> list[dict[str, Any]] | None:
     return wrapped
 
 
-def strip_entity_stage(value: str) -> str:
-    """Drop ``host::`` / ``network::`` / ``cloud::`` from an unscoped entity name."""
+def validate_scoped_entity(value: str, *, stages: tuple[str, ...]) -> str:
+    """Validate a ``<Stage>::<Key>`` entity and return it unchanged.
+
+    opentide 0.14.0 (issue #509, specifications RFC 0005) requires signal
+    entities to carry their capitalised stage id (``Host``/``Network``/``Cloud``):
+    the prefix is what tells two stages' identically-named keys apart. A bare,
+    unscoped entity (the pre-0.14.0 shape) is a regression and is rejected.
+    """
     if not isinstance(value, str):
         raise MigrationError(f"entity must be a string, got {type(value).__name__}")
     stripped = value.strip()
     if not stripped:
         raise MigrationError("entity is empty")
-    for prefix in ENTITY_STAGE_PREFIXES:
-        if stripped.startswith(prefix):
-            bare = stripped[len(prefix) :].strip()
-            if not bare:
-                raise MigrationError(f"entity {value!r} has an empty name after stripping stage")
-            if "::" in bare:
-                raise MigrationError(
-                    f"entity {value!r} still contains '::' after stripping a stage prefix"
-                )
-            return bare
-    if "::" in stripped:
+    stage, sep, key = stripped.partition("::")
+    if not sep:
         raise MigrationError(
-            f"entity {value!r} uses an unknown stage prefix (expected host/network/cloud)"
+            f"entity {value!r} is not scoped; expected '<Stage>::<Key>' with a stage of "
+            f"{', '.join(stages)}"
         )
-    return stripped
+    if "::" in key:
+        raise MigrationError(f"entity {value!r} contains more than one '::'")
+    stage = stage.strip()
+    key = key.strip()
+    if not key:
+        raise MigrationError(f"entity {value!r} has an empty key after the stage prefix")
+    if stage not in stages:
+        raise MigrationError(
+            f"entity {value!r} uses an unknown stage {stage!r} (expected {', '.join(stages)})"
+        )
+    return f"{stage}::{key}"
 
 
-def strip_entities(values: Any) -> list[str]:
+def validate_entities(values: Any, *, stages: tuple[str, ...]) -> list[str]:
+    """Validate a signal's scoped entity list and return it unchanged.
+
+    Duplicates are collapsed (preserving order of first appearance) so that a
+    re-run is idempotent against already-deduplicated catalogue content.
+    """
     if values is None:
         raise MigrationError("signals.entities is missing")
     if not isinstance(values, list) or not values:
         raise MigrationError("signals.entities must be a non-empty list")
-    stripped: list[str] = []
+    validated: list[str] = []
     seen: set[str] = set()
     for item in values:
         if not isinstance(item, str):
             raise MigrationError(f"entity must be a string, got {type(item).__name__}")
-        name = strip_entity_stage(item)
+        name = validate_scoped_entity(item, stages=stages)
         if name in seen:
             continue
         seen.add(name)
-        stripped.append(name)
-    return stripped
+        validated.append(name)
+    return validated
 
 
-def map_signal_severity(value: Any) -> str:
+def validate_signal_severity(value: Any, *, allowed: set[str] | None) -> str:
+    """Validate a signal severity against ``alert_severity::1.0`` and return it unchanged.
+
+    ``objective.signals.severity`` is pinned to ``alert_severity::1.0``
+    (Informational/Low/Medium/High/Critical), not to the NCSC threat
+    ``severity::1.0`` long names. An NCSC long name on a signal is the
+    wrong-vocabulary defect this migration previously introduced; it is now
+    rejected rather than written.
+    """
     if not isinstance(value, str) or not value.strip():
         raise MigrationError("signals.severity is missing or empty")
     current = value.strip()
     if current in NCSC_SEVERITY:
-        return current
-    mapped = SIGNAL_SEVERITY_MAP.get(current)
-    if mapped is None:
         raise MigrationError(
-            f"signals.severity {current!r} is not an alert label or NCSC severity::1.0 key"
+            f"signals.severity {current!r} is an NCSC threat-severity (severity::1.0) name; "
+            f"objective.signals.severity is pinned to alert_severity::1.0"
         )
-    return mapped
+    if allowed is not None and current not in allowed:
+        raise MigrationError(
+            f"signals.severity {current!r} is not in the alert_severity vocabulary"
+        )
+    return current
 
 
 def migrate_threat_payload(
@@ -221,9 +252,15 @@ def migrate_threat_payload(
 def migrate_objective_payload(
     data: dict[str, Any],
     *,
-    allowed_entities: set[str] | None = None,
+    allowed_signal_severity: set[str] | None = None,
+    entity_stages: tuple[str, ...] = DEFAULT_ENTITY_STAGES,
 ) -> dict[str, Any]:
-    """Return a migrated objective object (does not mutate *data*)."""
+    """Return a migrated objective object (does not mutate *data*).
+
+    *allowed_signal_severity* is the set of valid ``alert_severity`` names when
+    the caller wants severity membership checked. *entity_stages* is the set of
+    valid capitalised stage ids for scoped entities.
+    """
     migrated = copy.deepcopy(data)
     objective = migrated.get("objective")
     if not isinstance(objective, dict):
@@ -235,10 +272,10 @@ def migrate_objective_payload(
     for index, signal in enumerate(signals):
         if not isinstance(signal, dict):
             raise MigrationError(f"objective.signals[{index}] must be a mapping")
-        signal["severity"] = map_signal_severity(signal.get("severity"))
-        entities = strip_entities(signal.get("entities"))
-        assert_allowed(entities, field=f"objective.signals[{index}].entities", allowed=allowed_entities)
-        signal["entities"] = entities
+        signal["severity"] = validate_signal_severity(
+            signal.get("severity"), allowed=allowed_signal_severity
+        )
+        signal["entities"] = validate_entities(signal.get("entities"), stages=entity_stages)
 
     migrated["objective"] = objective
     return migrated
@@ -272,12 +309,16 @@ def load_yaml_mapping(path: Path) -> dict[str, Any]:
     return data
 
 
-def load_vocab_names(path: Path) -> set[str]:
+def _load_vocab_toml(path: Path) -> dict[str, Any]:
     import tomllib
 
     if not path.is_file():
         raise MigrationError(f"vocabulary file not found: {path}")
-    raw = tomllib.loads(path.read_text(encoding="utf-8"))
+    return tomllib.loads(path.read_text(encoding="utf-8"))
+
+
+def load_vocab_names(path: Path) -> set[str]:
+    raw = _load_vocab_toml(path)
     names: set[str] = set()
     for entry in raw.get("keys", []):
         if not isinstance(entry, dict):
@@ -286,6 +327,23 @@ def load_vocab_names(path: Path) -> set[str]:
         if isinstance(name, str) and name.strip():
             names.add(name.strip())
     return names
+
+
+def load_vocab_stages(path: Path) -> tuple[str, ...]:
+    """Return the ``[[stages]]`` ids of a vocabulary file, in file order.
+
+    Used for ``signal.entities.vocab.toml`` so the valid stage prefixes
+    (Host/Network/Cloud) are derived from the engine rather than hardcoded.
+    """
+    raw = _load_vocab_toml(path)
+    stages: list[str] = []
+    for entry in raw.get("stages", []):
+        if not isinstance(entry, dict):
+            continue
+        stage_id = entry.get("id")
+        if isinstance(stage_id, str) and stage_id.strip():
+            stages.append(stage_id.strip())
+    return tuple(stages)
 
 
 def default_vocab_dir() -> Path | None:
@@ -312,11 +370,15 @@ def migrate_tree(
 ) -> dict[str, int]:
     allowed_impact: set[str] | None = None
     allowed_leverage: set[str] | None = None
-    allowed_entities: set[str] | None = None
+    allowed_signal_severity: set[str] | None = None
+    entity_stages: tuple[str, ...] = DEFAULT_ENTITY_STAGES
     if vocab_dir is not None:
         allowed_impact = load_vocab_names(vocab_dir / "impact.vocab.toml")
         allowed_leverage = load_vocab_names(vocab_dir / "leverage.vocab.toml")
-        allowed_entities = load_vocab_names(vocab_dir / "signal.entities.vocab.toml")
+        allowed_signal_severity = load_vocab_names(vocab_dir / "alert_severity.vocab.toml")
+        derived_stages = load_vocab_stages(vocab_dir / "signal.entities.vocab.toml")
+        if derived_stages:
+            entity_stages = derived_stages
 
     counts = {"threats": 0, "objectives": 0, "unchanged": 0, "written": 0}
     errors: list[str] = []
@@ -343,7 +405,11 @@ def migrate_tree(
     for path in sorted(objectives_dir.glob("*.yaml")):
         original = load_yaml_mapping(path)
         try:
-            migrated = migrate_objective_payload(original, allowed_entities=allowed_entities)
+            migrated = migrate_objective_payload(
+                original,
+                allowed_signal_severity=allowed_signal_severity,
+                entity_stages=entity_stages,
+            )
         except MigrationError as exc:
             errors.append(f"{path.name}: {exc}")
             continue

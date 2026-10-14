@@ -36,10 +36,11 @@ def test_ci_does_not_require_private_opentide_credentials() -> None:
     install = next(step for step in steps if step.get("name") == "Install released opentide")
     assert "pip install opentide" in install["run"]
     assert 'pip install -e "./opentide' not in install["run"]
-    patch = next(
-        step for step in steps if step.get("name") == "Patch threat impact/leverage to list[str]"
-    )
-    assert "scripts/patch_opentide_threat_lists.py" in patch["run"]
+    # The no-op opentide#189 patch step was removed: 0.14.0 types impact/leverage
+    # as list[VocabName] natively. CI must not rewrite the dependency's source.
+    step_names = [step.get("name") for step in steps]
+    assert "Patch threat impact/leverage to list[str]" not in step_names
+    assert not any("patch_opentide_threat_lists" in step.get("run", "") for step in steps)
     validate = next(step for step in steps if step.get("name") == "Validate objects")
     assert "opentide validate --strict" in validate["run"]
 
@@ -55,10 +56,10 @@ def test_ci_keeps_development_head_as_non_blocking_early_warning() -> None:
     assert "ssh-key" not in checkout.get("with", {})
     generate = next(step for step in job["steps"] if step.get("name") == "Generate schemas and templates")
     assert "opentide generate schemas" in generate["run"]
-    patch = next(
-        step for step in job["steps"] if step.get("name") == "Patch threat impact/leverage to list[str]"
-    )
-    assert "scripts/patch_opentide_threat_lists.py" in patch["run"]
+    # The no-op opentide#189 patch step was removed here too.
+    dev_step_names = [step.get("name") for step in job["steps"]]
+    assert "Patch threat impact/leverage to list[str]" not in dev_step_names
+    assert not any("patch_opentide_threat_lists" in step.get("run", "") for step in job["steps"])
     validate = next(
         step for step in job["steps"] if step.get("name") == "Validate objects against development HEAD"
     )
