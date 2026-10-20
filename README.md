@@ -92,7 +92,7 @@ opentide generate docs --output docs
 Install from a sibling `../opentide` checkout only when you need engine changes that are not on PyPI yet:
 
 ```bash
-pip install -e "../opentide[cli]"
+pip install -e ../opentide
 ```
 
 ## CI

@@ -97,7 +97,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install opentide from development
-        run: pip install -e "./opentide[cli]"
+        run: pip install -e ./opentide
 
       - name: Generate schemas and templates
         run: |
