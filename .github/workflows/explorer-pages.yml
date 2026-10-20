@@ -4,13 +4,13 @@
 # PAT / deploy-key token (an empty token fails actions/checkout).
 #
 # `opentide explorer` is not a Typer command on PyPI (opentide#202). This
-# workflow builds OpenTideHQ/explorer with Node from this corpus.
+# workflow builds opentidehq/explorer with Node from this corpus.
 #
 # Explorer fetches catalogue JSON on the client (explorer#36). The bundle step
 # writes explorer.vocab.json, the vocabulary terms the client reads (~0.8 MB);
 # the full vocab.index.json from codegen (~15 MB) only feeds it, so it stays
 # out of the Pages artifact.
-# Checkout OpenTideHQ/explorer@main so each library main push deploys the
+# Checkout opentidehq/explorer@main so each library main push deploys the
 # latest explorer UI.
 name: Explorer Pages
 
@@ -42,14 +42,14 @@ jobs:
       - name: Checkout explorer
         uses: actions/checkout@v4
         with:
-          repository: OpenTideHQ/explorer
+          repository: opentidehq/explorer
           ref: main
           path: explorer
 
       - name: Checkout specifications
         uses: actions/checkout@v4
         with:
-          repository: OpenTideHQ/specifications
+          repository: opentidehq/specifications
           ref: main
           path: specifications
 

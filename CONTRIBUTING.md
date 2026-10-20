@@ -1,4 +1,4 @@
-# Contributing to OpenTide Library
+# Contributing to opentide Library
 
 Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue.
 
@@ -30,7 +30,7 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
 
    `scripts/opentide_run.py` is a thin passthrough around the same CLI.
 
-   `opentide` 0.14.0 types `threat.impact` / `threat.leverage` as `list[VocabName]` natively, so `opentide validate --strict` accepts the YAML lists required by `threat-1.0` out of the box. The former `scripts/patch_opentide_threat_lists.py` workaround ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189)) has been removed. Do not collapse those fields back to semicolon-packed strings.
+   `opentide` 0.14.0 types `threat.impact` / `threat.leverage` as `list[VocabName]` natively, so `opentide validate --strict` accepts the YAML lists required by `threat-1.0` out of the box. The former `scripts/patch_opentide_threat_lists.py` workaround ([opentide#189](https://github.com/opentidehq/opentide/issues/189)) has been removed. Do not collapse those fields back to semicolon-packed strings.
 
 4. Commit object YAML and updated `docs/` together.
 
@@ -47,4 +47,4 @@ By contributing, you agree that your objects are licensed under [CC-BY-SA 4.0](L
 
 ## Migration reference
 
-This catalogue was migrated from ShareTide. For field transforms, layout mapping, and lessons learned, see [sharetide-to-library.md](https://github.com/OpenTideHQ/opentide/blob/development/docs/usage/migration/sharetide-to-library.md) in the opentide documentation.
+This catalogue was migrated from ShareTide. For field transforms, layout mapping, and lessons learned, see [sharetide-to-library.md](https://github.com/opentidehq/opentide/blob/development/docs/usage/migration/sharetide-to-library.md) in the opentide documentation.

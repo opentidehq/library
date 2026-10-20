@@ -1,4 +1,4 @@
-# OpenTide Documentation
+# opentide Documentation
 | Section | Folder | Objects |
 | --- | --- | --- |
 | [Detection Rules](rules/README.md) | rules | 8 |

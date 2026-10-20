@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-off ShareTide → OpenTide Library content migration."""
+"""One-off ShareTide → opentide Library content migration."""
 
 from __future__ import annotations
 

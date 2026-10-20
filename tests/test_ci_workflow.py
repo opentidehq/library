@@ -50,7 +50,7 @@ def test_ci_keeps_development_head_as_non_blocking_early_warning() -> None:
     job = workflow["jobs"]["validate-development"]
     assert job.get("continue-on-error") is True
     checkout = next(step for step in job["steps"] if step.get("name") == "Checkout opentide development")
-    assert checkout["with"]["repository"] == "OpenTideHQ/opentide"
+    assert checkout["with"]["repository"] == "opentidehq/opentide"
     assert checkout["with"]["ref"] == "development"
     assert "token" not in checkout.get("with", {})
     assert "ssh-key" not in checkout.get("with", {})
@@ -79,7 +79,7 @@ def test_ci_checks_out_explorer_publicly() -> None:
     workflow = _load_explorer()
     job = workflow["jobs"]["build"]
     checkout = next(step for step in job["steps"] if step.get("name") == "Checkout explorer")
-    assert checkout["with"]["repository"] == "OpenTideHQ/explorer"
+    assert checkout["with"]["repository"] == "opentidehq/explorer"
     assert checkout["with"]["ref"] == "main"
     assert "token" not in checkout.get("with", {})
     assert "ssh-key" not in checkout.get("with", {})
@@ -88,7 +88,7 @@ def test_ci_checks_out_explorer_publicly() -> None:
     )
     assert "git -C explorer rev-parse" in record["run"]
     specs = next(step for step in job["steps"] if step.get("name") == "Checkout specifications")
-    assert specs["with"]["repository"] == "OpenTideHQ/specifications"
+    assert specs["with"]["repository"] == "opentidehq/specifications"
     assert specs["with"]["ref"] == "main"
     assert "token" not in specs.get("with", {})
     assert "ssh-key" not in specs.get("with", {})
