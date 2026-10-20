@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Migrate catalogue YAML to trunk opentide threat::1.0 / objective::1.0 shapes.
 
-Transforms (OpenTideHQ/library#7):
+Transforms (opentidehq/library#7):
 
 - ``threat.actors`` strings -> ``{name: ...}`` objects
 - semicolon-packed ``threat.impact`` / ``threat.leverage`` -> YAML lists

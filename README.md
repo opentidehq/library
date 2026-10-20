@@ -1,8 +1,8 @@
-# OpenTide Library
+# opentide Library
 
-Public registry of published detection objects for the [OpenTide](https://github.com/OpenTideHQ/opentide) detection-as-code framework.
+Public registry of published detection objects for the [opentide](https://github.com/opentidehq/opentide) detection-as-code framework.
 
-The Library hosts versioned **threat vectors**, **detection objectives**, and **MDR rules** that teams can browse, reference, and import into their own repositories. Content conforms to the normative schemas in [OpenTideHQ/specifications](https://github.com/OpenTideHQ/specifications) and is validated with the `opentide` engine.
+The Library hosts versioned **threat vectors**, **detection objectives**, and **MDR rules** that teams can browse, reference, and import into their own repositories. Content conforms to the normative schemas in [opentidehq/specifications](https://github.com/opentidehq/specifications) and is validated with the `opentide` engine.
 
 All objects are `TLP:CLEAR` and licensed under [CC-BY-SA 4.0](LICENSE).
 
@@ -17,11 +17,11 @@ opentide generate docs --output docs
 
 ## Interactive explorer (GitHub Pages)
 
-The [OpenTide Explorer](https://github.com/OpenTideHQ/explorer) UI is built from this repository's objects in CI and deployed to GitHub Pages:
+The [opentide Explorer](https://github.com/opentidehq/explorer) UI is built from this repository's objects in CI and deployed to GitHub Pages:
 
 **https://opentidehq.github.io/library/**
 
-The static site is served under the `/library` base path. [`.github/workflows/explorer-pages.yml`](.github/workflows/explorer-pages.yml) is a dedicated workflow (independent of the red PyPI validate job). It checks out public `OpenTideHQ/explorer` and `OpenTideHQ/specifications` with no App/PAT token, runs `pnpm codegen:specs` so `vocab.index.json` exists, then builds with Node (`scripts/generate-mock-bundle.mjs` + `next build`). That path does **not** call `opentide explorer`: PyPI `opentide` has no such Typer command ([opentide#202](https://github.com/OpenTideHQ/opentide/issues/202)).
+The static site is served under the `/library` base path. [`.github/workflows/explorer-pages.yml`](.github/workflows/explorer-pages.yml) is a dedicated workflow (independent of the red PyPI validate job). It checks out public `opentidehq/explorer` and `opentidehq/specifications` with no App/PAT token, runs `pnpm codegen:specs` so `vocab.index.json` exists, then builds with Node (`scripts/generate-mock-bundle.mjs` + `next build`). That path does **not** call `opentide explorer`: PyPI `opentide` has no such Typer command ([opentide#202](https://github.com/opentidehq/opentide/issues/202)).
 
 Local preview from a sibling explorer checkout:
 
@@ -43,9 +43,9 @@ pnpm dev               # interactive preview at http://localhost:3000
 | Objective | `objects/objectives/` | `objective::1.0` | Detection objectives and signals |
 | Rule | `objects/rules/` | `rule::1.0` | MDR rules with platform configurations |
 
-Each YAML file includes a top-level `name` and a `metadata` block (`schema`, `version`, `uuid`, `tlp`, and related fields). **Filenames** should be dash-case slugs derived from `name` (see `slugify()` in the opentide engine); the `name` field itself can be richer (title case, punctuation). See the [specifications](https://github.com/OpenTideHQ/specifications) for normative field definitions.
+Each YAML file includes a top-level `name` and a `metadata` block (`schema`, `version`, `uuid`, `tlp`, and related fields). **Filenames** should be dash-case slugs derived from `name` (see `slugify()` in the opentide engine); the `name` field itself can be richer (title case, punctuation). See the [specifications](https://github.com/opentidehq/specifications) for normative field definitions.
 
-## Relationship to OpenTide
+## Relationship to opentide
 
 ```text
 specifications  →  schemas and object specs (source of truth)
@@ -55,8 +55,8 @@ explorer        →  interactive UI (GitHub Pages at /library)
 website         →  static docs and marketing
 ```
 
-- **Client repositories** hold private detection content under `objects/` and index it locally via the OpenTide workspace registry.
-- **This repository** is the curated, public catalogue of objects published by OpenTide and contributors.
+- **Client repositories** hold private detection content under `objects/` and index it locally via the opentide workspace registry.
+- **This repository** is the curated, public catalogue of objects published by opentide and contributors.
 - **`opentide`** validates library objects the same way it validates client content.
 
 ## Layout
@@ -72,7 +72,7 @@ docs/                  # generated markdown (committed)
 
 ## Consumption
 
-Import YAML files from this repository into your own OpenTide instance. We recommend importing via PR/MR so `opentide validate --strict` runs in CI.
+Import YAML files from this repository into your own opentide instance. We recommend importing via PR/MR so `opentide validate --strict` runs in CI.
 
 **Chaining dependencies:** when importing TVMs with chaining relations to objects not yet in your instance, comment out those chaining blocks until the referenced UUIDs exist locally, then restore them after the objects are indexed.
 
@@ -99,11 +99,11 @@ pip install -e "../opentide[cli]"
 
 `opentide` and `explorer` are public. Catalogue CI installs the **released** engine with `pip install opentide` and runs `opentide validate --strict`. It does not need GitHub App, PAT, or deploy-key secrets to clone those repositories.
 
-A separate non-blocking job checks `OpenTideHQ/opentide@development` so engine drift is visible.
+A separate non-blocking job checks `opentidehq/opentide@development` so engine drift is visible.
 
-`threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens (`threat-1.0`; [specifications#12](https://github.com/OpenTideHQ/specifications/issues/12) is closed). `opentide` 0.14.0 types those fields as `list[VocabName]` natively, so `opentide validate --strict` accepts them against both the released engine and `@development`. The former `scripts/patch_opentide_threat_lists.py` workaround ([opentide#189](https://github.com/OpenTideHQ/opentide/issues/189)) is no longer needed and has been removed. Do not collapse the YAML back to strings.
+`threat.impact` and `threat.leverage` in this catalogue are YAML lists of vocab tokens (`threat-1.0`; [specifications#12](https://github.com/opentidehq/specifications/issues/12) is closed). `opentide` 0.14.0 types those fields as `list[VocabName]` natively, so `opentide validate --strict` accepts them against both the released engine and `@development`. The former `scripts/patch_opentide_threat_lists.py` workaround ([opentide#189](https://github.com/opentidehq/opentide/issues/189)) is no longer needed and has been removed. Do not collapse the YAML back to strings.
 
-Explorer Pages is a **separate** workflow (`.github/workflows/explorer-pages.yml`). It checks out [OpenTideHQ/explorer](https://github.com/OpenTideHQ/explorer) `@main` and builds with Node from this corpus (`OPENTIDE_REPO_ROOT`) plus ATT&CK vocab from [OpenTideHQ/specifications](https://github.com/OpenTideHQ/specifications) (`SPECIFICATIONS_REPO_ROOT`). `vocab.index.json` is copied into the export **after** `next build` so the Pages artifact stays small ([explorer#36](https://github.com/OpenTideHQ/explorer/issues/36)). Merges to `main` deploy https://opentidehq.github.io/library/.
+Explorer Pages is a **separate** workflow (`.github/workflows/explorer-pages.yml`). It checks out [opentidehq/explorer](https://github.com/opentidehq/explorer) `@main` and builds with Node from this corpus (`OPENTIDE_REPO_ROOT`) plus ATT&CK vocab from [opentidehq/specifications](https://github.com/opentidehq/specifications) (`SPECIFICATIONS_REPO_ROOT`). `vocab.index.json` is copied into the export **after** `next build` so the Pages artifact stays small ([explorer#36](https://github.com/opentidehq/explorer/issues/36)). Merges to `main` deploy https://opentidehq.github.io/library/.
 
 ## Contributing
 
@@ -113,10 +113,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Objects must pass `opentide validate --s
 
 | Project | Description |
 |---------|-------------|
-| [opentide](https://github.com/OpenTideHQ/opentide) | DetectionOps engine |
-| [specifications](https://github.com/OpenTideHQ/specifications) | Normative schemas and metadata specs |
-| [skills](https://github.com/OpenTideHQ/skills) | Agent skills for detection engineering |
-| [website](https://github.com/OpenTideHQ/website) | OpenTide documentation and public surfaces |
+| [opentide](https://github.com/opentidehq/opentide) | DetectionOps engine |
+| [specifications](https://github.com/opentidehq/specifications) | Normative schemas and metadata specs |
+| [skills](https://github.com/opentidehq/skills) | Agent skills for detection engineering |
+| [website](https://github.com/opentidehq/website) | opentide documentation and public surfaces |
 
 ## License
 

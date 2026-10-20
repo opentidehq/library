@@ -1,8 +1,8 @@
-# OpenTide Library — Agent Guide
+# opentide Library — Agent Guide
 
-Public TLP:CLEAR detection object catalogue for the OpenTide community.
+Public TLP:CLEAR detection object catalogue for the opentide community.
 
-**Organisation:** OpenTideHQ
+**Organisation:** opentidehq
 
 ## Quick start
 
