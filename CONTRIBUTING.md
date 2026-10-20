@@ -12,7 +12,7 @@ Thank you for contributing `TLP:CLEAR` detection objects to the public catalogue
    export OPENTIDE_REPO_ROOT=$PWD
    ```
 
-   `pip install opentide` is enough if you only need the CLI. Use `pip install -e ../opentide[cli]` only when testing unreleased engine changes.
+   `pip install opentide` installs the CLI, SDK and MCP server. Use `pip install -e ../opentide` only when testing unreleased engine changes.
 
 2. Add or edit YAML under `objects/threats/`, `objects/objectives/`, or `objects/rules/` using schema identifiers `threat::1.0`, `objective::1.0`, and `rule::1.0`.
 
