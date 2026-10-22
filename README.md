@@ -113,7 +113,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Objects must pass `opentide validate --s
 
 | Project | Description |
 |---------|-------------|
-| [opentide](https://github.com/opentidehq/opentide) | DetectionOps engine |
+| [opentide](https://github.com/opentidehq/opentide) | The opentide engine: CLI, SDK and MCP server |
 | [specifications](https://github.com/opentidehq/specifications) | Normative schemas and metadata specs |
 | [skills](https://github.com/opentidehq/skills) | Agent skills for detection engineering |
 | [website](https://github.com/opentidehq/website) | opentide documentation and public surfaces |
