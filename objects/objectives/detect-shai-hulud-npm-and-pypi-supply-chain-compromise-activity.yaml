@@ -257,7 +257,7 @@ objective:
       data:
         availability: Partial
         requirements: |-
-          - GitHub Enterprise audit log ingestion (GitHubAuditLog or
+          - GitHub Enterprise audit log ingestion (GitHubAuditData or
             equivalent connector table)
           - Microsoft Sentinel `CloudAppEvents` / `OfficeActivity` for
             GitHub application activity

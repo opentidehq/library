@@ -1,0 +1,15 @@
+# Rule files whose queries `opentide validate` (0.19.0, language-server 0.6.0)
+# rejects although the platform accepts them. CI checks every other file's
+# queries with `opentide validate --check queries`; these are skipped there
+# (the rest of validate still covers them). Remove a line once the engine
+# accepts the file. One path per line, relative to the repository root.
+#
+# kql_unknown_table: GitHubAuditData is the Microsoft Sentinel GitHub
+# solution's parser (GitHubAuditLogPolling_CL / GitHubAuditLogsV2_CL /
+# GitHubAuditLogsV3_CL); the engine's Sentinel catalog has no GitHub tables.
+objects/rules/shai-hulud-anomalous-npm-package-publish-from-non-baseline-identity.yaml
+objects/rules/shai-hulud-unexpected-github-repository-or-workflow-creation.yaml
+# spl_parse_error: the SPL grammar rejects unquoted TERM() arguments holding
+# minor breakers (TERM(EventID=4688), TERM(-e), TERM(C:\\...\\x.exe)), which
+# Splunk accepts.
+objects/rules/rba-rr-win-base64-encoded-powershell-payload.yaml

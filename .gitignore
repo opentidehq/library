@@ -9,3 +9,5 @@ build/
 .opentide/exports/*.export.json
 .opentide/schemas/
 .opentide/templates/
+.opentide/lsp/
+.vscode/model-templates.code-snippets

@@ -4,8 +4,13 @@
 # deploy-key credentials to clone them.
 #
 # The published-user contract is the PyPI job:
-#   pip install opentide
+#   pip install opentide==0.19.0
 #   opentide validate --strict
+#
+# opentide 0.19.0 checks every rule query offline (the `queries` check). The
+# Validate step runs the other checks with --queries off; the Check rule
+# queries step runs the queries check on every rule file except the engine
+# false positives listed in scripts/query-false-positives.txt.
 #
 # threat.impact / threat.leverage are YAML lists (library#7, threat-1.0).
 # opentide 0.14.0 types those fields as list[VocabName] natively, so the former
@@ -63,7 +68,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install released opentide
-        run: pip install opentide
+        run: pip install opentide==0.19.0
 
       - name: Generate schemas and templates
         run: |
@@ -71,7 +76,10 @@ jobs:
           opentide generate templates
 
       - name: Validate objects
-        run: opentide validate --strict
+        run: opentide validate --strict --queries off
+
+      - name: Check rule queries
+        run: scripts/validate_queries.sh
 
       - name: Generate documentation
         run: opentide generate docs --output docs --flavor github
@@ -105,4 +113,7 @@ jobs:
           opentide generate templates
 
       - name: Validate objects against development HEAD
-        run: opentide validate --strict
+        run: opentide validate --strict --queries off
+
+      - name: Check rule queries against development HEAD
+        run: scripts/validate_queries.sh
