@@ -22,12 +22,12 @@
 #### MDR Technical Details
 Microsoft Sentinel scheduled analytic rule implementing DOM signal
 `287114bd-7d58-422d-9711-f5516900b9ce` (Unexpected GitHub Repository or
-Workflow Creation from Anomalous Context). Searches `GitHubAuditLog` and
+Workflow Creation from Anomalous Context). Searches `GitHubAuditData` and
 `CloudAppEvents` for dead-drop repository markers, suspicious workflow
 commits, and package-related audit actions.
 
 #### Detection Criteria
-- GitHub audit `Data` or CloudApp `RawEventData` contains campaign strings:
+- the GitHub audit record (every `GitHubAuditData` column) or CloudApp `RawEventData` contains campaign strings:
   `Shai-Hulud: Here We Go Again`, `PUSH UR T3MPRR`, or the token-wipe
   commit message.
 - OR repository/workflow actions involving `router_init.js`, `setup.mjs`,
@@ -63,10 +63,10 @@ and audit workflow files for malicious publish steps.
 #### Searches
 - **Expand GitHub audit activity for the alerted actor** (sentinel)
 ```text
-GitHubAuditLog
+GitHubAuditData
 | where TimeGenerated > ago(24h)
 | where Actor == "{{Actor}}"
-| project TimeGenerated, Action, Repository, Data
+| project TimeGenerated, Organization, Action, Repository, ImpactedUser
 | order by TimeGenerated desc
 ```
 
@@ -93,14 +93,14 @@ let MaliciousPaths = dynamic([
     "router_init.js", "setup.mjs", ".github/workflows"
 ]);
 let GitHubAudit =
-GitHubAuditLog
+GitHubAuditData
 | where TimeGenerated > ago(1h)
-| extend DataStr = tostring(Data)
+| extend DataStr = tostring(pack_all())
 | where Action has_any ("repo.", "workflows.", "packages.")
 | where DataStr has_any (ShaiHuludMarkers)
     or (Action has "repo.create" and DataStr has "dune")
 | project TimeGenerated, Actor, Action, Repository, DataStr,
-    IPAddress = "", Source = "GitHubAuditLog";
+    IPAddress = "", Source = "GitHubAuditData";
 let CloudAppGitHub =
 CloudAppEvents
 | where TimeGenerated > ago(1h)

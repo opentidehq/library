@@ -305,8 +305,8 @@ to identify deviations. Integration with UEBA (User and Entity Behavior Analytic
 platforms significantly enhances detection accuracy for this signal.
 - **Entities**: Account, Resource, IP Address, API Call
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Anomalous Azure AD Sign-In Patterns | _None_ |
 | Service Principal Credential Abuse | _None_ |

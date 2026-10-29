@@ -95,10 +95,12 @@ DeviceFileEvents
 | where ActionType in ("FileCreated", "FileModified") or ActionType has "Read"
 | where FolderPath has_any (SecretPatterns) or FileName has_any (SecretPatterns)
 | extend FullPath = strcat(FolderPath, "\\", FileName)
+| project Timestamp, DeviceId, InitiatingProcessId, InitiatingProcessFileName, FullPath
 | summarize DistinctPaths = dcount(FullPath),
     SamplePaths = make_set(FullPath, 10)
     by DeviceId, InitiatingProcessId, InitiatingProcessFileName, bin(Timestamp, 10m)
 | where DistinctPaths >= PathThreshold
+| project Timestamp, DeviceId, InitiatingProcessId, InitiatingProcessFileName, DistinctPaths, SamplePaths
 | join kind=inner (
     DeviceProcessEvents
     | where InitiatingProcessFileName in~ (PackageRuntimes)
@@ -108,9 +110,9 @@ DeviceFileEvents
 ) on DeviceId, InitiatingProcessId
 | join kind=inner (
     DeviceProcessEvents
-    | summarize arg_max(Timestamp, *) by DeviceId, InitiatingProcessId
     | project DeviceId, InitiatingProcessId, ReportId, DeviceName,
         AccountName, AccountSid, Timestamp
+    | summarize arg_max(Timestamp, *) by DeviceId, InitiatingProcessId
 ) on DeviceId, InitiatingProcessId
 | project Timestamp, DeviceId, ReportId, DeviceName, AccountName, AccountSid,
     InitiatingProcessFileName,

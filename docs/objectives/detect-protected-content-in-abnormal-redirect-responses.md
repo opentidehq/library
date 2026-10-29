@@ -100,8 +100,8 @@ non-sensitive content fingerprints. Store only hashes, fingerprints, or minimal 
 to prove exposure.
 - **Entities**: URL, Session, API Call
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Large 302 response body on protected route | _None_ |
 | Restricted route enumeration through repeated redirects | _None_ |

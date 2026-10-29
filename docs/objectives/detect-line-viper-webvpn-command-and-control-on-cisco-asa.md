@@ -218,8 +218,8 @@ Preferred log sources:
 - Zeek SSL/TLS logs with response body extraction
 - **Entities**: IP Address, Network Connection, URL, Hostname
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Malformed PKCS7 Certificate in WebVPN Authentication Request | _None_ |
 | Anomalous XML Payload in WebVPN Authentication Form Elements | _None_ |

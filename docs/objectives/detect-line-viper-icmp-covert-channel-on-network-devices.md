@@ -158,8 +158,8 @@ Preferred log sources:
 - NGFW inspection rules targeting ASA management IPs
 - **Entities**: IP Address, Port, Network Connection, Hostname
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Anomalous ICMP Traffic to Cisco ASA LAN Interface via VPN | _None_ |
 | Unexpected Outbound Raw TCP from Cisco ASA on High Ephemeral Ports | _None_ |

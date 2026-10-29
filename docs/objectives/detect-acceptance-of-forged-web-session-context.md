@@ -98,8 +98,8 @@ and timestamps from WAF, proxy, API gateway, or application logs. Header values 
 field names and response outcomes are sufficient for this signal.
 - **Entities**: IP Address, URL, Session, API Call
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Fabricated session value grants protected access | _None_ |
 | Client-side role or identity claim changes authorisation outcome | _None_ |

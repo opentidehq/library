@@ -117,8 +117,8 @@ to handle.
 Data sources: Command, File, Script, Module, Process.
 - **Entities**: Process
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Powershell encoded payload to start new process | _None_ |
 

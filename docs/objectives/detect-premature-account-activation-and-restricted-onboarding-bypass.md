@@ -95,8 +95,8 @@ approval state, role assignment, request path, response status, and source IP. T
 should compare first resource access with approval or activation timestamps.
 - **Entities**: Account, URL, API Call, Session
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Account created without required invitation or approval context | _None_ |
 | Authentication material issued while account approval is pending | _None_ |

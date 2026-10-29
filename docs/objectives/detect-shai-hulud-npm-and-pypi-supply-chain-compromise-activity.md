@@ -242,7 +242,7 @@ on linked CI runners.
 #### Data
 
 - **Availability**: Partial
-- **Requirements**: - GitHub Enterprise audit log ingestion (GitHubAuditLog or
+- **Requirements**: - GitHub Enterprise audit log ingestion (GitHubAuditData or
   equivalent connector table)
 - Microsoft Sentinel `CloudAppEvents` / `OfficeActivity` for
   GitHub application activity
@@ -392,8 +392,8 @@ Preferred log sources:
 - OpenSSF / vendor supply-chain feeds
 - **Entities**: File, File Hash, Software, DNS Query, URL, Hostname
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Package Manager Install Spawning Unexpected Download or Scripting Child Processes | _None_ |
 | Developer Secret-File Access Followed by Outbound Network Egress | _None_ |

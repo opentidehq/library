@@ -217,8 +217,8 @@ Preferred log sources:
 - ROMMON console output for independent boot image hash
 - **Entities**: Hostname, Software, File Hash
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Cisco ASA Authentication Log Gap for Established Network Connections | _None_ |
 | Anomalous Reduction in Cisco ASA Syslog Message Volume | _None_ |

@@ -64,7 +64,7 @@ credentials reachable from accessed secret paths before rejoining the network.
 ```text
 DeviceProcessEvents
 | where DeviceId == "{{DeviceId}}"
-| where Timestamp between (datetime("{{Timestamp}}") - 30m .. datetime("{{Timestamp}}") + 30m)
+| where Timestamp between (todatetime("{{Timestamp}}") - 30m .. todatetime("{{Timestamp}}") + 30m)
 | project Timestamp, FileName, ProcessCommandLine, InitiatingProcessFileName
 | order by Timestamp asc
 ```
@@ -107,6 +107,8 @@ DeviceNetworkEvents
     RemoteUrl, RemoteIP, RemotePort, SentBytes;
 SecretReads
 | where SecretPathCount >= 2
+| project DeviceId, InitiatingProcessId, InitiatingProcessFileName,
+    SecretReadTime, SecretPathCount, SecretPaths
 | join kind=inner SecretEgress on DeviceId, InitiatingProcessId
 | where EgressTime between (SecretReadTime .. (SecretReadTime + CorrelationWindow))
 | project Timestamp = EgressTime, DeviceId, ReportId, DeviceName,

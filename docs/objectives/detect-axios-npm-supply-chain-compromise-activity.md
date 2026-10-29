@@ -491,8 +491,8 @@ Preferred log sources:
   mirrors
 - **Entities**: Software, User, Hostname
 
-## Signal MDR coverage
-| Signal | Downstream MDR rules |
+## Signal rule coverage
+| Signal | Downstream rules |
 | --- | --- |
 | Compromised Axios / plain-crypto-js Versions Resolved in Dependency Manifests | _None_ |
 | Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters | _None_ |
@@ -528,9 +528,9 @@ f45b9b82_a3c5_4643_932b_debfd8739bd8 --> 68f4ac42_9bd8_4b1e_b547_56f890bfe457
 | Type | Name | Direction | Relation |
 | --- | --- | --- | --- |
 | Threat | [Axios npm supply chain compromise](../threats/axios-npm-supply-chain-compromise.md) (`000790d9-06de-49af-893d-e4993abe6e38`) | Upstream | threat |
-| Signal | [WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts](detect-axios-npm-supply-chain-compromise-activity.md#waveshaper-v2-cross-platform-rat-on-disk-artefacts) (`6524f5a6-d9e9-48ff-983f-23c4aed9c1fd`) | Downstream | signal |
+| Signal | [WAVESHAPER.V2 Cross-Platform RAT On-Disk Artefacts](detect-axios-npm-supply-chain-compromise-activity.md#waveshaperv2-cross-platform-rat-on-disk-artefacts) (`6524f5a6-d9e9-48ff-983f-23c4aed9c1fd`) | Downstream | signal |
 | Signal | [NPM Publisher Email or SLSA Provenance Regression on Critical Packages](detect-axios-npm-supply-chain-compromise-activity.md#npm-publisher-email-or-slsa-provenance-regression-on-critical-packages) (`68f4ac42-9bd8-4b1e-b547-56f890bfe457`) | Downstream | signal |
 | Signal | [Suspicious npm Postinstall Lifecycle Execution Spawning Unexpected Interpreters](detect-axios-npm-supply-chain-compromise-activity.md#suspicious-npm-postinstall-lifecycle-execution-spawning-unexpected-interpreters) (`6c2c0f21-5821-4b5f-9279-9b91dfd5d148`) | Downstream | signal |
-| Signal | [Renamed PowerShell + Transient VBScript Loader from Node.js Process Tree (Windows)](detect-axios-npm-supply-chain-compromise-activity.md#renamed-powershell-transient-vbscript-loader-from-node-js-process-tree-windows) (`9866b082-7f59-43d3-8ed8-2567eda7d4fc`) | Downstream | signal |
-| Signal | [WAVESHAPER.V2 C2 Communication to sfrclak[.]com](detect-axios-npm-supply-chain-compromise-activity.md#waveshaper-v2-c2-communication-to-sfrclak-com) (`a5331e78-144f-4300-8672-4b69b6ae732c`) | Downstream | signal |
-| Signal | [Compromised Axios / plain-crypto-js Versions Resolved in Dependency Manifests](detect-axios-npm-supply-chain-compromise-activity.md#compromised-axios-plain-crypto-js-versions-resolved-in-dependency-manifests) (`cf53a85e-38af-4053-a2b5-549bce394b8a`) | Downstream | signal |
+| Signal | [Renamed PowerShell + Transient VBScript Loader from Node.js Process Tree (Windows)](detect-axios-npm-supply-chain-compromise-activity.md#renamed-powershell--transient-vbscript-loader-from-nodejs-process-tree-windows) (`9866b082-7f59-43d3-8ed8-2567eda7d4fc`) | Downstream | signal |
+| Signal | [WAVESHAPER.V2 C2 Communication to sfrclak[.]com](detect-axios-npm-supply-chain-compromise-activity.md#waveshaperv2-c2-communication-to-sfrclakcom) (`a5331e78-144f-4300-8672-4b69b6ae732c`) | Downstream | signal |
+| Signal | [Compromised Axios / plain-crypto-js Versions Resolved in Dependency Manifests](detect-axios-npm-supply-chain-compromise-activity.md#compromised-axios--plain-crypto-js-versions-resolved-in-dependency-manifests) (`cf53a85e-38af-4053-a2b5-549bce394b8a`) | Downstream | signal |

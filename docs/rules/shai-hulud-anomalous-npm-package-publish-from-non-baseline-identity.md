@@ -29,7 +29,7 @@ compromised versions via `ThreatIntelIndicators`.
 
 #### Detection Criteria
 - Burst threshold: ≥ 3 package publish actions per actor per hour in
-  `GitHubAuditLog` (worm republication pattern).
+  `GitHubAuditData` (worm republication pattern).
 - OR audit/commit metadata references `preinstall`, `setup.mjs`,
   `optionalDependencies`, or orphan TanStack git dependency.
 - OR `ThreatIntelIndicators` match on known Shai-Hulud package versions.
@@ -63,11 +63,11 @@ and audit all packages under the compromised maintainer scope.
 #### Searches
 - **Review all package publish actions for the actor** (sentinel)
 ```text
-GitHubAuditLog
+GitHubAuditData
 | where TimeGenerated > ago(24h)
 | where Actor == "{{Actor}}"
 | where Action has "packages."
-| project TimeGenerated, Action, Repository, Data
+| project TimeGenerated, Organization, Action, Repository, ImpactedUser
 ```
 
 ## Platform configurations
@@ -93,7 +93,7 @@ let CompromisedPackages = dynamic([
     "mistralai@2.4.6", "@uipath/", "@mistralai/"
 ]);
 let PublishBurst =
-GitHubAuditLog
+GitHubAuditData
 | where TimeGenerated > ago(1h)
 | where Action has "packages." and Action has "publish"
 | summarize PublishCount = count(),
@@ -103,10 +103,10 @@ GitHubAuditLog
 | extend DetectionReason = strcat("publish_burst=", PublishCount),
     Repository = tostring(Packages[0]), DataStr = "";
 let ManifestPublish =
-GitHubAuditLog
+GitHubAuditData
 | where TimeGenerated > ago(1h)
 | where Action has_any ("packages.", "repo.", "git.")
-| extend DataStr = tostring(Data)
+| extend DataStr = tostring(pack_all())
 | where DataStr has_any (ManifestMarkers)
 | summarize arg_max(TimeGenerated, *) by Actor, Repository
 | extend PublishCount = 1,
