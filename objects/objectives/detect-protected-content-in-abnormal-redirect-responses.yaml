@@ -112,11 +112,3 @@ objective:
         - Network::API Call
   mitre_attack:
     - T1190
-composition:
-  strategy: Combined
-  description: |-
-    Combine response-shape anomalies with request context. Oversized 302 responses are a strong
-    exposure indicator, but confidence increases when the same source repeatedly probes restricted
-    routes or when controlled validation confirms that body content differs materially from a normal
-    login redirect. Correlate on source IP, requested URL, route sensitivity, response status, body
-    byte count, and follow-up requests.

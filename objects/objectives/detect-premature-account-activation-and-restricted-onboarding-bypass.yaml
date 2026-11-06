@@ -111,10 +111,3 @@ objective:
   mitre_attack:
     - T1190
     - T1136
-composition:
-  strategy: Sequence
-  description: |-
-    Correlate account lifecycle events in order: registration attempt, account object creation,
-    approval or invitation state, password reset, login or token issuance, and first UI/API access.
-    The highest-confidence condition is a newly created account receiving reset capability, session
-    material, or protected resource access before its approval state permits authentication.
