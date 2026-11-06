@@ -51,8 +51,9 @@ on EC Windows devices.
 ## Status
 | Field | Value |
 | --- | --- |
-| Status | `STAGING` |
-| Severity | `Informational` |
+| Status (sentinel) | `PRODUCTION` |
+| Status (splunk) | `PRODUCTION` |
+| Severity | `High` |
 
 ## Detection model
 - **Objective**: [Powershell encoded payload to start new process](../objectives/powershell-encoded-payload-to-start-new-process.md) (`bfeb24bf-8a17-4ccc-8aec-91721743153d`)
