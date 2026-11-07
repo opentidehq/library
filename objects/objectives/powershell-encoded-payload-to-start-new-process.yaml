@@ -115,6 +115,3 @@ objective:
           Data sources: Command, File, Script, Module, Process.
       entities:
         - Host::Process
-composition:
-  strategy: Independent
-  description: Each signal triggers independently, covering different detection approaches for the same objective.

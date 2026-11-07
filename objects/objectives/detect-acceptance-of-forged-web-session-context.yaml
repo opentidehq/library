@@ -113,11 +113,3 @@ objective:
         - Network::API Call
   mitre_attack:
     - T1190
-composition:
-  strategy: Combined
-  description: |-
-    Combine controlled validation findings with production telemetry. A single crafted-value success
-    can confirm exposure during testing, while production monitoring should focus on suspicious state
-    names, repeated state probing, and mismatches between claimed client attributes and server-side
-    principal resolution. Correlate by source IP, route, cookie/header name, session, claimed identity,
-    and resolved server-side account.

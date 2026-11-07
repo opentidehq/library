@@ -42,8 +42,9 @@ entries for large POST/PUT requests to the same Shai-Hulud IOC destinations.
 ## Status
 | Field | Value |
 | --- | --- |
-| Status | `STAGING` |
-| Severity | `Informational` |
+| Status (sentinel) | `DEVELOPMENT` |
+| Status (defender_for_endpoint) | `DEVELOPMENT` |
+| Severity | `Medium` |
 
 ## Detection model
 - **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](../objectives/detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)

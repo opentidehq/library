@@ -4,7 +4,7 @@
 # deploy-key credentials to clone them.
 #
 # The published-user contract is the PyPI job:
-#   pip install opentide==0.19.0
+#   pip install opentide==0.23.0
 #   opentide validate --strict
 #
 # opentide 0.19.0 checks every rule query offline (the `queries` check). The
@@ -68,7 +68,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install released opentide
-        run: pip install opentide==0.19.0
+        run: pip install opentide==0.23.0
 
       - name: Generate schemas and templates
         run: |

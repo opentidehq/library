@@ -41,8 +41,8 @@ a ten-minute window, filtered to non-interactive package-runtime parents.
 ## Status
 | Field | Value |
 | --- | --- |
-| Status | `STAGING` |
-| Severity | `Informational` |
+| Status (defender_for_endpoint) | `DEVELOPMENT` |
+| Severity | `Medium` |
 
 ## Detection model
 - **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](../objectives/detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)

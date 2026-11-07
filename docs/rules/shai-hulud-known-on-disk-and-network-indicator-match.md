@@ -44,8 +44,9 @@ campaign infrastructure and package indicators.
 ## Status
 | Field | Value |
 | --- | --- |
-| Status | `STAGING` |
-| Severity | `Informational` |
+| Status (sentinel) | `DEVELOPMENT` |
+| Status (defender_for_endpoint) | `DEVELOPMENT` |
+| Severity | `High` |
 
 ## Detection model
 - **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](../objectives/detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)
@@ -107,13 +108,14 @@ CommonSecurityLog
 let TiMatch =
 ThreatIntelIndicators
 | where TimeGenerated > ago(7d)
-| where ExpirationDateTime > now() and Active == true
+| where IsActive == true and ValidUntil > now()
+| extend Description = tostring(Data.description)
 | where Description has_any ("Shai-Hulud", "mini-shai-hulud", "git-tanstack")
-    or DomainName has_any (IocDomains)
-    or NetworkIP == ExfilIp
-| extend IndicatorValue = coalesce(DomainName, NetworkIP, Description)
+    or ObservableValue has_any (IocDomains)
+    or ObservableValue == ExfilIp
+| extend IndicatorValue = coalesce(ObservableValue, Description)
 | project TimeGenerated, ClientIP = "", IndicatorValue,
-    MatchSource = "ThreatIntelIndicators", IndicatorType = ThreatType;
+    MatchSource = "ThreatIntelIndicators", IndicatorType = ObservableKey;
 union DnsMatch, ProxyMatch, TiMatch
 | order by TimeGenerated desc
 ```

@@ -44,8 +44,8 @@ compromised versions via `ThreatIntelIndicators`.
 ## Status
 | Field | Value |
 | --- | --- |
-| Status | `STAGING` |
-| Severity | `Informational` |
+| Status (sentinel) | `DEVELOPMENT` |
+| Severity | `Medium` |
 
 ## Detection model
 - **Objective**: [Detect Shai-Hulud npm and PyPI Supply Chain Compromise Activity](../objectives/detect-shai-hulud-npm-and-pypi-supply-chain-compromise-activity.md) (`fb62e879-9e91-4c5b-aaa7-999b2b1b3897`)
@@ -115,11 +115,12 @@ GitHubAuditData
 let TiPackageMatch =
 ThreatIntelIndicators
 | where TimeGenerated > ago(7d)
-| where ExpirationDateTime > now() and Active == true
+| where IsActive == true and ValidUntil > now()
+| extend Description = tostring(Data.description)
 | where Description has_any ("Shai-Hulud", "tanstack", "mini-shai-hulud")
-    or ExternalId has_any (CompromisedPackages)
-| extend Actor = coalesce(tostring(AdditionalData.actor), "ti_feed"),
-    Repository = coalesce(tostring(AdditionalData.package), Description),
+    or ObservableValue has_any (CompromisedPackages)
+| extend Actor = coalesce(tostring(Data.actor), "ti_feed"),
+    Repository = coalesce(tostring(Data.package), ObservableValue, Description),
     DetectionReason = "ti_feed_match", PublishCount = 1, DataStr = Description
 | project TimeGenerated, Actor, Repository, DetectionReason, PublishCount, DataStr, Packages = pack_array(Repository);
 union PublishBurst, ManifestPublish, TiPackageMatch
