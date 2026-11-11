@@ -1,4 +1,4 @@
-# Rule files whose queries `opentide validate` (0.23.0, language-server 0.11.0)
+# Rule files whose queries `opentide validate` (0.25.0)
 # rejects although the platform accepts them. CI checks every other file's
 # queries with `opentide validate --check queries`; these are skipped there
 # (the rest of validate still covers them). Remove a line once the engine
